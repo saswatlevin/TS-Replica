@@ -1,0 +1,279 @@
+{	
+	"_id": "kfdofe0ro29i2039320ie",
+	"docType": "USER", 
+	"user_id": 1,
+	"date_created_at": "2025-03-18T16:00:00Z",
+	"email": "abc001@server.com",
+	"password": "fdkodke03e3/eor",
+	"phoneno": "0123456789",
+	"first_name": "ABC",
+	"last_name": "CBA",
+	"user_role": "user",
+	"upper_size_number": 44,
+	"upper_size_letter": "XL",
+	"lower_size_number": 36,
+	"others_size_letter": "XL",
+	"email_comms_type": "One Weekly Recap",
+	"sms_comms": true,
+	"ShippingAddresses": [
+		{
+			"shipping_address_id": 1500,
+			"address_type_id": "1",
+			"building_name": "Artemis",
+			"street_number": "1",
+			"street_number_suffix": "A",
+			"street_name": "Alpha",
+			"street_type": "Court",
+			"street_direction": "W",
+			"city": "ABC city",
+			"postal_area": 203930,
+			"country": "ABC country"
+		},
+		
+		{	
+			"shipping_address_id": 1501,
+			"address_type_id": "2",
+			"building_name": "Apollo",
+			"street_number": "2",
+			"street_number_suffix": "B",
+			"street_name": "AlphaTwo",
+			"street_type": "Drive",
+			"street_direction": "E",
+			"city": "DEF city",
+			"postal_area": 184921,
+			"country": "DEF country"
+		},
+
+		{	
+			"shipping_address_id": 1502,
+			"address_type_id": "3",
+			"building_name": "Ceres",
+			"street_number": "3",
+			"street_number_suffix": "C",
+			"street_name": "AlphaThree",
+			"street_type": "Way",
+			"street_direction": "SE",
+			"city": "GHI city",
+			"postal_area": 320230,
+			"country": "GHI country"
+		}
+		
+	],
+
+	"CartItems": [
+		{
+			"cart_item_id": 10,
+			"product_id": 100,
+			"sku": "fmrok30o34",
+			"cart_item_image": "/users/saswatlevin/home/img1.jpg",
+			"cart_item_price": 30,
+			"cart_item_quantity": 4
+		},
+		
+		{
+			"cart_item_id": 11,
+			"product_id": 101,
+			"sku": "kfdldfeper",
+			"cart_item_image": "/users/saswatlevin/home/img2.jpg",
+			"cart_item_price": 42,
+			"cart_item_quantity": 1
+		},
+		
+		{
+			"cart_item_id": 12,
+			"product_id": 102,
+			"sku": "dkfkmdkreo9",
+			"cart_item_image": "/users/saswatlevin/home/img3.jpg",
+			"cart_item_price": 36,
+			"cart_item_quantity": 5
+		}
+	]
+
+
+};
+
+{	
+	"_id": "fkoerir4k2trkrokfoe304",
+	"docType": "USER",
+	"user_id": 2,
+	"date_created_at": "2025-03-19T16:00:00Z",
+	"email": "def098@server.com",
+	"password": "kcldffw3ekoef@o891",
+	"phoneno": "3409309058",
+	"first_name": "DEF",
+	"last_name": "FED",
+	"user_role": "administrator",
+	"upper_size_number": 46,
+	"upper_size_letter": "XL",
+	"lower_size_number": 34,
+	"others_size_letter": "L",
+	"email_comms_type": "One Weekly Recap",
+	"sms_comms": false,
+
+	"ShippingAddresses": [
+		{	
+			"shipping_address_id": 1500,
+			"address_type_id": "1",
+			"building_name": "Arcon",
+			"street_number": "10",
+			"street_number_suffix": "A",
+			"street_name": "Beta",
+			"street_type": "Driveway",
+			"street_direction": "N",
+			"city": "CBA city",
+			"postal_area": 315826,
+			"country": "CBA country"
+		},
+		
+		{
+			"shipping_address_id": 1501,
+			"address_type_id": "2",
+			"building_name": "Ganymede",
+			"street_number": "12",
+			"street_number_suffix": "B",
+			"street_name": "BetaTwo",
+			"street_type": "Street",
+			"street_direction": "NW",
+			"city": "FED city",
+			"postal_area": 549489,
+			"country": "FED country"
+		},
+
+		{	
+			"shipping_address_id": 1502,
+			"address_type_id": "3",
+			"building_name": "Pinkstrabe",
+			"street_number": "6",
+			"street_number_suffix": "D",
+			"street_name": "BetaThree",
+			"street_type": "Court",
+			"street_direction": "SE",
+			"city": "IHG city",
+			"postal_area": 912087,
+			"country": "IHG country"
+		}
+		
+	],
+
+	"CartItems": [
+		{
+			"cart_item_id": 13,
+			"product_id": 103,
+			"sku": "fkofeoeklp",
+			"cart_item_image": "/users/saswatlevin/home/img10.jpg",
+			"cart_item_price": 18,
+			"cart_item_quantity": 3
+		},
+		
+		{
+			"cart_item_id": 11,
+			"product_id": 101,
+			"sku": "gtuimnqlrv",
+			"cart_item_image": "/users/saswatlevin/home/img11.jpg",
+			"cart_item_price": 24,
+			"cart_item_quantity": 5
+		},
+		
+		{
+			"cart_item_id": 12,
+			"product_id": 102,
+			"sku": "dkfdflkeof",
+			"cart_item_image": "/users/saswatlevin/home/img12.jpg",
+			"cart_item_price": 55,
+			"cart_item_quantity": 2
+		}
+	]
+};
+
+{	
+	"_id": "fkoerir4k2trkrokfoe304",
+	"docType": "USER",
+	"user_id": 3,
+	"date_created_at": "2025-03-19T16:00:00Z",
+	"email": "def098@server.com",
+	"password": "jf4i2ru09u4j",
+	"phoneno": "9403490380",
+	"first_name": "DEF",
+	"last_name": "FED",
+	"user_role": "administrator",
+	"upper_size_number": 46,
+	"upper_size_letter": "XL",
+	"lower_size_number": 34,
+	"others_size_letter": "L",
+	"email_comms_type": "One Weekly Recap",
+	"sms_comms": true,
+
+	"ShippingAddresses": [
+		{	
+			"shipping_address_id": 1500,
+			"address_type_id": "13",
+			"building_name": "Svoboda",
+			"street_number": "15",
+			"street_number_suffix": "A",
+			"street_name": "Gamma",
+			"street_type": "Path",
+			"street_direction": "E",
+			"city": "BAC city",
+			"postal_area": 815263,
+			"country": "BAC country"
+		},
+		
+		{	
+			"shipping_address_id": 1501,
+			"address_type_id": "14",
+			"building_name": "Mykolaiva",
+			"street_number": "16",
+			"street_number_suffix": "B",
+			"street_name": "GammaTwo",
+			"street_type": "Place",
+			"street_direction": "SW",
+			"city": "EFD city",
+			"postal_area": 481598,
+			"country": "EFD country"
+		},
+
+		{	
+			"shipping_address_id": 1502,
+			"address_type_id": "15",
+			"building_name": "Darya",
+			"street_number": "17",
+			"street_number_suffix": "D",
+			"street_name": "GammaThree",
+			"street_type": "Drive",
+			"street_direction": "NE",
+			"city": "HIG city",
+			"postal_area": 871920,
+			"country": "HIG country"
+		}
+		
+	],
+
+	"CartItems": [
+		{
+			"cart_item_id": 23,
+			"product_id": 203,
+			"sku": "vdmdkwod[op",
+			"cart_item_image": "/users/saswatlevin/home/img23.jpg",
+			"cart_item_price": 81,
+			"cart_item_quantity": 2
+		},
+		
+		{
+			"cart_item_id": 21,
+			"product_id": 201,
+			"sku": "jfdlefeqdr",
+			"cart_item_image": "/users/saswatlevin/home/img21.jpg",
+			"cart_item_price": 42,
+			"cart_item_quantity": 4
+		},
+		
+		{
+			"cart_item_id": 22,
+			"product_id": 202,
+			"sku": "ijofegmkeof",
+			"cart_item_image": "/users/saswatlevin/home/img22.jpg",
+			"cart_item_price": 51,
+			"cart_item_quantity": 3
+		}
+	]
+};

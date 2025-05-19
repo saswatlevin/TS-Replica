@@ -1,0 +1,138 @@
+{
+  "product_id": 40007,
+  
+  "product_name": "The Camp Short in Aged Penny Chipped Canvas",
+  
+  "docType": "PRODUCT",
+  
+  "product_color": "Aged Penny Chipped Canvas",
+  
+  "product_description": "Boasting rugged construction and considered tailoring, The Camp Short is a cut above the rest in both leisure and labor. Given its workwear roots, it should come as no surprise that The Camp Short is built like a tank, complete with a host of utility-focused features like easy-entry slash pockets and bar-tacked stress points. We’ve finished this Chipped Canvas iteration with a stone wash for lived-in character from the very first wear.",
+  
+  "product_price": 98,
+  
+  "product_category": "Lower Garment",
+  
+  "product_subcategory": "Bottom",
+  
+  "product_subcategory_type": "Short",
+  
+  "product_fit": "8\" inseam. Model is 6'2\", wearing a 32.",
+  
+  "product_garment_weight": {
+    "garment_weight_description": "Sturdy daily drivers.",
+    "garment_weight": "Medium"
+  },
+  
+  "product_material": "Built from 100% GOTS-certified organic cotton loomed to a thick, plain weave for lasting durability, this Chipped Canvas iteration of our Camp Short is characterized by a unique, two-step dye process in which the fabric is dyed, then top dyed with a slightly darker pigment, resulting in a well-worn look that will only get better as you put these shorts through their paces.",
+  
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+  
+  "product_specifications": "12.5-oz. 100% organic cotton canvas, 6-oz. organic cotton SF map pocketing, stone washed for a worn-in look and feel, angled front slash pockets, two back mitered patch pockets with half lining for added durability, bar-tacked pockets at stress points, YKK top button and zip fly closure, double-needle stitching throughout, wash cold and tumble dry low, made in China.",
+  
+  "product_images": [
+    {
+      "image_id": 50018,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Camp_Short_in_Aged_Penny_Chipped_Canvas\\instock_m_q225_The_Camp_Short-AgedPennyChippedCanvas_portrait_001.jpg",
+      "main_image": true
+    },
+    
+    {
+      "image_id": 50019,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Camp_Short_in_Aged_Penny_Chipped_Canvas\\instock_m_q225_The_Camp_Short-AgedPennyChippedCanvas_portrait_005.jpg",
+      "main_image": false
+    },
+    
+    {
+      "image_id": 50020,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Camp_Short_in_Aged_Penny_Chipped_Canvas\\instock_m_q225_The_Camp_Short-AgedPennyChippedCanvas_portrait_007.jpg",
+      "main_image": false
+    }
+  ],
+
+  "product_items": [
+    {
+      "sku": "945r5ung5p",
+      "lower_size_number": 38,
+      "total_stock": 100,
+      "quantity_sold": 100,
+      "current_stock": 0
+    },
+    
+    {
+      "sku": "x6mgf6qdam",
+      "lower_size_number": 36,
+      "total_stock": 300,
+      "quantity_sold": 50,
+      "current_stock": 250
+    },
+    
+    {
+      "sku": "73kfxcbs8n",
+      "lower_size_number": 35,
+      "total_stock": 203,
+      "quantity_sold": 200,
+      "current_stock": 3
+    },
+    
+    {
+      "sku": "pmdziqta5a",
+      "lower_size_number": 34,
+      "total_stock": 230,
+      "quantity_sold": 150,
+      "current_stock": 80
+    },
+    
+    {
+      "sku": "16iah3lpwd",
+      "lower_size_number": 33,
+      "total_stock": 240,
+      "quantity_sold": 150,
+      "current_stock": 90
+    },
+    
+    {
+      "sku": "w9q3l2zexb",
+      "lower_size_number": 32,
+      "total_stock": 250,
+      "quantity_sold": 220,
+      "current_stock": 30
+    },
+    
+    {
+      "sku": "iwgqx4evt6",
+      "lower_size_number": 31,
+      "total_stock": 89,
+      "quantity_sold": 62,
+      "current_stock": 27
+    },
+    
+    {
+      "sku": "xz4hb41d8o",
+      "lower_size_number": 30,
+      "total_stock": 100,
+      "quantity_sold": 20,
+      "current_stock": 80
+    },
+    
+    {
+      "sku": "44bsx8c33k",
+      "lower_size_number": 29,
+      "total_stock": 160,
+      "quantity_sold": 132,
+      "current_stock": 28
+    },
+    
+    {
+      "sku": "uq45weaa3t",
+      "lower_size_number": 28,
+      "total_stock": 180,
+      "quantity_sold": 32,
+      "current_stock": 148
+    }    
+
+  ]
+}

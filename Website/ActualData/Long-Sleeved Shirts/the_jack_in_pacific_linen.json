@@ -1,0 +1,111 @@
+{
+  "product_id": 40010,
+  
+  "product_name": "The Jack in Pacific Linen",
+  
+  "docType": "PRODUCT",
+  
+  "product_color": "Pacific",
+  
+  "product_description": "Our signature button-down, The Jack, has held the TS shirting throne for well over a decade. And with this new 100% linen iteration, the king of our core roster gets a breezy new coat of paint that’s perfect for spring and summer.",
+  
+  "product_price": 135,
+
+  "product_category": "Upper Garment",
+
+  "product_subcategory": "Shirt",
+
+  "product_subcategory_type": "Long-Sleeved Shirt",
+  
+  "product_fit": "Tailored fit with higher armholes to prevent bunching and increase range of motion. Perfect length to wear tucked or untucked. Model is 6'3\", wearing a Medium.",
+  
+  "product_garment_weight": {
+    "garment_weight_description": "Lighter than our average shirt to keep you cool.",
+    "garment_weight": "Light to Medium"
+  },
+  
+  "product_material": "While it has a longstanding reputation for being an ideal lightweight summer fabric, linen is surprisingly durable, ringing in at around 40% stronger than the average cotton fibers. In addition to its pound-for-pound grit, it’s hypoallergenic, biodegradable, and recyclable. All of that adds up to a lightweight Jack that’s as responsible as they come and won’t pop a stitch under pressure, no matter where this summer takes you.While it has a longstanding reputation for being an ideal lightweight summer fabric, linen is surprisingly durable, ringing in at around 40% stronger than the average cotton fibers. In addition to its pound-for-pound grit, it’s hypoallergenic, biodegradable, and recyclable. All of that adds up to a lightweight Jack that’s as responsible as they come and won’t pop a stitch under pressure, no matter where this summer takes you.",
+  
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+  
+  "product_specifications": "3.5-oz. 100% linen. Washed for a soft, lived in feel. No pleats for easy ironing and clean lines. Our signature Jack button down collar. Single rounded chest pocket. Double-needle felled construction throughout. Lock-stitched buttons and buttonholes. Wash cold and lay flat to dry. Made in China.",
+  
+  "product_images": [
+    {
+      "image_id": 50027,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Jack_(Non-Oxford)\\The_Jack_in_Pacific_Linen\\instock_m_q225_jack_pacific_linen_portrait_001.jpg",
+      "main_image": true
+    },
+  
+    {
+      "image_id": 50028,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Jack_(Non-Oxford)\\The_Jack_in_Pacific_Linen\\instock_m_q225_jack_pacific_linen_portrait_008.jpg",
+      "main_image": false
+    },
+  
+    {
+      "image_id": 50029,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Jack_(Non-Oxford)\\The_Jack_in_Pacific_Linen\\instock_m_q225_jack_pacific_linen_portrait_007.jpg",
+      "main_image": null
+    }
+  ],
+  
+  "product_items": [
+    {
+      "sku": "785r0xzd3p",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 300,
+      "quantity_sold": 100,
+      "current_stock": 200
+    },
+  
+    {
+      "sku": "7r3qx9lk1u",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 310,
+      "quantity_sold": 80,
+      "current_stock": 230
+    },
+  
+    {
+      "sku": "kfuwcfoeee",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 290,
+      "quantity_sold": 25,
+      "current_stock": 265
+    },
+  
+    {
+      "sku": "97ss14xvpk",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 285,
+      "quantity_sold": 105,
+      "current_stock": 180
+    },
+  
+    {
+      "sku": "upttw60bz8",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 105,
+      "quantity_sold": 32,
+      "current_stock": 73
+    },
+  
+    {
+      "sku": "7jsvb1f2bb",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 100,
+      "quantity_sold": 25,
+      "current_stock": 75
+    }
+  ]
+}

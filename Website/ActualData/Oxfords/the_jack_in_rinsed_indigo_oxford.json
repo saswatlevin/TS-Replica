@@ -1,0 +1,111 @@
+{
+  "product_id": 40018,
+
+  "product_name": "The Jack in Rinsed Oxford",
+
+  "docType": "PRODUCT",
+
+  "product_color": "Rinsed Indigo Oxford",
+
+  "product_description": "There’s one simple reason we call this our everyday oxford; we wear The Jack pretty much every single day. From its 100% organic cotton makeup to the expertly tailored fit, to its rugged, double-needle felled construction, The Jack is a noticeable step up from your basic button-down.",
+
+  "product_price": 125,
+
+  "product_category": "Upper Garment",
+
+  "product_subcategory": "Shirt",
+
+  "product_subcategory_type": "Oxford",
+
+  "product_fit": "Chest-based sizing for a tailored, close-to-body fit. Higher armholes to prevent bunching and increase range of motion. Perfect length to wear tucked or untucked. Model is 6'1\", wearing a Medium. Customers say this fits: True to Size.",
+
+  "product_garment_weight": {
+    "garment_weight_description": "Your daily driver, at a versatile all-season weight.",
+    "garment_weight": "Medium"
+  },
+
+  "product_material": "Soft to the touch but built for a decade of solid wear. Oxford is a perfectly versatile fabric that looks just as good pressed as it does pulled off the back of a chair. While traditional cotton uses 25 percent of the world's pesticides, our organic cotton is certified by The Global Textile Standard (GOTS) to ensure environmental responsibility at any stage of production.",
+
+  "product_supply_type": {
+    "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
+    "supply_type": "Essential"
+  },
+
+  "product_specifications": "6.5-oz. 100% organic cotton. Washed for a soft, lived in feel. Signature Jack button-down collar. No pleats for easy ironing and clean lines. Single rounded chest pocket. Double-needle felled construction throughout. Double-stitched buttons and buttonholes. Pre-shrunk. Natural buttons. Wash cold and tumble dry low. Made in China.",
+
+  "product_images": [
+    {
+      "image_id": 50054,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Rinsed_Indigo_Oxford\\6865641832525_jack-in-indigo-oxford-2310_01_tsio.jpg",
+      "main_image": true
+    },
+
+    {
+      "image_id": 50055,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Rinsed_Indigo_Oxford\\6865641832525_jack-in-indigo-oxford-2310_05_tsio.jpg",
+      "main_image": false
+    },
+
+    {
+      "image_id": 50056,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Rinsed_Indigo_Oxford\\workshop_mens_Q419_product_long_haul_greencast_008_8db1255a-f1db-4f9b-8d08-9bd23743b7ab.jpg",
+      "main_image": false
+    }
+  ],
+
+  "product_items": [
+    {
+      "sku": "0u00ohnzyx",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 500,
+      "quantity_sold": 110,
+      "current_stock": 390
+    },
+
+    {
+      "sku": "huvrv8sng3",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 480,
+      "quantity_sold": 120,
+      "current_stock": 360
+    },
+
+    {
+      "sku": "nfhff0rpj0",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 455,
+      "quantity_sold": 200,
+      "current_stock": 255
+    },
+
+    {
+      "sku": "p5s7tb2rva",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 436,
+      "quantity_sold": 120,
+      "current_stock": 316
+    },
+
+    {
+      "sku": "d5xymfignx",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 410,
+      "quantity_sold": 110,
+      "current_stock": 300
+    },
+
+    {
+      "sku": "29j10euww1",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 327,
+      "quantity_sold": 115,
+      "current_stock": 212
+    }
+  ]
+}

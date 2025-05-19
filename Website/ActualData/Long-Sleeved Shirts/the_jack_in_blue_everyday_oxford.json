@@ -1,0 +1,112 @@
+{
+  "product_id": 40011,
+
+  "product_name": "The Jack in Blue Everyday Oxford",
+
+  "docType": "PRODUCT",
+
+  "product_color": "Blue Everyday Oxford",
+
+  "product_description": "There’s one simple reason we call this our everyday oxford; we wear The Jack pretty much every single day. From its 100% organic cotton makeup to the expertly tailored fit, to its rugged, double-needle felled construction, The Jack is a noticeable step up from your basic button-down.",
+
+  "product_price": 98,
+
+  "product_category": "Upper Garment",
+
+  "product_subcategory": "Shirt",
+
+  "product_subcategory_type": "Long-Sleeved Shirt",
+
+  "product_fit": "Chest-based sizing for a tailored, close-to-body fit. Higher armholes to prevent bunching and increase range of motion. Perfect length to wear tucked or untucked. Model is 6'2\", wearing a Medium. Customers say this fits: True to Size.",
+  
+  "product_garment_weight": {
+    "garment_weight_description": "Your daily driver, at a versatile all-season weight.",
+    "garment_weight": "Medium"
+  },
+
+  "product_material": "Just the right amount of sturdy for year round wear. Soft to the touch but built for a decade of solid wear. Oxford is a perfectly versatile fabric that looks just as good pressed as it does pulled off the back of a chair. While traditional cotton uses 25 percent of the world's pesticides, our organic cotton doesn't use a drop. A better shirt, responsibly built for the long haul.",
+
+  "product_supply_type": {
+    "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
+    "supply_type": "Essential"
+  },
+
+
+  "product_specifications": "6-oz. 100% organic cotton. Washed for a soft, lived-in feel. Signature Jack button-down collar. No pleats for easy ironing and clean lines. Single rounded chest pocket. Double-needle felled construction throughout. Double-stitched buttons and buttonholes. Pre-shrunk. Natural buttons. Wash cold and tumble dry low. Made in China.",
+  
+  "product_images": [
+    {
+      "image_id": 50030,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Jack_(Oxford)\\The_Jack_in_Blue_Everyday_Oxford\\6824013660237_jack-in-blue-everyday-oxford-2304_01_tsio.jpg",
+      "main_image": true
+    },
+
+    {
+      "image_id": 50031,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Jack_(Oxford)\\The_Jack_in_Blue_Everyday_Oxford\\6824013660237_jack-in-blue-everyday-oxford-2304_05_tsio.jpg",
+      "main_image": false
+    },
+    
+    {
+      "image_id": 50032,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Jack_(Oxford)\\The_Jack_in_Blue_Everyday_Oxford\\instock_m_q223_The_Jack_Blue_1329.jpg",
+      "main_image": false
+    }
+  ],
+  
+  "product_items": [
+    {
+      "sku": "hb6d8xg4wj",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 400,
+      "quantity_sold": 100,
+      "current_stock": 300
+    },
+  
+    {
+      "sku": "fhwej195a4",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 380,
+      "quantity_sold": 120,
+      "current_stock": 260
+    },
+  
+    {
+      "sku": "r6gjxxgkyn",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 397,
+      "quantity_sold": 150,
+      "current_stock": 247
+    },
+  
+    {
+      "sku": "ux6awrzbpg",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 208,
+      "quantity_sold": 50,
+      "current_stock": 158
+    },
+  
+    {
+      "sku": "nqabjd0bd1",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 308,
+      "quantity_sold": 104,
+      "current_stock": 204
+    },
+  
+    {
+      "sku": "mj42r7yfvn",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 310,
+      "quantity_sold": 250,
+      "current_stock": 60
+    }
+  ]
+}

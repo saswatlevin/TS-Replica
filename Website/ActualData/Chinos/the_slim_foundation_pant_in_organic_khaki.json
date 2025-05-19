@@ -1,0 +1,244 @@
+{
+	"product_id": 40001,
+
+	"product_name": "The Slim Foundation Pant in Organic Khaki",
+	
+	"docType": "PRODUCT",
+
+	"product_color": "Organic Khaki",
+	
+	"product_description": "Originally issued to American soldiers during WWII, the first military chinos were celebrated for their comfort, versatility, and impressive ruggedness. Featuring 100% Responsible materials and an updated silhouette, The Foundation Pant is both a reinvention of our earlier chinos and an elevated reimagining of the all-purpose originals, built to help you start your day on solid ground.",
+	
+	"product_price": 125,
+	
+	"product_category": "Lower Garment",
+	
+	"product_subcategory": "Bottom",
+
+	"product_subcategory_type": "Chino",
+	
+	"product_fit": "Medium rise with a true slim fit that tapers gently through the thigh, knee, and leg opening. Available in 32\" and 34\" inseams. Model is 6'3\", wearing a 32\".  Customers say this fits: True to size.",
+
+	"product_garment_weight": {
+		"garment_weight_description": "Sturdy daily drivers",
+		"garment_weight": "Medium"
+	},
+
+	"product_material": "The Foundation Pant project started when we discovered some deadstock military chino material and decided to reverse-engineer it with 100% organic cotton. We chose a balanced weight (8-oz.) that feels great all year round, and opted for a tight weave using mercerized yarns, giving The Foundation Pant a smooth hand feel and improved durability. Because it’s been garment dyed and washed, it has the character of a well-loved vintage piece, and it’ll continue to pick up a ton of nuance with wear. Cool herringbone accents at the waistband and the pockets serve as a nod to the style’s military origins.",
+
+	"product_supply_type": {
+		"supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
+
+		"supply_type": "Essential"
+	},
+	
+	"product_specifications": "8-oz. 100% organic cotton twill. 5.5-oz. 100% organic cotton herringbone pocketing. Garment dyed and washed for a soft, lived-in feel. Front slash pockets for easy entry. Low profile welt coin pocket inset into the waistband. Two back welt pockets. Right pocket features button closure. Bound fly and outseam. YKK zip fly with 4-hole vintage military-style button closure. Wash cold and tumble dry low. Made in China.",
+
+	"product_images": [
+		
+		{
+			"image_id": 50003,
+			"image_uri": "/users/saswatlevin/home/product_images/img1.jpg",
+			"main_image": false
+		},
+
+		{
+			"image_id": 50004,
+			"image_uri": "/users/saswatlevin/home/product_images/img2.jpg",
+			"main_image": false
+		},
+
+		{
+			"image_id": 50005,
+			"image_uri": "/users/saswatlevin/home/product_images/img3.jpg",
+			"main_image": true
+		}
+
+	],
+
+	"product_items": [
+		{	
+			
+			"sku": "ctf33g20do",
+			"lower_size_number": 38,
+			"inseam_length": 32,
+			"total_stock": 410,
+			"quantity_sold": 110,
+			"current_stock": 300
+		},
+		
+		{	
+			
+			"sku": "yerpi3xqzf",
+			"lower_size_number": 38,
+			"inseam_length": 34,
+			"total_stock": 311,
+			"quantity_sold": 209,
+			"current_stock": 112
+		},
+		
+		{	
+			"sku": "ljttmom90h",
+			"lower_size_number": 36,
+			"inseam_length": 32,
+			"total_stock": 480,
+			"quantity_sold": 360,
+			"current_stock": 120
+		},
+
+		{	
+			"sku": "zamo3z95db",
+			"lower_size_number": 36,
+			"inseam_length": 34,
+			"total_stock": 376,
+			"quantity_sold": 90,
+			"current_stock": 286
+		},
+
+		{	
+			"sku": "85x961iger",
+			"lower_size_number": 35,
+			"inseam_length": 32,
+			"total_stock": 403,
+			"quantity_sold": 401,
+			"current_stock": 2
+		},
+
+		{	
+			
+			"sku": "z401lg799i",
+			"lower_size_number": 35,
+			"inseam_length": 34,
+			"total_stock": 301,
+			"quantity_sold": 150,
+			"current_stock": 151
+		},
+
+		{	
+			"sku": "w8qxj13xkq",
+			"lower_size_number": 34,
+			"inseam_length": 32,
+			"total_stock": 398,
+			"quantity_sold": 205,
+			"current_stock": 193
+		},
+
+		{	
+			"sku": "l8igmhhyi2",
+			"lower_size_number": 34,
+			"inseam_length": 34,
+			"total_stock": 500,
+			"quantity_sold": 298,
+			"current_stock": 202
+		},
+
+		{	
+			"sku": "q1x78l2r3h",
+			"lower_size_number": 33,
+			"inseam_length": 32,
+			"total_stock": 389,
+			"quantity_sold": 215,
+			"current_stock": 174
+		},
+
+		{	
+			"sku": "6ip53bdfbe",
+			"lower_size_number": 33,
+			"inseam_length": 34,
+			"total_stock": 287,
+			"quantity_sold": 200,
+			"current_stock": 87
+		},
+
+		{	
+			"sku": "6k08zmazjo",
+			"lower_size_number": 32,
+			"inseam_length": 32,
+			"total_stock": 358,
+			"quantity_sold": 106,
+			"current_stock": 252
+		},
+
+		{	
+			"sku": "eaub4fk0g9",
+			"lower_size_number": 32,
+			"inseam_length": 34,
+			"total_stock": 952,
+			"quantity_sold": 782,
+			"current_stock": 170
+		},
+
+		{	"sku": "b2yzetx3if",
+			"lower_size_number": 31,
+			"inseam_length": 32,
+			"total_stock": 373,
+			"quantity_sold": 108,
+			"current_stock": 165
+		},
+		
+		{	
+			"sku": "rrpef80bf6",
+			"lower_size_number": 31,
+			"inseam_length": 34,
+			"total_stock": 273,
+			"quantity_sold": 105,
+			"current_stock": 168
+		},
+
+		{
+			"sku": "p40k8vramt",
+			"lower_size_number": 30,
+			"inseam_length": 32,
+			"total_stock": 196,
+			"quantity_sold": 196,
+			"current_stock": 0	
+		},
+
+		{
+			"sku": "dpn4sqzqrn",
+			"lower_size_number": 30,
+			"inseam_length": 34,
+			"total_stock": 296,
+			"quantity_sold": 194,
+			"current_stock": 102	
+		},
+
+		{
+			"sku": "n90z0pq53y",
+			"lower_size_number": 29,
+			"inseam_length": 32,
+			"total_stock": 700,
+			"quantity_sold": 700,
+			"current_stock": 0	
+		},
+
+		{
+			"sku": "3q9w6shz6u",
+			"lower_size_number": 29,
+			"inseam_length": 34,
+			"total_stock": 600,
+			"quantity_sold": 504,
+			"current_stock": 96	
+		},
+
+		{
+			"sku": "id69f78jbg",
+			"lower_size_number": 28,
+			"inseam_length": 34,
+			"total_stock": 682,
+			"quantity_sold": 302,
+			"current_stock": 380	
+		},
+
+		{
+			"sku": "xiqaacpps2",
+			"lower_size_number": 28,
+			"inseam_length": 34,
+			"total_stock": 582,
+			"quantity_sold": 450,
+			"current_stock": 132	
+		}
+
+
+	]
+}

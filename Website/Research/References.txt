@@ -1,0 +1,4 @@
+https://www.integrate.io/blog/the-sql-vs-nosql-difference/
+https://sqlinsix.medium.com/when-to-use-sql-or-nosql-b50d4a52c157
+https://www.red-gate.com/simple-talk/databases/nosql/how-to-choose-between-sql-and-nosql-databases/
+https://www.reddit.com/r/learnprogramming/comments/lo5kpt/can_someone_explain_with_example_when_to_choose/

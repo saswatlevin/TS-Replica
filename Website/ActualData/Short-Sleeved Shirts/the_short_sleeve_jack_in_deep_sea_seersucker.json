@@ -1,0 +1,111 @@
+{
+  "product_id": 40016,
+
+  "product_name": "The Short Sleeve Jack in Deep Sea Seersucker",
+  
+  "docType": "PRODUCT",
+  
+  "product_color": "Deep Sea Seersucker",
+  
+  "product_description": "Lightweight, breathable, and cut with our signature tailored silhouette, The Short Sleeve Jack in Seersucker is built to tackle the warmest months. Garment dyed and washed for softness, it’s got just the right amount of texture to stand out without making a fuss.",
+  
+  "product_price": 108,
+  
+  "product_category": "Upper Garment",
+  
+  "product_subcategory": "Shirt",
+  
+  "product_subcategory_type": "Short-Sleeved Shirt",
+  
+  "product_fit": "Tailored fit with higher armholes to increase range of motion and prevent bunching. Shorter tail length to be worn untucked. Model is 6'1\", wearing a Medium.",
+  
+  "product_garment_weight": {
+    "garment_weight_description": "Your daily driver, at a versatile all-season weight.",
+    "garment_weight": "Medium"
+  },
+  
+  "product_material": "Crafted from a breezy 100% GOTS-certified organic cotton seersucker and garment dyed for rich color and a broken-in feel. Finished with durable double-needle construction and a single chest pocket.",
+  
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+  
+  "product_specifications": "3.5-oz. 100% organic cotton seersucker. Garment dyed and washed for a soft, lived in feel. Features our signature Jack button down collar. Single rounded chest pocket. Double needle felled construction. Wash cold and tumble dry low. Made in China.",
+  
+  "product_images": [
+    {
+      "image_id": 50048,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Short_Sleeve_Jack\\The_Short_Sleeve_Jack_in_Deep_Sea_Seersucker\\instock_m_q225_The_Short_Sleeve_Jack-DeepSeaSeersucker_portrait_001.jpg",
+      "main_image": true
+    },
+  
+    {
+      "image_id": 50049,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Short_Sleeve_Jack\\The_Short_Sleeve_Jack_in_Deep_Sea_Seersucker\\instock_m_q225_The_Short_Sleeve_Jack-DeepSeaSeersucker_portrait_004.jpg",
+      "main_image": false
+    },
+  
+    {
+      "image_id": 50050,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Short_Sleeve_Jack\\The_Short_Sleeve_Jack_in_Deep_Sea_Seersucker\\instock_m_q225_The_Short_Sleeve_Jack-DeepSeaSeersucker_portrait_005.jpg",
+      "main_image": false
+    }
+  ],
+  
+  "product_items": [
+    {
+      "sku": "mqusuae9r0",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 197,
+      "quantity_sold": 105,
+      "current_stock": 92
+    },
+  
+    {
+      "sku": "w6j0u0oldb",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 300,
+      "quantity_sold": 180,
+      "current_stock": 120
+    },
+  
+    {
+      "sku": "svjm8jpm2m",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 190,
+      "quantity_sold": 55,
+      "current_stock": 135
+    },
+  
+    {
+      "sku": "bre7xxxfra",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 100,
+      "quantity_sold": 60,
+      "current_stock": 50
+    },
+  
+    {
+      "sku": "umgtxn4ske",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 204,
+      "quantity_sold": 110,
+      "current_stock": 94
+    },
+  
+    {
+      "sku": "62qz75ys8j",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 80,
+      "quantity_sold": 24,
+      "current_stock": 56
+    }
+  ]
+}

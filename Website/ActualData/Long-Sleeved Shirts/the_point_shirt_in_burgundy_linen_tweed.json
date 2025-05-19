@@ -1,0 +1,111 @@
+{
+  "product_id": 40012,
+
+  "product_name": "The Point Shirt in Burgundy Linen Tweed",
+  
+  "docType": "PRODUCT",
+  
+  "product_color": "Burgundy Linen Tweed",
+  
+  "product_description": "Meet The Point Shirt in a seasonal Linen Tweed; a classic military field shirt featuring historically accurate details—like dual patch front pockets and vintage melamine style buttons—in a character-rich fabrication to age with grace.",
+  
+  "product_price": 138,
+  
+  "product_category": "Upper Garment",
+  
+  "product_subcategory": "Shirt",
+  
+  "product_subcategory_type": "Long-Sleeved Shirt",
+  
+  "product_fit": "Tailored fit with higher armholes to increase range of motion and prevent bunching. Perfect length to wear tucked or untucked. Model is 6'1\", wearing a Medium.",
+  
+  "product_garment_weight": {
+    "garment_weight_description": "Toss on over another shirt or make it your first layer on a colder day.",
+    "garment_weight": "Medium to Heavy"
+  },
+
+  "product_material": "This texturally nuanced Linen Tweed finish offers serious durability in a balanced weight that’s fit for year-round wear. Crafted with clean finish construction and washed for a lived-in look and feel.",
+
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+  
+  "product_specifications": "8.5-oz. 55% linen, 45% organic cotton. Washed for soft lived in feel. Two patch chest pockets with button through flaps. Double-needle felled construction Wash cold and tumble dry low. Made in China.",
+  
+  "product_images": [
+    {
+      "image_id": 50033,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Point_Shirt\\The_Point_Shirt_in_Burgundy_Linen_Tweed\\instock_m_q225_The_Point_Shirt-BurgundyLinenTweed_portrait_001.jpg",
+      "main_image": true
+    },
+  
+    {
+      "image_id": 50034,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Point_Shirt\\The_Point_Shirt_in_Burgundy_Linen_Tweed\\instock_m_q225_The_Point_Shirt-BurgundyLinenTweed_portrait_004.jpg",
+      "main_image": false
+    },
+  
+    {
+      "image_id": 50035,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Point_Shirt\\The_Point_Shirt_in_Burgundy_Linen_Tweed\\instock_m_q225_The_Point_Shirt-BurgundyLinenTweed_portrait_006.jpg",
+      "main_image": false
+    }
+  ],
+  
+  "product_items": [
+    {
+      "sku": "qe8ua326he",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 300,
+      "quantity_sold": 128,
+      "current_stock": 172
+    },
+  
+    {
+      "sku": "i8zhsfi4gw",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 290,
+      "quantity_sold": 70,
+      "current_stock": 220
+    },
+  
+    {
+      "sku": "l5rgeocb1f",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 260,
+      "quantity_sold": 110,
+      "current_stock": 150
+    },
+  
+    {
+      "sku": "a2imu3mjed",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 272,
+      "quantity_sold": 200,
+      "current_stock": 172
+    },
+  
+    {
+      "sku": "sk953po6z7",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 142,
+      "quantity_sold": 38,
+      "current_stock": 105
+    },
+  
+    {
+      "sku": "ubt44l13a7",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 104,
+      "quantity_sold": 40,
+      "current_stock": 64
+    }
+  ]
+}

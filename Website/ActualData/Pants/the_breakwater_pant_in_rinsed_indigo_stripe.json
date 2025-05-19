@@ -1,0 +1,107 @@
+{
+  "product_id": 40004,
+
+  "product_name": "The Breakwater Pant in Rinsed Indigo Stripe",
+
+  "docType": "PRODUCT",
+
+  "product_color": "Rinsed Indigo Stripe",
+
+  "product_description": "A versatile evolution of the classic naval deck pant, The Breakwater Pant offers a character-rich indigo finish in a clean, capable silhouette. Finished with a roomy top block and a drawcord waist for comfort wherever you’re headed.",
+  
+  "product_price": 128,
+
+  "product_category": "Lower Garment",
+
+  "product_subcategory": "Bottom",
+  
+  "product_subcategory_type": "Pant",
+  
+  "product_fit": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+  
+  "product_garment_weight": {
+    "garment_weight_description": "Sturdy daily drivers.",
+    "garment_weight": "Medium"
+  },
+  
+  "product_material": "The Breakwater Pant is built from a sturdy, indigo-dyed organic cotton, resulting in a rich hand feel that will develop nuance with each wash and wear. We’ve finished them off with an elasticated drawcord waist, a mitered back pocket, and oversized patch front pockets.",
+  
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+  
+  "product_specifications": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+  
+  "product_images": [
+    {
+      "image_id": 50012,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Breakwater_Pant_in_Rinsed_Indigo_Stripe\\instock_m_q225_The_Breakwater_Pant-RinsedIndigoStripe_portrait_001.jpg",
+      "main_image": true
+    },
+    
+    {
+      "image_id": 50013,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Breakwater_Pant_in_Rinsed_Indigo_Stripe\\instock_m_q225_The_Breakwater_Pant-RinsedIndigoStripe_portrait_008.jpg",
+      "main_image": false
+    },
+    
+    {
+      "image_id": 50014,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Breakwater_Pant_in_Rinsed_Indigo_Stripe\\instock_m_q225_The_Breakwater_Pant-RinsedIndigoStripe_portrait_010.jpg",
+      "main_image": false
+    }
+  ],
+  
+  "product_items": [
+    {
+      "sku": "9bkgezadt6",
+      "lower_size_letter": "XXL",
+      "total_stock": 100,
+      "quantity_sold": 50,
+      "current_stock": 50
+    },
+    
+    {
+      "sku": "zcltof12fl",
+      "lower_size_letter": "XL",
+      "total_stock": 125,
+      "quantity_sold": 30,
+      "current_stock": 95
+    },
+    
+    {
+      "sku": "sj3u9sd5ti",
+      "lower_size_letter": "L",
+      "total_stock": 89,
+      "quantity_sold": 24,
+      "current_stock": 65
+    },
+    
+    {
+      "sku": "rakcwtv4jo",
+      "lower_size_letter": "M",
+      "total_stock": 150,
+      "quantity_sold": 80,
+      "current_stock": 70
+    },
+    
+    {
+      "sku": "aghgp5ty5h",
+      "lower_size_letter": "S",
+      "total_stock": 195,
+      "quantity_sold": 100,
+      "current_stock": 95
+    },
+    
+    {
+      "sku": "zuu66dm7p5",
+      "lower_size_letter": "XS",
+      "total_stock": 251,
+      "quantity_sold": 160,
+      "current_stock": 91
+    }
+    
+   
+  ]
+}

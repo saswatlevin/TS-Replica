@@ -1,0 +1,111 @@
+{
+  "product_id": 40016,
+  
+  "product_name": "The Short Sleeve California in Morel Hemp",
+  
+  "docType": "PRODUCT",
+  
+  "product_color": "Morel Hemp",
+  
+  "product_description": "Outstanding build quality, meticulous detailing, and an unmistakable, laid-back style have maintained The California’s status as a staple in our roster (and our wardrobes) for years. For this short-sleeved iteration, we’ve opted for 100% hemp construction. It’s a far sight better for the environment than most materials out there and makes for a lightweight shirt with surprising durability. Finished with a thorough wash for a lived-in feel from the first wear.",
+  
+  "product_price": 118,
+  
+  "product_category": "Upper Garment",
+  
+  "product_subcategory": "Shirt",
+  
+  "product_subcategory_type": "Short-Sleeved Shirt",
+  
+  "product_fit": "Tailored fit with higher armholes to increase range of motion and prevent bunching. Shorter tail length to be worn untucked. Model is 6'3\", wearing a Medium.",
+  
+  "product_garment_weight": {
+    "garment_weight_description": "Lighter than our average shirt to keep you cool.",
+    "garment_weight": "Light to Medium"
+  },
+  
+  "product_material": "Hemp is a humble crop with some impressive credentials. It requires barely any water to thrive, produces the longest, strongest natural fibers known to man, and actively absorbs CO2 from the atmosphere—making it a carbon-negative resource. It’s no wonder why we felt an immediate affinity for the stuff, and when you try on The Short Sleeve California for the first time, we think you’ll feel it too.",
+  
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+  
+  "product_specifications": "4.5-oz. 100% hemp. Washed for a soft, lived in feel. Features our signature California collar. Single rounded chest pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+  
+  "product_images": [
+    {
+      "image_id": 50045,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Short_Sleeve_California\\The_Short_Sleeve_California_in_Morel_Hemp\\instock_m_q225_The_Short_Sleeve_California-MorelHemp_portrait_001.jpg",
+      "main_image": true
+    },
+  
+    {
+      "image_id": 50046,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Short_Sleeve_California\\The_Short_Sleeve_California_in_Morel_Hemp\\instock_m_q225_The_Short_Sleeve_California-MorelHemp_portrait_006.jpg",
+      "main_image": false
+    },
+  
+    {
+      "image_id": 50047,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Short_Sleeve_California\\The_Short_Sleeve_California_in_Morel_Hemp\\instock_m_q225_The_Short_Sleeve_California-MorelHemp_portrait_004.jpg",
+      "main_image": false
+    }
+  ],
+  
+  "product_items": [
+    {
+      "sku": "p2mfclczzu",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 300,
+      "quantity_sold": 156,
+      "current_stock": 144
+    },
+  
+    {
+      "sku": "zf2zljlgq8",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 310,
+      "quantity_sold": 160,
+      "current_stock": 150
+    },
+  
+    {
+      "sku": "fn22rv7q20",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 290,
+      "quantity_sold": 110,
+      "current_stock": 180
+    },
+  
+    {
+      "sku": "u09yn03xs5",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 287,
+      "quantity_sold": 175,
+      "current_stock": 112
+    },
+  
+    {
+      "sku": "n8jy1u9dik",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 315,
+      "quantity_sold": 120,
+      "current_stock": 195
+    },
+  
+    {
+      "sku": "onvhiukjvn",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 200,
+      "quantity_sold": 105,
+      "current_stock": 95
+    }
+  ]
+}

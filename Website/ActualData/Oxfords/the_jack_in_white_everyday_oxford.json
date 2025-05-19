@@ -1,0 +1,111 @@
+{
+  "product_id": 40020,
+
+  "product_name": "The Jack in White Everyday Oxford",
+
+  "docType": "PRODUCT",
+
+  "product_color": "White Everyday Oxford",
+
+  "product_description": "There’s one simple reason we call this our everyday Oxford: we wear The Jack pretty much every single day. From its 100% organic cotton makeup to the expertly tailored fit to its rugged, double-needle felled construction, The Jack is a noticeable step up from your basic button-down.",
+
+  "product_price": 125,
+
+  "product_category": "Upper Garment",
+
+  "product_subcategory": "Shirt",
+
+  "product_subcategory_type": "Oxford",
+
+  "product_fit": "Chest-based sizing for a tailored, close-to-body fit. Higher armholes to prevent bunching and increase range of motion. Perfect length to wear tucked or untucked. Model is 6'2\", wearing a Medium. View Size Guide Customers say this fits: True to Size.",
+
+  "product_garment_weight": {
+    "garment_weight_description": "Your daily driver, at a versatile all-season weight.",
+    "garment_weight": "Medium"
+  },
+
+  "product_material": "Soft to the touch but built for a decade of solid wear. Oxford is a perfectly versatile fabric that looks just as good pressed as it does pulled off the back of a chair. While traditional cotton uses 25 percent of the world's pesticides, our organic cotton is certified by The Global Organic Textile Standard (GOTS) to ensure environmental responsibility at any stage of production.",
+
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+
+  "product_specifications": "6.5-oz. 100% organic cotton. Indigo yarns will wash and fade beautifully over time. No pleats for easy ironing and clean lines. Our signature Jack button down collar. Single rounded chest pocket. Double-needle felled construction throughout. Lock-stitched buttons and buttonholes. Wash cold and tumble dry low. Made in China.",
+
+  "product_images": [
+    {
+      "image_id": 50063,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_White_Everyday_Oxford\\6824013627469_jack-in-white-everyday-oxford-2304_01_tsio.jpg",
+      "main_image": true
+    },
+
+    {
+      "image_id": 50064,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_White_Everyday_Oxford\\6824013627469_jack-in-white-everyday-oxford-2304_05_tsio.jpg",
+      "main_image": false
+    },
+
+    {
+      "image_id": 50065,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_White_Everyday_Oxford\\instock_m_q225_jack_white_everyday_005.jpg",
+      "main_image": false
+    }
+  ],
+
+  "product_items": [
+    {
+      "sku": "azd0laygtj",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 300,
+      "quantity_sold": 100,
+      "current_stock": 200
+    },
+
+    {
+      "sku": "rzozw5h2mw",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 300,
+      "quantity_sold": 110,
+      "current_stock": 190
+    },
+
+    {
+      "sku": "w1l8gfr09k",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 300,
+      "quantity_sold": 120,
+      "current_stock": 180
+    },
+
+    {
+      "sku": "cvelk44wtl",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 300,
+      "quantity_sold": 105,
+      "current_stock": 195
+    },
+
+    {
+      "sku": "eem3uzgddx",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 300,
+      "quantity_sold": 95,
+      "current_stock": 205
+    },
+
+    {
+      "sku": "hr3em033vu",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 300,
+      "quantity_sold": 210,
+      "current_stock": 90
+    }
+  ]
+}

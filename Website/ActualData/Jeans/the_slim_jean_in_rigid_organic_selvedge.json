@@ -1,0 +1,244 @@
+{
+	"product_id": 40002,
+
+	"product_name": "The Slim Jean in Rigid Organic Selvedge",
+	
+	"docType": "PRODUCT",
+
+	"product_color": "Rigid Organic Selvedge",
+	
+	"product_description": "Making a solid pair of jeans is all about keeping it simple and doing things the right way, not the easy way. For our Slim Jean in Rigid Organic Selvedge, we did just that. As the name would suggest, we left this beautiful selvedge unwashed, making these the perfect project pair for fade enthusiasts and denim purists. We finished them off with our signature map print pocketing and a leather back patch for some added visual appeal.",
+	
+	"product_price": 168,
+	
+	"product_category": "Lower Garment",
+	
+	"product_subcategory": "Bottom",
+
+	"product_subcategory_type": "Jean",
+	
+	"product_fit": "Medium rise with a true slim fit that tapers gently through the thigh, knee, and leg opening. Available in 32\" and 34\" inseams. Model is 6'2\", wearing a 32\"",
+
+	"product_garment_weight": {
+		"garment_weight_description": "Built like a brick Sh#!thouse.",
+		"garment_weight": "Medium to Heavy"
+	},
+
+	"product_material": "Selvedge denim is an art form in and of itself, and it's spawned a whole subculture full of denim enthusiasts who wouldn't dream of wearing anything less. We kicked it up another notch by using only 100% organic cotton; it’s just as tough and versatile as the conventional stuff, but a whole lot gentler on the environment. Cuff em’ with pride, these are the cream of the crop.",
+
+	"product_supply_type": {
+		"supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
+
+		"supply_type": "Essential"
+	},
+	
+	"product_specifications": "14-oz. 100% organic cotton. Indigo selvedge denim. 6-oz. 100% organic cotton SF map pocketing. Raw denim, unwashed for a rigid feel. Classic five pocket with selvedge detailing on coin pocket. Button fly. Leather patch on backside of waistband. Custom-developed buttons and rivets to last you a lifetime. Wash cold and tumble dry low. Made in Vietnam.",
+
+	"product_images": [
+		
+		{
+			"image_id": 50006,
+			"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Jeans\\The_Slim_Jean_in_Rigid_Organic_Selvedge\\instock_m_q324_The_Slim_Jean-RigidOrganic_006.jpg",
+			"main_image": false
+		},
+
+		{
+			"image_id": 50007,
+			"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Jeans\\The_Slim_Jean_in_Rigid_Organic_Selvedge\\instock_m_q324_The_Slim_Jean-RigidOrganic_007.jpg",
+			"main_image": false
+		},
+
+		{
+			"image_id": 50008,
+			"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Jeans\\The_Slim_Jean_in_Rigid_Organic_Selvedge\\6990308212813_slim-jean-in-rigid-organic-selvage-2408_08_tsio.jpg",
+			"main_image": true
+		}
+
+	],
+
+	"product_items": [
+		{	
+			
+			"sku": "6sfiph6gpp",
+			"lower_size_number": 38,
+			"inseam_length": 32,
+			"total_stock": 150,
+			"quantity_sold": 118,
+			"current_stock": 32
+		},
+		
+		{	
+			
+			"sku": "t7iracd01h",
+			"lower_size_number": 38,
+			"inseam_length": 34,
+			"total_stock": 311,
+			"quantity_sold": 100,
+			"current_stock": 211
+		},
+		
+		{	
+			"sku": "955t44cfsq",
+			"lower_size_number": 36,
+			"inseam_length": 32,
+			"total_stock": 506,
+			"quantity_sold": 305,
+			"current_stock": 201
+		},
+
+		{	
+			"sku": "nmgiisprtw",
+			"lower_size_number": 36,
+			"inseam_length": 34,
+			"total_stock": 448,
+			"quantity_sold": 310,
+			"current_stock": 178
+		},
+
+		{	
+			"sku": "b9p1vuimlc",
+			"lower_size_number": 35,
+			"inseam_length": 32,
+			"total_stock": 642,
+			"quantity_sold": 252,
+			"current_stock": 390
+		},
+
+		{	
+			
+			"sku": "wtx0hfs6i0",
+			"lower_size_number": 35,
+			"inseam_length": 34,
+			"total_stock": 128,
+			"quantity_sold": 65,
+			"current_stock": 63
+		},
+
+		{	
+			"sku": "dxh05lcamk",
+			"lower_size_number": 34,
+			"inseam_length": 32,
+			"total_stock": 300,
+			"quantity_sold": 198,
+			"current_stock": 102
+		},
+
+		{	
+			"sku": "kmfzjxsvs4",
+			"lower_size_number": 34,
+			"inseam_length": 34,
+			"total_stock": 350,
+			"quantity_sold": 100,
+			"current_stock": 250
+		},
+
+		{	
+			"sku": "hft57g13ud",
+			"lower_size_number": 33,
+			"inseam_length": 34,
+			"total_stock": 287,
+			"quantity_sold": 153,
+			"current_stock": 134
+		},
+
+		{	
+			"sku": "rsycohzfae",
+			"lower_size_number": 33,
+			"inseam_length": 34,
+			"total_stock": 174,
+			"quantity_sold": 32,
+			"current_stock": 142
+		},
+
+		{	
+			"sku": "9p39thxthd",
+			"lower_size_number": 32,
+			"inseam_length": 34,
+			"total_stock": 812,
+			"quantity_sold": 607,
+			"current_stock": 205
+		},
+
+		{	
+			"sku": "0zcob5xmlt",
+			"lower_size_number": 32,
+			"inseam_length": 34,
+			"total_stock": 467,
+			"quantity_sold": 258,
+			"current_stock": 209
+		},
+
+		{	"sku": "oak3aeuscs",
+			"lower_size_number": 31,
+			"inseam_length": 32,
+			"total_stock": 176,
+			"quantity_sold": 84,
+			"current_stock": 92
+		},
+		
+		{	
+			"sku": "jzxtt2q3sp",
+			"lower_size_number": 31,
+			"inseam_length": 34,
+			"total_stock": 183,
+			"quantity_sold": 50,
+			"current_stock": 133
+		},
+
+		{
+			"sku": "83t5p3bfff",
+			"lower_size_number": 30,
+			"inseam_length": 32,
+			"total_stock": 350,
+			"quantity_sold": 120,
+			"current_stock": 230	
+		},
+
+		{
+			"sku": "eucxdnauwy",
+			"lower_size_number": 30,
+			"inseam_length": 34,
+			"total_stock": 186,
+			"quantity_sold": 150,
+			"current_stock": 36	
+		},
+
+		{
+			"sku": "uk0y12kps6",
+			"lower_size_number": 29,
+			"inseam_length": 32,
+			"total_stock": 700,
+			"quantity_sold": 250,
+			"current_stock": 450	
+		},
+
+		{
+			"sku": "b7q8tcn7js",
+			"lower_size_number": 29,
+			"inseam_length": 34,
+			"total_stock": 680,
+			"quantity_sold": 520,
+			"current_stock": 160	
+		},
+
+		{
+			"sku": "yhaganhj72",
+			"lower_size_number": 28,
+			"inseam_length": 34,
+			"total_stock": 682,
+			"quantity_sold": 172,
+			"current_stock": 510	
+		},
+
+		{
+			"sku": "gdtph45bmi",
+			"lower_size_number": 28,
+			"inseam_length": 34,
+			"total_stock": 582,
+			"quantity_sold": 324,
+			"current_stock": 158	
+		}
+
+
+	]
+}

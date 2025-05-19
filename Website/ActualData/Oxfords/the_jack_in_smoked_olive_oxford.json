@@ -1,0 +1,111 @@
+{
+  "product_id": 40019,
+
+  "product_name": "The Jack in Smoked Olive Oxford",
+
+  "docType": "PRODUCT",
+
+  "product_color": "Smoked Olive Oxford",
+
+  "product_description": "​​At a glance, our signature shirt may seem like any other button-down (albeit a handsome one), but it’s when you get up close that The Jack really shines. From the Responsible organic cotton makeup to the expertly tailored fit, to its rugged, double-needle felled construction, The Jack is a noticeable step up from your basic button-down.",
+
+  "product_price": 125,
+
+  "product_category": "Upper Garment",
+
+  "product_subcategory": "Shirt",
+
+  "product_subcategory_type": "Oxford",
+
+  "product_fit": "Chest-based sizing for a tailored, close-to-body fit. Tailored fit with higher armholes to prevent bunching and increase range of motion. Perfect length to wear tucked or untucked. Model is 6'3\", wearing a Medium.",
+
+  "product_garment_weight": {
+    "garment_weight_description": "Your daily driver, at a versatile all-season weight.",
+    "garment_weight": "Medium"
+  },
+
+  "product_material": "Soft to the touch but built for a decade of solid wear. Oxford is a perfectly versatile fabric that looks just as good pressed as it does pulled off the back of a chair. While traditional cotton uses 25 percent of the world's pesticides, our organic cotton is certified by The Global Textile Standard (GOTS) to ensure environmental responsibility at any stage of production.",
+
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+
+  "product_specifications": "5.5-oz. 100% organic cotton. No pleats for easy ironing and clean lines. Garment dyed and washed for a soft, lived-in feel. Our signature Jack button down collar. Single rounded chest pocket. Double-needle felled construction throughout. Lock-stitched buttons and buttonholes. Wash cold and tumble dry low. Made in China.",
+
+  "product_images": [
+    {
+      "image_id": 50057,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Smoked_Olive_Oxford\\7115850350669_jack-in-smoked-olive-oxford-2410_05_tsio.jpg",
+      "main_image": true
+    },
+
+    {
+      "image_id": 50058,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Smoked_Olive_Oxford\\instock_m_q424_The_Jack-SmokedOliveOxford_008.jpg",
+      "main_image": false
+    },
+
+    {
+      "image_id": 50059,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Smoked_Olive_Oxford\\instock_m_q424_The_Jack-SmokedOliveOxford_007.jpg",
+      "main_image": false
+    }
+  ],
+
+  "product_items": [
+    {
+      "sku": "c1evpqngxs",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 500,
+      "quantity_sold": 125,
+      "current_stock": 375
+    },
+
+    {
+      "sku": "i4ibmvtiyw",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 500,
+      "quantity_sold": 380,
+      "current_stock": 120
+    },
+
+    {
+      "sku": "mx2ewzkzcg",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 500,
+      "quantity_sold": 110,
+      "current_stock": 390
+    },
+
+    {
+      "sku": "hea2lykngt",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 500,
+      "quantity_sold": 100,
+      "current_stock": 400
+    },
+
+    {
+      "sku": "ekuaf966uu",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 500,
+      "quantity_sold": 200,
+      "current_stock": 300
+    },
+
+    {
+      "sku": "dhr519p1kw",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 500,
+      "quantity_sold": 50,
+      "current_stock": 450
+    }
+  ]
+}

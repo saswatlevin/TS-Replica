@@ -1,0 +1,167 @@
+{
+	"_id": "n8gr152ts7di",
+	"order_id": 1000,
+	"user_id": 1,
+	"docType": "ORDER",
+	"order_status": "Created",
+	"total_price": 108,
+	"date_created_at": "",
+	"date_of_arrival": "",
+	
+	"shipping_address": {
+			
+			"address_type_id": 1,
+			"building_name": "Artemis",
+			"street_number": "1",
+			"street_number_suffix": "A",
+			"street_name": "Alpha",
+			"street_type": "Court",
+			"street_direction": "W",
+			"city": "ABC city",
+			"postal_area": 203930,
+			"country": "ABC country"
+	},
+
+	"order_items": [
+		{
+			"order_item_id": 300,
+			"product_id": 100,
+			"sku": "fmrok30o34",
+			"order_item_price": 30,
+			"order_item_quantity": 4,
+			"order_item_image_uri": "/users/saswatlevin/home/img1.jpg"
+		},
+
+		{
+			"order_item_id": 301,
+			"product_id": 101,
+			"sku": "kfdldfeper",
+			"order_item_price": 42,
+			"order_item_quantity": 1,
+			"order_item_image_uri": "/users/saswatlevin/home/img2.jpg"
+		},
+		
+		{
+			"order_item_id": 302,
+			"product_id": 102,
+			"sku": "dkfkmdkreo9",
+			"order_item_price": 36,
+			"order_item_quantity": 5,
+			"order_item_image_uri": "/users/saswatlevin/home/img3.jpg"
+		}
+	]	
+
+
+}
+
+{
+	"_id": "n8gr152ts7di",
+	"order_id": 1000,
+	"user_id": 2,
+	"docType": "ORDER",
+	"order_status": "Created",
+	"total_price": 108,
+	"date_created_at": "",
+	"date_of_arrival": "",
+	"shipping_address": {
+
+		"address_type_id": "1",
+		"building_name": "Arcon",
+		"street_number": "10",
+		"street_number_suffix": "A",
+		"street_name": "Beta",
+		"street_type": "Driveway",
+		"street_direction": "N",
+		"city": "CBA city",
+		"postal_area": 315826,
+		"country": "CBA country"
+	},
+
+	"order_items": [
+
+		{
+			"order_item_id": 300,
+			"product_id": 103,
+			"sku": "fkofeoeklp",
+			"order_item_price": 18,
+			"order_item_quantity": 3,
+			"order_item_image_uri": "/users/saswatlevin/home/img10.jpg"
+		},
+
+		{
+			"order_item_id": 301,
+			"product_id": 101,
+			"sku": "gtuimnqlrv",
+			"order_item_price": 24,
+			"order_item_quantity": 5,
+			"order_item_image_uri": "/users/saswatlevin/home/img11.jpg"
+		},
+
+		{
+			"order_item_id": 12,
+			"product_id": 102,
+			"sku": "dkfdflkeof",
+			"order_item_price": 55,
+			"order_item_quantity": 2,
+			"order_item_image_uri": "/users/saswatlevin/home/img12.jpg"
+		}
+	]	
+
+
+}
+
+{
+	"_id": "n8gr152ts7di",
+	"order_id": 1000,
+	"user_id": 3,
+	"docType": "ORDER",
+	"order_status": "Created",
+	"total_price": 108,
+	"date_created_at": "",
+	"date_of_arrival": "",
+	"shipping_address": {
+
+			"address_type_id": "13",
+			"building_name": "Svoboda",
+			"street_number": "15",
+			"street_number_suffix": "A",
+			"street_name": "Gamma",
+			"street_type": "Path",
+			"street_direction": "E",
+			"city": "BAC city",
+			"postal_area": 815263,
+			"country": "BAC country"
+	},
+
+	"order_items": [
+		
+		{
+			"order_item_id": 300,
+			"product_id": 203,
+			"sku": "vdmdkwod[op",
+			"order_item_price": 81,
+			"order_item_quantity": 2,
+			"order_item_image_uri": "/users/saswatlevin/home/img23.jpg"
+		},
+
+		{
+			"order_item_id": 301,
+			"product_id": 201,
+			"sku": "jfdlefeqdr",
+			"order_item_price": 42,
+			"order_item_quantity": 4,
+			"order_item_image_uri": "/users/saswatlevin/home/img21.jpg" 
+		},
+
+		{
+			"order_item_id": 302,
+			"product_id": 202,
+			"sku": "ijofegmkeo",
+			"order_item_price": 51,
+			"order_item_quantity":  3,
+			"order_item_image_uri": "/users/saswatlevin/home/img22.jpg"
+		}
+	]	
+
+
+}

@@ -1,0 +1,111 @@
+{
+  "product_id": 40009,
+  
+  "product_name": "The Division Shirt in Washed Indigo",
+  
+  "docType": "PRODUCT",
+  
+  "product_color": "Washed Indigo",
+  
+  "product_description": "The only thing better than a brand-new shirt is one that’s been around the block and has the wear and tear to prove it. With The Division Shirt, you get the best of both worlds. We’ve given it a thorough garment wash to draw the natural character of this indigo-dyed sashiko finish to the surface, and the harder you wear it, the better it will look.",
+  
+  "product_price": 132,
+  
+  "product_category": "Upper Garment",
+  
+  "product_subcategory": "Shirt",
+  
+  "product_subcategory_type": "Long-Sleeved Shirt",
+  
+  "product_fit": "Fitted at the chest with a straighter fit through the body. Shorter tail length to be worn untucked. Model is 6'1\", wearing a Medium. Customer says this fits: True to Size.",
+  
+  "product_garment_weight": {
+    "garment_weight_description": "Toss on over another shirt or make it your first layer on a colder day.",
+    "garment_weight": "Medium to Heavy"
+  },
+  
+  "product_material": "This hefty organic cotton sashiko is incredible right out of the box, but it’ll really start to shine after it’s seen some action out in the field. The Division Shirt is finished with our signature California collar, dual-mitered chest pockets, and some handsome burnt corozo buttons.",
+  
+  "product_supply_type": {
+    "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+  
+  "product_specifications": "12.5-oz. 100% organic cotton. Heavily washed to bring out the depth of sashiko-woven indigo yarns. Our signature California collar. Two mitered chest pockets with button through flaps. Left pocket features a pen sleeve. Burnt corozo buttons. Wash cold and tumble dry low. Made in China.",
+  
+  "product_images": [
+    {
+      "image_id": 50024,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Division_Shirt\\The_Division_Shirt_in_Washed_Indigo\\6757461459021_division-shirt-in-washed-indigo-2301_01_tsio.jpg",
+      "main_image": false
+    },
+  
+    {
+      "image_id": 50025,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Division_Shirt\\The_Division_Shirt_in_Washed_Indigo\\6757461459021_division-shirt-in-washed-indigo-2301_08_tsio.jpg",
+      "main_image": false
+    },
+  
+    {
+      "image_id": 50026,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Division_Shirt\\The_Division_Shirt_in_Washed_Indigo\\instock_m_q123_Division_Shirt_Washed_Indigo_007.jpg",
+      "main_image": false
+    }
+  ],
+  
+  "product_items": [
+    {
+      "sku": "785r0xzd3p",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 180,
+      "quantity_sold": 78,
+      "current_stock": 102
+    },
+    
+    {
+      "sku": "7r3qx9lk1u",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 193,
+      "quantity_sold": 65,
+      "current_stock": 138
+    },
+    
+    {
+      "sku": "kfuwcfoeee",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 203,
+      "quantity_sold": 35,
+      "current_stock": 168    
+    },
+    
+    {
+      "sku": "97ss14xvpk",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 210,
+      "quantity_sold": 90,
+      "current_stock": 120
+    },
+
+    {
+      "sku": "upttw60bz8",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 215,
+      "quantity_sold": 90,
+      "current_stock": 125
+    },
+    
+    {
+      "sku": "7jsvb1f2bb",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 80,
+      "quantity_sold": 20,
+      "current_stock": 60
+    }
+  ]
+}

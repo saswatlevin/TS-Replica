@@ -1,0 +1,111 @@
+{
+  "product_id": 40015,
+
+  "product_name": "The Hawthorne Shirt in Red Wine Border Eyelet",
+  
+  "docType": "PRODUCT",
+  
+  "product_color": "Red Wine Border Eyelet",
+  
+  "product_description": "A fresh take on our laid-back classic, The Hawthorne Shirt in Red Wine Border Eyelet features a subtle embroidered finish that adds texture and depth while keeping things light and breathable. Garment dyed and enzyme washed for a soft, timeworn feel, it’s built to wear light, look sharp, and age beautifully through the season.",
+  
+  "product_price": 138,
+  
+  "product_category": "Upper Garment",
+  
+  "product_subcategory": "Shirt",
+  
+  "product_subcategory_type": "Short-Sleeved Shirt",
+  
+  "product_fit": "Tailored fit with higher armholes to increase range of motion and prevent bunching. Shorter tail length to be worn untucked. Model is 6'1\", wearing a Medium.",
+  
+  "product_garment_weight": {
+    "garment_weight_description": "Your daily driver, at a versatile all-season weight.",
+    "garment_weight": "Medium"
+  },
+  
+  "product_material": "Crafted from a warm-weather blend of linen and GOTS-certified organic cotton, this iteration of The Hawthorne features a tonal embroidered border eyelet pattern for a touch of quiet detail. Garment dyed to draw out this fabric’s natural character and finished with durable double-needle stitching throughout.",
+  
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+  
+  "product_specifications": "5.5-oz. 55% linen, 45% organic cotton embroidered eyelet border. Garment dyed and washed for a soft, lived in feel. Camp collar (no collar stand) meant to be worn open. Single rounded chest pocket. Flat hem with vents at side seams. Double-needle felled construction. Wash cold and lay flat to dry. Made in China.",
+  
+  "product_images": [
+    {
+      "image_id": 50042,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Hawthorne_Shirt\\The_Hawthorne_Shirt_in_Red_Wine_Border_Eyelet\\instock_m_q225_The_Short_Sleeve_Hawthorne-RedWineBorderEyelet_portrait_001.jpg",
+      "main_image": true
+    },
+  
+    {
+      "image_id": 50043,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Hawthorne_Shirt\\The_Hawthorne_Shirt_in_Red_Wine_Border_Eyelet\\instock_m_q225_The_Short_Sleeve_Hawthorne-RedWineBorderEyelet_portrait_008.jpg",
+      "main_image": false
+    },
+  
+    {
+      "image_id": 50044,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Hawthorne_Shirt\\The_Hawthorne_Shirt_in_Red_Wine_Border_Eyelet\\instock_m_q225_The_Short_Sleeve_Hawthorne-RedWineBorderEyelet_portrait_005.jpg",
+      "main_image": false
+    }
+  ],
+  
+  "product_items": [
+    {
+      "sku": "n7ffshqkz2",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 300,
+      "quantity_sold": 160,
+      "current_stock": 140
+    },
+  
+    {
+      "sku": "x564dkezwj",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 296,
+      "quantity_sold": 106,
+      "current_stock": 190
+    },
+  
+    {
+      "sku": "bgsqjoyb4t",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 180,
+      "quantity_sold": 75,
+      "current_stock": 105
+    },
+  
+    {
+      "sku": "cliq1jtudb",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 208,
+      "quantity_sold": 109,
+      "current_stock": 99
+    },
+  
+    {
+      "sku": "xiniqzdcq2",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 105,
+      "quantity_sold": 55,
+      "current_stock": 50
+    },
+  
+    {
+      "sku": "rqudqaoy3e",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 110,
+      "quantity_sold": 30,
+      "current_stock": 80
+    }
+  ]
+}

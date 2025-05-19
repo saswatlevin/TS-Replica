@@ -1,0 +1,98 @@
+{
+  "product_id": 40014,
+  "product_name": "The Conrad Shirt in Vintage White Linen",
+  "docType": "PRODUCT",
+  "product_color": "Vintage WHite Linen",
+  "product_description": "A vintage-inspired camp collar silhouette, The Conrad Shirt is tailor-made for beachside bonfires and cabana cocktails. This time around, we’ve rendered our summer-ready stalwart in an airy, richly textured linen blend that will soften with every wear. And thanks to its durable double-needle construction, you’ll have plenty of seasons to watch it age with grace.",
+  "product_price": 128,
+  "product_category": "Upper Garment",
+  "product_subcategory": "Shirt",
+  "product_subcategory_type": "Short-Sleeved Shirt",
+  "product_fit": "Tailored fit with higher armholes to increase range of motion and prevent bunching. Shorter tail length to be worn untucked. Model is 6'2\", wearing a Medium.",
+  "product_garment_weight": {
+    "garment_weight_description": "Your daily driver, at a versatile all-season weight.",
+    "garment_weight": "Medium"
+  },
+  "product_material": "Crafted from a breathable blend of linen and organic cotton, The Conrad Shirt is washed for a breezy, broken-in feel that gets better with time. Built with double-needle stitching and finished with classic camp collar details, it’s designed to look effortless—and last for years.",
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+  "product_specifications": "6-oz. 55% linen, 45% organic cotton. Washed for a soft, lived in feel. No pleats for easy ironing and clean lines. Camp collar (no collar stand) meant to be worn open. Two rounded chest pockets. Straight hem with vents at side seams. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+  
+  "product_images": [
+    {
+      "image_id": 50039,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Conrad_Shirt\\The_Conrad_Shirt_in_Vintage_White_Linen\\instock_m_q225_The_Conrad_Shirt-VintageWhiteLinen_portrait_006.jpg",
+      "main_image": true
+    },
+  
+    {
+      "image_id": 50040,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Conrad_Shirt\\The_Conrad_Shirt_in_Vintage_White_Linen\\instock_m_q225_The_Conrad_Shirt-VintageWhiteLinen_portrait_001.jpg",
+      "main_image": false
+    },
+  
+    {
+      "image_id": 50041,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Conrad_Shirt\\The_Conrad_Shirt_in_Vintage_White_Linen\\instock_m_q225_The_Conrad_Shirt-VintageWhiteLinen_portrait_005.jpg",
+      "main_image": false
+    }
+  ],
+  
+  "product_items": [
+    {
+      "sku": "x8obcaw0np",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 180,
+      "quantity_sold": 115,
+      "current_stock": 65
+    },
+  
+    {
+      "sku": "38jj1gjcux",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 175,
+      "quantity_sold": 115,
+      "current_stock": 60
+    },
+  
+    {
+      "sku": "yjn9gt39hl",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 160,
+      "quantity_sold": 55,
+      "current_stock": 105
+    },
+  
+    {
+      "sku": "ho0lkri5ri",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 208,
+      "quantity_sold": 85,
+      "current_stock": 123
+    },
+  
+    {
+      "sku": "tkn6c4te7w",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 200,
+      "quantity_sold": 109,
+      "current_stock": 91
+    },
+  
+    {
+      "sku": "vtg4qz0mlh",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 100,
+      "quantity_sold": 25,
+      "current_stock": 75
+    }
+  ]
+}

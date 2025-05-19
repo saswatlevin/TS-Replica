@@ -1,0 +1,54 @@
+{	
+	"_id": "kfdofe0ro29i2039320ie",
+	"docType": "USER", 
+	"user_id": 10000,
+	"date_created_at": "2025-05-09T20:00:00Z",
+	"email": "def001@server.com",
+	"password": "djwiji3oeow2p",
+	"phoneno": "7348198765",
+	"first_name": "DEF",
+	"last_name": "FED",
+	"user_role": "user",
+	"upper_size_number": 42,
+	"upper_size_letter": "L",
+	"lower_size_number": 32,
+	"others_size_letter": "M",
+	"email_comms_type": "One Weekly Recap",
+	"sms_comms": true,
+	"ShippingAddresses": [
+		{
+			"shipping_address_id": 201098,
+			"address_type_id": "2",
+			"building_name": "Alburqueque",
+			"street_number": "3",
+			"street_number_suffix": "A",
+			"street_name": "Taurus",
+			"street_type": "Court",
+			"street_direction": "NE",
+			"city": "DEF city",
+			"postal_area": 402940,
+			"country": "DEF country"
+		},
+		
+		{	
+			"shipping_address_id": 201020,
+			"address_type_id": "2",
+			"building_name": "Corvus",
+			"street_number": "4",
+			"street_number_suffix": "A",
+			"street_name": "BetaOne",
+			"street_type": "Way",
+			"street_direction": "S",
+			"city": "CAS city",
+			"postal_area": 184921,
+			"country": "CAS country"
+		}
+		
+	],
+
+	"CartItems": [
+		
+	]
+
+
+};

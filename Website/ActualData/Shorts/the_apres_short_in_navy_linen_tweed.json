@@ -1,0 +1,105 @@
+{
+  "product_id": 40006,
+  
+  "product_name": "The Apres Short in Navy Linen Tweed",
+  
+  "docType": "PRODUCT",
+  
+  "product_color": "Navy Linen Tweed",
+  
+  "product_description": "With its richly textured hand and breezy feel, this Linen Tweed iteration of The Après Short is built to walk through the warmer months with ease. Combining the comfort of a drawcord waist with a clean, tailored fit, it’s an ideal companion for relaxed summer days by the pool, the ocean, or anywhere in between",
+  
+  "product_price": 94,
+  
+  "product_category": "Lower Garment",
+  
+  "product_subcategory": "Bottom",
+  
+  "product_subcategory_type": "Short",
+  
+  "product_fit": "7\" Inseam. Model is 6'3\", wearing a Medium.",
+  
+  "product_garment_weight": {
+    "garment_weight_description": "Sturdy daily drivers.",
+    "garment_weight": "Medium"
+  },
+  
+  "product_material": "With its richly textured hand and breezy feel, this Linen Tweed iteration of The Après Short is built to walk through the warmer months with ease. Combining the comfort of a drawcord waist with a clean, tailored fit, it’s an ideal companion for relaxed summer days by the pool, the ocean, or anywhere in between.",
+  
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+  
+  "product_specifications": "8.5-oz. 55% linen, 45% organic cotton tweed with 6-oz. 100% organic cotton SF Map pocketing, washed for a soft, lived-in feel, featuring an elastic waistband with drawcord, button fly, two front slash pockets, two back patch button-through pockets, and made in China; wash cold, tumble dry low.",
+  
+  "product_images": [
+    {
+      "image_id": 50015,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Apres_Short_in_Navy_Linen_Tweed\\instock_m_q225_The_Apres_Short-NavyLinenTweed_portrait_004.jpg",
+      "main_image": true
+    },
+  
+    {
+      "image_id": 50016,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Apres_Short_in_Navy_Linen_Tweed\\instock_m_q225_The_Apres_Short-NavyLinenTweed_portrait_005.jpg",
+      "main_image": false
+    },
+  
+    {
+      "image_id": 50017,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Apres_Short_in_Navy_Linen_Tweed\\instock_m_q225_The_Apres_Short-NavyLinenTweed_portrait_006.jpg",
+      "main_image": false
+    }
+  ],
+
+  "product_items": [
+    {
+      "sku": "ygiy8ngzbm",
+      "lower_size_letter": "XXL",
+      "total_stock": 400,
+      "quantity_sold": 150,
+      "current_stock": 260
+    },
+    
+    {
+      "sku": "269ujn48i2",
+      "lower_size_letter": "XL",
+      "total_stock": 350,
+      "quantity_sold": 150,
+      "current_stock": 200
+    },
+    
+    {
+      "sku": "lscpppzd0i",
+      "lower_size_letter": "L",
+      "total_stock": 180,
+      "quantity_sold": 70,
+      "current_stock": 110
+    },
+    
+    {
+      "sku": "dapw4niiqj",
+      "lower_size_letter": "M",
+      "total_stock": 200,
+      "quantity_sold": 150,
+      "current_stock": 50
+    },
+    
+    {
+      "sku": "y12d7ztnkl",
+      "lower_size_letter": "S",
+      "total_stock": 250,
+      "quantity_sold": 150,
+      "current_stock": 100
+    },
+    
+    {
+      "sku": "h77sjj22nv",
+      "lower_size_letter": "XS",
+      "total_stock": 200,
+      "quantity_sold": 30,
+      "current_stock": 170
+    }
+  ]
+}

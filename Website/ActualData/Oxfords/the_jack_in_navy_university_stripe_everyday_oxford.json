@@ -1,0 +1,111 @@
+{
+  "product_id": 40017,
+
+  "product_name": "The Jack in Navy University Stripe Everyday Oxford",
+  
+  "docType": "PRODUCT",
+  
+  "product_color": "Navy University Stripe Everyday Oxford",
+  
+  "product_description": "There’s one simple reason we call this our everyday oxford; we wear The Jack pretty much every single day. From its 100% organic cotton makeup to the expertly tailored fit, to its rugged, double-needle felled construction, The Jack is a noticeable step up from your basic button-down.",
+  
+  "product_price": 125,
+  
+  "product_category": "Upper Garment",
+  
+  "product_subcategory": "Shirt",
+  
+  "product_subcategory_type": "Oxford",
+  
+  "product_fit": "Chest-based sizing for a tailored, close-to-body fit. Higher armholes to prevent bunching and increase range of motion. Perfect length to wear tucked or untucked. Model is 6’2”, wearing a Medium. Customers say this fits: True to size.",
+  
+  "product_garment_weight": {
+    "garment_weight_description": "Your daily driver, at a versatile all-season weight.",
+    "garment_weight": "Medium"
+  },
+  
+  "product_material": "There’s one simple reason we call this our everyday oxford; we wear The Jack pretty much every single day. From its 100% organic cotton makeup to the expertly tailored fit, to its rugged, double-needle felled construction, The Jack is a noticeable step up from your basic button-down.",
+  
+  "product_supply_type": {
+    "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
+    "supply_type": "Essential"
+  },
+  
+  "product_specifications": "6-oz. 100% organic cotton. Washed for a soft, lived in feel. Signature Jack button-down collar. No pleats for easy ironing and clean lines. Single rounded chest pocket. Double-needle felled construction throughout. Double-stitched buttons and buttonholes. Pre-shrunk. Natural buttons. Wash cold and tumble dry low. Made in China.",
+  
+  "product_images": [
+    {
+      "image_id": 50051,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Navy_University_Stripe_Everyday_Oxford\\6824013693005_jack-in-navy-university-stripe-everyday-oxford-2304_01.jpg",
+      "main_image": true
+    },
+  
+    {
+      "image_id": 50052,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Navy_University_Stripe_Everyday_Oxford\\6824013693005_jack-in-navy-university-stripe-everyday-oxford-2304_05_tsio.jpg",
+      "main_image": false
+    },
+  
+    {
+      "image_id": 50053,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Navy_University_Stripe_Everyday_Oxford\\6824013693005_jack-in-navy-university-stripe-everyday-oxford-2304_06_tsio.jpg",
+      "main_image": false
+    }
+  ],
+  
+  "product_items": [
+    {
+      "sku": "733tse774k",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 400,
+      "quantity_sold": 50,
+      "current_stock": 350
+    },
+  
+    {
+      "sku": "1c48dy83hc",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 380,
+      "quantity_sold": 80,
+      "current_stock": 300
+    },
+  
+    {
+      "sku": "16w3zute54",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 385,
+      "quantity_sold": 105,
+      "current_stock": 280
+    },
+  
+    {
+      "sku": "g9pyzg0uv7",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 395,
+      "quantity_sold": 150,
+      "current_stock": 245
+    },
+  
+    {
+      "sku": "wuyi085mpb",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 200,
+      "quantity_sold": 56,
+      "current_stock": 144
+    },
+  
+    {
+      "sku": "4yngayzmh1",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 205,
+      "quantity_sold": 110,
+      "current_stock": 95
+    }
+  ]
+}

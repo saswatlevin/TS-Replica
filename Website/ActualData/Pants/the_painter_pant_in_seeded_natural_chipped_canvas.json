@@ -1,0 +1,148 @@
+{
+  "product_id": 40005,
+  
+  "product_name": "The Painter Pant in Seeded Natural Chipped Canvas",
+  
+  "docType": "PRODUCT",
+  
+  "product_color": "Seeded Natural Chipped Canvas",
+  
+  "product_description": "A thoughtful riff on a timeless workwear silhouette, The Painter Pant offers utility-driven details in a clean, tailored package. Built from sturdy organic cotton canvas and finished with a subtle stone wash, it brings classic durability and everyday versatility to the table—no paint required.",
+
+  "product_price": 138,
+  
+  "product_category": "Lower Garment",
+  
+  "product_subcategory": "Bottom",
+  
+  "product_subcategory_type": "Pant",
+  
+  "product_fit": "Medium rise straight leg fit, with a 9\" taper from thigh to leg opening. 34\" inseam. Model is 6'2\", wearing a 32\".",
+  
+  "product_garment_weight": {
+    "garment_weight_description": "Built like a brick Sh#!thouse.",
+    "garment_weight": "Medium to Heavy"
+  },
+
+  "product_material": "Crafted from hefty chipped canvas and stone washed for a worn-in feel from day one. Reinforced with triple-needle stitching on outseam, with functional details like dual tool pockets, bar-tacked stress points, and our signature SF map print pocketing.",
+  
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+  
+  "product_specifications": "12.5 oz. 100% organic cotton canvas with 6 oz. organic cotton SF Map pocketing, stone-washed for a worn-in feel, features angled front slash pockets, two mitered back patch pockets with reinforced lining, dual tool pockets sewn into side seam, coin pocket, triple-needle felled outseam construction, bar-tacked stress points, YKK zip fly with tack button closure, machine wash cold and tumble dry low, made in China.",
+  
+  "product_images": [
+    {
+      "image_id": 50015,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_001.jpg",
+      "main_image": true
+    },
+  
+    {
+      "image_id": 50016,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_008.jpg",
+      "main_image": false
+    },
+  
+    {
+      "image_id": 50017,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_010.jpg",
+      "main_image": false
+    }
+  ],
+  
+  "product_items": [
+    
+    {
+      "sku": "cdwrbvcp2r",
+      "lower_size_number": 38,
+      "inseam_length": 34,
+      "total_stock": 310,
+      "quantity_sold": 50,
+      "current_stock": 260
+    },
+
+    {
+      "sku": "bzpr1txn5j",
+      "lower_size_number": 36,
+      "inseam_length": 34,
+      "total_stock": 300,
+      "quantity_sold": 100,
+      "current_stock": 200
+    },
+
+    {
+      "sku": "jel0mvuh2n",
+      "lower_size_number": 35,
+      "inseam_length": 34,
+      "total_stock": 198,
+      "quantity_sold": 50,
+      "current_stock": 148
+    },
+
+    {
+      "sku": "352z5lztub",
+      "lower_size_number": 34,
+      "inseam_length": 34,
+      "total_stock": 206,
+      "quantity_sold": 80,
+      "current_stock": 126
+    },
+
+    {
+      "sku": "2v5ecttxdx",
+      "lower_size_number": 33,
+      "inseam_length": 34,
+      "total_stock": 200,
+      "quantity_sold": 100,
+      "current_stock": 100
+    },
+
+    {
+      "sku": "3yfyx9od4q",
+      "lower_size_number": 32,
+      "inseam_length": 34,
+      "total_stock": 187,
+      "quantity_sold": 20,
+      "current_stock": 167
+    },
+
+    {
+      "sku": "gobzyrykhp",
+      "lower_size_number": 31,
+      "inseam_length": 34,
+      "total_stock": 172,
+      "quantity_sold": 70,
+      "current_stock": 102
+    },
+
+    {
+      "sku": "52w0owssni",
+      "lower_size_number": 30,
+      "inseam_length": 34,
+      "total_stock": 168,
+      "quantity_sold": 120,
+      "current_stock": 48
+    },
+
+    {
+      "sku": "j7jo34y3ie",
+      "lower_size_number": 29,
+      "inseam_length": 34,
+      "total_stock": 138,
+      "quantity_sold": 40,
+      "current_stock": 98
+    },
+    
+    {
+      "sku": "ohgqsdan8j",
+      "lower_size_number": 28,
+      "inseam_length": 34,
+      "total_stock": 156,
+      "quantity_sold": 60,
+      "current_stock": 96
+    }
+  ]
+}

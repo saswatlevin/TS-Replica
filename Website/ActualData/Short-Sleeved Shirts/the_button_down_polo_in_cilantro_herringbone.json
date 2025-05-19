@@ -1,0 +1,102 @@
+{
+  "product_id": 40013,
+  "product_name": "The Button Down Polo in Cilantro Herringbone",
+  "docType": "PRODUCT",
+  "product_color": "Cilantro Herringbone",
+  "product_description": "We’re big proponents of useful innovation, but a true classic is hard to beat. Our Button Down Polo is built with an eye for the details, sporting rich knit herringbone texture and contrast details for a touch of retro charm.",
+  "product_price": 138,
+  "product_category": "Upper Garment",
+  "product_subcategory": "Shirt",
+  "product_subcategory_type": "Short-Sleeved Shirt",
+  "product_fit": "Features a tailored cut, fitted around the shoulders and chest. Model is 6'2\", wearing a Medium.",
+
+  "product_garment_weight": {
+    "garment_weight_description": "Your daily driver, at a versatile all-season weight.",
+    "garment_weight": "Medium"
+  },
+
+  "product_material": "To achieve the intricate texture of true vintage knit polos, we’ve worked 100% organic cotton into a herringbone weave. It’s an involved approach that requires a lot of work for a little more visual nuance, but once you get The Button Down Polo in hand, we think you’ll agree—it was well worth the effort.",
+
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+
+  "product_specifications": "100% organic cotton. 14 gauge yarns. Herringbone knit construction on the body and sleeves. Flat rib knit collar. 1x1 rib on sleeve and bottom opening. Straight hem. Hand wash cold and lay flat to dry. Made in China.",
+
+  "product_images": [
+    {
+      "image_id": 50036,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Button_Down_Polo\\The_Button_Down_Polo_in_Cilantro_Herringbone\\instock_m_q225_buttondown_cilantro_portrait_001.jpg",
+      "main_image": true
+    },
+ 
+    {
+      "image_id": 50037,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Button_Down_Polo\\The_Button_Down_Polo_in_Cilantro_Herringbone\\instock_m_q225_buttondown_cilantro_portrait_006.jpg",
+      "main_image": false
+    },
+ 
+    {
+      "image_id": 50038,
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Button_Down_Polo\\The_Button_Down_Polo_in_Cilantro_Herringbone\\instock_m_q225_buttondown_cilantro_portrait_007.jpg",
+      "main_image": false
+    }
+  ],
+ 
+  "product_items": [
+    {
+      "sku": "xael8ujrjh",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 300,
+      "quantity_sold": 165,
+      "current_stock": 135
+    },
+ 
+    {
+      "sku": "brpy6armct",
+      "upper_size_letter": "XL",
+      "upper_size_number": 44,
+      "total_stock": 280,
+      "quantity_sold": 104,
+      "current_stock": 176
+    },
+ 
+    {
+      "sku": "lag53nbud2",
+      "upper_size_letter": "L",
+      "upper_size_number": 42,
+      "total_stock": 260,
+      "quantity_sold": 104,
+      "current_stock": 156
+    },
+ 
+    {
+      "sku": "yf34d4bpok",
+      "upper_size_letter": "M",
+      "upper_size_number": 40,
+      "total_stock": 255,
+      "quantity_sold": 115,
+      "current_stock": 140
+    },
+ 
+    {
+      "sku": "plvokwlg55",
+      "upper_size_letter": "S",
+      "upper_size_number": 38,
+      "total_stock": 250,
+      "quantity_sold": 180,
+      "current_stock": 70
+    },
+ 
+    {
+      "sku": "0pj143vq2m",
+      "upper_size_letter": "XS",
+      "upper_size_number": 36,
+      "total_stock": 240,
+      "quantity_sold": 130,
+      "current_stock": 110
+    }
+  ]
+}

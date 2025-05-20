@@ -47,6 +47,33 @@
 	],
 
 	"CartItems": [
+
+		{
+			"cart_item_id": 30000,
+			"product_id": 40000,
+			"sku":  "vkr7eqvzsh",
+			"cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Chinos\\The_Democratic_Foundation_Pant_in_Organic_Navy\\7310894563405_democratic-foundation-pant-in-organic-navy-twill-2501_01_tsio.jpg",
+			"cart_item_quantity": 3
+		},
+
+	
+		{
+			"cart_item_id": 30001,
+			"product_id": 40008,
+			"sku": "9qjmn3ak0b",
+			"cart_item_image_uri":  "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
+			"cart_item_quantity": 1
+		},
+
+		{
+			"cart_item_id": 30002,
+			"product_id": 40006,
+			"sku": "ygiy8ngzbm",
+			"cart_item_quantity": 2
+
+		}
+
+
 		
 	]
 

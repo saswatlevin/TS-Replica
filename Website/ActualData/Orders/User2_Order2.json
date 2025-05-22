@@ -1,0 +1,45 @@
+{
+  "order_id": 60003,
+  "user_id": 10001,
+  "docType": "ORDER",
+  "order_status": "Pre-Dispatch",
+  "total_price": 250,
+  "date_created_at": "2025-05-22T01:25:00Z",
+  "date_of_arrival": "2025-05-26T14:12:00Z",
+  
+  "shipping_address": {
+    "address_type_id": 1,
+    "first_name": "DEF",
+    "last_name": "FED",
+    "company_name": "",
+    "address": "617 4th Street",
+    "apartment": "Unit 1 (NE)",
+    "city": "Canmore",
+    "administrative_division": "Alberta",
+    "country": "Canada",
+    "postal_area": "T1W 2G7",
+    "phone_number": "+14035551234"
+  },
+
+  "order_items": [
+    {
+      "order_item_id": 70007,
+      "product_id": 40017,
+      "sku": "733tse774k",
+      "order_item_name": "The Jack in Navy University Stripe Everyday Oxford",
+      "order_item_price": 125,
+      "order_item_quantity": 1,
+      "order_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Navy_University_Stripe_Everyday_Oxford\\6824013693005_jack-in-navy-university-stripe-everyday-oxford-2304_01.jpg"
+    },
+    
+    {
+      "order_item_id": 70008,
+      "product_id": 40018,
+      "sku": "0u00ohnzyx",
+      "order_item_name": "The Jack in Rinsed Indigo Oxford",
+      "order_item_price": 125,
+      "order_item_quantity": 1,
+      "order_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Rinsed_Indigo_Oxford\\6865641832525_jack-in-indigo-oxford-2310_01_tsio.jpg"
+    }
+  ]
+}

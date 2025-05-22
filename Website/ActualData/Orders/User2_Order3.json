@@ -1,0 +1,44 @@
+{
+  "order_id": 60004,
+  "user_id": 10001,
+  "docType": "ORDER",
+  "order_status": "Pre-Dispatch",
+  "total_price": 250,
+  "date_created_at": "2025-05-22T01:26:00Z",
+  "date_of_arrival": "2025-05-27T14:15:00Z",
+  
+   "shipping_address": {
+    "address_type_id": 1,
+    "first_name": "DEF",
+    "last_name": "FED",
+    "company_name": "",
+    "address": "617 4th Street",
+    "apartment": "Unit 1 (NE)",
+    "city": "Canmore",
+    "administrative_division": "Alberta",
+    "country": "Canada",
+    "postal_area": "T1W 2G7",
+    "phone_number": "+14035551234"
+  },
+
+  "order_items": [
+    {
+      "order_item_id": 70009,
+      "product_id": 40019,
+      "sku": "c1evpqngxs",
+      "order_item_name": "The Jack in Smoked Olive Oxford",
+      "order_item_price": 125,
+      "order_item_quantity": 1,
+      "order_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Smoked_Olive_Oxford\\7115850350669_jack-in-smoked-olive-oxford-2410_05_tsio.jpg"
+    },
+    {
+      "order_item_id": 70010,
+      "product_id": 40020,
+      "sku": "30sk93dwgd",
+      "order_item_name": "The Jack in Washed Indigo Oxford",
+      "order_item_price": 125,
+      "order_item_quantity": 1,
+      "order_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Washed_Indigo_Oxford\\7307482431565_jack-in-washed-indigo-oxford-2501_08_tsio.jpg"
+    }
+  ]
+}

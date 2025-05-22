@@ -19,29 +19,27 @@
 		{
 			"shipping_address_id": 20000,
 			"address_type_id": "1",
-			"building_name": "Artemis",
-			"street_number": "1",
-			"street_number_suffix": "A",
-			"street_name": "Alpha",
-			"street_type": "Court",
-			"street_direction": "W",
-			"city": "ABC city",
-			"postal_area": 203930,
-			"country": "ABC country"
+			"company_name": "",
+			"address": "6-5-1 Nishi-Shinjuku, Shinjuku-ku",
+			"apartment": "Room 2503, Shinjuku I-Land Tower",
+			"city": "Tokyo",
+			"administrative_division": "Tokyo",
+			"country": "Japan",
+			"postal_area": "163-1390",
+			"phone_number": "+81312345678"
 		},
 		
 		{	
 			"shipping_address_id": 20001,
-			"address_type_id": "2",
-			"building_name": "Apollo",
-			"street_number": "2",
-			"street_number_suffix": "B",
-			"street_name": "AlphaTwo",
-			"street_type": "Drive",
-			"street_direction": "E",
-			"city": "DEF city",
-			"postal_area": 184921,
-			"country": "DEF country"
+			"address_type_id": "1",
+			"company_name": "",
+			"address": "2-1-1 Nishishinjuku",
+			"apartment": "Shinjuku Mitsui Building",
+			"city": "Shinjuku City",
+			"administrative_division": "Tokyo",
+			"country": "Japan",
+			"postal_area": "163-0451",
+			"phone_number": "+81333443311"
 		}
 		
 	],
@@ -51,24 +49,28 @@
 		{
 			"cart_item_id": 30000,
 			"product_id": 40000,
-			"sku":  "vkr7eqvzsh",
-			"cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Chinos\\The_Democratic_Foundation_Pant_in_Organic_Navy\\7310894563405_democratic-foundation-pant-in-organic-navy-twill-2501_01_tsio.jpg",
+			"sku":  "ygiy8ngzbm",
+			"cart_item_name": "The Apres Short in Navy Linen Tweed",
+			"cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Apres_Short_in_Navy_Linen_Tweed\\instock_m_q225_The_Apres_Short-NavyLinenTweed_portrait_004.jpg",
 			"cart_item_quantity": 3
 		},
 
 	
 		{
 			"cart_item_id": 30001,
-			"product_id": 40008,
-			"sku": "9qjmn3ak0b",
-			"cart_item_image_uri":  "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
+			"product_id": 40005,
+			"sku": "cdwrbvcp2r",
+			"cart_item_name": "The Painter Pant in Seeded Natural Chipped Canvas",
+			"cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_001.jpg",
 			"cart_item_quantity": 1
 		},
 
 		{
 			"cart_item_id": 30002,
 			"product_id": 40006,
-			"sku": "ygiy8ngzbm",
+			"sku": "xael8ujrjh",
+			"cart_item_name": "The Button Down Polo in Cilantro Herringbone",
+			"cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Button_Down_Polo\\The_Button_Down_Polo_in_Cilantro_Herringbone\\instock_m_q225_buttondown_cilantro_portrait_001.jpg",
 			"cart_item_quantity": 2
 
 		}

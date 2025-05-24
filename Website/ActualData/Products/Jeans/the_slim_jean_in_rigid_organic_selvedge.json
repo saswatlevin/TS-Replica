@@ -1,5 +1,5 @@
 {
-	"product_id": 40002,
+	"product_id": "3uaah9wv028f",
 
 	"product_name": "The Slim Jean in Rigid Organic Selvedge",
 	
@@ -37,19 +37,19 @@
 	"product_images": [
 		
 		{
-			"image_id": 50006,
+			"image_id": "h1qdh8g0ovqg",
 			"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Jeans\\The_Slim_Jean_in_Rigid_Organic_Selvedge\\instock_m_q324_The_Slim_Jean-RigidOrganic_006.jpg",
 			"main_image": false
 		},
 
 		{
-			"image_id": 50007,
+			"image_id": "rplkio1ahjun",
 			"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Jeans\\The_Slim_Jean_in_Rigid_Organic_Selvedge\\instock_m_q324_The_Slim_Jean-RigidOrganic_007.jpg",
 			"main_image": false
 		},
 
 		{
-			"image_id": 50008,
+			"image_id": "synuhasw8go9",
 			"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Jeans\\The_Slim_Jean_in_Rigid_Organic_Selvedge\\6990308212813_slim-jean-in-rigid-organic-selvage-2408_08_tsio.jpg",
 			"main_image": true
 		}

@@ -1,5 +1,5 @@
 {
-  "product_id": 40007,
+  "product_id": "il19g7cce84l",
   
   "product_name": "The Camp Short in Aged Penny Chipped Canvas",
   
@@ -35,19 +35,19 @@
   
   "product_images": [
     {
-      "image_id": 50018,
+      "image_id": "barwphgozv3o",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Camp_Short_in_Aged_Penny_Chipped_Canvas\\instock_m_q225_The_Camp_Short-AgedPennyChippedCanvas_portrait_001.jpg",
       "main_image": true
     },
     
     {
-      "image_id": 50019,
+      "image_id": "qvwtdxcxmkxb",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Camp_Short_in_Aged_Penny_Chipped_Canvas\\instock_m_q225_The_Camp_Short-AgedPennyChippedCanvas_portrait_005.jpg",
       "main_image": false
     },
     
     {
-      "image_id": 50020,
+      "image_id": "y0erroqpf6bs",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Camp_Short_in_Aged_Penny_Chipped_Canvas\\instock_m_q225_The_Camp_Short-AgedPennyChippedCanvas_portrait_007.jpg",
       "main_image": false
     }

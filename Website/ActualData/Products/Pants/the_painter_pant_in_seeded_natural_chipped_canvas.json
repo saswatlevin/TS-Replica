@@ -1,5 +1,5 @@
 {
-  "product_id": 40005,
+  "product_id": "ojvs7hjfihgc",
   
   "product_name": "The Painter Pant in Seeded Natural Chipped Canvas",
   
@@ -35,19 +35,19 @@
   
   "product_images": [
     {
-      "image_id": 50015,
+      "image_id": "d9fqb7kc1hwp",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_001.jpg",
       "main_image": true
     },
   
     {
-      "image_id": 50016,
+      "image_id": "urt8vkiojpje",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_008.jpg",
       "main_image": false
     },
   
     {
-      "image_id": 50017,
+      "image_id": "r1tfku4tzdtf",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_010.jpg",
       "main_image": false
     }

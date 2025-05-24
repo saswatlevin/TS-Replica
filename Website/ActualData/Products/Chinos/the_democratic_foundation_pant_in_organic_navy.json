@@ -1,5 +1,5 @@
 {
-	"product_id": 40000,
+	"product_id": "b0e6v4zl9aih",
 
 	"product_name": "The Democratic Foundation Pant in Organic Navy",
 	
@@ -37,19 +37,19 @@
 	"product_images": [
 		
 		{
-			"image_id": 50000,
+			"image_id": "9b8n5ohloj96",
 			"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Chinos\\The_Democratic_Foundation_Pant_in_Organic_Navy\\7310894563405_democratic-foundation-pant-in-organic-navy-twill-2501_01_tsio.jpg",
 			"main_image": true
 		},
 
 		{
-			"image_id": 50001,
+			"image_id": "3zz3yg2gc6m2",
 			"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Chinos\\The_Democratic_Foundation_Pant_in_Organic_Navy\\7310894563405_democratic-foundation-pant-in-organic-navy-twill-2501_08_tsio.jpg",
 			"main_image": false
 		},
 
 		{
-			"image_id": 50002,
+			"image_id": "878cv2n5y0vu",
 			"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Chinos\\The_Democratic_Foundation_Pant_in_Organic_Navy\\7310894563405_democratic-foundation-pant-in-organic-navy-twill-2501_05_tsio.jpg",
 			"main_image": false
 		}

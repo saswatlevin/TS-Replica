@@ -1,5 +1,5 @@
 {
-  "product_id": 40004,
+  "product_id": "dzh5txxega4b",
 
   "product_name": "The Breakwater Pant in Rinsed Indigo Stripe",
 
@@ -35,19 +35,19 @@
   
   "product_images": [
     {
-      "image_id": 50012,
+      "image_id": "q45zsxndplzu",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Breakwater_Pant_in_Rinsed_Indigo_Stripe\\instock_m_q225_The_Breakwater_Pant-RinsedIndigoStripe_portrait_001.jpg",
       "main_image": true
     },
     
     {
-      "image_id": 50013,
+      "image_id": "leq8kcqd6yh9",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Breakwater_Pant_in_Rinsed_Indigo_Stripe\\instock_m_q225_The_Breakwater_Pant-RinsedIndigoStripe_portrait_008.jpg",
       "main_image": false
     },
     
     {
-      "image_id": 50014,
+      "image_id": "ipy77f05wd7p",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Breakwater_Pant_in_Rinsed_Indigo_Stripe\\instock_m_q225_The_Breakwater_Pant-RinsedIndigoStripe_portrait_010.jpg",
       "main_image": false
     }

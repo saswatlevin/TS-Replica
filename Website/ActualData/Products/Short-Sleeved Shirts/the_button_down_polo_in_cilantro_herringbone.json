@@ -1,5 +1,5 @@
 {
-  "product_id": 40013,
+  "product_id": "pdli0bc13m9l",
   "product_name": "The Button Down Polo in Cilantro Herringbone",
   "docType": "PRODUCT",
   "product_color": "Cilantro Herringbone",
@@ -26,19 +26,19 @@
 
   "product_images": [
     {
-      "image_id": 50036,
+      "image_id": "xkuuclfvjobw",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Button_Down_Polo\\The_Button_Down_Polo_in_Cilantro_Herringbone\\instock_m_q225_buttondown_cilantro_portrait_001.jpg",
       "main_image": true
     },
  
     {
-      "image_id": 50037,
+      "image_id": "hnvbev6hmlka",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Button_Down_Polo\\The_Button_Down_Polo_in_Cilantro_Herringbone\\instock_m_q225_buttondown_cilantro_portrait_006.jpg",
       "main_image": false
     },
  
     {
-      "image_id": 50038,
+      "image_id": "mcs9ccr0y7qk",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Button_Down_Polo\\The_Button_Down_Polo_in_Cilantro_Herringbone\\instock_m_q225_buttondown_cilantro_portrait_007.jpg",
       "main_image": false
     }

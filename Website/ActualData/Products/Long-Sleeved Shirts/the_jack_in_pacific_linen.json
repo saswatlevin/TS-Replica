@@ -1,5 +1,5 @@
 {
-  "product_id": 40010,
+  "product_id": "axmciuxh2twk",
   
   "product_name": "The Jack in Pacific Linen",
   
@@ -35,21 +35,21 @@
   
   "product_images": [
     {
-      "image_id": 50027,
+      "image_id": "ojqm5tatv7pn",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Jack_(Non-Oxford)\\The_Jack_in_Pacific_Linen\\instock_m_q225_jack_pacific_linen_portrait_001.jpg",
       "main_image": true
     },
   
     {
-      "image_id": 50028,
+      "image_id": "gpyizfxaskex",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Jack_(Non-Oxford)\\The_Jack_in_Pacific_Linen\\instock_m_q225_jack_pacific_linen_portrait_008.jpg",
       "main_image": false
     },
   
     {
-      "image_id": 50029,
+      "image_id": "8k9rgjmirzqp",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Jack_(Non-Oxford)\\The_Jack_in_Pacific_Linen\\instock_m_q225_jack_pacific_linen_portrait_007.jpg",
-      "main_image": null
+      "main_image": false
     }
   ],
   

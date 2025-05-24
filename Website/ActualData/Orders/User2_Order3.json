@@ -1,6 +1,6 @@
 {
-  "order_id": 60004,
-  "user_id": 10001,
+  "order_id": "470kswhtudha",
+  "user_id": "3xu5kfbk0o14",
   "docType": "ORDER",
   "order_status": "Pre-Dispatch",
   "total_price": 250,
@@ -23,8 +23,8 @@
 
   "order_items": [
     {
-      "order_item_id": 70009,
-      "product_id": 40019,
+      "order_item_id": "gnjrguc3bbnf",
+      "product_id": "5djwmfxu8uei",
       "sku": "c1evpqngxs",
       "order_item_name": "The Jack in Smoked Olive Oxford",
       "order_item_price": 125,
@@ -32,8 +32,8 @@
       "order_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Smoked_Olive_Oxford\\7115850350669_jack-in-smoked-olive-oxford-2410_05_tsio.jpg"
     },
     {
-      "order_item_id": 70010,
-      "product_id": 40020,
+      "order_item_id": "1b95ty1hnu8m",
+      "product_id": "geahfftpdrrh",
       "sku": "30sk93dwgd",
       "order_item_name": "The Jack in Washed Indigo Oxford",
       "order_item_price": 125,

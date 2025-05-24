@@ -1,6 +1,6 @@
 {
-  "order_id": 60002,
-  "user_id": 10001,
+  "order_id": "ie8lnqb54zqu",
+  "user_id": "3xu5kfbk0o14",
   "docType": "ORDER",
   "order_status": "Pre-Dispatch",
   "total_price": 250,
@@ -23,8 +23,8 @@
 
   "order_items": [
     {
-      "order_item_id": 70005,
-      "product_id": 4000,
+      "order_item_id": "mwvkptch9n44",
+      "product_id": "b0e6v4zl9aih",
       "sku": "vkr7eqvzsh",
       "order_item_name": "The Democratic Foundation Pant in Organic Navy",
       "order_item_price": 125,
@@ -33,8 +33,8 @@
     },
     
     {
-      "order_item_id": 70006,
-      "product_id": 40001,
+      "order_item_id": "lta3hbd3rm85",
+      "product_id": "gpnfrb48zcyo",
       "sku": "ctf33g20do",
       "order_item_name": "The Slim Foundation Pant in Organic Khaki",
       "order_item_price": 125,

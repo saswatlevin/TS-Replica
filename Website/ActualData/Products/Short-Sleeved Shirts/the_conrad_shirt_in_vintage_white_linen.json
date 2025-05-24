@@ -1,5 +1,5 @@
 {
-  "product_id": 40014,
+  "product_id": "gz5i57gtub6h",
   "product_name": "The Conrad Shirt in Vintage White Linen",
   "docType": "PRODUCT",
   "product_color": "Vintage WHite Linen",
@@ -22,19 +22,19 @@
   
   "product_images": [
     {
-      "image_id": 50039,
+      "image_id": "u6qphfsxb5vs",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Conrad_Shirt\\The_Conrad_Shirt_in_Vintage_White_Linen\\instock_m_q225_The_Conrad_Shirt-VintageWhiteLinen_portrait_006.jpg",
       "main_image": true
     },
   
     {
-      "image_id": 50040,
+      "image_id": "zl5mb0746z3u",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Conrad_Shirt\\The_Conrad_Shirt_in_Vintage_White_Linen\\instock_m_q225_The_Conrad_Shirt-VintageWhiteLinen_portrait_001.jpg",
       "main_image": false
     },
   
     {
-      "image_id": 50041,
+      "image_id": "pu2z6xws32oy",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Conrad_Shirt\\The_Conrad_Shirt_in_Vintage_White_Linen\\instock_m_q225_The_Conrad_Shirt-VintageWhiteLinen_portrait_005.jpg",
       "main_image": false
     }

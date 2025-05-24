@@ -1,5 +1,5 @@
 {
-  "product_id": 40008,
+  "product_id": "hya3y1kdhv4p",
 
   "product_name": "The Craftsman Shirt in Bark Plaid Linen",
   
@@ -35,19 +35,19 @@
   
   "product_images": [
     {
-      "image_id": 50021,
+      "image_id": "zz6f7oq0fdof",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
       "main_image": true
     },
     
     {
-      "image_id": 50022,
+      "image_id": "dytr0x99c740",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_004.jpg",
       "main_image": false
     },
     
     {
-      "image_id": 50023,
+      "image_id": "gjykcpsk3vy3",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_007.jpg",
       "main_image": false
     }

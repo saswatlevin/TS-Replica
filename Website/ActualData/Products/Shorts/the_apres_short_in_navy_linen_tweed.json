@@ -1,5 +1,5 @@
 {
-  "product_id": 40006,
+  "product_id": "u9yl6odhiget",
   
   "product_name": "The Apres Short in Navy Linen Tweed",
   
@@ -35,19 +35,19 @@
   
   "product_images": [
     {
-      "image_id": 50015,
+      "image_id": "zcp1exk8i2mi",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Apres_Short_in_Navy_Linen_Tweed\\instock_m_q225_The_Apres_Short-NavyLinenTweed_portrait_004.jpg",
       "main_image": true
     },
   
     {
-      "image_id": 50016,
+      "image_id": "vibakx5eskh5",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Apres_Short_in_Navy_Linen_Tweed\\instock_m_q225_The_Apres_Short-NavyLinenTweed_portrait_005.jpg",
       "main_image": false
     },
   
     {
-      "image_id": 50017,
+      "image_id": "b4xj4xyifqtl",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Apres_Short_in_Navy_Linen_Tweed\\instock_m_q225_The_Apres_Short-NavyLinenTweed_portrait_006.jpg",
       "main_image": false
     }

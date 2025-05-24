@@ -1,5 +1,5 @@
 {
-  "product_id": 40018,
+  "product_id": "8fvkub0436n3",
 
   "product_name": "The Jack in Rinsed Oxford",
 
@@ -35,19 +35,19 @@
 
   "product_images": [
     {
-      "image_id": 50054,
+      "image_id": "ydtfned661z7",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Rinsed_Indigo_Oxford\\6865641832525_jack-in-indigo-oxford-2310_01_tsio.jpg",
       "main_image": true
     },
 
     {
-      "image_id": 50055,
+      "image_id": "nix5io5gjril",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Rinsed_Indigo_Oxford\\6865641832525_jack-in-indigo-oxford-2310_05_tsio.jpg",
       "main_image": false
     },
 
     {
-      "image_id": 50056,
+      "image_id": "zubvs2pwcwyl",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Rinsed_Indigo_Oxford\\workshop_mens_Q419_product_long_haul_greencast_008_8db1255a-f1db-4f9b-8d08-9bd23743b7ab.jpg",
       "main_image": false
     }

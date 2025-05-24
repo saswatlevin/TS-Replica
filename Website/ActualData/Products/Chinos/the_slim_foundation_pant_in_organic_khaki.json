@@ -1,5 +1,5 @@
 {
-	"product_id": 40001,
+	"product_id": "gpnfrb48zcyo",
 
 	"product_name": "The Slim Foundation Pant in Organic Khaki",
 	
@@ -37,21 +37,15 @@
 	"product_images": [
 		
 		{
-			"image_id": 50003,
-			"image_uri": "/users/saswatlevin/home/product_images/img1.jpg",
-			"main_image": false
-		},
-
-		{
-			"image_id": 50004,
-			"image_uri": "/users/saswatlevin/home/product_images/img2.jpg",
-			"main_image": false
-		},
-
-		{
-			"image_id": 50005,
-			"image_uri": "/users/saswatlevin/home/product_images/img3.jpg",
+			"image_id": "vpxz64bno5tv",
+			"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Products\\Chinos\\The_Slim_Foundation_Pant_in_Organic_Khaki\\6990307950669_slim-foundation-pant-in-organic-khaki-2407_01_tsio.jpg",
 			"main_image": true
+		},
+
+		{
+			"image_id": "qtveuoz2ou06",
+			"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Products\\Chinos\\The_Slim_Foundation_Pant_in_Organic_Khaki\\6990307950669_slim-foundation-pant-in-organic-khaki-2407_05_tsio.jpg",
+			"main_image": false
 		}
 
 	],

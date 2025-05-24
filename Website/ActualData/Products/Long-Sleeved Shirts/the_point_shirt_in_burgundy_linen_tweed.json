@@ -1,5 +1,5 @@
 {
-  "product_id": 40012,
+  "product_id": "3f4yzdaw1q2f",
 
   "product_name": "The Point Shirt in Burgundy Linen Tweed",
   
@@ -35,19 +35,19 @@
   
   "product_images": [
     {
-      "image_id": 50033,
+      "image_id": "h3oe1241cm8g",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Point_Shirt\\The_Point_Shirt_in_Burgundy_Linen_Tweed\\instock_m_q225_The_Point_Shirt-BurgundyLinenTweed_portrait_001.jpg",
       "main_image": true
     },
   
     {
-      "image_id": 50034,
+      "image_id": "x85eyxq2pe7b",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Point_Shirt\\The_Point_Shirt_in_Burgundy_Linen_Tweed\\instock_m_q225_The_Point_Shirt-BurgundyLinenTweed_portrait_004.jpg",
       "main_image": false
     },
   
     {
-      "image_id": 50035,
+      "image_id": "g6z6c20dz7oh",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Point_Shirt\\The_Point_Shirt_in_Burgundy_Linen_Tweed\\instock_m_q225_The_Point_Shirt-BurgundyLinenTweed_portrait_006.jpg",
       "main_image": false
     }

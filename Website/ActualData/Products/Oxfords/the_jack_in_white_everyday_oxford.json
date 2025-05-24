@@ -1,5 +1,5 @@
 {
-  "product_id": 40020,
+  "product_id": 40021,
 
   "product_name": "The Jack in White Everyday Oxford",
 
@@ -35,19 +35,19 @@
 
   "product_images": [
     {
-      "image_id": 50063,
+      "image_id": "0ew9r1biafzx",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_White_Everyday_Oxford\\6824013627469_jack-in-white-everyday-oxford-2304_01_tsio.jpg",
       "main_image": true
     },
 
     {
-      "image_id": 50064,
+      "image_id": "tkpmgt0bxnti",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_White_Everyday_Oxford\\6824013627469_jack-in-white-everyday-oxford-2304_05_tsio.jpg",
       "main_image": false
     },
 
     {
-      "image_id": 50065,
+      "image_id": "ff19tj38dnd1",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_White_Everyday_Oxford\\instock_m_q225_jack_white_everyday_005.jpg",
       "main_image": false
     }

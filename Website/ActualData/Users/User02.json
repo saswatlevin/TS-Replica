@@ -1,7 +1,5 @@
-{	
-	"_id": "kfdofe0ro29i2039320ie",
+{	"user_id": "3xu5kfbk0o14",
 	"docType": "USER", 
-	"user_id": 10000,
 	"date_created_at": "2025-05-09T20:00:00Z",
 	"email": "def001@server.com",
 	"password": "djwiji3oeow2p",
@@ -17,7 +15,7 @@
 	"sms_comms": true,
 	"ShippingAddresses": [
 		{
-			"shipping_address_id": 20002,
+			"shipping_address_id": "crdiupiknjht",
 			"address_type_id": "1",
 			"company_name": "",
 			"address": "617 4th Street",
@@ -30,7 +28,7 @@
 		},
 		
 		{	
-			"shipping_address_id": 20003,
+			"shipping_address_id": "1aswedcvkoip",
 			"address_type_id": "1",
 			"company_name": "",
 			"address": "40 King St W",
@@ -47,8 +45,8 @@
 	"CartItems": [
 		
 		{
-			"cart_item_id": 30003,
-			"product_id": 40014,
+			"cart_item_id": "v9ns1r3lfd2q",
+			"product_id": "gz5i57gtub6h",
 			"sku":  "x8obcaw0np",
 			"cart_item_name": "The Conrad Shirt in Vintage White Linen",
 			"cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Conrad_Shirt\\The_Conrad_Shirt_in_Vintage_White_Linen\\instock_m_q225_The_Conrad_Shirt-VintageWhiteLinen_portrait_006.jpg",

@@ -1,6 +1,6 @@
 {
-  "order_id": 60000,
-  "user_id": 10000,
+  "order_id": "77zlcwaiyjge",
+  "user_id": "7ycthivdrqvl",
   "docType": "ORDER",
   "order_status": "Pre-Dispatch",
   "total_price": 358,
@@ -23,8 +23,8 @@
 
   "order_items": [
     {
-      "order_item_id": 70000,
-      "product_id": 40008,
+      "order_item_id": "n5shxmxiyrgy",
+      "product_id": "hya3y1kdhv4p",
       "sku": "9qjmn3ak0b",
       "order_item_name": "The Craftsman Shirt in Bark Plaid Linen",
       "order_item_price": 128,
@@ -33,8 +33,8 @@
     },
   
     {
-      "order_item_id": 70001,
-      "product_id": 40009,
+      "order_item_id": "mymky3edt370",
+      "product_id": "vxcei49vin0z",
       "sku": "785r0xzd3p",
       "order_item_name": "The Division Shirt in Washed Indigo",
       "order_item_price": 132,
@@ -43,8 +43,8 @@
     },
   
     {
-      "order_item_id": 70002,
-      "product_id": 40011,
+      "order_item_id": "p316chljm5nf",
+      "product_id": "qtzbvq1gkkvk",
       "sku": "hb6d8xg4wj",
       "order_item_name": "The Jack in Blue Everyday Oxford",
       "order_item_price": 98,

@@ -1,5 +1,5 @@
 {
-  "product_id": 40015,
+  "product_id": "oaz9wqw040y2",
 
   "product_name": "The Hawthorne Shirt in Red Wine Border Eyelet",
   
@@ -35,19 +35,19 @@
   
   "product_images": [
     {
-      "image_id": 50042,
+      "image_id": "ajvnl8vy0old",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Hawthorne_Shirt\\The_Hawthorne_Shirt_in_Red_Wine_Border_Eyelet\\instock_m_q225_The_Short_Sleeve_Hawthorne-RedWineBorderEyelet_portrait_001.jpg",
       "main_image": true
     },
   
     {
-      "image_id": 50043,
+      "image_id": "v740w765wh1e",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Hawthorne_Shirt\\The_Hawthorne_Shirt_in_Red_Wine_Border_Eyelet\\instock_m_q225_The_Short_Sleeve_Hawthorne-RedWineBorderEyelet_portrait_008.jpg",
       "main_image": false
     },
   
     {
-      "image_id": 50044,
+      "image_id": "n5e4cwqlliid",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Hawthorne_Shirt\\The_Hawthorne_Shirt_in_Red_Wine_Border_Eyelet\\instock_m_q225_The_Short_Sleeve_Hawthorne-RedWineBorderEyelet_portrait_005.jpg",
       "main_image": false
     }

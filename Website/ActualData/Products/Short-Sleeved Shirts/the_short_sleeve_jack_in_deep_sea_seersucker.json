@@ -1,5 +1,5 @@
 {
-  "product_id": 40016,
+  "product_id": "prl5dyv7n0bx",
 
   "product_name": "The Short Sleeve Jack in Deep Sea Seersucker",
   
@@ -35,19 +35,19 @@
   
   "product_images": [
     {
-      "image_id": 50048,
+      "image_id": "q45zsxndplzu",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Short_Sleeve_Jack\\The_Short_Sleeve_Jack_in_Deep_Sea_Seersucker\\instock_m_q225_The_Short_Sleeve_Jack-DeepSeaSeersucker_portrait_001.jpg",
       "main_image": true
     },
   
     {
-      "image_id": 50049,
+      "image_id": "leq8kcqd6yh9",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Short_Sleeve_Jack\\The_Short_Sleeve_Jack_in_Deep_Sea_Seersucker\\instock_m_q225_The_Short_Sleeve_Jack-DeepSeaSeersucker_portrait_004.jpg",
       "main_image": false
     },
   
     {
-      "image_id": 50050,
+      "image_id": "ipy77f05wd7p",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Short-Sleeved Shirts\\The_Short_Sleeve_Jack\\The_Short_Sleeve_Jack_in_Deep_Sea_Seersucker\\instock_m_q225_The_Short_Sleeve_Jack-DeepSeaSeersucker_portrait_005.jpg",
       "main_image": false
     }

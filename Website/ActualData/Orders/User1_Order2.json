@@ -1,6 +1,6 @@
 {
-  "order_id": 60001,
-  "user_id": 10001,
+  "order_id": "z9gxoegocvf8",
+  "user_id": "3xu5kfbk0o14",
   "docType": "ORDER",
   "order_status": "Pre-Dispatch",
   "total_price": null,
@@ -23,8 +23,8 @@
 
   "order_items": [
     {
-      "order_item_id": 70003,
-      "product_id": 40004,
+      "order_item_id": "8jjiq7pvljts",
+      "product_id": "dzh5txxega4b",
       "sku": "9bkgezadt6",
       "order_item_name": "The Breakwater Pant in Rinsed Indigo Stripe",
       "order_item_price": 128,
@@ -33,8 +33,8 @@
     },
 
     {
-      "order_item_id": 70004,
-      "product_id": 40007,
+      "order_item_id": "m29icssa85lv",
+      "product_id": "il19g7cce84l",
       "sku": "945r5ung5p",
       "order_item_name": "The Camp Short in Aged Penny Chipped Canvas",
       "order_item_price": 98,

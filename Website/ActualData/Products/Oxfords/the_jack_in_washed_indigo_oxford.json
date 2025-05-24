@@ -1,5 +1,5 @@
 {
-  "product_id": 40020,
+  "product_id": "geahfftpdrrh",
   
   "product_name": "The Jack in Washed Indigo Oxford",
   
@@ -35,19 +35,19 @@
   
   "product_images": [
     {
-      "image_id": 50060,
+      "image_id": "cikrd9i95evd",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Washed_Indigo_Oxford\\7307482431565_jack-in-washed-indigo-oxford-2501_05_tsio.jpg",
       "main_image": true
     },
   
     {
-      "image_id": 50061,
+      "image_id": "04cdml19ldmn",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Washed_Indigo_Oxford\\7307482431565_jack-in-washed-indigo-oxford-2501_06_tsio.jpg",
       "main_image": false
     },
   
     {
-      "image_id": 50062,
+      "image_id": "qxgabeb9dt5n",
       "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Oxfords\\The_Jack_in_Washed_Indigo_Oxford\\7307482431565_jack-in-washed-indigo-oxford-2501_08_tsio.jpg",
       "main_image": false
     }

@@ -2,7 +2,7 @@
 userObject = {	
 
     "user_id": null,
-	"docType": "", 
+	"docType": "USER", 
 	"date_created_at": "",
 	"email": "",
 	"password": "",

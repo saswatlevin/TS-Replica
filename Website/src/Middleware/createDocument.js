@@ -5,9 +5,11 @@ const createDocument = (valuesArray, objectTemplate) => {
 
     for (const key of keysArray) {
     
-        keysArray[key] = valuesArray[valueIndex];
+        objectTemplate[key] = valuesArray[valueIndex];
         ++valueIndex;
     }
+
+    return objectTemplate;
 
 }
 

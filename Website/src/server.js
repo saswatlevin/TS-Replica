@@ -7,15 +7,12 @@ const app = express();
 
 connectToDB();
 
-// Middleware (optional)
+// Middleware to handle JSON request body.
 app.use(express.json());
 
 // Routes
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
-
-// app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));
+app.use('/', require('./Middleware/Routes/defaultRoute'));
+app.use('/users', require('./Middleware/Routes/userRoutes'));
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB ');

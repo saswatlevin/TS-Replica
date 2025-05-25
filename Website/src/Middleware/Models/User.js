@@ -155,12 +155,12 @@ const userSchema = new mongoose.Schema({
         required: [true, "sms_comms is boolean and is a required field."]
     },
 
-    shippingAddresses: {
+    ShippingAddresses: {
         type: [shippingAddressSchema],
         default: []
     },
 
-    cartItems: {
+    CartItems: {
         type: [cartItemSchema],
         default: []
     }

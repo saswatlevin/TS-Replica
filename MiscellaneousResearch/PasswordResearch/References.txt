@@ -1,0 +1,61 @@
+01) https://support.microsoft.com/en-us/windows/create-and-use-strong-passwords-c5cebb49-8c53-4f5e-2bc4-fe357ca048eb
+At least 12 characters long but 14 or more is better.
+A combination of uppercase letters, lowercase letters, numbers, and symbols.
+Not a word that can be found in a dictionary or the name of a person, character, product, or organization.
+Significantly different from your previous passwords.
+Easy for you to remember but difficult for others to guess. Consider using a memorable phrase like "6MonkeysRLooking^".
+
+02) https://docs.tibco.com/pub/mdm/10.0.0/doc/html/Users-guide/Characteristics-of-Strong-Passwords.htm
+At least 8 alphanumeric characters
+A mixture of both uppercase and lowercase letters
+A mixture of letters and numbers
+Inclusion of at least one special character. The default value is (?=.*[@#$%!]).
+
+03) https://right-hand.ai/blog/anatomy-of-a-strong-password/
+Should be at least 20 characters long
+Have at least 1 capital letter
+Have at least 1 special character
+Have at least 1 number
+
+04) Password Storage in MongoDB -> https://stackoverflow.com/questions/43092071/how-should-i-store-salts-and-passwords-in-mongodb/43094720#43094720
+
+05) OWASP Password Storage -> https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+    Argon2id recommended over other password hashing algorithms
+
+06) How to Securely Hash Passwords -> https://security.stackexchange.com/questions/211/how-to-securely-hash-passwords
+    
+07) https://supertokens.medium.com/how-to-hash-salt-and-verify-passwords-in-nodejs-python-golang-and-java-77ce6c3901ea
+
+08) Pepper and Salt Storage -> https://datatracker.ietf.org/doc/html/draft-ietf-kitten-password-storage-07#section-4.2
+    Clients SHOULD always store authentication secrets in a trusted and encrypted keystore such as the system keystore, or an encrypted store created specifically for the clients use.
+    
+    Servers MUST always store passwords only after they have been salted, peppered (if possible with the given authentication mechanism), and hashed using a strong KDF.
+    
+    A distinct salt SHOULD be used for each user, and each SCRAM family supported. Salts SHOULD be generated using a cryptographically secure random number generator.
+
+    A pepper stored in the application configuration, or a secure location other than the datastore containing the salts, SHOULD be combined with the password before hashing if possible with the given authentication mechanism. 
+
+    Peppers SHOULD NOT be combined with the salt because the salt is not secret and may appear in the final hash output.
+    
+    Min. salt length   -> 4 bytes
+    Min. pepper length -> 14 bytes
+    
+    When authenticating using PLAIN or similar mechanisms that involve transmitting the original password to the server the password MUST be hashed and compared against the salted and hashed password in the database using a constant time comparison.
+    
+     Each time a password is changed a new random salt MUST be created and the iteration count and pepper (if applicable) MUST be updated to the latest value required by server policy. If a pepper is used, consideration should be taken to ensure that it can be easily rotated.
+
+  https://www.mongodb.com/community/forums/t/suddenly-unable-to-connect-querytxt-etimeout/117864/7
+
+==================================================================================================================================================
+Password Validation Library -> https://github.com/tarunbatra/password-validator
+Argon2 NPM -> https://www.npmjs.com/package/argon2
+Argon2 Wiki -> https://github.com/ranisalt/node-argon2/wiki/Options
+
+Argon2 Options
+m=47104 (46 MiB), t=1, p=1 (Do not use with Argon2i)
+m=19456 (19 MiB), t=2, p=1 (Do not use with Argon2i)
+m=12288 (12 MiB), t=3, p=1
+m=9216 (9 MiB), t=4, p=1
+m=7168 (7 MiB), t=5, p=1
+==================================================================================================================================================
+

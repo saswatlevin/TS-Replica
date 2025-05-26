@@ -1,0 +1,1 @@
+Mongoose, Validate Array of Objects -> https://stackoverflow.com/questions/58706481/how-to-validate-array-of-objects-in-mongoose

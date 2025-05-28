@@ -1,12 +1,11 @@
 const createRandomString = require('../createRandomString');
 const User = require('../Models/User');
-var passwordValidator = require('password-validator');
-const passwordSchema = require('../Security/PasswordSchemas/passwordSchema');
 const argon2 = require('argon2');
 const listOfKeys = require('../listOfKeys');
 const checkForbiddenKeys = require('../checkForbiddenKeys');
 const filterKeys = require('../filterKeys');
 const pruneObject = require('../pruneObject');
+const validatePassword  = require('../Security/validatePassword');
 
 
 // CREATES A NEW USER
@@ -22,7 +21,7 @@ const registerUser = async (req, res, next) => {
     requestBodyObjectCopy['user_id'] = createRandomString(6);
     
     // Validate the user's password
-    if (passwordSchema.validate(requestBodyObjectCopy['password']) === false) {
+    if (validatePassword(requestBodyObjectCopy['password']) === false) {
         res.status(400).json("Could not create document due to invalid password");
         return;
     } 
@@ -90,7 +89,62 @@ const updateUser = async(req, res, next) => {
 
 }
 
+const updateUserPassword = async(req, res, next) => {
+    
+    console.log("In updateUserPassword ");
+
+    // Create a deep copy of the request body
+    const requestBodyCopy = JSON.parse(JSON.stringify(req.body));
+    console.log("requestBodyCopy ", requestBodyCopy);
+
+    // Get all the keys
+    const requestBodyKeys = Object.keys(requestBodyCopy);
+    console.log("requestBodyKeys ", requestBodyKeys);
+    
+    // Get the filter key (in this case, user_id or password)
+    const filterKey = filterKeys.checkFilter("updateUserPassword", requestBodyKeys);
+    console.log("filterKey ", filterKey);
+
+    if (!filterKey) {
+        res.status(400).json("The updateUser API cannot find the requested User document to be updated using the " + filterKey + " field. Please provide the email or user_id fields' values.");
+        return;
+    }
+
+    // Create the filter used to select the User document for the update
+    var filter = {};
+    filter[filterKey] = requestBodyCopy[filterKey];
+    console.log("filter: ", filter);
+
+    // Get the updated password
+    const updatedPassword = requestBodyCopy["password"];
+    console.log("updatedPassword ", updatedPassword);
+
+    // Validate the updated password
+    if (validatePassword(updatedPassword) === false) {
+        res.status(400).json("Could not create document due to invalid password");
+        return;
+    }
+    
+    // Replace the password by its equivalent argon2 hash. The hash is salted by default
+    const updatedPasswordHash = await argon2.hash(updatedPassword);
+    console.log("updatedPasswordHash ", updatedPasswordHash);
+
+    // Create the hashed password's key-value pair
+    const updateObject = {"password": updatedPasswordHash};
+    console.log("updateObject ", updateObject);
+
+    // Update the password in the corresponding user document
+    const updateResult = await User.findOneAndUpdate(filter, updateObject, {new: true}, {runValidators: true});
+
+    res.status(201).json(updateResult);
+
+    console.log("After password update operation");
+
+
+}
+
 module.exports = { 
     registerUser,
-    updateUser
+    updateUser,
+    updateUserPassword
 };

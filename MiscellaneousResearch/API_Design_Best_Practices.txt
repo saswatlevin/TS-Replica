@@ -1,0 +1,4 @@
+API Design Best Practices, Stack Overflow -> https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
+Best Practices in API Design              -> https://swagger.io/resources/articles/best-practices-in-api-design/
+
+ 

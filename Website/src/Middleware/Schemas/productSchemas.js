@@ -1,0 +1,67 @@
+const z = require('zod');
+const customValidators = require('../CustomValidators/customValidators');
+const productImageArraySchema  = require('./productImageSchemas');
+const productItemSchemaUnion = require('./productItemSchemas');
+const { shirtJackOxford, pantBreakwaterRinsed, pantPainterCanvas, shortApresNavy, shortCampAgedPenny } = require('./testProductObjects');
+
+const productGarmentWeightSchema = z.object({
+    garment_weight_description: z.string("The garment_weight_description field must be a string.").min(1, {message: "The garment_weight_description field is a required field."}).max(100, {message: "The maximum permitted length of the garment_weight_description field is 100 characters."}),
+
+    garment_weight: z.enum(["Light", "Medium", "Medium-to-Heavy", "Heavy"], {message: "The garment_weight field accepts one of the following values: Light, Medium, Medium-to-Heavy, Heavy."}),
+    //.min(1, {message: "The garment_weight field is a required field."})
+});
+
+const productSupplyTypeSchema = z.object({
+    supply_type_description: z.enum(["This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.", "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping."]),
+    //.min(1, {message: "The supply_type_description field is a required field."}),
+
+    supply_type: z.enum(["Essential", "Limited"], {message: "The supply_type field accepts one of the following values: Essential, Limited"}),
+    //.min(1, {message: "The supply_type field is a required field."}),
+});
+
+const productSchema = z.object({
+    product_id: customValidators.zodIsTwelveCharacterId,
+    
+    product_name: z.string("The product_name field must be a string.").min(1, {message: "The product_name field is a required field."}).max(100, {message: "The maximum permitted length is 100 characters."}).regex(/^[A-Za-zÀ-ÖØ-öø-ÿ ]*$/, {message: "The product_name field accepts only upper case letters, lower case letters, accented uppercase and lowercase letters and spaces."}),
+
+    docType: z.literal("PRODUCT", {message: "The docType field in a Product document is set to: PRODUCT."}),
+    //.min(1, {message: "The docType field is a required field."}),
+    
+    product_color: z.string("The product_color field must be a string.",).min(1, {message: "The product_color field is a required field."}).max(50, {message: "The maximum permitted length is 50 characters."}).regex(/^[A-Za-z ]*$/, {message: "The product_color field can contain only uppercase letters, lowercase letters and spaces. "}),
+
+    product_description: z.string("The product_description field must be a string.").min(1, {message: "The product_description field is a required field."}).max(700, {message: "The product_description field has a maximum permitted length of 700 characters."}).regex(/^[A-Za-z0-9,;:%'’“”\\\"\(\)\-\. ]*$/, {message: "The product_description field can only contain uppercase letters, lowercase letters, digits, commas, percentage symbols, hyphens, dots and spaces."}),
+
+    product_price: z.number("The product_price field must be an integer.").min(1, {message: "The product_price field is a required field. "}).max(300, {message: "The product_price field has a maximum limit of 300."}),
+
+    product_category: z.enum(["Lower Garment", "Upper Garment"], {message:"The product_category field accepts only one of the following values: Upper Garment, Lower Garment." }),
+    //.min(1, {message: "The product_category field is a required field."}),
+
+    product_subcategory: z.enum(["Shirt", "Bottom"], {message: "The product_subcategory field accepts only 1 of 2 values: Shirt, Bottom."}),
+    //.min(1, {message: "The product_subcategory field is a required field."}),
+
+    product_subcategory_type: z.enum(["Short-Sleeved Shirt", "Long-Sleeved Shirt", "Oxford", "Chino", "Jean", "Pant", "Short"], {message: "The product_subcategory_type field accepts only one of the following values: Short-Sleeved Shirt, Long-Sleeved Shirt, Chino, Jean, Pant, Short."}),
+    //.min(1, {message: "The product_subcategory_type field is a required field."}),
+
+    // Remove \" from regex in the future.
+    product_fit: z.string("The product_fit field must be a string.").min(1, {message: "The product_fit field is a required field."}).max(400, {message: "The product_fit field has a maximum permitted length of 400 characters."}).regex(/^[A-Za-z0-9,;:%'’“”\\\"\(\)\-\. ]*$/, {message: "The product_fit field accepts only only uppercase letters, lowercase letters, digits, commas, semicolons, colons, percentage symbols, singl-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, dots and spaces."}),
+
+    product_garment_weight: productGarmentWeightSchema,
+
+    product_material: z.string("The product_material field is a string.").min(1, {message: "The product_material field is a required field."}).max(640, {message: "The product_material field has a maximum permitted length of 640 characters."}).regex(/^[A-Za-z0-9,;:%'’“”\\\"\(\)\-\. ]*$/, {message: "The product_material field accepts only uppercase letters, lowercase letters, digits, commas, semicolons, colons, percentage symbols, singl-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, dots and spaces.."}),
+
+    product_supply_type: productSupplyTypeSchema,
+
+    product_specifications: z.string("The product_specifications field must be a string.").min(1, {message: "The product_specifications field is a required field."}).max(500, {message: "The product_specifications field has a maximum permitted length of 500 characters."}).regex(/^[A-Za-z0-9,;:%'’“”\\\"\(\)\-\. ]*$/, {message: "The product_specifications field accepts only only uppercase letters, lowercase letters, digits, commas, semicolons, colons, percentage symbols, singl-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, dots and spaces."}),
+    
+    product_images: productImageArraySchema,
+
+    product_items: productItemSchemaUnion
+});
+
+module.exports = productSchema;
+
+// TESTS
+const shirtResult = productSchema.safeParse(shirtJackOxford);
+console.log("shirtResult ", shirtResult);
+//console.log("shirtResult.error ", shirtResult?.error);
+console.log("shirtResult.error.issues ", shirtResult?.error?.issues);

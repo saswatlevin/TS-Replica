@@ -3,7 +3,7 @@ const customValidators = require('../CustomValidators/customValidators');
 const objectIdSchema = require('./objectIdSchema');
 const productImageArraySchema  = require('./productImageSchemas');
 const productItemSchemaUnion = require('./productItemSchemas');
-//const { shirtJackOxford, pantBreakwaterRinsed, pantPainterCanvas, shortApresNavy, shortCampAgedPenny } = require('./testProductObjects');
+// const { shirtJackOxford, pantBreakwaterRinsed, pantPainterCanvas, shortApresNavy, shortCampAgedPenny } = require('./testProductObjects');
 
 const productGarmentWeightSchema = z.object({
     garment_weight_description: z.string("The garment_weight_description field must be a string.").min(1, {message: "The garment_weight_description field is a required field."}).max(200, {message: "The maximum permitted length of the garment_weight_description field is 200 characters."}).regex(customValidators.paragraphRegex, {message: "The garment_weight_description field accepts only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots and spaces."}),
@@ -32,7 +32,7 @@ const productRequestSchema = z.object({
 
     product_description: z.string("The product_description field must be a string.").min(1, {message: "The product_description field is a required field."}).max(700, {message: "The product_description field has a maximum permitted length of 700 characters."}).regex(customValidators.paragraphRegex, {message: "The garment_weight_description field accepts only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots, and spaces."}),
 
-    product_price: z.number("The product_price field must be an integer.").min(1, {message: "The product_price field is a required field. "}).max(300, {message: "The product_price field has a maximum limit of 300."}),
+    product_price: z.number("The product_price field must be a number (integer). It is a required field.").int("The product_price field must be an integer.").min(1, {message: "The product_price field has a minimum limit of 1. "}).max(300, {message: "The product_price field has a maximum limit of 300."}),
 
     product_category: z.enum(["Lower Garment", "Upper Garment"], {message:"The product_category field accepts only one of the following values: Upper Garment, Lower Garment." }),
     //.min(1, {message: "The product_category field is a required field."}),
@@ -73,7 +73,7 @@ const productResponseSchema = z.object({
 
     product_description: z.string("The product_description field must be a string.").min(1, {message: "The product_description field is a required field."}).max(700, {message: "The product_description field has a maximum permitted length of 700 characters."}).regex(customValidators.paragraphRegex, {message: "The garment_weight_description field accepts only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots, and spaces."}),
 
-    product_price: z.number("The product_price field must be an integer.").min(1, {message: "The product_price field is a required field. "}).max(300, {message: "The product_price field has a maximum limit of 300."}),
+    product_price: z.number("The product_price field must be a number (integer). It is a required field.").int("The product_price field must be an integer.").min(1, {message: "The product_price field has a minimum limit of 1. "}).max(300, {message: "The product_price field has a maximum limit of 300."}),
 
     product_category: z.enum(["Lower Garment", "Upper Garment"], {message:"The product_category field accepts only one of the following values: Upper Garment, Lower Garment." }),
     //.min(1, {message: "The product_category field is a required field."}),
@@ -105,12 +105,12 @@ module.exports = {
     productResponseSchema
 };
 
-/* TESTS
-const shirtResult = productSchema.safeParse(shirtJackOxford);
-const pantPainterResult = productSchema.safeParse(pantPainterCanvas);
-const pantBreakwaterResult = productSchema.safeParse(pantBreakwaterRinsed);
-const shortApresResult = productSchema.safeParse(shortApresNavy);
-const shortCampResult = productSchema.safeParse(shortCampAgedPenny);
+/** TESTS
+const shirtResult = productRequestSchema.safeParse(shirtJackOxford);
+const pantPainterResult = productRequestSchema.safeParse(pantPainterCanvas);
+const pantBreakwaterResult = productRequestSchema.safeParse(pantBreakwaterRinsed);
+const shortApresResult = productRequestSchema.safeParse(shortApresNavy);
+const shortCampResult = productRequestSchema.safeParse(shortCampAgedPenny);
 
 console.log("shirtResult ", shirtResult);
 console.log("shirtResult.error.issues ", shirtResult?.error?.issues);
@@ -125,4 +125,4 @@ console.log("shortApresResult ", shortApresResult);
 console.log("shortApresResult.error.issues ", shortApresResult?.error?.issues);
 
 console.log("shortCampResult ", shortCampResult);
-console.log("shortCampResult.error.issues ", shortCampResult?.error?.issues);*/
+console.log("shortCampResult.error.issues ", shortCampResult?.error?.issues); */

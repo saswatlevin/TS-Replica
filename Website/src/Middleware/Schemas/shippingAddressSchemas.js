@@ -24,10 +24,32 @@ const shippingAddressSchema = z.object({
     
 });
 
+const orderShippingAddressSchema = z.object({
+    address_type_id: customValidators.zodIsAddressTypeId,
+    
+    company_name: customValidators.zodIsCompanyName,
+    
+    address: customValidators.zodIsAddress,
+    
+    apartment: customValidators.zodIsApartment,
+    
+    city: customValidators.zodIsCity,
+    
+    administrative_division: customValidators.zodIsAdministrativeDivision,
+    
+    country: z.enum(["United States", "United Kingdom", "Canada", "Australia", "New Zealand", "Ireland", "Singapore", "Hong Kong", "Japan"], {message: "The country field is a required field. It takes one of the following values: United States, United Kingdom, Canada, Australia, New Zealand, Ireland, Singapore, Hong Kong, Japan."}),
+
+    postal_area: customValidators.zodIsPostalCode,
+    
+    phone_number: customValidators.zodIsMobilePhone
+    
+});
+
 const shippingAddressArraySchema = z.array(shippingAddressSchema);
 
 module.exports = {
     shippingAddressSchema,
+    orderShippingAddressSchema,
     shippingAddressArraySchema
 };
 

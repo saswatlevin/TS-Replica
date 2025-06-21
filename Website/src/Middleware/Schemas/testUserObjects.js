@@ -4,7 +4,7 @@ const testUserDataFull = {
     date_created_at: "2025-05-10T20:00:00Z",
     email: "abc001@server.com",
     password: "$argon2id$v=19$m=65536,t=3,p=4$wgFfiRKZebEqD1vfmk1Kxg$lr00L61MijtqvchnG6F2FS2euk9G9cIpvbLI+gZrQC8",
-    phoneno: "0123456789",
+    phone_number: "91123456789",
     first_name: "ABC",
     last_name: "CBA",
     user_role: "user",

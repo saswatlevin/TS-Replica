@@ -5,9 +5,9 @@ const productItemSchemaUnion = require('./productItemSchemas');
 const { shirtJackOxford, pantBreakwaterRinsed, pantPainterCanvas, shortApresNavy, shortCampAgedPenny } = require('./testProductObjects');
 
 const productGarmentWeightSchema = z.object({
-    garment_weight_description: z.string("The garment_weight_description field must be a string.").min(1, {message: "The garment_weight_description field is a required field."}).max(100, {message: "The maximum permitted length of the garment_weight_description field is 100 characters."}),
+    garment_weight_description: z.string("The garment_weight_description field must be a string.").min(1, {message: "The garment_weight_description field is a required field."}).max(200, {message: "The maximum permitted length of the garment_weight_description field is 200 characters."}).regex(customValidators.paragraphRegex, {message: "The garment_weight_description field accepts only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots and spaces."}),
 
-    garment_weight: z.enum(["Light", "Medium", "Medium-to-Heavy", "Heavy"], {message: "The garment_weight field accepts one of the following values: Light, Medium, Medium-to-Heavy, Heavy."}),
+    garment_weight: z.enum(["Light", "Medium", "Medium to Heavy", "Heavy"], {message: "The garment_weight field accepts one of the following values: Light, Medium, Medium-to-Heavy, Heavy."}),
     //.min(1, {message: "The garment_weight field is a required field."})
 });
 
@@ -20,16 +20,16 @@ const productSupplyTypeSchema = z.object({
 });
 
 const productSchema = z.object({
-    product_id: customValidators.zodIsTwelveCharacterId,
+    product_id: z.string("The product_id field must be a string. It is a required field.").length(12, {message: "The product_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The product_id can only contain lowercase letters and numbers."}),
     
-    product_name: z.string("The product_name field must be a string.").min(1, {message: "The product_name field is a required field."}).max(100, {message: "The maximum permitted length is 100 characters."}).regex(/^[A-Za-zÀ-ÖØ-öø-ÿ ]*$/, {message: "The product_name field accepts only upper case letters, lower case letters, accented uppercase and lowercase letters and spaces."}),
+    product_name: z.string("The product_name field must be a string.").min(3, {message: "The product_name field is a required field."}).max(100, {message: "The maximum permitted length is 100 characters."}).regex(customValidators.productNameRegex, {message: "The product_name field accepts only upper case letters, lower case letters, accented uppercase and lowercase letters and spaces."}),
 
     docType: z.literal("PRODUCT", {message: "The docType field in a Product document is set to: PRODUCT."}),
     //.min(1, {message: "The docType field is a required field."}),
     
     product_color: z.string("The product_color field must be a string.",).min(1, {message: "The product_color field is a required field."}).max(50, {message: "The maximum permitted length is 50 characters."}).regex(/^[A-Za-z ]*$/, {message: "The product_color field can contain only uppercase letters, lowercase letters and spaces. "}),
 
-    product_description: z.string("The product_description field must be a string.").min(1, {message: "The product_description field is a required field."}).max(700, {message: "The product_description field has a maximum permitted length of 700 characters."}).regex(/^[A-Za-z0-9,;:%'’“”\\\"\(\)\-\. ]*$/, {message: "The product_description field can only contain uppercase letters, lowercase letters, digits, commas, percentage symbols, hyphens, dots and spaces."}),
+    product_description: z.string("The product_description field must be a string.").min(1, {message: "The product_description field is a required field."}).max(700, {message: "The product_description field has a maximum permitted length of 700 characters."}).regex(customValidators.paragraphRegex, {message: "The garment_weight_description field accepts only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots, and spaces."}),
 
     product_price: z.number("The product_price field must be an integer.").min(1, {message: "The product_price field is a required field. "}).max(300, {message: "The product_price field has a maximum limit of 300."}),
 
@@ -43,15 +43,15 @@ const productSchema = z.object({
     //.min(1, {message: "The product_subcategory_type field is a required field."}),
 
     // Remove \" from regex in the future.
-    product_fit: z.string("The product_fit field must be a string.").min(1, {message: "The product_fit field is a required field."}).max(400, {message: "The product_fit field has a maximum permitted length of 400 characters."}).regex(/^[A-Za-z0-9,;:%'’“”\\\"\(\)\-\. ]*$/, {message: "The product_fit field accepts only only uppercase letters, lowercase letters, digits, commas, semicolons, colons, percentage symbols, singl-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, dots and spaces."}),
+    product_fit: z.string("The product_fit field must be a string.").min(1, {message: "The product_fit field is a required field."}).max(400, {message: "The product_fit field has a maximum permitted length of 400 characters."}).regex(customValidators.paragraphRegex, {message: "The product_fit field accepts only only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots and spaces."}),
 
     product_garment_weight: productGarmentWeightSchema,
 
-    product_material: z.string("The product_material field is a string.").min(1, {message: "The product_material field is a required field."}).max(640, {message: "The product_material field has a maximum permitted length of 640 characters."}).regex(/^[A-Za-z0-9,;:%'’“”\\\"\(\)\-\. ]*$/, {message: "The product_material field accepts only uppercase letters, lowercase letters, digits, commas, semicolons, colons, percentage symbols, singl-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, dots and spaces.."}),
+    product_material: z.string("The product_material field is a string.").min(1, {message: "The product_material field is a required field."}).max(640, {message: "The product_material field has a maximum permitted length of 640 characters."}).regex(customValidators.paragraphRegex, {message: "The product_material field accepts only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots and spaces.."}),
 
     product_supply_type: productSupplyTypeSchema,
 
-    product_specifications: z.string("The product_specifications field must be a string.").min(1, {message: "The product_specifications field is a required field."}).max(500, {message: "The product_specifications field has a maximum permitted length of 500 characters."}).regex(/^[A-Za-z0-9,;:%'’“”\\\"\(\)\-\. ]*$/, {message: "The product_specifications field accepts only only uppercase letters, lowercase letters, digits, commas, semicolons, colons, percentage symbols, singl-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, dots and spaces."}),
+    product_specifications: z.string("The product_specifications field must be a string.").min(1, {message: "The product_specifications field is a required field."}).max(500, {message: "The product_specifications field has a maximum permitted length of 500 characters."}).regex(customValidators.paragraphRegex, {message: "The product_specifications field accepts only only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots and spaces."}),
     
     product_images: productImageArraySchema,
 
@@ -62,6 +62,22 @@ module.exports = productSchema;
 
 // TESTS
 const shirtResult = productSchema.safeParse(shirtJackOxford);
+const pantPainterResult = productSchema.safeParse(pantPainterCanvas);
+const pantBreakwaterResult = productSchema.safeParse(pantBreakwaterRinsed);
+const shortApresResult = productSchema.safeParse(shortApresNavy);
+const shortCampResult = productSchema.safeParse(shortCampAgedPenny);
+
 console.log("shirtResult ", shirtResult);
-//console.log("shirtResult.error ", shirtResult?.error);
 console.log("shirtResult.error.issues ", shirtResult?.error?.issues);
+
+console.log("pantPainterResult ", pantPainterResult);
+console.log("pantPainterResult.error.issues ", pantPainterResult?.error?.issues);
+
+console.log("pantBreakwaterResult ", pantBreakwaterResult);
+console.log("pantBreakwaterResult.error.issues ", pantBreakwaterResult?.error?.issues);
+
+console.log("shortApresResult ", shortApresResult);
+console.log("shortApresResult.error.issues ", shortApresResult?.error?.issues);
+
+console.log("shortCampResult ", shortCampResult);
+console.log("shortCampResult.error.issues ", shortCampResult?.error?.issues);

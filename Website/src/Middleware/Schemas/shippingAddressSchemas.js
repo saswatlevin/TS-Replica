@@ -2,7 +2,7 @@ const z = require('zod');
 const customValidators = require('../CustomValidators/customValidators');
 
 const shippingAddressSchema = z.object({
-    shipping_address_id: customValidators.zodIsTwelveCharacterId,
+    shipping_address_id: z.string("The shipping_address_id field must be a string. It is a required field.").length(12, {message: "The shipping_address_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The shipping_address_id can only contain lowercase letters and numbers."}),
     
     address_type_id: customValidators.zodIsAddressTypeId,
     
@@ -16,7 +16,7 @@ const shippingAddressSchema = z.object({
     
     administrative_division: customValidators.zodIsAdministrativeDivision,
     
-    country: z.enum(["United States", "United Kingdom", "Canada", "Australia", "New Zealand", "Ireland", "Singapore", "Hong Kong"]),
+    country: z.enum(["United States", "United Kingdom", "Canada", "Australia", "New Zealand", "Ireland", "Singapore", "Hong Kong"], {message: "The country field is a required field. It takes one of the following values: United States, United Kingdom, Canada, Australia, New Zealand, Ireland, Singapore, Hong Kong."}),
 
     postal_area: customValidators.zodIsPostalCode,
     

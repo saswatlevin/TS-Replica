@@ -313,7 +313,7 @@ const pantBreakwaterRinsed = {
 const shortApresNavy = {
   product_id: "u9yl6odhiget",
 
-  product_name: "The Apres Short in Navy Linen Tweed",
+  product_name: "The Après Short in Navy Linen Tweed",
 
   docType: "PRODUCT",
 

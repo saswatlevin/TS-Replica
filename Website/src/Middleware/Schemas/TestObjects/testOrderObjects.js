@@ -1,0 +1,107 @@
+const z = require('zod');
+const customValidators = require('../../CustomValidators/customValidators');
+
+const testOrder1 = {
+  order_id: "77zlcwaiyjge",
+  user_id: "7ycthivdrqvl",
+  docType: "ORDER",
+  order_status: "Pre-Dispatch",
+  total_price: 358,
+  date_created_at: "2025-05-21T12:44:00Z",
+  date_of_arrival: "2025-05-23T00:00:00Z",
+
+  shipping_address: {
+    address_type_id: "1",
+    first_name: "ABC",
+    last_name: "CBA",
+    company_name: "",
+    address: "6-5-1 Nishi-Shinjuku, Shinjuku-ku",
+    apartment: "Room 2503, Shinjuku I-Land Tower",
+    city: "Tokyo",
+    administrative_division: "Tokyo",
+    country: "Japan",
+    postal_area: "163-1390",
+    phone_number: "81312345678"
+  },
+
+  OrderItems: [
+    {
+      order_item_id: "n5shxmxiyrgy",
+      product_id: "hya3y1kdhv4p",
+      sku: "9qjmn3ak0b",
+      order_item_name: "The Craftsman Shirt in Bark Plaid Linen",
+      order_item_price: 128,
+      order_item_quantity: 1,
+      order_item_image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg"
+    },
+    {
+      order_item_id: "mymky3edt370",
+      product_id: "vxcei49vin0z",
+      sku: "785r0xzd3p",
+      order_item_name: "The Division Shirt in Washed Indigo",
+      order_item_price: 132,
+      order_item_quantity: 1,
+      order_item_image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Division_Shirt\\The_Division_Shirt_in_Washed_Indigo\\6757461459021_division-shirt-in-washed-indigo-2301_01_tsio.jpg"
+    },
+    {
+      order_item_id: "p316chljm5nf",
+      product_id: "qtzbvq1gkkvk",
+      sku: "hb6d8xg4wj",
+      order_item_name: "The Jack in Blue Everyday Oxford",
+      order_item_price: 98,
+      order_item_quantity: 1,
+      order_item_image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Jack_(Oxford)\\The_Jack_in_Blue_Everyday_Oxford\\6824013660237_jack-in-blue-everyday-oxford-2304_01_tsio.jpg"
+    }
+  ]
+};
+
+const testOrder2 = {
+  order_id: "z9gxoegocvf8",
+  user_id: "3xu5kfbk0o14",
+  docType: "ORDER",
+  order_status: "Pre-Dispatch",
+  total_price: 226,
+  date_created_at: "2025-05-21T15:50:00Z",
+  date_of_arrival: "2025-05-22T09:00:00Z",
+
+  shipping_address: {
+    address_type_id: "1",
+    first_name: "ABC",
+    last_name: "CBA",
+    company_name: "",
+    address: "6-5-1 Nishi-Shinjuku, Shinjuku-ku",
+    apartment: "Room 2503, Shinjuku I-Land Tower",
+    city: "Tokyo",
+    administrative_division: "Tokyo",
+    postal_area: "163-1390",
+    country: "Japan",
+    phone_number: "81312345678"
+  },
+
+  OrderItems: [
+    {
+      order_item_id: "8jjiq7pvljts",
+      product_id: "dzh5txxega4b",
+      sku: "9bkgezadt6",
+      order_item_name: "The Breakwater Pant in Rinsed Indigo Stripe",
+      order_item_price: 128,
+      order_item_quantity: 1,
+      order_item_image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Breakwater_Pant_in_Rinsed_Indigo_Stripe\\instock_m_q225_The_Breakwater_Pant-RinsedIndigoStripe_portrait_001.jpg"
+    },
+    {
+      order_item_id: "m29icssa85lv",
+      product_id: "il19g7cce84l",
+      sku: "945r5ung5p",
+      order_item_name: "The Camp Short in Aged Penny Chipped Canvas",
+      order_item_price: 98,
+      order_item_quantity: 1,
+      order_item_image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Camp_Short_in_Aged_Penny_Chipped_Canvas\\instock_m_q225_The_Camp_Short-AgedPennyChippedCanvas_portrait_001.jpg"
+    }
+  ]
+};
+
+
+module.exports = {
+  testOrder1,
+  testOrder2
+};

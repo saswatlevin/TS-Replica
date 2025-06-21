@@ -3,7 +3,7 @@ const customValidators = require('../CustomValidators/customValidators');
 const objectIdSchema = require('./objectIdSchema');
 const { orderShippingAddressSchema }  = require('./shippingAddressSchemas');
 const { orderItemSchemaArray } = require('./orderItemSchemas');
-const { testOrder1, testOrder2} = require('./testOrderObjects');
+const { testOrder1, testOrder2} = require('./TestObjects/testOrderObjects');
 
 /**
  * product_id is derived from product schema

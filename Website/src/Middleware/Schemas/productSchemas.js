@@ -3,7 +3,7 @@ const customValidators = require('../CustomValidators/customValidators');
 const objectIdSchema = require('./objectIdSchema');
 const productImageArraySchema  = require('./productImageSchemas');
 const productItemSchemaUnion = require('./productItemSchemas');
-// const { shirtJackOxford, pantBreakwaterRinsed, pantPainterCanvas, shortApresNavy, shortCampAgedPenny } = require('./testProductObjects');
+// const { shirtJackOxford, pantBreakwaterRinsed, pantPainterCanvas, shortApresNavy, shortCampAgedPenny } = require('./TestObjects/testProductObjects');
 
 const productGarmentWeightSchema = z.object({
     garment_weight_description: z.string("The garment_weight_description field must be a string.").min(1, {message: "The garment_weight_description field is a required field."}).max(200, {message: "The maximum permitted length of the garment_weight_description field is 200 characters."}).regex(customValidators.paragraphRegex, {message: "The garment_weight_description field accepts only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots and spaces."}),

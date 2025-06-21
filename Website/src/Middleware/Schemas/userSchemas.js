@@ -3,7 +3,7 @@ const objectIdSchema = require('./objectIdSchema');
 const { shippingAddressSchema, shippingAddressArraySchema} = require('./shippingAddressSchemas'); 
 const { cartItemSchema, cartItemArraySchema } = require('./cartItemSchemas');
 const customValidators = require('../CustomValidators/customValidators');
-const { testUserData, testUserDataFull } = require('./testUserObjects');
+const { testUserData, testUserDataFull } = require('./TestObjects/testUserObjects');
 
 const userRequestSchema = z.object({
     user_id: z.string("The user_id field must be a string. It is a required field.").length(12, {message: "The user_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The user_id can only contain lowercase letters and numbers."}),

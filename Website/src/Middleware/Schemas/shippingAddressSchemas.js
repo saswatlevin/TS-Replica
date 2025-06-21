@@ -16,7 +16,7 @@ const shippingAddressSchema = z.object({
     
     administrative_division: customValidators.zodIsAdministrativeDivision,
     
-    country: z.enum(["United States", "United Kingdom", "Canada", "Australia", "New Zealand", "Ireland", "Singapore", "Hong Kong"], {message: "The country field is a required field. It takes one of the following values: United States, United Kingdom, Canada, Australia, New Zealand, Ireland, Singapore, Hong Kong."}),
+    country: z.enum(["United States", "United Kingdom", "Canada", "Australia", "New Zealand", "Ireland", "Singapore", "Hong Kong", "Japan"], {message: "The country field is a required field. It takes one of the following values: United States, United Kingdom, Canada, Australia, New Zealand, Ireland, Singapore, Hong Kong, Japan."}),
 
     postal_area: customValidators.zodIsPostalCode,
     

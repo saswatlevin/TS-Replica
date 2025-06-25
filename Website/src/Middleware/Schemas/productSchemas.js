@@ -1,5 +1,5 @@
 const z = require('zod');
-const customValidators = require('../CustomValidators/customValidators');
+const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const objectIdSchema = require('./objectIdSchema');
 const productImageArraySchema  = require('./productImageSchemas');
 const productItemSchemaUnion = require('./productItemSchemas');
@@ -30,7 +30,7 @@ const productRequestSchema = z.object({
     
     product_color: z.string("The product_color field must be a string.",).min(1, {message: "The product_color field is a required field."}).max(50, {message: "The maximum permitted length is 50 characters."}).regex(/^[A-Za-z ]*$/, {message: "The product_color field can contain only uppercase letters, lowercase letters and spaces. "}),
 
-    product_description: z.string("The product_description field must be a string.").min(1, {message: "The product_description field is a required field."}).max(700, {message: "The product_description field has a maximum permitted length of 700 characters."}).regex(customValidators.paragraphRegex, {message: "The garment_weight_description field accepts only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots, and spaces."}),
+    product_description: z.string("The product_description field must be a string.").min(1, {message: "The product_description field is a required field."}).max(700, {message: "The product_description field has a maximum permitted length of 700 characters."}).regex(customValidators.paragraphRegex, {message: "The product_description field accepts only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots, and spaces."}),
 
     product_price: z.number("The product_price field must be a number (integer). It is a required field.").int("The product_price field must be an integer.").min(1, {message: "The product_price field has a minimum limit of 1. "}).max(300, {message: "The product_price field has a maximum limit of 300."}),
 

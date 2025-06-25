@@ -1,5 +1,5 @@
 const z = require('zod');
-const customValidators = require('../CustomValidators/customValidators');
+const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 
 const shippingAddressSchema = z.object({
     shipping_address_id: z.string("The shipping_address_id field must be a string. It is a required field.").length(12, {message: "The shipping_address_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The shipping_address_id can only contain lowercase letters and numbers."}),

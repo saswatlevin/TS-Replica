@@ -1,6 +1,6 @@
 // Shirt, Pant, Jean == Chino, Short
 const z = require('zod');
-const customValidators = require('../CustomValidators/customValidators');
+const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 
 // Define relationships between total_stock, quantity_sold and current_stock.
 const shirtSchema = z.object({

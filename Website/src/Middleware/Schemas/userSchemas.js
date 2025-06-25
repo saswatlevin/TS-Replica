@@ -2,7 +2,7 @@ const z = require('zod');
 const objectIdSchema = require('./objectIdSchema');
 const { shippingAddressSchema, shippingAddressArraySchema} = require('./shippingAddressSchemas'); 
 const { cartItemSchema, cartItemArraySchema } = require('./cartItemSchemas');
-const customValidators = require('../CustomValidators/customValidators');
+const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const { testUserData, testUserDataFull } = require('./TestObjects/testUserObjects');
 
 const userRequestSchema = z.object({

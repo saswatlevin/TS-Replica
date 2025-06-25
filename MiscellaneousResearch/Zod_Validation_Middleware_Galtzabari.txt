@@ -1,0 +1,1 @@
+https://medium.com/@galtzabari1/validating-api-requests-with-zod-in-express-7df915199182

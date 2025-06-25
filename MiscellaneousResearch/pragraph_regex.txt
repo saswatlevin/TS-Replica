@@ -1,0 +1,3 @@
+^[A-Za-z0-9,;:%'’“”\\-\"\(\)\. ]*$
+
+only uppercase letters, lowercase letters, digits, commas, semicolons, colons, percentage symbols, singl-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, dots and spaces.

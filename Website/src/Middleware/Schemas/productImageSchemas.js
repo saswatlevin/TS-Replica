@@ -1,5 +1,5 @@
 const z = require('zod');
-const customValidators = require('../CustomValidators/customValidators');
+const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 
 const productImageSchema = z.object({
     image_id: z.string("The image_id field must be a string. It is a required field.").length(12, {message: "The image_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The image_id can only contain lowercase letters and numbers."}),

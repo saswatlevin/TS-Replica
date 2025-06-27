@@ -1,5 +1,5 @@
 const z = require('zod');
-const customValidators = require('../CustomValidators/customValidators');
+const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 
 /**
  * order_item_name is related to product_name and cart_item_name

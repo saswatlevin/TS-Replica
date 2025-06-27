@@ -1,5 +1,5 @@
 const z = require('zod');
-const customValidators = require('../CustomValidators/customValidators');
+const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const objectIdSchema = require('./objectIdSchema');
 const { orderShippingAddressSchema }  = require('./shippingAddressSchemas');
 const { orderItemSchemaArray } = require('./orderItemSchemas');

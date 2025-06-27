@@ -1,15 +1,18 @@
 const createRandomString = require('../createRandomString');
 const User = require('../Models/User');
 const argon2 = require('argon2');
-const listOfKeys = require('../listOfKeys');
-const checkForbiddenKeys = require('../checkForbiddenKeys');
-const filterKeys = require('../filterKeys');
 const pruneObject = require('../pruneObject');
 const validatePassword  = require('../Security/validatePassword');
-
+const validateRequest = require('../Security/validateRequest');
+const objectIdSchema = require('../Schemas/objectIdSchema.js'); 
+const mongoose = require('mongoose');
+const _ = require('lodash');
 
 // CREATES A NEW USER
 const registerUser = async (req, res, next) => {
+    
+    console.log("In registerUser");
+    console.log("req.body ", req.body);
     // All data is provided in the request body.
     // Since the user document (request body) is manually generated, 
     // so we don't need to use createDocument yet.
@@ -19,12 +22,16 @@ const registerUser = async (req, res, next) => {
     
     // Set the user_id for this user document
     requestBodyObjectCopy['user_id'] = createRandomString(6);
-    
-    // Validate the user's password
-    if (validatePassword(requestBodyObjectCopy['password']) === false) {
-        res.status(400).json("Could not create document due to invalid password");
-        return;
-    } 
+
+    // Set the docType for this user document
+    requestBodyObjectCopy['docType'] = 'USER';
+
+    // Get the current date
+    const currentDate = new Date();
+    const dateCreatedAt = currentDate.toISOString();
+
+    // Set the date_created_at for this user document
+    requestBodyObjectCopy['date_created_at'] = dateCreatedAt;
     
     // Hash the user's password using argon2id. It is salted by default.
     const passwordHash = await argon2.hash(requestBodyObjectCopy['password']);
@@ -39,48 +46,36 @@ const registerUser = async (req, res, next) => {
 
     console.log("User created successfully");
 
-    res.status(201).json(result);
-
+    res.json({
+       result: result
+    });
+    
 }
 
 // UPDATES ANY FIELD OF THE USER DOCUMENT EXCEPT ShippingAddresses, CartItems, docType, password AND user_id
 const updateUser = async(req, res, next) => {
     
-    const requestBodyCopy = JSON.parse(JSON.stringify(req.body)); 
-    
-    const requestBodyKeys = Object.keys(requestBodyCopy);
-    
-    console.log("requestBodyKeys ", requestBodyKeys);
-    
+    console.log("In updateUser");
+
+    // Making a deep copy of the request body isn't necessary since 
+    // the schemaValidator already returns a deep copy of the validated request body
+    const requestBody = req.body;  
+    console.log("requestBody ", requestBody);
+
+    // The filter will always be the user_id.
     var filter = {};
+    filter['user_id'] = requestBody['user_id'];
 
-    const forbiddenKey = checkForbiddenKeys("updateUser", requestBodyKeys);
-    
-    if (forbiddenKey) {
-        res.status(400).json("updateUser can't update the " + forbiddenKey + " field.");
-        return;
-    }
+    console.log("filter in updateUser ", filter);
 
-    var filterKey = filterKeys.checkFilter("updateUser", requestBodyKeys);
-    
+    // Remove the user_id from the request body to create the update object.
+    const updateObject = _.omit(requestBody, ['user_id']);
 
-    if (!filterKey) {
-        res.status(400).json("The updateUser API cannot find the requested User document to be updated using the " + filterKey + " field. Please provide the email or user_id fields' values.");
-        return;
-    }
-   
-    const updateObject = pruneObject(requestBodyCopy, [filterKey]);     
-    
-    filter[filterKey] = requestBodyCopy[filterKey];
-    console.log("requestBodyCopy ", requestBodyCopy);
-    console.log("filterKey ", filterKey);
-    console.log("updateObject ", updateObject);
-    console.log("filter ", filter);
-    
+    console.log("updateObject in updateUser ", updateObject);
 
     const updateResult = await User.findOneAndUpdate(filter, updateObject, {new: true}, {runValidators: true});
 
-    // console.log("updateResult ", updateResult);
+    console.log("updateResult ", updateResult);
 
     res.status(201).json(updateResult);
 
@@ -89,41 +84,24 @@ const updateUser = async(req, res, next) => {
 
 }
 
+// UPDATES A USER'S PASSWORD
 const updateUserPassword = async(req, res, next) => {
     
     console.log("In updateUserPassword ");
 
-    // Create a deep copy of the request body
-    const requestBodyCopy = JSON.parse(JSON.stringify(req.body));
-    console.log("requestBodyCopy ", requestBodyCopy);
+    // Deep copy no longer needed since we already have one from the schema validator
+    const requestBody = req.body
+    console.log("requestBody ", requestBody);
 
-    // Get all the keys
-    const requestBodyKeys = Object.keys(requestBodyCopy);
-    console.log("requestBodyKeys ", requestBodyKeys);
-    
-    // Get the filter key (in this case, user_id or password)
-    const filterKey = filterKeys.checkFilter("updateUserPassword", requestBodyKeys);
-    console.log("filterKey ", filterKey);
-
-    if (!filterKey) {
-        res.status(400).json("The updateUser API cannot find the requested User document to be updated using the " + filterKey + " field. Please provide the email or user_id fields' values.");
-        return;
-    }
 
     // Create the filter used to select the User document for the update
     var filter = {};
-    filter[filterKey] = requestBodyCopy[filterKey];
+    filter['user_id'] = requestBody['user_id'];
     console.log("filter: ", filter);
 
     // Get the updated password
-    const updatedPassword = requestBodyCopy["password"];
+    const updatedPassword = requestBody["password"];
     console.log("updatedPassword ", updatedPassword);
-
-    // Validate the updated password
-    if (validatePassword(updatedPassword) === false) {
-        res.status(400).json("Could not create document due to invalid password");
-        return;
-    }
     
     // Replace the password by its equivalent argon2 hash. The hash is salted by default
     const updatedPasswordHash = await argon2.hash(updatedPassword);
@@ -139,12 +117,45 @@ const updateUserPassword = async(req, res, next) => {
     res.status(201).json(updateResult);
 
     console.log("After password update operation");
+};
 
+// GETS ONE USER
+const getUserById = async(req, res, next) => {
+    console.log("In getUserById ");
+    
+    const requestBody = req.body;
 
+    const result = await User.findOne(requestBody);
+    console.log("After findOne operation ", result);
+
+    res.status(201).json(result);
+} 
+
+const searchUsersByName = async (req, res, next) => {
+    console.log("In searchUser ");
+    const requestBody = req.body;
+
+    const result = await User.find(requestBody);
+    console.log("After find operation ", result);
+
+    res.status(201).json(result);
 }
+
+/* const objectIdTest = async (req, res, next) => {
+
+    
+    const requestBody = req.body;
+    const result = await User.findOne(requestBody);
+    console.log(result['_id']);
+    validateRequest(objectIdSchema, {"_id": new mongoose.Types.ObjectId('683703f4cb260c2c22ee0ce')});
+
+    res.send(result);
+} */
 
 module.exports = { 
     registerUser,
     updateUser,
-    updateUserPassword
+    updateUserPassword,
+    getUserById,
+    searchUsersByName
 };

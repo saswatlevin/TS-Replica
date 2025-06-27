@@ -39,8 +39,8 @@ const zodIsAdministrativeDivision = z.string("The administrative_division field 
 }); 
 
 // Done
-const zodIsMobilePhone = z.string("The phone_number field must be a string.").min(11, {message: "The phone_number must be at least 12 digits long. It is a required field."}).max(20, {message: "A phone_number has a maximum permitted length of 20 characters (including spaces, dashes, area code and country code)."}).refine((value) => validator.isMobilePhone(value), {
-    message : "A phone_number can contain upto 10 digits (excluding country code)."
+const zodIsMobilePhone = z.string("The phone_number field must be a string.").min(8, {message: "The phone_number must be at least 8 digits long. It is a required field."}).max(12, {message: "A phone_number has a maximum permitted length of 12 digits (including country code)."}).refine((value) => validator.isMobilePhone(value), {
+    message : "The phone_number field must be a valid phone number including country code. Do not prefix a plus before the country code."
 });
 
 const zodIsAddressTypeId = z.string("The address_type_id field must be a string.").length(1, {message: "The address_type_id is only a single digit long. It is a required field."}).refine((value) => /^[1-5]$/.test(value), {
@@ -60,6 +60,8 @@ const zodIsEmail = z.string("The email field must be a string.").min(9, {message
 const zodIsPasswordHash = z.string("The password field must be a string.").length(97, {message: "The password hash must be 97 characters long."}).refine((value) => /^\$argon2id\$v=19\$m=65536,t=3,p=4\$[a-zA-Z0-9\+\/]{22}\$[a-zA-Z0-9\+\/]{43}$/.test(value), {
     message: "The password field takes an argon2 hash generated using v=19, m=65536, t=3 and p=4."
 });
+
+const zodIsPassword = z.string("The password field must be a string.").min(12, {message: "The password field has a minimum length of 12 characters."}).max(30, {message: "The password field has a maximum permitted length of 30 characters."}).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#!\$\. ])[A-Za-z\d@#!\$\. ]+$/, {message: "The password must be between 12 and 30 characters long. It should have at lease one uppercase letter, one lowercase letter, one digit and one of the following special characters \"@,#,!,$,.\". It can also contain spaces."})
 
 const zodIsInseamLength = z.number("The inseam_length field must be a number (integer). It is a required field.").int("The inseam_length field must be an integer.").refine((value) => inseamLengthArray.includes(value), {
     message: 'The inseam_length field must have any one of the following integers as a value: 32, 34.'
@@ -94,6 +96,7 @@ module.exports = {
     zodIsISO8601,
     zodIsEmail,
     zodIsPasswordHash,
+    zodIsPassword,
     zodIsInseamLength,
     nameRegex,
     twelveCharacterRegex,

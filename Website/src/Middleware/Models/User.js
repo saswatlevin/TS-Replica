@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
         required: [true, "password is a string and is a required field."]
     },
 
-    phoneno: {
+    phone_number: {
         type: String,
         required: [true, "phoneno is a string and is a required field."]
     },

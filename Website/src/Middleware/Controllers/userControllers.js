@@ -1,12 +1,8 @@
 const createRandomString = require('../createRandomString');
 const User = require('../Models/User');
 const argon2 = require('argon2');
-const pruneObject = require('../pruneObject');
-const validatePassword  = require('../Security/validatePassword');
-const validateRequest = require('../Security/validateRequest');
-const objectIdSchema = require('../Schemas/objectIdSchema.js'); 
-const mongoose = require('mongoose');
 const _ = require('lodash');
+const getCurrentDateTime = require('../getCurrentDateTime');
 
 // CREATES A NEW USER
 const registerUser = async (req, res, next) => {
@@ -26,9 +22,8 @@ const registerUser = async (req, res, next) => {
     // Set the docType for this user document
     requestBodyObjectCopy['docType'] = 'USER';
 
-    // Get the current date
-    const currentDate = new Date();
-    const dateCreatedAt = currentDate.toISOString();
+    // Get the current date-time
+    const dateCreatedAt = getCurrentDateTime();
 
     // Set the date_created_at for this user document
     requestBodyObjectCopy['date_created_at'] = dateCreatedAt;

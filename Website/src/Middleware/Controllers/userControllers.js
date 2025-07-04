@@ -8,7 +8,7 @@ const getCurrentDateTime = require('../getCurrentDateTime');
 const registerUser = async (req, res, next) => {
     
     console.log("In registerUser");
-    console.log("req.body ", req.body);
+    //console.log("req.body ", req.body);
     // All data is provided in the request body.
     // Since the user document (request body) is manually generated, 
     // so we don't need to use createDocument yet.
@@ -39,11 +39,13 @@ const registerUser = async (req, res, next) => {
     // Create the new User in the database
     const result = await User.create(requestBodyObjectCopy);
 
-    console.log("User created successfully");
+    console.log("create operation result ", result);
 
     res.json({
        result: result
     });
+
+    console.log("After create operation");
     
 }
 
@@ -64,7 +66,7 @@ const updateUser = async(req, res, next) => {
     console.log("filter in updateUser ", filter);
 
     // Remove the user_id from the request body to create the update object.
-    const updateObject = _.omit(requestBody, ['user_id']);
+    const updateObject = _.omit(requestBody, 'user_id');
 
     console.log("updateObject in updateUser ", updateObject);
 
@@ -109,6 +111,8 @@ const updateUserPassword = async(req, res, next) => {
     // Update the password in the corresponding user document
     const updateResult = await User.findOneAndUpdate(filter, updateObject, {new: true}, {runValidators: true});
 
+    console.log("updatePassword result ", updateResult);
+
     res.status(201).json(updateResult);
 
     console.log("After password update operation");
@@ -121,9 +125,12 @@ const getUserById = async(req, res, next) => {
     const requestBody = req.body;
 
     const result = await User.findOne(requestBody);
-    console.log("After findOne operation ", result);
+    
+    console.log("findOne operation result ", result);
 
     res.status(201).json(result);
+
+    console.log("After findOne operation ");
 } 
 
 const searchUsersByName = async (req, res, next) => {
@@ -131,9 +138,13 @@ const searchUsersByName = async (req, res, next) => {
     const requestBody = req.body;
 
     const result = await User.find(requestBody);
-    console.log("After find operation ", result);
+    
+    console.log("find operation result ", result);
 
     res.status(201).json(result);
+    
+    console.log("After find operation ");
+
 }
 
 /* const objectIdTest = async (req, res, next) => {

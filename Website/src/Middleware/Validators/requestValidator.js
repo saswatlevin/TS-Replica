@@ -5,13 +5,12 @@ const requestValidator = (schema) => {
     return (req, res, next) => {
         try{
             console.log("In requestValidator");
+            //console.log("Request body ", req.body);
 
             const requestBody = req.body;
             const validationResult = schemaValidator(schema, requestBody);
 
             req.body = validationResult;
-
-            console.log("Request body after schema validation ", req.body);
 
             next();
         }
@@ -24,8 +23,6 @@ const requestValidator = (schema) => {
                     message: "Schema validation failed.",
                     Error: error
                 });
-
-                next();
             }
 
             else {
@@ -33,8 +30,6 @@ const requestValidator = (schema) => {
                 res.status(500).json({
                     message: "Internal Server Error.",
                     Error: error});
-                
-                next();
             }
             
             

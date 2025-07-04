@@ -1,0 +1,12 @@
+https://www.descope.com/learn/post/session-management
+
+Session -> A session is a finite period of time during which authenticated users are engaging with a system or application. 
+
+Phases in Session Management:
+1) Creation -> Once a user is authenticated, a session is created by generating a unique ID. This is sent to the client as a token or a cookie and is used to track subsequent requests from user.
+
+2) Session Storage: Session data (ID and others) are stored in a database on the server.
+
+3) Maintenance: The session ID is sent with each HTTP request to the server. Interaction between users and application is maintained by retrieving the session data.
+
+4) Termination: A session can be terminated, due to user logging out, leaving the website, closing the browser window or due to a timeout.

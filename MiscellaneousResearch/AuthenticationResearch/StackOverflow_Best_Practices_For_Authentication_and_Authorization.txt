@@ -1,0 +1,26 @@
+1) USE TLS -> Use TLS for encrypting communications. TLS requires a certificate issued by a CA. Most hosting providers will provide a TLS certificate automatically.
+
+
+2) Use Single Sign On (SSO) with Google, Meta, etc. using OAuth2 -> It is done by letting users exchange a token with the verification services of these companies using OAuth2. This avoids us having to manage passwords and accounts, not have to manage MFA and not store user data. 
+
+OAuth2 is a standard that describes how a 3rd-party application can access data from an application on behalf of a user. OAuth2 doesn’t directly handle authentication and is a more general framework built primarily for authorization. 
+
+We should use OpenID Connect to implement authentication on top of OAuth.
+
+3) Use API keys to give existing users programmatic access -> Issue API Keys, for each REST API to authenticate using OAuth2.
+
+4) API Key Best Practices
+   	* When a user signs up for access to your API, generate an API key
+	* All API Keys should be stored with associated users in the database.
+        * Have your users provide their API keys as a header
+        * To authenticate a user's API request, look up their API key in the database.
+
+5) All API Keys should be stored safely
+
+6)  Use request-level-authorization, if appropriate, i.e., looking at an incoming request to decide if the user has access to your resources or not.
+
+7) Configure different permissions for different API keys -> Consider having several API keys with different permission levels. To do this, store permissions in the database alongside the API keys as a list of strings. Keep this simple at first: "read" and "write" are a great start! Then, add a request middleware that fetches the user and the permissions for the key they've submitted and checks the token permissions against the API. 
+
+8) Leave the rest of the authorization to the business logic -> Instead, leave that level of authorization logic to your application code. Any authorization checks made on resources should happen in the app, not in the middleware. If you need to handle complex authorization logic in your app, use a tool like Oso, which will let you reduce your authorization policy to a few simple rules.
+
+9) Use Good libraries -> Try to offload as much work as you can to trusted libraries. 

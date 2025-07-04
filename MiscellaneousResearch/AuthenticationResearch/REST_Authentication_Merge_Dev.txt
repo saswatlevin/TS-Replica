@@ -1,0 +1,10 @@
+Basic Auth -> A simple and fast method of HTTP authentication. To access the API endpoint, the user must send a username and password to the API provider in the authentication header of the request. The API provider checks the credentials and, in the case of success, grants access to the user.
+
+
+API Key Authentication -> The API provider assigns a unique key to each client accessing the API. The client needs to include their API key as part of the request to authenticate themselves. The API key can be included anywhere in the request. Different permissions can be given to different API Keys. Security is lost if the user's API Key is intercepted as the interceptor can use it to access the same resources as the user.
+
+Token-based authentication -> It uses an access token to verify a user's identity. Tokens are used to identify users, since they have user-specific info.Tokens can be generated dynamically within the API itself. They can also be customized to make them device-specific.  They minimize interception risk since they can be encrypted and are usually short-lived, and they can offer granular access control.
+
+However, tokens are difficult to design.
+
+

@@ -48,7 +48,7 @@ const zodIsAddressTypeId = z.string("The address_type_id field must be a string.
 });
 
 // Exempted from redefinition
-const zodIsISO8601 = z.string("This date field must be a string.").length(20, {message: "This date field has a maximum permitted length od 20 characters. It is a required field."}).refine((value) => validator.isISO8601(value, {strict: true, separator: true}), {
+const zodIsISO8601 = z.string("This date field must be a string.").min(17, {message: "This date field has a minimum permitted length of 17 characters. It is a required field."}).max(30, {message: "This date field has a maximum permitted length of 30 characters. It is a required field."}).refine((value) => validator.isISO8601(value, {strict: true, separator: true}), {
     message: "This date field must recieve date in the format YY-MM-DDTHH:MM:SS"
 });
 
@@ -66,6 +66,8 @@ const zodIsPassword = z.string("The password field must be a string.").min(12, {
 const zodIsInseamLength = z.number("The inseam_length field must be a number (integer). It is a required field.").int("The inseam_length field must be an integer.").refine((value) => inseamLengthArray.includes(value), {
     message: 'The inseam_length field must have any one of the following integers as a value: 32, 34.'
 });
+
+const zodIsDocumentVersion = z.number("The __v field must be a number(integer). It is an optional field.").int("The __v field must be an integer value.").optional();
 
 const nameRegex = /^[A-Za-z\-']*$/;
 
@@ -98,6 +100,7 @@ module.exports = {
     zodIsPasswordHash,
     zodIsPassword,
     zodIsInseamLength,
+    zodIsDocumentVersion,
     nameRegex,
     twelveCharacterRegex,
     tenCharacterRegex,

@@ -2,3 +2,4 @@ node_modules
 .env
 network_troubleshooter.sh
 start_mongodb.sh
+*.txt

@@ -17,7 +17,8 @@ const globalErrorHandler = (error, req, res, next) => {
             code: error?.code,
             type: error?.type,
             errno: error?.errno,
-            errorsArray: error?.errorsArray
+            errorsArray: error?.errorsArray,
+            stack: error.stack
         });
     }
 

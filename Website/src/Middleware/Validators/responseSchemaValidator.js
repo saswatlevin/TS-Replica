@@ -1,7 +1,9 @@
 const userSchemas = require('../Schemas/userSchemas');
 const schemaValidator = require('./schemaValidator');
-const { registerUserResponseSchema, userResponseGenericSchema, userResponseGenericSchemaArray } = require('../Schemas/userSchemas');
+const { registerUserResponseSchema, userResponseGenericSchema, userResponseGenericSchemaArray, createShippingAddressResponseSchema } = require('../Schemas/userSchemas');
+const { shippingAddressResponseSchema } = require('../Schemas/shippingAddressSchemas');
 
+// Validates the responses of different APIs based on their respective schemas.
 const responseSchemaValidator = (request, object) => {
     
     console.log("In responseSchemaValidator");
@@ -11,7 +13,7 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(registerUserResponseSchema, object['result']);
     }
 
-    else if ((request.originalUrl === "/users/updateuser" || request.originalUrl === "/users/updateuserpassword") && request.method === "PUT") {
+    else if ((request.originalUrl === "/users/updateuser" || request.originalUrl === "/users/updateuserpassword") && request.method === "PATCH") {
         return schemaValidator(userResponseGenericSchema, object);
     }
 
@@ -23,9 +25,15 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(userResponseGenericSchemaArray, object);
     }
 
+    else if ((request.originalUrl.includes("/shippingaddresses/createshippingaddress") === true) && request.method === "POST") {
+        return schemaValidator(createShippingAddressResponseSchema, object);
+    }
+
     else {
         return undefined;
     }
+
+   
     
 };
 

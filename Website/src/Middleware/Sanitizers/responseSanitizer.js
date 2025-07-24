@@ -1,8 +1,9 @@
-const { z, ZodError} = require('zod');
-const responseSchemaValidator = require('./responseSchemaValidator');
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
+const dataSanitizer = require("./dataSanitizer");
 
-const responseValidator = (req, res, next) => {
-    console.log("In responseValidator");
+const responseSanitizer = (req, res, next) => {
+    console.log("In responseSanitizer");
     
      // Storing the original json method
     const originalJson = res.json;
@@ -15,7 +16,7 @@ const responseValidator = (req, res, next) => {
         // If the response body is null, then replace it with an empty array
         // Done for getUserById, updateUser, updateUserPassword, etc.
         if (body === null) {
-           console.log("Successful request returned null, which is replaced with an empty array");
+           console.log(" (RESPONSE SANITIZER) Successful request returned null, which is replaced with an empty array.");
            body = [];
            // Get the original response
            res.json = originalJson;
@@ -27,7 +28,7 @@ const responseValidator = (req, res, next) => {
         // If a successful request returns no data
         // i.e., there's an empty response body []
         else if (body.length === 0) {
-            console.log("Successful request returned no data");
+            console.log(" (RESPONSE SANITIZER) Successful request returned no data");
 
             // Get the original response
             res.json = originalJson;
@@ -38,7 +39,7 @@ const responseValidator = (req, res, next) => {
         // If there's an error
         // i.e., the response body contains an error object (We will detect this by detecting its message).
         else if (body.length !== 0 && body.message) {
-            console.log("An error occurred due to the request data or in the API function.");
+            console.log("(RESPONSE SANITIZER) An error occurred due to the request data or in the API function.");
             
             // Get the original response
             res.json = originalJson;
@@ -50,22 +51,11 @@ const responseValidator = (req, res, next) => {
         // If a successful request has returned some data
         // i.e., there's some data in the response body
         else { 
-            console.log("A successful request has returned some data from the database.");
-            const validationResult = responseSchemaValidator(req, body);
+            console.log("(RESPONSE SANITIZER) A successful request has returned some data from the database.");
 
-            if ( (validationResult !== undefined) && !(validationResult instanceof ZodError)) {
-                console.log("Response body successfully validated.");
+            const sanitizationResult = dataSanitizer(body['result']);
 
-            }
-
-            else if (validationResult instanceof ZodError) {
-                console.log("Response body validation failed.");
-                return next(validationResult);
-            }
-
-            else {
-                console.log("Incorrect request route or method name specified.");
-            }
+            console.log("(RESPONSE SANITIZER) Response body successfully sanitized ", sanitizationResult);
             
             // Get the original response
             res.json = originalJson;
@@ -77,12 +67,12 @@ const responseValidator = (req, res, next) => {
     }
 
 
-    console.log("Before next() in responseValidator");
+    console.log("(RESPONSE SANITIZER) Before next() in responseSanitizer");
     next();
 
 }
 
-module.exports = responseValidator;
+module.exports = responseSanitizer;
 
 
 

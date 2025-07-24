@@ -1,0 +1,5 @@
+1) Validation Error
+2) Duplication Error
+3) NotFound
+4) Connection Error
+5) Errors for static pages

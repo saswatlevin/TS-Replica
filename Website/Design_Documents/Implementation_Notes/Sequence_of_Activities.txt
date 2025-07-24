@@ -1,0 +1,37 @@
+1) Write controller function
+2) Write all possible tests for controller function
+3) Write all necessary validation schemas
+4) Map operational errors in controller function. Deal with all possible errors thrown from it.
+
+
+
+*** Before end of today ***
+1) Ensure that mongosanitize() is enabled.
+
+// Order of coding
+1) Create the validation schemas
+2) Create the function
+3) Create the Custom errors
+
+Note: Convert input to valid JSON during validation, where necessary.
+
+/** For now, get the user_id from a url argument. Once session is implemented, get it from the current session. **/
+
+// Create the APIs in the following order:
+1) USERS - Done already.
+2) ShippingAddresses
+3) PRODUCTS
+4) ProductItems
+5) ProductImages
+6) CartItems
+7) ORDERS
+8) OrderItems
+9) REVIEWS
+
+
+
+
+
+
+
+ 

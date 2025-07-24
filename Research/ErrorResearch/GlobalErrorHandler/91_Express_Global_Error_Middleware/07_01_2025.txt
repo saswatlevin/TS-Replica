@@ -1,0 +1,24 @@
+What are the 4 or 5 stages where we are checking for errors?
+How do we check ? Scalability of that check
+
+Focus on validations before sending request to mongodb
+Controller for when we get an error
+
+1) Invalid Route -> Route itself is invalid. How do you make sure that all the invalid routes are captured?
+2) Missing Parameters -> If the params are missing, how to identify all required params are available.
+3) Invalid Parameters -> Check if all parameters of correct datatype, expected range.
+4) Invalid Operations -> If parameters are processed, check their validity after processing.
+
+Use library to check validity of models on server type.
+Find libraries to do the 4 steps / validate data.
+Make some library do what I am doing inside createUser in terms of validation.
+
+Find standard libraries to do the above 4 steps. 
+Separation of logic -> Controller will delegate the above 4 steps to some libraries.
+
+What We Will Do: 
+1) Get validation libraries for mongoose.
+2) Get validation Libraries for URL (Augment with our needs)
+3) Create validation function for file paths.
+
+ 

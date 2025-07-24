@@ -1,0 +1,26 @@
+Source: Youtuber Anson
+Express Sessions Pt.1 -> https://www.youtube.com/watch?v=oExWh86IgHA
+
+Sessions are created on the server by generating a secret (random string / value).
+When an HTTP GET Request is sent to the server, it may return with instructions to set the session_id in the cookie, so that it can be saved in the browser.
+This allows the browser to send the cookie on subsequent requests to the server.
+The server can then parse the cookie from text to JSON and recover the session_id and understand who the request was sent from.
+The server maintains a mapping of each session_id with its corresponding user and so, can detect the user when any request is sent to it from the browser.
+
+Register the session middleware right before route-related middleware.
+
+The "secret" in the cookie should be a random value that is difficult to guess.
+
+The "saveUninitialised" property should be set to "false". This property decides whether uninitialized sessions are stored in the session-store. By default, "express-session" stores sessions in an in-memory session-store. If the "saveUninitialised" property is set to "true", then unitialised session objects (i.e., people visitng your website and doing nothing) will be stored in memory and this can take up memory un-necessarily.
+
+The "resave" property forces the session object to be saved to the session-store even if it was never modified at all.
+
+The "cookie" is defined inside the session object. Its time to live is set in milliseconds. The cookie expiry time displayed when we read the session_id and is in UTC.
+
+When the session object is modified, then express-session will set / create a cookie and that cookie will be sent to the client / browser side. The client side will store that cookie and on subsequent requests, that cookie will be sent to the server, which will then use the session middleware to parse and verify whether that cookie is (valid and not expired) or not. If it is (valid and not expired), then the server will not create a new session / session_id.
+
+By modifying the session data object, it is possible to track users who're using our website.
+
+A user has the same session_id regardless of which API he visits.
+
+ 

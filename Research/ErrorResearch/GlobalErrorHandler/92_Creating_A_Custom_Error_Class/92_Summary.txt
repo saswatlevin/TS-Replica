@@ -1,0 +1,7 @@
+https://www.youtube.com/watch?v=BZPrK1nQcFI
+1) We create a CustomError class by extending the Error class of JS.
+2) A constructor is created. it takes 2 arguments -> A message and status_code.
+3) The message is passed to super().
+4) The status is set to 'fail (Client Error)' if the status code is from 400 - 499 or to 'error (Server Error)' if the error code is from 500 to 599.
+5) An isOperational property is created since this class is meant to handle Operational Errors.
+6) The Error class always creates a Stack Trace. To preserve it, we call Error.captureStackTrace(this, this.constructor).

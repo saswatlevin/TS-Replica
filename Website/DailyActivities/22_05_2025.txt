@@ -1,0 +1,13 @@
+01. Creation of NodeJS Server.
+02. Connection to Database
+03. Implementation of registerUser
+04. Implementation of updateUser
+05. Implementation of getOneUser
+06. Implementation of getAllUsers
+07. Implementation of deleteUser
+08. Implementation of loginUser
+
+09. Decision regarding password storage
+    a) Use Argon2id for hashing
+    b) Use a salt and store it with the password.
+    c) The salt must at least be  

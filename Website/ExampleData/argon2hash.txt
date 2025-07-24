@@ -1,0 +1,4 @@
+Argon2 Character Set: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
+$argon2id$v=19$m=65536,t=3,p=4$wgFfiRKZebEqD1vfmk1Kxg$lr00L61MijtqvchnG6F2FS2euk9G9cIpvbLI+gZrQC8
+$argon2id$v=19$m=65536,t=3,p=4$Sd+mUn8I9h4D7tSRWT09xQ$QqnuoDjwVTHoicRxHjwJ3SghHZc4UApUm2J+OMosRWY
+$argon2id$v=19$m=65536,t=3,p=4$Qe1g/v2qVVnldm7UVQXY/A$YLjbUWAyer/WI+gn58b2b/NFZg4eJK+kJUusO/7xyiw

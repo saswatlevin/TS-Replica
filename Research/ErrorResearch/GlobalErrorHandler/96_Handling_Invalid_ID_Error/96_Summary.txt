@@ -1,0 +1,5 @@
+1) The errors sent by mongoose are not operational errors (isOperational nor true). They won't be sent to the client.
+2) We will have to set the isOperational property to true for the mongoose errors that we want to send to the client.
+3) For each type of error, we need to identify it and create a separate handler.
+
+1) 

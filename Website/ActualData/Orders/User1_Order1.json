@@ -18,10 +18,10 @@
     "administrative_division": "Tokyo",
     "country": "Japan",
     "postal_area": "163-1390",
-    "phone_number": "+81312345678"
+    "phone_number": "81312345678"
   },
 
-  "order_items": [
+  "OrderItems": [
     {
       "order_item_id": "n5shxmxiyrgy",
       "product_id": "hya3y1kdhv4p",

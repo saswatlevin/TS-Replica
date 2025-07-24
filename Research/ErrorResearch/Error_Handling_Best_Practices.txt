@@ -1,0 +1,23 @@
+https://www.morling.dev/blog/whats-in-a-good-error-message/
+https://dev.to/olanetsoft/global-error-handling-in-node-js-52jp
+https://sematext.com/blog/node-js-error-handling/
+
+===========================BEST PRACTICES=================================
+Programmer errors are what we call bugs. 
+Operational errors are part of the runtime and application.
+
+The error object is a built-in object in the Node.js runtime. It gives you a set of info about an error when it happens. It has an error.stack field that gives you a stack trace showing where the error came from. It also lists all functions that were called before the error occurred. The error.stack field is optimal to use while debugging as it prints the error.message as well.
+
+The best practices are:
+1. Use Custom Errors to Handle Operational Errors, i.e., Create a custom Error object for each operational error type. 
+
+2. Use a middleware (A global error handler). All operational errors are caught and sent here and their fate is decided -> In your API routes you’ll end up using the next() function to forward errors to the error handler middleware.
+
+3. Restart Your App Gracefully to Handle Programmer Errors -> Detect Node.js memory leaks using various solutions.
+
+4. Catch All Uncaught Exceptions -> When unexpected errors like these happen, you want to handle it immediately by sending a notification and restarting the app to avoid unexpected behavior.
+
+5. Catch All Unhandled Promise Rejections
+
+6. Use a Centralized Location for Logs and Error Alerting
+===========================BEST PRACTICES=================================

@@ -1,0 +1,9 @@
+Link: https://www.youtube.com/watch?v=EJLckmUhAco
+In production, as little information as possible should be leaked about the errors. This is for security.
+In dev, we want to get as much info as possible.
+The global error handling function sends all the info in case of development but only limited info otherwise.
+The global error handling function is divided into the devError and prodError functions.
+
+In production, only operational errors should be sent to the client.
+In production, programming error and other unknown errors aren't sent to the client.
+Eg - Mongoose validation errors aren't going to be sent to the client in production.

@@ -1,0 +1,7 @@
+// createShippingAddress() Logic
+ * Get the user_id of the current user. Currently, URL param, but finally from current session.
+ * Check if the user exists using the user_id.
+ * If the user exists, then insert the shipping address in that user's document.
+
+
+

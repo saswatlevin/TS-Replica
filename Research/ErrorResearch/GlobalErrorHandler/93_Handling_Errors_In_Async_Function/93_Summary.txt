@@ -1,0 +1,14 @@
+Link: https://www.youtube.com/watch?v=xnedbgDoRkA
+Goal of the async error handler is to catch the errors that are occurring in the async functions.
+The async function is passed as an argument to the async error handler (as func).
+func is called inside the async error handler.
+All async functions return promises. An error returned by an async function is a rejected promise.
+This rejected promise is handled by the .catch(err => next(err)) in which the error is passed by next() to the global error handling middleware.
+
+However, we face 2 problems, when the controllers (async functions) are wrapped in the async error handler:
+   1) func has no way of knowing the values of req, res and next.
+   2) The result of the function is being returned to exports.<function_name> and not a function.
+Thus, the function will be executed immediately. We want the function to execute only when a request arrives.
+
+The solution is to execute func inside an anonymous function that takes req, res, next and is being retuned from the async error handler.
+Validation Error Messages can be specified in Mongoose Schemas.

@@ -1,0 +1,18 @@
+https://www.youtube.com/watch?v=WXa1yzLR3hw
+Operation Errors (Exceptions) -> Errors that can be predicted. They need to be handled in Advance.
+Eg - User trying to access an invalid route, Invalid input, Application failed to connect to server, Request Timeout, etc.
+
+Programming Errors -> Errors (Bugs) that're introduced in our code inadvertently.
+Eg - Reading property of an undefined variable
+     Using Await W/O Async
+     Passing argument of incorrect data type.
+
+Global Error Handler (GEH) provides separation of concerns.
+We don't need to add any error handling code to our methods / controllers.
+When a function has (err, req, res, next), then express automatically recognises it as an error handling function.
+Errors not created by us will have no status code. In such cases the status code is set to 500[Internal Server Error].
+If the error has no status, then by default it is set to 'error'.
+Error codes from 400 - 499 indicate client error.
+Error codes from 500 - 599 indicate server error.
+
+We handle errors for missing routes by creating a custom error with a custom status and message in the app.all("*") controller. This error is passed to the next() function. Here, if anything is passed to next(), it will assume that an error has occurred, skip all other middleware and pass the error to the error handling middleware. 

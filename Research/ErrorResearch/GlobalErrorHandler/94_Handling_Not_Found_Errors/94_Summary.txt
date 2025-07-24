@@ -1,0 +1,7 @@
+Link: https://www.youtube.com/watch?v=8yZhJPf22rs
+The routes themselves can be wrapped in the async error handler, however, then we would need to remember which routes have async functions.
+The findById() in mongoose helps find mongodb documents by id. 
+MongoDB accepts any 12-character string as a valid document id. 
+This can lead to mongoose returning "success" despite there being no object present.
+To Deal with this, we need to create a custom error with a message and a status code, and return next(error).
+This will allow this error to be handled by the global error handling middleware.

@@ -1,0 +1,9 @@
+// * Receive the error
+// * Observe whether the error is an OperationalError or Not
+// * If an Error is an OperationalError, then there is no need for a remediation message, otherwise there is.
+// * Ensure that non-errors aren't intercepted
+
+For remediation messages, there should be 2 categories: Development and Production.
+A database with a collection of error documents, each containing a remediation message for development and production environments.
+Also, there should be a separate function to decide the type of the remediation message.
+When accessing any attributes of objects, use the optional chaining operator.

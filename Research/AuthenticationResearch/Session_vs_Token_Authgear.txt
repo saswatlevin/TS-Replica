@@ -1,0 +1,31 @@
+How Session Authentication Works:
+	You attempt to log in using your credentials.
+	Your login credentials are verified, and the server creates a session with a session ID for you. This session is stored in the database.
+	Your session ID is stored in your browser (client) as a cookie.
+	Upon subsequent requests, your cookie is verified against the session ID stored in the server. If it’s a match, the request is considered valid and processed.
+	If you log out of an application, the session ID is destroyed on both the client and server sides.
+
+
+Best Practices for Session Authentication:
+	Keep Session IDs long and random to prevent brute force attacks. The recommended length is 128 bits.
+	Record Session ID without sensitive or user-specific data. Ideally, the ID should be a random and meaningless string of characters.
+	Enforce mandatory HTTPS communications for all session-based apps.
+	Create Cookies with secure and HTTP-only attributes.
+	Securely manage your sessions. For instance, you could destroy all sessions when you close your browser, where there’s a timeout, or when you log in or log out from different locations.
+
+
+
+How TOKEN Authentication Works:
+	You attempt to log in using your user credentials.
+	The server verifies your credentials, and if valid, it returns a signed token.
+	The signed token is then stored on the client-side. It can either be stored in your local storage, in your session storage, or within a cookie.
+	The token is placed in the header for subsequent requests to your server as an “authorization header”. The server then decodes the token in the header and processes it if it is valid.
+	If you log out from an application, the token is deleted from the client-side, preventing further interactions.
+
+
+TOKEN Authentication Best Practices:
+	Validate your JWT Tokens and reject those that do not conform to your signature algorithm. You should also validate all claims, issuers, expiration dates, and audience.
+	Ensure that an expiration time is set for tokens. If you fail to set an expiration time for your tokens expressly, it could be set to remain valid forever.
+	You should avoid hardcoding tokens as it could ultimately make the work of compromising your applications easy for hackers.
+	Enforce HTTPS communication and avoid sending tokens across non-secure connections where they can be intercepted and compromised.
+

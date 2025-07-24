@@ -1,0 +1,6 @@
+// createCartItem() Logic
+ * Select the user using user_id from url argument (In real life, this comes from the session).
+ * Get the product_id, product_price, current_stock and sku from the respective product document and product_item document (In real life, gotten from the respective product and product_item documents by clicking on the ADD TO CART button.) and set these to product_id, cart_item_price and cart_item_quantity and sku in the respective cart_item object.
+ * Get the image_uri of the main_image from the respective product document and set it to cart_item_uri.
+
+Check the product_id, sku, cart_item_price and cart_item_quantity against their respective fields in product and product_item documents.

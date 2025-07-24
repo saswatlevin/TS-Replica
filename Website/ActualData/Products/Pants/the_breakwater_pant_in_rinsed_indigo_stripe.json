@@ -17,7 +17,7 @@
   
   "product_subcategory_type": "Pant",
   
-  "product_fit": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+  "product_fit": "Medium rise straight leg fit, with a 9\" taper from thigh to leg opening; 32\" inseam; model is 6'3\", wearing a Medium (iew SiVze Guide); view our Bottoms Fit Guide.",
   
   "product_garment_weight": {
     "garment_weight_description": "Sturdy daily drivers.",
@@ -57,6 +57,7 @@
     {
       "sku": "9bkgezadt6",
       "lower_size_letter": "XXL",
+      "inseam_length": 32,
       "total_stock": 100,
       "quantity_sold": 50,
       "current_stock": 50
@@ -65,6 +66,7 @@
     {
       "sku": "zcltof12fl",
       "lower_size_letter": "XL",
+      "inseam_length": 32,
       "total_stock": 125,
       "quantity_sold": 30,
       "current_stock": 95
@@ -73,6 +75,7 @@
     {
       "sku": "sj3u9sd5ti",
       "lower_size_letter": "L",
+      "inseam_length": 32,
       "total_stock": 89,
       "quantity_sold": 24,
       "current_stock": 65
@@ -81,6 +84,7 @@
     {
       "sku": "rakcwtv4jo",
       "lower_size_letter": "M",
+      "inseam_length": 32,
       "total_stock": 150,
       "quantity_sold": 80,
       "current_stock": 70
@@ -89,6 +93,7 @@
     {
       "sku": "aghgp5ty5h",
       "lower_size_letter": "S",
+      "inseam_length": 32,
       "total_stock": 195,
       "quantity_sold": 100,
       "current_stock": 95
@@ -97,6 +102,7 @@
     {
       "sku": "zuu66dm7p5",
       "lower_size_letter": "XS",
+      "inseam_length": 32,
       "total_stock": 251,
       "quantity_sold": 160,
       "current_stock": 91

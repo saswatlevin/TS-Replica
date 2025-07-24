@@ -1,0 +1,3 @@
+1) Duplicate Error returned from MongoDB is not caused by mongoose but by db.
+2) It has no name property, only an error code. We need to use that to identify it.
+3) To prevent duplicate keys, we have to set unique to true in MongoDB.

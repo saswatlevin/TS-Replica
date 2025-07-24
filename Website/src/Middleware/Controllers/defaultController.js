@@ -1,4 +1,4 @@
-const defaultController = async (req, res, next) => {
+const defaultController = (req, res, next) => {
     res.send('Hello World');
 }
 

@@ -45,6 +45,8 @@ const twelveCharacterRegex = /^[a-z0-9]{12}$/;
 
 const tenCharacterRegex = /^[a-z0-9]{10}$/;
 
+const alphaNumericRegex = /^[[a-z0-9]$/;
+
 const windowsFilePathRegex = /^[a-zA-Z]:\\(((?![<>:"/\\|?*]).)+((?<![ .])\\)?)*$/;
 
 const productNameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ ]*$/;
@@ -69,6 +71,7 @@ module.exports = {
     nameRegex,
     twelveCharacterRegex,
     tenCharacterRegex,
+    alphaNumericRegex,
     windowsFilePathRegex,
     productNameRegex,
     paragraphRegex,

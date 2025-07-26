@@ -1,5 +1,6 @@
 const z = require('zod');
 const shippingAddressValidators = require('../Validators/CustomValidators/shippingAddressValidators');
+const customFormatValidators = require('../Validators/CustomValidators/customFormatValidators');
 const objectIdSchema = require('./objectIdSchema');
 
 const shippingAddressRequestSchema = z.object({
@@ -25,7 +26,7 @@ const shippingAddressRequestSchema = z.object({
     
 });
 
-const shippingAddressCreationSchema = z.object({
+const createShippingAddressRequestSchema = z.object({
     shipping_address_id: shippingAddressValidators.zodIsShippingAddressId,
     
     address_type_id: shippingAddressValidators.zodIsAddressTypeId,
@@ -99,14 +100,50 @@ const orderShippingAddressSchema = z.object({
 // Contains shipping address objects with _id at the top only.
 const shippingAddressArrayStandardSchema = z.array(shippingAddressStandardSchema);
 // Contains shipping address objects with _id at the bottom only.
-const shippingAddressArrayCreationSchema = z.array(shippingAddressCreationSchema);
+const createShippingAddressRequestArraySchema = z.array(createShippingAddressRequestSchema);
+
+const updateShippingAddressRequestSchema = z.object({
+    address_type_id: shippingAddressValidators.zodIsAddressTypeId.optional(),
+    
+    company_name: shippingAddressValidators.zodIsCompanyName.optional(),
+    
+    address: shippingAddressValidators.zodIsAddress.optional(),
+    
+    apartment: shippingAddressValidators.zodIsApartment.optional(),
+    
+    city: shippingAddressValidators.zodIsCity.optional(),
+    
+    administrative_division: shippingAddressValidators.zodIsAdministrativeDivision.optional(),
+    
+    country: shippingAddressValidators.zodIsCountry.optional(),
+
+    postal_area: shippingAddressValidators.zodIsPostalCode.optional(),
+    
+    phone_number: shippingAddressValidators.zodIsMobilePhone.optional()
+}); 
+
+const updateShippingAddressResponseSchema = z.object({
+    
+    acknowledged: z.boolean("The acknowledged field must be a boolean value of true or false."),
+        
+    modifiedCount: z.number("The modifiedCount field must be a number (integer).").int("The modifiedCount field must be an integer.").min(0, {message: "The minimum value accepted by the modifiedCount field is 0."}).max(1, {message: "The maximum value accepted by the modifiedCount field is 1."}),
+
+    upsertedId: z.null(),
+
+    upsertedCount: z.number("The upsertedCount field must be a number (integer).").int("The upsertedCount field must be an integer.").min(0, {message: "The minimum value accepted by the upsertedCount field is 0."}).max(1, {message: "The maximum value accepted by the upsertedCount field is 1."}),
+
+    matchedCount: z.number("The matchedCount field must be a number (integer).").int("The matchedCount field must be an integer.").min(0, {message: "The minimum value accepted by the matchedCount field is 0."}).max(1, {message: "The maximum value accepted by the matchedCount field is 1."})
+
+})
 
 module.exports = {
     shippingAddressRequestSchema,
-    shippingAddressCreationSchema,
+    createShippingAddressRequestArraySchema,
     orderShippingAddressSchema,
     shippingAddressArrayStandardSchema,
-    shippingAddressArrayCreationSchema
+    createShippingAddressRequestArraySchema,
+    updateShippingAddressRequestSchema,
+    updateShippingAddressResponseSchema
 };
 
 // TEST

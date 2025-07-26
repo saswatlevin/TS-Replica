@@ -1,6 +1,6 @@
 const z = require('zod');
 const objectIdSchema = require('./objectIdSchema');
-const { shippingAddressArrayStandardSchema, shippingAddressArrayCreationSchema} = require('./shippingAddressSchemas'); 
+const { shippingAddressArrayStandardSchema, createShippingAddressRequestArraySchema} = require('./shippingAddressSchemas'); 
 const { cartItemSchema, cartItemArraySchema } = require('./cartItemSchemas');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const { testUserData, testRequestUserDataFull, testUserDataFull } = require('./TestObjects/testUserObjects');
@@ -181,6 +181,8 @@ const registerUserResponseSchema = z.object({
 
 });
 
+/** ########## SHIPPING ADDRESS SECTION ########## **/
+
 const createShippingAddressResponseSchema = z.object({
     _id: objectIdSchema,
 
@@ -212,7 +214,7 @@ const createShippingAddressResponseSchema = z.object({
 
     sms_comms: z.boolean("The sms_comms field is a required field. It only accepts boolean values."),
 
-    ShippingAddresses: shippingAddressArrayCreationSchema,
+    ShippingAddresses:  createShippingAddressRequestArraySchema,
 
     CartItems: cartItemArraySchema,
 

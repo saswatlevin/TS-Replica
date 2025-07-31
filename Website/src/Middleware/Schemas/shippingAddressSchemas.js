@@ -134,16 +134,22 @@ const updateShippingAddressResponseSchema = z.object({
 
     matchedCount: z.number("The matchedCount field must be a number (integer).").int("The matchedCount field must be an integer.").min(0, {message: "The minimum value accepted by the matchedCount field is 0."}).max(1, {message: "The maximum value accepted by the matchedCount field is 1."})
 
+});
+
+const getShippingAddressByIdRequestSchema = z.object({
+    shipping_address_id: shippingAddressValidators.zodIsShippingAddressId
 })
 
 module.exports = {
     shippingAddressRequestSchema,
     createShippingAddressRequestArraySchema,
     orderShippingAddressSchema,
+    shippingAddressStandardSchema,
     shippingAddressArrayStandardSchema,
     createShippingAddressRequestArraySchema,
     updateShippingAddressRequestSchema,
-    updateShippingAddressResponseSchema
+    updateShippingAddressResponseSchema,
+    getShippingAddressByIdRequestSchema
 };
 
 // TEST

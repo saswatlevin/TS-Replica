@@ -12,6 +12,8 @@ const responseValidator = (req, res, next) => {
     res.json = function (body) {
         // console.log("Original Response Body ", body);
         
+        // We shoould throw an error if no data is returned as that is a predictable operational error.
+        // The below condition is temporary.
         // If the response body is null, then replace it with an empty array
         // Done for getUserById, updateUser, updateUserPassword, etc.
         if (body === null) {
@@ -23,7 +25,8 @@ const responseValidator = (req, res, next) => {
            return res.json(body);
         }
 
-
+        // We shoould throw an error if no data is returned as that is a predictable operational error.
+        // The below condition is temporary.
         // If a successful request returns no data
         // i.e., there's an empty response body []
         else if (body.length === 0) {

@@ -32,6 +32,7 @@ const createShippingAddress = asyncErrorHandler(async(req, res, next) => {
     else {
         const result = await User.findOneAndUpdate({ user_id: user_id }, { $push: { ShippingAddresses: shipping_address } }, { new: true }); // return the updated document;
         console.log("Shipping address created successfully, result ", result);
+        // Created
         res.status(201).json(result);
     }
     
@@ -69,6 +70,7 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
 
     console.log("updated_shipping_address ", updated_shipping_address);
 
+    // Returns some stats regardless of successful update or not.
     const result = await User.updateOne(
                 shipping_address_selector, 
             
@@ -79,10 +81,12 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
     console.log("shipping address update result ", result);
 
     if (result["modifiedCount"] === 1 && result["matchedCount"] === 1) {
+        // OK
         res.status(200).json(result);
     }
 
     else {
+        // No Change
         res.status(304).json(result);
     }
 
@@ -112,14 +116,66 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
 
 });
 
-const searchShippingAddress = asyncErrorHandler( async(req, res, next) => {
-    console.log("In searchShippingAddress");
+const getShippingAddressById = asyncErrorHandler( async(req, res, next) => {
+    console.log("In getShippingAddressById");
 
+    const user_id = req.params.user_id;
+
+    const shipping_address_id = req.body.shipping_address_id;
+
+    // Aggregation pipeline to get the shipping_address sub-document
+
+    /**
+     * Here, the $unwind operator splits the ShippingAddresses array into individual sub-documents (array elements).
+     * The $match operator then matches the sub-document with the given shipping_address_id.
+     * The $project operator then extracts the given fields from the array elements.  
+     */
+    const shipping_address_aggregation_pipeline = [
+        {$unwind : "$ShippingAddresses"},
+        
+        {$match : {"ShippingAddresses.shipping_address_id" : shipping_address_id}},
+        {   
+            $project : {_id : 1, 
+            shipping_address_id : "$ShippingAddresses.shipping_address_id", 
+            address_type_id : "$ShippingAddresses.address_type_id", 
+            company_name: "$ShippingAddresses.company_name",
+            address: "$ShippingAddresses.address",
+            apartment: "$ShippingAddresses.apartment",
+            city: "$ShippingAddresses.city",
+            administrative_division: "$ShippingAddresses.city",
+            country: "$ShippingAddresses.country",
+            postal_area: "$ShippingAddresses.postal_area",
+            phone_number: "$ShippingAddresses.phone_number"
+        }
+        }
+    ];
+
+    if (checkUserExists(req) === false) {
+        const user_id_not_found_error = new ResourceNotFoundError(`Could not find the shipping address since the user with user_id ${user_id} does not exist.`);
+        throw user_id_not_found_error;
+    }
+
+    // Returns [] if resource not found
+    const result = await User.aggregate(shipping_address_aggregation_pipeline);
     
+    //console.log("Shipping Address returned from getShippingAddressById ", result);
+    //console.log("result[0] ", result[0]);
+
+    if (result.length === 1) {
+        // Resource Found
+        // Return the shipping address in the Shipping Addresses array.
+        res.status(302).json(result[0]);
+    }
+
+    else {
+        const shipping_address_not_found_error = new ResourceNotFoundError(`Could not find the shipping address with ${shipping_address_id} since it does not exist.`);
+        throw shipping_address_not_found_error;
+    }
+
 });
 
 module.exports = {
     createShippingAddress,
     updateShippingAddress,
-    searchShippingAddress
+    getShippingAddressById
 };

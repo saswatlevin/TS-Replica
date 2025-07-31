@@ -98,7 +98,7 @@ const orderShippingAddressSchema = z.object({
 });
 
 // Contains shipping address objects with _id at the top only.
-const shippingAddressArrayStandardSchema = z.array(shippingAddressStandardSchema);
+const shippingAddressArrayStandardSchema = z.array(shippingAddressStandardSchema).min(0);
 // Contains shipping address objects with _id at the bottom only.
 const createShippingAddressRequestArraySchema = z.array(createShippingAddressRequestSchema);
 
@@ -138,7 +138,31 @@ const updateShippingAddressResponseSchema = z.object({
 
 const getShippingAddressByIdRequestSchema = z.object({
     shipping_address_id: shippingAddressValidators.zodIsShippingAddressId
-})
+});
+
+const searchShippingAddressRequestSchema = z.object({
+    _id: objectIdSchema.optional(),
+
+    shipping_address_id: shippingAddressValidators.zodIsShippingAddressId.optional(),
+
+    address_type_id: shippingAddressValidators.zodIsAddressTypeId.optional(),
+    
+    company_name: shippingAddressValidators.zodIsCompanyName.optional(),
+    
+    address: shippingAddressValidators.zodIsAddress.optional(),
+    
+    apartment: shippingAddressValidators.zodIsApartment.optional(),
+    
+    city: shippingAddressValidators.zodIsCity.optional(),
+    
+    administrative_division: shippingAddressValidators.zodIsAdministrativeDivision.optional(),
+    
+    country: shippingAddressValidators.zodIsCountry.optional(),
+
+    postal_area: shippingAddressValidators.zodIsPostalCode.optional(),
+    
+    phone_number: shippingAddressValidators.zodIsMobilePhone.optional()
+}).strict(); 
 
 module.exports = {
     shippingAddressRequestSchema,
@@ -149,7 +173,8 @@ module.exports = {
     createShippingAddressRequestArraySchema,
     updateShippingAddressRequestSchema,
     updateShippingAddressResponseSchema,
-    getShippingAddressByIdRequestSchema
+    getShippingAddressByIdRequestSchema,
+    searchShippingAddressRequestSchema
 };
 
 // TEST

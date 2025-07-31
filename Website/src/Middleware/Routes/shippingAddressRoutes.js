@@ -11,4 +11,6 @@ router.route('/updateshippingaddress/:user_id/:shipping_address_id').patch(reque
 
 router.route('/getshippingaddressbyid/:user_id').get(requestValidator(shippingAddressSchemas.getShippingAddressByIdRequestSchema), xss(), shippingAddressControllers.getShippingAddressById);
 
+router.route('/searchshippingaddress/:user_id').get(requestValidator(shippingAddressSchemas.searchShippingAddressRequestSchema), xss(), shippingAddressControllers.searchShippingAddress);
+
 module.exports = router;

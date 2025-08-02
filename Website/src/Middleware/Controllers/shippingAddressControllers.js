@@ -1,11 +1,12 @@
 const asyncErrorHandler = require('../ErrorHandlers/asyncErrorHandler');
-const { checkUserExists, checkShippingAddressExists } = require('../Controllers/SupportFunctions/shippingAddressSupportFunctions');
+const { checkUserExists, checkShippingAddressExists, checkIsEmptyObject } = require('../Controllers/SupportFunctions/shippingAddressSupportFunctions');
 const mongoose = require('mongoose');
 const User = require('../Models/User');
 const { ValidationError } = mongoose.Error;
 const { ZodError } = require('zod');
 const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundError');
 const _ = require('lodash');
+const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
 
 const createShippingAddress = asyncErrorHandler(async(req, res, next) => {
     console.log("In createShippingAddress");
@@ -61,21 +62,28 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
 
     const request_body = req.body;
 
+    console.log("request_body in updateShippingAddress ", request_body);
+
+    if (checkIsEmptyObject(request_body) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not update the shipping address with shipping_address_id ${shipping_address_id} of user with user_id ${user_id} due to empty request body.`);
+        throw empty_request_body_error; 
+    }
+
     // Building the shipping address update request body.
-    const updated_shipping_address = Object.fromEntries(
+    const update_request = Object.fromEntries(
         Object.entries(request_body).map(([key, value]) => [`ShippingAddresses.$.${key}`, value])
     );
 
     console.log("shipping_address_selector ", shipping_address_selector);
 
-    console.log("updated_shipping_address ", updated_shipping_address);
+    console.log("update_request ", update_request);
 
     // Returns some stats regardless of successful update or not.
     const result = await User.updateOne(
                 shipping_address_selector, 
             
                 {
-                    $set: updated_shipping_address
+                    $set: update_request
                 }
             );
     console.log("shipping address update result ", result);
@@ -188,6 +196,13 @@ const searchShippingAddress = asyncErrorHandler(async(req, res, next) => {
 
     // Make a deep clone of the request body
     const request_body =  _.cloneDeep(req.body);
+
+    console.log("request_body in search_shipping_address is ", request_body);
+
+    if (checkIsEmptyObject(request_body) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not find the shipping address of user with user_id ${user_id} due to empty request body.`);
+        throw empty_request_body_error; 
+    }
 
     // Building the shipping address search query
     const shipping_address_search_query = Object.fromEntries(

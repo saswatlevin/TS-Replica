@@ -1,5 +1,6 @@
-const User = require('../../Models/User')
 const asyncErrorHandler = require('../../ErrorHandlers/asyncErrorHandler');
+const User = require('../../Models/User');
+const _ = require('lodash');
 
 const checkUserExists = asyncErrorHandler( async(req, res, next) => {
     console.log("In checkUserExists");
@@ -39,8 +40,15 @@ const checkShippingAddressExists = asyncErrorHandler(async(req, res, next) => {
 
 });
 
+const checkIsEmptyObject = (object) => {
+    console.log("In checkIsEmptyObject");
+    const result = _.isEmpty(object);
+    return result;
+}
+
 module.exports = {
     checkUserExists,
-    checkShippingAddressExists
+    checkShippingAddressExists,
+    checkIsEmptyObject
 };
 

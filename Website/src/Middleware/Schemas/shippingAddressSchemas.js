@@ -120,9 +120,9 @@ const updateShippingAddressRequestSchema = z.object({
     postal_area: shippingAddressValidators.zodIsPostalCode.optional(),
     
     phone_number: shippingAddressValidators.zodIsMobilePhone.optional()
-}); 
+}).strict();
 
-const updateShippingAddressResponseSchema = z.object({
+const updateShippingAddressSuccessResponseSchema = z.object({
     
     acknowledged: z.boolean("The acknowledged field must be a boolean value of true or false."),
         
@@ -135,6 +135,12 @@ const updateShippingAddressResponseSchema = z.object({
     matchedCount: z.number("The matchedCount field must be a number (integer).").int("The matchedCount field must be an integer.").min(0, {message: "The minimum value accepted by the matchedCount field is 0."}).max(1, {message: "The maximum value accepted by the matchedCount field is 1."})
 
 });
+
+const updateShippingAddressFailureResponseSchema = z.object({
+    acknowledged: z.literal(false)
+}).strict();
+
+const updateShippingAddressResponseSchema = z.union([updateShippingAddressSuccessResponseSchema, updateShippingAddressFailureResponseSchema]);
 
 const getShippingAddressByIdRequestSchema = z.object({
     shipping_address_id: shippingAddressValidators.zodIsShippingAddressId

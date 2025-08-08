@@ -43,7 +43,7 @@ const createShippingAddress = asyncErrorHandler(async(req, res, next) => {
         // The .lean() functions strips these keys and fields completely.
         const result = await User.findOneAndUpdate({ user_id: user_id }, { $push: { ShippingAddresses: shipping_address } }, { new: true }).lean(); // return the updated document;
         console.log("Shipping address created successfully, result ", result);
-        // Created
+        // Here, we use 201 since it means that the resource has been created.
         res.status(201).json(result);
     }
     
@@ -108,12 +108,14 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
 
     if (result["modifiedCount"] === 1 && result["matchedCount"] === 1) {
         // OK
+        // Here, 200 is used since the server successfully updates the resource and returns the updated representation in the response body
         res.status(200).json(result);
     }
 
     else {
         // No Change
-        res.status(304).json(result);
+        // Here, 200 is used since there's no change to the given resource.
+        res.status(200).json(result);
     }
 
 
@@ -198,7 +200,8 @@ const getShippingAddressById = asyncErrorHandler( async(req, res, next) => {
     if (result.length === 1) {
         // Resource Found
         // Return the shipping address in the Shipping Addresses array.
-        res.status(302).json(result[0]);
+        // Here, 200 is used since the resource is found and successfully returned at the requested URL (no redirect).
+        res.status(200).json(result[0]);
     }
 
     else {
@@ -273,7 +276,8 @@ const searchShippingAddress = asyncErrorHandler(async(req, res, next) => {
     if (result.length > 0) {
         // Resources Found
         // Return the shipping addresses in the Shipping Addresses array.
-        res.status(302).json(result);
+        // Here, 200 is used since the resource is found and returned successfully at the requested URL (no redirect).
+        res.status(200).json(result);
     }
 
     else {
@@ -318,6 +322,7 @@ const deleteShippingAddressById = asyncErrorHandler(async (req, res, next) => {
 
     const deletion_result = await User.updateOne({user_id: user_id}, {$pull: {"ShippingAddresses": request_body}});
 
+    // Here 200 is used as status code since the server wants to send a message after deletion.
     res.status(200).json(deletion_result);
 
 });

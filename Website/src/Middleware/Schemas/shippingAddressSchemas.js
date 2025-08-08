@@ -3,9 +3,7 @@ const shippingAddressValidators = require('../Validators/CustomValidators/shippi
 const customFormatValidators = require('../Validators/CustomValidators/customFormatValidators');
 const objectIdSchema = require('./objectIdSchema');
 
-const shippingAddressRequestSchema = z.object({
-    shipping_address_id: shippingAddressValidators.zodIsShippingAddressId,
-    
+const createShippingAddressRequestSchema = z.object({
     address_type_id: shippingAddressValidators.zodIsAddressTypeId,
     
     company_name: shippingAddressValidators.zodIsCompanyName,
@@ -24,9 +22,9 @@ const shippingAddressRequestSchema = z.object({
     
     phone_number: shippingAddressValidators.zodIsMobilePhone
     
-});
+}).strict();
 
-const createShippingAddressRequestSchema = z.object({
+const createShippingAddressResponseSchema = z.object({
     shipping_address_id: shippingAddressValidators.zodIsShippingAddressId,
     
     address_type_id: shippingAddressValidators.zodIsAddressTypeId,
@@ -46,10 +44,10 @@ const createShippingAddressRequestSchema = z.object({
     postal_area: shippingAddressValidators.zodIsPostalCode,
     
     phone_number: shippingAddressValidators.zodIsMobilePhone,
-
-    _id: objectIdSchema
     
-});
+    _id: objectIdSchema 
+    
+}).strict();
 
 const shippingAddressStandardSchema = z.object({
     _id: objectIdSchema,
@@ -74,7 +72,7 @@ const shippingAddressStandardSchema = z.object({
     
     phone_number: shippingAddressValidators.zodIsMobilePhone
     
-});
+}).strict();
 
 const orderShippingAddressSchema = z.object({
     address_type_id: shippingAddressValidators.zodIsAddressTypeId,
@@ -100,7 +98,7 @@ const orderShippingAddressSchema = z.object({
 // Contains shipping address objects with _id at the top only.
 const shippingAddressArrayStandardSchema = z.array(shippingAddressStandardSchema).min(0);
 // Contains shipping address objects with _id at the bottom only.
-const createShippingAddressRequestArraySchema = z.array(createShippingAddressRequestSchema);
+const createShippingAddressResponseArraySchema = z.array(createShippingAddressResponseSchema);
 
 const updateShippingAddressRequestSchema = z.object({
     address_type_id: shippingAddressValidators.zodIsAddressTypeId.optional(),
@@ -124,17 +122,17 @@ const updateShippingAddressRequestSchema = z.object({
 
 const updateShippingAddressSuccessResponseSchema = z.object({
     
-    acknowledged: z.boolean("The acknowledged field must be a boolean value of true or false."),
+    acknowledged: shippingAddressValidators.zodIsAcknowledged,
         
-    modifiedCount: z.number("The modifiedCount field must be a number (integer).").int("The modifiedCount field must be an integer.").min(0, {message: "The minimum value accepted by the modifiedCount field is 0."}).max(1, {message: "The maximum value accepted by the modifiedCount field is 1."}),
+    modifiedCount:  shippingAddressValidators.zodIsModifiedCount,
 
-    upsertedId: z.null(),
+    upsertedId:  shippingAddressValidators.zodIsUpsertedId,
 
-    upsertedCount: z.number("The upsertedCount field must be a number (integer).").int("The upsertedCount field must be an integer.").min(0, {message: "The minimum value accepted by the upsertedCount field is 0."}).max(1, {message: "The maximum value accepted by the upsertedCount field is 1."}),
+    upsertedCount:  shippingAddressValidators.zodIsUpsertedCount,
 
-    matchedCount: z.number("The matchedCount field must be a number (integer).").int("The matchedCount field must be an integer.").min(0, {message: "The minimum value accepted by the matchedCount field is 0."}).max(1, {message: "The maximum value accepted by the matchedCount field is 1."})
+    matchedCount: shippingAddressValidators.zodIsMatchedCount
 
-});
+}).strict();
 
 const updateShippingAddressFailureResponseSchema = z.object({
     acknowledged: z.literal(false)
@@ -144,7 +142,7 @@ const updateShippingAddressResponseSchema = z.union([updateShippingAddressSucces
 
 const getShippingAddressByIdRequestSchema = z.object({
     shipping_address_id: shippingAddressValidators.zodIsShippingAddressId
-});
+}).strict();
 
 const searchShippingAddressRequestSchema = z.object({
     _id: objectIdSchema.optional(),
@@ -171,12 +169,12 @@ const searchShippingAddressRequestSchema = z.object({
 }).strict(); 
 
 module.exports = {
-    shippingAddressRequestSchema,
-    createShippingAddressRequestArraySchema,
+    createShippingAddressRequestSchema,
+    createShippingAddressResponseArraySchema,
     orderShippingAddressSchema,
     shippingAddressStandardSchema,
     shippingAddressArrayStandardSchema,
-    createShippingAddressRequestArraySchema,
+    createShippingAddressResponseArraySchema,
     updateShippingAddressRequestSchema,
     updateShippingAddressResponseSchema,
     getShippingAddressByIdRequestSchema,

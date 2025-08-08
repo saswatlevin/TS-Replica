@@ -16,7 +16,7 @@ const createCartItemSchema = z.object({
     cart_item_quantity: cartItemValidators.zodIsCartItemQuantity
 });
 
-const cartItemArraySchema = z.array(createCartItemSchema); 
+const cartItemArraySchema = z.array(createCartItemSchema).min(0); 
 
 
 module.exports = {

@@ -40,6 +40,16 @@ const zodIsAddressTypeId = z.string("The address_type_id field must be a string.
     message: "A address_type_id can only accept a single digit string numeric value (1 - 5)."
 });
 
+const zodIsAcknowledged = z.boolean("The acknowledged field must be a boolean value of true or false.");
+
+const zodIsModifiedCount = z.number("The modifiedCount field must be a number (integer).").int("The modifiedCount field must be an integer.").min(0, {message: "The minimum value accepted by the modifiedCount field is 0."}).max(1, {message: "The maximum value accepted by the modifiedCount field is 1."}); 
+
+const zodIsUpsertedId = z.null();
+
+const zodIsUpsertedCount =  z.number("The upsertedCount field must be a number (integer).").int("The upsertedCount field must be an integer.").min(0, {message: "The minimum value accepted by the upsertedCount field is 0."}).max(1, {message: "The maximum value accepted by the upsertedCount field is 1."});
+
+const zodIsMatchedCount = z.number("The matchedCount field must be a number (integer).").int("The matchedCount field must be an integer.").min(0, {message: "The minimum value accepted by the matchedCount field is 0."}).max(1, {message: "The maximum value accepted by the matchedCount field is 1."});
+
 module.exports = {
     zodIsShippingAddressId,
     zodIsPostalCode,
@@ -50,5 +60,10 @@ module.exports = {
     zodIsAdministrativeDivision,
     zodIsCountry,
     zodIsMobilePhone,
-    zodIsAddressTypeId
+    zodIsAddressTypeId,
+    zodIsAcknowledged,
+    zodIsModifiedCount,
+    zodIsUpsertedId,
+    zodIsUpsertedCount,
+    zodIsMatchedCount
 };

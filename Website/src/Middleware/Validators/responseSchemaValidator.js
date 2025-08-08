@@ -1,7 +1,8 @@
 const userSchemas = require('../Schemas/userSchemas');
 const schemaValidator = require('./schemaValidator');
-const { registerUserResponseSchema, userResponseGenericSchema, userResponseGenericSchemaArray, createShippingAddressResponseSchema } = require('../Schemas/userSchemas');
+const { registerUserResponseSchema, userResponseGenericSchema, userResponseGenericSchemaArray, userShippingAddressResponseSchema } = require('../Schemas/userSchemas');
 const { shippingAddressResponseSchema, updateShippingAddressResponseSchema, shippingAddressStandardSchema, shippingAddressArrayStandardSchema } = require('../Schemas/shippingAddressSchemas');
+
 
 // Validates the responses of different APIs based on their respective schemas.
 const responseSchemaValidator = (request, object) => {
@@ -26,10 +27,10 @@ const responseSchemaValidator = (request, object) => {
     }
 
     else if ((request.originalUrl.includes("/shippingaddresses/createshippingaddress") === true) && request.method === "POST") {
-        return schemaValidator(createShippingAddressResponseSchema, object);
+        return schemaValidator(userShippingAddressResponseSchema, object);
     }
 
-    else if ((request.originalUrl.includes("/shippingaddresses/updateshippingaddress") === true) && request.method === "PATCH") {
+    else if ( (request.originalUrl.includes("/shippingaddresses/updateshippingaddress") === true && request.method === "PATCH") || (request.originalUrl.includes("/shippingaddresses/deleteshippingaddress") === true && request.method === "DELETE"))   {
         return schemaValidator(updateShippingAddressResponseSchema, object);
     }
 

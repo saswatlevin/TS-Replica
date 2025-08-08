@@ -1,6 +1,6 @@
 const z = require('zod');
 const objectIdSchema = require('./objectIdSchema');
-const { shippingAddressArrayStandardSchema, createShippingAddressRequestArraySchema} = require('./shippingAddressSchemas'); 
+const { shippingAddressArrayStandardSchema, createShippingAddressResponseArraySchema} = require('./shippingAddressSchemas'); 
 const { cartItemSchema, cartItemArraySchema } = require('./cartItemSchemas');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const { testUserData, testRequestUserDataFull, testUserDataFull } = require('./TestObjects/testUserObjects');
@@ -183,7 +183,7 @@ const registerUserResponseSchema = z.object({
 
 /** ########## SHIPPING ADDRESS SECTION ########## **/
 
-const createShippingAddressResponseSchema = z.object({
+const userShippingAddressResponseSchema = z.object({
     _id: objectIdSchema,
 
     user_id: z.string("The user_id field must be a string. It is a required field.").length(12, {message: "The user_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The user_id can only contain lowercase letters and numbers."}),
@@ -214,12 +214,12 @@ const createShippingAddressResponseSchema = z.object({
 
     sms_comms: z.boolean("The sms_comms field is a required field. It only accepts boolean values."),
 
-    ShippingAddresses:  createShippingAddressRequestArraySchema,
+    ShippingAddresses:  createShippingAddressResponseArraySchema,
 
     CartItems: cartItemArraySchema,
 
     __v: customValidators.zodIsDocumentVersion
-});
+}).strict();
 
 const userResponseGenericSchemaArray = z.array(userResponseGenericSchema).min(1);
 
@@ -232,7 +232,7 @@ module.exports = {
     userResponseGenericSchema,
     registerUserResponseSchema,
     userResponseGenericSchemaArray,
-    createShippingAddressResponseSchema
+    userShippingAddressResponseSchema
 };
 
 // TESTS

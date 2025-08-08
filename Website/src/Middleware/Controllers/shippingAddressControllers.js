@@ -7,23 +7,31 @@ const { ZodError } = require('zod');
 const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundError');
 const _ = require('lodash');
 const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
+const createRandomString = require('../createRandomString');
 
 const createShippingAddress = asyncErrorHandler(async(req, res, next) => {
     console.log("In createShippingAddress");
 
+    const user_id = req.params.user_id;
+
+    if (checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not create shipping address for user with user_id ${user_id} as the request body is empty.`);
+
+        throw empty_request_body_error;
+    }
+
     // Test whether value matches expected value
-    const shipping_address = req?.body;
+    var shipping_address = req.body;
     
     // Test return value
     const user_exists = await checkUserExists(req);
 
-    console.log("user_exists ", user_exists);
+    //console.log("user_exists ", user_exists);
 
-    const user_id = req.params.user_id;
+    // Assign the shipping_address_id
+    shipping_address['shipping_address_id'] = createRandomString(6);
 
-    //console.log("user_id ", user_id);
-
-    //console.log("shipping_address ", shipping_address);
+    console.log("shipping_address ", shipping_address);
 
     if(user_exists === false) {
         const error = new ResourceNotFoundError(`Could not create the shipping address since the user with user_id ${user_id} does not exist.`);
@@ -31,7 +39,9 @@ const createShippingAddress = asyncErrorHandler(async(req, res, next) => {
     }
     
     else {
-        const result = await User.findOneAndUpdate({ user_id: user_id }, { $push: { ShippingAddresses: shipping_address } }, { new: true }); // return the updated document;
+        // A live mongoose document contains many hiiden keys and fields. 
+        // The .lean() functions strips these keys and fields completely.
+        const result = await User.findOneAndUpdate({ user_id: user_id }, { $push: { ShippingAddresses: shipping_address } }, { new: true }).lean(); // return the updated document;
         console.log("Shipping address created successfully, result ", result);
         // Created
         res.status(201).json(result);
@@ -45,6 +55,12 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
     const user_id = req.params.user_id;
 
     const shipping_address_id = req.params.shipping_address_id;
+
+    if (checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not update shipping address with shipping_address_id ${shipping_address_id} for user with user_id ${user_id} as the request body is empty.`);
+
+        throw empty_request_body_error;
+    }
 
     if (checkUserExists(req) === false) {
         const user_id_not_found_error = new ResourceNotFoundError(`Could not update the shipping address since the user with user_id ${user_id} does not exist.`);
@@ -79,13 +95,15 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
     console.log("update_request ", update_request);
 
     // Returns some stats regardless of successful update or not.
+    // A live mongoose document contains many hiiden keys and fields. 
+    // The .lean() functions strips these keys and fields completely.
     const result = await User.updateOne(
                 shipping_address_selector, 
             
                 {
                     $set: update_request
                 }
-            );
+            ).lean();
     console.log("shipping address update result ", result);
 
     if (result["modifiedCount"] === 1 && result["matchedCount"] === 1) {
@@ -128,6 +146,12 @@ const getShippingAddressById = asyncErrorHandler( async(req, res, next) => {
     console.log("In getShippingAddressById");
 
     const user_id = req.params.user_id;
+
+    if (checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not get shipping address for user with user_id ${user_id} as the request body is empty.`);
+
+        throw empty_request_body_error;
+    }
 
     if (checkUserExists(req) === false) {
         const user_id_not_found_error = new ResourceNotFoundError(`Could not find the shipping address since the user with user_id ${user_id} does not exist.`);
@@ -188,6 +212,12 @@ const searchShippingAddress = asyncErrorHandler(async(req, res, next) => {
     console.log("In searchShippingAddress");
     
     const user_id = req.params.user_id;
+
+    if (checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not find shipping address for user with user_id ${user_id} as the request body is empty.`);
+
+        throw empty_request_body_error;
+    }
 
     if (checkUserExists(req) === false) {
         const user_id_not_found_error = new ResourceNotFoundError(`Could not find the shipping address since the user with user_id ${user_id} does not exist.`);
@@ -253,9 +283,49 @@ const searchShippingAddress = asyncErrorHandler(async(req, res, next) => {
 
 });
 
+const deleteShippingAddressById = asyncErrorHandler(async (req, res, next) => {
+    console.log("In deleteShippingAddress");
+
+    const user_id = req.params.user_id;
+
+    const request_body = req.body;
+
+    const user_exists = await checkUserExists(req);
+
+    console.log("user_exists ", user_exists);
+
+    if (user_exists === false) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not find the shipping address to be deleted, of user with user_id ${user_id} due to empty request body.`);
+        throw empty_request_body_error; 
+    }
+
+    else if (user_exists !== true) {
+            throw user_exists;
+            
+    }
+
+    else {
+        ;
+    }
+    
+
+    //const shipping_address_id = request_body.shipping_address_id;
+
+    /*if(checkShippingAddressExists(request_body) === false) {
+        const shipping_address_not_found_error = new ResourceNotFoundError(`Could not delete the shipping address with ${shipping_address_id} since it does not exist.`);
+        throw shipping_address_not_found_error;
+    }*/
+
+    const deletion_result = await User.updateOne({user_id: user_id}, {$pull: {"ShippingAddresses": request_body}});
+
+    res.status(200).json(deletion_result);
+
+});
+
 module.exports = {
     createShippingAddress,
     updateShippingAddress,
     getShippingAddressById,
-    searchShippingAddress
+    searchShippingAddress,
+    deleteShippingAddressById
 };

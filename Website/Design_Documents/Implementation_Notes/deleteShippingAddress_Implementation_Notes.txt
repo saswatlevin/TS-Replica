@@ -1,0 +1,24 @@
+Get user_id rom URL params.
+Check if request body is empty, if so, throw EmptyRequestBodyError.
+Check if user exists, if not, throw ResourceNotFoundError.
+Get shipping_address_id from request body.
+Check if shipping address exists, if not throw ResourceNotFoundError.
+Using user_id and shipping_address_id, delete the shipping_address_id.
+
+{
+    "acknowledged": true,
+    "modifiedCount": 1,
+    "upsertedId": null,
+    "upsertedCount": 0,
+    "matchedCount": 1
+}
+
+Remember to include DOB in user schemas.
+Remember to include .strict() in all schemas (Done for shipping addresses so far.)
+Remember to include empty request body error in all async controllers and support functions.
+Remember to get rid of length in regexes and replace them with .length().
+Add .lean() to all mongoose methods to remove unnecessary keys. 
+
+Remember to discuss 3 new amounts with babu.
+Remember to message Kim.
+

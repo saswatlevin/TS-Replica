@@ -1,0 +1,6 @@
+==========Mongoose Functions For MongoDB Documents==========
+create()
+findOneAndUpdate()
+findOne()
+find()	
+==========Mongoose Functions For MongoDB Documents==========

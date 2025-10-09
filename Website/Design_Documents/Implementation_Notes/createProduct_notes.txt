@@ -1,0 +1,29 @@
+In all Create functions, check if the object already exists.
+We need the following pieces of data
+1) userId -> From URL Parameter | From Session
+2) product_id -> From custom property created on request body | From front end
+3) cartItemId -> From URL Parameter | From front end
+4) product_body -> From request body
+
+createProduct ->
+check if the product already exists 
+Create a product_id as a random string.
+Get the request body
+Check if the request body contains attributes related to product item and product image. If it doesn't have either of these, throw a respective error.
+Use the Model.create() function to create the product.
+
+
+createProductItem ->
+Get the product_id of the product to which the product item belongs
+Create the sku as a 10-digit random string
+Get the request body
+Check if the request body is empty and throw an empty object error
+Create the product item by combining the sku with the request body using the spread operator
+Insert the product item as a sub-document in the ProductItems array in the respective Product document. 
+
+createProductImage
+Get the product_id of the product to which the product image belongs.
+Create the product_image_id as a 12-digit random string.
+Get the request body.
+Extract the product image from the request body.
+Insert the product image as a sub-document in the ProductImages array in the respective Product document.c

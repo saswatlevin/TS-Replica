@@ -1,0 +1,17 @@
+Check if the user exists, if not, throw a ResourceNotFoundError.
+
+Get search parameters from request body.
+
+Create a 3 stage aggregation pipeline using unwind, match and project.
+
+This is a 3-stage aggregation pipeline which uses $unwind to separate the array sub-documents (elements), $match to select the array sub-documents using the search parameters and $project to select which attributes to include in the output.
+
+Pass the aggregation pipeline to the User.aggregate() function.
+
+Check if User.aggregate() returns at least 1 shipping address sub-document or not. If it returns [], throw a ResourceNotFoundError.
+
+//REMMEBER TO ADD .strict() to all Zod schemas. This disallows any unknown keys.
+//ZOD ALLOWS UNKNOWN KEYS BY DEFAULT, BUT STRIPS THEM OUT DURING VALIDATION.
+
+
+

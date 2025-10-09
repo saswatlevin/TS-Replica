@@ -8,6 +8,8 @@
 *** Before end of today ***
 1) Ensure that mongosanitize() is enabled.
 
+Design the function before coding
+
 // Order of coding
 1) Create the validation schemas
 2) Create the function
@@ -19,7 +21,7 @@ Note: Convert input to valid JSON during validation, where necessary.
 
 // Create the APIs in the following order:
 1) USERS - Done already.
-2) ShippingAddresses
+2) ShippingAddresses - Done.
 3) PRODUCTS
 4) ProductItems
 5) ProductImages

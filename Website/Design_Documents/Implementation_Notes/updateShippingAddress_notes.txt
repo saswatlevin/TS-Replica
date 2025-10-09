@@ -1,0 +1,5 @@
+Check if user exists, if not throw ResourceNotFoundError.
+Check if shipping address exists. If not, throw ResourceNotFoundError.
+Create a filter to get the user_id and the shipping_address_id.
+Dynamically generate the updated_shipping_address.
+Pass the filter and the updated_shipping_address to the updateOne.

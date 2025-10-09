@@ -1,0 +1,11 @@
+Check if user exists, if not throw ResourceNotFoundError.
+
+Create an aggregation pipeline to select the Shipping Address sub-document by shipping_address_id.
+
+This is a 3-stage aggregation pipeline which uses $unwind to separate the array sub-documents (elements), $match to select the array sub-documents using the search parameters and $project to select which attributes to include in the output.
+
+Pass the query to the User.aggregate() function.
+
+Check if User.aggregate() returns a shipping address sub-document or not. If it returns [], throw a ResourceNotFoundError.
+
+

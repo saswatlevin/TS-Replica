@@ -7,3 +7,5 @@ The global error handling function is divided into the devError and prodError fu
 In production, only operational errors should be sent to the client.
 In production, programming error and other unknown errors aren't sent to the client.
 Eg - Mongoose validation errors aren't going to be sent to the client in production.
+
+f56a92c4789d

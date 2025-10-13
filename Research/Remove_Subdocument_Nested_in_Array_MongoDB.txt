@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/22065314/remove-a-subdocument-nested-in-an-array-in-mongodb

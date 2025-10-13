@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "68824310c6a5693fe14decda"
+  },
+  "user_id": "b51370647fc8",
+  "docType": "USER",
+  "date_created_at": "2025-07-24T14:28:32.596Z",
+  "email": "antnkrpv@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$IyDpJQ7poGCLXf4+gy4QQA$fn22e4ia+HsJQZNxNsPpuFtL9o+iTzmsTe0aEzTKh2Q",
+  "phone_number": "917349700297",
+  "first_name": "Anton",
+  "last_name": "Karpov",
+  "user_role": "admin",
+  "upper_size_number": 42,
+  "upper_size_letter": "XL",
+  "others_size_letter": "XL",
+  "email_comms_type": "Never / Unsubscribe",
+  "sms_comms": true,
+  "ShippingAddresses": [
+    {
+      "shipping_address_id": "1aswedcvkoip",
+      "address_type_id": "1",
+      "company_name": "",
+      "address": "40 King St W",
+      "apartment": "Scotiabank Plaza",
+      "city": "Toronto",
+      "administrative_division": "Ontario",
+      "country": "Canada",
+      "postal_area": "M5H 3Y2",
+      "phone_number": "1310981693",
+      "_id": {
+        "$oid": "68824ebb3585daa9e07fbb49"
+      }
+    },
+    {
+      "shipping_address_id": "1ko0muljhytd",
+      "address_type_id": "2",
+      "company_name": "None",
+      "address": "2-1-1 Nishishinjuku",
+      "apartment": "Shinjuku Mitsui Building",
+      "city": "Shinjuku",
+      "administrative_division": "Tokyo",
+      "country": "Japan",
+      "postal_area": "163-0451",
+      "phone_number": "81333443311",
+      "_id": {
+        "$oid": "68824efd3585daa9e07fbb4e"
+      }
+    }
+  ],
+  "CartItems": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68824769d8a66ff67987de21"
+  },
+  "user_id": "fda85da16dd5",
+  "docType": "USER",
+  "date_created_at": "2025-07-24T14:47:05.740Z",
+  "email": "antsdv@server.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$xA/hvmuZCHZiqMWx1FbM6Q$brLpQNBWm3xE5oL4AUTPLRnZN/Q8TKShcmcVOjN/xUA",
+  "phone_number": "81982372612",
+  "first_name": "Anton",
+  "last_name": "Sadiyev",
+  "user_role": "user",
+  "upper_size_number": 42,
+  "upper_size_letter": "L",
+  "others_size_letter": "M",
+  "email_comms_type": "One weekly recap",
+  "sms_comms": true,
+  "ShippingAddresses": [
+    {
+      "shipping_address_id": "5lh2gctxmabv",
+      "address_type_id": "3",
+      "company_name": "Power",
+      "address": "Unit 12, Meadow Industrial Estate",
+      "apartment": "",
+      "city": "Reading",
+      "administrative_division": "Berkshire",
+      "country": "United Kingdom",
+      "postal_area": "RG1 8EQ",
+      "phone_number": "4411895753",
+      "_id": {
+        "$oid": "68851136914be6dbc4fe9acf"
+      }
+    }
+  ],
+  "CartItems": [],
+  "__v": 0
+}]

@@ -38,6 +38,19 @@
 			"country": "Canada",
 			"postal_area": "M5H 3Y2",
 			"phone_number": "+1310981693"
+		},
+
+		{
+  			"shipping_address_id": "5lh2gctxmabv",
+  			"address_type_id": "1",
+  			"company_name": "Oakridge Supplies Ltd.",
+  			"address": "Unit 12, Meadow Industrial Estate",
+  			"apartment": "",
+  			"city": "Reading",
+  			"administrative_division": "Berkshire",
+  			"country": "United Kingdom",
+  			"postal_area": "RG1 8EQ",
+  			"phone_number": "441189575300"
 		}
 		
 	],

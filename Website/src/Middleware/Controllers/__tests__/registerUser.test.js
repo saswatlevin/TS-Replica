@@ -1,3 +1,4 @@
+// AI Generated Code for Testing
 const { registerUser } = require('../userControllers');
 const User = require('../../Models/User');
 const argon2 = require('argon2');
@@ -17,7 +18,9 @@ describe('registerUser - Database Insertion Test', () => {
         const mockUserId = '7ycthivdrqvl';
         const mockDateTime = '2025-05-10T20:00:00Z';
         
+        //  mockHashedValue is when the function is async and returns a promise
         argon2.hash.mockResolvedValue(mockHashedPassword);
+        // mockReturnValue is to be used when the function returns a value
         createRandomString.mockReturnValue(mockUserId);
         getCurrentDateTime.mockReturnValue(mockDateTime);
         

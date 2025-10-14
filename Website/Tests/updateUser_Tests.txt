@@ -1,0 +1,29 @@
+updateUser - Database insertion Test
+	 MOCK ALL EXTERNAL DEPENDENCIES
+         # Mock the request body value
+         # Provide the user_id to the request_body. (X DON'T mock filter - it's created internally)
+	
+	 # The response body is created as a JSON function
+         
+	 #
+	 # Call omit with mockReturnedValue({// Here supply the rest of the update object except the user_id}).	 
+	 # Mock the updated_user object value
+	 # Mock the execution of the findOneAndUpdate function with mockResolvedValue()
+         
+         # The updateUser() function is called with the mocked request body, the mocked response body and the next function
+         # We check if the findOneAndUpdate() function is called exactly once
+         # We check the argument with which the findOneAndUpdate function is called
+	 
+	 # Verify response methods - // Add these assertions:
+	   expect(res.status).toHaveBeenCalledWith(201);
+	   expect(res.json).toHaveBeenCalledWith(updatedUser);
+	 
+	 ✅ Mock all external dependencies
+	 ✅ Mock the request body value
+	 ✅ Create the response object with json function
+         ✅ Call omit with mockReturnedValue
+	 ✅ Mock the updated user object value
+	 ✅ Call updateUser() with mocked req, res, next
+	 ✅ Check if findOneAndUpdate() is called exactly once
+	 ✅ Check the arguments passed to findOneAndUpdate()
+         ✅ 

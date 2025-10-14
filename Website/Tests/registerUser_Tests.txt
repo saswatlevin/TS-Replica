@@ -1,0 +1,43 @@
+All external dependencies are always mocked
+
+registerUser - Database Insertion Test
+	
+	# The hashed_password, user_id and date_time values are mocked	
+	
+	# argon2 hash function execution is mocked
+	# createRandomString function execution is mocked
+	# getCurrentDateTime function execution is mocked
+	
+	# The user_to_be_created object value is mocked
+	# The create function execution is mocked
+	
+	# The request body value is mocked
+	
+	# The response body is created as a JSON function
+	
+	# The registerUser function is called with the mock request body, the created response body, 
+        # The number of times the create function is called is asserted.
+	# What the create function is called with is also asserted.
+ 
+
+registerUser - Data Transformation Tests
+	
+	# BEFORE EACH TEST THE MOCKS ARE RESET
+        
+        # The request body is mocked
+        # The response body is mocked
+        # The next function is mocked
+        
+        # The user_id is mocked.
+        
+	# The create_random_string function is mocked with mockReturnValue('7ycthivdrqvl');
+        # The argon2 hash function is mocked with mockResolvedValue('$argon2id$hash');
+        # The currentDateTime function is mocked with mockReturnValue('2025-05-10T20:00:00Z');
+        # The create function is mocked with mockResolvedValue({ user_id: mockUserId });
+	
+	# The registerUser function is called with the mock request body, the created response body, the mocked next function
+	
+	# Expect createRandomString to have been called with (6).
+	# expect(User.create).toHaveBeenCalledWith(expect.objectContaining({ user_id: mockUserId })
+	
+     

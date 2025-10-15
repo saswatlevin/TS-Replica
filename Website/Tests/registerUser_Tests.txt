@@ -1,21 +1,32 @@
+registerUser Test List
+DATABASE INSERTION TEST
+* Should successfully insert user into database via User.create()
+
+DATA TRANSFORMATION TESTS
+* Should generate 12-char user_id via createRandomString(6)
+* Should set docType to "USER"
+* Should set date_created_at to current ISO8601 timestamp
+* Should hash password with argon2 before storage
+* Should NOT store plain-text password
+
 All external dependencies are always mocked
 
-registerUser - Database Insertion Test
+registerUser - Database Insertion Test - "should successfully insert user into database via User.create()"
 	
 	# The hashed_password, user_id and date_time values are mocked	
 	
-	# argon2 hash function execution is mocked
-	# createRandomString function execution is mocked
-	# getCurrentDateTime function execution is mocked
+	# argon2 hash function execution is called with mockResolvedValue()
+	# createRandomString function is called with mockReturnValue()
+	# getCurrentDateTime function is called with mockReturnValue()
 	
 	# The user_to_be_created object value is mocked
-	# The create function execution is mocked
+	# The create function is called with mockResolveValue()
 	
 	# The request body value is mocked
 	
 	# The response body is created as a JSON function
 	
-	# The registerUser function is called with the mock request body, the created response body, 
+	# The registerUser function is called with the mock request body, the created response body, and the next function 
         # The number of times the create function is called is asserted.
 	# What the create function is called with is also asserted.
  
@@ -30,10 +41,10 @@ registerUser - Data Transformation Tests
         
         # The user_id is mocked.
         
-	# The create_random_string function is mocked with mockReturnValue('7ycthivdrqvl');
-        # The argon2 hash function is mocked with mockResolvedValue('$argon2id$hash');
-        # The currentDateTime function is mocked with mockReturnValue('2025-05-10T20:00:00Z');
-        # The create function is mocked with mockResolvedValue({ user_id: mockUserId });
+	# The create_random_string function is called with mockReturnValue('7ycthivdrqvl');
+        # The argon2 hash function is called with mockResolvedValue('$argon2id$hash');
+        # The currentDateTime function is called with mockReturnValue('2025-05-10T20:00:00Z');
+        # The create function is called with mockResolvedValue({ user_id: mockUserId });
 	
 	# The registerUser function is called with the mock request body, the created response body, the mocked next function
 	

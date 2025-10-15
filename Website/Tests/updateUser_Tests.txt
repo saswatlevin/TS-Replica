@@ -1,22 +1,60 @@
-updateUser - Database insertion Test
+updateUser - Test Plan
+DATABASE INSERTION TEST
+* Should update the corresponding User document with the updated details using User.findOneAndUpdate() 
+
+DATA TRANSFORMATION TESTS
+* Should create a filter containing only the user_id.
+* Should create the update_object by removing the user_id from the request_body.
+
+
+=======IMPROVED TEST PLAN==========
+describe('updateUser', () => {
+    
+    describe('Core Functionality', () => {
+        test('should update user via User.findOneAndUpdate()');
+        test('should return updated user document in response');
+        test('should set HTTP status code 201');
+    });
+
+    describe('Data Transformation', () => {
+        test('should create filter containing only user_id');
+        test('should create update object without user_id');
+        test('should preserve all other fields from request body');
+        test('should not mutate original request.body');
+    });
+
+    describe('Error Handling', () => {
+        test('should handle User.findOneAndUpdate() failure');
+        test('should handle user not found (invalid user_id)');
+        test('should propagate database errors');
+    });
+
+    describe('Security & Validation', () => {
+        test('should not allow updating protected fields (docType, password, user_id)');
+        test('should validate all update fields against schema');
+    });
+});
+=======IMPROVED TEST PLAN==========
+
+updateUser - Database insertion Test - 
 	 MOCK ALL EXTERNAL DEPENDENCIES
          # Mock the request body value
-         # Provide the user_id to the request_body. (X DON'T mock filter - it's created internally)
+         # Provide the user_id to the request_body. (That is, DON'T mock filter - it's created internally)
 	
 	 # The response body is created as a JSON function
          
 	 #
-	 # Call omit with mockReturnedValue({// Here supply the rest of the update object except the user_id}).	 
+	 # Call omit() with mockReturnedValue({// Here supply the rest of the update object except the user_id}).	 
 	 # Mock the updated_user object value
-	 # Mock the execution of the findOneAndUpdate function with mockResolvedValue()
+	 # Call the findOneAndUpdate() function with mockResolvedValue()
          
          # The updateUser() function is called with the mocked request body, the mocked response body and the next function
          # We check if the findOneAndUpdate() function is called exactly once
-         # We check the argument with which the findOneAndUpdate function is called
+         # We check the arguments with which the findOneAndUpdate function is called
 	 
 	 # Verify response methods - // Add these assertions:
 	   expect(res.status).toHaveBeenCalledWith(201);
-	   expect(res.json).toHaveBeenCalledWith(updatedUser);
+	   expect(res.json).toHaveBeenCalledWith(updated_user);
 	 
 	 ✅ Mock all external dependencies
 	 ✅ Mock the request body value

@@ -11,7 +11,7 @@ DATA TRANSFORMATION TESTS
 describe('updateUser', () => {
     
     describe('Core Functionality', () => {
-        test('should update user via User.findOneAndUpdate()');
+        test('should insert the updated user into the database using User.findOneAndUpdate()');
         test('should return updated user document in response');
         test('should set HTTP status code 201');
     });
@@ -36,6 +36,7 @@ describe('updateUser', () => {
 });
 =======IMPROVED TEST PLAN==========
 
+"Core Functionality"
 updateUser - Database insertion Test - 
 	 MOCK ALL EXTERNAL DEPENDENCIES
          # Mock the request body value
@@ -55,13 +56,6 @@ updateUser - Database insertion Test -
 	 # Verify response methods - // Add these assertions:
 	   expect(res.status).toHaveBeenCalledWith(201);
 	   expect(res.json).toHaveBeenCalledWith(updated_user);
-	 
-	 ✅ Mock all external dependencies
-	 ✅ Mock the request body value
-	 ✅ Create the response object with json function
-         ✅ Call omit with mockReturnedValue
-	 ✅ Mock the updated user object value
-	 ✅ Call updateUser() with mocked req, res, next
-	 ✅ Check if findOneAndUpdate() is called exactly once
-	 ✅ Check the arguments passed to findOneAndUpdate()
-         ✅ 
+
+// In any test, follow the "Arrange", "Act" and "Assert" philosophy.
+// Mock all the values that all the functions called with either mockResolvedValue() or mockReturnValue() will return - In fact, when we use either mockReturnValue() or mockResolvedValue(), we are calling those functions with the values that they would've returned.

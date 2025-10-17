@@ -122,19 +122,15 @@ describe('updateUser - Data Transformation Tests', () => {
                 sms_comms: true
             }
         };
-        
+
         res = {
             json: jest.fn(),
             status: jest.fn().mockReturnThis()
         };
 
         next = jest.fn();
-    });
 
-    test('should generate the filter with an object containing user_id', async () => {
-        
-        // Arrange
-        const mockUpdatedUser = {
+        mockUpdatedUser = {
             _id: 'mongo_id',
             user_id: '7ycthivdrqvl',
             docType: 'USER',
@@ -155,7 +151,7 @@ describe('updateUser - Data Transformation Tests', () => {
             __v: 0
         };
 
-        const expectedUpdateObject = {
+        expectedUpdateObject = {
             email: 'abc002@server.com',
             phone_number: '91123456789',
             first_name: 'ABC2',
@@ -166,11 +162,16 @@ describe('updateUser - Data Transformation Tests', () => {
             others_size_letter: 'XL',
             email_comms_type: 'Stock notifications only',
             sms_comms: false
-        }
+        };
+        
+        filter = { user_id: req.body.user_id };
 
+    });
+
+    test('should generate the filter with an object containing user_id', async () => {
+        
+        // Arrange
         User.findOneAndUpdate.mockResolvedValue(mockUpdatedUser);
-
-        const filter = { user_id: req.body.user_id };
 
         // Act
         await updateUser(req, res, next)
@@ -180,9 +181,7 @@ describe('updateUser - Data Transformation Tests', () => {
         expect(User.findOneAndUpdate).toHaveBeenCalledTimes(1);
         
         expect(User.findOneAndUpdate).toHaveBeenCalledWith(
-            expect.objectContaining({
-                user_id: req.body.user_id
-            }),
+            expect.objectContaining(filter),
             expect.objectContaining(expectedUpdateObject), // updateObject
             expect.objectContaining({new: true}), // Return the updated document instead of the original one
             expect.objectContaining({runValidators: true}) // Run the validators on the update object

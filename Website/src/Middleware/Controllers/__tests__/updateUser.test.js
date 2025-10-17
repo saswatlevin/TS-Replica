@@ -100,7 +100,7 @@ describe('updateUser - Core Functionality Tests', () => {
 });
 
 describe('updateUser - Data Transformation Tests', () => {
-    let req, res, next;
+    let req, res, next, mockUpdatedUser, expectedUpdateObject, filter;
 
     beforeEach(() => {
         // Reset mocks before each test

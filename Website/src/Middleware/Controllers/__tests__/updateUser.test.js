@@ -98,3 +98,95 @@ describe('updateUser - Core Functionality Tests', () => {
         expect(res.status).toHaveBeenCalledWith(201);
     })
 });
+
+describe('updateUser - Data Transformation Tests', () => {
+    let req, res, next;
+
+    beforeEach(() => {
+        // Reset mocks before each test
+        jest.clearAllMocks();
+
+        // Setup common test data
+        req = {
+            body: {
+                user_id: '7ycthivdrqvl',
+                email: 'abc001@server.com',
+                phone_number: '91123456789',
+                first_name: 'ABC',
+                last_name: 'CBA',
+                user_role: 'user',
+                upper_size_number: 44,
+                upper_size_letter: 'XL',
+                others_size_letter: 'XL',
+                email_comms_type: 'One Weekly Recap',
+                sms_comms: true
+            }
+        };
+        
+        res = {
+            json: jest.fn(),
+            status: jest.fn().mockReturnThis()
+        };
+
+        next = jest.fn();
+    });
+
+    test('should generate the filter with an object containing user_id', async () => {
+        
+        // Arrange
+        const mockUpdatedUser = {
+            _id: 'mongo_id',
+            user_id: '7ycthivdrqvl',
+            docType: 'USER',
+            date_created_at: '2025-01-01T00:00:00Z',
+            email: 'abc001@server.com',
+            password: '$argon2id$hash',
+            phone_number: '91123456789',
+            first_name: 'ABC',
+            last_name: 'CBA',
+            user_role: 'user',
+            upper_size_number: 44,
+            upper_size_letter: 'XL',
+            others_size_letter: 'XL',
+            email_comms_type: 'One Weekly Recap',
+            sms_comms: false,
+            ShippingAddresses: [],
+            CartItems: [],
+            __v: 0
+        };
+
+        const expectedUpdateObject = {
+            email: 'abc002@server.com',
+            phone_number: '91123456789',
+            first_name: 'ABC2',
+            last_name: 'CBA2',
+            user_role: 'admin',
+            upper_size_number: 44,
+            upper_size_letter: 'XL',
+            others_size_letter: 'XL',
+            email_comms_type: 'Stock notifications only',
+            sms_comms: false
+        }
+
+        User.findOneAndUpdate.mockResolvedValue(mockUpdatedUser);
+
+        const filter = { user_id: req.body.user_id };
+
+        // Act
+        await updateUser(req, res, next)
+
+        // Assert
+
+        expect(User.findOneAndUpdate).toHaveBeenCalledTimes(1);
+        
+        expect(User.findOneAndUpdate).toHaveBeenCalledWith(
+            expect.objectContaining({
+                user_id: req.body.user_id
+            }),
+            expect.objectContaining(expectedUpdateObject), // updateObject
+            expect.objectContaining({new: true}), // Return the updated document instead of the original one
+            expect.objectContaining({runValidators: true}) // Run the validators on the update object
+        );
+
+    })
+});

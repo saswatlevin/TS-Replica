@@ -187,5 +187,20 @@ describe('updateUser - Data Transformation Tests', () => {
             expect.objectContaining({runValidators: true}) // Run the validators on the update object
         );
 
+    });
+
+    test('Should create the update object by removing the user_id from the request body', async () => {
+         // Arrange
+         _.omit.mockReturnValue(expectedUpdateObject);
+
+         // Act
+         await updateUser(req, res, next)
+ 
+         // Assert
+         expect(_.omit).toHaveBeenCalledTimes(1);
+         expect(_.omit).toHaveBeenCalledWith(
+            expect.objectContaining(req.body),
+            "user_id"
+         );
     })
 });

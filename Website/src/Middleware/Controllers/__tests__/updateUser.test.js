@@ -110,16 +110,16 @@ describe('updateUser - Data Transformation Tests', () => {
         req = {
             body: {
                 user_id: '7ycthivdrqvl',
-                email: 'abc001@server.com',
+                email: 'abc002@server.com',
                 phone_number: '91123456789',
-                first_name: 'ABC',
-                last_name: 'CBA',
-                user_role: 'user',
+                first_name: 'ABC2',
+                last_name: 'CBA2',
+                user_role: 'admin',
                 upper_size_number: 44,
                 upper_size_letter: 'XL',
                 others_size_letter: 'XL',
-                email_comms_type: 'One Weekly Recap',
-                sms_comms: true
+                email_comms_type: 'Stock notifications only',
+                sms_comms: false
             }
         };
 
@@ -135,16 +135,16 @@ describe('updateUser - Data Transformation Tests', () => {
             user_id: '7ycthivdrqvl',
             docType: 'USER',
             date_created_at: '2025-01-01T00:00:00Z',
-            email: 'abc001@server.com',
+            email: 'abc002@server.com',
             password: '$argon2id$hash',
             phone_number: '91123456789',
-            first_name: 'ABC',
-            last_name: 'CBA',
-            user_role: 'user',
+            first_name: 'ABC2',
+            last_name: 'CBA2',
+            user_role: 'admin',
             upper_size_number: 44,
             upper_size_letter: 'XL',
             others_size_letter: 'XL',
-            email_comms_type: 'One Weekly Recap',
+            email_comms_type: 'Stock notifications only',
             sms_comms: false,
             ShippingAddresses: [],
             CartItems: [],

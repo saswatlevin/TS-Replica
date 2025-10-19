@@ -22,18 +22,13 @@ describe('updateUserPassword - Core Functionality Tests', () => {
 
         const filter = { user_id: req.body.user_id };
 
-        // CREATE THE EXPECTED UPDATE OBJECT (without user_id)
-        const expectedUpdateObject = {
-            password: 'Abc@12345600'
-        };
+        // UPDATED PASSWORD HASH
+        const updatedPasswordHash = "$argon2id$hash";
 
         // CREATE THE UPDATE OBJECT WITH THE HASHED PASSWORD
         const updateObjectWithHashedPassword = {
-            password: '$argon2id$hash'
+            password: updatedPasswordHash
         };
-
-        // UPDATED PASSWORD HASH
-        const updatedPasswordHash = "$argon2id$hash";
 
         // MOCK THE UPDATED USER DOCUMENT THAT WILL BE RETURNED
         const mockUpdatedUser = {
@@ -92,7 +87,7 @@ describe('updateUserPassword - Core Functionality Tests', () => {
 });
 
 describe('updateUserPassword - Data Transformation Tests', () => {
-    let req, res, next, mockUpdatedUser, expectedUpdateObject, updateObjectWithHashedPassword, filter;
+    let req, res, next, mockUpdatedUser, updatedPasswordHash, updateObjectWithHashedPassword, filter;
 
     beforeEach(() => {
         // Reset mocks before each test
@@ -134,12 +129,12 @@ describe('updateUserPassword - Data Transformation Tests', () => {
             __v: 0
         };
 
-        expectedUpdateObject = {
-            password: 'Abc@12345600'
-        };
+        // UPDATED PASSWORD HASH
+        updatedPasswordHash = "$argon2id$hash";
 
+        // CREATE THE UPDATE OBJECT WITH THE HASHED PASSWORD
         updateObjectWithHashedPassword = {
-            password: '$argon2id$hash'
+            password: updatedPasswordHash
         };
         
         filter = { user_id: req.body.user_id };
@@ -184,7 +179,7 @@ describe('updateUserPassword - Data Transformation Tests', () => {
 
     test('Should check if the updated password has been successfully hashed', async () => {
         // Arrange
-        argon2.hash.mockResolvedValue(updateObjectWithHashedPassword);
+        argon2.hash.mockResolvedValue(updatedPasswordHash);
 
         // Act
         await updateUserPassword(req, res, next);

@@ -1,0 +1,14 @@
+updateUser
+Error 1 - <<The expectedUpdateObject in the beforeEach contains different data than what's in req.body>> -> Corrected
+
+Error 2 - <<The test "should generate the filter with an object containing user_id" doesn't mock _.omit, but the updateUser function will call it.>> -> False, since the lodash module is already mocked in jest, so all of tis functions are mocked.
+
+Error 3 - <<In the beforeEach, req.body.sms_comms is true (line 122), but mockUpdatedUser.sms_comms is false (line 148)>> -> Corrected
+
+updateUserPassword
+Error 4 - <<The test "Should generate the filter with an object containing user_id" doesn't mock argon2.hash, but the function will call it.>> -> False, jest.mock("argon2") already mocks argon2, so all of its functions are mocked.
+
+Error 5 - <<"argon2.hash should return a string, not an object.">> -> Corrected
+
+Error 6 - <<"Two tests don't mock argon2.hash">> -> False, Since jest.mock("argon2") already mocks all functions of argon2. 
+  

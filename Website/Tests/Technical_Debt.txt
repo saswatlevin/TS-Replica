@@ -5,6 +5,8 @@
 4) Create a list of factors to be considered / steps to be followed while creating an API.
 5) Add XSS sanitization to response handling logic.
 6) Find best practices to do fuzz testing on all schemas.
+7) Add Errors to the all the user controllers.
+8) Add 
 ===========TECHNICAL DEBT===========
 
 I have a test in the updateUser.test.js file.  This test is called "Should successfully insert the updated user document into the database via User.findOneAndUpdate()".

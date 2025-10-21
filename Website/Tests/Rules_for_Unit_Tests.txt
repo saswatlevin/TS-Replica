@@ -1,0 +1,11 @@
+1) Look at each line of the function that you are testing and decide if it is to be tested. Write the equivalent testing code.
+1a) Please check the request schema of a function before writing a test.
+2) Ensure test data consistency across all tests.
+3) Ensure that all functions that you call in test code are mocked.
+4) If you mock a module, then all its constituent functions are automatically mocked.
+5) Before mocking any external entity (like a library, function, etc) import it first.
+
+Database Insertion Tests -> MUST HAVE
+Security Tests -> SHOULD HAVE
+Data Transformation Tests -> COULD HAVE
+Error Tests -> WOULD HAVE

@@ -1,0 +1,3 @@
+searchUserByName()
+DATABASE RETIEVAL TEST
+* Should successfully retrieve users from database via User.find() 

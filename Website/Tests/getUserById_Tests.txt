@@ -1,0 +1,3 @@
+getUserById
+DATABASE RETRIEVAL TEST
+* Should successfully retrieve user from database via User.findOne()

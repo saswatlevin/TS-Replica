@@ -178,7 +178,7 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 \* \[123456789011, "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP"
 
-, "917560847544", "Arif", "Khan", "admin", 40, "M", "M" "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Invalid User ID Datatype**
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Invalid User ID Datatype**
 
 
 
@@ -200,7 +200,7 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 
-\* \[, "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing User ID**
+\* \[null, "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing User ID**
 
 
 
@@ -234,7 +234,7 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 
-\* \["ab01dhiojniu",  , "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Date**
+\* \["ab01dhiojniu", null, "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Date**
 
 
 
@@ -244,7 +244,7 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 
-\* \["ab01dhiojniu", "25-10-04T12:42:04", 100AOLForever, "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Invalid Email Datatype**
+\* \["ab01dhiojniu", "25-10-04T12:42:04", 100, "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Invalid Email Datatype**
 
 
 
@@ -264,7 +264,7 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 
-\* \["ab01dhiojniu", "25-10-04T12:42:04", , "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP","917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Email**
+\* \["ab01dhiojniu", "25-10-04T12:42:04", null, "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP","917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Email**
 
 
 
@@ -284,7 +284,7 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 
-\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", , "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Password Hash**
+\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", null, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Password Hash**
 
 
 
@@ -316,7 +316,7 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 
-\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", , "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Phone Number**
+\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", null, "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Phone Number**
 
 
 
@@ -344,7 +344,7 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 
-\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", , "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing First Name**
+\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", null, "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing First Name**
 
 
 
@@ -372,7 +372,7 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 
-\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", , "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Last Name**
+\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", null, "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Last Name**
 
 
 
@@ -440,7 +440,7 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 
-\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", , "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] **-> Missing Upper Size Number**
+\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", null, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] **-> Missing Upper Size Number**
 
 
 
@@ -486,11 +486,11 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 
-\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, "", "M" "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Empty Upper Size Letter**
+\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, "", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Empty Upper Size Letter**
 
 
 
-\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, , "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Upper Size Letter**
+\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, null, "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Upper Size Letter**
 
 
 
@@ -526,7 +526,7 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 
-\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", , false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Email Comms Type Value**
+\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", null, false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Email Comms Type Value**
 
 
 
@@ -546,7 +546,7 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 
-\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", , \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing SMS Comms Type Value**
+\* \["ab01dhiojniu", "25-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNoP", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", null, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing SMS Comms Type Value**
 
 
 

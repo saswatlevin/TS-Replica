@@ -15,7 +15,7 @@ const zodIsLowerSizeNumber = z.number("The lower_size_number field must be a num
 });
 
 // Exempted from redefinition
-const zodIsISO8601 = z.string("This date field must be a string.").min(17, {message: "This date field has a minimum permitted length of 17 characters. It is a required field."}).max(30, {message: "This date field has a maximum permitted length of 30 characters. It is a required field."}).refine((value) => validator.isISO8601(value, {strict: true, separator: true}), {
+const zodIsISO8601 = z.string("This date field must be a string.").length(17, {message: "This date field must be 17 characters long. It is a required field."}).refine((value) => validator.isISO8601(value, {strict: true, separator: true}), {
     message: "This date field must recieve date in the format YY-MM-DDTHH:MM:SS"
 });
 

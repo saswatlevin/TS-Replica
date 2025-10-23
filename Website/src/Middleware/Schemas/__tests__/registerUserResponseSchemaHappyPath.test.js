@@ -39,6 +39,20 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
 
             // Assert
             expect(result.success).toBe(true);
+            expect(result.data.user_id).toBe("ab01dhiojniu");
+            expect(result.data.docType).toBe("USER");
+            expect(result.data.date_created_at).toBe("2025-10-04T14:52:36");
+            expect(result.data.email).toBe("abc_d01@hostmail.com");
+            expect(result.data.password).toBe("$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I");
+            expect(result.data.phone_number).toBe("917560847544");
+            expect(result.data.first_name).toBe("Arif");
+            expect(result.data.last_name).toBe("Khan");
+            expect(result.data.user_role).toBe("admin");
+            expect(result.data.upper_size_number).toBe(40);
+            expect(result.data.upper_size_letter).toBe("M");
+            expect(result.data.others_size_letter).toBe("M");
+            expect(result.data.email_comms_type).toBe("I want all emails");
+            expect(result.data.sms_comms).toBe(false);
             expect(result.error).toBeUndefined();
         });
 
@@ -72,6 +86,20 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
 
             // Assert
             expect(result.success).toBe(true);
+            expect(result.data.user_id).toBe("mn9i1asdfgvc");
+            expect(result.data.docType).toBe("USER");
+            expect(result.data.date_created_at).toBe("2025-10-24T11:45:04");
+            expect(result.data.email).toBe("dca_101@hostmail.com");
+            expect(result.data.password).toBe("$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I");
+            expect(result.data.phone_number).toBe("917560847544");
+            expect(result.data.first_name).toBe("Yuri");
+            expect(result.data.last_name).toBe("Koptev");
+            expect(result.data.user_role).toBe("user");
+            expect(result.data.upper_size_number).toBe(42);
+            expect(result.data.upper_size_letter).toBe("L");
+            expect(result.data.others_size_letter).toBe("L");
+            expect(result.data.email_comms_type).toBe("One weekly recap");
+            expect(result.data.sms_comms).toBe(true);
             expect(result.error).toBeUndefined();
         });
     });
@@ -108,6 +136,7 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.date_created_at).toBe("2025-10-04T12:59:59");
+            expect(result.data.date_created_at.length).toBe(19);
             expect(result.error).toBeUndefined();
         });
 
@@ -142,6 +171,7 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.email).toBe("abc_d44@hostmail.com");
+            expect(result.data.email.length).toBe(20);
             expect(result.error).toBeUndefined();
         });
 
@@ -316,6 +346,7 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.first_name).toBe("Ya'el");
+            expect(result.data.first_name.length).toBe(5);
             expect(result.error).toBeUndefined();
         });
 

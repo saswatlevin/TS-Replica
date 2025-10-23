@@ -66,8 +66,9 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             console.log("registerUserResponseSchema - should reject user_id with integer datatype - result?.error?.issues ",   result?.error?.issues);
             
             // Assert
+            expect(testData.user_id).toBe(123456789012);
             expect(result.success).toBe(false);
-            expect(result.error.issues[0].received).toBe('number');
+            expect(result.error.issues[0].code).toBe('invalid_type');
         });
         
         test('should reject user_id with invalid format (underscore) ', () => {
@@ -99,6 +100,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.user_id).toBe("ab01dhiojni_");
             expect(result.error.issues[0].code).toBe('invalid_string');
         });
 
@@ -131,6 +133,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.user_id).toBe("ab01dhiojni");
             expect(testData.user_id.length).toBe(11);
             expect(result.error.issues[0].code).toBe('too_small');
         });
@@ -164,6 +167,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.user_id).toBe("ab01dhiojnius");
             expect(testData.user_id.length).toBe(13);
             expect(result.error.issues[0].code).toBe('too_big');
         });
@@ -197,6 +201,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.user_id).toBe("");
             expect(testData.user_id.length).toBe(0);
             expect(result.error.issues[0].code).toBe('too_small');
         });
@@ -230,6 +235,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.user_id).toBe(null);
             expect(result.error.issues[0].code).toBe('invalid_type');
         });
     });
@@ -295,7 +301,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
-            expect(result.error.issues[0].received).toBe('number');
+            expect(testData.date_created_at).toBe(251004124204);
+            expect(result.error.issues[0].code).toBe('invalid_type');
         });
 
         test('should reject date_created_at with invalid format (invalid seconds)', () => {
@@ -328,6 +335,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.date_created_at).toBe("2025-10-04T12:42:99");
             // Checked for message and not code since code is "custom", so not specific.
             expect(result.error.issues[0].message).toBe("This date field must receive date in the format YYYY-MM-DDTHH:MM:SS");
         });
@@ -362,10 +370,12 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.date_created_at.length).toBe(18);
+            expect(testData.date_created_at).toBe("2025-10-04T12:45:3");
             expect(result.error.issues[0].code).toBe("too_small");
         });
 
-        test('should reject date_created_at created with excessive length (20 characters) ', () => {
+        test('should reject date_created_at created with excessive length (21 characters) ', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -391,10 +401,12 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             // Act
             const result = registerUserResponseSchema.safeParse(testData);
 
-            console.log("registerUserResponseSchema - should reject date_created_at created with excessive length (20 characters) - result?.error?.issues ",   result?.error?.issues);
+            console.log("registerUserResponseSchema - should reject date_created_at created with excessive length (21 characters) - result?.error?.issues ",   result?.error?.issues);
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.date_created_at).toBe("2025-10-22T13:45:30.1");
+            expect(testData.date_created_at.length).toBe(21);
             expect(result.error.issues[0].code).toBe("too_big");
         });
 
@@ -428,6 +440,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.date_created_at).toBe("");
+            expect(testData.date_created_at.length).toBe(0);
             expect(result.error.issues[0].code).toBe("too_small");
         });
 
@@ -461,6 +475,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.date_created_at).toBe(null);
             expect(result.error.issues[0].code).toBe("invalid_type");
         });
     });
@@ -526,6 +541,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             console.log("registerUserResponseSchema - should reject email with invalid datatype (number) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.email).toBe(100);
             expect(result.error.issues[0].code).toBe('invalid_type');
         });
 
@@ -557,6 +573,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             console.log("registerUserResponseSchema - should reject email with invalid format (missing @ symbol) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.email).toBe("abc_d01hostmail.com");
             expect(result.error.issues[0].message).toBe('The email field should contain a valid email.');
         });
 
@@ -588,6 +605,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             console.log("registerUserResponseSchema - should reject email with insufficient length (8 characters) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.email).toBe("a@bc.com");
+            expect(testData.email.length).toBe(8);
             expect(result.error.issues[0].code).toBe('too_small');
         });
 
@@ -619,6 +638,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             console.log("registerUserResponseSchema - should reject email with excessive length (31 characters) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.email).toBe("abcdefghijklm@mnopqrstuvwxa.com");
+            expect(testData.email.length).toBe(31);
             expect(result.error.issues[0].code).toBe('too_big');
         });
 
@@ -650,6 +671,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             console.log("registerUserResponseSchema - should reject empty email (0 characters) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.email).toBe("");
             expect(result.error.issues[0].code).toBe('too_small');
         });
 
@@ -681,6 +703,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             console.log("registerUserResponseSchema - should reject missing email (null value) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.email).toBe(null);
             expect(result.error.issues[0].code).toBe('invalid_type');
         });
     });
@@ -714,7 +737,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(true);
-            expect(result.data.password.length).toBe(97);
+            expect(result.data.password).toBe("$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I");
             expect(typeof result.data.password).toBe('string');
         });
 
@@ -746,6 +769,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.password).toBe("$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNo");
             expect(result.error.issues[0].code).toBe('too_small');
         });
 
@@ -777,6 +801,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.password).toBe("$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5IA");
             expect(result.error.issues[0].code).toBe('too_big');
         });
 
@@ -808,6 +833,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(false);
+            expect(testData.password).toBe(null);
             expect(result.error.issues[0].code).toBe('invalid_type');
         });
     });

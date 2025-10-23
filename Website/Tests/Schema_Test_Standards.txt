@@ -1,0 +1,10 @@
+If we are writing an acceptance unit test, then the following should be asserted for:
+1) result.success should assert true
+2) Datatype of the field being tested result may be asserted
+3) Value of the field being tested should be asserted from the result
+4) Length of the result should be asserted (for length tests only)
+
+If we are writing a rejection unit test, then the following should be asserted for:
+1) result.success should assert false.
+2) A "code" or "message" of result.errors[0].issues should be asserted.
+3) The corresponding data value being accepted should be a asserted from the testData.

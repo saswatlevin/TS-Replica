@@ -35,6 +35,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             // Assert
             expect(result.success).toBe(true);
             expect(typeof result.data.user_id).toBe('string');
+            expect(result.data.user_id).toBe("ab01dhiojniu");
         });
 
         test('should reject user_id with integer datatype', () => {
@@ -262,6 +263,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             
             // Assert
             expect(result.success).toBe(true);
+            expect(result.data.date_created_at).toBe("2025-10-04T12:42:04");
             expect(typeof result.data.date_created_at).toBe('string');
         });
 
@@ -493,6 +495,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             // Assert
             expect(result.success).toBe(true);
             expect(typeof result.data.email).toBe('string');
+            expect(result.data.email).toBe("abc_d01@hostmail.com");
         });
 
         test('should reject email with invalid datatype (number)', () => {
@@ -676,6 +679,133 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             // Act
             const result = registerUserResponseSchema.safeParse(testData);
             console.log("registerUserResponseSchema - should reject missing email (null value) - result?.error?.issues ",   result?.error?.issues);
+            // Assert
+            expect(result.success).toBe(false);
+            expect(result.error.issues[0].code).toBe('invalid_type');
+        });
+    });
+
+    describe('password Field Tests', () => {
+        test('should accept valid password hash with correct format', () => {
+            // Arrange
+            const testData = {
+                user_id: "ab01dhiojniu",
+                docType: "USER",
+                date_created_at: "2025-10-04T12:42:04",
+                email: "abc_d01@hostmail.com",
+                password: "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I",
+                phone_number: "917560847544",
+                first_name: "Arif",
+                last_name: "Khan",
+                user_role: "admin",
+                upper_size_number: 40,
+                upper_size_letter: "M",
+                others_size_letter: "M",
+                email_comms_type: "I want all emails",
+                sms_comms: false,
+                ShippingAddresses: [],
+                CartItems: [],
+                _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
+                __v: 0
+            };
+            
+            // Act
+            const result = registerUserResponseSchema.safeParse(testData);
+            
+            // Assert
+            expect(result.success).toBe(true);
+            expect(result.data.password.length).toBe(97);
+            expect(typeof result.data.password).toBe('string');
+        });
+
+        test('should reject password hash with insufficient length (below 97 characters)', () => {
+            // Arrange
+            const testData = {
+                user_id: "ab01dhiojniu",
+                docType: "USER",
+                date_created_at: "2025-10-04T12:42:04",
+                email: "abc_d01@hostmail.com",
+                password: "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNo",
+                phone_number: "917560847544",
+                first_name: "Arif",
+                last_name: "Khan",
+                user_role: "admin",
+                upper_size_number: 40,
+                upper_size_letter: "M",
+                others_size_letter: "M",
+                email_comms_type: "I want all emails",
+                sms_comms: false,
+                ShippingAddresses: [],
+                CartItems: [],
+                _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
+                __v: 0
+            };
+            
+            // Act
+            const result = registerUserResponseSchema.safeParse(testData);
+            
+            // Assert
+            expect(result.success).toBe(false);
+            expect(result.error.issues[0].code).toBe('too_small');
+        });
+
+        test('should reject password hash with excessive length (above 97 characters)', () => {
+            // Arrange
+            const testData = {
+                user_id: "ab01dhiojniu",
+                docType: "USER",
+                date_created_at: "2025-10-04T12:42:04",
+                email: "abc_d01@hostmail.com",
+                password: "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5IA",
+                phone_number: "917560847544",
+                first_name: "Arif",
+                last_name: "Khan",
+                user_role: "admin",
+                upper_size_number: 40,
+                upper_size_letter: "M",
+                others_size_letter: "M",
+                email_comms_type: "I want all emails",
+                sms_comms: false,
+                ShippingAddresses: [],
+                CartItems: [],
+                _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
+                __v: 0
+            };
+            
+            // Act
+            const result = registerUserResponseSchema.safeParse(testData);
+            
+            // Assert
+            expect(result.success).toBe(false);
+            expect(result.error.issues[0].code).toBe('too_big');
+        });
+
+        test('should reject missing password hash (null value)', () => {
+            // Arrange
+            const testData = {
+                user_id: "ab01dhiojniu",
+                docType: "USER",
+                date_created_at: "2025-10-04T12:42:04",
+                email: "abc_d01@hostmail.com",
+                password: null,
+                phone_number: "917560847544",
+                first_name: "Arif",
+                last_name: "Khan",
+                user_role: "admin",
+                upper_size_number: 40,
+                upper_size_letter: "M",
+                others_size_letter: "M",
+                email_comms_type: "I want all emails",
+                sms_comms: false,
+                ShippingAddresses: [],
+                CartItems: [],
+                _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
+                __v: 0
+            };
+            
+            // Act
+            const result = registerUserResponseSchema.safeParse(testData);
+            
             // Assert
             expect(result.success).toBe(false);
             expect(result.error.issues[0].code).toBe('invalid_type');

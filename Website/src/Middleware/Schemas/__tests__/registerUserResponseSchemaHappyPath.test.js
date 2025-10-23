@@ -1,4 +1,4 @@
-// AI Generated Code for Testing - Happy Path Tests
+// Designed by me, Implemented by AI, Verified by me
 const { registerUserResponseSchema } = require('../userSchemas');
 const mongoose = require('mongoose');
 
@@ -151,7 +151,7 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
                 user_id: "ab01dhiojniu",
                 docType: "USER",
                 date_created_at: "2025-10-04T12:42:04",
-                email: "abc@de.com",
+                email: "ab@de.com",
                 password: "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I",
                 phone_number: "917560847544",
                 first_name: "Arif",
@@ -175,7 +175,8 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
 
             // Assert
             expect(result.success).toBe(true);
-            expect(result.data.email).toBe("abc@de.com");
+            expect(result.data.email).toBe("ab@de.com");
+            expect(result.data.email.length).toBe(9);
             expect(result.error).toBeUndefined();
         });
 
@@ -210,6 +211,7 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.email).toBe("abcdefghijklm@mnopqrstuvwx.com");
+            expect(result.data.email.length).toBe(30);
             expect(result.error).toBeUndefined();
         });
 
@@ -244,6 +246,7 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.phone_number).toBe("68340021");
+            expect(result.data.phone_number.length).toBe(8);
             expect(result.error).toBeUndefined();
         });
 
@@ -278,6 +281,7 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.phone_number).toBe("917560847544");
+            expect(result.data.phone_number.length).toBe(12);
             expect(result.error).toBeUndefined();
         });
 
@@ -346,6 +350,7 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.first_name).toBe("A");
+            expect(result.data.first_name.length).toBe(1);
             expect(result.error).toBeUndefined();
         });
 
@@ -379,6 +384,7 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
 
             // Assert
             expect(result.success).toBe(true);
+            expect(result.data.first_name).toBe("AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyt");
             expect(result.data.first_name.length).toBe(100);
             expect(result.error).toBeUndefined();
         });
@@ -448,6 +454,7 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.last_name).toBe("B");
+            expect(result.data.last_name.length).toBe(1);
             expect(result.error).toBeUndefined();
         });
 
@@ -481,6 +488,7 @@ describe('registerUserResponseSchema - Happy Path Tests', () => {
 
             // Assert
             expect(result.success).toBe(true);
+            expect(result.data.last_name).toBe("AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyt");
             expect(result.data.last_name.length).toBe(100);
             expect(result.error).toBeUndefined();
         });

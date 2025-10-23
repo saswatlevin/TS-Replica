@@ -1,0 +1,5 @@
+Go to the file called registerUserResponseSchema_Tests.md and look under the <SMS COMMS - IFV> category, implement all the tests. 
+
+For tests that accept a valid value, follow the rules: "result.success should assert true", "Value of the field being tested should be asserted from the result", "Length of the result should be asserted (for length tests only)"
+
+For tests that reject a value, follow the rules: "result.success should assert false", "A "code" or "message" of result.errors[0].issues should be asserted", "The corresponding data value being accepted should be a asserted from the testData".

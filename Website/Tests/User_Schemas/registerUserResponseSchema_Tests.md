@@ -74,7 +74,7 @@ HAPPY PATH TEST CASES
 
 
 
-\* \["mn9i1asdfgvc", "2025-10-24T11:45:04", "dca\_101@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$ZyXwVuTsRqPoNmLkJiHg$QwErTyUiOpAsDfGhJkLzXcVbNmQwErTyUiOpAsDfGh", 
+\* \["mn9i1asdfgvc", "2025-10-24T11:45:04", "dca\_101@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$ZyXwVuTsRqPoNmLkJiHg$QwErTyUiOpAsDfGhJkLzXcVbNmQwErTyUiOpAsDfGh",
 
 "917560847544", "Yuri", "Koptev", "user", 42, "L", "L", "One weekly recap", true, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] ->
 
@@ -493,6 +493,56 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 \* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, null, "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Upper Size Letter**
+
+
+
+**<OTHERS SIZE LETTER - IFV>**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "XXL", "XXL", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid Others Size Letter (XXL)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "XL", "XL", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid Others Size Letter (XL)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "L", "L", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid Others Size Letter (L)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid Others Size Letter (M)"**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "S", "S", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid Others Size Letter (S)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "XS", "XS", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid Others Size Letter (XS)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "XXXL", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Invalid Others Size Letter (XXXL)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "XXS", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Invalid Others Size Letter (XXS)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", 2615, "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Invalid Others Size Letter Datatype (2615)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Empty Others Size Letter**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", null, "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Others Size Letter**
+
+
 
 
 

@@ -1,5 +1,7 @@
-Go to the file called registerUserResponseSchema_Tests.md and look under the <SMS COMMS - IFV> category, implement all the tests. 
+Go to the file called registerUserResponseSchema_Tests.md and look under the <_v - IFV> category, implement all the tests. 
 
-For tests that accept a valid value, follow the rules: "result.success should assert true", "Value of the field being tested should be asserted from the result", "Length of the result should be asserted (for length tests only)"
+For tests that accept a valid value, follow the rules: "result.success should assert true", "Value of the field being tested should be asserted from the result", "Length of the result should be asserted (for length tests only)".
 
 For tests that reject a value, follow the rules: "result.success should assert false", "A "code" or "message" of result.errors[0].issues should be asserted", "The corresponding data value being accepted should be a asserted from the testData".
+
+There are IFV tests for 18 fields in the registerUserResponseSchema_IndividualFieldValues.test.js file. Create a separate file each for all the IFV tests of each field and transfer all of the IFV tests of that field to that file. There should be a total of 18 files. The names of the fields are:  user_id, date_created_at, email, password, phone_number, First Name, Last Name, User Role, Upper Size Number, Upper Size Number, Upper Size Letter, Others Size Letter, Email Comms Type, SMS Comms, ShippingAddresses, CartItems, _id and _v. Create those files at the following path: C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\registerUserResponseSchema 

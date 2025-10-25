@@ -46,11 +46,11 @@ sms\_comms -> required() Can one of the Boolean values true or false
 
 
 
-ShippingAddresses -> Empty Array
+ShippingAddresses -> shippingAddressStandardSchema
 
 
 
-CartItems -> Empty Array
+CartItems -> cartItemArraySchema
 
 
 
@@ -58,9 +58,87 @@ CartItems -> Empty Array
 
 
 
-\_V -> Valid positive integer
+\_v -> Valid positive integer
 
 ========REGISTER USER RESPONSE SCHEMA FIELDS========
+
+
+
+=======SHIPPING ADDRESS STANDARD SCHEMA FIELDS===============
+
+\_id -> required() Valid MongoDB ObjectID
+
+
+
+shipping\_address\_id: length(12), required() 12-character small alphabet \& numeric shipping address id string
+
+
+
+address\_type\_id: length(1), required() Single digit id string
+
+
+
+company name: max(100), optional() A string that can contain letters, dashes and spaces
+
+
+
+address: min(100), max(200), required() A string that can contain letters, numbers, dashes and spaces
+
+
+
+apartment: max(100), required() A string that can contains letters, digits, dashes, spaces and backward slashes
+
+
+
+city: min(3), max(100), required() A string that can have dashes, apostrophes and spaces
+
+
+
+administrative\_division: max(100), optional() A string that can contain letters, dashes, apostrophes and spaces
+
+
+
+country: required() An Enum that can contain the following country values: "United States", "United Kingdom", "Canada", "Australia", "New Zealand", "Ireland", "Singapore", "Hong Kong", "Japan"
+
+
+
+postal\_area: min(3), max(10), required() A string that can contain letters, digits and dashes
+
+
+
+phone\_number: min(8), max(12), required() A string that contains only numbers
+
+=======SHIPPING ADDRESS STANDARD SCHEMA FIELDS===============
+
+
+
+
+
+=======CREATE CART ITEM SCHEMA FIELDS========================
+
+cart\_item\_id: length(12), required() 12-character small alphabet \& numeric shipping address id string
+
+
+
+product\_id: length(12), required() 12-character small alphabet \& numeric shipping address id string
+
+
+
+sku: length(10), required() 10-character small alphabet \& numeric shipping address id string
+
+
+
+cart\_item\_name: min(3), max(100), required() A string that can contain small letters, capital letters, accented letters, digits, dashes and spaces
+
+
+
+cart\_item\_image\_uri: max(256), required() A string that must be a valid windows file path
+
+
+
+cart\_item\_quantity: min(1), max(100) An integer that can have a minimum value of 1 and a maximum value of 100
+
+=======CREATE CART ITEM SCHEMA FIELDS========================
 
 
 
@@ -599,4 +677,138 @@ INDIVIDUAL FIELD VALIDATION TEST CASES
 
 
 \* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", null, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing SMS Comms Type Value**
+
+
+
+
+
+**<SHIPPING ADDRESSES - IFV>**
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid Shipping Addresses Array Value (Empty Array)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[\["650f1a2b3c4d5e6f7a8b9c0d", "SH1234567890", "1", "Acme-Global Solutions", "1234 Elm Street, Suite 567, Industrial Area, Near Central Park", "Apt\\\\45B", "New-York", "New York State", "United States", "10001-1234", "1234567890"]], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid Shipping Addresses Array Value (Array with one Shipping Address)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[\["650f1a2b3c4d5e6f7a8b9c0d", "SH1234567890", "1", "Acme-Global Solutions", "1234 Elm Street, Suite 567, Industrial Area, Near Central Park", "Apt\\\\45B", "New-York", "New York State", "United States", "10001-1234", "1234567890"], \["651a2b3c4d5e6f7a8b9c0d1e", "AB9876543210", "2", "Tech-Enterprises Ltd", "7890 Maple Avenue, Block 12, Industrial Zone, Close to Riverside, Metropolis", "Suite\\\\120", "Los-Angeles", "California", "United States", "90012", "0987654321"]], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid Shipping Addresses Array Value (Array with two Shipping Addresses)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, , \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Shipping Addresses Array**
+
+
+
+
+
+**<CART ITEMS - IFV>**
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid Cart Items Array Value (Empty Array)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[ \["ab12cd34ef56", "xy98uv76rs54", "sk12ab34cd", "Premium-Éclair Chocolate 250g", "C:\\\\Users\\\\Public\\\\Pictures\\\\CartItems\\\\chocolate\_250g.jpg", 3]], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid Cart Items Array Value (Array with one Cart Item)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[\["ab12cd34ef56", "xy98uv76rs54", "sk12ab34cd", "Premium-Éclair Chocolate 250g", "C:\\\\Users\\\\Public\\\\Pictures\\\\CartItems\\\\chocolate\_250g.jpg", 3], \["mn34op56qr78", "gh12ij34kl56", "sku98lm76no", "Organic Green-Tea Pack 100g", "C:\\\\Ecommerce\\\\Images\\\\CartItems\\\\green\_tea\_100g.png", 12]], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid Cart Items Array Value (Array with two Cart Items)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], , ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Missing Cart Items Array**
+
+
+
+
+
+**<\_id - IFV>**
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid \_id value**
+
+
+
+**=======================================Remaining \_id Tests Weren't Done due to Technical Complexities=======================================**
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0"), 0] -> **Invalid \_id value (Below Length)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0ef"), 0] -> **Invalid \_id value (Above Length)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0ef"), 0] -> **Invalid \_id value (Above Length)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0E"), 0] -> **Invalid \_id value (Format)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId(""), 0] -> **Empty \_id value**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], , 0] -> **Missing \_id value**
+
+**=======================================Remaining \_id Tests Weren't Done due to Technical Complexities=======================================**
+
+
+
+
+
+**<\_v - IFV>**
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> **Valid \_v Value**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), ""] -> **Invalid \_v Value (Empty String)**
+
+
+
+\* \["ab01dhiojniu", "2025-10-04T12:42:04", "abc\_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, \[], \[], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), ] -> **Missing \_v Value** 
+
+
+
+
+
+
 

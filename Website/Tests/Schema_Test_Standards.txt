@@ -8,3 +8,5 @@ If we are writing a rejection unit test, then the following should be asserted f
 1) result.success should assert false.
 2) A "code" or "message" of result.errors[0].issues should be asserted.
 3) The corresponding data value being accepted should be a asserted from the testData.
+
+NOTE: When testing sub-document arrays in a document, the length of the sub-document arrays should be asserted for. 

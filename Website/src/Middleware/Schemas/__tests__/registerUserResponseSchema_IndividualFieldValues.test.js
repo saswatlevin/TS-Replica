@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 
 describe('registerUserResponseSchema - Individual Field Value Tests', () => {
     
-    describe('user_id Field Tests', () => {
-        test('should accept valid user_id with correct datatype (string)', () => {
+    describe('registerUserResponseSchema - user_id Field Tests', () => {
+        test('registerUserResponseSchema - should accept valid user_id with correct datatype (string)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -38,7 +38,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.user_id).toBe("ab01dhiojniu");
         });
 
-        test('should reject user_id with integer datatype', () => {
+        test('registerUserResponseSchema - should reject user_id with integer datatype', () => {
             // Arrange
             const testData = {
                 user_id: 123456789012,
@@ -71,7 +71,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe('invalid_type');
         });
         
-        test('should reject user_id with invalid format (underscore) ', () => {
+        test('registerUserResponseSchema - should reject user_id with invalid format (underscore)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojni_",
@@ -104,7 +104,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe('invalid_string');
         });
 
-        test('should reject user_id with insufficient length (11 characters) ', () => {
+        test('registerUserResponseSchema - should reject user_id with insufficient length (11 characters)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojni",
@@ -138,7 +138,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe('too_small');
         });
 
-        test('should reject user_id with excessive length (13 characters) ', () => {
+        test('registerUserResponseSchema - should reject user_id with excessive length (13 characters) ', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojnius",
@@ -172,7 +172,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe('too_big');
         });
 
-        test('should reject empty user_id (0 characters) ', () => {
+        test('registerUserResponseSchema - should reject empty user_id (0 characters) ', () => {
             // Arrange
             const testData = {
                 user_id: "",
@@ -206,7 +206,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe('too_small');
         });
 
-        test('should reject missing user_id (null value) ', () => {
+        test('registerUserResponseSchema - should reject missing user_id (null value) ', () => {
             // Arrange
             const testData = {
                 user_id: null,
@@ -240,8 +240,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('date_created_at Field Tests', () => {
-        test('should accept valid date_created_at with correct datatype (string)', () => {
+    describe('registerUserResponseSchema - date_created_at Field Tests', () => {
+        test('registerUserResponseSchema - should accept valid date_created_at with correct datatype (string)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -273,7 +273,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(typeof result.data.date_created_at).toBe('string');
         });
 
-        test('should reject date_created_at with invalid datatype (number)', () => {
+        test('registerUserResponseSchema - should reject date_created_at with invalid datatype (number)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -305,7 +305,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe('invalid_type');
         });
 
-        test('should reject date_created_at with invalid format (invalid seconds)', () => {
+        test('registerUserResponseSchema - should reject date_created_at with invalid format (invalid seconds)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -340,7 +340,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].message).toBe("This date field must receive date in the format YYYY-MM-DDTHH:MM:SS");
         });
 
-        test('should reject date_created_at created with insufficient length (18 characters) ', () => {
+        test('registerUserResponseSchema - should reject date_created_at created with insufficient length (18 characters) ', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -375,7 +375,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe("too_small");
         });
 
-        test('should reject date_created_at created with excessive length (21 characters) ', () => {
+        test('registerUserResponseSchema - should reject date_created_at created with excessive length (21 characters) ', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -410,7 +410,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe("too_big");
         });
 
-        test('should reject empty date_created_at (0 characters) ', () => {
+        test('registerUserResponseSchema - should reject empty date_created_at (0 characters) ', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -445,7 +445,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe("too_small");
         });
 
-        test('should reject missing date_created_at (null) ', () => {
+        test('registerUserResponseSchema - should reject missing date_created_at (null) ', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -480,8 +480,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('email Field Tests', () => {
-        test('should accept valid email with correct datatype (string)', () => {
+    describe('registerUserResponseSchema - email Field Tests', () => {
+        test('registerUserResponseSchema - should accept valid email with correct datatype (string)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -513,7 +513,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.email).toBe("abc_d01@hostmail.com");
         });
 
-        test('should reject email with invalid datatype (number)', () => {
+        test('registerUserResponseSchema - should reject email with invalid datatype (number)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -545,7 +545,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe('invalid_type');
         });
 
-        test('should reject email with invalid format (missing @ symbol)', () => {
+        test('registerUserResponseSchema - should reject email with invalid format (missing @ symbol)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -577,7 +577,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].message).toBe('The email field should contain a valid email.');
         });
 
-        test('should reject email with insufficient length (8 characters)', () => {
+        test('registerUserResponseSchema - should reject email with insufficient length (8 characters)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -610,7 +610,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe('too_small');
         });
 
-        test('should reject email with excessive length (31 characters)', () => {
+        test('registerUserResponseSchema - should reject email with excessive length (31 characters)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -643,7 +643,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe('too_big');
         });
 
-        test('should reject empty email (0 characters)', () => {
+        test('registerUserResponseSchema - should reject empty email (0 characters)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -675,7 +675,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe('too_small');
         });
 
-        test('should reject missing email (null value)', () => {
+        test('registerUserResponseSchema - should reject missing email (null value)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -708,8 +708,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('password Field Tests', () => {
-        test('should accept valid password hash with correct format', () => {
+    describe('registerUserResponseSchema - password Field Tests', () => {
+        test('registerUserResponseSchema - should accept valid password hash with correct format', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -741,7 +741,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(typeof result.data.password).toBe('string');
         });
 
-        test('should reject password hash with insufficient length (below 97 characters)', () => {
+        test('registerUserResponseSchema - should reject password hash with insufficient length (below 97 characters)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -773,7 +773,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe('too_small');
         });
 
-        test('should reject password hash with excessive length (above 97 characters)', () => {
+        test('registerUserResponseSchema - should reject password hash with excessive length (above 97 characters)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -805,7 +805,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.error.issues[0].code).toBe('too_big');
         });
 
-        test('should reject missing password hash (null value)', () => {
+        test('registerUserResponseSchema - should reject missing password hash (null value)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -838,8 +838,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('phone_number Field Tests', () => {
-        test('should accept valid phone_number with correct datatype (string)', () => {
+    describe('registerUserResponseSchema - phone_number Field Tests', () => {
+        test('registerUserResponseSchema - should accept valid phone_number with correct datatype (string)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -873,7 +873,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.phone_number).toBe("917560847544");
         });
 
-        test('should reject phone_number with invalid datatype (integer)', () => {
+        test('registerUserResponseSchema - should reject phone_number with invalid datatype (integer)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -907,7 +907,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.phone_number).toBe(917560847544);
         });
 
-        test('should reject phone_number with invalid format', () => {
+        test('registerUserResponseSchema - should reject phone_number with invalid format', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -941,7 +941,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.phone_number).toBe("9175-6084-7544");
         });
 
-        test('should reject phone_number with insufficient length (5 characters)', () => {
+        test('registerUserResponseSchema - should reject phone_number with insufficient length (5 characters)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -974,7 +974,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.phone_number).toBe("12345");
         });
 
-        test('should reject phone_number with excessive length (13 characters with +)', () => {
+        test('registerUserResponseSchema - should reject phone_number with excessive length (13 characters with +)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1007,7 +1007,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.phone_number).toBe("+917560847544");
         });
 
-        test('should reject empty phone_number', () => {
+        test('registerUserResponseSchema - should reject empty phone_number', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1041,7 +1041,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.phone_number).toBe("");
         });
 
-        test('should reject missing phone_number', () => {
+        test('registerUserResponseSchema - should reject missing phone_number', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1075,8 +1075,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('First Name Field Validation Tests', () => {
-        test('should accept valid first_name datatype', () => {
+    describe('registerUserResponseSchema - First Name Field Validation Tests', () => {
+        test('registerUserResponseSchema - should accept valid first_name datatype', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1108,7 +1108,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.first_name).toBe("Arif");
         });
 
-        test('should reject invalid first_name datatype (number)', () => {
+        test('registerUserResponseSchema - should reject invalid first_name datatype (number)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1141,7 +1141,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.first_name).toBe(123);
         });
 
-        test('should reject invalid first_name format (underscore)', () => {
+        test('registerUserResponseSchema - should reject invalid first_name format (underscore)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1174,7 +1174,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.first_name).toBe("Ari_f");
         });
 
-        test('should reject empty first_name', () => {
+        test('registerUserResponseSchema - should reject empty first_name', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1207,7 +1207,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.first_name).toBe("");
         });
 
-        test('should reject first_name with excessive length (101 characters)', () => {
+        test('registerUserResponseSchema - should reject first_name with excessive length (101 characters)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1241,7 +1241,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.first_name.length).toBe(101);
         });
 
-        test('should reject missing first_name', () => {
+        test('registerUserResponseSchema - should reject missing first_name', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1275,8 +1275,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('Last Name Field Validation Tests', () => {
-        test('should accept valid last_name datatype', () => {
+    describe('registerUserResponseSchema - Last Name Field Validation Tests', () => {
+        test('registerUserResponseSchema - should accept valid last_name datatype', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1308,7 +1308,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.last_name).toBe("Khan");
         });
 
-        test('should reject invalid last_name datatype (number)', () => {
+        test('registerUserResponseSchema - should reject invalid last_name datatype (number)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1341,7 +1341,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.last_name).toBe(123);
         });
 
-        test('should reject invalid last_name format (underscore)', () => {
+        test('registerUserResponseSchema - should reject invalid last_name format (underscore)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1374,7 +1374,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.last_name).toBe("Kh_an");
         });
 
-        test('should reject empty last_name', () => {
+        test('registerUserResponseSchema - should reject empty last_name', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1407,7 +1407,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.last_name).toBe("");
         });
 
-        test('should reject last_name with excessive length (101 characters)', () => {
+        test('registerUserResponseSchema - should reject last_name with excessive length (101 characters)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1441,7 +1441,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.last_name.length).toBe(101);
         });
 
-        test('should reject missing last_name', () => {
+        test('registerUserResponseSchema - should reject missing last_name', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1475,8 +1475,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('User Role Field Validation Tests', () => {
-        test('should accept valid user_role value (admin)', () => {
+    describe('registerUserResponseSchema - User Role Field Validation Tests', () => {
+        test('registerUserResponseSchema - should accept valid user_role value (admin)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1507,7 +1507,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.user_role).toBe("admin");
         });
 
-        test('should accept valid user_role value (user)', () => {
+        test('registerUserResponseSchema - should accept valid user_role value (user)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1538,7 +1538,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.user_role).toBe("user");
         });
 
-        test('should reject invalid user_role value (case-sensitive mismatch)', () => {
+        test('registerUserResponseSchema - should reject invalid user_role value (case-sensitive mismatch)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1570,7 +1570,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.user_role).toBe("User");
         });
 
-        test('should reject invalid user_role datatype (number)', () => {
+        test('registerUserResponseSchema - should reject invalid user_role datatype (number)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1602,7 +1602,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.user_role).toBe(12345);
         });
 
-        test('should reject empty user_role (empty string)', () => {
+        test('registerUserResponseSchema - should reject empty user_role (empty string)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1635,8 +1635,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('Upper Size Number Field Validation Tests', () => {
-        test('should accept valid upper_size_number (46)', () => {
+    describe('registerUserResponseSchema - Upper Size Number Field Validation Tests', () => {
+        test('registerUserResponseSchema - should accept valid upper_size_number (46)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1667,7 +1667,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.upper_size_number).toBe(46);
         });
 
-        test('should accept valid upper_size_number (44)', () => {
+        test('registerUserResponseSchema - should accept valid upper_size_number (44)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1698,7 +1698,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.upper_size_number).toBe(44);
         });
 
-        test('should accept valid upper_size_number (42)', () => {
+        test('registerUserResponseSchema - should accept valid upper_size_number (42)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1729,7 +1729,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.upper_size_number).toBe(42);
         });
 
-        test('should accept valid upper_size_number (40)', () => {
+        test('registerUserResponseSchema - should accept valid upper_size_number (40)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1760,7 +1760,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.upper_size_number).toBe(40);
         });
 
-        test('should accept valid upper_size_number (38)', () => {
+        test('registerUserResponseSchema - should accept valid upper_size_number (38)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1791,7 +1791,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.upper_size_number).toBe(38);
         });
 
-        test('should accept valid upper_size_number (36)', () => {
+        test('registerUserResponseSchema - should accept valid upper_size_number (36)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1822,7 +1822,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.upper_size_number).toBe(36);
         });
 
-        test('should reject invalid upper_size_number (48 - out of range)', () => {
+        test('registerUserResponseSchema - should reject invalid upper_size_number (48 - out of range)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1854,7 +1854,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.upper_size_number).toBe(48);
         });
 
-        test('should reject invalid upper_size_number (34 - out of range)', () => {
+        test('registerUserResponseSchema - should reject invalid upper_size_number (34 - out of range)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1886,7 +1886,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.upper_size_number).toBe(34);
         });
 
-        test('should reject invalid upper_size_number datatype (string)', () => {
+        test('registerUserResponseSchema - should reject invalid upper_size_number datatype (string)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1918,7 +1918,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.upper_size_number).toBe("46");
         });
 
-        test('should reject missing upper_size_number (null)', () => {
+        test('registerUserResponseSchema - should reject missing upper_size_number (null)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1951,8 +1951,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('Upper Size Letter Field Validation Tests', () => {
-        test('should accept valid upper_size_letter (XXL)', () => {
+    describe('registerUserResponseSchema - Upper Size Letter Field Validation Tests', () => {
+        test('registerUserResponseSchema - should accept valid upper_size_letter (XXL)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -1983,7 +1983,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.upper_size_letter).toBe("XXL");
         });
 
-        test('should accept valid upper_size_letter (XL)', () => {
+        test('registerUserResponseSchema - should accept valid upper_size_letter (XL)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2014,7 +2014,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.upper_size_letter).toBe("XL");
         });
 
-        test('should accept valid upper_size_letter (L)', () => {
+        test('registerUserResponseSchema - should accept valid upper_size_letter (L)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2045,7 +2045,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.upper_size_letter).toBe("L");
         });
 
-        test('should accept valid upper_size_letter (M)', () => {
+        test('registerUserResponseSchema - should accept valid upper_size_letter (M)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2076,7 +2076,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.upper_size_letter).toBe("M");
         });
 
-        test('should accept valid upper_size_letter (S)', () => {
+        test('registerUserResponseSchema - should accept valid upper_size_letter (S)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2107,7 +2107,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.upper_size_letter).toBe("S");
         });
 
-        test('should accept valid upper_size_letter (XS)', () => {
+        test('registerUserResponseSchema - should accept valid upper_size_letter (XS)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2138,7 +2138,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.upper_size_letter).toBe("XS");
         });
 
-        test('should reject invalid upper_size_letter (XXXL - not in enum)', () => {
+        test('registerUserResponseSchema - should reject invalid upper_size_letter (XXXL - not in enum)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2170,7 +2170,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.upper_size_letter).toBe("XXXL");
         });
 
-        test('should reject invalid upper_size_letter (XXS - not in enum)', () => {
+        test('registerUserResponseSchema - should reject invalid upper_size_letter (XXS - not in enum)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2202,7 +2202,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.upper_size_letter).toBe("XXS");
         });
 
-        test('should reject invalid upper_size_letter datatype (number)', () => {
+        test('registerUserResponseSchema - should reject invalid upper_size_letter datatype (number)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2234,7 +2234,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.upper_size_letter).toBe(2615);
         });
 
-        test('should reject empty upper_size_letter', () => {
+        test('registerUserResponseSchema - should reject empty upper_size_letter', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2266,7 +2266,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.upper_size_letter).toBe("");
         });
 
-        test('should reject missing upper_size_letter (null)', () => {
+        test('registerUserResponseSchema - should reject missing upper_size_letter (null)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2299,8 +2299,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('Others Size Letter Field Validation Tests', () => {
-        test('should accept valid others_size_letter (XXL)', () => {
+    describe('registerUserResponseSchema - Others Size Letter Field Validation Tests', () => {
+        test('registerUserResponseSchema - should accept valid others_size_letter (XXL)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2331,7 +2331,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.others_size_letter).toBe("XXL");
         });
 
-        test('should accept valid others_size_letter (XL)', () => {
+        test('registerUserResponseSchema - should accept valid others_size_letter (XL)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2362,7 +2362,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.others_size_letter).toBe("XL");
         });
 
-        test('should accept valid others_size_letter (L)', () => {
+        test('registerUserResponseSchema - should accept valid others_size_letter (L)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2393,7 +2393,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.others_size_letter).toBe("L");
         });
 
-        test('should accept valid others_size_letter (M)', () => {
+        test('registerUserResponseSchema - should accept valid others_size_letter (M)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2424,7 +2424,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.others_size_letter).toBe("M");
         });
 
-        test('should accept valid others_size_letter (S)', () => {
+        test('registerUserResponseSchema - should accept valid others_size_letter (S)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2455,7 +2455,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.others_size_letter).toBe("S");
         });
 
-        test('should accept valid others_size_letter (XS)', () => {
+        test('registerUserResponseSchema - should accept valid others_size_letter (XS)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2486,7 +2486,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.others_size_letter).toBe("XS");
         });
 
-        test('should reject invalid others_size_letter (XXXL - not in enum)', () => {
+        test('registerUserResponseSchema - should reject invalid others_size_letter (XXXL - not in enum)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2518,7 +2518,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.others_size_letter).toBe("XXXL");
         });
 
-        test('should reject invalid others_size_letter (XXS - not in enum)', () => {
+        test('registerUserResponseSchema - should reject invalid others_size_letter (XXS - not in enum)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2550,7 +2550,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.others_size_letter).toBe("XXS");
         });
 
-        test('should reject invalid others_size_letter datatype (number)', () => {
+        test('registerUserResponseSchema - should reject invalid others_size_letter datatype (number)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2582,7 +2582,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.others_size_letter).toBe(2615);
         });
 
-        test('should reject empty others_size_letter', () => {
+        test('registerUserResponseSchema - should reject empty others_size_letter', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2614,7 +2614,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.others_size_letter).toBe("");
         });
 
-        test('should reject missing others_size_letter (null)', () => {
+        test('registerUserResponseSchema - should reject missing others_size_letter (null)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2647,8 +2647,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('Email Comms Type Field Validation Tests', () => {
-        test('should accept valid email_comms_type ("I want all emails")', () => {
+    describe('registerUserResponseSchema - Email Comms Type Field Validation Tests', () => {
+        test('registerUserResponseSchema - should accept valid email_comms_type ("I want all emails")', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2679,7 +2679,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.email_comms_type).toBe("I want all emails");
         });
 
-        test('should accept valid email_comms_type ("One weekly recap")', () => {
+        test('registerUserResponseSchema - should accept valid email_comms_type ("One weekly recap")', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2710,7 +2710,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.email_comms_type).toBe("One weekly recap");
         });
 
-        test('should accept valid email_comms_type ("Stock notifications only")', () => {
+        test('registerUserResponseSchema - should accept valid email_comms_type ("Stock notifications only")', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2741,7 +2741,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.email_comms_type).toBe("Stock notifications only");
         });
 
-        test('should accept valid email_comms_type ("Never / Unsubscribe")', () => {
+        test('registerUserResponseSchema - should accept valid email_comms_type ("Never / Unsubscribe")', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2772,7 +2772,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.email_comms_type).toBe("Never / Unsubscribe");
         });
 
-        test('should reject invalid email_comms_type ("Always" - not in enum)', () => {
+        test('registerUserResponseSchema - should reject invalid email_comms_type ("Always" - not in enum)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2804,7 +2804,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.email_comms_type).toBe("Always");
         });
 
-        test('should reject invalid email_comms_type datatype (number)', () => {
+        test('registerUserResponseSchema - should reject invalid email_comms_type datatype (number)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2836,7 +2836,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.email_comms_type).toBe(123);
         });
 
-        test('should reject empty email_comms_type', () => {
+        test('registerUserResponseSchema - should reject empty email_comms_type', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2868,7 +2868,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.email_comms_type).toBe("");
         });
 
-        test('should reject missing email_comms_type (null)', () => {
+        test('registerUserResponseSchema - should reject missing email_comms_type (null)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2901,8 +2901,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('SMS Comms Field Validation Tests', () => {
-        test('should accept valid sms_comms (false)', () => {
+    describe('registerUserResponseSchema - SMS Comms Field Validation Tests', () => {
+        test('registerUserResponseSchema - should accept valid sms_comms (false)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2933,7 +2933,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.sms_comms).toBe(false);
         });
 
-        test('should accept valid sms_comms (true)', () => {
+        test('registerUserResponseSchema - should accept valid sms_comms (true)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2964,7 +2964,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.sms_comms).toBe(true);
         });
 
-        test('should reject invalid sms_comms datatype (string)', () => {
+        test('registerUserResponseSchema - should reject invalid sms_comms datatype (string)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -2996,7 +2996,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(testData.sms_comms).toBe("false");
         });
 
-        test('should reject missing sms_comms (null)', () => {
+        test('registerUserResponseSchema - should reject missing sms_comms (null)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -3029,8 +3029,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('ShippingAddresses Field Tests', () => {
-        test('should accept valid ShippingAddresses with empty array', () => {
+    describe('registerUserResponseSchema - ShippingAddresses Field Tests', () => {
+        test('registerUserResponseSchema - should accept valid ShippingAddresses with empty array', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -3056,14 +3056,14 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             // Act
             const result = registerUserResponseSchema.safeParse(testData);
             
-            console.log("should accept valid ShippingAddresses with empty array result?.error?.issues ", result?.error?.issues);
+            console.log("registerUserResponseSchema - should accept valid ShippingAddresses with empty array result?.error?.issues ", result?.error?.issues);
             // Assert
             expect(result.success).toBe(true);
             expect(Array.isArray(result.data.ShippingAddresses)).toBe(true);
             expect(result.data.ShippingAddresses.length).toBe(0);
         });
 
-        test('should accept valid ShippingAddresses with one shipping address', () => {
+        test('registerUserResponseSchema - should accept valid ShippingAddresses with one shipping address', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -3103,7 +3103,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             // Act
             const result = registerUserResponseSchema.safeParse(testData);
             
-            console.log("should accept valid ShippingAddresses with one shipping address result?.error?.issues ", result?.error?.issues);
+            console.log("registerUserResponseSchema - should accept valid ShippingAddresses with one shipping address result?.error?.issues ", result?.error?.issues);
 
             // Assert
             expect(result.success).toBe(true);
@@ -3111,7 +3111,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.ShippingAddresses.length).toBe(1);
         });
 
-        test('should accept valid ShippingAddresses with two shipping addresses', () => {
+        test('registerUserResponseSchema - should accept valid ShippingAddresses with two shipping addresses', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -3164,7 +3164,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             // Act
             const result = registerUserResponseSchema.safeParse(testData);
             
-            console.log("should accept valid ShippingAddresses with two shipping addresses result?.error?.issues ", result?.error?.issues);
+            console.log("registerUserResponseSchema - should accept valid ShippingAddresses with two shipping addresses result?.error?.issues ", result?.error?.issues);
 
             // Assert
             expect(result.success).toBe(true);
@@ -3172,7 +3172,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.ShippingAddresses.length).toBe(2);
         });
 
-        test('should reject missing ShippingAddresses (null)', () => {
+        test('registerUserResponseSchema - should reject missing ShippingAddresses (null)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -3198,7 +3198,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             // Act
             const result = registerUserResponseSchema.safeParse(testData);
             
-            console.log("should reject missing ShippingAddresses (null) result?.error?.issues ", result?.error?.issues);
+            console.log("registerUserResponseSchema - should reject missing ShippingAddresses (null) result?.error?.issues ", result?.error?.issues);
 
             // Assert
             expect(result.success).toBe(false);
@@ -3207,8 +3207,8 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
         });
     });
 
-    describe('CartItems Field Tests', () => {
-        test('should accept valid CartItems with empty array', () => {
+    describe('registerUserResponseSchema - CartItems Field Tests', () => {
+        test('registerUserResponseSchema - should accept valid CartItems with empty array', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -3234,7 +3234,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             // Act
             const result = registerUserResponseSchema.safeParse(testData);
             
-            console.log("should accept valid CartItems with empty array result?.error?.issues ", result?.error?.issues);
+            console.log("registerUserResponseSchema - should accept valid CartItems with empty array result?.error?.issues ", result?.error?.issues);
             
             // Assert
             expect(result.success).toBe(true);
@@ -3242,7 +3242,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.CartItems.length).toBe(0);
         });
 
-        test('should accept valid CartItems with one cart item', () => {
+        test('registerUserResponseSchema - should accept valid CartItems with one cart item', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -3277,7 +3277,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             // Act
             const result = registerUserResponseSchema.safeParse(testData);
             
-            console.log("should accept valid CartItems with one cart item result?.error?.issues ", result?.error?.issues);
+            console.log("registerUserResponseSchema - should accept valid CartItems with one cart item result?.error?.issues ", result?.error?.issues);
             
             // Assert
             expect(result.success).toBe(true);
@@ -3285,7 +3285,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.CartItems.length).toBe(1);
         });
 
-        test('should accept valid CartItems with two cart items', () => {
+        test('registerUserResponseSchema - should accept valid CartItems with two cart items', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -3328,7 +3328,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             // Act
             const result = registerUserResponseSchema.safeParse(testData);
             
-            console.log("should accept valid CartItems with two cart items result?.error?.issues ", result?.error?.issues);
+            console.log("registerUserResponseSchema - should accept valid CartItems with two cart items result?.error?.issues ", result?.error?.issues);
             
             // Assert
             expect(result.success).toBe(true);
@@ -3336,7 +3336,7 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             expect(result.data.CartItems.length).toBe(2);
         });
 
-        test('should reject missing CartItems (null)', () => {
+        test('registerUserResponseSchema - should reject missing CartItems (null)', () => {
             // Arrange
             const testData = {
                 user_id: "ab01dhiojniu",
@@ -3362,12 +3362,149 @@ describe('registerUserResponseSchema - Individual Field Value Tests', () => {
             // Act
             const result = registerUserResponseSchema.safeParse(testData);
             
-            console.log("should reject missing CartItems (null) result?.error?.issues ", result?.error?.issues);
+            console.log("registerUserResponseSchema - should reject missing CartItems (null) result?.error?.issues ", result?.error?.issues);
             
             // Assert
             expect(result.success).toBe(false);
             expect(result.error.issues[0].code).toBe('invalid_type');
             expect(testData.CartItems).toBe(null);
+        });
+    });
+
+    describe('registerUserResponseSchema - _id Field Tests', () => {
+        test('registerUserResponseSchema - should accept valid _id value', () => {
+            // Arrange
+            const testData = {
+                user_id: "ab01dhiojniu",
+                docType: "USER",
+                date_created_at: "2025-10-04T12:42:04",
+                email: "abc_d01@hostmail.com",
+                password: "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I",
+                phone_number: "917560847544",
+                first_name: "Arif",
+                last_name: "Khan",
+                user_role: "admin",
+                upper_size_number: 40,
+                upper_size_letter: "M",
+                others_size_letter: "M",
+                email_comms_type: "I want all emails",
+                sms_comms: false,
+                ShippingAddresses: [],
+                CartItems: [],
+                _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
+                __v: 0
+            };
+            
+            // Act
+            const result = registerUserResponseSchema.safeParse(testData);
+            
+            console.log("registerUserResponseSchema - should accept valid _id value result?.error?.issues ", result?.error?.issues);
+            
+            // Assert
+            expect(result.success).toBe(true);
+        });
+    });
+
+    describe('registerUserResponseSchema - __v Field Tests', () => {
+        test('registerUserResponseSchema - should accept valid __v value', () => {
+            // Arrange
+            const testData = {
+                user_id: "ab01dhiojniu",
+                docType: "USER",
+                date_created_at: "2025-10-04T12:42:04",
+                email: "abc_d01@hostmail.com",
+                password: "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I",
+                phone_number: "917560847544",
+                first_name: "Arif",
+                last_name: "Khan",
+                user_role: "admin",
+                upper_size_number: 40,
+                upper_size_letter: "M",
+                others_size_letter: "M",
+                email_comms_type: "I want all emails",
+                sms_comms: false,
+                ShippingAddresses: [],
+                CartItems: [],
+                _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
+                __v: 0
+            };
+            
+            // Act
+            const result = registerUserResponseSchema.safeParse(testData);
+            
+            console.log("registerUserResponseSchema - should accept valid __v value result?.error?.issues ", result?.error?.issues);
+            
+            // Assert
+            expect(result.success).toBe(true);
+            expect(result.data.__v).toBe(0);
+        });
+
+        test('registerUserResponseSchema - should reject __v with invalid datatype (empty string)', () => {
+            // Arrange
+            const testData = {
+                user_id: "ab01dhiojniu",
+                docType: "USER",
+                date_created_at: "2025-10-04T12:42:04",
+                email: "abc_d01@hostmail.com",
+                password: "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I",
+                phone_number: "917560847544",
+                first_name: "Arif",
+                last_name: "Khan",
+                user_role: "admin",
+                upper_size_number: 40,
+                upper_size_letter: "M",
+                others_size_letter: "M",
+                email_comms_type: "I want all emails",
+                sms_comms: false,
+                ShippingAddresses: [],
+                CartItems: [],
+                _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
+                __v: ""
+            };
+            
+            // Act
+            const result = registerUserResponseSchema.safeParse(testData);
+            
+            console.log("registerUserResponseSchema - should reject __v with invalid datatype (empty string) result?.error?.issues ", result?.error?.issues);
+            
+            // Assert
+            expect(result.success).toBe(false);
+            expect(result.error.issues[0].code).toBe('invalid_type');
+            expect(testData.__v).toBe("");
+        });
+
+        test('registerUserResponseSchema - should reject missing __v value (null)', () => {
+            // Arrange
+            const testData = {
+                user_id: "ab01dhiojniu",
+                docType: "USER",
+                date_created_at: "2025-10-04T12:42:04",
+                email: "abc_d01@hostmail.com",
+                password: "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I",
+                phone_number: "917560847544",
+                first_name: "Arif",
+                last_name: "Khan",
+                user_role: "admin",
+                upper_size_number: 40,
+                upper_size_letter: "M",
+                others_size_letter: "M",
+                email_comms_type: "I want all emails",
+                sms_comms: false,
+                ShippingAddresses: [],
+                CartItems: [],
+                _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
+                __v: null
+            };
+            
+            // Act
+            const result = registerUserResponseSchema.safeParse(testData);
+            
+            console.log("registerUserResponseSchema - should reject missing __v value (null) result?.error?.issues ", result?.error?.issues);
+            
+            // Assert
+            expect(result.success).toBe(false);
+            expect(result.error.issues[0].code).toBe('invalid_type');
+            expect(testData.__v).toBe(null);
         });
     });
 });

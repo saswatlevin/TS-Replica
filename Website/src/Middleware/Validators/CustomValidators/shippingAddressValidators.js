@@ -13,7 +13,7 @@ const zodIsCompanyName = z.string("The company_name field must be a string.").ma
     message: "A company_name can only have letters, spaces and dashes."
 });
 
-const zodIsAddress = z.string("The address field must be a string.").min(1, {message: "The address field is a required field."}).max(200, {message: "The address field has a maximum permitted length of 200 characters."}).refine((value) => /^[a-zA-Z0-9-, ]*$/.test(value), {
+const zodIsAddress = z.string("The address field must be a string.").min(100, {message: "The address field is a required field."}).max(200, {message: "The address field has a maximum permitted length of 200 characters."}).refine((value) => /^[a-zA-Z0-9-, ]*$/.test(value), {
     message: "An address can only have letters, numbers, dashes, spaces and commas."
 });
 

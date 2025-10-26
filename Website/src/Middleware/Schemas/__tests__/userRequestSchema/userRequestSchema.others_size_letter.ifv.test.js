@@ -17,11 +17,12 @@ const { userRequestSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
             
             // Act
             const result = userRequestSchema.safeParse(testData);
+            console.log("userRequestSchema - should accept valid others_size_letter (XXL) - result?.error?.issues ",   result?.error?.issues);
 
             // Assert
             expect(result.success).toBe(true);
@@ -43,9 +44,11 @@ const { userRequestSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
             
+            console.log("userRequestSchema - should accept valid others_size_letter (XL) - result?.error?.issues ",   result?.error?.issues);
+
             // Act
             const result = userRequestSchema.safeParse(testData);
 
@@ -69,9 +72,10 @@ const { userRequestSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
             
+            console.log("userRequestSchema - should accept valid others_size_letter (L) - result?.error?.issues ",   result?.error?.issues);
             // Act
             const result = userRequestSchema.safeParse(testData);
 
@@ -95,9 +99,10 @@ const { userRequestSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
             
+            console.log("userRequestSchema - should accept valid others_size_letter (M) - result?.error?.issues ",   result?.error?.issues);
             // Act
             const result = userRequestSchema.safeParse(testData);
 
@@ -121,12 +126,13 @@ const { userRequestSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
             
             // Act
             const result = userRequestSchema.safeParse(testData);
 
+            console.log("userRequestSchema - should accept valid others_size_letter (S) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.others_size_letter).toBe("S");
@@ -147,12 +153,13 @@ const { userRequestSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
             
             // Act
             const result = userRequestSchema.safeParse(testData);
 
+            console.log("userRequestSchema - should accept valid others_size_letter (XS) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.others_size_letter).toBe("XS");
@@ -173,12 +180,13 @@ const { userRequestSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
             
             // Act
             const result = userRequestSchema.safeParse(testData);
 
+            console.log("userRequestSchema - should reject invalid others_size_letter (XXXL - not in enum) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(false);
             expect(result.error.issues[0].code).toBe('invalid_enum_value');
@@ -200,11 +208,12 @@ const { userRequestSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
             
             // Act
             const result = userRequestSchema.safeParse(testData);
+            console.log("userRequestSchema - should reject invalid others_size_letter (XXS - not in enum) - result?.error?.issues ",   result?.error?.issues);
 
             // Assert
             expect(result.success).toBe(false);
@@ -227,12 +236,13 @@ const { userRequestSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
             
             // Act
             const result = userRequestSchema.safeParse(testData);
 
+            console.log("userRequestSchema - should reject invalid others_size_letter datatype (number) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(false);
             expect(result.error.issues[0].code).toBe('invalid_type');
@@ -260,9 +270,11 @@ const { userRequestSchema } = require('../../userSchemas');
             // Act
             const result = userRequestSchema.safeParse(testData);
 
+            console.log("userRequestSchema - should reject empty others_size_letter - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(false);
             expect(result.error.issues[0].code).toBe('invalid_enum_value');
+            expect(testData.others_size_letter.length).toBe(0);
             expect(testData.others_size_letter).toBe("");
         });
 
@@ -281,11 +293,12 @@ const { userRequestSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
             
             // Act
             const result = userRequestSchema.safeParse(testData);
+            console.log("userRequestSchema - should reject missing others_size_letter (null) - result?.error?.issues ",   result?.error?.issues);
 
             // Assert
             expect(result.success).toBe(false);

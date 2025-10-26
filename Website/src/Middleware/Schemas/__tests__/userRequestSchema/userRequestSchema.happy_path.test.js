@@ -1,5 +1,5 @@
 // Designed by me, Implemented by AI, Verified by me
-const { userRequestSchema } = require('../userSchemas');
+const { userRequestSchema } = require('../../userSchemas');
 const mongoose = require('mongoose');
 
 describe('userRequestSchema - Happy Path Tests', () => {
@@ -20,13 +20,13 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
             const result = userRequestSchema.safeParse(validUserData);
 
-            //console.log("userRequestSchema - should accept complete valid user registration data with admin role' - result?.error?.issues ",   result?.error?.issues);
+            console.log("userRequestSchema - should accept complete valid user registration data with admin role - result?.error?.issues ",   result?.error?.issues);
 
             //console.log("validUserData ", validUserData);
 
@@ -63,7 +63,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "One weekly recap",
                 sms_comms: true,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
@@ -104,7 +104,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
@@ -132,7 +132,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
@@ -162,7 +162,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
@@ -192,7 +192,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
@@ -222,7 +222,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
@@ -252,7 +252,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
@@ -282,7 +282,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
@@ -312,7 +312,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
@@ -342,7 +342,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
@@ -372,7 +372,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
@@ -401,7 +401,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act
@@ -431,7 +431,7 @@ describe('userRequestSchema - Happy Path Tests', () => {
                 email_comms_type: "I want all emails",
                 sms_comms: false,
                 ShippingAddresses: [],
-                CartItems: [],
+                CartItems: []
             };
 
             // Act

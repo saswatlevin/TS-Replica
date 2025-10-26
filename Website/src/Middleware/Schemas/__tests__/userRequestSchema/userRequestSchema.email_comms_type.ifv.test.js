@@ -17,12 +17,13 @@ describe('userRequestSchema - Email Comms Type Field Validation Tests', () => {
             email_comms_type: "I want all emails",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
         const result = userRequestSchema.safeParse(testData);
 
+        console.log("userRequestSchema - should accept valid email_comms_type (\"I want all emails\") - result?.error?.issues ",   result?.error?.issues);
         // Assert
         expect(result.success).toBe(true);
         expect(result.data.email_comms_type).toBe("I want all emails");
@@ -43,7 +44,7 @@ describe('userRequestSchema - Email Comms Type Field Validation Tests', () => {
             email_comms_type: "One weekly recap",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
@@ -69,12 +70,13 @@ describe('userRequestSchema - Email Comms Type Field Validation Tests', () => {
             email_comms_type: "Stock notifications only",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
         const result = userRequestSchema.safeParse(testData);
 
+        console.log("userRequestSchema - should accept valid email_comms_type (Stock notifications only) - result?.error?.issues ",   result?.error?.issues);
         // Assert
         expect(result.success).toBe(true);
         expect(result.data.email_comms_type).toBe("Stock notifications only");
@@ -95,12 +97,13 @@ describe('userRequestSchema - Email Comms Type Field Validation Tests', () => {
             email_comms_type: "Never / Unsubscribe",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
         const result = userRequestSchema.safeParse(testData);
 
+        console.log("userRequestSchema - should accept valid email_comms_type (Never / Unsubscribe) - result?.error?.issues ",   result?.error?.issues);
         // Assert
         expect(result.success).toBe(true);
         expect(result.data.email_comms_type).toBe("Never / Unsubscribe");
@@ -121,7 +124,7 @@ describe('userRequestSchema - Email Comms Type Field Validation Tests', () => {
             email_comms_type: "Always",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
@@ -148,12 +151,13 @@ describe('userRequestSchema - Email Comms Type Field Validation Tests', () => {
             email_comms_type: 123,
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
         const result = userRequestSchema.safeParse(testData);
 
+        console.log("userRequestSchema - should reject invalid email_comms_type datatype (number) - result?.error?.issues ",   result?.error?.issues);
         // Assert
         expect(result.success).toBe(false);
         expect(result.error.issues[0].code).toBe('invalid_type');
@@ -175,12 +179,13 @@ describe('userRequestSchema - Email Comms Type Field Validation Tests', () => {
             email_comms_type: "",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
         const result = userRequestSchema.safeParse(testData);
 
+        console.log("userRequestSchema - should reject empty email_comms_type - result?.error?.issues ",   result?.error?.issues);
         // Assert
         expect(result.success).toBe(false);
         expect(result.error.issues[0].code).toBe('invalid_enum_value');
@@ -202,12 +207,13 @@ describe('userRequestSchema - Email Comms Type Field Validation Tests', () => {
             email_comms_type: null,
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
         const result = userRequestSchema.safeParse(testData);
 
+        console.log("userRequestSchema - should reject missing email_comms_type (null) - result?.error?.issues ",   result?.error?.issues);
         // Assert
         expect(result.success).toBe(false);
         expect(result.error.issues[0].code).toBe('invalid_type');

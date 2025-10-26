@@ -17,7 +17,7 @@ describe('userRequestSchema - email Field Tests', () => {
             email_comms_type: "I want all emails",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
@@ -44,7 +44,7 @@ describe('userRequestSchema - email Field Tests', () => {
             email_comms_type: "I want all emails",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
@@ -71,7 +71,7 @@ describe('userRequestSchema - email Field Tests', () => {
             email_comms_type: "I want all emails",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
@@ -98,7 +98,7 @@ describe('userRequestSchema - email Field Tests', () => {
             email_comms_type: "I want all emails",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
@@ -126,7 +126,7 @@ describe('userRequestSchema - email Field Tests', () => {
             email_comms_type: "I want all emails",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
@@ -154,7 +154,7 @@ describe('userRequestSchema - email Field Tests', () => {
             email_comms_type: "I want all emails",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act
@@ -181,7 +181,7 @@ describe('userRequestSchema - email Field Tests', () => {
             email_comms_type: "I want all emails",
             sms_comms: false,
             ShippingAddresses: [],
-            CartItems: [],
+            CartItems: []
         };
         
         // Act

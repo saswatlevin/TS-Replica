@@ -70,8 +70,7 @@ const shippingAddressStandardSchema = z.object({
 
     postal_area: shippingAddressValidators.zodIsPostalCode,
     
-    phone_number: shippingAddressValidators.zodIsMobilePhone
-    
+    phone_number: shippingAddressValidators.zodIsMobilePhone    
 }).strict();
 
 const orderShippingAddressSchema = z.object({

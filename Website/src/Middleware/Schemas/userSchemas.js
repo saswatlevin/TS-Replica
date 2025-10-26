@@ -22,8 +22,6 @@ const userRequestSchema = z.object({
     
     upper_size_letter: z.enum(customValidators.sizeLetterArray, {message: "The upper_size_letter field is a required field. It must be one of the following values: XXL, XL, L, M, S, XS."}),
     
-    lower_size_number: customValidators.zodIsLowerSizeNumber,
-    
     others_size_letter: z.enum(customValidators.sizeLetterArray, {message: "The others_size_letter field is a required field. It must be one of the following values: XXL, XL, L, M, S, XS."}),
     
     email_comms_type: z.enum(["I want all emails", "One weekly recap", "Stock notifications only", "Never / Unsubscribe"], {message: "The email_comms_type field is a required field. It takes one of the following values: I want all emails, One weekly recap, Stock emails only or Never / Unsubscribe."}),

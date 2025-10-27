@@ -40,12 +40,10 @@ const { updateUserSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false
             };
-            
-            console.log("updateUserSchema - should accept valid others_size_letter (XL) - result?.error?.issues ",   result?.error?.issues);
 
             // Act
             const result = updateUserSchema.safeParse(testData);
-
+            console.log("updateUserSchema - should accept valid others_size_letter (XL) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.others_size_letter).toBe("XL");
@@ -65,11 +63,9 @@ const { updateUserSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false
             };
-            
-            console.log("updateUserSchema - should accept valid others_size_letter (L) - result?.error?.issues ",   result?.error?.issues);
             // Act
             const result = updateUserSchema.safeParse(testData);
-
+            console.log("updateUserSchema - should accept valid others_size_letter (L) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.others_size_letter).toBe("L");
@@ -89,11 +85,10 @@ const { updateUserSchema } = require('../../userSchemas');
                 email_comms_type: "I want all emails",
                 sms_comms: false
             };
-            
-            console.log("updateUserSchema - should accept valid others_size_letter (M) - result?.error?.issues ",   result?.error?.issues);
+
             // Act
             const result = updateUserSchema.safeParse(testData);
-
+            console.log("updateUserSchema - should accept valid others_size_letter (M) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.others_size_letter).toBe("M");

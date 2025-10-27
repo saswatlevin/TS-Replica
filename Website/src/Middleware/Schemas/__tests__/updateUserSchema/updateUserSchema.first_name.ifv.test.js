@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const { userUpdateSchema } = require('../../userSchemas');
+const { updateUserSchema } = require('../../userSchemas');
 
-describe('userUpdateSchema - First Name Field Validation Tests', () => {
-    test('userUpdateSchema - should accept valid first_name datatype', () => {
+describe('updateUserSchema - First Name Field Validation Tests', () => {
+    test('updateUserSchema - should accept valid first_name datatype', () => {
         // Arrange
         const testData = {
             email: "abc_d01@hostmail.com",
@@ -18,15 +18,15 @@ describe('userUpdateSchema - First Name Field Validation Tests', () => {
         };
         
         // Act
-        const result = userUpdateSchema.safeParse(testData);
+        const result = updateUserSchema.safeParse(testData);
 
-        console.log("userUpdateSchema - should accept valid first_name datatype - result?.error?.issues ",   result?.error?.issues);
+        console.log("updateUserSchema - should accept valid first_name datatype - result?.error?.issues ",   result?.error?.issues);
         // Assert
         expect(result.success).toBe(true);
         expect(result.data.first_name).toBe("Arif");
     });
 
-    test('userUpdateSchema - should reject invalid first_name datatype (number)', () => {
+    test('updateUserSchema - should reject invalid first_name datatype (number)', () => {
         // Arrange
         const testData = {
             email: "abc_d01@hostmail.com",
@@ -44,16 +44,16 @@ describe('userUpdateSchema - First Name Field Validation Tests', () => {
         };
         
         // Act
-        const result = userUpdateSchema.safeParse(testData);
+        const result = updateUserSchema.safeParse(testData);
 
-        console.log("userUpdateSchema - should reject invalid first_name datatype (number) - result?.error?.issues ",   result?.error?.issues);
+        console.log("updateUserSchema - should reject invalid first_name datatype (number) - result?.error?.issues ",   result?.error?.issues);
         // Assert
         expect(result.success).toBe(false);
         expect(result.error.issues[0].code).toBe('invalid_type');
         expect(testData.first_name).toBe(123);
     });
 
-    test('userUpdateSchema - should reject invalid first_name format (underscore)', () => {
+    test('updateUserSchema - should reject invalid first_name format (underscore)', () => {
         // Arrange
         const testData = {
             email: "abc_d01@hostmail.com",
@@ -71,16 +71,16 @@ describe('userUpdateSchema - First Name Field Validation Tests', () => {
         };
         
         // Act
-        const result = userUpdateSchema.safeParse(testData);
+        const result = updateUserSchema.safeParse(testData);
 
-        console.log("userUpdateSchema - should reject invalid first_name format (underscore) - result?.error?.issues ",   result?.error?.issues);
+        console.log("updateUserSchema - should reject invalid first_name format (underscore) - result?.error?.issues ",   result?.error?.issues);
         // Assert
         expect(result.success).toBe(false);
         expect(result.error.issues[0].code).toBe('invalid_string');
         expect(testData.first_name).toBe("Ari_f");
     });
 
-    test('userUpdateSchema - should reject empty first_name', () => {
+    test('updateUserSchema - should reject empty first_name', () => {
         // Arrange
         const testData = {
             email: "abc_d01@hostmail.com",
@@ -98,16 +98,16 @@ describe('userUpdateSchema - First Name Field Validation Tests', () => {
         };
         
         // Act
-        const result = userUpdateSchema.safeParse(testData);
+        const result = updateUserSchema.safeParse(testData);
 
-        console.log("userUpdateSchema - should reject empty first_name - result?.error?.issues ",   result?.error?.issues);
+        console.log("updateUserSchema - should reject empty first_name - result?.error?.issues ",   result?.error?.issues);
         // Assert
         expect(result.success).toBe(false);
         expect(result.error.issues[0].code).toBe('too_small');
         expect(testData.first_name).toBe("");
     });
 
-    test('userUpdateSchema - should reject first_name with excessive length (101 characters)', () => {
+    test('updateUserSchema - should reject first_name with excessive length (101 characters)', () => {
         // Arrange
         const testData = {
             email: "abc_d01@hostmail.com",
@@ -125,9 +125,9 @@ describe('userUpdateSchema - First Name Field Validation Tests', () => {
         };
         
         // Act
-        const result = userUpdateSchema.safeParse(testData);
+        const result = updateUserSchema.safeParse(testData);
 
-        console.log("userUpdateSchema - should reject first_name with excessive length (101 characters) - result?.error?.issues ",   result?.error?.issues);
+        console.log("updateUserSchema - should reject first_name with excessive length (101 characters) - result?.error?.issues ",   result?.error?.issues);
         // Assert
         expect(result.success).toBe(false);
         expect(result.error.issues[0].code).toBe('too_big');
@@ -135,7 +135,7 @@ describe('userUpdateSchema - First Name Field Validation Tests', () => {
         expect(testData.first_name.length).toBe(101);
     });
 
-    test('userUpdateSchema - should reject missing first_name', () => {
+    test('updateUserSchema - should reject missing first_name', () => {
         // Arrange
         const testData = {
             email: "abc_d01@hostmail.com",
@@ -153,9 +153,9 @@ describe('userUpdateSchema - First Name Field Validation Tests', () => {
         };
         
         // Act
-        const result = userUpdateSchema.safeParse(testData);
+        const result = updateUserSchema.safeParse(testData);
 
-        console.log("userUpdateSchema - should reject missing first_name - result?.error?.issues ",   result?.error?.issues);
+        console.log("updateUserSchema - should reject missing first_name - result?.error?.issues ",   result?.error?.issues);
         // Assert
         expect(result.success).toBe(false);
         expect(result.error.issues[0].code).toBe('invalid_type');

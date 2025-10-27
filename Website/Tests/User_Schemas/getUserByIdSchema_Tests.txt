@@ -1,0 +1,30 @@
+========GET USER BY ID SCHEMA FIELDS========
+user_id -> length(12), required(), [lowercase letters & numbers]
+========GET USER BY ID SCHEMA FIELDS========
+
+HAPPY PATH TEST CASES
+* ["ab01dhiojniu"]
+
+* ["mn9i1asdfgvc"]
+
+
+HAPPY PATH BOUNDARY TEST CASES
+* The user_id field has no happy path boundary test cases since user_id has fixed length.
+
+
+<USER ID TEST CASES - IFV>
+* ["ab01dhiojniu"] -> Valid User ID Datatype -> DONE
+
+* [123456789011] -> Invalid User ID Datatype
+
+* ["ab01dhiojni_"] -> Invalid User ID Value (Format)
+
+* ["ab01dhiojni"] -> Invalid User ID Length (Below Length)
+
+* ["ab01dhiojnius"] -> Invalid User ID Length (Above Length)
+
+* [""] -> Empty User ID
+
+* [null] -> Missing User ID
+
+

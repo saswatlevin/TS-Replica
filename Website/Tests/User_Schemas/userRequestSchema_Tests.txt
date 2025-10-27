@@ -1,0 +1,318 @@
+========USER REQUEST SCHEMA FIELDS========
+email -> min(9), max(30), required() [Emails of the form host@domain.com where both host and domain can contain numbers, letters and special characters]
+
+password -> min(12), max(30), required() [Can contain a string with at least one letter, digit and one of the following special characters: @, # , ! , $, and . It can also contain spaces.]
+
+phone_number -> min(8), max(12), required() [Contains only numbers]
+
+first_name -> min(1), max(100), required() [Contains uppercase letters, lowercase letters, hyphens and single-quotes]
+last_name -> min(1), max(100), required() [Contains uppercase letters, lowercase letters, hyphens and single-quotes]
+
+user_role -> required() Can contain only the following literals ["user", "admin"]
+upper_size_number -> required() Can only contain the following integers [46, 44, 42, 40, 38, 36]
+
+upper_size_letter -> required() Can only contain the following literals ["XXL", "XL", "L", "M", "S", "XS"]
+others_size_letter -> required() Can only contain the following literals ["XXL", "XL", "L", "M", "S", "XS"]
+
+email_comms_type -> required() Can be one of the following literals ["I want all emails", "One weekly recap", "Stock notifications only", "Never / Unsubscribe"]
+sms_comms -> required() Can one of the Boolean values true or false
+
+ShippingAddresses -> shippingAddressStandardSchema
+
+CartItems -> cartItemArraySchema
+========USER REQUEST SCHEMA FIELDS========
+
+=======SHIPPING ADDRESS STANDARD SCHEMA FIELDS===============
+_id -> required() Valid MongoDB ObjectID
+
+shipping_address_id: length(12), required() 12-character small alphabet & numeric shipping address id string
+
+address_type_id: length(1), required() Single digit id string
+
+company name: max(100), optional() A string that can contain letters, dashes and spaces
+
+address: min(100), max(200), required() A string that can contain letters, numbers, dashes and spaces
+
+apartment: max(100), required() A string that can contains letters, digits, dashes, spaces and backward slashes
+
+city: min(3), max(100), required() A string that can have dashes, apostrophes and spaces
+
+administrative_division: max(100), optional() A string that can contain letters, dashes, apostrophes and spaces
+
+country: required() An Enum that can contain the following country values: "United States", "United Kingdom", "Canada", "Australia", "New Zealand", "Ireland", "Singapore", "Hong Kong", "Japan"
+
+postal_area: min(3), max(10), required() A string that can contain letters, digits and dashes
+
+phone_number: min(8), max(12), required() A string that contains only numbers
+=======SHIPPING ADDRESS STANDARD SCHEMA FIELDS===============
+
+
+=======CREATE CART ITEM SCHEMA FIELDS========================
+cart_item_id: length(12), required() 12-character small alphabet & numeric shipping address id string
+
+product_id: length(12), required() 12-character small alphabet & numeric shipping address id string
+
+sku: length(10), required() 10-character small alphabet & numeric shipping address id string
+
+cart_item_name: min(3), max(100), required() A string that can contain small letters, capital letters, accented letters, digits, dashes and spaces
+
+cart_item_image_uri: max(256), required() A string that must be a valid windows file path
+
+cart_item_quantity: min(1), max(100) An integer that can have a minimum value of 1 and a maximum value of 100
+=======CREATE CART ITEM SCHEMA FIELDS========================
+
+Create 2 test cases for the happy path
+HAPPY PATH TEST CASES
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR"
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] ->
+
+* ["dca_101@hostmail.com", "Soyuz@1966#USSR",
+"917560847544", "Yuri", "Koptev", "user", 42, "L", "L", "One weekly recap", true, [], []] ->
+
+Create test cases with only 1 field having a boundary test case value
+HAPPY PATH BOUNDARY TEST CASES
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR"
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Date Value
+
+* ["abc_d44@hostmail.com", "Soyuz@1966#USSR"
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Email Value
+
+* ["ab@de.com", "Soyuz@1966#USSR"
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Email Minimum Length
+
+* ["abcdefghijklm@mnopqrstuvwx.com", "Soyuz@1966#USSR"
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Email Maximum Length
+
+<PASSWORD TEST NOT NEEDED>
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR"
+, "6834002", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Phone Number Minimum Length
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR"
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Phone Number Maximum Length
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR"
+, "917560847544", "Ya'el", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> First Name Value
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR"
+, "917560847544", "A", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> First Name Minimum Length
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR"
+, "917560847544", "AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyt", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> First Name Maximum Length
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR"
+, "917560847544", "Arif", "Zaghari-Ratcliffe", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Last Name Value
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR"
+, "917560847544", "Arif", "B", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Last Name Minimum Length
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR"
+, "917560847544", "Arif", "AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyt", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Last Name Maximum Length
+
+
+
+Here, we will write the following types of test cases for each field: data_type_test_case, required_field_test_case, 1_char_below_min_length, 1_char_above_max_length, format_validation_test_case,
+ 
+We will also write test cases to put invalid values in Enums
+INDIVIDUAL FIELD VALIDATION TEST CASES
+
+<EMAIL TEST CASES - IFV>
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid Email Datatype
+
+* [100, "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Email Datatype
+
+* ["abc_d01hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Email Value (Format)
+
+* ["a@bc.com", "Soyuz@1966#USSR" ,"917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Email Length (Below Minimum)
+
+* ["abcdefghijklm@mnopqrstuvwxa.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Email Length (Above Maximum)
+
+* ["", "Soyuz@1966#USSR","917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Empty Email
+
+* [null, "Soyuz@1966#USSR","917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Missing Email
+
+
+<PASSWORD TEST CASES - IFV>
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid Password Value
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Password Value (Below Length)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSRA123456789012345", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Password Value (Above Length)
+
+* ["abc_d01@hostmail.com", "", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Empty Password
+
+* ["abc_d01@hostmail.com", null, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Missing Password
+
+
+<PHONE NUMBER - IFV>
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid Phone Number DataType
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", 917560847544, "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Phone Number DataType
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "9175-6084-7544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Phone Number Value (Format)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "12345", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Phone Number Length (Below Length)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "+917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Phone Number Length (Above Length)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Empty Phone Number
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", null, "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Missing Phone Number
+
+
+<FIRST NAME - IFV>
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid First Name Datatype
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", 123, "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid First Name Datatype
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Ari_f", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid First Name Value (Format)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid First Name Length & Empty First Name (Below Length)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyta", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid First Name Length (Above Length)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", null, "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Missing First Name
+
+
+<LAST NAME - IFV>
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid Last Name Datatype
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", 123, "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Last Name Datatype
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Kh_an", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Last Name Value (Format)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Last Name Length & Empty Last Name (Below Length)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyta", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Invalid Last Name Length (Above Length)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", null, "admin", 40, "M", "M", "I want all emails", false, [], []] -> Missing Last Name
+
+
+<USER ROLE - IFV>
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid User Role Value (admin)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "user", 40, "M", "M", "I want all emails", false, [], []] -> Valid User Role Value (user)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "User", 40, "M", "M", "I want all emails", false, [], []] -> Invalid User Role Value
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", 12345, 40, "M", "M", "I want all emails", false, [], []] ->  Invalid User Role Datatype
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "", 40, "M", "M", "I want all emails", false, [], []] ->  Empty User Role
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", null, 40, "M", "M", "I want all emails", false, [], []] ->  Empty User Role
+
+
+
+
+<UPPER SIZE NUMBER - IFV>
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 46, "M", "M", "I want all emails", false, [], []] -> Valid Upper Size Number (46)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 44, "M", "M", "I want all emails", false, [], []] -> Valid Upper Size Number (44)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 42, "M", "M", "I want all emails", false, [], []] -> Valid Upper Size Number (42)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid Upper Size Number (40)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 38, "M", "M", "I want all emails", false, [], []] -> Valid Upper Size Number (38)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 36, "M", "M", "I want all emails", false, [], []] -> Valid Upper Size Number (36)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 48, "M", "M", "I want all emails", false, [], []] -> Invalid Upper Size Number (48)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 34, "M", "M", "I want all emails", false, [], []] -> Invalid Upper Size Number (34)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", "46", "M", "M", "I want all emails", false, [], []] -> Invalid Upper Size Number DataType ("46")
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", null, "M", "M", "I want all emails", false, [], []] -> Missing Upper Size Number
+
+
+<UPPER SIZE LETTER - IFV>
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "XXL", "XXL", "I want all emails", false, [], []] -> Valid Upper Size Letter (XXL)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "XL", "XL", "I want all emails", false, [], []] -> Valid Upper Size Letter (XL)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "L", "L", "I want all emails", false, [], []] -> Valid Upper Size Letter (L)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid Upper Size Letter (M)"
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "S", "S", "I want all emails", false, [], []] -> Valid Upper Size Letter (S)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "XS", "XS", "I want all emails", false, [], []] -> Valid Upper Size Letter (XS)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "XXXL", "M", "I want all emails", false, [], []] -> Invalid Upper Size Letter (XXXL)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "XXS", "M", "I want all emails", false, [], []] -> Invalid Upper Size Letter (XXS)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, 2615, "M", "I want all emails", false, [], []] -> Invalid Upper Size Letter Datatype (2615)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "", "M", "I want all emails", false, [], []] -> Empty Upper Size Letter
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, null, "M", "I want all emails", false, [], []] -> Missing Upper Size Letter
+
+
+
+<OTHERS SIZE LETTER - IFV>
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "XXL", "XXL", "I want all emails", false, [], []] -> Valid Others Size Letter (XXL)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "XL", "XL", "I want all emails", false, [], []] -> Valid Others Size Letter (XL)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "L", "L", "I want all emails", false, [], []] -> Valid Others Size Letter (L)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid Others Size Letter (M)"
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "S", "S", "I want all emails", false, [], []] -> Valid Others Size Letter (S)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "XS", "XS", "I want all emails", false, [], []] -> Valid Others Size Letter (XS)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "XXXL", "I want all emails", false, [], []] -> Invalid Others Size Letter (XXXL)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "XXS", "I want all emails", false, [], []] -> Invalid Others Size Letter (XXS)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", 2615, "I want all emails", false, [], []] -> Invalid Others Size Letter Datatype (2615)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "", "I want all emails", false, [], []] -> Empty Others Size Letter
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", null, "I want all emails", false, [], []] -> Missing Others Size Letter
+
+
+
+<EMAIL COMMS TYPE -IFV>
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid Email Comms Type Value (I want all weekly emails)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "One weekly recap", false, [], []] -> Valid Email Comms Type Value (One weekly recap)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "Stock notifications only", false,[], []] -> Valid Email Comms Type Value (Stock notifications only)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "Never / Unsubscribe", false, [], []] -> Valid Email Comms Type Value (Never / Unsubscribe)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "Always", false, [], []] -> Invalid Email Comms Type Value ("Always")
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", 123, false, [], []] -> Invalid Email Comms Type Datatype (123)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "", false, [], []] -> Empty Email Comms Type Value
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", null, false, [], []] -> Missing Email Comms Type Value
+
+
+<SMS COMMS TYPE - IFV>
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid SMS Comms Type Value (false)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", true, [], []] -> Valid SMS Comms Type Value (true)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", "false", [], []] -> Invalid SMS Comms Type Value ("false")
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", null, [], []] -> Missing SMS Comms Type Value
+
+
+<SHIPPING ADDRESSES - IFV>
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid Shipping Addresses Array Value (Empty Array)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, null, []] -> Missing Shipping Addresses Array
+
+
+<CART ITEMS - IFV>
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Valid Cart Items Array Value (Empty Array)
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSR", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], null] -> Missing Cart Items Array

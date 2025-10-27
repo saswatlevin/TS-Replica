@@ -88,6 +88,7 @@ const { updateUserSchema } = require('../../userSchemas');
 
             // Act
             const result = updateUserSchema.safeParse(testData);
+            
             console.log("updateUserSchema - should accept valid others_size_letter (M) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(true);

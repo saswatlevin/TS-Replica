@@ -46,11 +46,11 @@ const { userRequestSchema } = require('../../userSchemas');
                 ShippingAddresses: [],
                 CartItems: []
             };
-            
-            console.log("userRequestSchema - should accept valid others_size_letter (XL) - result?.error?.issues ",   result?.error?.issues);
-
+        
             // Act
             const result = userRequestSchema.safeParse(testData);
+            
+            console.log("userRequestSchema - should accept valid others_size_letter (XL) - result?.error?.issues ",   result?.error?.issues);
 
             // Assert
             expect(result.success).toBe(true);
@@ -74,11 +74,9 @@ const { userRequestSchema } = require('../../userSchemas');
                 ShippingAddresses: [],
                 CartItems: []
             };
-            
-            console.log("userRequestSchema - should accept valid others_size_letter (L) - result?.error?.issues ",   result?.error?.issues);
             // Act
             const result = userRequestSchema.safeParse(testData);
-
+            console.log("userRequestSchema - should accept valid others_size_letter (L) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.others_size_letter).toBe("L");
@@ -101,11 +99,10 @@ const { userRequestSchema } = require('../../userSchemas');
                 ShippingAddresses: [],
                 CartItems: []
             };
-            
-            console.log("userRequestSchema - should accept valid others_size_letter (M) - result?.error?.issues ",   result?.error?.issues);
             // Act
             const result = userRequestSchema.safeParse(testData);
 
+            console.log("userRequestSchema - should accept valid others_size_letter (M) - result?.error?.issues ",   result?.error?.issues);
             // Assert
             expect(result.success).toBe(true);
             expect(result.data.others_size_letter).toBe("M");

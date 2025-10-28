@@ -107,9 +107,9 @@ const getUserByIdSchema = z.object({
 });
 
 const getUsersByNameSchema = z.object({
-    first_name: z.string("The first_name field must be a string.").min(1, {message: "The first_name field is a required field."}).max(100, {message: "The first_name field has a maximum permitted length of 100 characters."}).regex(customValidators.nameRegex, {message: "The first_name field can only contain uupercase letters, lowercase letters, hyphens and single-quotes."}),
+    first_name: z.string("The first_name field must be a string.").min(1, {message: "The first_name field is a required field."}).max(100, {message: "The first_name field has a maximum permitted length of 100 characters."}).regex(customValidators.nameRegex, {message: "The first_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes."}),
     
-    last_name: z.string("The last_name field must be a string.").min(1, {message: "The last_name field is a required field."}).max(100, {message: "The last_name field has a maximum permitted length of 100 characters."}).regex(customValidators.nameRegex, {message: "The last_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes."}).optional()
+    last_name: z.string("The last_name field must be a string.").max(100, {message: "The last_name field has a maximum permitted length of 100 characters."}).regex(customValidators.nameRegex, {message: "The last_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes."}).optional()
 });
 
 const registerUserResponseSchema = z.object({

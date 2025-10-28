@@ -1,5 +1,5 @@
 // Designed by me, Implemented by AI, Verified by me
-const { registerUserResponseSchema } = require('../userSchemas');
+const { registerUserResponseSchema } = require('../../userSchemas');
 const mongoose = require('mongoose');
 
 describe('registerUserResponseSchema - Happy Path Tests', () => {

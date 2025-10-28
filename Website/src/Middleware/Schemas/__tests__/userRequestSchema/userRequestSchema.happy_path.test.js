@@ -445,5 +445,65 @@ describe('userRequestSchema - Happy Path Tests', () => {
             expect(result.data.last_name.length).toBe(100);
             expect(result.error).toBeUndefined();
         });
+
+        test('should accept password at minimum length boundary (12 characters)', () => {
+            // Arrange
+            const validUserData = {
+                email: "abc_d01@hostmail.com",
+                password: "Soyuz@1966#U",
+                phone_number: "917560847544",
+                first_name: "Arif",
+                last_name: "Khan",
+                user_role: "admin",
+                upper_size_number: 40,
+                upper_size_letter: "M",
+                others_size_letter: "M",
+                email_comms_type: "I want all emails",
+                sms_comms: false,
+                ShippingAddresses: [],
+                CartItems: []
+            };
+
+            // Act
+            const result = userRequestSchema.safeParse(validUserData);
+
+            console.log("userRequestSchema - should accept password at minimum length boundary (12 characters)' - result?.error?.issues ",   result?.error?.issues);
+
+            // Assert
+            expect(result.success).toBe(true);
+            expect(result.data.password).toBe("Soyuz@1966#U");
+            expect(result.data.password.length).toBe(12);
+            expect(result.error).toBeUndefined();
+        });
+
+        test('should accept password at maximum length boundary (30 characters)', () => {
+            // Arrange
+            const validUserData = {
+                email: "abc_d01@hostmail.com",
+                password: "Soyuz@1966#USSRA12345678901234",
+                phone_number: "917560847544",
+                first_name: "Arif",
+                last_name: "Khan",
+                user_role: "admin",
+                upper_size_number: 40,
+                upper_size_letter: "M",
+                others_size_letter: "M",
+                email_comms_type: "I want all emails",
+                sms_comms: false,
+                ShippingAddresses: [],
+                CartItems: []
+            };
+
+            // Act
+            const result = userRequestSchema.safeParse(validUserData);
+
+            console.log("userRequestSchema - should accept password at maximum length boundary (30 characters)' - result?.error?.issues ",   result?.error?.issues);
+
+            // Assert
+            expect(result.success).toBe(true);
+            expect(result.data.password).toBe("Soyuz@1966#USSRA12345678901234");
+            expect(result.data.password.length).toBe(30);
+            expect(result.error).toBeUndefined();
+        });
     });
 });

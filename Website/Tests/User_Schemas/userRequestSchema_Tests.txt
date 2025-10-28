@@ -83,7 +83,11 @@ HAPPY PATH BOUNDARY TEST CASES
 * ["abcdefghijklm@mnopqrstuvwx.com", "Soyuz@1966#USSR"
 , "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Email Maximum Length
 
-<PASSWORD TEST NOT NEEDED>
+* ["abc_d01@hostmail.com", "Soyuz@1966#U"
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Password Minimum Length
+
+* ["abc_d01@hostmail.com", "Soyuz@1966#USSRA12345678901234", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Password Maximum Length
+
 
 * ["abc_d01@hostmail.com", "Soyuz@1966#USSR"
 , "6834002", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Phone Number Minimum Length

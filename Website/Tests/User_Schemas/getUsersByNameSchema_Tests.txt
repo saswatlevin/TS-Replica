@@ -1,0 +1,51 @@
+============GET USERS BY NAME SCHEMA============
+first_name -> min(1), max(100), required() [Contains uppercase letters, lowercase letters, hyphens and single-quotes]
+
+last_name -> min(1), max(100), optional() [Contains uppercase letters, lowercase letters, hyphens and single-quotes]
+============GET USERS BY NAME SCHEMA============
+
+HAPPY PATH TEST CASES
+* ["Arif", "Khan"] ->
+
+* ["Yuri", "Koptev"] ->
+
+HAPPY PATH BOUNDARY TEST CASES
+* ["A", "Khan"] -> First Name Minimum Length
+
+* ["AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyt", "Khan"] -> First Name Maximum Length
+
+* ["Arif", "Zaghari-Ratcliffe"] -> Last Name Value
+
+* ["Arif", "B"] -> Last Name Minimum Length
+
+* ["Arif", "AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyt"] -> Last Name Maximum Length
+
+INDIVIDUAL FIELD VALUE TESTS
+<FIRST NAME - IFV>
+* ["Arif", "Khan"] -> Valid First Name Datatype
+
+* [123, "Khan"] -> Invalid First Name Datatype
+
+* ["Ari_f", "Khan"] -> Invalid First Name Value (Format)
+
+* ["", "Khan"] -> Invalid First Name Length & Empty First Name (Below Length)
+
+* ["AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyta", "Khan"] -> Invalid First Name Length (Above Length)
+
+* [null, "Khan"] -> Missing First Name
+
+
+<LAST NAME - IFV>
+* ["Arif", "Khan"] -> Valid Last Name Datatype
+
+* ["Arif", 123] -> Invalid Last Name Datatype
+
+* ["Arif", "Kh_an"] -> Invalid Last Name Value (Format)
+
+* ["Arif", ""] -> Invalid Last Name Length & Empty Last Name (Below Length)
+
+* ["Arif", "AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyta"] -> Invalid Last Name Length (Above Length)
+
+* ["Arif", null] -> Missing Last Name
+
+

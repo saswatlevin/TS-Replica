@@ -25,6 +25,8 @@ const createShippingAddressRequestSchema = z.object({
 }).strict();
 
 const createShippingAddressResponseSchema = z.object({
+    _id: objectIdSchema,
+    
     shipping_address_id: shippingAddressValidators.zodIsShippingAddressId,
     
     address_type_id: shippingAddressValidators.zodIsAddressTypeId,
@@ -43,9 +45,7 @@ const createShippingAddressResponseSchema = z.object({
 
     postal_area: shippingAddressValidators.zodIsPostalCode,
     
-    phone_number: shippingAddressValidators.zodIsMobilePhone,
-    
-    _id: objectIdSchema 
+    phone_number: shippingAddressValidators.zodIsMobilePhone
     
 }).strict();
 

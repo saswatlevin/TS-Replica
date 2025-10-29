@@ -1,6 +1,6 @@
-Please work inside the following directory: C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\getUsersByNameSchema
+Please work inside the following directory: C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\userShippingAddressResponseSchema
 
-Go to the file called getUsersByNameSchema_Tests.txt and look under the <LAST NAME - IFV> category.
+Go to the file called userShippingAddressResponseSchema_Tests.txt and look under the <_id - IFV> category.
 
 For tests that accept a valid value, follow the rules: "result.success should assert true", "Value of the field being tested should be asserted from the result", "Length of the result should be asserted (for length tests only)".
 
@@ -8,7 +8,7 @@ For tests that reject a value, follow the rules: "result.success should assert f
 
 For all tests, create a console.log statement with the following format console.log("<name_of_test> - result?.error?.issues ", result?.error?.issues); Place this console.log() statement after the call to safeParse().
 
-Write these tests inside a file called getUsersByNameSchema.last_name.ifv.test.js
+Write these tests inside a file called userShippingAddressResponseSchema._id.ifv.test.js
 
 In the userRequestSchema.happy_path.test.js file, write the tests for the following conditions: * ["abc_d01@hostmail.com", "Soyuz@1966#U"
 , "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Password Minimum Length

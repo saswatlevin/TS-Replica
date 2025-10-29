@@ -1,0 +1,90 @@
+=========RULES FOR CREATE DATA APIs============
+* Get user id from req params.
+* Check if the REQUEST OBJECT is empty, if not -> Throw an EmptyRequestBodyError.
+
+* Get the data to be inserted
+
+CHECK IF THE DATA THAT YOU'RE ABOUT TO INSERT ALREADY EXISTS IN THE DATABASE -> If yes, throw DuplicateDocumentError / DuplicateSubDocumentError
+
+* If the data in question is a sub-document, check if the main document exists.
+* If the main document doesn't exist, then throw a ResourceNotFoundError.
+
+* Generate any data you need (Eg - IDs, password hashes, dates)
+* DEEP CLONES UNNECESSARY for request object since the schema validator already makes one for you
+
+* Perform the database insertion operation. Try to use .lean() for the function that does the database insertion operation
+* Check if the database insertion operation is successful, if so, send the response with a status code of 201.
+
+* Check how to handle unsuccessful insertions
+  If the insertion API generates no error, then send a response with status code of 400 and a failure message
+=========RULES FOR CREATE DATA APIs============
+
+
+=========RULES FOR UPDATE DATA APIs============
+* Get the necessary data from the request params
+* Check if the REQUEST OBJECT is empty. If so -> Throw a EmptyRequestBodyError.
+
+* Get the data to be inserted
+CHECK IF THE DATA THAT YOU'RE ABOUT TO UPDATE ALREADY EXISTS IN THE DATABASE -> If yes, throw DuplicateDocumentError / DuplicateSubDocumentError
+
+* If the data in question is a sub-document, check if the main document exists.
+* If the main document doesn't exist, then throw a ResourceNotFoundError.
+
+* Generate any data you need (Eg - IDs, password hashes, dates)
+
+* If inserting a sub-document:
+  *Create any filter / selector you need to.
+  *Build any update object you need to
+
+* Perform the database insertion operation.   
+* Check if the database insertion operation is successful, if so, send the response with a status code of 200.
+
+* Check how to handle unsuccessful insertions
+  If the insertion API generates no error, then send a response with status code of 200 and a failure message
+=========RULES FOR UPDATE DATA APIs============
+
+
+=========RULES FOR READ DATA APIs============
+* Get the data from the request params
+* Check if the REQUEST OBJECT is empty. If so -> Throw a EmptyRequestBodyError.
+
+* If the data to be searched in question is in a sub-document, check if the main document exists.
+* If the main document doesn't exist, then throw a ResourceNotFoundError.
+
+* If searching for data in a sub-document, build the search query
+* Look for the requested data in the database using aggregate()
+
+* Check the result, 
+if successful, then send a 200 response with the result
+* If unsuccessful,
+Throw a ResourceNotFoundError
+=========RULES FOR READ DATA APIs============
+
+
+=========RULES FOR DELETE DATA APIs==========
+* Get the user_id from the REQUEST BODY
+* Get the REQUEST BODY from the REQUEST OBJECT
+
+* If the data to be deleted in question is in a sub-document, check if the main document exists.
+* If the main document doesn't exist, then throw a ResourceNotFoundError.
+
+CHECK IF THE DATA TO BE DELETED EXISTS
+
+* Delete the data from the database.
+
+* Check if the database insertion operation is successful, if so, send the response with a status code of 200.
+* Check how to handle unsuccessful insertions
+  If the insertion API generates no error, then send a response with status code of 200 and a failure message.
+=========RULES FOR DELETE DATA APIs==========
+
+
+=========API SEQUENCE OF ACTIVITIES==========
+* Check if request and response validation schema for the given API exists, If not, create it.
+* Create the API
+
+* Perform LIVE TESTS (This includes interacting with actual data on the database)
+* Perform database insertion UNIT TEST on the API -> Just ONE test
+
+* Decide which events to log in the API and log them
+* Perform happy path UNIT TESTS on the API's schemas
+=========API SEQUENCE OF ACTIVITIES==========

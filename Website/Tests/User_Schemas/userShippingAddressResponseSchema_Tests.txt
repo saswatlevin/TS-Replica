@@ -1,0 +1,355 @@
+========USER SHIPPING ADDRESS RESPONSE SCHEMA FIELDS========
+_id -> Valid MongoDB ObjectID
+
+user_id -> length(12), required(), [lowercase letters & numbers]
+docType -> required(), Can only contain the literal ["USER"]
+
+date_created_at -> length(17), required(), Contains a date of ISO8601 format [Must have date in the format YY-MM-DDTHH:MM:SS]
+email -> min(9), max(30), required() [Emails of the form host@domain.com where both host and domain can contain numbers, letters and special characters]
+
+password -> length(97), required() [Contains a string of the form: ^\$argon2id\$v=19\$m=65536,t=3,p=4\$[a-zA-Z0-9\+\/]{22}\$[a-zA-Z0-9\+\/]{43}$]
+[The password field takes an argon2 hash generated using v=19, m=65536, t=3 and p=4.]
+
+phone_number -> min(8), max(12), required() [Contains only numbers]
+
+first_name -> min(1), max(100), required() [Contains uppercase letters, lowercase letters, hyphens and single-quotes]
+last_name -> min(1), max(100), required() [Contains uppercase letters, lowercase letters, hyphens and single-quotes]
+
+user_role -> required() Can contain only the following literals ["user", "admin"]
+upper_size_number -> required() Can only contain the following integers [46, 44, 42, 40, 38, 36]
+
+upper_size_letter -> required() Can only contain the following literals ["XXL", "XL", "L", "M", "S", "XS"]
+others_size_letter -> required() Can only contain the following literals ["XXL", "XL", "L", "M", "S", "XS"]
+
+email_comms_type -> required() Can be one of the following literals ["I want all emails", "One weekly recap", "Stock notifications only", "Never / Unsubscribe"]
+sms_comms -> required() Can one of the Boolean values true or false
+
+ShippingAddresses -> createShippingAddressResponseSchema
+
+CartItems -> cartItemArraySchema
+
+_v -> Valid positive integer
+========USER SHIPPING ADDRESS RESPONSE SCHEMA FIELDS========
+
+=======CREATE SHIPPING ADDRESS RESPONSE SCHEMA FIELDS===============
+_id -> required() Valid MongoDB ObjectID
+
+shipping_address_id: length(12), required() 12-character small alphabet & numeric shipping address id string
+
+address_type_id: length(1), required() Single digit id string
+
+company name: max(100), optional() A string that can contain letters, dashes and spaces
+
+address: min(100), max(200), required() A string that can contain letters, numbers, dashes and spaces
+
+apartment: max(100), required() A string that can contains letters, digits, dashes, spaces and backward slashes
+
+city: min(3), max(100), required() A string that can have dashes, apostrophes and spaces
+
+administrative_division: max(100), optional() A string that can contain letters, dashes, apostrophes and spaces
+
+country: required() An Enum that can contain the following country values: "United States", "United Kingdom", "Canada", "Australia", "New Zealand", "Ireland", "Singapore", "Hong Kong", "Japan"
+
+postal_area: min(3), max(10), required() A string that can contain letters, digits and dashes
+
+phone_number: min(8), max(12), required() A string that contains only numbers
+=======SHIPPING ADDRESS RESPONSE SCHEMA FIELDS===============
+
+
+=======CREATE CART ITEM SCHEMA FIELDS========================
+cart_item_id: length(12), required() 12-character small alphabet & numeric shipping address id string
+
+product_id: length(12), required() 12-character small alphabet & numeric shipping address id string
+
+sku: length(10), required() 10-character small alphabet & numeric shipping address id string
+
+cart_item_name: min(3), max(100), required() A string that can contain small letters, capital letters, accented letters, digits, dashes and spaces
+
+cart_item_image_uri: max(256), required() A string that must be a valid windows file path
+
+cart_item_quantity: min(1), max(100) An integer that can have a minimum value of 1 and a maximum value of 100
+=======CREATE CART ITEM SCHEMA FIELDS========================
+
+Create 2 test cases for the happy path
+HAPPY PATH TEST CASES
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] ->
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "mn9i1asdfgvc", "2025-10-24T11:45:04", "dca_101@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$ZyXwVuTsRqPoNmLkJiHg$QwErTyUiOpAsDfGhJkLzXcVbNmQwErTyUiOpAsDfGh", "917560847544", "Yuri", "Koptev", "user", 42, "L", "L", "One weekly recap", true, [], [], 0] ->
+
+Create test cases with only 1 field having a boundary test case value
+HAPPY PATH BOUNDARY TEST CASES
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),, "ab01dhiojniu", "2025-10-04T12:59:59", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Date Value
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d44@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Email Value
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "ab@de.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Email Minimum Length
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abcdefghijklm@mnopqrstuvwx.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Email Maximum Length
+
+<PASSWORD TEST NOT NEEDED>
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "6834002", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> Phone Number Minimum Length
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Phone Number Maximum Length
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Ya'el", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> First Name Value
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "A", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> First Name Minimum Length
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyt", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> First Name Maximum Length
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Zaghari-Ratcliffe", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Last Name Value
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "B", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Last Name Minimum Length
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyt", "admin", 40, "M", "M", "I want all emails", false, [], [],  0] -> Last Name Maximum Length
+
+
+
+Here, we will write the following types of test cases for each field: data_type_test_case, required_field_test_case, 1_char_below_min_length, 1_char_above_max_length, format_validation_test_case,
+ 
+We will also write test cases to put invalid values in Enums
+INDIVIDUAL FIELD VALIDATION TEST CASES
+<USER ID TEST CASES - IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid User ID Datatype -> DONE
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 123456789011, "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid User ID Datatype
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojni_", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid User ID Value (Format)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojni", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid User ID Length (Below Length)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojnius", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid User ID Length (Above Length)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Empty User ID
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), null, "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Missing User ID
+
+<DATE TEST CASES - IFV>
+* ["ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid Date Datatype
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", 251004124204, "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> Invalid Date Datatype
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:99", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Date Value (Format)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu",  "2025-10-22T13:45:3", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Date Length (Below Length)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu",  "2025-10-22T13:45:30.1", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Date Length (Above Length)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu",  "", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I"
+, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Empty Date
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", null, "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Missing Date
+
+<EMAIL TEST CASES - IFV>
+* ["ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), 0] -> Valid Email Datatype
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", 100, "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Email Datatype
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Email Value (Format)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "a@bc.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I" ,"917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Email Length (Below Minimum)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abcdefghijklm@mnopqrstuvwxa.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Email Length (Above Maximum)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I","917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Empty Email
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", null, "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I","917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Missing Email
+
+
+<PASSWORD HASH - IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid Password Hash Value
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$GhjKlMnOpQrStUvWxYZa$AbCDefGhIjKlMnOpQrStUvWxYZaBcDeFgHiJkLmNo", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Password Hash Value (Below Length)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5IA", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Password Hash Value (Above Length)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", null, "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Missing Password Hash
+
+
+<PHONE NUMBER - IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid Phone Number DataType
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", 917560847544, "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Phone Number DataType
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "9175-6084-7544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Phone Number Value (Format)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "12345", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Phone Number Length (Below Length)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "+917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Phone Number Length (Above Length)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Empty Phone Number
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", null, "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Missing Phone Number
+
+
+<FIRST NAME - IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid First Name Datatype
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", 123, "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid First Name Datatype
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Ari_f", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid First Name Value (Format)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid First Name Length & Empty First Name (Below Length)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyta", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid First Name Length (Above Length)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", null, "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Missing First Name
+
+
+<LAST NAME - IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid Last Name Datatype
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", 123, "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Last Name Datatype
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Kh_an", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Last Name Value (Format)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Last Name Length & Empty Last Name (Below Length)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "AbCde-FgHiJkL'mNoPqRsTuVwXyZ-aBcDeFgHiJkLmNoPqRsTuVwXyZaBcDeFgHiJkL'mNoPqRsTuVwXyZiuyhjklopopmnbghyta", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Last Name Length (Above Length)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", null, "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Missing Last Name
+
+
+<USER ROLE - IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid User Role Value (admin)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "user", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid User Role Value (user)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "User", 40, "M", "M", "I want all emails", false, [], [], 0] -> Invalid User Role Value
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", 12345, 40, "M", "M", "I want all emails", false, [], [], 0] ->  Invalid User Role Datatype
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", , 40, "M", "M", "I want all emails", false, [], [], 0] ->  Empty User Role
+
+
+<UPPER SIZE NUMBER - IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 46, "M", "M", "I want all emails", false, [], [], 0] -> Valid Upper Size Number (46)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 44, "M", "M", "I want all emails", false, [], [], 0] -> Valid Upper Size Number (44)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 42, "M", "M", "I want all emails", false, [], [], 0] -> Valid Upper Size Number (42)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid Upper Size Number (40)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 38, "M", "M", "I want all emails", false, [], [], 0] -> Valid Upper Size Number (38)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 36, "M", "M", "I want all emails", false, [], [], 0] -> Valid Upper Size Number (36)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 48, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Upper Size Number (48)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 34, "M", "M", "I want all emails", false, [], [], 0] -> Invalid Upper Size Number (34)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", "46", "M", "M", "I want all emails", false, [], [], 0] -> Invalid Upper Size Number DataType ("46")
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", null, "M", "M", "I want all emails", false, [], [], 0] -> Missing Upper Size Number
+
+
+<UPPER SIZE LETTER - IFV>
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "XXL", "XXL", "I want all emails", false, [], [], 0] -> Valid Upper Size Letter (XXL)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "XL", "XL", "I want all emails", false, [], [], 0] -> Valid Upper Size Letter (XL)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "L", "L", "I want all emails", false, [], [], 0] -> Valid Upper Size Letter (L)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid Upper Size Letter (M)"
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "S", "S", "I want all emails", false, [], [], 0] -> Valid Upper Size Letter (S)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "XS", "XS", "I want all emails", false, [], [], 0] -> Valid Upper Size Letter (XS)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "XXXL", "M", "I want all emails", false, [], [], 0] -> Invalid Upper Size Letter (XXXL)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "XXS", "M", "I want all emails", false, [], [], 0] -> Invalid Upper Size Letter (XXS)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, 2615, "M", "I want all emails", false, [], [], 0] -> Invalid Upper Size Letter Datatype (2615)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "", "M", "I want all emails", false, [], [], 0] -> Empty Upper Size Letter
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, null, "M", "I want all emails", false, [], [], 0] -> Missing Upper Size Letter
+
+<OTHERS SIZE LETTER - IFV>
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "XXL", "XXL", "I want all emails", false, [], [], 0] -> Valid Others Size Letter (XXL)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "XL", "XL", "I want all emails", false, [], [], 0] -> Valid Others Size Letter (XL)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "L", "L", "I want all emails", false, [], [], 0] -> Valid Others Size Letter (L)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid Others Size Letter (M)"
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "S", "S", "I want all emails", false, [], [], 0] -> Valid Others Size Letter (S)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "XS", "XS", "I want all emails", false, [], [], 0] -> Valid Others Size Letter (XS)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "XXXL", "I want all emails", false, [], [], 0] -> Invalid Others Size Letter (XXXL)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "XXS", "I want all emails", false, [], [], 0] -> Invalid Others Size Letter (XXS)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", 2615, "I want all emails", false, [], [], 0] -> Invalid Others Size Letter Datatype (2615)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "", "I want all emails", false, [], [], 0] -> Empty Others Size Letter
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", null, "I want all emails", false, [], [], 0] -> Missing Others Size Letter
+
+
+
+<EMAIL COMMS TYPE -IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid Email Comms Type Value (I want all weekly emails)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "One weekly recap", false, [], [], 0] -> Valid Email Comms Type Value (One weekly recap)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "Stock notifications only", false,[], [], 0] -> Valid Email Comms Type Value (Stock notifications only)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "Never / Unsubscribe", false, [], [], 0] -> Valid Email Comms Type Value (Never / Unsubscribe)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "Always", false, [], [], 0] -> Invalid Email Comms Type Value ("Always")
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", 123, false, [], [], 0] -> Invalid Email Comms Type Datatype (123)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "", false, [], [], 0] -> Empty Email Comms Type Value
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", null, false, [], [], 0] -> Missing Email Comms Type Value
+
+
+<SMS COMMS TYPE - IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid SMS Comms Type Value (false)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", true, [], [], 0] -> Valid SMS Comms Type Value (true)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", "false", [], [], 0] -> Invalid SMS Comms Type Value ("false")
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", null, [], [], 0] -> Missing SMS Comms Type Value
+
+
+<SHIPPING ADDRESSES - IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid Shipping Addresses Array Value (Empty Array)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [["650f1a2b3c4d5e6f7a8b9c0d", "SH1234567890", "1", "Acme-Global Solutions", "1234 Elm Street, Suite 567, Industrial Area, Near Central Park", "Apt\\45B", "New-York", "New York State", "United States", "10001-1234", "1234567890"]], [], 0] -> Valid Shipping Addresses Array Value (Array with one Shipping Address)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [["650f1a2b3c4d5e6f7a8b9c0d", "SH1234567890", "1", "Acme-Global Solutions", "1234 Elm Street, Suite 567, Industrial Area, Near Central Park", "Apt\\45B", "New-York", "New York State", "United States", "10001-1234", "1234567890"], ["651a2b3c4d5e6f7a8b9c0d1e", "AB9876543210", "2", "Tech-Enterprises Ltd", "7890 Maple Avenue, Block 12, Industrial Zone, Close to Riverside, Metropolis", "Suite\\120", "Los-Angeles", "California", "United States", "90012", "0987654321"]], [], 0] -> Valid Shipping Addresses Array Value (Array with two Shipping Addresses)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, null, [], 0] -> Missing Shipping Addresses Array
+
+
+<CART ITEMS - IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid Cart Items Array Value (Empty Array)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [ ["ab12cd34ef56", "xy98uv76rs54", "sk12ab34cd", "Premium-Éclair Chocolate 250g", "C:\\Users\\Public\\Pictures\\CartItems\\chocolate_250g.jpg", 3]], 0] -> Valid Cart Items Array Value (Array with one Cart Item)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [["ab12cd34ef56", "xy98uv76rs54", "sk12ab34cd", "Premium-Éclair Chocolate 250g", "C:\\Users\\Public\\Pictures\\CartItems\\chocolate_250g.jpg", 3], ["mn34op56qr78", "gh12ij34kl56", "sku98lm76no", "Organic Green-Tea Pack 100g", "C:\\Ecommerce\\Images\\CartItems\\green_tea_100g.png", 12]],  0] -> Valid Cart Items Array Value (Array with two Cart Items)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),"ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], null, 0] -> Missing Cart Items Array
+
+
+<_id - IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid _id value
+
+
+<_v - IFV>
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], 0] -> Valid _v Value
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"), "ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], ""] -> Invalid _v Value (Empty String)
+
+* [ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),"ab01dhiojniu", "2025-10-04T12:42:04", "abc_d01@hostmail.com", "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], [], null] -> Missing _v Value

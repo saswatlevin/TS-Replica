@@ -1,0 +1,173 @@
+Here is the full set of factors that you should consider when designing an API:
+
+=====OVERVIEW=====
+Data inflow
+Database check
+Exhaustive sequence of events
+List of operational errors
+List of events to be logged
+=====OVERVIEW=====
+
+1) Exhaustive list of data inflow -> The parameters that NEED to be GIVEN to the API
+				  -> How are the Parameters being supplied NOW vs. when there's a FRONTEND and a SESSION?
+
+2) Database Check conditions -> Does the API need to check the database for EXISTING DOCUMENTS
+                             -> Does the API need to check OTHER DATABASES BEFORE making a decision OR to maintain DATABASE CONSISTENCY?
+
+3) WHICH EVENTS are to have dedicated Operational Errors and WHY?
+
+4) Decide WHICH EVENTS in the API are to be logged.
+
+
+========API DESIGN EXAMPLES SO FAR========
+createShippingAddress
+* Get user id from req params.
+* Check if the REQUEST OBJECT is empty, if not -> Throw an EmptyRequestBodyError.
+
+* Get the shipping address from the request body.
+* Call the userExists function
+
+* Generate the shipping_address_id
+* If the user doesn't exist -> Throw a ResourceNotFoundError
+
+* If the user does exist, insert the shipping address in the database using findOneAndUpdate()
+* Return a response with 201 and the result
+
+NOTE: Use lean() with findOneAndUpdate() since it removes unnecessary entries from the response object.
+
+updateShippingAddress
+* Get the user_id from req.params
+* Get the shipping_address_id from req.params
+
+* Check if the REQUEST OBJECT is empty. If so -> Throw a EmptyRequestBodyError.
+* If the User doesn't exist -> Throw a ResourceNotFoundError.
+
+* If the ShippingAddress doesn't exist -> Throw a ResourceNotFoundError.
+* Create a shipping address selector
+
+* Build the shipping address update request body (Doing this since this is a sub-document)
+* Insert the shipping address update into the database using updateOne().
+
+* Check if the update is successful, if so:
+Return a response with a status code of 200 and the result
+
+* If the update isn't successful,
+Attach a failure message
+Then, return the response with a status code of 200 and the result
+
+NOTE: updateOne() DOES NOT NEED .lean()
+
+searchShippingAddress
+* Get the user_id from req.params
+* Check if the REQUEST OBJECT is empty and if so, throw the EmptyRequestBodyError
+
+* Check if the user exists, if not, throw the ResourceNotFoundError
+* Check if the REQUEST BODY is empty or not
+
+* (NOT NEEDED) Make a deep copy of the request body
+
+* Build the shipping address search query from the <<<UN-deep copy>>> of the request body
+* If necessary, make an aggregation pipeline
+
+* Look for the requested data in the database using aggregate()
+
+* Check the result, 
+if successful, then send a 200 response with the result
+* If unsuccessful,
+Throw a ResourceNotFoundError
+
+deleteShippingAddress
+* Get the user_id from the REQUEST BODY
+* Get the REQUEST BODY from the REQUEST OBJECT
+
+* Check if the user exists, if not, throw a ResourceNotFoundError
+* Delete the shipping address from the database
+* Send the result of the deletion with a status code of 200.
+ 
+========API DESIGN EXAMPLES SO FAR========
+
+=========RULES FOR CREATE DATA APIs============
+
+* Get user id from req params.
+* Check if the REQUEST OBJECT is empty, if not -> Throw an EmptyRequestBodyError.
+
+* Get the data to be inserted
+
+CHECK IF THE DATA THAT YOU'RE ABOUT TO INSERT ALREADY EXISTS IN THE DATABASE -> If yes, throw DuplicateDocumentError / DuplicateSubDocumentError
+
+* If the data in question is a sub-document, check if the main document exists.
+* If the main document doesn't exist, then throw a ResourceNotFoundError.
+
+* Generate any data you need (Eg - IDs, password hashes, dates)
+* DEEP CLONES UNNECESSARY for request object since the schema validator already makes one for you
+
+* Perform the database insertion operation. Try to use .lean() for the function that does the database insertion operation
+* Check if the database insertion operation is successful, if so, send the response with a status code of 201.
+
+* Check how to handle unsuccessful insertions
+  If the insertion API generates no error, then send a response with status code of 400 and a failure message
+=========RULES FOR CREATE DATA APIs============
+
+=========RULES FOR UPDATE DATA APIs============
+* Get the necessary data from the request params
+* Check if the REQUEST OBJECT is empty. If so -> Throw a EmptyRequestBodyError.
+
+* Get the data to be inserted
+CHECK IF THE DATA THAT YOU'RE ABOUT TO UPDATE ALREADY EXISTS IN THE DATABASE -> If yes, throw DuplicateDocumentError / DuplicateSubDocumentError
+
+* If the data in question is a sub-document, check if the main document exists.
+* If the main document doesn't exist, then throw a ResourceNotFoundError.
+
+* If inserting a sub-document:
+  *Create any filter / selector you need to.
+  *Build any update object you need to
+
+* Perform the database insertion operation.   
+* Check if the database insertion operation is successful, if so, send the response with a status code of 200.
+
+* Check how to handle unsuccessful insertions
+  If the insertion API generates no error, then send a response with status code of 200 and a failure message
+=========RULES FOR UPDATE DATA APIs============
+
+
+=========RULES FOR READ DATA APIs============
+* Get the data from the request params
+* Check if the REQUEST OBJECT is empty. If so -> Throw a EmptyRequestBodyError.
+
+* If the data to be searched in question is in a sub-document, check if the main document exists.
+* If the main document doesn't exist, then throw a ResourceNotFoundError.
+
+* If searching for data in a sub-document, build the search query
+* Look for the requested data in the database using aggregate()
+
+* Check the result, 
+if successful, then send a 200 response with the result
+* If unsuccessful,
+Throw a ResourceNotFoundError
+=========RULES FOR READ DATA APIs============
+
+=========RULES FOR DELETE DATA APIs==========
+* Get the user_id from the REQUEST BODY
+* Get the REQUEST BODY from the REQUEST OBJECT
+
+* If the data to be deleted in question is in a sub-document, check if the main document exists.
+* If the main document doesn't exist, then throw a ResourceNotFoundError.
+
+CHECK IF THE DATA TO BE DELETED EXISTS
+
+* Delete the data from the database.
+
+* Check if the database insertion operation is successful, if so, send the response with a status code of 200.
+* Check how to handle unsuccessful insertions
+  If the insertion API generates no error, then send a response with status code of 200 and a failure message.
+=========RULES FOR DELETE DATA APIs==========
+
+
+=========API SEQUENCE OF ACTIVITIES==========
+* Check if request and response validation schema for the given API exists, If not, create it.
+* Create the API
+* Perform LIVE TESTS (This includes interacting with actual data on the database)
+* Perform database insertion UNIT TEST test on the API -> Just ONE test
+* Decide which events to log in the API and log them
+* Perform happy path UNIT TESTS on the API's schemas
+=========API SEQUENCE OF ACTIVITIES==========

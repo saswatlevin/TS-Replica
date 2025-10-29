@@ -80,10 +80,11 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
 
     console.log("request_body in updateShippingAddress ", request_body);
 
-    if (checkIsEmptyObject(request_body) === true) {
+    // Here, we check if the request body is empty or not
+    /*if (checkIsEmptyObject(request_body) === true) {
         const empty_request_body_error = new EmptyRequestBodyError(`Could not update the shipping address with shipping_address_id ${shipping_address_id} of user with user_id ${user_id} due to empty request body.`);
         throw empty_request_body_error; 
-    }
+    }*/
 
     // Building the shipping address update request body.
     const update_request = Object.fromEntries(
@@ -227,15 +228,17 @@ const searchShippingAddress = asyncErrorHandler(async(req, res, next) => {
         throw user_id_not_found_error;
     }
 
+    // HERE, WE CHECK IF THE REQUEST BODY IN PARTICULAR IS EMPTY OR NOT
+    if (checkIsEmptyObject(req.body) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not find the shipping address of user with user_id ${user_id} due to empty request body.`);
+        throw empty_request_body_error; 
+    }
+
     // Make a deep clone of the request body
     const request_body =  _.cloneDeep(req.body);
 
     console.log("request_body in search_shipping_address is ", request_body);
-
-    if (checkIsEmptyObject(request_body) === true) {
-        const empty_request_body_error = new EmptyRequestBodyError(`Could not find the shipping address of user with user_id ${user_id} due to empty request body.`);
-        throw empty_request_body_error; 
-    }
+    
 
     // Building the shipping address search query
     const shipping_address_search_query = Object.fromEntries(
@@ -303,6 +306,7 @@ const deleteShippingAddressById = asyncErrorHandler(async (req, res, next) => {
         throw empty_request_body_error; 
     }
 
+    // Check if checkUserExists returns an error
     else if (user_exists !== true) {
             throw user_exists;
             

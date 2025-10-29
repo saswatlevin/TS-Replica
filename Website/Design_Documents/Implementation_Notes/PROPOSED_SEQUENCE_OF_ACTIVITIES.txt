@@ -1,0 +1,16 @@
+BEFORE engaging in the following activities, please do the following:
+1) Decide all the things that an API should contain 
+2) 
+
+
+* Test 1 ShippingAddress API & its schema(s) -> 0.5 day
+* Create a new Product API -> X -> 0.5 day
+====================================================================
+* Create the schema(s) for X, if they don't already exist -> 0.25 day
+* Test X and its schema(s) -> 0.25 day
+* Test 1 ShippingAddress API -> Y -> 0.25 day
+* Test the schemas of Y -> 0.25 day
+====================================================================
+NOTE: Conduct only database Insertion Tests for the APIs
+NOTE: Conduct only happy_path tests for the schemas
+

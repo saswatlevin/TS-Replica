@@ -1,8 +1,7 @@
 {
   "watch": [
-    "server.js",
-    "Middleware"
+    "dist"
   ],
-  "ext": "js,ts",
-  "exec": "node server.js"
+  "ext": "js",
+  "exec": "node dist/server.js"
 }

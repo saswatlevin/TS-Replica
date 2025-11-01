@@ -24,3 +24,25 @@
   ]
 }
 
+/*
+compilerOptions.target: Compile emitted JavaScript to ES2020 features for runtime compatibility.
+compilerOptions.module: Use CommonJS module system so Node.js can require the generated files.
+compilerOptions.moduleResolution: Resolve modules the same way Node.js does, checking node_modules and file extensions.
+compilerOptions.rootDir: Treat the project root as the base directory for source files.
+compilerOptions.outDir: Emit compiled output into the dist folder.
+compilerOptions.lib: Include ES2020 library definitions (e.g., Promise, BigInt) for type checking.
+compilerOptions.allowJs: Permit JavaScript files to be part of the compilation.
+compilerOptions.esModuleInterop: Enable default import compatibility for modules that export via CommonJS.
+compilerOptions.resolveJsonModule: Allow importing .json files as typed modules.
+compilerOptions.skipLibCheck: Skip type checking of declaration files to speed up builds.
+
+include[0]: Include the TypeScript entry point.
+include[1]: Include the JavaScript entry point.
+include[2]: Include all TypeScript middleware files.
+include[3]: Include all JavaScript middleware files.
+
+exclude[0]: Exclude build output so it is not recompiled.
+exclude[1]: Exclude dependencies managed by npm.
+exclude[2]: Exclude test files from the TypeScript build.
+*/
+

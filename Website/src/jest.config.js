@@ -5,3 +5,9 @@ module.exports = {
   clearMocks: true
 };
 
+/*
+testEnvironment: Run tests in a Node.js-like environment since the code targets the backend.
+testMatch: Look for test files ending in .test.js within any __tests__ directory.
+verbose: Show individual test results for easier debugging.
+clearMocks: Automatically reset mocked calls and instances between tests.
+*/

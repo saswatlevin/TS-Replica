@@ -6,4 +6,3 @@
   "ext": "js,ts",
   "exec": "node server.js"
 }
-

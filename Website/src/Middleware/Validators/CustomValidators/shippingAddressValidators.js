@@ -9,8 +9,8 @@ const zodIsPostalCode = z.string("The postal_area field must be a string").min(3
     message: "Only valid postal addresses are permitted in this field."
 });
 
-const zodIsCompanyName = z.string("The company_name field must be a string.").max(100, {message: "The company_name field has a maximum permitted length of 100 characters."}).optional("The company_name field is optional.").refine((value) => /^[a-zA-Z- ]*$/.test(value), {
-    message: "A company_name can only have letters, spaces and dashes."
+const zodIsCompanyName = z.string("The company_name field must be a string.").max(100, {message: "The company_name field has a maximum permitted length of 100 characters."}).optional("The company_name field is optional.").refine((value) => /^[a-zA-Z-, ]*$/.test(value), {
+    message: "A company_name can only have letters, spaces, commas and dashes."
 });
 
 const zodIsAddress = z.string("The address field must be a string.").min(1, {message: "The address field is a required field."}).max(200, {message: "The address field has a maximum permitted length of 200 characters."}).refine((value) => /^[a-zA-Z0-9-, ]*$/.test(value), {

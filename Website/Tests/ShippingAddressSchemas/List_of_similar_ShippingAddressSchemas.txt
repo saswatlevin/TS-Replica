@@ -1,0 +1,11 @@
+LIST OF SIMILAR SHIPPING ADDRESS SCHEMAS
+
+==========createShippingAddressRequestSchema==========
+orderShippingAddressSchema
+updateShippingAddressRequestSchema
+==========createShippingAddressRequestSchema==========
+
+==========createShippingAddressResponseSchema=========
+shippingAddressStandardSchema
+searchShippingAddressRequestSchema
+==========createShippingAddressResponseSchema=========

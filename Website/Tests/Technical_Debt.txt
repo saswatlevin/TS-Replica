@@ -1,5 +1,6 @@
 ===========TECHNICAL DEBT===========
 1) In every create API, add logic to check if the document already exists in the database or not.
+1a) In every function to check whether a duplicate exists, use a combination of ID and name to check for the duplicate.
 2) Add the DOB parameter to the User schemas and the User documents.
 3) Add an appropriate index to each collection of the database.
 4) Create a list of factors to be considered / steps to be followed while creating an API.

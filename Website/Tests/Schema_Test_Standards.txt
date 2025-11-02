@@ -10,3 +10,8 @@ If we are writing a rejection unit test, then the following should be asserted f
 3) The corresponding data value being accepted should be a asserted from the testData.
 
 NOTE: When testing sub-document arrays in a document, the length of the sub-document arrays should be asserted for. 
+
+From all the files inside the userRequestSchema folder, do the following:
+1) Remove the user_id, doctype, date_created_at, _id and _v fields from all instances of the testData.
+2) Replace all instances of the term "registerUserSchema" with "userRequestSchema".
+3) Replace all instances of the value "$argon2id$v=19$m=65536,t=3,p=4$JysnBuZt/shJJ5zu99+tSw$ZuaSU6gMbJqHgVRXHaSN8Il7VsN2gPJSjTDBogGkt5I" with "Soyuz@1966#USSR".

@@ -1,0 +1,66 @@
+============UPDATE SHIPPING ADDRESS REQUEST SCHEMA============
+address_type_id -> length(1), optional() -> A single-character string that takes a digit.
+
+company_name -> max(100), optional() -> A company_name can have letters, spaces, commas and dashes.
+
+address -> min(1), max(200), optional() -> An address can only have letters, numbers, dashes, spaces and commas.
+
+apartment -> max(100), optional() -> An apartment can have letters, numbers, spaces and brackets, i.e., ( and ).
+
+city -> min(3), max(100), optional() -> A city can have letters, spaces, dashes and single quotes.
+
+administrative_division -> max(100), optional() -> An administrative_division can only have letters, spaces, single-quotes and dashes. 
+
+country -> optional() -> A country can only be one of the following: "United States", "United Kingdom", "Canada", "Australia", "New Zealand", "Ireland", "Singapore", "Hong Kong", "Japan".
+
+postal_area -> min(3), max(10), optional() -> A postal_area can only be a valid postal_address.
+
+phone_number -> min(8), max(12), optional() -> A phone_number must be valid and with country code.
+============UPDATE SHIPPING ADDRESS REQUEST SCHEMA============
+
+HAPPY PATH TEST CASES
+["1", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "New York City", "New York", "United States", "11215", "15555678901"]
+
+["1", "Hamptons Luxury Homes, Inc", "300 Bluedart Drive, Village of the Hamptons", "15 Oak Manor", "New York City", "New York", "United States", "11200", "15551234567"]
+
+HAPPY PATH BOUNDARY VALUE TEST CASES
+<ADDRESS_TYPE_ID>
+["0", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "New York City", "New York", "United States", "11215", "15555678901"] -> Address Type ID (Minimum Value)
+
+["9", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "New York City", "New York", "United States", "11215", "15555678901"] -> Address Type ID (Maximum Value) 
+
+<COMPANY_NAME>
+["1", "", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "New York City", "New York", "United States", "11215", "15555678901"] -> Company Name (Minimum Length)
+
+["1", "aB-cD-eF-gH-iJ-kL-mN-oP-qR-sT-uV-wX-yZ-aB-cD-eF-gH-iJ-kL-mN-oP-qR-sT-uV-wX-yZ,aBabcdefghijklmnopqrst", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "New York City", "New York", "United States", "11215", "15555678901"] -> Company Name (Maximum Length)
+
+<ADDRESS>
+["1", "Brooklinen, Inc", "7", "", "New York City", "New York", "United States", "11215", "15555678901"] -> Address (Minimum Length)
+
+["1", "Brooklinen, Inc", "742 Eveeeeeeeeeeeeeeeeeeeerrrrrrrrrrrrrrrrrrrrgggggggggggggggggggrrrrrrrrrrrrrrrrrrrrreennnnnnnnnnnnnnnnn Avvvvvvvvvvveeeeeeennnnnnnnnnnnnnnnnnnnnuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuueeeeeeeeeee, Brooklyn", "The Parkview Residences - Apt 12B", "New York City", "New York", "United States", "11215", "15555678901"] -> Address (Maximum Length)
+
+<APARTMENT>
+["1", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "", "New York City", "New York", "United States", "11215", "15555678901"] -> Apartment (Minimum Length)
+
+["1", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "a1B2c3D4(e5F6)g7H8i9J0(k1L2)m3N4o5P6(q7R8)s9T0(u1V2)w3X4y5Z6(a7B8)c9D0 e1F2", "New York City", "New York", "United States", "11215", "15555678901"] -> Apartment (Maximum Length)
+
+<CITY>
+["1", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "Abc", "New York", "United States", "11215", "15555678901"] -> City (Minimum Length)
+
+["1", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmno-pqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' a", "New York", "United States", "11215", "15555678901"] - City (Maximum Length)
+
+<ADMINISTRATIVE DIVISION>
+["1", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "New York City", "", "United States", "11215", "15555678901"] -> Administrative Division (Minimum Length)
+
+["1", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "New York City", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQ-y' z", "United States", "11215", "15555678901"] -> Administrative Division (Maximum Length)
+
+<POSTAL_AREA>
+["1", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "New York City", "New York", "United States", "10001", "15555678901"] -> Postal Area (Minimum Value)
+
+["1", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "New York City", "New York", "United States", "10001-1234", "15555678901"] -> Postal Area (Maximum Value)
+
+
+<PHONE NUMBER>
+["1", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "New York City", "New York", "United States", "11215", "6843002"] -> Phone Number (Minimum Length)
+
+["1", "Brooklinen, Inc", "742 Evergreen Avenue, Brooklyn", "The Parkview Residences - Apt 12B", "New York City", "New York", "United States", "11215", "15555678901"] -> Phone Number (Maximum Length)

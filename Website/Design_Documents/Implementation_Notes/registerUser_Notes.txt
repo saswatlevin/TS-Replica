@@ -1,0 +1,22 @@
+Get the request body.
+Create a deep copy of the request body. 
+
+Add the user_id as a new attribute to the deep copy of the request body.
+Generate the user_id as a 12-character string.
+Add the doctype as a new attribute to the deep copy of the request body.
+
+Get the current date.
+Assign the current date as a new attribute to the deep copy of the request body.
+
+Create the password hash through Argon2.
+Assign the password hash to the "password" attribute in the deep copy of the request body.
+
+Create the user using the User.create() function of Mongoose, passing it the deep copy of the request body.
+Send the result of that create() operation as a response.
+
+=========DATABASE INSERTION TEST============
+Check whether the data has been inserted into the database or not.
+=========DATABASE INSERTION TEST============
+
+
+

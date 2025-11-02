@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import ProductImage from './ProductImage';
 import ProductItem from './ProductItem';
 import ProductGarmentWeight from './ProductGarmentWeight';
+import ProductSupplyType from './ProductSupplyType';
 
 const productSchema = new mongoose.Schema({
     product_id: {
@@ -56,12 +57,12 @@ const productSchema = new mongoose.Schema({
     
     product_garment_weight: {
         type: ProductGarmentWeight,
-        required: [true, "product_garment_weight is a ProductGarmentWeight and is a required field."]
+        required: [true, "product_garment_weight is a required field."]
     },
 
     product_supply_type: {
-        type: String,
-        required: [true, "product_supply_type is a string and is a required field."]
+        type: ProductSupplyType,
+        required: [true, "product_supply_type is a required field."]
     },
     
     product_specifications: {

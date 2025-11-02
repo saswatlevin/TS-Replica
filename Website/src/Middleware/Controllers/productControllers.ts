@@ -18,7 +18,7 @@ import DuplicateDocumentError from '../OperationalErrors/DuplicateDocumentError'
 
 import Product from '../Models/Product';
 
-const createProduct = async (req: any,  res: any, next: any): Promise<void> => {
+const createProduct = asyncErrorHandler(async(req: any,  res: any, next: any): Promise<void> => {
 
     // Get the request body.
     const request_body = req.body;
@@ -39,8 +39,8 @@ const createProduct = async (req: any,  res: any, next: any): Promise<void> => {
 
     // Check if the product exists
     if (product_exists === false) {
-        const product_not_found_error = new DuplicateDocumentError(`Product document with product_id ${product_id} already exists.`);
-        throw product_not_found_error;
+        const product_already_exists_error = new DuplicateDocumentError(`Product document with product_id ${product_id} already exists.`);
+        throw product_already_exists_error;
     }
 
     // Set the docType in the request body
@@ -50,6 +50,6 @@ const createProduct = async (req: any,  res: any, next: any): Promise<void> => {
 
     res.status(201).json(result);
 
-}
+});
 
 export default createProduct;

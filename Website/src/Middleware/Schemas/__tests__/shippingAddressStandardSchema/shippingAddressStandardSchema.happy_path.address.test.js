@@ -5,7 +5,7 @@ describe('shippingAddressStandardSchema - ADDRESS Tests', () => {
     test('shippingAddressStandardSchema - should accept address minimum length "7"', () => {
         // Arrange
         const testData = {
-            _id: new mongoose.Types.ObjectID("656f7c9a8b3e4f1d2a7b9c0e"),
+            _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
             shipping_address_id: "1sjkopnytguq", 
             address_type_id: "1",
             company_name: "Brooklinen, Inc",
@@ -37,7 +37,7 @@ describe('shippingAddressStandardSchema - ADDRESS Tests', () => {
     test('shippingAddressStandardSchema - should accept address maximum length', () => {
         // Arrange
         const testData = {
-            _id: new mongoose.Types.ObjectID("656f7c9a8b3e4f1d2a7b9c0e"),
+            _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
             shipping_address_id: "1sjkopnytguq",
             address_type_id: "1",
             company_name: "Brooklinen, Inc",

@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const { createShippingAddressResponseSchema } = require('../../shippingAddressSchemas');
+const { searchShippingAddressRequestSchema } = require('../../shippingAddressSchemas');
 
-describe('createShippingAddressResponseSchema - Happy Path Tests', () => {
-    test('createShippingAddressResponseSchema - should accept valid shipping address data set 1', () => {
+describe('searchShippingAddressRequestSchema - Happy Path Tests', () => {
+    test('searchShippingAddressRequestSchema - should accept valid shipping address data set 1', () => {
         // Arrange
         const testData = {
-            _id: new mongoose.Types.ObjectID("656f7c9a8b3e4f1d2a7b9c0e"),
+            _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
             shipping_address_id: "1sjkopnytguq",
             address_type_id: "1",
             company_name: "Brooklinen, Inc",
@@ -19,19 +19,19 @@ describe('createShippingAddressResponseSchema - Happy Path Tests', () => {
         };
         
         // Act
-        const result = createShippingAddressResponseSchema.safeParse(testData);
+        const result = searchShippingAddressRequestSchema.safeParse(testData);
 
         if (result?.error?.issues !== undefined){
-            console.log("createShippingAddressResponseSchema - should accept valid shipping address data set 1 - result?.error?.issues ", result?.error?.issues);
+            console.log("searchShippingAddressRequestSchema - should accept valid shipping address data set 1 - result?.error?.issues ", result?.error?.issues);
         }
         else {
-            console.log("createShippingAddressResponseSchema - should accept valid shipping address data set 1 - result ", result);
+            console.log("searchShippingAddressRequestSchema - should accept valid shipping address data set 1 - result ", result);
         }
         
         // Assert
         expect(result.success).toBe(true);
         //expect(testData._id._id.toString()).toBe("656f7c9a8b3e4f1d2a7b9c0e");
-        expect(result.shipping_address_id).toBe("1sjkopnytguq");
+        expect(result.data.shipping_address_id).toBe("1sjkopnytguq");
         expect(result.data.address_type_id).toBe("1");
         expect(result.data.company_name).toBe("Brooklinen, Inc");
         expect(result.data.address).toBe("742 Evergreen Avenue, Brooklyn");
@@ -43,10 +43,10 @@ describe('createShippingAddressResponseSchema - Happy Path Tests', () => {
         expect(result.data.phone_number).toBe("15555678901");
     });
 
-    test('createShippingAddressResponseSchema - should accept valid shipping address data set 2', () => {
+    test('searchShippingAddressRequestSchema - should accept valid shipping address data set 2', () => {
         // Arrange
         const testData = {
-            _id: new mongoose.Types.ObjectID("656f7c9a8b3e4f1d2a7b9c0e"),
+            _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
             shipping_address_id: "1sjkopnytguq",
             address_type_id: "1",
             company_name: "Hamptons Luxury Homes, Inc",
@@ -60,19 +60,19 @@ describe('createShippingAddressResponseSchema - Happy Path Tests', () => {
         };
         
         // Act
-        const result = createShippingAddressResponseSchema.safeParse(testData);
+        const result = searchShippingAddressRequestSchema.safeParse(testData);
 
         if (result?.error?.issues !== undefined){
-            console.log("createShippingAddressResponseSchema - should accept valid shipping address data set 2 - result?.error?.issues ", result?.error?.issues);
+            console.log("searchShippingAddressRequestSchema - should accept valid shipping address data set 2 - result?.error?.issues ", result?.error?.issues);
         }
         else {
-            console.log("createShippingAddressResponseSchema - should accept valid shipping address data set 2 - result ", result);
+            console.log("searchShippingAddressRequestSchema - should accept valid shipping address data set 2 - result ", result);
         }
         
         // Assert
         expect(result.success).toBe(true);
         //expect(testData._id._id.toString()).toBe("656f7c9a8b3e4f1d2a7b9c0e");
-        expect(result.shipping_address_id).toBe("1sjkopnytguq");
+        expect(result.data.shipping_address_id).toBe("1sjkopnytguq");
         expect(result.data.address_type_id).toBe("1");
         expect(result.data.company_name).toBe("Hamptons Luxury Homes, Inc");
         expect(result.data.address).toBe("300 Bluedart Drive, Village of the Hamptons");

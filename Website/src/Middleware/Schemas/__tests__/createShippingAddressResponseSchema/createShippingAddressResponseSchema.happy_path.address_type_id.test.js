@@ -5,7 +5,7 @@ describe('createShippingAddressResponseSchema - ADDRESS_TYPE_ID Boundary Tests',
     test('createShippingAddressResponseSchema - should accept address_type_id minimum value "1"', () => {
         // Arrange
         const testData = {
-            _id: new mongoose.Types.ObjectID("656f7c9a8b3e4f1d2a7b9c0e"),
+            _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
             shipping_address_id: "1sjkopnytguq",
             address_type_id: "1",
             company_name: "Brooklinen, Inc",
@@ -37,7 +37,7 @@ describe('createShippingAddressResponseSchema - ADDRESS_TYPE_ID Boundary Tests',
     test('createShippingAddressResponseSchema - should accept address_type_id maximum value "5"', () => {
         // Arrange
         const testData = {
-            _id: new mongoose.Types.ObjectID("656f7c9a8b3e4f1d2a7b9c0e"),
+            _id: new mongoose.Types.ObjectId("656f7c9a8b3e4f1d2a7b9c0e"),
             shipping_address_id: "1sjkopnytguq",
             address_type_id: "5",
             company_name: "Brooklinen, Inc",

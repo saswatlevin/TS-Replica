@@ -169,6 +169,7 @@ const searchShippingAddressRequestSchema = z.object({
 
 module.exports = {
     createShippingAddressRequestSchema,
+    createShippingAddressResponseSchema,
     createShippingAddressResponseArraySchema,
     orderShippingAddressSchema,
     shippingAddressStandardSchema,

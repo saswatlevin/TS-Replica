@@ -1,0 +1,9 @@
+createShippingAddress Test List
+
+DATABASE INSERTION TEST
+* Should successfully insert a new shipping address into the Userdocument.
+
+DATA TRANSFORMATION TESTS
+* Check if the user_id is gotten from request.params.
+* Check if the checkUserExists() function is called with the REQUEST object.
+* Check if the shipping_address_id is generated as a 12-character alphanumeric string.

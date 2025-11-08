@@ -68,7 +68,8 @@ describe('createShippingAddress - Database Insertion Test', () => {
         });
 
         // Act - Call the function
-        await createShippingAddress(req, res, next);
+        const result = await createShippingAddress(req, res, next);
+        await result;
 
         // Assert - Verify User.findOneAndUpdate was called with correct parameters
         expect(User.findOneAndUpdate).toHaveBeenCalledTimes(1);
@@ -78,12 +79,9 @@ describe('createShippingAddress - Database Insertion Test', () => {
             { new: true }
         );
         
-        // Verify .lean() was called on the result
-        //expect(mockLean).toHaveBeenCalledTimes(1);
-        
         // Verify the response was sent correctly
-        //expect(res.status).toHaveBeenCalledWith(201);
-        //expect(res.json).toHaveBeenCalledWith(mockUpdatedUser);
+        expect(res.status).toHaveBeenCalledWith(201);
+        expect(res.json).toHaveBeenCalledWith(mockUpdatedUser);
     });
 });
 

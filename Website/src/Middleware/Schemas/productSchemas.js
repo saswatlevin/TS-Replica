@@ -10,7 +10,7 @@ const productGarmentWeightSchema = z.object({
 
     garment_weight: z.enum(["Light", "Medium", "Medium to Heavy", "Heavy"], {message: "The garment_weight field accepts one of the following values: Light, Medium, Medium-to-Heavy, Heavy."}),
     //.min(1, {message: "The garment_weight field is a required field."})
-});
+}).strict();
 
 const productSupplyTypeSchema = z.object({
     supply_type_description: z.enum(["This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.", "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping."]),
@@ -18,7 +18,7 @@ const productSupplyTypeSchema = z.object({
 
     supply_type: z.enum(["Essential", "Limited"], {message: "The supply_type field accepts one of the following values: Essential, Limited"}),
     //.min(1, {message: "The supply_type field is a required field."}),
-});
+}).strict();
 
 const productRequestSchema = z.object({
     product_id: z.string("The product_id field must be a string. It is a required field.").length(12, {message: "The product_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The product_id can only contain lowercase letters and numbers."}),
@@ -57,7 +57,7 @@ const productRequestSchema = z.object({
     product_images: productImageArraySchema,
 
     product_items: productItemSchemaUnion
-});
+}).strict();
 
 const productResponseSchema = z.object({
     _id: objectIdSchema,
@@ -98,7 +98,7 @@ const productResponseSchema = z.object({
     product_images: productImageArraySchema,
 
     product_items: productItemSchemaUnion
-});
+}).strict();
 
 module.exports = {
     productRequestSchema,

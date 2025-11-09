@@ -1,0 +1,12 @@
+getShippingAddressById Test List
+
+SEARCH TEST
+* Check that checkIsEmptyObject returns false.
+* Check that checkUserExists returns true.
+* Call getShippingAddressById.
+* Assert that checkIsEmptyObject is called once.
+* Assert that checkUserExists is called once.
+* Assert that User.aggregate is called once.
+* Assert that mockResult has only 1 member.
+* Assert that res.status is called with 200.
+* Assert that res.json is called with the first member of mockResult.

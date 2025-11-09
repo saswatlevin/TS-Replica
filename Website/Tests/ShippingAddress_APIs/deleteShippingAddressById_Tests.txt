@@ -1,0 +1,11 @@
+deleteShippingAddressById Test List
+
+DATA DELETION TEST
+* Check that that checkUserExists returns true.
+* Check that updateOne returns the correct database response (not data).
+* Assert that checkUserExists is called only once.
+* Assert updateOne is called only once.
+* Call deleteShippingAddressById()
+* Assert that updateOne is called with the correct argument.
+* Assert that res.status is called with 200.
+* Assert that res.json is called with the correct database response (not data).

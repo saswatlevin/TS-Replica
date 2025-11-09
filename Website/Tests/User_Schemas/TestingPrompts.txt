@@ -1,16 +1,24 @@
-Please work inside the following directory: C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\userShippingAddressResponseSchema
+Please work inside the following directory: C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\createShippingAddressRequestSchema
 
-Go to the file called userShippingAddressResponseSchema_Tests.txt and look under the <_id - IFV> category.
+Go to the file called createShippingAddressRequestSchema_Tests.txt and look under the <PHONE_NUMBER> category.
 
 For tests that accept a valid value, follow the rules: "result.success should assert true", "Value of the field being tested should be asserted from the result", "Length of the result should be asserted (for length tests only)".
 
-For tests that reject a value, follow the rules: "result.success should assert false", "A "code" or "message" of result.errors[0].issues should be asserted", "The corresponding data value being accepted should be a asserted from the testData".
+For all tests, include the following code after the call to safeParse()
+if (result?.error?.issues !== undefined){
+	console.log("<name_of_test> - result?.error?.issues ", result?.error?.issues);
+}
 
-For all tests, create a console.log statement with the following format console.log("<name_of_test> - result?.error?.issues ", result?.error?.issues); Place this console.log() statement after the call to safeParse().
+else {
+	console.log("<name_of_test> - result ", result);
+}
 
-Write these tests inside a file called userShippingAddressResponseSchema._id.ifv.test.js
+
+Write these tests inside the file called createShippingAddressRequestSchema.happy_path.phone_number.test.js
 
 In the userRequestSchema.happy_path.test.js file, write the tests for the following conditions: * ["abc_d01@hostmail.com", "Soyuz@1966#U"
 , "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Password Minimum Length
 
 * ["abc_d01@hostmail.com", "Soyuz@1966#USSRA12345678901234", "917560847544", "Arif", "Khan", "admin", 40, "M", "M", "I want all emails", false, [], []] -> Password Maximum Length
+
+For tests that reject a value, follow the rules: "result.success should assert false", "A "code" or "message" of result.errors[0].issues should be asserted", "The corresponding data value being accepted should be a asserted from the testData".

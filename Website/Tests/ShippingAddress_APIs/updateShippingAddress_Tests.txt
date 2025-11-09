@@ -1,0 +1,11 @@
+updateShippingAddress TEST LIST
+
+updateShippingAddress
+  * Check that checkIsEmptyObject returns false.
+  * Check that checkUserExists returns true.
+  * Check that checkShippingAddressExists returns true.
+  * Call updateShippingAddress.
+  * Assert that updateOne has been called once.
+  * Assert that updateOne has been called with the correct argument.
+  * Expect res.status to be called with 200.
+  * Expect res.json to be called with mockUpdateResponse.

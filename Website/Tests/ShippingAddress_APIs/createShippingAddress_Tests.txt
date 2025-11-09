@@ -1,9 +1,13 @@
 createShippingAddress Test List
 
 DATABASE INSERTION TEST
-* Should successfully insert a new shipping address into the Userdocument.
 
-DATA TRANSFORMATION TESTS
-* Check if the user_id is gotten from request.params.
-* Check if the checkUserExists() function is called with the REQUEST object.
-* Check if the shipping_address_id is generated as a 12-character alphanumeric string.
+* Should successfully insert a new shipping address into the Userdocument.
+* Check if isEmptyObject is called and returns FALSE.
+* Check if checkUserExists is called and returns TRUE.
+* Check if the createRandomString returns a 12-character shipping address id.
+* Call createShippingAddress()
+* Assert that findOneAndUpdate is called only once.
+* Assert that findOneAndUpdate is called with the correct argument.
+* Assert that res.status returns 200.
+* Assert that res.json returns the correctly updated user.

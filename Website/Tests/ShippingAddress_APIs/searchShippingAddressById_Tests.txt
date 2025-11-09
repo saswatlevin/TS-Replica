@@ -1,0 +1,12 @@
+searchShippingAddressById TEST LIST
+
+SEARCH TEST
+* Check if isEmptyObject returns false.
+* Check if checkUserExists returns true.
+* Check that aggregate.mockResolvedValue returns the correct result.
+* Call searchShippingAddressById
+* Assert that checkIsEmptyObject is called twice.
+* Assert that checkUserExists is called once.
+* Assert that mockSearchResult has only 2 records.
+* Assert that res.status is called with 200.
+* Assert that res.json is called with mockSearchResult.

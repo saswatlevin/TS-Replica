@@ -7,6 +7,8 @@ doctype: "PRODUCT"
 
 product_color: min(1), max(50), required() -> The product_color field can contain only uppercase letters, lowercase letters and spaces. 
 
+product_description: min(1), max(700), required() -> The product_description field can contain only 
+
 product_price: min(1), maximum(300), required() -> The product_price field must be a number (integer). It is a required field.
 
 product_category: Enum, required() -> Accepts one of the following values: "Lower Garment", "Upper Garment"
@@ -15,7 +17,7 @@ product_subcategory: Enum, required() -> Accepts one of the following values: "S
 
 product_subcategory_type: Enum, required() -> Accepts one of the following values: "Short-Sleeved Shirt", "Long-Sleeved Shirt", "Oxford", "Chino", "Jean", "Pant" or "Short".
 
-product_fit: min(1), max(400), required() -> The product_fit field accepts only only s, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots and spaces.
+product_fit: min(1), max(400), required() -> The product_fit field accepts only upper-case letters, lower-case letters, spaces, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots and spaces.
 
 product_garment_weight:
 	garment_weight_description: min(1), max(200), required() -> The garment_weight_description field accepts only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots and spaces.
@@ -173,11 +175,17 @@ HAPPY PATH BOUNDARY TESTS
 
 <PRODUCT_NAME>
 * ["ÉaZ"] with all other attributes taken from 1.
-* ["ÉrçÀmÜqôTàÑÉùÇbîÉsÓlàçûÉRîPçùÉàŒmûÊrÇpÁtÈçôQàÉñçÙÊüMóÀçhÉÊÔvçlÎàÜÇéÓrîÉÁàÈçÍûÒéÇàßôÜÊrùÎÉçÀtabcdefg"] with all other attributes taken from 1.
+* ["Élodie François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón André"] with all other attributes taken from 1.
 
 <PRODUCT_COLOR>
 * ["A"]  with all other attributes taken from 1.
-* ["aQw TLpRzeYbHGtNcoAfKVdMjSxUiBqPorLwEABCDEFGHIJKMN"] with all other attributes taken from 1.
+* ["ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghizklmnoopqrstuv"] with all other attributes taken from 1.
+
+<PRODUCT_DESCRIPTION>
+* ["A"] with all other attributes taken from 1.
+* ["Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón! The café’s façade gleamed—bright, calm, alive.Numbers danced: 12345, 67890; symbols sang: #!;%:.,“Quotes” and accents intertwined. À propos—of art, of science, of music—Øystein’s résumé stood tall. Máría whispered softly, “C’est la vie.” Bjørn replied, Indeed—it is.The harmony of words, punctuated by pauses, stretched through the air like wind in fjords.2025 beckoned—a time of calm, reason, grace, and rhythm; laughter followed, echoing, soft yet firm, ever so vivid, ever so free. Voilà! Life continues. Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón!...
+"] with all other attributes taken from 1.
+
 
 <PRODUCT_PRICE>
 * [1] with all other attributes taken from 1.
@@ -194,10 +202,15 @@ HAPPY PATH BOUNDARY TESTS
 <PRODUCT_SUBCATEGORY_TYPE>
 * ["Short-Sleeved Shirt"] with all other attributes taken from 1.
 * ["Long-Sleeved Shirt"] with all other attributes taken from 1.
+* ["Oxford"] with all other attributes taken from 1.
+* ["Chino"] with all other attributes taken from 1.
+* ["Jean"] with all other attributes taken from 1.
+* ["Pant"] with all other attributes taken from 1.
+* ["Short"] with all other attributes taken from 1.
 
 <PRODUCT_FIT>
 * ["B"] with all other attributes taken from 1.
-* ["ÉaT3çÀb!G9üHÀk#rLøM4;CéN7oP:Q%R’6sS"tU“V\wX[1]Y–Z.zà0bÈcD!eF,fG;hH:iI%jJ’kK"lL“mM\nO[p]Q–rR.sSàT0uUÉvV!wW,xX;yY:zZ%A1’B"2“C\3[D]4–E.F5gGà6hHÉiI!jJ,kK;lL:mM%nN’oO"P“qQ\rR[s]T–uU.vVà0wWÉxX!yY,zZ;A:B%C’D"E“F\G[H]–I.J0kKà1lLÉmM!nN,oO;pP:qQ%rR’sS"tT“U\V[w]X–Y.Z0aAà1bBÉcC!dD,eE;fF:gG%hH’iI"jJ“kK\lL[m]N–oO.pPà0qQÉrR!sS,tT;uU:vV%wW’xX"yY“zZ\0A[B]–C.D1eEà2fFÉgG!hH,iI;jJ:kK%lL’mM"nN“oO\pP[q]R–sS.tTà0uUÉvV!w"] with all other attributes taken from 1.
+* ["Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón! The café’s façade gleamed—bright, calm, alive.Numbers danced: 12345, 67890; symbols sang: #!;%:.,“Quotes” and accents intertwined. À propos—of art, of science, of music—Øystein’s résumé stood tall. Máría whispered softly, “C’est la vie.” Bjørn replied, Indeed—it is.The harmony of words, punctuated by pau"] with all other attributes taken from 1.
 
 ======PRODUCT GARMENT WEIGHT======
 <GARMENT_WEIGHT_DESCRIPTION>

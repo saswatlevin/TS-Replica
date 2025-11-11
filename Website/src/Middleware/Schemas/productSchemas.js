@@ -23,9 +23,10 @@ const productSupplyTypeSchema = z.object({
 const productRequestSchema = z.object({
     product_id: z.string("The product_id field must be a string. It is a required field.").length(12, {message: "The product_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The product_id can only contain lowercase letters and numbers."}),
     
+    docType: z.literal("PRODUCT", {message: "The docType field in a Product document is set to: PRODUCT."}),
+
     product_name: z.string("The product_name field must be a string.").min(3, {message: "The product_name field is a required field."}).max(100, {message: "The maximum permitted length is 100 characters."}).regex(customValidators.productNameRegex, {message: "The product_name field accepts only upper case letters, lower case letters, accented uppercase and lowercase letters and spaces."}),
 
-    docType: z.literal("PRODUCT", {message: "The docType field in a Product document is set to: PRODUCT."}),
     //.min(1, {message: "The docType field is a required field."}),
     
     product_color: z.string("The product_color field must be a string.",).min(1, {message: "The product_color field is a required field."}).max(50, {message: "The maximum permitted length is 50 characters."}).regex(/^[A-Za-z ]*$/, {message: "The product_color field can contain only uppercase letters, lowercase letters and spaces. "}),
@@ -64,9 +65,9 @@ const productResponseSchema = z.object({
 
     product_id: z.string("The product_id field must be a string. It is a required field.").length(12, {message: "The product_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The product_id can only contain lowercase letters and numbers."}),
     
-    product_name: z.string("The product_name field must be a string.").min(3, {message: "The product_name field is a required field."}).max(100, {message: "The maximum permitted length is 100 characters."}).regex(customValidators.productNameRegex, {message: "The product_name field accepts only upper case letters, lower case letters, accented uppercase and lowercase letters and spaces."}),
-
     docType: z.literal("PRODUCT", {message: "The docType field in a Product document is set to: PRODUCT."}),
+
+    product_name: z.string("The product_name field must be a string.").min(3, {message: "The product_name field is a required field."}).max(100, {message: "The maximum permitted length is 100 characters."}).regex(customValidators.productNameRegex, {message: "The product_name field accepts only upper case letters, lower case letters, accented uppercase and lowercase letters and spaces."}),
     //.min(1, {message: "The docType field is a required field."}),
     
     product_color: z.string("The product_color field must be a string.",).min(1, {message: "The product_color field is a required field."}).max(50, {message: "The maximum permitted length is 50 characters."}).regex(/^[A-Za-z ]*$/, {message: "The product_color field can contain only uppercase letters, lowercase letters and spaces. "}),
@@ -97,7 +98,9 @@ const productResponseSchema = z.object({
     
     product_images: productImageArraySchema,
 
-    product_items: productItemSchemaUnion
+    product_items: productItemSchemaUnion,
+    
+    __v: customValidators.zodIsDocumentVersion
 }).strict();
 
 module.exports = {

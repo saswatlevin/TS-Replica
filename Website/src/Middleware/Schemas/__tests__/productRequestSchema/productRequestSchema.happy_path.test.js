@@ -8,9 +8,9 @@ describe('productRequestSchema - HAPPY PATH Tests', () => {
         const testData = {
   product_id: "hya3y1kdhv4p",
 
+   docType: "PRODUCT",
+
   product_name: "The Craftsman Shirt in Bark Plaid Linen",
-  
-  docType: "PRODUCT",
   
   product_color: "Bark Plaid Linen",
   
@@ -111,10 +111,10 @@ describe('productRequestSchema - HAPPY PATH Tests', () => {
     test('productRequestSchema - HAPPY PATH TEST Set 2', () => {
         const testData = {
   product_id: "vxcei49vin0z",
+
+  docType: "PRODUCT",
   
   product_name: "The Division Shirt in Washed Indigo",
-  
-  docType: "PRODUCT",
   
   product_color: "Washed Indigo",
   

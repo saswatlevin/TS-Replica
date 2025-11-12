@@ -1,0 +1,8 @@
+createProduct TEST LIST
+
+createProduct - DATABASE INSERTION TEST
+* Check if checkIsEmptyObject returns true.
+* Check if createRandomString returns a valid 12-character product_id.
+* Check if checkProductExists reutns true.
+* Check if res.status is called with 201.
+* Check if res.json is called with the mockRequestObject.

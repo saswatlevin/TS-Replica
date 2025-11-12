@@ -1,0 +1,17 @@
+We need the following pieces of data:
+* product_id -> User params | From frontend
+* user_id -> User params | From frontend
+
+updateProductPrice ->
+* Get the request_body
+* Check if the request_body is empty or not, if it is, throw an EmptyRequestBody Error.
+* Check if the user exists or not, if no, throw a ResourceNotFoundError.
+* Check if the product exists or not, if not, throw a ResourceNotFoundError.
+* Create the filter using { product_id : product_id }.
+* Use the findOneAndUpdate() function with the filter, the request_body, {runValidators: true} and chain it with .lean() to update the product price.
+* Send the response returned by findOneAndUpdate() using res.json().
+* Set the res.status to 200.
+
+
+
+

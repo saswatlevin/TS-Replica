@@ -10,7 +10,9 @@ const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentEr
 const Product = require('../Models/Product');
 
 const createProduct = asyncErrorHandler(async(req, res, next) => {
-
+    
+    console.log("In createProduct");
+    
     // Get the request body.
     const request_body = req.body;
 
@@ -46,7 +48,13 @@ const createProduct = asyncErrorHandler(async(req, res, next) => {
 
 });
 
+const updateProduct = asyncErrorHandler(async(req, res, next) => {
+    console.log("In updateProduct");
+    
+});
+
 module.exports = {
-    createProduct
+    createProduct,
+    updateProduct
 };
 

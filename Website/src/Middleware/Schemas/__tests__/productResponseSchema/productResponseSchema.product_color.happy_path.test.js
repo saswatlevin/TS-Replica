@@ -11,9 +11,9 @@ describe('productResponseSchema - HAPPY PATH TEST - product_color', () => {
 
             product_id: "vxcei49vin0z",
 
-            product_name: "The Craftsman Shirt in Bark Plaid Linen",
-  
             docType: "PRODUCT",
+
+            product_name: "The Craftsman Shirt in Bark Plaid Linen",
   
             product_color: "A",
   
@@ -94,9 +94,9 @@ describe('productResponseSchema - HAPPY PATH TEST - product_color', () => {
 
             product_id: "vxcei49vin0z",
 
-            product_name: "The Craftsman Shirt in Bark Plaid Linen",
-  
             docType: "PRODUCT",
+
+            product_name: "The Craftsman Shirt in Bark Plaid Linen",
   
             product_color: "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghizklmnoopqrstuv",
   

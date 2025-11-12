@@ -177,18 +177,20 @@ const getShippingAddressById = asyncErrorHandler( async(req, res, next) => {
         
         {$match : {"ShippingAddresses.shipping_address_id" : shipping_address_id}},
         {   
-            $project : {_id : 1, 
-            shipping_address_id : "$ShippingAddresses.shipping_address_id", 
-            address_type_id : "$ShippingAddresses.address_type_id", 
-            company_name: "$ShippingAddresses.company_name",
-            address: "$ShippingAddresses.address",
-            apartment: "$ShippingAddresses.apartment",
-            city: "$ShippingAddresses.city",
-            administrative_division: "$ShippingAddresses.city",
-            country: "$ShippingAddresses.country",
-            postal_area: "$ShippingAddresses.postal_area",
-            phone_number: "$ShippingAddresses.phone_number"
-        }
+            $project : 
+            {
+                _id : 1, 
+                shipping_address_id : "$ShippingAddresses.shipping_address_id", 
+                address_type_id : "$ShippingAddresses.address_type_id", 
+                company_name: "$ShippingAddresses.company_name",
+                address: "$ShippingAddresses.address",
+                apartment: "$ShippingAddresses.apartment",
+                city: "$ShippingAddresses.city",
+                administrative_division: "$ShippingAddresses.city",
+                country: "$ShippingAddresses.country",
+                postal_area: "$ShippingAddresses.postal_area",
+                phone_number: "$ShippingAddresses.phone_number"
+            }
         }
     ];
 

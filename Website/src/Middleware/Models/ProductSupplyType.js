@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const productSupplyTypeSchema = new mongoose.Schema({
     supply_type_description: {
@@ -12,4 +12,5 @@ const productSupplyTypeSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('ProductSupplyType', productSupplyTypeSchema, 'ProductSupplyTypes');
+module.exports = productSupplyTypeSchema;
+

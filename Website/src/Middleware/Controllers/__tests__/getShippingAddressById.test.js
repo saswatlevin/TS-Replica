@@ -60,6 +60,5 @@ describe('getShippingAddressById - Database Search Test', () => {
         expect(mockResult.length).toBe(1);
         expect(res.status).toHaveBeenCalledWith(200);
         expect(res.json).toHaveBeenCalledWith(mockResult[0]);
-
     });
-})
+});

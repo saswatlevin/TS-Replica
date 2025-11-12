@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
-import ProductImage from './ProductImage';
-import ProductItem from './ProductItem';
-import ProductGarmentWeight from './ProductGarmentWeight';
-import ProductSupplyType from './ProductSupplyType';
+const mongoose = require('mongoose');
+const ProductImage = require('./ProductImage');
+const ProductItem = require('./ProductItem');
+const ProductGarmentWeight = require('./ProductGarmentWeight');
+const ProductSupplyType = require('./ProductSupplyType');
 
 const productSchema = new mongoose.Schema({
     product_id: {
@@ -86,4 +86,5 @@ const productSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('Product', productSchema, 'Products');
+module.exports = mongoose.model('Product', productSchema, 'Products');
+

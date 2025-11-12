@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Product = require('../Models/Product');
+const Product = require('../../Models/Product');
 
 const checkProduct = async(req, res, next) => {
     console.log("In checkProduct");

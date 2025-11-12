@@ -1,24 +1,15 @@
-import asyncErrorHandler from '../ErrorHandlers/asyncErrorHandler';
+const asyncErrorHandler = require('../ErrorHandlers/asyncErrorHandler');
+const mongoose = require('mongoose');
+const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundError');
+const _ = require('lodash');
+const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
+const createRandomString = require('../createRandomString');
+const { checkIsEmptyObject } = require('./SupportFunctions/shippingAddressSupportFunctions');
+const checkProduct = require('./SupportFunctions/productSupportFunctions');
+const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
+const Product = require('../Models/Product');
 
-import mongoose from 'mongoose';
-
-import ResourceNotFoundError from '../OperationalErrors/ResourceNotFoundError';
-
-import _ from 'lodash';
-
-import EmptyRequestBodyError from '../OperationalErrors/EmptyRequestBodyError';
-
-import createRandomString from '../createRandomString';
-
-import { checkIsEmptyObject } from './SupportFunctions/shippingAddressSupportFunctions';
-
-import checkProduct from './SupportFunctions/productSupportFunctions';
-
-import DuplicateDocumentError from '../OperationalErrors/DuplicateDocumentError';
-
-import Product from '../Models/Product';
-
-const createProduct = asyncErrorHandler(async(req: any,  res: any, next: any): Promise<void> => {
+const createProduct = asyncErrorHandler(async(req, res, next) => {
 
     // Get the request body.
     const request_body = req.body;
@@ -43,6 +34,9 @@ const createProduct = asyncErrorHandler(async(req: any,  res: any, next: any): P
         throw product_already_exists_error;
     }
 
+    // Set the product_id in the request body
+    request_body.product_id = product_id;
+
     // Set the docType in the request body
     request_body.docType = "PRODUCT";
 
@@ -52,4 +46,7 @@ const createProduct = asyncErrorHandler(async(req: any,  res: any, next: any): P
 
 });
 
-export default createProduct;
+module.exports = {
+    createProduct
+};
+

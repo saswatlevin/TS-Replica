@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const productGarmentWeightSchema = new mongoose.Schema({
 
@@ -13,4 +13,5 @@ const productGarmentWeightSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('ProductGarmentWeight', productGarmentWeightSchema, 'ProductGarmentWeights');
+module.exports = productGarmentWeightSchema;
+

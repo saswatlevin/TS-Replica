@@ -10,6 +10,8 @@ const createCartItemSchema = z.object({
     sku: customValidators.zodIsSKU,
     
     cart_item_name: cartItemValidators.zodIsCartItemName,
+
+    cart_item_price: cartItemValidators.zodIsCartItemPrice,
     
     cart_item_image_uri: cartItemValidators.zodIsCartItemImageURI,
     
@@ -18,8 +20,13 @@ const createCartItemSchema = z.object({
 
 const cartItemArraySchema = z.array(createCartItemSchema).min(0); 
 
+const updateCartItemPriceSchema = z.object({
+    cart_item_price: cartItemValidators.zodIsCartItemPrice
+});
+
 
 module.exports = {
     createCartItemSchema,
-    cartItemArraySchema
+    cartItemArraySchema,
+    updateCartItemPriceSchema
 };

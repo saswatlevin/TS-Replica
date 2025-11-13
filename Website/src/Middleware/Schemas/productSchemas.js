@@ -103,9 +103,14 @@ const productResponseSchema = z.object({
     __v: customValidators.zodIsDocumentVersion
 }).strict();
 
+const updateProductPriceSchema = z.object({
+    product_price: z.number("The product_price field must be a number(integer). It is a required field.").int("The product_price field must be an integer.").min(1, {message: "The minimum limit of the product_price field is 1."}).max(300, {message: "The maximum limit of the product_price field is 300."})
+});
+
 module.exports = {
     productRequestSchema,
-    productResponseSchema
+    productResponseSchema,
+    updateProductPriceSchema
 };
 
 /** TESTS

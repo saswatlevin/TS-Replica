@@ -1,6 +1,3 @@
-require('ts-node').register({
-    project: './tsconfig.json'
-});
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');

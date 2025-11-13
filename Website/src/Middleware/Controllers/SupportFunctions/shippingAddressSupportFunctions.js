@@ -38,6 +38,16 @@ catch(error) {
 
 };
 
+const checkDuplicateUserExists = async(req, res, next) => {
+    console.log("In checkDuplicateUserExists");
+    
+    const email = req.body.email;
+    
+    const user_query = {email: email};
+    
+    const result = await User.findOne(user_query);
+}
+
 const checkShippingAddressExists = async(req, res, next) => {
     console.log("In checkShippingAddressExists");
 
@@ -70,6 +80,20 @@ const checkShippingAddressExists = async(req, res, next) => {
 
 };
 
+const checkDuplicateShippingAddressExists = async(req, res, next) => {
+    console.log("In checkDuplicateShippingAddressExists");
+
+    const phone_number = req.body.phone_number;
+
+    const shipping_address_query = {'ShippingAddresses.phone_number': phone_number};
+
+    const result = await User.findOne(shipping_address_query);
+
+    if (result === null) {
+        return false;
+    }
+};
+
 const checkIsEmptyObject = (object) => {
     console.log("In checkIsEmptyObject");
     
@@ -86,7 +110,9 @@ const checkIsEmptyObject = (object) => {
 
 module.exports = {
     checkUserExists,
+    checkDuplicateUserExists,
     checkShippingAddressExists,
+    checkDuplicateShippingAddressExists,
     checkIsEmptyObject
 };
 

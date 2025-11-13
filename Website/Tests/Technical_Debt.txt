@@ -1,11 +1,11 @@
 ===========TECHNICAL DEBT===========
 1) In every create API, add logic to check if the document already exists in the database or not.
-1a) In every function to check whether a duplicate exists, use a combination of ID and name to check for the duplicate.
-2) Add the DOB parameter to the User schemas and the User documents.
-3) Add an appropriate index to each collection of the database.
-4) Create a list of factors to be considered / steps to be followed while creating an API.
-5) Add XSS sanitization to response handling logic.
-6) Find best practices to do fuzz testing on all schemas.
-7) Add Errors and Error handling to the all the user controllers.
-8) Remove user_id from updateUser
+1a) In every function to check whether a duplicate exists, use an attribute with value that is unique to that document (other than ID) to check for the duplicate.
+2) Add an appropriate index to each collection of the database.
+3) Create a list of factors to be considered / steps to be followed while creating an API.
+4) Add XSS sanitization to response handling logic.
+5) Find best practices to do fuzz testing on all schemas.
+6) Add Errors and Error handling to the all the user controllers.
+7) Remove user_id from updateUser.
+8) Please define uniqueness contstraint for each document and sub-document in collections.
 ===========TECHNICAL DEBT===========

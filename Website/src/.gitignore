@@ -3,6 +3,5 @@ node_modules
 .vs
 network_troubleshooter.sh
 start_mongodb.sh
-*.txt
 experiment.js
 dist

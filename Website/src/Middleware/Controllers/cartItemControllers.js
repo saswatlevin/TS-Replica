@@ -7,6 +7,13 @@ const User = require('../Models/User');
 const { checkIsEmptyObject, checkUserExists }= require('./SupportFunctions/shippingAddressSupportFunctions');
 const checkCartItemExists = require('./SupportFunctions/cartItemSupportFunctions');
 
+const createCartItem = async(req, res, next) => {
+    console.log("In createCartItem");
+    const user_id = req.params.user_id;
+
+    
+}
+
 const updateCartItemPrice = async(req, res, next) => {
     
     try {

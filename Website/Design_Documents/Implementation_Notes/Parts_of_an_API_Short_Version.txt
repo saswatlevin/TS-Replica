@@ -40,7 +40,7 @@ CHECK IF THE DATA THAT YOU'RE ABOUT TO UPDATE ALREADY EXISTS IN THE DATABASE -> 
 * Check if the database insertion operation is successful, if so, send the response with a status code of 200.
 
 * Check how to handle unsuccessful insertions
-  If the insertion API generates no error, then send a response with status code of 200 and a failure message
+  If the insertion API generates no error, then send a response with status code of 400 and a failure message
 =========RULES FOR UPDATE DATA APIs============
 
 
@@ -87,4 +87,6 @@ CHECK IF THE DATA TO BE DELETED EXISTS
 
 * Decide which events to log in the API and log them
 * Perform happy path UNIT TESTS on the API's schemas
+
+* Document the API
 =========API SEQUENCE OF ACTIVITIES==========

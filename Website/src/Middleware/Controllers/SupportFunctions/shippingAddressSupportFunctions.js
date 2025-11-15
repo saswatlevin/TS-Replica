@@ -1,4 +1,3 @@
-const asyncErrorHandler = require('../../ErrorHandlers/asyncErrorHandler');
 const User = require('../../Models/User');
 const _ = require('lodash');
 
@@ -91,6 +90,10 @@ const checkDuplicateShippingAddressExists = async(req, res, next) => {
 
     if (result === null) {
         return false;
+    }
+
+    else {
+        return true;
     }
 };
 

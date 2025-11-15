@@ -1,0 +1,11 @@
+Please look at the contents of the file "C:\Users\saswa\OneDrive\Desktop\Taylor_Stitch\Website\Tests\Product_Schemas\updateProductSchema_Tests.txt". 
+
+Look at the HAPPY PATH TESTS BOUNDARY VALUES section.
+
+Create 2 happy path tests in the file called "C:\Users\saswa\OneDrive\Desktop\Taylor_Stitch\Website\src\Middleware\Schemas\__tests__\updateProductSchemas\updateProductSchemas.happy_path.product_price.test.js"
+
+Please follow the following rules:
+1) result.success should assert true
+2) Datatype of the field being tested result may be asserted
+3) Value of the field being tested should be asserted from the result
+4) Length of the result should be asserted (for length tests only)

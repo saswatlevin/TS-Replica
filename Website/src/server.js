@@ -5,11 +5,6 @@ const connectToDB  = require('./Middleware/connectToDB');
 const responseValidator = require('./Middleware/Validators/responseValidator');
 const globalErrorHandler = require('./Middleware/ErrorHandlers/globalErrorHandler');
 require('dotenv').config();
-//const shippingAddressSchema = require('./Middleware/Schemas/shippingAddressSchemas');
-//const productSchema = require('./Middleware/Schemas/productSchemas');
-//const userSchemas = require('./Middleware/Schemas/userSchemas');
-//const orderSchemas = require('./Middleware/Schemas/orderSchemas');
-//const reviewSchemas = require('./Middleware/Schemas/reviewSchemas');
 
 
 connectToDB();
@@ -20,12 +15,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // Server response validator
-app.use(responseValidator);
+// app.use(responseValidator);
 
 // Routes
 app.use('/', require('./Middleware/Routes/defaultRoute'));
 app.use('/users', require('./Middleware/Routes/userRoutes'));
 app.use('/shippingaddresses', require('./Middleware/Routes/shippingAddressRoutes'));
+app.use('/products', require('./Middleware/Routes/productRoutes'));
 
 // Route to handle unknown URLs
 app.use('/{*any}', require('./Middleware/Routes/urlNotFoundRoute'));

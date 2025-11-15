@@ -10,11 +10,10 @@ const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentEr
 const Product = require('../Models/Product');
 
 const createProduct = asyncErrorHandler(async(req, res, next) => {
-    
     console.log("In createProduct");
     
     // Get the request body.
-    const request_body = req.body;
+    const request_body = _.cloneDeep(req.body);
 
     // Check if the request body is empty
     if (checkIsEmptyObject(request_body) === true) {
@@ -36,8 +35,9 @@ const createProduct = asyncErrorHandler(async(req, res, next) => {
     // Set the docType in the request body
     request_body.docType = "PRODUCT";
 
+    console.log("request_body in createProduct ", request_body);
     const result = await Product.create(request_body);
-
+    
     res.status(201).json(result);
 
 });
@@ -70,15 +70,8 @@ const updateProductPrice = asyncErrorHandler(async(req, res, next) => {
 
     const update_cart_item_price_result = await updateCartItemPrice(req, res, next);
 
-    if (update_product_price_result.product_price === update_cart_item_price_result.CartItems[0].cart_item_price) {
-        console.log("Updated corresponding product and cart item price.");
-        res.status(200).json("Updated corresponding product and cart item price.");
-    }
-
-    else {
-        console.log("Could not update corresponding product and cart item price.");
-        res.status(400).json("Could not update corresponding product and cart item price.");
-    }
+    const result_array = [update_product_price_result, update_cart_item_price_result];
+    res.status(200).json(result_array);
 });
 
 module.exports = {

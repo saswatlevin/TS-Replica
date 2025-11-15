@@ -1,0 +1,15 @@
+updateProductPriceSchema TEST LIST
+
+======UPDATE PRODUCT PRICE SCHEMA======
+product_price -> min(1), max(300), required() -> The product_price field must be an integer.
+======UPDATE PRODUCT PRICE SCHEMA======
+
+updateProductPriceSchema ->
+HAPPY PATH TESTS
+* [15]
+* [25]
+
+HAPPY PATH TESTS - BOUNDARY VALUE TESTS
+<PRODUCT_PRICE>
+* [1] -> product_price with minimum value
+* [300] -> product_price with maximum value

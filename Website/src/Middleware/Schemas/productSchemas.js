@@ -21,10 +21,6 @@ const productSupplyTypeSchema = z.object({
 }).strict();
 
 const productRequestSchema = z.object({
-    product_id: z.string("The product_id field must be a string. It is a required field.").length(12, {message: "The product_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The product_id can only contain lowercase letters and numbers."}),
-    
-    docType: z.literal("PRODUCT", {message: "The docType field in a Product document is set to: PRODUCT."}),
-
     product_name: z.string("The product_name field must be a string.").min(3, {message: "The product_name field is a required field."}).max(100, {message: "The maximum permitted length is 100 characters."}).regex(customValidators.productNameRegex, {message: "The product_name field accepts only upper case letters, lower case letters, accented uppercase and lowercase letters and spaces."}),
 
     //.min(1, {message: "The docType field is a required field."}),
@@ -105,7 +101,7 @@ const productResponseSchema = z.object({
 
 const updateProductPriceSchema = z.object({
     product_price: z.number("The product_price field must be a number(integer). It is a required field.").int("The product_price field must be an integer.").min(1, {message: "The minimum limit of the product_price field is 1."}).max(300, {message: "The maximum limit of the product_price field is 300."})
-});
+}).strict();
 
 module.exports = {
     productRequestSchema,

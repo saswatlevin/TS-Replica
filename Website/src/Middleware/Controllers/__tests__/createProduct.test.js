@@ -1,7 +1,7 @@
 const { createProduct } = require('../productControllers');
 const Product = require('../../Models/Product');
 const { checkIsEmptyObject } = require('../SupportFunctions/shippingAddressSupportFunctions');
-const checkProduct = require('../SupportFunctions/productSupportFunctions');
+const { checkProduct }= require('../SupportFunctions/productSupportFunctions');
 const createRandomString = require('../../createRandomString');
 
 // Mock dependencies
@@ -56,8 +56,6 @@ describe('createProduct - Database Insertion Test', () => {
                 product_images: 
                 [
                     {
-                        image_id: "zz6f7oq0fdof",
-                    
                         image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
                     
                         main_image: true
@@ -68,8 +66,6 @@ describe('createProduct - Database Insertion Test', () => {
                 product_items: 
                 [
                     {
-                        sku: "9qjmn3ak0b",
-                    
                         upper_size_letter: "XXL",
                     
                         upper_size_number: 46,
@@ -100,11 +96,7 @@ describe('createProduct - Database Insertion Test', () => {
         checkProduct.mockResolvedValue(true);
         createRandomString.mockReturnValue(mockProductId);
 
-        const mockRequestBody = { 
-            product_id: mockProductId,
-            docType: mockDocType, 
-            ...req.body 
-        };
+        const mockRequestBody = req.body;
         
         const mockCreatedProduct = {
             _id: mockMongoDBId,

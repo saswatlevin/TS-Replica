@@ -1,4 +1,4 @@
-======UPDATE PRODUCT SCHEMA======
+======SEARCH PRODUCT SCHEMA======
 product_name: min(3), max(100), required() -> The product_name field accepts only upper case letters, lower case letters, accented uppercase and lowercase letters and spaces.
 
 product_color: min(1), max(50), required() -> The product_color field can contain only uppercase letters, lowercase letters and spaces. 
@@ -30,7 +30,7 @@ product_supply_type_schema:
 	supply_type: Enum, required() -> The supply_type field takes one of the following values: "Essential", "Limited"
 
 product_specifications: min(1), max(500), required() -> The product_specifications field can contain only upper case letters, lower case letters, accented uppercase and lowercase letters and spaces.
-======UPDATE PRODUCT SCHEMA======
+======SEARCH PRODUCT SCHEMA======
 
  ======PRODUCT IMAGE RESPONSE SCHEMA========
 _id: length(24), required() -> A 24-character alphanumeric string.
@@ -137,11 +137,6 @@ HAPPY PATH BOUNDARY TESTS
 * ["A"] with all other attributes taken from 1.
 * ["Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón! The café’s façade gleamed—bright, calm, alive.Numbers danced: 12345, 67890; symbols sang: #!;%:.,“Quotes” and accents intertwined. À propos—of art, of science, of music—Øystein’s résumé stood tall. Máría whispered softly, “C’est la vie.” Bjørn replied, Indeed—it is.The harmony of words, punctuated by pauses, stretched through the air like wind in fjords.2025 beckoned—a time of calm, reason, grace, and rhythm; laughter followed, echoing, soft yet firm, ever so vivid, ever so free. Voilà! Life continues. Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón!...
 "] with all other attributes taken from 1.
-
-
-<PRODUCT_PRICE>
-* [1] with all other attributes taken from 1.
-* [300] with all other attributes taken from 1.
 
 <PRODUCT_CATEGORY>
 * ["Lower Garment"] with all other attributes taken from 1.

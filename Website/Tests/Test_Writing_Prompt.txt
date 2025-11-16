@@ -9,3 +9,37 @@ Please follow the following rules:
 2) Datatype of the field being tested result may be asserted
 3) Value of the field being tested should be asserted from the result
 4) Length of the result should be asserted (for length tests only)
+
+Take each test in the productRequestSchema folder, except the productRequestSchema.product_price.happy_path.test.js,  located in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\productRequestSchema" and copy it to the updateProductSchema folder located in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\updateProductSchema" with the following changes to each of the files:
+
+1) From all instances of testData, remove the ProductImages key-value pair.
+2) From all instances of testData, remove the ProductItems key-value pair.
+3) From all instances of testData, remove the product_price key-value pair.
+4) From each file, replace all instances of productRequestSchema with updateProductSchema
+5) In each file name, replace productRequestSchema with updateProductSchema
+
+Read the productSchemas.js file located at "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\productSchemas.js". It contains definitions of the following key-value pairs:. For each of these key-value pairs, design a custom validator using Zod and place it in a file called productValidators.js at "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Validators". The validator name for each key-value pair is given below:
+* product_id -> zodIsProductId
+* docType -> zodIsProductDocType
+* product_name -> zodIsProductName
+* product_color -> zodIsProductColor
+* product_description -> zodIsProductDescription
+* product_price -> zodIsProductPrice
+* product_category -> zodIsProductCategory
+* product_subcategory -> zodIsProductSubcategory
+* product_subcategory_type -. zodIsSubcategoryType
+* product_fit -> zodIsProductFit
+* garment_weight_description -> zodIsGarmentWeightDescription
+* garment_weight -> zodIsGarmentWeight
+* product_material -> zodIsProductMaterial
+* supply_type_description -> zodIsSupplyTypeDescription
+* supply_type -> zodIsSupplyType
+* product_specifications -> zodIsProductSpecifications
+
+Now, replace all the key-value pairs in the file "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\productSchemas.js" with these validators.
+
+Take each test in the updateProductSchema folder and copy it to the searchProductSchema folder located in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\searchProductSchema" with the following changes to each of the files:
+
+
+1) From each file, replace all instances of updateProductSchema with searchProductSchema
+2) In each file name, replace updateProductSchema with searchProductSchema

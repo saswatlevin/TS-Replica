@@ -64,6 +64,7 @@ describe('userShippingAddressResponseSchema - Cart Items Individual Field Valida
                         product_id: "xy98uv76rs54",
                         sku: "sk12ab34cd",
                         cart_item_name: "Premium Éclair Chocolate",
+                        cart_item_price: 100,
                         cart_item_image_uri: "C:\\Users\\Public\\Pictures\\CartItems\\chocolate_250g.jpg",
                         cart_item_quantity: 3
                     }
@@ -113,6 +114,7 @@ describe('userShippingAddressResponseSchema - Cart Items Individual Field Valida
                         product_id: "xy98uv76rs54",
                         sku: "sk12ab34cd",
                         cart_item_name: "Premium Éclair Chocolate",
+                        cart_item_price: 100,
                         cart_item_image_uri: "C:\\Users\\Public\\Pictures\\CartItems\\chocolate_250g.jpg",
                         cart_item_quantity: 3
                     },
@@ -121,6 +123,7 @@ describe('userShippingAddressResponseSchema - Cart Items Individual Field Valida
                         product_id: "gh12ij34kl56",
                         sku: "sku98lm76n",
                         cart_item_name: "Organic Green Tea Pack",
+                        cart_item_price: 100,
                         cart_item_image_uri: "C:\\Ecommerce\\Images\\CartItems\\green_tea_100g.png",
                         cart_item_quantity: 12
                     }

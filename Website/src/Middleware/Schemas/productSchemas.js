@@ -2,8 +2,8 @@ const z = require('zod');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const productValidators = require('../Validators/productValidators');
 const objectIdSchema = require('./objectIdSchema');
-const productImageArraySchema  = require('./productImageSchemas');
-const productItemSchemaUnion = require('./productItemSchemas');
+const {productImageArrayRequestSchema, productImageArraySchema } = require('./productImageSchemas');
+const {productItemSchemasUnion, productItemRequestSchemasUnion} = require('./productItemSchemas');
 // const { shirtJackOxford, pantBreakwaterRinsed, pantPainterCanvas, shortApresNavy, shortCampAgedPenny } = require('./TestObjects/testProductObjects');
 
 const productGarmentWeightSchema = z.object({
@@ -50,9 +50,9 @@ const productRequestSchema = z.object({
 
     product_specifications: productValidators.zodIsProductSpecifications,
     
-    product_images: productImageArraySchema,
+    product_images: productImageArrayRequestSchema,
 
-    product_items: productItemSchemaUnion
+    product_items: productItemRequestSchemasUnion
 }).strict();
 
 const updateProductSchema = z.object({
@@ -142,7 +142,7 @@ const productResponseSchema = z.object({
     
     product_images: productImageArraySchema,
 
-    product_items: productItemSchemaUnion,
+    product_items: productItemSchemasUnion,
     
     __v: customValidators.zodIsDocumentVersion
 }).strict();

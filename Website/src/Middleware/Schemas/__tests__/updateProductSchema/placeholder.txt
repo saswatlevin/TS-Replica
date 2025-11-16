@@ -1,0 +1,2 @@
+This directory has been migrated to 'searchProductSchema'. New copies of the tests are located in '../searchProductSchema'.
+

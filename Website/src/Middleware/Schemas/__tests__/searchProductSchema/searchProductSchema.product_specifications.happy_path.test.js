@@ -1,0 +1,113 @@
+const mongoose = require('mongoose');
+const { searchProductSchema } = require('../../productSchemas');
+
+describe('searchProductSchema - HAPPY PATH TEST - product_specifications', () => {
+    test('should accept valid product_specifications of minimum length (1 character)', () => {
+        // Arrange
+        const testData = {
+            product_name: "The Craftsman Shirt in Bark Plaid Linen",
+            
+            product_color: "Bark Plaid Linen",
+            
+            product_description: "Rugged by design, built with comfort in mind. The Craftsman Shirt pairs classic workwear detailing with a breathable cotton-linen canvas that’s made to handle the season’s shifting demands. Durable, dependable, and crafted to keep up for years to come.",
+            
+            product_price: 128,
+            
+            product_category: "Upper Garment",
+            
+            product_subcategory: "Shirt",
+            
+            product_subcategory_type: "Long-Sleeved Shirt",
+            
+            product_fit: "Fitted at the chest with a straighter fit through the body. Shorter tail length to be worn untucked. Model is 6'3\", wearing a Medium.",
+            
+            product_garment_weight: {
+                garment_weight_description: "Your daily driver, at a versatile all-season weight.",
+                
+                garment_weight: "Light"
+            },
+            
+            product_material: "Crafted from a mid-weight organic cotton and linen canvas and washed for a soft, lived-in feel. Features classic double chest pockets—complete with a handy pen sleeve—and reinforced with double-needle felled seams for lasting durability.",
+            
+            product_supply_type: {
+                supply_type_description: "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+                
+                supply_type: "Essential"
+            },
+            
+            product_specifications: "D"
+            };
+
+            // Act
+            const result = searchProductSchema.safeParse(testData);
+            
+            if (result?.error?.issues !== undefined){
+                console.log("searchProductSchema - should accept valid product_specifications of minimum length (1 character) - TEST 1 - product_specifications - result?.error?.issues ", result?.error?.issues);
+            }
+            
+            else {
+                console.log("searchProductSchema - should accept valid product_specifications of minimum length (1 character) - TEST 1 - product_specifications - result ", result);
+            }
+
+            // Assert
+            expect(result.success).toBe(true);
+            expect(result.data.product_specifications).toBe("D");
+            expect(result.data.product_specifications.length).toBe(1);
+            expect(typeof result.data.product_specifications).toBe('string');
+    });
+
+    test('should accept valid product_specifications of maximum length (500 characters)', () => {
+        // Arrange
+        const testData = {
+            product_name: "The Craftsman Shirt in Bark Plaid Linen",
+            
+            product_color: "Bark Plaid Linen",
+            
+            product_description: "Rugged by design, built with comfort in mind. The Craftsman Shirt pairs classic workwear detailing with a breathable cotton-linen canvas that’s made to handle the season’s shifting demands. Durable, dependable, and crafted to keep up for years to come.",
+            
+            product_price: 128,
+            
+            product_category: "Upper Garment",
+            
+            product_subcategory: "Shirt",
+            
+            product_subcategory_type: "Long-Sleeved Shirt",
+            
+            product_fit: "Fitted at the chest with a straighter fit through the body. Shorter tail length to be worn untucked. Model is 6'3\", wearing a Medium.",
+            
+            product_garment_weight: {
+                garment_weight_description: "Your daily driver, at a versatile all-season weight.",
+                
+                garment_weight: "Light"
+            },
+            
+            product_material: "Crafted from a mid-weight organic cotton and linen canvas and washed for a soft, lived-in feel. Features classic double chest pockets—complete with a handy pen sleeve—and reinforced with double-needle felled seams for lasting durability.",
+            
+            product_supply_type: {
+                supply_type_description: "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+                
+                supply_type: "Essential"
+            },
+            
+            product_specifications: "Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón! The café’s façade gleamed—bright, calm, alive.Numbers danced: 12345, 67890; symbols sang: #!;%:.,“Quotes” and accents intertwined. À propos—of art, of science, of music—Øystein’s résumé stood tall. Máría whispered softly, “C’est la vie.” Björn replied, Indeed—it is.The harmony of words, punctuated by pauses, stretched through the air like wind in fjords.2025 beckoned—a time of calm, reason, grace, and "
+            };
+
+            // Act
+            const result = searchProductSchema.safeParse(testData);
+            
+            if (result?.error?.issues !== undefined){
+                console.log("searchProductSchema - should accept valid product_specifications of maximum length (500 characters) - TEST 2 - product_specifications - result?.error?.issues ", result?.error?.issues);
+            }
+            
+            else {
+                console.log("searchProductSchema - should accept valid product_specifications of maximum length (500 characters) - TEST 2 - product_specifications - result ", result);
+            }
+            
+            // Assert
+            expect(result.success).toBe(true);
+            expect(result.data.product_specifications).toBe("Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón! The café’s façade gleamed—bright, calm, alive.Numbers danced: 12345, 67890; symbols sang: #!;%:.,“Quotes” and accents intertwined. À propos—of art, of science, of music—Øystein’s résumé stood tall. Máría whispered softly, “C’est la vie.” Björn replied, Indeed—it is.The harmony of words, punctuated by pauses, stretched through the air like wind in fjords.2025 beckoned—a time of calm, reason, grace, and ");
+            expect(result.data.product_specifications.length).toBe(500);
+            expect(typeof result.data.product_specifications).toBe('string');
+    });
+});
+

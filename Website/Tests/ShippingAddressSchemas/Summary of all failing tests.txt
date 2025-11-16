@@ -1,0 +1,120 @@
+Summary of all failing tests
+ FAIL  Middleware/Schemas/__tests__/registerUserResponseSchema/registerUserResponseSchema.cart_items.ifv.test.js
+  ● registerUserResponseSchema - CartItems Field Tests › registerUserResponseSchema - should accept valid CartItems with one cart item
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      75 |
+      76 |         // Assert
+    > 77 |         expect(result.success).toBe(true);
+         |                                ^
+      78 |         expect(Array.isArray(result.data.CartItems)).toBe(true);
+      79 |         expect(result.data.CartItems.length).toBe(1);
+      80 |     });
+
+      at Object.toBe (Middleware/Schemas/__tests__/registerUserResponseSchema/registerUserResponseSchema.cart_items.ifv.test.js:77:32)
+
+  ● registerUserResponseSchema - CartItems Field Tests › registerUserResponseSchema - should accept valid CartItems with two cart items
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      126 |
+      127 |         // Assert
+    > 128 |         expect(result.success).toBe(true);
+          |                                ^
+      129 |         expect(Array.isArray(result.data.CartItems)).toBe(true);
+      130 |         expect(result.data.CartItems.length).toBe(2);
+      131 |     });
+
+      at Object.toBe (Middleware/Schemas/__tests__/registerUserResponseSchema/registerUserResponseSchema.cart_items.ifv.test.js:128:32)
+
+ FAIL  Middleware/Schemas/__tests__/userResponseGenericSchema/userResponseGenericSchema.cart_items.ifv.test.js
+  ● userResponseGenericSchema - CartItems Field Tests › userResponseGenericSchema - should accept valid CartItems with one cart item
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      75 |
+      76 |         // Assert
+    > 77 |         expect(result.success).toBe(true);
+         |                                ^
+      78 |         expect(Array.isArray(result.data.CartItems)).toBe(true);
+      79 |         expect(result.data.CartItems.length).toBe(1);
+      80 |     });
+
+      at Object.toBe (Middleware/Schemas/__tests__/userResponseGenericSchema/userResponseGenericSchema.cart_items.ifv.test.js:77:32)
+
+  ● userResponseGenericSchema - CartItems Field Tests › userResponseGenericSchema - should accept valid CartItems with two cart items
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      126 |
+      127 |         // Assert
+    > 128 |         expect(result.success).toBe(true);
+          |                                ^
+      129 |         expect(Array.isArray(result.data.CartItems)).toBe(true);
+      130 |         expect(result.data.CartItems.length).toBe(2);
+      131 |     });
+
+      at Object.toBe (Middleware/Schemas/__tests__/userResponseGenericSchema/userResponseGenericSchema.cart_items.ifv.test.js:128:32)
+
+ FAIL  Middleware/Controllers/__tests__/createProduct.test.js
+  ● createProduct - Database Insertion Test › Should successfully insert a new product into the Product collection
+
+    TypeError: checkProduct.mockResolvedValue is not a function
+
+       98 |         // Mock support functions
+       99 |         checkIsEmptyObject.mockReturnValue(false);
+    > 100 |         checkProduct.mockResolvedValue(true);
+          |                      ^
+      101 |         createRandomString.mockReturnValue(mockProductId);
+      102 |
+      103 |         const mockRequestBody = { 
+
+      at Object.mockResolvedValue (Middleware/Controllers/__tests__/createProduct.test.js:100:22)
+
+ FAIL  Middleware/Schemas/__tests__/userShippingAddressResponseSchema/userShippingAddressResponseSchema.cart_items.ifv.test.js
+  ● userShippingAddressResponseSchema - Cart Items Individual Field Validation Tests › Cart Items Field Validation Tests › should accept valid cart items array value (array with one cart item)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      77 |
+      78 |             // Assert
+    > 79 |             expect(result.success).toBe(true);
+         |                                    ^
+      80 |             expect(result.data.CartItems).toBeDefined();
+      81 |             expect(result.data.CartItems.length).toBe(1);
+      82 |             expect(result.data.CartItems[0].cart_item_id).toBe("ab12cd34ef56");
+
+      at Object.toBe (Middleware/Schemas/__tests__/userShippingAddressResponseSchema/userShippingAddressResponseSchema.cart_items.ifv.test.js:79:36)
+
+  ● userShippingAddressResponseSchema - Cart Items Individual Field Validation Tests › Cart Items Field Validation Tests › should accept valid cart items array value (array with two cart items)
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      134 |
+      135 |             // Assert
+    > 136 |             expect(result.success).toBe(true);
+          |                                    ^
+      137 |             expect(result.data.CartItems).toBeDefined();
+      138 |             expect(result.data.CartItems.length).toBe(2);
+      139 |             expect(result.data.CartItems[0].cart_item_id).toBe("ab12cd34ef56");
+
+      at Object.toBe (Middleware/Schemas/__tests__/userShippingAddressResponseSchema/userShippingAddressResponseSchema.cart_items.ifv.test.js:136:36)

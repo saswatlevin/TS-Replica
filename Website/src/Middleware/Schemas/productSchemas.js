@@ -80,7 +80,7 @@ const updateProductSchema = z.object({
     product_specifications: productValidators.zodIsProductSpecifications
 }).strict();
 
-const productSearchSchema = z.object({
+const searchProductSchema = z.object({
     product_name: productValidators.zodIsProductName,
     
     product_color: productValidators.zodIsProductColor,
@@ -154,7 +154,7 @@ const updateProductPriceSchema = z.object({
 module.exports = {
     productRequestSchema,
     updateProductSchema,
-    productSearchSchema,
+    searchProductSchema,
     productResponseSchema,
     updateProductPriceSchema
 };

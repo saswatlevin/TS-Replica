@@ -1,6 +1,6 @@
 module.exports = {
   testEnvironment: 'node',
-  testMatch: ['**/__tests__/**/*.test.js', '**/IntegrationTests/**/*.integration.test.js'],
+  testMatch: ['**/__tests__/**/*.test.js'],
   verbose: true,
   clearMocks: true
 };

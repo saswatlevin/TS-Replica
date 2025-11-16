@@ -7,10 +7,6 @@ describe('productRequestSchema - HAPPY PATH TEST - product_color', () => {
 
         // Arrange
         const testData = {
-            product_id: "vxcei49vin0z",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
   
             product_color: "A",
@@ -86,10 +82,6 @@ describe('productRequestSchema - HAPPY PATH TEST - product_color', () => {
 
         // Arrange
         const testData = {
-            product_id: "vxcei49vin0z",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
   
             product_color: "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghizklmnoopqrstuv",

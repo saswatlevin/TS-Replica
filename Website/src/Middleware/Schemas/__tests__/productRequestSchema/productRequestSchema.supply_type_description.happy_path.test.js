@@ -4,10 +4,6 @@ describe('productRequestSchema - HAPPY PATH TEST - supply_type_description', () 
     test('should accept valid supply_type_description - TEST 1 ', () => {
         // Arrange
         const testData = {
-            product_id: "hya3y1kdhv4p",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
             
             product_color: "Bark Plaid Linen",
@@ -88,10 +84,6 @@ describe('productRequestSchema - HAPPY PATH TEST - supply_type_description', () 
         test('should accept valid supply_type_description - TEST 2 ', () => {
         // Arrange
         const testData = {
-            product_id: "hya3y1kdhv4p",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
             
             product_color: "Bark Plaid Linen",

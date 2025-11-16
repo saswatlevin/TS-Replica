@@ -7,10 +7,6 @@ describe('productRequestSchema - HAPPY PATH TEST - product_name', () => {
 
         // Arrange
         const testData = {
-            product_id: "vxcei49vin0z",
-
-            docType: "PRODUCT",
-
             product_name: "ÉaZ",
   
             product_color: "Bark Plaid Linen",
@@ -86,10 +82,6 @@ describe('productRequestSchema - HAPPY PATH TEST - product_name', () => {
 
         // Arrange
         const testData = {
-            product_id: "vxcei49vin0z",
-
-            docType: "PRODUCT",
-
             product_name: "Élodie François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón Andréa",
   
             product_color: "Bark Plaid Linen",

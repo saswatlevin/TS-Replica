@@ -5,10 +5,6 @@ describe('productRequestSchema - HAPPY PATH TEST - product_specifications', () =
     test('should accept valid product_specifications of minimum length (1 character)', () => {
         // Arrange
         const testData = {
-            product_id: "hya3y1kdhv4p",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
             
             product_color: "Bark Plaid Linen",
@@ -92,10 +88,6 @@ describe('productRequestSchema - HAPPY PATH TEST - product_specifications', () =
     test('should accept valid product_specifications of maximum length (500 characters)', () => {
         // Arrange
         const testData = {
-            product_id: "hya3y1kdhv4p",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
             
             product_color: "Bark Plaid Linen",

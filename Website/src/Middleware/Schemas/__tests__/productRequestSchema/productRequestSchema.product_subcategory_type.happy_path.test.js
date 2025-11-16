@@ -5,10 +5,6 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
     test('should accept a valid product_subcategory_type - TEST 1', () => {
         // Arrange
         const testData = {
-            product_id: "vxcei49vin0z",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
   
             product_color: "Bark Plaid Linen",
@@ -83,10 +79,6 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
         test('should accept a valid product_subcategory_type - TEST 2', () => {
         // Arrange
         const testData = {
-            product_id: "vxcei49vin0z",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
   
             product_color: "Bark Plaid Linen",
@@ -161,10 +153,6 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
     test('should accept a valid product_subcategory_type - TEST 3', () => {
         // Arrange
         const testData = {
-            product_id: "vxcei49vin0z",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
   
             product_color: "Bark Plaid Linen",
@@ -240,10 +228,6 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
     test('should accept a valid product_subcategory_type - TEST 4', () => {
         // Arrange
         const testData = {
-            product_id: "vxcei49vin0z",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
   
             product_color: "Bark Plaid Linen",
@@ -320,10 +304,6 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
         test('should accept a valid product_subcategory_type - TEST 5', () => {
         // Arrange
         const testData = {
-            product_id: "vxcei49vin0z",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
   
             product_color: "Bark Plaid Linen",
@@ -398,10 +378,6 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             test('should accept a valid product_subcategory_type - TEST 6', () => {
         // Arrange
         const testData = {
-            product_id: "vxcei49vin0z",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
   
             product_color: "Bark Plaid Linen",
@@ -476,10 +452,6 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
     test('should accept a valid product_subcategory_type - TEST 7', () => {
         // Arrange
         const testData = {
-            product_id: "vxcei49vin0z",
-
-            docType: "PRODUCT",
-
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
   
             product_color: "Bark Plaid Linen",

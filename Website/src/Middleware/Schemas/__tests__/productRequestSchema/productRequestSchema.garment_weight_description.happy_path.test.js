@@ -6,9 +6,7 @@ describe('productRequestSchema - HAPPY PATH TEST - garment_weight_description', 
     
         // Arrange
         const testData = {
-            product_id: "hya3y1kdhv4p",
-
-            docType: "PRODUCT",
+            
 
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
             
@@ -94,9 +92,6 @@ describe('productRequestSchema - HAPPY PATH TEST - garment_weight_description', 
     
         // Arrange
         const testData = {
-            product_id: "hya3y1kdhv4p",
-
-            docType: "PRODUCT",
 
             product_name: "The Craftsman Shirt in Bark Plaid Linen",
             

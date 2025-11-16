@@ -6,10 +6,6 @@ describe('productRequestSchema - HAPPY PATH Tests', () => {
         // Arrange
         
         const testData = {
-  product_id: "hya3y1kdhv4p",
-
-   docType: "PRODUCT",
-
   product_name: "The Craftsman Shirt in Bark Plaid Linen",
   
   product_color: "Bark Plaid Linen",
@@ -77,10 +73,10 @@ describe('productRequestSchema - HAPPY PATH Tests', () => {
     // Assert
     expect(result.success).toBe(true);
      
-    expect(result.data.product_id).toBe("hya3y1kdhv4p");
+    
     expect(result.data.product_name).toBe("The Craftsman Shirt in Bark Plaid Linen");
 
-    expect(result.data.docType).toBe("PRODUCT");
+    
     expect(result.data.product_color).toBe("Bark Plaid Linen");     
 
     expect(result.data.product_description).toBe("Rugged by design, built with comfort in mind. The Craftsman Shirt pairs classic workwear detailing with a breathable cotton-linen canvas that’s made to handle the season’s shifting demands. Durable, dependable, and crafted to keep up for years to come.");
@@ -110,10 +106,6 @@ describe('productRequestSchema - HAPPY PATH Tests', () => {
 
     test('productRequestSchema - HAPPY PATH TEST Set 2', () => {
         const testData = {
-  product_id: "vxcei49vin0z",
-
-  docType: "PRODUCT",
-  
   product_name: "The Division Shirt in Washed Indigo",
   
   product_color: "Washed Indigo",
@@ -183,10 +175,10 @@ describe('productRequestSchema - HAPPY PATH Tests', () => {
 
     expect(result.success).toBe(true);
      
-    expect(result.data.product_id).toBe("vxcei49vin0z");
+    
     expect(result.data.product_name).toBe("The Division Shirt in Washed Indigo");   
     
-    expect(result.data.docType).toBe("PRODUCT");
+    
     expect(result.data.product_color).toBe("Washed Indigo");        
     
     expect(result.data.product_description).toBe("The only thing better than a brand-new shirt is one that’s been around the block and has the wear and tear to prove it. With The Division Shirt, you get the best of both worlds. We’ve given it a thorough garment wash to draw the natural character of this indigo-dyed sashiko finish to the surface, and the harder you wear it, the better it will look.");

@@ -36,7 +36,25 @@ const checkDuplicateProduct = async(request_body) => {
     return true;
 };
 
+const insertAt = (obj, key, value, position) => {
+    console.log("In insertAt");
+
+    try {
+        const entries = Object.entries(obj);
+        entries.splice(position, 0, [key, value]);
+        return Object.fromEntries(entries);
+    }
+
+    catch(error) {
+        console.log("Error in insertAt ", error);
+        return error;
+    }
+}
+
+
+
 module.exports = {
     checkProduct,
-    checkDuplicateProduct
+    checkDuplicateProduct,
+    insertAt
 }

@@ -1,7 +1,7 @@
 const { createProduct } = require('../productControllers');
 const Product = require('../../Models/Product');
 const { checkIsEmptyObject } = require('../SupportFunctions/shippingAddressSupportFunctions');
-const { checkProduct }= require('../SupportFunctions/productSupportFunctions');
+const { checkDuplicateProduct }= require('../SupportFunctions/productSupportFunctions');
 const createRandomString = require('../../createRandomString');
 
 // Mock dependencies
@@ -93,11 +93,17 @@ describe('createProduct - Database Insertion Test', () => {
 
         // Mock support functions
         checkIsEmptyObject.mockReturnValue(false);
-        checkProduct.mockResolvedValue(true);
+        checkDuplicateProduct.mockResolvedValue(false);
         createRandomString.mockReturnValue(mockProductId);
 
-        const mockRequestBody = req.body;
-        
+        const mockRequestBody = { 
+            product_id: mockProductId,
+            docType: mockDocType,
+            ...req.body
+
+        };
+        //console.log("mockRequestBody ", mockRequestBody);
+
         const mockCreatedProduct = {
             _id: mockMongoDBId,
             product_id: mockProductId,
@@ -108,6 +114,7 @@ describe('createProduct - Database Insertion Test', () => {
         };
 
 
+        //console.log("mockCreatedProduct ", mockCreatedProduct);
         Product.create.mockResolvedValue(mockCreatedProduct);
 
         // Act
@@ -116,8 +123,8 @@ describe('createProduct - Database Insertion Test', () => {
         //console.log("Test result ", result);
 
         // Assert
-        expect(checkIsEmptyObject).toHaveBeenCalledWith(req.body);
-        expect(checkProduct).toHaveBeenCalledWith(req, res, next);
+        expect(checkIsEmptyObject).toHaveBeenCalledWith(req);
+        expect(checkDuplicateProduct).toHaveBeenCalledWith(req);
         expect(createRandomString).toHaveBeenCalledWith(6);
         expect(Product.create).toHaveBeenCalledWith(mockRequestBody);
         expect(res.status).toHaveBeenCalledWith(201);

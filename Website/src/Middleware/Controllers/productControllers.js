@@ -64,10 +64,18 @@ const createProduct = asyncErrorHandler(async(req, res, next) => {
     console.log("The product object to be created ", product);
     
     const result = await Product.create(product);
-    console.log("result ", result);
+
+    const final_result = result.toObject({
+        getters: false,
+        virtuals: false,
+        minimize: false,
+        versionKey: true,
+        flattenMaps: true
+      });
+    console.log("final_result ", final_result);
 
     console.log("Sending the result to the client as JSON with status 201");
-    res.status(201).json(result);
+    res.status(201).json(final_result);
 
 });
 

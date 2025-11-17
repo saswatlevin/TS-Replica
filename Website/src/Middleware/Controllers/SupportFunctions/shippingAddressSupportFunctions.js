@@ -40,11 +40,26 @@ catch(error) {
 const checkDuplicateUserExists = async(req, res, next) => {
     console.log("In checkDuplicateUserExists");
     
-    const email = req.body.email;
+    try {
+        const email = req.body.email;
     
-    const user_query = {email: email};
+        const user_query = {email: email};
     
-    const result = await User.findOne(user_query);
+        const result = await User.findOne(user_query);
+
+        if (result === null) {
+            return false;
+        }
+
+        else {
+            return true;
+        }
+    }
+
+    catch(error) {
+        console.log("Error in checkDuplicateUserExists ", error);
+        return error;
+    }
 }
 
 const checkShippingAddressExists = async(req, res, next) => {
@@ -66,7 +81,6 @@ const checkShippingAddressExists = async(req, res, next) => {
         else {
             return true;
         }
-    
 
     }
 
@@ -74,35 +88,41 @@ const checkShippingAddressExists = async(req, res, next) => {
         console.log("Error in checkShippingAddressExists ", error);
         return error;
     }
-
-    
-
 };
 
 const checkDuplicateShippingAddressExists = async(req, res, next) => {
     console.log("In checkDuplicateShippingAddressExists");
 
-    const phone_number = req.body.phone_number;
+    try {
+        const phone_number = req.body.phone_number;
 
-    const shipping_address_query = {'ShippingAddresses.phone_number': phone_number};
+        const shipping_address_query = {'ShippingAddresses.phone_number': phone_number};
 
-    const result = await User.findOne(shipping_address_query);
+        const result = await User.findOne(shipping_address_query);
 
-    if (result === null) {
-        return false;
+        if (result === null) {
+            return false;
+        }
+
+        else {
+            return true;
+        }
     }
 
-    else {
-        return true;
+    catch (error) {
+        console.log("Error in checkDuplicateShippingAddressExists ", error);
+        return error;   
     }
+    
 };
 
 
 const checkIsEmptyObject = (object) => {
     console.log("In checkIsEmptyObject");
-    const object_body = object.body;
+    
     
     try {
+        const object_body = object.body;
         const result = _.isEmpty(object_body);
         return result;
     }
@@ -120,4 +140,3 @@ module.exports = {
     checkDuplicateShippingAddressExists,
     checkIsEmptyObject
 };
-

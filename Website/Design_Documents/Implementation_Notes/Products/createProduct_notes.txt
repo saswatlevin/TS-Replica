@@ -5,42 +5,24 @@ We need the following pieces of data
 4) product_body -> From request body
 
 createProduct -> 
-Get the request body
-Check if the request body is empty, if so, throw an EmptyRequestBodyError
+Get a DEEP CLONE of the request body
 
-Generate the product_id as a 12-character random string.
-Store the product_id in req.params to pass it on to the next middleware. 
+Check if the request body is empty, if so, throw an EmptyRequestBodyError
 
 Check if the product already exists, if yes, throw a DuplicateDocumentRequestErro
 
-Set the doctype to PRODUCT.
+Generate the product_id as a 12-character random string.
+
+Generate the image_id.
+
+Generate the sku.
+
+Generate the doctype as PRODUCT.
+
+Add the sku to the product_items key-value pair in the DEEP CLONE of the request body.
+
+Add the image_id to the product_images key-value pair in the DEEP CLONE of the request body.
+
+Add the product_id and doctype to the DEEP CLONE of the request_body. This is the product.
 
 Use the Model.create() function to create the product by inserting the request_body.
-===================================================================================================================================================
-createProductItem ->
-Get the request body
-Check if the request body is empty, if so, throw an EmptyRequestBodyError
-
-Check if the product exists, if not, throw a ResourceNotFoundError
-Check if the product item already exists, if yes, throw a DuplicateDocumentRequestError
-
-Get the product_id of the product to which the product item belongs
-Create the sku as a 10-digit random string
-
-Create the product item by combining the sku with the request body using the spread operator
-Insert the product item as a sub-document in the ProductItems array in the respective Product document. 
-====================================================================================================================================================
-createProductImage
-Get the request body
-Check if the request body is empty, if so, throw an EmptyRequestBodyError
-
-Check if the product exists, if not, throw a ResourceNotFoundError
-Check if the product item already exists, if yes, throw a DuplicateDocumentRequestError
-
-Get the product_id of the product to which the product image belongs
-Create the product_image_id as a 12-digit random string.
-
-Get the request body.
-Extract the product image from the request body.
-
-Insert the product image as a sub-document in the ProductImages array in the respective Product document.

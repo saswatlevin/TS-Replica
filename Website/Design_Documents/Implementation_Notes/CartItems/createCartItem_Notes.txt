@@ -3,7 +3,24 @@ user_id -> request_params | Session
 product_id -> request_params | Front end
 sku -> request_params | Front end
 product_price -> request_params | Front end
-total_stock -> request_params | Front end
+current_stock -> request_params | Front end
 
 createCartItem ->
+* Check if the request body is empty, if so, throw an EmptyRequestBodyError.
+* Check if the user exists If not, throw a ResourceNotFoundError. -> WHEN SESSION COMES, THEN LOGGED IN. 
+
+* Get a DEEP CLONE of the request body.
+
+NOTE: We DON'T have to check if the product exists, since here, the user is clicking on the "Add to Cart" button which adds it to the Cart.
+
+* Get the product_id, sku, product_price and total_stock from req.body.
+* Check the quantity and compare it with the current_stock.  
+
+* Generate the cart_item_id.
+* Add the cart_item_id to the DEEP CLONE of the request body.
+
 * 
+
+
+
+ 

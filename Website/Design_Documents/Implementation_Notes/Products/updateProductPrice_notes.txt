@@ -1,0 +1,27 @@
+We need the following pieces of data:
+* product_id -> User params | From frontend
+
+updateProductPrice ->
+* Check if the request_body is empty or not, if it is, throw an EmptyRequestBody Error.
+* Check if the product exists or not, if not, throw a ResourceNotFoundError.
+
+* Get a DEEP CLONE of the request_body
+* Create the filter using { product_id : product_id }.
+
+* Use the findOneAndUpdate() function with the filter, the DEEP CLONE of the request_body, {runValidators: true} and chain it with .lean() to update the product price.
+* Get the result from findOneAndUpdate(). -> RESULT 1
+
+* Get the updated product price from the result.
+* Store the updated product price in req.params.
+
+* Call updateCartItemPrice().
+* Get the result from updateCartItemPrice(). -> RESULT 2
+
+* Create an array of RESULT 1 and RESULT 2.
+
+* Send the array with RESULT 1 and RESULT 2 as res.json.
+* Set the res.status to 200.
+
+
+
+

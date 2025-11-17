@@ -61,26 +61,35 @@ const createProduct = asyncErrorHandler(async(req, res, next) => {
         docType: doc_type,
         ...request_body_deep_clone
     };
-
     console.log("The product object to be created ", product);
-    const result = await Product.create(product);
     
+    const result = await Product.create(product);
+    console.log("result ", result);
+
+    console.log("Sending the result to the client as JSON with status 201");
     res.status(201).json(result);
 
 });
 
 const updateProductPrice = asyncErrorHandler(async(req, res, next) => {
     console.log("In updateProduct");
-    const request_body = req.body;
 
-    if (checkIsEmptyObject(request_body) === true) {
+    console.log("Checking if the request body is empty");
+    if (checkIsEmptyObject(req) === true) {
         const empty_request_body_error = new EmptyRequestBodyError(`Could not update Product with product_id ${product_id} as the request body is empty.`);
         throw empty_request_body_error;
     }
 
-    const product_id = req.params.product_id;
 
+    const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
+    console.log("request_body_deep_clone ", request_body_deep_clone);
+    
+    const product_id = req.params.product_id;
+    console.log("Getting the product_id from the request params ", product_id);
+
+    
     const product_exists = await checkProduct(req, res, next);
+    console.log("Checking if the product exists ", product_exists);
 
     if (product_exists === false) {
         const product_not_found_error = new ResourceNotFoundError(`Could not update Product documentwith product_id ${product_id} since it does not exist.`);
@@ -88,16 +97,25 @@ const updateProductPrice = asyncErrorHandler(async(req, res, next) => {
     }
 
     const filter = {product_id: product_id};
+    console.log("filter ", filter);
 
-    const update_object = request_body;
+    const update_object = request_body_deep_clone;
+    console.log("update_object ", update_object);
+
 
     const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, {new: true}, {runValidators: true});
+    console.log("update_product_price_result ", update_product_price_result);
 
-    req.params.updated_product_price = result.product_price;
+    req.params.updated_product_price = update_product_price_result.product_price;
+    console.log("Storing the updated_product_price in the request params ", req.params.updated_product_price);
 
     const update_cart_item_price_result = await updateCartItemPrice(req, res, next);
+    console.log("update_cart_item_price_result ", update_cart_item_price_result);
 
     const result_array = [update_product_price_result, update_cart_item_price_result];
+    console.log("result_array ", result_array);
+
+    console.log("Sending the result to the client as JSON with status 200");
     res.status(200).json(result_array);
 });
 
@@ -105,4 +123,3 @@ module.exports = {
     createProduct,
     updateProductPrice
 };
-

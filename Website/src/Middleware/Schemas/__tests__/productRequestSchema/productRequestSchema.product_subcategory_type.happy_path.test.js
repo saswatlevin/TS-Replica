@@ -38,9 +38,8 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_images: 
             [
                 {
-                image_id: "zz6f7oq0fdof",
-                image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
-                main_image: true
+                    image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
+                    main_image: true
                 }
                 
             ],
@@ -48,12 +47,11 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_items: 
             [
                 {
-                sku: "9qjmn3ak0b",
-                upper_size_letter: "XXL",
-                upper_size_number: 46,
-                total_stock: 250,
-                quantity_sold: 80,
-                current_stock: 170
+                    upper_size_letter: "XXL",
+                    upper_size_number: 46,
+                    total_stock: 250,
+                    quantity_sold: 80,
+                    current_stock: 170
                 }
             ]
         };
@@ -112,9 +110,8 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_images: 
             [
                 {
-                image_id: "zz6f7oq0fdof",
-                image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
-                main_image: true
+                    image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
+                    main_image: true
                 }
                 
             ],
@@ -122,12 +119,11 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_items: 
             [
                 {
-                sku: "9qjmn3ak0b",
-                upper_size_letter: "XXL",
-                upper_size_number: 46,
-                total_stock: 250,
-                quantity_sold: 80,
-                current_stock: 170
+                    upper_size_letter: "XXL",
+                    upper_size_number: 46,
+                    total_stock: 250,
+                    quantity_sold: 80,
+                    current_stock: 170
                 }
             ]
         };
@@ -186,9 +182,8 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_images: 
             [
                 {
-                image_id: "zz6f7oq0fdof",
-                image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
-                main_image: true
+                    image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
+                    main_image: true
                 }
                 
             ],
@@ -196,12 +191,11 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_items: 
             [
                 {
-                sku: "9qjmn3ak0b",
-                upper_size_letter: "XXL",
-                upper_size_number: 46,
-                total_stock: 250,
-                quantity_sold: 80,
-                current_stock: 170
+                    upper_size_letter: "XXL",
+                    upper_size_number: 46,
+                    total_stock: 250,
+                    quantity_sold: 80,
+                    current_stock: 170
                 }
             ]
         };
@@ -261,9 +255,8 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_images: 
             [
                 {
-                image_id: "zz6f7oq0fdof",
-                image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
-                main_image: true
+                    image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
+                    main_image: true
                 }
                 
             ],
@@ -271,12 +264,12 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_items: 
             [
                 {
-                sku: "9qjmn3ak0b",
-                upper_size_letter: "XXL",
-                upper_size_number: 46,
-                total_stock: 250,
-                quantity_sold: 80,
-                current_stock: 170
+                
+                    upper_size_letter: "XXL",
+                    upper_size_number: 46,
+                    total_stock: 250,
+                    quantity_sold: 80,
+                    current_stock: 170
                 }
             ]
         };
@@ -298,9 +291,6 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
         expect(result.data.product_subcategory_type).toBe("Chino");
 
     });
-
-    
-
         test('should accept a valid product_subcategory_type - TEST 5', () => {
         // Arrange
         const testData = {
@@ -337,9 +327,8 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_images: 
             [
                 {
-                image_id: "zz6f7oq0fdof",
-                image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
-                main_image: true
+                    image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
+                    main_image: true
                 }
                 
             ],
@@ -347,12 +336,11 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_items: 
             [
                 {
-                sku: "9qjmn3ak0b",
-                upper_size_letter: "XXL",
-                upper_size_number: 46,
-                total_stock: 250,
-                quantity_sold: 80,
-                current_stock: 170
+                    upper_size_letter: "XXL",
+                    upper_size_number: 46,
+                    total_stock: 250,
+                    quantity_sold: 80,
+                    current_stock: 170
                 }
             ]
         };
@@ -411,9 +399,8 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_images: 
             [
                 {
-                image_id: "zz6f7oq0fdof",
-                image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
-                main_image: true
+                    image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
+                    main_image: true
                 }
                 
             ],
@@ -421,12 +408,11 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_items: 
             [
                 {
-                sku: "9qjmn3ak0b",
-                upper_size_letter: "XXL",
-                upper_size_number: 46,
-                total_stock: 250,
-                quantity_sold: 80,
-                current_stock: 170
+                    upper_size_letter: "XXL",
+                    upper_size_number: 46,
+                    total_stock: 250,
+                    quantity_sold: 80,
+                    current_stock: 170
                 }
             ]
         };
@@ -485,9 +471,8 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_images: 
             [
                 {
-                image_id: "zz6f7oq0fdof",
-                image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
-                main_image: true
+                    image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
+                    main_image: true
                 }
                 
             ],
@@ -495,12 +480,11 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
             product_items: 
             [
                 {
-                sku: "9qjmn3ak0b",
-                upper_size_letter: "XXL",
-                upper_size_number: 46,
-                total_stock: 250,
-                quantity_sold: 80,
-                current_stock: 170
+                    upper_size_letter: "XXL",
+                    upper_size_number: 46,
+                    total_stock: 250,
+                    quantity_sold: 80,
+                    current_stock: 170
                 }
             ]
         };
@@ -523,4 +507,4 @@ describe('productRequestSchema - Test product_subcategory_type', () => {
 
     });
 
-});    
+});

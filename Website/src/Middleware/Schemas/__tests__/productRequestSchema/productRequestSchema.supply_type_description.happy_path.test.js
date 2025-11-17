@@ -39,8 +39,6 @@ describe('productRequestSchema - HAPPY PATH TEST - supply_type_description', () 
             product_images: 
             [
                 {
-                    image_id: "zz6f7oq0fdof",
-                    
                     image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
                     
                     main_image: true
@@ -51,8 +49,6 @@ describe('productRequestSchema - HAPPY PATH TEST - supply_type_description', () 
             product_items: 
             [
                 {
-                    sku: "9qjmn3ak0b",
-                    
                     upper_size_letter: "XXL",
                     
                     upper_size_number: 46,
@@ -119,8 +115,6 @@ describe('productRequestSchema - HAPPY PATH TEST - supply_type_description', () 
             product_images: 
             [
                 {
-                    image_id: "zz6f7oq0fdof",
-                    
                     image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
                     
                     main_image: true
@@ -131,8 +125,6 @@ describe('productRequestSchema - HAPPY PATH TEST - supply_type_description', () 
             product_items: 
             [
                 {
-                    sku: "9qjmn3ak0b",
-                    
                     upper_size_letter: "XXL",
                     
                     upper_size_number: 46,

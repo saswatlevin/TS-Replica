@@ -39,7 +39,6 @@ describe('productRequestSchema - HAPPY PATH Tests', () => {
   product_images: 
   [
     {
-      image_id: "zz6f7oq0fdof",
       image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
       main_image: true
     }
@@ -49,7 +48,6 @@ describe('productRequestSchema - HAPPY PATH Tests', () => {
   product_items: 
   [
     {
-      sku: "9qjmn3ak0b",
       upper_size_letter: "XXL",
       upper_size_number: 46,
       total_stock: 250,
@@ -139,18 +137,14 @@ describe('productRequestSchema - HAPPY PATH Tests', () => {
   product_specifications: "12.5-oz. 100% organic cotton. Heavily washed to bring out the depth of sashiko-woven indigo yarns. Our signature California collar. Two mitered chest pockets with button through flaps. Left pocket features a pen sleeve. Burnt corozo buttons. Wash cold and tumble dry low. Made in China.",
   
   product_images: [
-    {
-      image_id: "guq4vjn76q66",
-   
+    {   
       image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Division_Shirt\\The_Division_Shirt_in_Washed_Indigo\\6757461459021_division-shirt-in-washed-indigo-2301_01_tsio.jpg",
    
       main_image: false
     }
   ],
   product_items: [
-    {
-      sku: "785r0xzd3p",
-   
+    {   
       upper_size_letter: "XXL",
    
       upper_size_number: 46,

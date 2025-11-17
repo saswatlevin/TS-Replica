@@ -97,11 +97,13 @@ const checkDuplicateShippingAddressExists = async(req, res, next) => {
     }
 };
 
+
 const checkIsEmptyObject = (object) => {
     console.log("In checkIsEmptyObject");
+    const object_body = object.body;
     
     try {
-        const result = _.isEmpty(object);
+        const result = _.isEmpty(object_body);
         return result;
     }
 

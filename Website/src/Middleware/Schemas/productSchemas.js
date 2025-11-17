@@ -2,14 +2,23 @@ const z = require('zod');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const productValidators = require('../Validators/productValidators');
 const objectIdSchema = require('./objectIdSchema');
-const {productImageArrayRequestSchema, productImageArraySchema } = require('./productImageSchemas');
-const {productItemSchemasUnion, productItemRequestSchemasUnion} = require('./productItemSchemas');
+const {productImageArrayRequestSchema, productImageArraySchema, productImageArrayResponseSchema } = require('./productImageSchemas');
+const {productItemSchemasUnion, productItemRequestSchemasUnion, productItemResponseSchemasUnion} = require('./productItemSchemas');
 // const { shirtJackOxford, pantBreakwaterRinsed, pantPainterCanvas, shortApresNavy, shortCampAgedPenny } = require('./TestObjects/testProductObjects');
 
 const productGarmentWeightSchema = z.object({
     garment_weight_description: productValidators.zodIsGarmentWeightDescription,
 
+    garment_weight: productValidators.zodIsGarmentWeight
+   
+}).strict();
+
+const productGarmentWeightResponseSchema = z.object({
+    garment_weight_description: productValidators.zodIsGarmentWeightDescription,
+
     garment_weight: productValidators.zodIsGarmentWeight,
+
+    _id: objectIdSchema
    
 }).strict();
 
@@ -17,7 +26,16 @@ const productSupplyTypeSchema = z.object({
     supply_type_description: productValidators.zodIsSupplyTypeDescription,
     
 
+    supply_type: productValidators.zodIsSupplyType
+    
+}).strict();
+
+const productSupplyTypeResponseSchema = z.object({
+    supply_type_description: productValidators.zodIsSupplyTypeDescription,
+
     supply_type: productValidators.zodIsSupplyType,
+
+    _id: objectIdSchema
     
 }).strict();
 
@@ -109,8 +127,6 @@ const searchProductSchema = z.object({
 
 
 const productResponseSchema = z.object({
-    _id: objectIdSchema,
-
     product_id: productValidators.zodIsProductId,
     
     docType: productValidators.zodIsProductDocType,
@@ -132,18 +148,20 @@ const productResponseSchema = z.object({
     // Remove \" from regex in the future.
     product_fit: productValidators.zodIsProductFit,
 
-    product_garment_weight: productGarmentWeightSchema,
+    product_garment_weight: productGarmentWeightResponseSchema,
 
     product_material: productValidators.zodIsProductMaterial,
 
-    product_supply_type: productSupplyTypeSchema,
+    product_supply_type: productSupplyTypeResponseSchema,
 
     product_specifications: productValidators.zodIsProductSpecifications,
     
-    product_images: productImageArraySchema,
+    product_images: productImageArrayResponseSchema,
 
-    product_items: productItemSchemasUnion,
+    product_items: productItemResponseSchemasUnion,
     
+    _id: objectIdSchema,
+
     __v: customValidators.zodIsDocumentVersion
 }).strict();
 

@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // Server response validator
-// app.use(responseValidator);
+app.use(responseValidator);
 
 // Routes
 app.use('/', require('./Middleware/Routes/defaultRoute'));

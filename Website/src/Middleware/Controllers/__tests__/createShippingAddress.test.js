@@ -46,8 +46,8 @@ describe('createShippingAddress - Database Insertion Test', () => {
 
         // Expected shipping address with shipping_address_id added
         const expectedShippingAddress = {
+            shipping_address_id: mockShippingAddressId,
             ...req.body,
-            shipping_address_id: mockShippingAddressId
         };
 
         // Mock the updated User document that will be returned

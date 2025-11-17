@@ -14,30 +14,31 @@ const registerUser = async (req, res, next) => {
     // so we don't need to use createDocument yet.
 
     // Get a deep copy of the request body object
-    var requestBodyObjectCopy = JSON.parse(JSON.stringify(req.body));
-    
-    // Set the user_id for this user document
-    requestBodyObjectCopy['user_id'] = createRandomString(6);
+    const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
 
-    // Set the docType for this user document
-    requestBodyObjectCopy['docType'] = 'USER';
+    const user_id = createRandomString(6);
+
+    const doc_type = 'USER';
 
     // Get the current date-time
-    const dateCreatedAt = getCurrentDateTime();
-
-    // Set the date_created_at for this user document
-    requestBodyObjectCopy['date_created_at'] = dateCreatedAt;
-    
+    const date_created_at = getCurrentDateTime();
     // Hash the user's password using argon2id. It is salted by default.
-    const passwordHash = await argon2.hash(requestBodyObjectCopy['password']);
-    
-    // Store the hashed password in the respective user document.
-    requestBodyObjectCopy['password'] = passwordHash;
+    const passwordHash = await argon2.hash(request_body_deep_clone['password']);
 
-    //console.log("Request Body Object Copy after setting user_id ", requestBodyObjectCopy);
+    // Replace the password in the request body deep clone with the hashed password
+    request_body_deep_clone['password'] = passwordHash;
+    
+    const user_object = {
+        user_id: user_id,
+        docType: doc_type,
+        date_created_at: date_created_at,
+        ...request_body_deep_clone
+    };
+
+    console.log("user_object after adding all generated data ", user_object);
     
     // Create the new User in the database
-    const result = await User.create(requestBodyObjectCopy);
+    const result = await User.create(user_object);
 
     console.log("create operation result ", result);
 

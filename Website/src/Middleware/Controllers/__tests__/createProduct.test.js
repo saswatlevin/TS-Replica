@@ -15,6 +15,8 @@ describe('createProduct - Database Insertion Test', () => {
         // Arrange - Mock all dependencies
         const mockMongoDBId = '64b7f9f4e1b2c8a1d2e3f456';
         const mockProductId = 'abc12r5ghjkl';
+        const mockSku = '1a8jhuiopl';
+        const mockImageId = 'zc58jhuiop0n';
         const mockDocType = 'PRODUCT';
         const mockDocumentVersion = 0;
 
@@ -77,10 +79,6 @@ describe('createProduct - Database Insertion Test', () => {
                         current_stock: 170
                     }
                 ]
-            },
-
-            params: {
-                product_id: mockProductId
             }
         }
 
@@ -94,13 +92,19 @@ describe('createProduct - Database Insertion Test', () => {
         // Mock support functions
         checkIsEmptyObject.mockReturnValue(false);
         checkDuplicateProduct.mockResolvedValue(false);
-        createRandomString.mockReturnValue(mockProductId);
+        createRandomString
+            .mockReturnValueOnce(mockProductId) // product_id
+            .mockReturnValueOnce(mockSku) // sku
+            .mockReturnValueOnce(mockImageId); // image_id
+
+        // Modify the request body to include the mock sku and image id
+        req.body.product_items[0] = {sku: mockSku, ...req.body.product_items[0]};
+        req.body.product_images[0] = {image_id: mockImageId, ...req.body.product_images[0]};
 
         const mockRequestBody = { 
             product_id: mockProductId,
             docType: mockDocType,
             ...req.body
-
         };
         //console.log("mockRequestBody ", mockRequestBody);
 

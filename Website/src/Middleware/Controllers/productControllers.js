@@ -13,30 +13,33 @@ const createProduct = asyncErrorHandler(async(req, res, next) => {
     console.log("In createProduct");
     
     // Get the request body.
-    const request_body = _.cloneDeep(req.body);
+
+    const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
 
     // Check if the request body is empty
-    if (checkIsEmptyObject(request_body) === true) {
+    if (checkIsEmptyObject(req) === true) {
         const empty_request_body_error = new EmptyRequestBodyError(`Could not create Product as the request body is empty.`);
         throw empty_request_body_error;
     }
 
     // Check if the product exists
-    if (checkDuplicateProduct(request_body) === false) {
+    if (checkDuplicateProduct(req) === false) {
         const product_already_exists_error = new DuplicateDocumentError(`Product document with product_name ${product_name} and product_description ${product_description} already exists.`);
         throw product_already_exists_error;
     }
 
     const product_id = createRandomString(6);
 
-    // Set the product_id in the request body
-    request_body.product_id = product_id;
+    const doc_type = "PRODUCT";
 
-    // Set the docType in the request body
-    request_body.docType = "PRODUCT";
+    const product = {
+        product_id: product_id,
+        docType: doc_type,
+        ...request_body_deep_clone
+    };
 
-    console.log("request_body in createProduct ", request_body);
-    const result = await Product.create(request_body);
+    console.log("product in createProduct ", product);
+    const result = await Product.create(product);
     
     res.status(201).json(result);
 

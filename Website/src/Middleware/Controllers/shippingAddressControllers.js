@@ -20,16 +20,22 @@ const createShippingAddress = asyncErrorHandler(async(req, res, next) => {
         throw empty_request_body_error;
     }
 
-    // Test whether value matches expected value
-    var shipping_address = req.body;
-    
-    // Test return value
+    // Check if the user exists
     const user_exists = await checkUserExists(req);
 
     //console.log("user_exists ", user_exists);
 
-    // Assign the shipping_address_id
-    shipping_address['shipping_address_id'] = createRandomString(6);
+    // Deep clone the request body
+    var request_body = JSON.parse(JSON.stringify(req.body));
+
+    // Generate the shipping_address_id
+    const shipping_address_id = createRandomString(6);
+    
+    // Create the shipping address object
+    const shipping_address = {
+        shipping_address_id: shipping_address_id,
+        ...request_body
+    };
 
     console.log("shipping_address ", shipping_address);
 

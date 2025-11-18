@@ -6,7 +6,6 @@ describe('productResponseSchema - product_subcategory - HAPPY PATH TEST', () => 
 
         // Arrange
         const testData = {
-            _id: new mongoose.Types.ObjectId("654f1a9b7d2c4e58a3b912de"),
 
             product_id: "vxcei49vin0z",
 
@@ -30,14 +29,16 @@ describe('productResponseSchema - product_subcategory - HAPPY PATH TEST', () => 
   
             product_garment_weight: {
                 garment_weight_description: "Your daily driver, at a versatile all-season weight.",
-                garment_weight: "Medium"
+                garment_weight: "Medium",
+                _id: new mongoose.Types.ObjectId("672f8e0c9b3e4a12c4d7f9e1")
             },
   
             product_material: "Crafted from a mid-weight organic cotton and linen canvas and washed for a soft, lived-in feel. Features classic double chest pockets—complete with a handy pen sleeve—and reinforced with double-needle felled seams for lasting durability.",
             
             product_supply_type: {
                 supply_type_description: "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
-                supply_type: "Limited"
+                supply_type: "Limited",
+                _id: new mongoose.Types.ObjectId("672f8e179a4c3d21b7e0f4c8")
             },
             
             product_specifications: "7-oz. 55% linen, 45% organic cotton canvas. Washed for a soft, lived in feel. Two U-shaped chest pockets with button through flaps. Left pocket features a pen sleeve. Adjustable button cuffs. Double-needle felled construction. Wash cold and lay flat to dry. Made in China.",
@@ -49,7 +50,9 @@ describe('productResponseSchema - product_subcategory - HAPPY PATH TEST', () => 
                     
                     image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
                     
-                    main_image: true
+                    main_image: true,
+                    
+                    _id: new mongoose.Types.ObjectId("672f8f3ab14c2e07d9a4c6f2")
                 }
                 
             ],
@@ -67,10 +70,12 @@ describe('productResponseSchema - product_subcategory - HAPPY PATH TEST', () => 
                 
                     quantity_sold: 80,
                 
-                    current_stock: 170
+                    current_stock: 170,
+                  _id: new mongoose.Types.ObjectId("672f8f44ce8b1a03f4d2b7e9")
                 }
             ],
             
+            _id: new mongoose.Types.ObjectId("654f1a9b7d2c4e58a3b912de"),
             __v: 0
         };
 
@@ -96,7 +101,6 @@ describe('productResponseSchema - product_subcategory - HAPPY PATH TEST', () => 
 
         // Arrange
         const testData = {
-            _id: new mongoose.Types.ObjectId("654f1a9b7d2c4e58a3b912de"),
 
             product_id: "vxcei49vin0z",
 
@@ -120,14 +124,16 @@ describe('productResponseSchema - product_subcategory - HAPPY PATH TEST', () => 
   
             product_garment_weight: {
                 garment_weight_description: "Your daily driver, at a versatile all-season weight.",
-                garment_weight: "Medium"
+                garment_weight: "Medium",
+                _id: new mongoose.Types.ObjectId("672f8e0c9b3e4a12c4d7f9e1")
             },
   
             product_material: "Crafted from a mid-weight organic cotton and linen canvas and washed for a soft, lived-in feel. Features classic double chest pockets—complete with a handy pen sleeve—and reinforced with double-needle felled seams for lasting durability.",
             
             product_supply_type: {
                 supply_type_description: "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
-                supply_type: "Limited"
+                supply_type: "Limited",
+                _id: new mongoose.Types.ObjectId("672f8e179a4c3d21b7e0f4c8")
             },
             
             product_specifications: "7-oz. 55% linen, 45% organic cotton canvas. Washed for a soft, lived in feel. Two U-shaped chest pockets with button through flaps. Left pocket features a pen sleeve. Adjustable button cuffs. Double-needle felled construction. Wash cold and lay flat to dry. Made in China.",
@@ -139,7 +145,9 @@ describe('productResponseSchema - product_subcategory - HAPPY PATH TEST', () => 
                     
                     image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
                     
-                    main_image: true
+                    main_image: true,
+                    
+                    _id: new mongoose.Types.ObjectId("672f8f3ab14c2e07d9a4c6f2")
                 }
                 
             ],
@@ -157,10 +165,12 @@ describe('productResponseSchema - product_subcategory - HAPPY PATH TEST', () => 
                 
                     quantity_sold: 80,
                 
-                    current_stock: 170
+                    current_stock: 170,
+                  _id: new mongoose.Types.ObjectId("672f8f44ce8b1a03f4d2b7e9")
                 }
             ],
 
+            _id: new mongoose.Types.ObjectId("654f1a9b7d2c4e58a3b912de"),
             __v: 0
         };
 

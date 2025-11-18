@@ -5,8 +5,7 @@ describe('productResponseSchema - HAPPY PATH Tests', () => {
     test('productResponseSchema - HAPPY PATH TEST Set 1', () => {
         // Arrange
         
-      const testData = {
-          _id: new mongoose.Types.ObjectId("654f1a9b7d2c4e58a3b912de"),        
+      const testData = {        
           
           product_id: "hya3y1kdhv4p",
 
@@ -30,14 +29,16 @@ describe('productResponseSchema - HAPPY PATH Tests', () => {
           
           product_garment_weight: {
             garment_weight_description: "Your daily driver, at a versatile all-season weight.",
-            garment_weight: "Medium"
+            garment_weight: "Medium",
+            _id: new mongoose.Types.ObjectId("672f8e0c9b3e4a12c4d7f9e1")
           },
           
           product_material: "Crafted from a mid-weight organic cotton and linen canvas and washed for a soft, lived-in feel. Features classic double chest pockets—complete with a handy pen sleeve—and reinforced with double-needle felled seams for lasting durability.",
           
           product_supply_type: {
             supply_type_description: "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
-            supply_type: "Limited"
+            supply_type: "Limited",
+            _id: new mongoose.Types.ObjectId("672f8e179a4c3d21b7e0f4c8")
           },
           
           product_specifications: "7-oz. 55% linen, 45% organic cotton canvas. Washed for a soft, lived in feel. Two U-shaped chest pockets with button through flaps. Left pocket features a pen sleeve. Adjustable button cuffs. Double-needle felled construction. Wash cold and lay flat to dry. Made in China.",
@@ -47,7 +48,8 @@ describe('productResponseSchema - HAPPY PATH Tests', () => {
             {
               image_id: "zz6f7oq0fdof",
               image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
-              main_image: true
+              main_image: true,
+              _id: new mongoose.Types.ObjectId("672f8f3ab14c2e07d9a4c6f2")
             },
             
           ],
@@ -60,10 +62,12 @@ describe('productResponseSchema - HAPPY PATH Tests', () => {
               upper_size_number: 46,
               total_stock: 250,
               quantity_sold: 80,
-              current_stock: 170
+              current_stock: 170,
+              _id: new mongoose.Types.ObjectId("672f8f44ce8b1a03f4d2b7e9")
             }
         ],
 
+        _id: new mongoose.Types.ObjectId("654f1a9b7d2c4e58a3b912de"),
         __v: 0
 };
 
@@ -114,7 +118,6 @@ describe('productResponseSchema - HAPPY PATH Tests', () => {
 
     test('productResponseSchema - HAPPY PATH TEST Set 2', () => {
       const testData = {
-        _id: new mongoose.Types.ObjectId("654f1a9b7d2c4e58a3b912de"),
         
         product_id: "vxcei49vin0z",
 
@@ -139,7 +142,8 @@ describe('productResponseSchema - HAPPY PATH Tests', () => {
         
           garment_weight_description: "Toss on over another shirt or make it your first layer on a colder day.",
         
-          garment_weight: "Medium to Heavy"
+          garment_weight: "Medium to Heavy",
+          _id: new mongoose.Types.ObjectId("672f8e0c9b3e4a12c4d7f9e1")
         },
         
         product_material: "This hefty organic cotton sashiko is incredible right out of the box, but it’ll really start to shine after it’s seen some action out in the field. The Division Shirt is finished with our signature California collar, dual-mitered chest pockets, and some handsome burnt corozo buttons.",
@@ -147,7 +151,8 @@ describe('productResponseSchema - HAPPY PATH Tests', () => {
         product_supply_type: {
           supply_type_description: "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
         
-          supply_type: "Limited"
+          supply_type: "Limited",
+          _id: new mongoose.Types.ObjectId("672f8e179a4c3d21b7e0f4c8")
         },
         
         product_specifications: "12.5-oz. 100% organic cotton. Heavily washed to bring out the depth of sashiko-woven indigo yarns. Our signature California collar. Two mitered chest pockets with button through flaps. Left pocket features a pen sleeve. Burnt corozo buttons. Wash cold and tumble dry low. Made in China.",
@@ -158,7 +163,9 @@ describe('productResponseSchema - HAPPY PATH Tests', () => {
         
             image_uri: "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Division_Shirt\\The_Division_Shirt_in_Washed_Indigo\\6757461459021_division-shirt-in-washed-indigo-2301_01_tsio.jpg",
         
-            main_image: false
+            main_image: false,
+            
+            _id: new mongoose.Types.ObjectId("672f8f3ab14c2e07d9a4c6f2")
           }
         ],
         product_items: [
@@ -173,10 +180,12 @@ describe('productResponseSchema - HAPPY PATH Tests', () => {
         
             quantity_sold: 78,
         
-            current_stock: 102
+            current_stock: 102,
+            _id: new mongoose.Types.ObjectId("672f8f44ce8b1a03f4d2b7e9")
           }
         ],
 
+        _id: new mongoose.Types.ObjectId("654f1a9b7d2c4e58a3b912de"),
         __v: 0
 }
     const result = productResponseSchema.safeParse(testData);

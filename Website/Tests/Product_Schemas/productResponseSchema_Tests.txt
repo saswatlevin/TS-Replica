@@ -26,6 +26,8 @@ product_garment_weight:
 	
 	garment_weight: Enum, required() -> The garment_weight field accepts one of the following values: "Light", "Medium", "Medium-to-Heavy", "Heavy".
 
+	_id: ObjectId: required() -> A 24-character MongoDB ObjectId.
+
 product_supply_type_schema: 
 	supply_type_description: Enum, required() -> The supply_type_description field takes one of the following values: 
 
@@ -33,7 +35,10 @@ product_supply_type_schema:
 
 "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping."
 	
-	supply_type: Enum, required() -> The supply_type field takes one of the following values: "Essential", "Limited"
+	supply_type: Enum, required() -> The supply_type field takes one of the following values: "Essential", "Limited".
+	
+	_id: ObjectId: required() -> A 24-character MongoDB ObjectId.
+
 
 product_specifications: min(1), max(500), required() -> The product_specifications field can contain only upper case letters, lower case letters, accented uppercase and lowercase letters and spaces.
 
@@ -71,9 +76,7 @@ current_stock min(0), max(600), required() -> An integer.
 
 HAPPY PATH TESTS
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-1. [	
-	new Mongoose.types.ObjectId("654f1a9b7d2c4e58a3b912de")	
-
+1. [
 	"hya3y1kdhv4p", 
 	
 	"The Craftsman Shirt in Bark Plaid Linen, Rugged by design, built with comfort in mind. The Craftsman Shirt pairs classic workwear detailing with a breathable cotton-linen canvas 	that’s made to handle the season’s shifting demands. Durable, dependable, and crafted to keep up for years to come.", 
@@ -90,14 +93,16 @@ HAPPY PATH TESTS
 
 	[
 		"Your daily driver, at a versatile all-season weight.", 
-		"Medium"
+		"Medium",
+		new mongoose.Types.ObjectId("672f8e0c9b3e4a12c4d7f9e1")
 	], 
 	
 	"Crafted from a mid-weight organic cotton and linen canvas and washed for a soft, lived-in feel. Features classic double chest pockets—complete with a handy pen sleeve—and reinforced with double-needle felled seams for lasting durability.", 
 	
 	[
 		"This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.", 
-		"Limited"
+		"Limited",
+		new mongoose.Types.ObjectId("672f8e179a4c3d21b7e0f4c8")
 	], 
 	
 	"7-oz. 55% linen, 45% organic cotton canvas. Washed for a soft, lived in feel. Two U-shaped chest pockets with button through flaps. Left pocket features a pen sleeve. Adjustable button cuffs. Double-needle felled construction. Wash cold and lay flat to dry. Made in China."]
@@ -105,7 +110,8 @@ HAPPY PATH TESTS
 	[
 		"zz6f7oq0fdof",
 		"C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
-		true
+		true,
+		new mongoose.Types.ObjectId("672f8f3ab14c2e07d9a4c6f2")
 	],
 	
 	[
@@ -114,10 +120,12 @@ HAPPY PATH TESTS
 		46,
 		250,
 		80,
-		170
+		170,
+		new mongoose.Types.ObjectId("672f8f44ce8b1a03f4d2b7e9")
 	],
 
-	__v: 0
+	__v: 0,
+	new Mongoose.types.ObjectId("654f1a9b7d2c4e58a3b912de")	
 ]
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -147,20 +155,23 @@ HAPPY PATH TESTS
 
 	[
 		"Toss on over another shirt or make it your first layer on a colder day."
-		"Medium to Heavy"
+		"Medium to Heavy",
+		 new mongoose.Types.ObjectId("672f8e0c9b3e4a12c4d7f9e1")
 	],
 	
 	"This hefty organic cotton sashiko is incredible right out of the box, but it’ll really start to shine after it’s seen some action out in the field. The Division Shirt is finished with our signature California collar, dual-mitered chest pockets, and some handsome burnt corozo buttons.",
 	
 	[
 		"This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
-		"Limited"
+		"Limited",
+		new mongoose.Types.ObjectId("672f8e179a4c3d21b7e0f4c8")
 	],
 	
 	[
 		"guq4vjn76q66",
 		"C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Division_Shirt\\The_Division_Shirt_in_Washed_Indigo\\6757461459021_division-shirt-in-washed-indigo-2301_01_tsio.jpg",
-		false
+		false,
+		new mongoose.Types.ObjectId("672f8f3ab14c2e07d9a4c6f2")
 		
 	],
 
@@ -170,10 +181,12 @@ HAPPY PATH TESTS
 		46,
 		180,
 		178
-		102
+		102,
+		new mongoose.Types.ObjectId("672f8f44ce8b1a03f4d2b7e9")
 	],
 	
-	__v: 0
+	__v: 0,
+	new Mongoose.types.ObjectId("654f1a9b7d2c4e58a3b912de")
 ]
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ############################################################################################################################################################################################

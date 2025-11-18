@@ -9,7 +9,7 @@ Please follow the following rules:
 2) Datatype of the field being tested result may be asserted
 3) Value of the field being tested should be asserted from the result
 4) Length of the result should be asserted (for length tests only)
-
+============================================================================================================================================================================================
 Take each test in the productRequestSchema folder, except the productRequestSchema.product_price.happy_path.test.js,  located in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\productRequestSchema" and copy it to the updateProductSchema folder located in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\updateProductSchema" with the following changes to each of the files:
 
 1) From all instances of testData, remove the ProductImages key-value pair.
@@ -17,7 +17,7 @@ Take each test in the productRequestSchema folder, except the productRequestSche
 3) From all instances of testData, remove the product_price key-value pair.
 4) From each file, replace all instances of productRequestSchema with updateProductSchema
 5) In each file name, replace productRequestSchema with updateProductSchema
-
+============================================================================================================================================================================================
 Read the productSchemas.js file located at "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\productSchemas.js". It contains definitions of the following key-value pairs:. For each of these key-value pairs, design a custom validator using Zod and place it in a file called productValidators.js at "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Validators". The validator name for each key-value pair is given below:
 * product_id -> zodIsProductId
 * docType -> zodIsProductDocType
@@ -37,9 +37,18 @@ Read the productSchemas.js file located at "C:\Users\saswa\OneDrive\Desktop\TS-R
 * product_specifications -> zodIsProductSpecifications
 
 Now, replace all the key-value pairs in the file "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\productSchemas.js" with these validators.
-
+============================================================================================================================================================================================
 Take each test in the updateProductSchema folder and copy it to the searchProductSchema folder located in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\searchProductSchema" with the following changes to each of the files:
 
 
 1) From each file, replace all instances of updateProductSchema with searchProductSchema
 2) In each file name, replace updateProductSchema with searchProductSchema
+============================================================================================================================================================================================
+For each file in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\productResponseSchema", do the following actions on the testData:
+1) In the product document, move the _id key-value to just above the __v field.
+2) Add an _id field with a new Mongoose.types.ObjectId at the bottom of the garment_weight sub-document.
+3) Add an _id field with a new Mongoose.types.ObjectId at the bottom of the supply_type sub-document.
+============================================================================================================================================================================================
+In all the files in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\productResponseSchema" except in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\productResponseSchema\productResponseSchema.garment_weight_description.happy_path.test.js", the _id assigned to the product_garment_weight and product_supply_type sub-documents is new mongoose.Types.ObjectId(). Replace the value of the _id field in the product_garment_weight sub-document with new mongoose.Types.ObjectId("672f8e0c9b3e4a12c4d7f9e1") and that in the product_supply_type sub-document with new mongoose.Types.ObjectId("672f8e179a4c3d21b7e0f4c8") respectively. Do this for all files in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\productResponseSchema".
+============================================================================================================================================================================================
+In all the files in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\productResponseSchema", in the sub-document in the product_images sub-document array in the testData of each file, add a key-value pair called _id: new mongoose.Types.ObjectId("672f8f3ab14c2e07d9a4c6f2") as the last key-value pair of that sub-document. Please also add the key-value pair _id: new mongoose.Types.ObjectId("672f8f44ce8b1a03f4d2b7e9") as the last key-value pair in the sub-document in the product_items sub-document array. 

@@ -3,89 +3,17 @@ product_name: min(3), max(100), required() -> The product_name field accepts onl
 
 product_color: min(1), max(50), required() -> The product_color field can contain only uppercase letters, lowercase letters and spaces. 
 
-product_description: min(1), max(700), required() -> The product_description field can contain only 
-
-product_price: min(1), maximum(300), required() -> The product_price field must be a number (integer). It is a required field.
-
-product_category: Enum, required() -> Accepts one of the following values: "Lower Garment", "Upper Garment"
-
 product_subcategory: Enum, required() -> Accepts one of the following values: "Shirt", "Bottom"
-
-product_subcategory_type: Enum, required() -> Accepts one of the following values: "Short-Sleeved Shirt", "Long-Sleeved Shirt", "Oxford", "Chino", "Jean", "Pant" or "Short".
-
-product_fit: min(1), max(400), required() -> The product_fit field accepts only upper-case letters, lower-case letters, spaces, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots and spaces.
-
-product_garment_weight:
-	garment_weight_description: min(1), max(200), required() -> The garment_weight_description field accepts only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots and spaces.
-	
-	garment_weight: Enum, required() -> The garment_weight field accepts one of the following values: "Light", "Medium", "Medium-to-Heavy", "Heavy".
-
-product_supply_type_schema: 
-	supply_type_description: Enum, required() -> The supply_type_description field takes one of the following values: 
-
-"This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.", 
-
-"This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping."
-	
-	supply_type: Enum, required() -> The supply_type field takes one of the following values: "Essential", "Limited"
-
-product_specifications: min(1), max(500), required() -> The product_specifications field can contain only upper case letters, lower case letters, accented uppercase and lowercase letters and spaces.
 ======SEARCH PRODUCT SCHEMA======
-
- ======PRODUCT IMAGE RESPONSE SCHEMA========
-_id: length(24), required() -> A 24-character alphanumeric string.
-
-image_id: length(12), required() -> A 12-character alphanumeric string.
-
-image_uri: min(1), max(256), required() -> The image_uri must be a valid Windows File Path.
-
-main_image: required() -> The main_image field designates whether the image is a main_image or not. 
-======PRODUCT IMAGE RESPONSE SCHEMA========
-
-======PRODUCT ITEM SCHEMA (Covering Shirt Schema)=========
-sku -> length(10), required() _> 10-character alphanumeric string.
-
-upper_size_letter Enum, required() -> The upper_size_letter field is a required field. It must be one of the following values: XXL, XL, L, M, S or XS.
-
-upper_size_number Enum, required() -> The upper_size_number field accepts one of the following numbers: 46, 44, 42, 40, 38 or 36.
-
-total_stock min(0), max(600), required() -> An integer.
-
-quantity_sold min(0), max(600), required() ->  An integer.
-
-current_stock min(0), max(600), required() -> An integer.
-======PRODUCT ITEM SCHEMA (Covering Shirt Schema)=========
-
 
 HAPPY PATH TESTS
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 1. {	
 	"The Craftsman Shirt in Bark Plaid Linen, Rugged by design, built with comfort in mind. The Craftsman Shirt pairs classic workwear detailing with a breathable cotton-linen canvas 	that’s made to handle the season’s shifting demands. Durable, dependable, and crafted to keep up for years to come.", 
-	
-	128, 
-	
-	"Upper Garment", 
-	
-	"Shirt", 
-	
-	"Long-Sleeved Shirt", 
-	
-	"Fitted at the chest with a straighter fit through the body. Shorter tail length to be worn untucked. Model is 6'3\, wearing a Medium.", 
 
-	[
-		"Your daily driver, at a versatile all-season weight.", 
-		"Medium"
-	], 
-	
-	"Crafted from a mid-weight organic cotton and linen canvas and washed for a soft, lived-in feel. Features classic double chest pockets—complete with a handy pen sleeve—and reinforced with double-needle felled seams for lasting durability.", 
-	
-	[
-		"This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.", 
-		"Limited"
-	], 
-	
-	"7-oz. 55% linen, 45% organic cotton canvas. Washed for a soft, lived in feel. Two U-shaped chest pockets with button through flaps. Left pocket features a pen sleeve. Adjustable button cuffs. Double-needle felled construction. Wash cold and lay flat to dry. Made in China."]
-
+	"Bark Plaid Linen",
+		
+	"Shirt"	
 }
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -95,30 +23,7 @@ HAPPY PATH TESTS
 
 	"Washed Indigo",
 
-	"The only thing better than a brand-new shirt is one that’s been around the block and has the wear and tear to prove it. With The Division Shirt, you get the best of both worlds. We’ve given it a thorough garment wash to draw the natural character of this indigo-dyed sashiko finish to the surface, and the harder you wear it, the better it will look.
-
-	132,
-
-	"Upper Garment",
-
-	"Shirt",
-
-	"Long-Sleeved Shirt",
-
-	"Fitted at the chest with a straighter fit through the body. Shorter tail length to be worn untucked. Model is 6'1\", wearing a Medium. Customer says this fits: True to Size.",
-
-	[
-		"Toss on over another shirt or make it your first layer on a colder day."
-		"Medium to Heavy"
-	],
-	
-	"This hefty organic cotton sashiko is incredible right out of the box, but it’ll really start to shine after it’s seen some action out in the field. The Division Shirt is finished with our signature California collar, dual-mitered chest pockets, and some handsome burnt corozo buttons.",
-	
-	[
-		"This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
-		"Limited"
-	],
-	
+	"Shirt"
 }
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ############################################################################################################################################################################################
@@ -133,54 +38,6 @@ HAPPY PATH BOUNDARY TESTS
 * ["A"]  with all other attributes taken from 1.
 * ["ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghizklmnoopqrstuv"] with all other attributes taken from 1.
 
-<PRODUCT_DESCRIPTION>
-* ["A"] with all other attributes taken from 1.
-* ["Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón! The café’s façade gleamed—bright, calm, alive.Numbers danced: 12345, 67890; symbols sang: #!;%:.,“Quotes” and accents intertwined. À propos—of art, of science, of music—Øystein’s résumé stood tall. Máría whispered softly, “C’est la vie.” Bjørn replied, Indeed—it is.The harmony of words, punctuated by pauses, stretched through the air like wind in fjords.2025 beckoned—a time of calm, reason, grace, and rhythm; laughter followed, echoing, soft yet firm, ever so vivid, ever so free. Voilà! Life continues. Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón!...
-"] with all other attributes taken from 1.
-
-<PRODUCT_CATEGORY>
-* ["Lower Garment"] with all other attributes taken from 1.
-* ["Upper Garment"] with all other attributes taken from 1.
-
 <PRODUCT_SUBCATEGORY>
 * ["Shirt"] with all other attributes taken from 1.
 * ["Bottom"] with all other attributes taken from 1.
-
-<PRODUCT_SUBCATEGORY_TYPE>
-* ["Short-Sleeved Shirt"] with all other attributes taken from 1.
-* ["Long-Sleeved Shirt"] with all other attributes taken from 1.
-* ["Oxford"] with all other attributes taken from 1.
-* ["Chino"] with all other attributes taken from 1.
-* ["Jean"] with all other attributes taken from 1.
-* ["Pant"] with all other attributes taken from 1.
-* ["Short"] with all other attributes taken from 1.
-
-<PRODUCT_FIT>
-* ["B"] with all other attributes taken from 1.
-* ["Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón! The café’s façade gleamed—bright, calm, alive.Numbers danced: 12345, 67890; symbols sang: #!;%:.,“Quotes” and accents intertwined. À propos—of art, of science, of music—Øystein’s résumé stood tall. Máría whispered softly, “C’est la vie.” Bjørn replied, Indeed—it is.The harmony of words, punctuated by pau"] with all other attributes taken from 1.
-
-======PRODUCT GARMENT WEIGHT======
-<GARMENT_WEIGHT_DESCRIPTION>
-* ["C"] with all other attributes taken from 1.
-* ["Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón! The café’s façade gleamed—bright, calm, alive.Numbers danced: 12345, 67890; symbols sang: #!;%:.,“Quotes”"] with all other attributes taken from 1.
-
-<GARMENT_WEIGHT>
-* ["Light"] with all other attributes taken from 1.
-* ["Medium"] with all other attributes taken from 1.
-======PRODUCT GARMENT WEIGHT======
-
-======PRODUCT SUPPLY TYPE=========
-<SUPPLY_TYPE_DESCRIPTION>
-* ["This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping."] with all other attributes taken from 1.
-
-* ["This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping."] with all other attributes taken from 1.
-
-
-<SUPPLY_TYPE>
-* ["Limited"] with all other attributes taken from 1.
-* ["Essential"] with all other attributes taken from 1.
-======PRODUCT SUPPLY TYPE=========
-
-<PRODUCT_SPECIFICATIONS>
-* ["D"] with all other attributes taken from 1.
-* ["Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón! The café’s façade gleamed—bright, calm, alive.Numbers danced: 12345, 67890; symbols sang: #!;%:.,“Quotes” and accents intertwined. À propos—of art, of science, of music—Øystein’s résumé stood tall. Máría whispered softly, “C’est la vie.” Bjørn replied, Indeed—it is.The harmony of words, punctuated by pauses, stretched through the air like wind in fjords.2025 beckoned—a time of calm, reason, grace, and "] with all other attributes taken from 1.

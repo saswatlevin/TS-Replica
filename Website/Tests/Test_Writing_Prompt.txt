@@ -52,3 +52,28 @@ For each file in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middlew
 In all the files in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\productResponseSchema" except in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\productResponseSchema\productResponseSchema.garment_weight_description.happy_path.test.js", the _id assigned to the product_garment_weight and product_supply_type sub-documents is new mongoose.Types.ObjectId(). Replace the value of the _id field in the product_garment_weight sub-document with new mongoose.Types.ObjectId("672f8e0c9b3e4a12c4d7f9e1") and that in the product_supply_type sub-document with new mongoose.Types.ObjectId("672f8e179a4c3d21b7e0f4c8") respectively. Do this for all files in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\productResponseSchema".
 ============================================================================================================================================================================================
 In all the files in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\productResponseSchema", in the sub-document in the product_images sub-document array in the testData of each file, add a key-value pair called _id: new mongoose.Types.ObjectId("672f8f3ab14c2e07d9a4c6f2") as the last key-value pair of that sub-document. Please also add the key-value pair _id: new mongoose.Types.ObjectId("672f8f44ce8b1a03f4d2b7e9") as the last key-value pair in the sub-document in the product_items sub-document array. 
+============================================================================================================================================================================================
+In each file in "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\updateProductSchema", do the following actions:
+
+1) Remove the key-value pair "product_garment_weight" from all instances of testData.
+2) Remove the key-value pair "product_supply_type" from all instances of testData.
+============================================================================================================================================================================================
+
+############################################################################################################################################################################################
+============================================================================================================================================================================================
+There is a test specification called updateProductSupplyTypeSchemas_Tests at "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\Tests\Product_Schemas". Please use it to write happy path tests in a file called "updateProductSupplyTypeSchemas.happy_path.test.js". Put this file in the following folder "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\updateProductSupplyTypeSchema". While writing the tests, please follow the following conventions:
+
+1) result.success should assert true
+2) Datatype of the field being tested result may be asserted
+3) Value of the field being tested should be asserted from the result
+4) Length of the result should be asserted (for length tests only)
+============================================================================================================================================================================================
+
+============================================================================================================================================================================================
+There is a test specification called updateGarmentWeightSchema_Tests at "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\Tests\Product_Schemas". Please use it to write happy path tests, garment_weight_description tests and garment_weight tests in 3 files called "updateGarmentWeightSchema.happy_path.test.js", "updateGarmentWeightSchema.garment_weight_description.happy_path.test.js" and "updateGarmentWeightSchema.garment_weight.happy_path.test.js" respectively. Put these files in the following folder "C:\Users\saswa\OneDrive\Desktop\TS-Replica\Website\src\Middleware\Schemas\__tests__\updateGarmentWeightSchema". While writing the tests, please follow the following conventions:
+
+1) result.success should assert true.
+2) Datatype of the field being tested result may be asserted.
+3) Value of the field being tested should be asserted from the result.
+4) Length of the result should be asserted (for length tests only).
+============================================================================================================================================================================================

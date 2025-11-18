@@ -74,55 +74,40 @@ const productRequestSchema = z.object({
 }).strict();
 
 const updateProductSchema = z.object({
-    product_name: productValidators.zodIsProductName,
+    product_name: productValidators.zodIsProductName.optional(),
     
-    product_color: productValidators.zodIsProductColor,
+    product_color: productValidators.zodIsProductColor.optional(),
 
-    product_description: productValidators.zodIsProductDescription,
+    product_description: productValidators.zodIsProductDescription.optional(),
     
-    product_category: productValidators.zodIsProductCategory,
+    product_category: productValidators.zodIsProductCategory.optional(),
 
-    product_subcategory: productValidators.zodIsProductSubcategory,
+    product_subcategory: productValidators.zodIsProductSubcategory.optional(),
 
-    product_subcategory_type: productValidators.zodIsSubcategoryType,
+    product_subcategory_type: productValidators.zodIsSubcategoryType.optional(),
    
-    // Remove \" from regex in the future.
-    product_fit: productValidators.zodIsProductFit,
+    product_fit: productValidators.zodIsProductFit.optional(),
 
-    product_garment_weight: productGarmentWeightSchema,
+    product_material: productValidators.zodIsProductMaterial.optional(),
 
-    product_material: productValidators.zodIsProductMaterial,
+    product_specifications: productValidators.zodIsProductSpecifications.optional()
+}).strict();
 
-    product_supply_type: productSupplyTypeSchema,
+const updateProductGarmentWeightSchema = z.object({
+    product_garment_weight: productGarmentWeightSchema
+}).strict();
 
-    product_specifications: productValidators.zodIsProductSpecifications
+const updateProductSupplyTypeSchema = z.object({
+    product_supply_type: productSupplyTypeSchema
 }).strict();
 
 const searchProductSchema = z.object({
-    product_name: productValidators.zodIsProductName,
+    product_name: productValidators.zodIsProductName.optional(),
     
-    product_color: productValidators.zodIsProductColor,
+    product_color: productValidators.zodIsProductColor.optional(),
 
-    product_description: productValidators.zodIsProductDescription,
-    
-    product_price: productValidators.zodIsProductPrice,
+    product_subcategory: productValidators.zodIsProductSubcategory.optional()
 
-    product_category: productValidators.zodIsProductCategory,
-
-    product_subcategory: productValidators.zodIsProductSubcategory,
-
-    product_subcategory_type: productValidators.zodIsSubcategoryType,
-   
-    // Remove \" from regex in the future.
-    product_fit: productValidators.zodIsProductFit,
-
-    product_garment_weight: productGarmentWeightSchema,
-
-    product_material: productValidators.zodIsProductMaterial,
-
-    product_supply_type: productSupplyTypeSchema,
-
-    product_specifications: productValidators.zodIsProductSpecifications
 }).strict();
 
 
@@ -169,10 +154,19 @@ const updateProductPriceSchema = z.object({
     product_price: productValidators.zodIsProductPrice
 }).strict();
 
+const productIdSchema = z.object({
+    product_id: productValidators.zodIsProductId
+}).strict();
+
+
+
 module.exports = {
     productRequestSchema,
     updateProductSchema,
+    updateProductGarmentWeightSchema,
+    updateProductSupplyTypeSchema,
     searchProductSchema,
     productResponseSchema,
-    updateProductPriceSchema
+    updateProductPriceSchema,
+    productIdSchema
 };

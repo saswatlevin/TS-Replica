@@ -1,0 +1,19 @@
+=================UPDATE PRODUCT GARMENT WEIGHT SCHEMA=================
+garment_weight_description min(1), max(200), required() -> ["The garment_weight_description field accepts only uppercase letters, lowercase letters, uppercase accented letters, lowercase accented letters, digits, hashes, exclamation marks, commas, semicolons, colons, percentage symbols, single-quotes, typeset-single-quotes, double-quotes, typeset-double-quotes, backward-slash, brackets, hyphens, long hyphens, dots and spaces."]
+
+garment_weight Enum(), required() ->  It only accepts one of the following values: ["Light", "Medium", "Medium-to-Heavy", "Heavy"]
+=================UPDATE PRODUCT GARMENT WEIGHT SCHEMA=================
+
+HAPPY PATH TESTS
+["Toss on over another shirt or make it your first layer on a colder day.", "Medium-to-Heavy"] -> Set 1
+["Your daily driver, at a versatile all-season weight.", "Medium"] -> Set 2
+
+<GARMENT_WEIGHT_DESCRIPTION>
+["C", "Medium-to-Heavy"] -> Accept garment_weight_description of minimum length (1 character)
+["Élodie-François ångström Zürich Noël Björn García Søren Åsa Héloïse Mårten Dvok ukasz Þór Jón! The café’s façade gleamed—bright, calm, alive.Numbers danced: 12345, 67890; symbols sang: #!;%:.,“Quotes”", "Medium-to-Heavy"] -> Accept garment_weight_description of maximum length (200 characters)
+
+<GARMENT_WEIGHT>
+["Toss on over another shirt or make it your first layer on a colder day.", "Light"]
+["Toss on over another shirt or make it your first layer on a colder day.", "Medium"]
+["Toss on over another shirt or make it your first layer on a colder day.", "Medium-to-Heavy"]
+["Toss on over another shirt or make it your first layer on a colder day.", "Heavy"]

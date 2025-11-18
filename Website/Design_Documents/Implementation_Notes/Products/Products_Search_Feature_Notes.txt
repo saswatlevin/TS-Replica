@@ -1,0 +1,4 @@
+product_name
+product_color
+product_subcategory
+The search bar will have a radio-button that allows the user to select the attribute by which they want to search. 

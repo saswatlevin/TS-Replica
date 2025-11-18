@@ -7,6 +7,7 @@ updateProductPrice ->
 
 * Get a DEEP CLONE of the request_body
 * Create the filter using { product_id : product_id }.
+* CHECK IF THE DATA THAT YOU'RE ABOUT TO UPDATE ALREADY EXISTS IN THE DATABASE -> If yes, throw DuplicateSubDocumentError.
 
 * Use the findOneAndUpdate() function with the filter, the DEEP CLONE of the request_body, {runValidators: true} and chain it with .lean() to update the product price.
 * Get the result from findOneAndUpdate(). -> RESULT 1

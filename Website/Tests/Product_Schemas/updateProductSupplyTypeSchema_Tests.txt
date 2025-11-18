@@ -1,0 +1,10 @@
+=========UPDATE PRODUCT SUPPLY TYPE SCHEMA=========
+supply_type_description: Enum(), required() -> Can only be one of the following values: ["This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.", "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping."]
+
+supply_type: Enum(), required() -> Can only be one of the following values: ["Essential", "Limited"]
+=========UPDATE PRODUCT SUPPLY TYPE SCHEMA=========
+
+HAPPY PATH TESTS
+* ["This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.", "Limited"] 
+* ["This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.", "Essential"] 
+

@@ -1,0 +1,17 @@
+We need the following pieces of data:
+* product_id -> User params | From frontend
+
+updateSupplyType ->
+* Check if the request body is empty or not, if it is, throw an EmptyRequestBodyError.
+* Check if the Product document exists or not, if not, throw a ResourceNotFoundError.
+
+* CHECK IF THE DATA THAT YOU'RE ABOUT TO UPDATE ALREADY EXISTS IN THE DATABASE -> If yes, throw DuplicateDocumentError.
+* Get a DEEP CLONE of the request_body.
+
+* Create a filter, {product_id: product_id}.
+* Build the update_object with Object.fromEntries -> {"product_supply_type.0.supply_type_description": "ABC", "product_supply_type.0.supply_type": "DEF"}
+
+* Use updateOne with the filter and $set: update_object
+
+* Get the result from updateOne().
+* Send the result back as JSOn with a status code of 200.

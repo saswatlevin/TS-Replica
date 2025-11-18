@@ -1,0 +1,8 @@
+======PRODUCT ID SCHEMA======
+product_id: length(12), required() -> A 12-character alphanumeric string.
+======PRODUCT ID SCHEMA======
+
+HAPPY PATH TESTS
+<PRODUCT_ID>
+["ab09jk1sk7y8"] -> Set 1
+["fejehf8dcnby"] -> Set 2 

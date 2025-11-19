@@ -51,10 +51,65 @@ const insertAt = (obj, key, value, position) => {
     }
 }
 
+const checkProductValueExists = async(req, res, next) => {
+    console.log("In checkUpdatedProdExists");
+    
+    try {
+        
+        const product_search_object = req.body;
+        
+        const result = await Product.findOne(product_search_object);
+        
+        if (result === null) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    catch(error) {
+        console.log("Error in checkUpdatedProdExists ", error);
+        return error;
+    }
+}
+
+const checkProductGarmentWeightValueExists = async(req, res, next) => {
+    console.log("In checkProductGarmentWeightValueExists");
+    
+    try {
+        const request_body = req.body;
+
+        const product_id = req.params.product_id;
+
+        const product_garment_weight_search_object = request_body.product_garment_weight;
+        
+        const result = await Product.findOne(
+            {
+                product_id: product_id, 
+                product_garment_weight: product_garment_weight_search_object
+            }
+        );
+
+        if (result === null) {
+            return false;
+        }
+
+        else {    
+            return true;
+        }
+    }
+
+    catch(error) {
+        console.log("Error in checkProductGarmentWeightValueExists ", error);
+        return error;
+    }
+}
 
 
 module.exports = {
     checkProduct,
     checkDuplicateProduct,
-    insertAt
+    insertAt,
+    checkProductValueExists,
+    checkProductGarmentWeightValueExists
 }

@@ -161,6 +161,7 @@ const productIdSchema = z.object({
 
 
 module.exports = {
+    productGarmentWeightSchema,
     productRequestSchema,
     updateProductSchema,
     updateProductGarmentWeightSchema,

@@ -43,7 +43,7 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(shippingAddressArrayStandardSchema, object);
     }
 
-    else if ((request.originalUrl.includes("/products/createproduct") === true) && request.method === "POST") {
+    else if ((request.originalUrl.includes("/products/createproduct") === true && request.method === "POST") || (request.originalUrl.includes("/products/updateproductgarmentweight") === true && request.method === "PATCH")) {
         return schemaValidator(productResponseSchema, object);
     }
 

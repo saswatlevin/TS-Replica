@@ -6,7 +6,10 @@ const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyErro
 const CustomError = require('../OperationalErrors/CustomError');
 const createRandomString = require('../createRandomString');
 const { checkIsEmptyObject } = require('./SupportFunctions/shippingAddressSupportFunctions');
+const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
 const { checkDuplicateProduct } = require('./SupportFunctions/productSupportFunctions');
+const { checkProductValueExists } = require('./SupportFunctions/productSupportFunctions');
+const { checkProductGarmentWeightValueExists } = require('./SupportFunctions/productSupportFunctions');
 const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
 const Product = require('../Models/Product');
 
@@ -146,12 +149,6 @@ const updateProduct = asyncErrorHandler(async(req, res, next) => {
         throw product_not_found_error;
     }
 
-    console.log("Checking if the product already exists");
-    if (checkProductExists(req) === false) {
-        const product_not_found_error = new ResourceNotFoundError(`Could not update Product documentwith product_id ${product_id} since it does not exist.`);
-        throw product_not_found_error;
-    }
-
     console.log("Checking if the product value to be updated already exists");
     if (checkProductValueExists(req) === false) {
         const product_value_error = new CustomError(`Could not update Product document with product_id ${product_id} since the value(s) ${req.body} already exist(s).`, 400);
@@ -191,31 +188,34 @@ const updateProductGarmentWeight = asyncErrorHandler(async(req, res, next) => {
     }
     
     console.log("Checking if the product exists");
-    if (checkProductExists(req) === false) {
+    if (checkProduct(req) === false) {
         const product_not_found_error = new ResourceNotFoundError(`Could not update Product 
         document with product_id ${product_id} since it does not exist.`);
         throw product_not_found_error;
     }
     
     console.log("Checking if the product_garment_weight value to be updated already exists");
-    if (checkProductGarmentWeightValueExists(req) === false) {
+    const garment_weight_value_exists = await checkProductGarmentWeightValueExists(req);
+    console.log("garment_weight_value_exists ", garment_weight_value_exists);
+    
+    if (garment_weight_value_exists === true) {
         const product_garment_weight_value_error = new CustomError(`Could not update Product document with product_id ${product_id} since the product_garment_weight value(s) already exist(s).`, 400);
         throw product_garment_weight_value_error;
     }
 
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
-    console.log("Got the request_body_deep_clone ", request_body_deep_clone);
+    //console.log("Got the request_body_deep_clone ", request_body_deep_clone);
 
     const filter = {product_id: product_id};
-    console.log("filter ", filter);
+    //console.log("filter ", filter);
 
-    const update_object = request_body_deep_clone;
+    const update_object = {"product_garment_weight": request_body_deep_clone};
     console.log("update_object ", update_object);
 
     console.log("Calling findOneAndUpdate to update the product document");    
     const result = await Product.findOneAndUpdate(filter, update_object, {new: true}, {runValidators: true}).lean();
 
-    console.log("The updated product document, result ", result);
+    //console.log("The updated product document, result ", result);
 
     console.log("Sending the result to the client as JSON with status 200");
     res.status(200).json(result);

@@ -91,45 +91,49 @@ describe('createProduct - Database Insertion Test', () => {
 
         // Mock support functions
         checkIsEmptyObject.mockReturnValue(false);
-        checkDuplicateProduct.mockResolvedValue(false);
+        checkDuplicateProduct.mockReturnValue(true);
         createRandomString
             .mockReturnValueOnce(mockProductId) // product_id
             .mockReturnValueOnce(mockSku) // sku
             .mockReturnValueOnce(mockImageId); // image_id
 
-        // Modify the request body to include the mock sku and image id
-        req.body.product_items[0] = {sku: mockSku, ...req.body.product_items[0]};
-        req.body.product_images[0] = {image_id: mockImageId, ...req.body.product_images[0]};
-
         const mockRequestBody = { 
             product_id: mockProductId,
             docType: mockDocType,
-            ...req.body
-        };
-        //console.log("mockRequestBody ", mockRequestBody);
-
-        const mockCreatedProduct = {
-            _id: mockMongoDBId,
-            product_id: mockProductId,
-            docType: mockDocType,
             ...req.body,
-            __v: mockDocumentVersion
-
+            product_items: [
+                {
+                    sku: mockSku,
+                    ...req.body.product_items[0]
+                }
+            ],
+            product_images: [
+                {
+                    image_id: mockImageId,
+                    ...req.body.product_images[0]
+                }
+            ]
         };
-
-
-        //console.log("mockCreatedProduct ", mockCreatedProduct);
-        Product.create.mockResolvedValue(mockCreatedProduct);
+        
+        const mockCreatedProduct = {
+            ...mockRequestBody,
+            _id: mockMongoDBId,
+            __v: mockDocumentVersion
+        };
+        const mockMongooseDoc = {
+            toObject: jest.fn().mockReturnValue(mockCreatedProduct)
+        };
+        Product.create.mockResolvedValue(mockMongooseDoc);
 
         // Act
-        const result = await createProduct(req, res, next);
-        await result;
-        //console.log("Test result ", result);
+        await createProduct(req, res, next);
 
         // Assert
         expect(checkIsEmptyObject).toHaveBeenCalledWith(req);
         expect(checkDuplicateProduct).toHaveBeenCalledWith(req);
-        expect(createRandomString).toHaveBeenCalledWith(6);
+        expect(createRandomString).toHaveBeenNthCalledWith(1, 6);
+        expect(createRandomString).toHaveBeenNthCalledWith(2, 5);
+        expect(createRandomString).toHaveBeenNthCalledWith(3, 6);
         expect(Product.create).toHaveBeenCalledWith(mockRequestBody);
         expect(res.status).toHaveBeenCalledWith(201);
         expect(res.json).toHaveBeenCalledWith(mockCreatedProduct);

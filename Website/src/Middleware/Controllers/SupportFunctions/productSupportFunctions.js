@@ -73,23 +73,30 @@ const checkProductValueExists = async(req, res, next) => {
     }
 }
 
-const checkProductGarmentWeightValueExists = async(req, res, next) => {
+const checkProductGarmentWeightValueExists = async(req) => {
     console.log("In checkProductGarmentWeightValueExists");
     
     try {
         const request_body = req.body;
-
+        //console.log("##DEBUG request_body in checkProductGarmentWeightValueExists ", request_body);
         const product_id = req.params.product_id;
+        //console.log("##DEBUG product_id in checkProductGarmentWeightValueExists ", product_id);
 
-        const product_garment_weight_search_object = request_body.product_garment_weight;
+        const search_object = request_body;
+        //console.log("##DEBUG product_garment_weight_search_object in checkProductGarmentWeightValueExists ", search_object);
         
         const result = await Product.findOne(
             {
-                product_id: product_id, 
-                product_garment_weight: product_garment_weight_search_object
+                product_id: product_id,
+                "product_garment_weight.garment_weight_description": search_object.garment_weight_description,
+                "product_garment_weight.garment_weight": search_object.garment_weight,
+                
             }
         );
 
+        //console.log("##DEBUG result in checkProductGarmentWeightValueExists ", result);
+
+        
         if (result === null) {
             return false;
         }

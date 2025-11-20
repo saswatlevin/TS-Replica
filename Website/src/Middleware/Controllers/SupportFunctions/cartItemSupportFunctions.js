@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../../Models/User');
 
-const checkCartItemExists = async(req, res, next) => {
+const checkCartItemExists = async(req) => {
     console.log("In checkCartItemExists");
     const cart_item_id = req.params.cart_item_id;
 
@@ -16,7 +16,7 @@ const checkCartItemExists = async(req, res, next) => {
     return true;
 };
 
-const checkCartItemPrice = async(req, res, next) => {
+const checkCartItemPrice = async(req) => {
     console.log("In checkCartItemPrice");
 
     const cart_item_id = req.params.cart_item_id;

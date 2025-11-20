@@ -1,7 +1,7 @@
 const User = require('../../Models/User');
 const _ = require('lodash');
 
-const checkUserExists = async(req, res, next) => {
+const checkUserExists = async(req) => {
     console.log("In checkUserExists");
     
     try {
@@ -37,7 +37,7 @@ catch(error) {
 
 };
 
-const checkDuplicateUserExists = async(req, res, next) => {
+const checkDuplicateUserExists = async(req) => {
     console.log("In checkDuplicateUserExists");
     
     try {
@@ -62,7 +62,7 @@ const checkDuplicateUserExists = async(req, res, next) => {
     }
 }
 
-const checkShippingAddressExists = async(req, res, next) => {
+const checkShippingAddressExists = async(req) => {
     console.log("In checkShippingAddressExists");
 
     try {
@@ -90,7 +90,7 @@ const checkShippingAddressExists = async(req, res, next) => {
     }
 };
 
-const checkDuplicateShippingAddressExists = async(req, res, next) => {
+const checkDuplicateShippingAddressExists = async(req) => {
     console.log("In checkDuplicateShippingAddressExists");
 
     try {

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Product = require('../../Models/Product');
 
-const checkProduct = async(req, res, next) => {
+const checkProduct = async(req) => {
     console.log("In checkProduct");
 
     const product_id = req.params.product_id;
@@ -57,24 +57,33 @@ const insertAt = (obj, key, value, position) => {
     }
 }
 
-const checkProductValueExists = async(req, res, next) => {
-    console.log("In checkUpdatedProdExists");
+const checkProductValueExists = async(req) => {
+    console.log("In checkProductValueExists");
     
     try {
+
+        const product_id = req.params.product_id;
         
-        const product_search_object = req.body;
-        
+        const product_search_object = {
+            product_id: product_id, 
+            ...req.body
+        };
+        //console.log("##DEBUG product_search_object in checkProductValueExists ", product_search_object);
+
         const result = await Product.findOne(product_search_object);
-        
+        //console.log("##DEBUG result in checkProductValueExists ", result);
+
         if (result === null) {
+            //console.log("##DEBUG Returning false in checkProductValueExists ");
             return false;
         }
-        
+
+        //console.log("##DEBUG Returning true in checkProductValueExists ");
         return true;
     }
 
     catch(error) {
-        console.log("Error in checkUpdatedProdExists ", error);
+        console.log("Error in checkProductValueExists ", error);
         return error;
     }
 }

@@ -1,6 +1,6 @@
 const Product = require('../../Models/Product');
 
-const checkDuplicateProductImageExists = async(req, res, next) => {
+const checkDuplicateProductImageExists = async(req) => {
      console.log("In checkDuplicateProductImageExists");
 
      try{
@@ -26,7 +26,7 @@ const checkDuplicateProductImageExists = async(req, res, next) => {
      }
 };
 
-const checkProductImageExists = async(req, res, next) => {
+const checkProductImageExists = async(req) => {
     console.log("In checkImageExists");
 
     try{

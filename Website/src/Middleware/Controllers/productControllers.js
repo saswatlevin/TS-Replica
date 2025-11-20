@@ -34,7 +34,7 @@ const createProduct = asyncErrorHandler(async(req, res, next) => {
 
     // Check if the product exists
     console.log("Checking if the product document exists");
-    if (checkDuplicateProduct(req) === false) {
+    if (await checkDuplicateProduct(req) === false) {
         const product_already_exists_error = new DuplicateDocumentError(`Product document with product_name ${product_name} and product_description ${product_description} already exists.`);
         throw product_already_exists_error;
     }
@@ -144,13 +144,14 @@ const updateProduct = asyncErrorHandler(async(req, res, next) => {
     }
     
     console.log("Checking if the product exists");
-    if (checkProduct(req) === false) {
+    if (await checkProduct(req) === false) {
         const product_not_found_error = new ResourceNotFoundError(`Could not update Product documentwith product_id ${product_id} since it does not exist.`);
         throw product_not_found_error;
     }
 
     console.log("Checking if the product value to be updated already exists");
-    if (checkProductValueExists(req) === false) {
+    
+    if (await checkProductValueExists(req) === true) {
         const product_value_error = new CustomError(`Could not update Product document with product_id ${product_id} since the value(s) ${req.body} already exist(s).`, 400);
         throw product_value_error;
     }
@@ -188,7 +189,7 @@ const updateProductGarmentWeight = asyncErrorHandler(async(req, res, next) => {
     }
     
     console.log("Checking if the product exists");
-    if (checkProduct(req) === false) {
+    if (await checkProduct(req) === false) {
         const product_not_found_error = new ResourceNotFoundError(`Could not update Product 
         document with product_id ${product_id} since it does not exist.`);
         throw product_not_found_error;

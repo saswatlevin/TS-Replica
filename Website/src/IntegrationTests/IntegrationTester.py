@@ -23,8 +23,8 @@ def deleteRequests(url, data):
 
 ##=====PRODUCT API INTEGRATION TESTING=====##
 #/////////////Test 1: Create a product (createProduct)/////////////#
-print("TEST 1 - Create a product (createProduct)")
-create_product_url = "http://localhost:3500/products/createproduct"
+#print("TEST 1 - Create a product (createProduct)")
+#create_product_url = "http://localhost:3500/products/createproduct"
 create_product_data = {
    
   "product_name": "The Craftsman Shirt in Bark Plaid Linen",
@@ -126,19 +126,66 @@ update_product_garment_weight_data_set_4 = {
 #/////////////Test 3: Update Any Field in a Product (updateProduct)/////////////#
 
 ####Update the product name keeping all other KV pairs unchanged####
-update_product_url = "http://localhost:3500/products/updateproduct/1400bfd3abc6"
+update_product_url = "http://localhost:3500/products/updateproduct/a75ceb92e130"
 #print("TEST 3 (updateProduct) - Update the product name keeping all other KV pairs unchanged")
 
 update_product_data_set_1 = {
-    "product_name": "The Craftsman Shirt in Bark Plaid C"    
+    "product_name": "The Craftsman Shirt in Bark Plaid COTTON"    
 }
 
 #update_product_name_response = patchRequests(update_product_url, update_product_data_set_1)
 #print("TEST 3 (updateProduct) - Update product name response ", update_product_name_response.text)
 
 update_product_data_set_2 = {
-    "product_color": "BARK PLAID LINEN"    
+    "product_color": "BARK Plaid Linen"    
 }
 
-update_product_color_response = patchRequests(update_product_url, update_product_data_set_2)
-print("TEST 3 (updateProduct) - Update product color response ", update_product_color_response.text)
+#update_product_color_response = patchRequests(update_product_url, update_product_data_set_2)
+#print("TEST 3 (updateProduct) - Update product color response ", update_product_color_response.text)
+
+update_product_data_set_3 = {
+  "product_description": "RUGGED by design, built with comfort in mind. The Craftsman Shirt pairs classic workwear detailing with a breathable cotton-linen canvas that’s made to handle the season’s shifting demands. Durable, dependable, and crafted to keep up for years to COME."
+}
+
+#update_product_description_response = patchRequests(update_product_url, update_product_data_set_3)
+#print("TEST 3 (updateProduct) - Update product description response ", update_product_description_response.text)
+
+update_product_data_set_4 = {
+  "product_category": "Lower Garment"
+}
+#update_product_category_response = patchRequests(update_product_url, update_product_data_set_4)
+#print("TEST 3 (updateProduct) - Update product category response ", update_product_category_response.text)
+
+update_product_data_set_5 = {
+  "product_subcategory": "Shirt"
+}
+#update_product_subcategory_response = patchRequests(update_product_url, update_product_data_set_5)
+#print("TEST 3 (updateProduct) - Update product subcategory response ", update_product_subcategory_response.text)
+
+update_product_data_set_6 = {
+  "product_subcategory_type": "Long-Sleeved Shirt"
+}
+
+#update_product_subcategory_type_response = patchRequests(update_product_url, update_product_data_set_6)
+#print("TEST 3 (updateProduct) - Update product subcategory type response ", update_product_subcategory_type_response.text)
+
+update_product_data_set_7 = {
+  "product_fit": "FITTED at the chest with a straighter fit through the body. Shorter tail length to be worn untucked. Model is 6'3\", wearing a Light."
+}
+
+#update_product_fit_response = patchRequests(update_product_url, update_product_data_set_7)
+#print("TEST 3 (updateProduct) - Update product fit response ", update_product_fit_response.text)
+
+update_product_data_set_8 = {
+"product_specifications": "7-OZ. 55% linen, 45% organic cotton canvas. Washed for a soft, lived-in feel. Two U-shaped chest pockets with button through flaps. Left pocket features a pen sleeve. Adjustable button cuffs. Double-needle felled construction. Wash cold and lay flat to dry. Made in China."
+}
+
+#update_product_specifications_response = patchRequests(update_product_url, update_product_data_set_8)
+#print("TEST 3 (updateProduct) - Update product specifications response ", update_product_specifications_response.text)
+
+update_product_data_set_9 = {
+  "product_material": "CRAFTED from a mid-weight organic cotton and linen canvas and washed for a soft, lived-in feel. Features classic double chest pockets—complete with a handy pen sleeve—and reinforced with double-needle felled seams for lasting durability."
+}
+
+#update_product_material_response = patchRequests(update_product_url, update_product_data_set_9)
+#print("TEST 3 (updateProduct) - Update product material response ", update_product_material_response.text)

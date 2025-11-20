@@ -17,7 +17,7 @@ const createProductItem = asyncErrorHandler(async(req, res, next) => {
     const request_body = req.body;
     
     // Check that the request body isn't empty
-    if (checkIsEmptyObject(request_body) === true) {
+    if (checkIsEmptyObject(req) === true) {
         const empty_request_body_error = new EmptyRequestBodyError(`Could not create Product Item for Product with product_id ${product_id} as the request body is empty.`);
 
         throw empty_request_body_error;

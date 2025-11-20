@@ -68,12 +68,12 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
         throw empty_request_body_error;
     }
 
-    if (checkUserExists(req) === false) {
+    if (await checkUserExists(req) === false) {
         const user_id_not_found_error = new ResourceNotFoundError(`Could not update the shipping address since the user with user_id ${user_id} does not exist.`);
         throw user_id_not_found_error;
     }
     
-    if (checkShippingAddressExists(req) === false) {
+    if (await checkShippingAddressExists(req) === false) {
         const shipping_address_not_found_error = new ResourceNotFoundError(`Could not update the shipping address with ${shipping_address_id} since it does not exist.`);
         throw shipping_address_not_found_error;
     }
@@ -162,7 +162,7 @@ const getShippingAddressById = asyncErrorHandler( async(req, res, next) => {
         throw empty_request_body_error;
     }
 
-    if (checkUserExists(req) === false) {
+    if (await checkUserExists(req) === false) {
         const user_id_not_found_error = new ResourceNotFoundError(`Could not find the shipping address since the user with user_id ${user_id} does not exist.`);
         throw user_id_not_found_error;
     }
@@ -225,21 +225,15 @@ const searchShippingAddress = asyncErrorHandler(async(req, res, next) => {
     
     const user_id = req.params.user_id;
 
-    if (checkIsEmptyObject(req) === true) {
-        const empty_request_body_error = new EmptyRequestBodyError(`Could not find shipping address for user with user_id ${user_id} as the request body is empty.`);
-
-        throw empty_request_body_error;
-    }
-
-    if (checkUserExists(req) === false) {
-        const user_id_not_found_error = new ResourceNotFoundError(`Could not find the shipping address since the user with user_id ${user_id} does not exist.`);
-        throw user_id_not_found_error;
-    }
-
     // HERE, WE CHECK IF THE REQUEST BODY IN PARTICULAR IS EMPTY OR NOT
-    if (checkIsEmptyObject(req.body) === true) {
+    if (checkIsEmptyObject(req) === true) {
         const empty_request_body_error = new EmptyRequestBodyError(`Could not find the shipping address of user with user_id ${user_id} due to empty request body.`);
         throw empty_request_body_error; 
+    }
+
+    if (await checkUserExists(req) === false) {
+        const user_id_not_found_error = new ResourceNotFoundError(`Could not find the shipping address since the user with user_id ${user_id} does not exist.`);
+        throw user_id_not_found_error;
     }
 
     // Make a deep clone of the request body

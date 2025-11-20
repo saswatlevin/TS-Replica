@@ -93,14 +93,6 @@ const updateProductSchema = z.object({
     product_specifications: productValidators.zodIsProductSpecifications.optional()
 }).strict();
 
-const updateProductGarmentWeightSchema = z.object({
-    product_garment_weight: productGarmentWeightSchema
-}).strict();
-
-const updateProductSupplyTypeSchema = z.object({
-    product_supply_type: productSupplyTypeSchema
-}).strict();
-
 const searchProductSchema = z.object({
     product_name: productValidators.zodIsProductName.optional(),
     
@@ -164,8 +156,6 @@ module.exports = {
     productGarmentWeightSchema,
     productRequestSchema,
     updateProductSchema,
-    updateProductGarmentWeightSchema,
-    updateProductSupplyTypeSchema,
     searchProductSchema,
     productResponseSchema,
     updateProductPriceSchema,

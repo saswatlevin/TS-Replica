@@ -29,7 +29,7 @@ const globalErrorHandler = (error, req, res, next) => {
     }
         
 
-    /* console.log("Error: ", {
+    console.log("Error: ", {
             status: error?.statusCode,
             message: error?.message,
             name: error?.name,
@@ -38,7 +38,7 @@ const globalErrorHandler = (error, req, res, next) => {
             errno: error?.errno,
             errorsArray: error?.errorsArray,
             stacktrace: error?.stack
-        }); */
+        });
 };
 
 module.exports = globalErrorHandler;

@@ -2,7 +2,7 @@ const userSchemas = require('../Schemas/userSchemas');
 const schemaValidator = require('./schemaValidator');
 const { registerUserResponseSchema, userResponseGenericSchema, userResponseGenericSchemaArray, userShippingAddressResponseSchema } = require('../Schemas/userSchemas');
 const { shippingAddressResponseSchema, updateShippingAddressResponseSchema, shippingAddressStandardSchema, shippingAddressArrayStandardSchema } = require('../Schemas/shippingAddressSchemas');
-const { productResponseSchema } = require('../Schemas/productSchemas');
+const { productResponseSchema, updateProductResponseSchema } = require('../Schemas/productSchemas');
 
 
 // Validates the responses of different APIs based on their respective schemas.
@@ -43,8 +43,13 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(shippingAddressArrayStandardSchema, object);
     }
 
-    else if ((request.originalUrl.includes("/products/createproduct") === true && request.method === "POST") || (request.originalUrl.includes("/products/updateproductgarmentweight") === true && request.method === "PATCH")) {
+    else if ((request.originalUrl.includes("/products/createproduct") === true && request.method === "POST")) {
         return schemaValidator(productResponseSchema, object);
+    }
+
+    else if ((request.originalUrl.includes("/products/updateproductgarmentweight") === true && request.method === "PATCH") || (request.originalUrl.includes("/products/updateproduct") === true && request.method === "PATCH")) {
+        console.log("##DEBUG - In updateProductResponseSchemaValidator option");
+        return schemaValidator(updateProductResponseSchema, object);
     }
 
     else {

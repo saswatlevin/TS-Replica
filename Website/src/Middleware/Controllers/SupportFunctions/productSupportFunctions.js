@@ -3,16 +3,22 @@ const Product = require('../../Models/Product');
 
 const checkProduct = async(req, res, next) => {
     console.log("In checkProduct");
+
     const product_id = req.params.product_id;
-    
+    //console.log("##DEBUG - product_id in checkProduct ", product_id);
+
     const product_search_object = {product_id: product_id};
+    //console.log("##DEBUG - product_search_object in checkProduct ", product_search_object);
     
     const result = await Product.findOne(product_search_object);
+    //console.log("##DEBUG - result in checkProduct ", result);
     
-    if (result.length === 0) {
+    if (result === null || result.length === 0) {
+       //console.log("##DEBUG - Returning false in checkProduct");
        return false;
     }
 
+    //console.log("##DEBUG - Returning true in checkProduct");
     return true;
 };
 

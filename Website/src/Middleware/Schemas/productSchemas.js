@@ -142,6 +142,46 @@ const productResponseSchema = z.object({
     __v: customValidators.zodIsDocumentVersion
 }).strict();
 
+const updateProductResponseSchema = z.object({
+        _id: objectIdSchema,
+    
+        product_id: productValidators.zodIsProductId,
+        
+        docType: productValidators.zodIsProductDocType,
+    
+        product_name: productValidators.zodIsProductName,
+        
+        product_color: productValidators.zodIsProductColor,
+    
+        product_description: productValidators.zodIsProductDescription,
+    
+        product_price: productValidators.zodIsProductPrice,
+    
+        product_category: productValidators.zodIsProductCategory,
+        
+        product_subcategory: productValidators.zodIsProductSubcategory,
+        
+        product_subcategory_type: productValidators.zodIsSubcategoryType,
+        
+        // Remove \" from regex in the future.
+        product_fit: productValidators.zodIsProductFit,
+    
+        product_garment_weight: productGarmentWeightResponseSchema,
+    
+        product_material: productValidators.zodIsProductMaterial,
+    
+        product_supply_type: productSupplyTypeResponseSchema,
+    
+        product_specifications: productValidators.zodIsProductSpecifications,
+        
+        product_images: productImageArrayResponseSchema,
+    
+        product_items: productItemResponseSchemasUnion,
+
+        __v: customValidators.zodIsDocumentVersion
+}).strict();
+
+
 const updateProductPriceSchema = z.object({
     product_price: productValidators.zodIsProductPrice
 }).strict();
@@ -158,6 +198,7 @@ module.exports = {
     updateProductSchema,
     searchProductSchema,
     productResponseSchema,
+    updateProductResponseSchema,
     updateProductPriceSchema,
     productIdSchema
 };

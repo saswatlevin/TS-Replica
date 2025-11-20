@@ -115,7 +115,7 @@ const updateProductPrice = asyncErrorHandler(async(req, res, next) => {
     console.log("update_object ", update_object);
 
 
-    const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, {new: true}, {runValidators: true});
+    const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, {new: true}, {runValidators: true}).lean();
     console.log("update_product_price_result ", update_product_price_result);
 
     req.params.updated_product_price = update_product_price_result.product_price;
@@ -194,28 +194,27 @@ const updateProductGarmentWeight = asyncErrorHandler(async(req, res, next) => {
         throw product_not_found_error;
     }
     
-    console.log("Checking if the product_garment_weight value to be updated already exists");
+    
     const garment_weight_value_exists = await checkProductGarmentWeightValueExists(req);
     console.log("garment_weight_value_exists ", garment_weight_value_exists);
-    
+
     if (garment_weight_value_exists === true) {
         const product_garment_weight_value_error = new CustomError(`Could not update Product document with product_id ${product_id} since the product_garment_weight value(s) already exist(s).`, 400);
         throw product_garment_weight_value_error;
     }
 
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
-    //console.log("Got the request_body_deep_clone ", request_body_deep_clone);
+    console.log("Got the request_body_deep_clone ", request_body_deep_clone);
 
     const filter = {product_id: product_id};
-    //console.log("filter ", filter);
+    console.log("filter ", filter);
 
     const update_object = {"product_garment_weight": request_body_deep_clone};
     console.log("update_object ", update_object);
 
     console.log("Calling findOneAndUpdate to update the product document");    
     const result = await Product.findOneAndUpdate(filter, update_object, {new: true}, {runValidators: true}).lean();
-
-    //console.log("The updated product document, result ", result);
+    console.log("The updated product document, result ", result);
 
     console.log("Sending the result to the client as JSON with status 200");
     res.status(200).json(result);

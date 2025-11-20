@@ -80,9 +80,9 @@ create_product_data = {
 #print("create_product_data response ", response.text)
 
 #/////////////Test 2: Update a product garment weight (updateProductGarmentWeight)/////////////#
-print("TEST 2 - Update a product garment weight (updateProductGarmentWeight)")
+#print("TEST 2 - Update a product garment weight (updateProductGarmentWeight)")
 
-update_product_garment_weight_url = "http://localhost:3500/products/updateproductgarmentweight/1400bfd3abc6"
+#update_product_garment_weight_url = "http://localhost:3500/products/updateproductgarmentweight/1400bfd3abc6"
 
 ####Update garment_weight_description and garment_weight - 1#### 
 update_product_garment_weight_data_set_1 = {
@@ -90,8 +90,8 @@ update_product_garment_weight_data_set_1 = {
     "garment_weight": "Medium"
 }
 
-response = patchRequests(update_product_garment_weight_url, update_product_garment_weight_data_set_1)
-print("update_product_garment_weight_data_set_1 response ", response.text)
+#response = patchRequests(update_product_garment_weight_url, update_product_garment_weight_data_set_1)
+#print("update_product_garment_weight_data_set_1 response ", response.text)
 
 
 
@@ -126,7 +126,7 @@ update_product_garment_weight_data_set_4 = {
 #/////////////Test 3: Update Any Field in a Product (updateProduct)/////////////#
 
 ####Update the product name keeping all other KV pairs unchanged####
-#update_product_url = "http://localhost:3500/products/updateproduct/hya3y1kdhv4p"
+update_product_url = "http://localhost:3500/products/updateproduct/1400bfd3abc6"
 #print("TEST 3 (updateProduct) - Update the product name keeping all other KV pairs unchanged")
 
 update_product_data_set_1 = {
@@ -134,4 +134,11 @@ update_product_data_set_1 = {
 }
 
 #update_product_name_response = patchRequests(update_product_url, update_product_data_set_1)
-#print("TEST 3 (updateProduct) - Update product name response ", update_product_name_response)
+#print("TEST 3 (updateProduct) - Update product name response ", update_product_name_response.text)
+
+update_product_data_set_2 = {
+    "product_color": "BARK PLAID LINEN"    
+}
+
+update_product_color_response = patchRequests(update_product_url, update_product_data_set_2)
+print("TEST 3 (updateProduct) - Update product color response ", update_product_color_response.text)

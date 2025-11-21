@@ -1,0 +1,11 @@
+We need the following pieces of data:
+NONE
+
+searchProducts ->
+* Check if the request body is empty, if so, throw an EmptyRequestBodyError.
+* Get a DEEP CLONE of the request body.
+
+* Pass the request body DEEP CLONE to the find() API.
+* Get the result of the search from the find() API.
+
+* Send the result to the user as JSON with status code 200.

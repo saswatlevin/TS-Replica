@@ -190,7 +190,7 @@ const productIdSchema = z.object({
     product_id: productValidators.zodIsProductId
 }).strict();
 
-
+const searchProductsArrayResponseSchema = z.array(updateProductResponseSchema);
 
 module.exports = {
     productGarmentWeightSchema,
@@ -201,5 +201,6 @@ module.exports = {
     productResponseSchema,
     updateProductResponseSchema,
     updateProductPriceSchema,
-    productIdSchema
+    productIdSchema,
+    searchProductsArrayResponseSchema
 };

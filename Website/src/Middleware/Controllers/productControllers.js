@@ -35,8 +35,8 @@ const createProduct = asyncErrorHandler(async(req, res, next) => {
 
     // Check if the product exists
     console.log("Checking if the product document exists");
-    if (await checkDuplicateProduct(req) === false) {
-        const product_already_exists_error = new DuplicateDocumentError(`Product document with product_name ${product_name} and product_description ${product_description} already exists.`);
+    if (await checkDuplicateProduct(req) === true) {
+        const product_already_exists_error = new DuplicateDocumentError(`Could not create Product since it already exists.`);
         throw product_already_exists_error;
     }
 
@@ -264,10 +264,30 @@ const updateProductSupplyType = asyncErrorHandler(async(req, res, next) => {
     res.status(200).json(result);
 });
 
+const searchProducts = asyncErrorHandler(async(req, res, next) => {
+    console.log("In searchProducts");
+
+    console.log("Checking if the request body is empty");
+    if (checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not search Products since the request body is empty.`);
+        throw empty_request_body_error;
+    }
+
+    const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
+    console.log("Got the request_body_deep_clone ", request_body_deep_clone);
+
+    const result = await Product.find(request_body_deep_clone).lean();
+    console.log("result ", result.slice(-2));
+
+    console.log("Sending the result to the client as JSON with status 200");
+    res.status(200).json(result.slice(-2));
+});
+
 module.exports = {
     createProduct,
     updateProductPrice,
     updateProduct,
     updateProductGarmentWeight,
-    updateProductSupplyType
+    updateProductSupplyType,
+    searchProducts
 };

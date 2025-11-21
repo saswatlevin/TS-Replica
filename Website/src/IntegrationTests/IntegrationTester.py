@@ -216,7 +216,30 @@ update_product_supply_type_data_set_3 = {
   "supply_type": "Limited"  
 }
 
-response = patchRequests(update_product_supply_type_url, update_product_supply_type_data_set_3)
-print("TEST 4 (updateProductSupplyType) - Update supply_type_description and supply_type response ", response.text)
+#response = patchRequests(update_product_supply_type_url, update_product_supply_type_data_set_3)
+#print("TEST 4 (updateProductSupplyType) - Update supply_type_description and supply_type response ", response.text)
 
-  
+#/////////////Test 5: Search for a product (searchProducts)/////////////#
+####Search for a product by product name####
+search_products_url = "http://localhost:3500/products/searchproducts"
+
+search_products_data_set_1 = {
+  "product_name": "The Craftsman Shirt in Bark Plaid COTTON"
+}
+
+#response = getRequests(search_products_url, search_products_data_set_1)
+#print("TEST 5 (searchProducts) - Search for a product by product name only response ", response.text)
+
+search_products_data_set_2 = {
+  "product_color": "BARK Plaid Linen"
+}
+
+#response = getRequests(search_products_url, search_products_data_set_2)
+#print("TEST 5 (searchProducts) - Search for a product by product color only response ", response.text)
+
+search_products_data_set_3 = {
+  "product_subcategory": "Shirt"
+}
+
+response = getRequests(search_products_url, search_products_data_set_3)
+print("TEST 5 (searchProducts) - Search for a product by product subcategory only response ", response.text)

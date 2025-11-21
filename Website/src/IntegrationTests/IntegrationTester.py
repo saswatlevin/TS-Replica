@@ -124,7 +124,6 @@ update_product_garment_weight_data_set_4 = {
 #print("update_product_garment_weight_data_set_4 ", response)
 
 #/////////////Test 3: Update Any Field in a Product (updateProduct)/////////////#
-
 ####Update the product name keeping all other KV pairs unchanged####
 update_product_url = "http://localhost:3500/products/updateproduct/a75ceb92e130"
 #print("TEST 3 (updateProduct) - Update the product name keeping all other KV pairs unchanged")
@@ -189,3 +188,35 @@ update_product_data_set_9 = {
 
 #update_product_material_response = patchRequests(update_product_url, update_product_data_set_9)
 #print("TEST 3 (updateProduct) - Update product material response ", update_product_material_response.text)
+
+#/////////////Test 4: Update product supply type in a Product (updateProductSupplyType)/////////////#
+####Update the supply_type_description only keeping supply_type the same####
+update_product_supply_type_url = "http://localhost:3500/products/updateproductsupplytype/a75ceb92e130"
+
+update_product_supply_type_data_set_1 = {
+  "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
+  "supply_type": "Limited"
+}
+
+#response = patchRequests(update_product_supply_type_url, update_product_supply_type_data_set_1)
+#print("TEST 4 (updateProductSupplyType) - Update supply_type_description only response ", response.text)
+
+####Update the supply_type only keeping supply_type_description the same####
+update_product_supply_type_data_set_2 = {
+  "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
+  "supply_type": "Essential"
+}
+
+#response = patchRequests(update_product_supply_type_url, update_product_supply_type_data_set_2)
+#print("TEST 4 (updateProductSupplyType) - Update supply_type only response ", response.text)
+
+####Update the supply_type_description and supply_type####
+update_product_supply_type_data_set_3 = {
+  "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+  "supply_type": "Limited"  
+}
+
+response = patchRequests(update_product_supply_type_url, update_product_supply_type_data_set_3)
+print("TEST 4 (updateProductSupplyType) - Update supply_type_description and supply_type response ", response.text)
+
+  

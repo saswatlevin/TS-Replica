@@ -127,11 +127,51 @@ const checkProductGarmentWeightValueExists = async(req) => {
     }
 }
 
+const checkProductSupplyTypeValueExists = async(req) => {
+    console.log("In checkProductSupplyTypeValueExists");
+    
+    try {
+        const request_body = req.body;
+        //console.log("##DEBUG request_body in checkProductSupplyTypeValueExists ", request_body);
+        const product_id = req.params.product_id;
+        //console.log("##DEBUG product_id in checkProductSupplyTypeValueExists ", product_id);
+
+        const search_object = request_body;
+        //console.log("##DEBUG product_supply_type_search_object in checkProductSupplyTypeValueExists ", search_object);
+        
+        const result = await Product.findOne(
+            {
+                product_id: product_id,
+                "product_supply_type.supply_type_description": search_object.supply_type_description,
+                "product_supply_type.supply_type": search_object.supply_type,
+                
+            }
+        );
+
+        //console.log("##DEBUG result in checkProductSupplyTypeValueExists ", result);
+
+        
+        if (result === null) {
+            return false;
+        }
+
+        else {    
+            console.log("##DEBUG Returning true in checkProductSupplyTypeValueExists ");
+            return true;
+        }
+    }
+
+    catch(error) {
+        console.log("Error in checkProductSupplyTypeValueExists ", error);
+        return error;
+    }
+}
 
 module.exports = {
     checkProduct,
     checkDuplicateProduct,
     insertAt,
     checkProductValueExists,
-    checkProductGarmentWeightValueExists
+    checkProductGarmentWeightValueExists,
+    checkProductSupplyTypeValueExists
 }

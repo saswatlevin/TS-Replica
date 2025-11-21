@@ -10,6 +10,7 @@ const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
 const { checkDuplicateProduct } = require('./SupportFunctions/productSupportFunctions');
 const { checkProductValueExists } = require('./SupportFunctions/productSupportFunctions');
 const { checkProductGarmentWeightValueExists } = require('./SupportFunctions/productSupportFunctions');
+const { checkProductSupplyTypeValueExists } = require('./SupportFunctions/productSupportFunctions');
 const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
 const Product = require('../Models/Product');
 
@@ -222,9 +223,51 @@ const updateProductGarmentWeight = asyncErrorHandler(async(req, res, next) => {
 
 });
 
+const updateProductSupplyType = asyncErrorHandler(async(req, res, next) => {
+    console.log("In updateProductSupplyType");
+
+    const product_id = req.params.product_id;
+    console.log("Got the product_id from the request params ", product_id);
+
+    console.log("Checking if the request body is empty");
+    if (checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not update Product with product_id ${product_id} as the request body is empty.`);
+        throw empty_request_body_error;
+    }
+
+    console.log("Checking if the product exists");
+    if (await checkProduct(req) === false) {
+        const product_not_found_error = new ResourceNotFoundError(`Could not update Product document with product_id ${product_id} since it does not exist.`);  
+        throw product_not_found_error;
+    }
+    
+    console.log("Checking if the product supply type value to be updated already exists");
+    if (await checkProductSupplyTypeValueExists(req) === true) {
+        const product_supply_type_value_error = new CustomError(`Could not update Product document with product_id ${product_id} since the product_supply_type value(s) already exist(s).`, 400);
+        throw product_supply_type_value_error;
+    }
+
+    const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
+    console.log("Got the request_body_deep_clone ", request_body_deep_clone);
+
+    const filter = {product_id: product_id};
+    console.log("filter ", filter);
+
+    const update_object = {"product_supply_type": request_body_deep_clone};
+    console.log("update_object ", update_object);
+
+    console.log("Calling findOneAndUpdate to update the product document");    
+    const result = await Product.findOneAndUpdate(filter, update_object, {new: true}, {runValidators: true}).lean();
+    console.log("The updated product document, result ", result);
+
+    console.log("Sending the result to the client as JSON with status 200");
+    res.status(200).json(result);
+});
+
 module.exports = {
     createProduct,
     updateProductPrice,
     updateProduct,
-    updateProductGarmentWeight
+    updateProductGarmentWeight,
+    updateProductSupplyType
 };

@@ -13,5 +13,6 @@ router.route('/updateproduct/:product_id').patch(requestValidator(productSchemas
 
 router.route('/updateproductgarmentweight/:product_id').patch(requestValidator(productSchemas.productGarmentWeightSchema), xss(), productControllers.updateProductGarmentWeight );
 
+router.route('/updateproductsupplytype/:product_id').patch(requestValidator(productSchemas.productSupplyTypeSchema), xss(), productControllers.updateProductSupplyType);
 
 module.exports = router;

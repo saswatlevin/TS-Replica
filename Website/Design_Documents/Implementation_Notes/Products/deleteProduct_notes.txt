@@ -1,0 +1,10 @@
+We need the following pieces of data:
+NONE
+
+deleteProduct ->
+* Check if the request body is empty, if so, throw an EmptyRequestBodyError.
+* Check if the product to be deleted exists, if not, throw a ResourceNotFoundError.
+
+* Get a DEEP CLONE of the request body.
+
+

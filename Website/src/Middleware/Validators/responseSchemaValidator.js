@@ -1,8 +1,8 @@
-const userSchemas = require('../Schemas/userSchemas');
 const schemaValidator = require('./schemaValidator');
 const { registerUserResponseSchema, userResponseGenericSchema, userResponseGenericSchemaArray, userShippingAddressResponseSchema } = require('../Schemas/userSchemas');
-const { shippingAddressResponseSchema, updateShippingAddressResponseSchema, shippingAddressStandardSchema, shippingAddressArrayStandardSchema } = require('../Schemas/shippingAddressSchemas');
+const { updateShippingAddressResponseSchema, shippingAddressStandardSchema, shippingAddressArrayStandardSchema } = require('../Schemas/shippingAddressSchemas');
 const { productResponseSchema, updateProductResponseSchema, searchProductsArrayResponseSchema } = require('../Schemas/productSchemas');
+const { cartItemResponseSchema } = require('../Schemas/cartItemSchemas');
 
 
 // Validates the responses of different APIs based on their respective schemas.
@@ -54,6 +54,10 @@ const responseSchemaValidator = (request, object) => {
 
     else if ((request.originalUrl.includes("/products/searchproducts") === true && request.method === "GET")) {
         return schemaValidator(searchProductsArrayResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes('/cartitems/createcartitem') === true && request.method === "POST") {
+        return schemaValidator(cartItemResponseSchema, object);
     }
 
     else {

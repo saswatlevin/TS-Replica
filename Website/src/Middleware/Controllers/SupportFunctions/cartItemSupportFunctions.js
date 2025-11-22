@@ -3,15 +3,20 @@ const User = require('../../Models/User');
 
 const checkCartItemExists = async(req) => {
     console.log("In checkCartItemExists");
-    const cart_item_id = req.params.cart_item_id;
+    const cart_item_name = req.body.cart_item_name;
 
-    const cart_item_query = {cart_item_id: cart_item_id};
+    const cart_item_query = {cart_item_name: cart_item_name};
 
     const result = await User.findOne(cart_item_query);
 
+    console.log("##DEBUG - Result in checkCartItemExists - ", result);
+
     if (result === null) {
+        console.log("##DEBUG - In checkCartItemExists - returning false");
         return false;
     }
+
+    console.log("##DEBUG - In checkCartItemExists - returning true");
 
     return true;
 };

@@ -1,5 +1,5 @@
 const z = require('zod');
-const customValidators = require('./CustomValidators/customFormatValidators');
+const customValidators = require('./customFormatValidators');
 
 // Reuse existing product_id validator from custom validators to ensure consistency
 const zodIsProductId = customValidators.zodIsProductId;

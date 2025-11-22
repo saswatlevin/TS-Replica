@@ -15,13 +15,14 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // Server response validator
-app.use(responseValidator);
+//app.use(responseValidator);
 
 // Routes
 app.use('/', require('./Middleware/Routes/defaultRoute'));
 app.use('/users', require('./Middleware/Routes/userRoutes'));
 app.use('/shippingaddresses', require('./Middleware/Routes/shippingAddressRoutes'));
 app.use('/products', require('./Middleware/Routes/productRoutes'));
+app.use('/cartitems', require('./Middleware/Routes/cartItemRoutes'));
 
 // Route to handle unknown URLs
 app.use('/{*any}', require('./Middleware/Routes/urlNotFoundRoute'));

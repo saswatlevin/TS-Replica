@@ -1,18 +1,58 @@
 const asyncErrorHandler = require('../ErrorHandlers/asyncErrorHandler');
 const mongoose = require('mongoose');
+const createRandomString = require('../createRandomString');
 const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundError');
+const DuplicateSubdocumentError = require('../OperationalErrors/DuplicateSubdocumentError');
 const _ = require('lodash');
 const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
 const User = require('../Models/User');
 const { checkIsEmptyObject, checkUserExists }= require('./SupportFunctions/shippingAddressSupportFunctions');
 const checkCartItemExists = require('./SupportFunctions/cartItemSupportFunctions');
 
-const createCartItem = async(req, res, next) => {
+const createCartItem = asyncErrorHandler(async(req, res, next) => {
     console.log("In createCartItem");
-    const user_id = req.params.user_id;
-
     
-}
+    const user_id = req.params.user_id;
+    console.log("user_id ", user_id);
+
+    console.log("Checking if the request body is empty");
+    if (checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not create Cart Item for user with user_id ${user_id} as the request body is empty.`);
+        throw empty_request_body_error;
+    }
+
+    console.log("Checking if the user exists");
+    if (await checkUserExists(req) === false) {
+        const user_id_not_found_error = new ResourceNotFoundError(`Could not create Cart Item for user with user_id ${user_id} as the user does not exist.`);
+        throw user_id_not_found_error;
+    }
+
+    console.log("Checking if the cart item already exists");
+    if (await checkCartItemExists(req) === true) {
+        const cart_item_already_exists_error = new DuplicateSubdocumentError(`Could not create Cart Item for user with user_id ${user_id} as the cart item already exists.`);
+        throw cart_item_already_exists_error;
+    }
+
+    const cart_item_id = createRandomString(6);
+    console.log("cart_item_id ", cart_item_id);
+
+    const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
+    console.log("request_body_deep_clone ", request_body_deep_clone);
+
+    const filter = {user_id: user_id};
+    console.log("filter ", filter);
+
+    const cart_item = {cart_item_id: cart_item_id, ...request_body_deep_clone};
+    console.log("cart_item ", cart_item);
+
+    console.log("Creating the cart item");
+    const result = await User.findOneAndUpdate(filter, {$push: {CartItems: cart_item}}, {new: true}, {runValidators: true}).lean();
+    
+    console.log("result ", result);
+    console.log("Sending the result to the client as JSON with status code 200.");
+
+    res.status(200).json(result);
+});
 
 const updateCartItemPrice = async(req, res, next) => {
     
@@ -70,4 +110,7 @@ const updateCartItemPrice = async(req, res, next) => {
 };
 
 
-module.exports = updateCartItemPrice
+module.exports = {
+    createCartItem, 
+    updateCartItemPrice
+};

@@ -1,6 +1,6 @@
 const z = require('zod');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
-const productValidators = require('../Validators/productValidators');
+const productValidators = require('../Validators/CustomValidators/productValidators');
 const objectIdSchema = require('./objectIdSchema');
 const {productImageArrayRequestSchema, productImageArraySchema, productImageArrayResponseSchema } = require('./productImageSchemas');
 const {productItemSchemasUnion, productItemRequestSchemasUnion, productItemResponseSchemasUnion} = require('./productItemSchemas');

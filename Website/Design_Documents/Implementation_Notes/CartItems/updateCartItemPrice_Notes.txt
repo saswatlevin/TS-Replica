@@ -7,10 +7,12 @@ updateCartItemPrice ->
 * Check if the request_body is empty or not, if yes, throw an EmptyRequestBodyError.
 * Check if the user exists or not, if not, throw a ResourceNotFoundError.
 * Check if the cart item exists or not, if not, throw a ResourceNotFoundError.
-* Use findOneAndUpdate() to update the price of that cart item.
 * Create the filter: {user_id: user_id, cart_item_id: cart_item_id}.
-* Send the response returned by findOneAndUpdate() using res.json().
-* Set the res.status to 200.
+* Create a Query object from the request_body which contains {'CartItems.$.cart_item_price': value}
+* Use findOneAndUpdate() to update the price of that cart item.
+* Return the result.
+
+NOTE: updateCartItemPrice is an express HELPER FUNCTION and not a middleware.
 
 
 

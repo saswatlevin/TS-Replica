@@ -1,25 +1,5 @@
-import requests
-import json
+from requestFunctions import *
 
-def getRequests(url, data):
-    response = requests.get(url, json=data)
-    return response
-
-def postRequests(url, data):
-    response = requests.post(url, json=data)
-    return response
-
-def putRequests(url, data):
-    response = requests.put(url, json=data)
-    return response
-
-def patchRequests(url, data):
-    response = requests.patch(url, json=data)
-    return response
-
-def deleteRequests(url, data):
-    response = requests.delete(url, json=data)
-    return response
 
 ##=====PRODUCT API INTEGRATION TESTING=====##
 #/////////////Test 1: Create a product (createProduct)/////////////#
@@ -241,5 +221,6 @@ search_products_data_set_3 = {
   "product_subcategory": "Shirt"
 }
 
-response = getRequests(search_products_url, search_products_data_set_3)
-print("TEST 5 (searchProducts) - Search for a product by product subcategory only response ", response.text)
+#response = getRequests(search_products_url, search_products_data_set_3)
+#print("TEST 5 (searchProducts) - Search for a product by product subcategory only response ", response.text)
+

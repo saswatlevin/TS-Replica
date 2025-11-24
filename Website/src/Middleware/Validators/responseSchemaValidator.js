@@ -7,7 +7,7 @@ const { cartItemResponseSchema } = require('../Schemas/cartItemSchemas');
 
 // Validates the responses of different APIs based on their respective schemas.
 const responseSchemaValidator = (request, object) => {
-    
+
     console.log("In responseSchemaValidator");
     console.log("request.originaUrl ", request.originalUrl);
 
@@ -31,7 +31,7 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(userShippingAddressResponseSchema, object);
     }
 
-    else if ( (request.originalUrl.includes("/shippingaddresses/updateshippingaddress") === true && request.method === "PATCH") || (request.originalUrl.includes("/shippingaddresses/deleteshippingaddress") === true && request.method === "DELETE"))   {
+    else if ((request.originalUrl.includes("/shippingaddresses/updateshippingaddress") === true && request.method === "PATCH") || (request.originalUrl.includes("/shippingaddresses/deleteshippingaddress") === true && request.method === "DELETE")) {
         return schemaValidator(updateShippingAddressResponseSchema, object);
     }
 
@@ -56,16 +56,12 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(searchProductsArrayResponseSchema, object);
     }
 
-    else if (request.originalUrl.includes('/cartitems/createcartitem') === true && request.method === "POST") {
-        return schemaValidator(cartItemResponseSchema, object);
-    }
-
     else {
         return undefined;
     }
 
-   
-    
+
+
 };
 
 module.exports = responseSchemaValidator;

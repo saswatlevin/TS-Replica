@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const connectToDB  = require('./Middleware/connectToDB');
+const connectToDB = require('./Middleware/connectToDB');
 const responseValidator = require('./Middleware/Validators/responseValidator');
 const globalErrorHandler = require('./Middleware/ErrorHandlers/globalErrorHandler');
 require('dotenv').config();
@@ -12,10 +12,10 @@ connectToDB();
 // Middleware to handle JSON request body.
 app.use(express.json());
 // Middleware to handle URL Form Data.
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 // Server response validator
-//app.use(responseValidator);
+app.use(responseValidator);
 
 // Routes
 app.use('/', require('./Middleware/Routes/defaultRoute'));

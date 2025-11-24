@@ -1,4 +1,4 @@
-const {ZodError} = require('zod');
+const { ZodError } = require('zod');
 
 const globalErrorHandler = (error, req, res, next) => {
     console.log("In globalErrorHandler");
@@ -10,7 +10,7 @@ const globalErrorHandler = (error, req, res, next) => {
     if ((error instanceof ZodError) === false) {
 
         console.log("globalErrorHandler detects a non-Zod Error");
-        res.status(error?.statusCode).json({ 
+        res.status(error?.statusCode).json({
             status: error?.status,
             statusCode: error?.statusCode,
             message: error?.message,
@@ -25,11 +25,11 @@ const globalErrorHandler = (error, req, res, next) => {
 
     else {
         console.log("Error Handler detects a ZodError");
-        res.status(400).json(error);
+        //res.status(400).json(error);
     }
-        
 
-    console.log("Error: ", {
+
+    /*console.log("Error: ", {
             status: error?.statusCode,
             message: error?.message,
             name: error?.name,
@@ -38,7 +38,7 @@ const globalErrorHandler = (error, req, res, next) => {
             errno: error?.errno,
             errorsArray: error?.errorsArray,
             stacktrace: error?.stack
-        });
+        });*/
 };
 
 module.exports = globalErrorHandler;

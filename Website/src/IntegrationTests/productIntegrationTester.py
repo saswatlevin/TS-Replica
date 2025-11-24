@@ -4,7 +4,7 @@ from requestFunctions import *
 ##=====PRODUCT API INTEGRATION TESTING=====##
 #/////////////Test 1: Create a product (createProduct)/////////////#
 #print("TEST 1 - Create a product (createProduct)")
-#create_product_url = "http://localhost:3500/products/createproduct"
+create_product_url = "http://localhost:3500/products/createproduct"
 create_product_data = {
    
   "product_name": "The Craftsman Shirt in Bark Plaid Linen",
@@ -56,8 +56,8 @@ create_product_data = {
   ]
 }
 
-#response = postRequests(create_product_url, create_product_data)
-#print("create_product_data response ", response.text)
+response = postRequests(create_product_url, create_product_data)
+print("create_product_data response ", response.text)
 
 #/////////////Test 2: Update a product garment weight (updateProductGarmentWeight)/////////////#
 #print("TEST 2 - Update a product garment weight (updateProductGarmentWeight)")
@@ -223,4 +223,15 @@ search_products_data_set_3 = {
 
 #response = getRequests(search_products_url, search_products_data_set_3)
 #print("TEST 5 (searchProducts) - Search for a product by product subcategory only response ", response.text)
+
+#/////////////Test 6: Update a Product price (updateProductPrice)/////////////#
+update_product_price_url = "http://localhost:3500/products/updateproductprice/ed0234cc8bbc"
+
+update_product_price_data_set_1 = {
+  "product_price": 100
+}
+
+response = patchRequests(update_product_price_url, update_product_price_data_set_1)
+print("TEST 6 (updateProductPrice) - Update product price response ", response.text)
+
 

@@ -6,7 +6,7 @@ const getCurrentDateTime = require('../getCurrentDateTime');
 
 // CREATES A NEW USER
 const registerUser = async (req, res, next) => {
-    
+
     console.log("In registerUser");
     //console.log("req.body ", req.body);
     // All data is provided in the request body.
@@ -27,7 +27,7 @@ const registerUser = async (req, res, next) => {
 
     // Replace the password in the request body deep clone with the hashed password
     request_body_deep_clone['password'] = passwordHash;
-    
+
     const user_object = {
         user_id: user_id,
         docType: doc_type,
@@ -36,28 +36,28 @@ const registerUser = async (req, res, next) => {
     };
 
     console.log("user_object after adding all generated data ", user_object);
-    
+
     // Create the new User in the database
     const result = await User.create(user_object);
 
     console.log("create operation result ", result);
 
     res.json({
-       result: result
+        result: result
     });
 
     console.log("After create operation");
-    
+
 }
 
 // UPDATES ANY FIELD OF THE USER DOCUMENT EXCEPT ShippingAddresses, CartItems, docType, password AND user_id
-const updateUser = async(req, res, next) => {
-    
+const updateUser = async (req, res, next) => {
+
     console.log("In updateUser");
 
     // Making a deep copy of the request body isn't necessary since 
     // the schemaValidator already returns a deep copy of the validated request body
-    const requestBody = req.body;  
+    const requestBody = req.body;
     console.log("requestBody ", requestBody);
 
     // The filter will always be the user_id.
@@ -71,20 +71,20 @@ const updateUser = async(req, res, next) => {
 
     console.log("updateObject in updateUser ", updateObject);
 
-    const updateResult = await User.findOneAndUpdate(filter, updateObject, {new: true}, {runValidators: true});
+    const updateResult = await User.findOneAndUpdate(filter, updateObject, { new: true }, { runValidators: true });
 
     console.log("updateResult ", updateResult);
 
     res.status(201).json(updateResult);
 
     console.log("After update operation");
-    
+
 
 }
 
 // UPDATES A USER'S PASSWORD
-const updateUserPassword = async(req, res, next) => {
-    
+const updateUserPassword = async (req, res, next) => {
+
     console.log("In updateUserPassword ");
 
     // Deep copy no longer needed since we already have one from the schema validator
@@ -100,17 +100,17 @@ const updateUserPassword = async(req, res, next) => {
     // Get the updated password
     const updatedPassword = requestBody["password"];
     console.log("updatedPassword ", updatedPassword);
-    
+
     // Replace the password by its equivalent argon2 hash. The hash is salted by default
     const updatedPasswordHash = await argon2.hash(updatedPassword);
     console.log("updatedPasswordHash ", updatedPasswordHash);
 
     // Create the hashed password's key-value pair
-    const updateObject = {"password": updatedPasswordHash};
+    const updateObject = { "password": updatedPasswordHash };
     console.log("updateObject ", updateObject);
 
     // Update the password in the corresponding user document
-    const updateResult = await User.findOneAndUpdate(filter, updateObject, {new: true}, {runValidators: true});
+    const updateResult = await User.findOneAndUpdate(filter, updateObject, { new: true }, { runValidators: true });
 
     console.log("updatePassword result ", updateResult);
 
@@ -120,30 +120,30 @@ const updateUserPassword = async(req, res, next) => {
 };
 
 // GETS ONE USER
-const getUserById = async(req, res, next) => {
+const getUserById = async (req, res, next) => {
     console.log("In getUserById ");
-    
+
     const requestBody = req.body;
 
     const result = await User.findOne(requestBody);
-    
+
     console.log("findOne operation result ", result);
 
     res.status(201).json(result);
 
     console.log("After findOne operation ");
-} 
+}
 
 const searchUsersByName = async (req, res, next) => {
     console.log("In searchUser ");
     const requestBody = req.body;
 
     const result = await User.find(requestBody);
-    
+
     console.log("find operation result ", result);
 
     res.status(201).json(result);
-    
+
     console.log("After find operation ");
 
 }
@@ -159,7 +159,7 @@ const searchUsersByName = async (req, res, next) => {
     res.send(result);
 } */
 
-module.exports = { 
+module.exports = {
     registerUser,
     updateUser,
     updateUserPassword,

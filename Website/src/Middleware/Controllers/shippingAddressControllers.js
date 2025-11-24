@@ -9,7 +9,7 @@ const _ = require('lodash');
 const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
 const createRandomString = require('../createRandomString');
 
-const createShippingAddress = asyncErrorHandler(async(req, res, next) => {
+const createShippingAddress = asyncErrorHandler(async (req, res, next) => {
     console.log("In createShippingAddress");
 
     const user_id = req.params.user_id;
@@ -30,7 +30,7 @@ const createShippingAddress = asyncErrorHandler(async(req, res, next) => {
 
     // Generate the shipping_address_id
     const shipping_address_id = createRandomString(6);
-    
+
     // Create the shipping address object
     const shipping_address = {
         shipping_address_id: shipping_address_id,
@@ -39,11 +39,11 @@ const createShippingAddress = asyncErrorHandler(async(req, res, next) => {
 
     console.log("shipping_address ", shipping_address);
 
-    if(user_exists === false) {
+    if (user_exists === false) {
         const error = new ResourceNotFoundError(`Could not create the shipping address since the user with user_id ${user_id} does not exist.`);
         throw error;
     }
-    
+
     else {
         // A live mongoose document contains many hiiden keys and fields. 
         // The .lean() functions strips these keys and fields completely.
@@ -52,10 +52,10 @@ const createShippingAddress = asyncErrorHandler(async(req, res, next) => {
         // Here, we use 201 since it means that the resource has been created.
         res.status(201).json(result);
     }
-    
+
 });
 
-const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
+const updateShippingAddress = asyncErrorHandler(async (req, res, next) => {
     console.log("In updateShippingAddress");
 
     const user_id = req.params.user_id;
@@ -72,7 +72,7 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
         const user_id_not_found_error = new ResourceNotFoundError(`Could not update the shipping address since the user with user_id ${user_id} does not exist.`);
         throw user_id_not_found_error;
     }
-    
+
     if (await checkShippingAddressExists(req) === false) {
         const shipping_address_not_found_error = new ResourceNotFoundError(`Could not update the shipping address with ${shipping_address_id} since it does not exist.`);
         throw shipping_address_not_found_error;
@@ -80,7 +80,7 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
 
     // The user_id of the User document where the shipping address is to be updated.
     // The shipping_address_id of the shipping_address to be updated.
-    const shipping_address_selector = {user_id: user_id, "ShippingAddresses.shipping_address_id": shipping_address_id};
+    const shipping_address_selector = { user_id: user_id, "ShippingAddresses.shipping_address_id": shipping_address_id };
 
     const request_body = req.body;
 
@@ -105,12 +105,12 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
     // A live mongoose document contains many hiiden keys and fields. 
     // The .lean() functions strips these keys and fields completely.
     const result = await User.updateOne(
-                shipping_address_selector, 
-            
-                {
-                    $set: update_request
-                }
-            ).lean();
+        shipping_address_selector,
+
+        {
+            $set: update_request
+        }
+    ).lean();
     console.log("shipping address update result ", result);
 
     if (result["modifiedCount"] === 1 && result["matchedCount"] === 1) {
@@ -126,32 +126,32 @@ const updateShippingAddress = asyncErrorHandler(async(req, res, next) => {
     }
 
 
-    
+
 
     // The positional operator, $, holds the matched position in the array.
     // The $set operator makes only the specified elements go to the server.
     // The $set operator replaces the value of a field with the specified value.
-    
+
     /**
      * If the field does not exist, $set will add a new field with the specified value, provided that the new field does not violate a type constraint. If you specify a dotted path for a non-existent field, $set will create the embedded documents as needed to fulfill the dotted path to the field.
     
      * If you specify multiple field-value pairs, $set will update or create each field.
      **/
-    
+
     // The Object.entries() static method returns an array of a given object's own enumerable string-keyed property key-value pairs.
     // The Object.fromEntries() static method transforms a list of key-value pairs into an object.
-    
+
     // Here, what we are doing is: we are passing the request body to the Object.entries() function.
     // The object.entries() function converts the request body from {"key": "value"} / {"key": value} to [key, "value"] / [key, value].
     // It then maps each [key, "value"] / [key, value] pair to [ShippingAddresses.$.key, "value"] / [ShippingAddresses.$.key, "value"].
     // The Object.FromEntries() function then converts each [ShippingAddresses.$.key, "value"] / [ShippingAddresses.$.key, value] pair to key:"value" / key:value pair and then puts all of them in a single JS object.
 
 
-    
+
 
 });
 
-const getShippingAddressById = asyncErrorHandler( async(req, res, next) => {
+const getShippingAddressById = asyncErrorHandler(async (req, res, next) => {
     console.log("In getShippingAddressById");
 
     const user_id = req.params.user_id;
@@ -177,17 +177,17 @@ const getShippingAddressById = asyncErrorHandler( async(req, res, next) => {
      * The $project operator then extracts the given fields from the array elements.  
      */
     const shipping_address_aggregation_pipeline = [
-        { $match : { user_id : user_id } },
+        { $match: { user_id: user_id } },
 
-        {$unwind : "$ShippingAddresses"},
-        
-        {$match : {"ShippingAddresses.shipping_address_id" : shipping_address_id}},
-        {   
-            $project : 
+        { $unwind: "$ShippingAddresses" },
+
+        { $match: { "ShippingAddresses.shipping_address_id": shipping_address_id } },
+        {
+            $project:
             {
-                _id : 1, 
-                shipping_address_id : "$ShippingAddresses.shipping_address_id", 
-                address_type_id : "$ShippingAddresses.address_type_id", 
+                _id: 1,
+                shipping_address_id: "$ShippingAddresses.shipping_address_id",
+                address_type_id: "$ShippingAddresses.address_type_id",
                 company_name: "$ShippingAddresses.company_name",
                 address: "$ShippingAddresses.address",
                 apartment: "$ShippingAddresses.apartment",
@@ -202,7 +202,7 @@ const getShippingAddressById = asyncErrorHandler( async(req, res, next) => {
 
     // Returns [] if resource not found
     const result = await User.aggregate(shipping_address_aggregation_pipeline);
-    
+
     //console.log("Shipping Address returned from getShippingAddressById ", result);
     //console.log("result[0] ", result[0]);
 
@@ -220,15 +220,15 @@ const getShippingAddressById = asyncErrorHandler( async(req, res, next) => {
 
 });
 
-const searchShippingAddress = asyncErrorHandler(async(req, res, next) => {
+const searchShippingAddress = asyncErrorHandler(async (req, res, next) => {
     console.log("In searchShippingAddress");
-    
+
     const user_id = req.params.user_id;
 
     // HERE, WE CHECK IF THE REQUEST BODY IN PARTICULAR IS EMPTY OR NOT
     if (checkIsEmptyObject(req) === true) {
         const empty_request_body_error = new EmptyRequestBodyError(`Could not find the shipping address of user with user_id ${user_id} due to empty request body.`);
-        throw empty_request_body_error; 
+        throw empty_request_body_error;
     }
 
     if (await checkUserExists(req) === false) {
@@ -237,10 +237,10 @@ const searchShippingAddress = asyncErrorHandler(async(req, res, next) => {
     }
 
     // Make a deep clone of the request body
-    const request_body =  _.cloneDeep(req.body);
+    const request_body = _.cloneDeep(req.body);
 
     console.log("request_body in search_shipping_address is ", request_body);
-    
+
 
     // Building the shipping address search query
     const shipping_address_search_query = Object.fromEntries(
@@ -251,30 +251,31 @@ const searchShippingAddress = asyncErrorHandler(async(req, res, next) => {
     console.log("shipping_address_search_query ", shipping_address_search_query);
 
     const shipping_address_aggregation_pipeline = [
-        { $match : { user_id : user_id } },
+        { $match: { user_id: user_id } },
 
-        {$unwind : "$ShippingAddresses"},
-        
-        {$match : shipping_address_search_query},
-        {   
-            $project : {_id : 1, 
-            shipping_address_id : "$ShippingAddresses.shipping_address_id", 
-            address_type_id : "$ShippingAddresses.address_type_id", 
-            company_name: "$ShippingAddresses.company_name",
-            address: "$ShippingAddresses.address",
-            apartment: "$ShippingAddresses.apartment",
-            city: "$ShippingAddresses.city",
-            administrative_division: "$ShippingAddresses.city",
-            country: "$ShippingAddresses.country",
-            postal_area: "$ShippingAddresses.postal_area",
-            phone_number: "$ShippingAddresses.phone_number"
-        }
+        { $unwind: "$ShippingAddresses" },
+
+        { $match: shipping_address_search_query },
+        {
+            $project: {
+                _id: 1,
+                shipping_address_id: "$ShippingAddresses.shipping_address_id",
+                address_type_id: "$ShippingAddresses.address_type_id",
+                company_name: "$ShippingAddresses.company_name",
+                address: "$ShippingAddresses.address",
+                apartment: "$ShippingAddresses.apartment",
+                city: "$ShippingAddresses.city",
+                administrative_division: "$ShippingAddresses.city",
+                country: "$ShippingAddresses.country",
+                postal_area: "$ShippingAddresses.postal_area",
+                phone_number: "$ShippingAddresses.phone_number"
+            }
         }
     ];
 
     // Returns [] if resource not found
     const result = await User.aggregate(shipping_address_aggregation_pipeline);
-    
+
     //console.log("Shipping Address returned from getShippingAddressById ", result);
     //console.log("result[0] ", result[0]);
 
@@ -305,19 +306,19 @@ const deleteShippingAddressById = asyncErrorHandler(async (req, res, next) => {
 
     if (user_exists === false) {
         const empty_request_body_error = new EmptyRequestBodyError(`Could not find the shipping address to be deleted, of user with user_id ${user_id} due to empty request body.`);
-        throw empty_request_body_error; 
+        throw empty_request_body_error;
     }
 
     // Check if checkUserExists returns an error
     else if (user_exists !== true) {
-            throw user_exists;
-            
+        throw user_exists;
+
     }
 
     else {
         ;
     }
-    
+
 
     //const shipping_address_id = request_body.shipping_address_id;
 
@@ -326,7 +327,7 @@ const deleteShippingAddressById = asyncErrorHandler(async (req, res, next) => {
         throw shipping_address_not_found_error;
     }*/
 
-    const deletion_result = await User.updateOne({user_id: user_id}, {$pull: {"ShippingAddresses": request_body}});
+    const deletion_result = await User.updateOne({ user_id: user_id }, { $pull: { "ShippingAddresses": request_body } });
 
     // Here 200 is used as status code since the server wants to send a message after deletion.
     res.status(200).json(deletion_result);

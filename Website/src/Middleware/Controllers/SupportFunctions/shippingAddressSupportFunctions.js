@@ -1,5 +1,6 @@
 const User = require('../../Models/User');
 const _ = require('lodash');
+const argon2 = require('argon2');
 
 const checkUserExists = async(req) => {
     console.log("In checkUserExists");
@@ -58,6 +59,34 @@ const checkDuplicateUserExists = async(req) => {
 
     catch(error) {
         console.log("Error in checkDuplicateUserExists ", error);
+        return error;
+    }
+}
+
+const checkUserValueExists = async(req) => {
+    console.log("In checkUserValueExists");
+
+    try{
+
+        const query = req.body;
+
+        if(query['password'] !== undefined || query['password'] !== null) {
+            query['password'] = await argon2.hash(query['password']);
+        }
+
+        const result = await User.findOne(query);
+
+        if (result === null) {
+            return false;
+        }
+
+        else {
+            return true;
+        }
+    }
+
+    catch(error){
+        console.log("Error in checkUserValueExists ", error);
         return error;
     }
 }
@@ -136,6 +165,7 @@ const checkIsEmptyObject = (object) => {
 module.exports = {
     checkUserExists,
     checkDuplicateUserExists,
+    checkUserValueExists,
     checkShippingAddressExists,
     checkDuplicateShippingAddressExists,
     checkIsEmptyObject

@@ -16,7 +16,9 @@ const productImageSchema = new mongoose.Schema({
         type: Boolean,
         required: [true, "main_image is a boolean and is a required field."]
     }
-
+},
+{
+    _id: false
 });
 
 module.exports = productImageSchema;

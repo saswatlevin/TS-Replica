@@ -45,7 +45,9 @@ const productItemSchema = new mongoose.Schema({
     type: Number,
     required: [true, "current_stock is a number and is a required field."]
    }
-
+},
+{
+    _id: false
 });
 
 module.exports = productItemSchema;

@@ -10,6 +10,9 @@ const productSupplyTypeSchema = new mongoose.Schema({
         type: String,
         required: [true, "supply_type is a string and is a required field."]
     }
+},
+{
+    _id: false
 });
 
 module.exports = productSupplyTypeSchema;

@@ -50,6 +50,9 @@ const shippingAddressSchema = new mongoose.Schema({
         type: String,
         required: [ true, "phone_number is a string and is a required field."]
     }
+},
+{
+    _id: false
 });
 
 module.exports = shippingAddressSchema;

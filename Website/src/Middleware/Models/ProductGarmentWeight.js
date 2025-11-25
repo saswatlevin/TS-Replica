@@ -11,6 +11,9 @@ const productGarmentWeightSchema = new mongoose.Schema({
         type: String,
         required: [true, "garment_weight is a string and is a required field."]
     }
+},
+{
+    _id: false
 });
 
 module.exports = productGarmentWeightSchema;

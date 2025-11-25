@@ -3,30 +3,41 @@ const User = require('../Models/User');
 const argon2 = require('argon2');
 const _ = require('lodash');
 const getCurrentDateTime = require('../getCurrentDateTime');
+const asyncErrorHandler = require('../ErrorHandlers/asyncErrorHandler');
+const { checkIsEmptyObject, checkUserExists, checkUserValueExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
+const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
+const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError');
 
 // CREATES A NEW USER
-const registerUser = async (req, res, next) => {
+const registerUser = asyncErrorHandler( async (req, res, next) => {
 
     console.log("In registerUser");
-    //console.log("req.body ", req.body);
-    // All data is provided in the request body.
-    // Since the user document (request body) is manually generated, 
-    // so we don't need to use createDocument yet.
 
-    // Get a deep copy of the request body object
+    console.log("Checking if the request body is empty");
+    if(checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError("Could not create a new user since the request body is empty");
+        throw empty_request_body_error;
+    }
+
+    
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
+    console.log("request_body_deep_clone ", request_body_deep_clone);
 
     const user_id = createRandomString(6);
+    console.log("Generated user_id ", user_id);
 
     const doc_type = 'USER';
 
     // Get the current date-time
     const date_created_at = getCurrentDateTime();
+    console.log("date_created_at ", date_created_at);
+    
     // Hash the user's password using argon2id. It is salted by default.
-    const passwordHash = await argon2.hash(request_body_deep_clone['password']);
+    const password_hash = await argon2.hash(request_body_deep_clone['password']);
+    console.log("password_hash ", password_hash);
 
     // Replace the password in the request body deep clone with the hashed password
-    request_body_deep_clone['password'] = passwordHash;
+    request_body_deep_clone['password'] = password_hash;
 
     const user_object = {
         user_id: user_id,
@@ -42,122 +53,161 @@ const registerUser = async (req, res, next) => {
 
     console.log("create operation result ", result);
 
-    res.json({
-        result: result
-    });
+    res.status(201).json({result: result});
 
-    console.log("After create operation");
+    console.log("===END OF registerUser===");
 
-}
+});
 
 // UPDATES ANY FIELD OF THE USER DOCUMENT EXCEPT ShippingAddresses, CartItems, docType, password AND user_id
-const updateUser = async (req, res, next) => {
+const updateUser = asyncErrorHandler( async(req, res, next) => {
 
     console.log("In updateUser");
 
-    // Making a deep copy of the request body isn't necessary since 
-    // the schemaValidator already returns a deep copy of the validated request body
-    const requestBody = req.body;
-    console.log("requestBody ", requestBody);
+    const user_id = req.params.user_id;
+    console.log("user_id ", user_id);
 
-    // The filter will always be the user_id.
-    var filter = {};
-    filter['user_id'] = requestBody['user_id'];
+    console.log("Checking if the request_body is empty");
+    if(checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not update the user with ${user_id} since the request body is empty.`);
+        throw empty_request_body_error;
+    }
 
-    console.log("filter in updateUser ", filter);
+    console.log("Checking if the user exists");
+    if (await checkUserExists(req) === true) {
+        const user_not_found_error = new ResourceNotFoundError(`Could not update the user with ${user_id} since that user does not exist.`);
+        throw user_not_found_error;
+    }
 
-    // Remove the user_id from the request body to create the update object.
-    const updateObject = _.omit(requestBody, 'user_id');
-
-    console.log("updateObject in updateUser ", updateObject);
-
-    const updateResult = await User.findOneAndUpdate(filter, updateObject, { new: true }, { runValidators: true });
-
-    console.log("updateResult ", updateResult);
-
-    res.status(201).json(updateResult);
-
-    console.log("After update operation");
+    console.log("Checking if the user already contains updated values");
+    if (await checkUserValueExists(req) === true) {
+        const redundant_update_error = new RedundantUpdateError(`Cannot update the user with ${user_id} since it already contains the updated values`);
+        throw redundant_update_error;
+    }
 
 
-}
+    const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
+    console.log("request_body_deep_clone ", request_body_deep_clone);
+
+    var filter = {user_id: user_id};
+
+    console.log("filter ", filter);
+
+    //const update_object = _.omit(request_body_deep_clone, 'user_id');
+    //console.log("update_object in updateUser ", update_object);
+
+    const result = await User.findOneAndUpdate
+        (
+            filter, 
+            request_body_deep_clone, 
+            { new: true }, 
+            { runValidators: true }
+        ).lean();
+    
+    console.log("result ", result);
+
+    res.status(200).json(result);
+
+    console.log("===END OF updateUser===");
+
+
+});
 
 // UPDATES A USER'S PASSWORD
-const updateUserPassword = async (req, res, next) => {
+const updateUserPassword = asyncErrorHandler( async(req, res, next) => {
 
     console.log("In updateUserPassword ");
 
-    // Deep copy no longer needed since we already have one from the schema validator
-    const requestBody = req.body
-    console.log("requestBody ", requestBody);
+    const user_id = req.params.user_id;
+
+    console.log("Checking if the request_body is empty");
+    if (checkIsEmptyObject(req) === true){
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not update the password of the user with ${user_id} since the request body is empty.`);
+        throw empty_request_body_error;
+    }
+
+    console.log("Checking if the user exists or not");
+    if(await checkUserExists(req) === true) {
+        const user_not_found_error = new ResourceNotFoundError(`Could not update the password of the user with ${user_id} since it does not exist`);
+        throw user_not_found_error;
+    }
 
 
-    // Create the filter used to select the User document for the update
-    var filter = {};
-    filter['user_id'] = requestBody['user_id'];
-    console.log("filter: ", filter);
+    console.log("Checking if the user already contains the updated password");
+    if (await checkUserValueExists(req) === true) {
+        const redundant_update_error = new RedundantUpdateError(`Cannot update the password of the user with ${user_id} since it has already been updated.`);
+        throw redundant_update_error;
+    }
 
-    // Get the updated password
-    const updatedPassword = requestBody["password"];
-    console.log("updatedPassword ", updatedPassword);
+    const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
+    console.log("request_body_deep_clone ", request_body_deep_clone);
 
-    // Replace the password by its equivalent argon2 hash. The hash is salted by default
-    const updatedPasswordHash = await argon2.hash(updatedPassword);
-    console.log("updatedPasswordHash ", updatedPasswordHash);
 
-    // Create the hashed password's key-value pair
-    const updateObject = { "password": updatedPasswordHash };
-    console.log("updateObject ", updateObject);
+    var filter = {user_id: user_id};
+    console.log("filter ", filter);
 
-    // Update the password in the corresponding user document
-    const updateResult = await User.findOneAndUpdate(filter, updateObject, { new: true }, { runValidators: true });
+    const updated_password = requestBody["password"];
+    console.log("updated_password ", updated_password);
 
-    console.log("updatePassword result ", updateResult);
 
-    res.status(201).json(updateResult);
+    const updated_password_hash = await argon2.hash(updated_password);
+    console.log("updated_password_hash ", updated_password_hash);
 
-    console.log("After password update operation");
-};
+
+    const update_object = { "password": updated_password_hash };
+    console.log("update_object ", update_object);
+
+
+    const result = await User.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
+
+    console.log("result ", result);
+
+    res.status(200).json(updateResult);
+
+    console.log("===END OF updateUserPassword===");
+});
 
 // GETS ONE USER
-const getUserById = async (req, res, next) => {
+const getUserById = asyncErrorHandler( async(req, res, next) => {
     console.log("In getUserById ");
 
-    const requestBody = req.body;
+    console.log("Checking if the request body is empty or not");
+    if(checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError("Could not find the user since the request body is empty");
+        throw empty_request_body_error;
+    }
 
-    const result = await User.findOne(requestBody);
+    const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
+    console.log("request_body_deep_clone ", request_body_deep_clone);
 
-    console.log("findOne operation result ", result);
+    const result = await User.findOne(request_body_deep_clone);
+    console.log("result ", result);
 
     res.status(201).json(result);
 
-    console.log("After findOne operation ");
-}
+    console.log("===END OF getUserById===");
+});
 
-const searchUsersByName = async (req, res, next) => {
+const searchUsersByName = asyncErrorHandler( async(req, res, next) => {
     console.log("In searchUser ");
-    const requestBody = req.body;
 
-    const result = await User.find(requestBody);
+    console.log("Checking if the request body is empty ot not");
+    if(checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError("Could not find the user since the request body is empty");
+        throw empty_request_body_error;
+    }
 
-    console.log("find operation result ", result);
+    const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
+    console.log("request_body_deep_clone ", request_body_deep_clone);
+
+    const result = await User.find(request_body_deep_clone);
+    console.log("result ", result);
 
     res.status(201).json(result);
 
-    console.log("After find operation ");
+    console.log("===END OF searchUsersByName===");
 
-}
-
-/* const objectIdTest = async (req, res, next) => {
-
-    
-    const requestBody = req.body;
-    const result = await User.findOne(requestBody);
-    console.log(result['_id']);
-    validateRequest(objectIdSchema, {"_id": new mongoose.Types.ObjectId('683703f4cb260c2c22ee0ce')});
-
-    res.send(result);
-} */
+});
 
 module.exports = {
     registerUser,

@@ -46,7 +46,7 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     console.log("cart_item ", cart_item);
 
     console.log("Creating the cart item");
-    const result = await User.findOneAndUpdate(filter, { $push: { CartItems: cart_item } }, { new: true, select: "CartItems" }, { runValidators: true }).lean();
+    const result = await User.findOneAndUpdate(filter, { $push: { CartItems: cart_item } }, { new: true }, { runValidators: true }).lean();
 
     console.log("result ", result);
     console.log("Sending the result to the client as JSON with status code 200.");

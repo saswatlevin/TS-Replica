@@ -2,7 +2,7 @@ from requestFunctions import *
 
 ##====CART ITEM API INTEGRATION TESTING====##
 #////////////////TEST 1 Create a Cart Item////////////////#
-create_cart_item_url = "http://localhost:3500/cartitems/createcartitem/c48db791e150"
+#create_cart_item_url = "http://localhost:3500/cartitems/createcartitem/f0c81fc59083"
 
 create_cart_item_set_1 = {
     "product_id": "ed0234cc8bbc",
@@ -16,7 +16,8 @@ create_cart_item_set_1 = {
 #create_cart_item_response_1 = postRequests(create_cart_item_url, create_cart_item_set_1)
 #print("TEST 1 - Create a Cart Item ", create_cart_item_response_1.text)
 
-create_cart_item_set_2 = {
+create_cart_item_url_2 = "http://localhost:3500/cartitems/createcartitem/a6903c5d1ec0"
+create_cart_item_set_2a = {
     "product_id": "prl5dyv7n0bx",
     "sku": "mqusuae9r0",
     "cart_item_name": "The Short Sleeve Jack in Deep Sea Seersucker",
@@ -25,5 +26,18 @@ create_cart_item_set_2 = {
     "cart_item_quantity": 1
 }
 
-create_cart_item_response_2 = postRequests(create_cart_item_url, create_cart_item_set_2)
-print("TEST 2 - Create a Cart Item ", create_cart_item_response_2.text)
+#create_cart_item_response_2a = postRequests(create_cart_item_url_2, create_cart_item_set_2a)
+#print("TEST 2a - Create a Cart Item ", create_cart_item_response_2a.text)
+
+
+create_cart_item_set_2b = {
+    "product_id": "b0e6v4zl9aih",
+    "sku": "vkr7eqvzsh",
+    "cart_item_name": "The Democratic Foundation Pant in Organic Navy",
+    "cart_item_price": 125,
+    "cart_item_image_uri":"C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Chinos\\The_Democratic_Foundation_Pant_in_Organic_Navy\\7310894563405_democratic-foundation-pant-in-organic-navy-twill-2501_01_tsio.jpg",
+    "cart_item_quantity": 1
+}
+
+#create_cart_item_response_2b = postRequests(create_cart_item_url_2, create_cart_item_set_2b)
+#print("TEST 2b - Create a Cart Item ", create_cart_item_response_2b.text)

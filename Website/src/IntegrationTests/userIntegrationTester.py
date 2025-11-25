@@ -20,8 +20,8 @@ create_user_set_1 = {
     "CartItems": []
 }
 
-create_user_response_1 = postRequests(create_user_url, create_user_set_1)
-print("TEST 1 - Create a User (registerUser) ", create_user_response_1.text)
+#create_user_response_1 = postRequests(create_user_url, create_user_set_1)
+#print("TEST 1 - Create a User (registerUser) ", create_user_response_1.text)
 
 #////////////////TEST 2 Create a User////////////////#
 create_user_set_2 = {

@@ -1,6 +1,6 @@
 const schemaValidator = require('./schemaValidator');
-const { registerUserResponseSchema, userResponseGenericSchema, userResponseGenericSchemaArray, userShippingAddressResponseSchema } = require('../Schemas/userSchemas');
-const { updateShippingAddressResponseSchema, shippingAddressStandardSchema, shippingAddressArrayStandardSchema } = require('../Schemas/shippingAddressSchemas');
+const { registerUserResponseSchema, userResponseSchema, userResponseSchemaArray} = require('../Schemas/userSchemas');
+const { updateShippingAddressResponseSchema, shippingAddressResponseSchema, shippingAddressArrayZeroSchema } = require('../Schemas/shippingAddressSchemas');
 const { productResponseSchema, updateProductResponseSchema, searchProductsArrayResponseSchema } = require('../Schemas/productSchemas');
 const { cartItemResponseSchema } = require('../Schemas/cartItemSchemas');
 
@@ -16,19 +16,19 @@ const responseSchemaValidator = (request, object) => {
     }
 
     else if ((request.originalUrl === "/users/updateuser" || request.originalUrl === "/users/updateuserpassword") && request.method === "PATCH") {
-        return schemaValidator(userResponseGenericSchema, object);
+        return schemaValidator(userResponseSchema, object);
     }
 
     else if (request.originalUrl === "/users/getuserbyid" && request.method === "GET") {
-        return schemaValidator(userResponseGenericSchema, object);
+        return schemaValidator(userResponseSchema, object);
     }
 
     else if (request.originalUrl === "/users/getusersbyname" && request.method === "GET") {
-        return schemaValidator(userResponseGenericSchemaArray, object);
+        return schemaValidator(userResponseSchemaArray, object);
     }
 
     else if ((request.originalUrl.includes("/shippingaddresses/createshippingaddress") === true) && request.method === "POST") {
-        return schemaValidator(userShippingAddressResponseSchema, object);
+        return schemaValidator(userResponseSchema, object);
     }
 
     else if ((request.originalUrl.includes("/shippingaddresses/updateshippingaddress") === true && request.method === "PATCH") || (request.originalUrl.includes("/shippingaddresses/deleteshippingaddress") === true && request.method === "DELETE")) {
@@ -36,11 +36,11 @@ const responseSchemaValidator = (request, object) => {
     }
 
     else if ((request.originalUrl.includes("/shippingaddresses/getshippingaddressbyid") === true) && request.method === "GET") {
-        return schemaValidator(shippingAddressStandardSchema, object);
+        return schemaValidator(shippingAddressResponseSchema, object);
     }
 
     else if ((request.originalUrl.includes("/shippingaddresses/searchshippingaddress") === true) && request.method === "GET") {
-        return schemaValidator(shippingAddressArrayStandardSchema, object);
+        return schemaValidator(shippingAddressArrayZeroSchema, object);
     }
 
     else if ((request.originalUrl.includes("/products/createproduct") === true && request.method === "POST")) {
@@ -54,6 +54,10 @@ const responseSchemaValidator = (request, object) => {
 
     else if ((request.originalUrl.includes("/products/searchproducts") === true && request.method === "GET")) {
         return schemaValidator(searchProductsArrayResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/cartitems/createcartitem") === true && request.method === "POST") {
+        return schemaValidator(userResponseSchema, object);
     }
 
     else {

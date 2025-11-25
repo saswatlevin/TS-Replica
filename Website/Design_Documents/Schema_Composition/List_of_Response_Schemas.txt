@@ -1,0 +1,17 @@
+registerUserResponseSchema -> {..., _id, __v}
+userResponseGenericSchema -> {_id, ..., __v}
+cartItemResponseSchema -> {..., _id}
+createShippingAddressResponseSchema -> {_id, ...}
+userShippingAddressResponseSchema -> {_id, ..., __v}
+shippingAddressStandardSchema -> {_id, ...}
+
+productResponseSchema -> {..., _id, __v}
+updateProductResponseSchema -> {_id, ..., __v}
+
+cartItemResponseSchema -> {..., _id} 
+
+
+
+When the sub-documents are created in a MongoDB document, MongoDB automatically adds _id to the sub-document. How do I prevent the _id being added to the sub-document. I am asking this as I have already ensured that each sub-document has a user-created unique alphanumeric id with it.
+
+As for the main document, while a document using Mongoose's create() API, the returned document contains both _id and __v at the bottom of the document. How do i ensure that the __id is at the top and the __v is at the bottom in such cases?  

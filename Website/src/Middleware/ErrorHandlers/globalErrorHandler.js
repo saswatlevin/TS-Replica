@@ -25,7 +25,7 @@ const globalErrorHandler = (error, req, res, next) => {
 
     else {
         console.log("Error Handler detects a ZodError");
-        //res.status(400).json(error);
+        res.status(400).json(error);
     }
 
 

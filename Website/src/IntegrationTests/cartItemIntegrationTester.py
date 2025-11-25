@@ -1,7 +1,7 @@
 from requestFunctions import *
 
 ##====CART ITEM API INTEGRATION TESTING====##
-#////////////////TEST 1 Create a Cart Item////////////////#
+#////////////////Create a Cart Item////////////////#
 #create_cart_item_url = "http://localhost:3500/cartitems/createcartitem/f0c81fc59083"
 
 create_cart_item_set_1 = {

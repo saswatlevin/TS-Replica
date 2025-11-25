@@ -166,8 +166,7 @@ const getShippingAddressById = asyncErrorHandler(async (req, res, next) => {
         { $match: { "ShippingAddresses.shipping_address_id": shipping_address_id } },
         {
             $project:
-            {
-                _id: 1,
+            {   _id: 0,
                 shipping_address_id: "$ShippingAddresses.shipping_address_id",
                 address_type_id: "$ShippingAddresses.address_type_id",
                 company_name: "$ShippingAddresses.company_name",
@@ -184,14 +183,14 @@ const getShippingAddressById = asyncErrorHandler(async (req, res, next) => {
 
     // Returns [] if resource not found
     const result = await User.aggregate(shipping_address_aggregation_pipeline);
-
-    console.log("result ", result);
-    //console.log("result[0] ", result[0]);
+    console.log("result ", result[0]);
+    
 
     if (result.length === 1) {
         // Resource Found
         // Return the shipping address in the Shipping Addresses array.
         // Here, 200 is used since the resource is found and successfully returned at the requested URL (no redirect).
+        //console.log("result[0] ", result[0]);
         res.status(200).json(result[0]);
     }
 
@@ -242,7 +241,7 @@ const searchShippingAddress = asyncErrorHandler(async (req, res, next) => {
         { $match: shipping_address_search_query },
         {
             $project: {
-                _id: 1,
+                _id: 0,
                 shipping_address_id: "$ShippingAddresses.shipping_address_id",
                 address_type_id: "$ShippingAddresses.address_type_id",
                 company_name: "$ShippingAddresses.company_name",
@@ -261,7 +260,7 @@ const searchShippingAddress = asyncErrorHandler(async (req, res, next) => {
     const result = await User.aggregate(shipping_address_aggregation_pipeline);
 
     //console.log("Shipping Address returned from getShippingAddressById ", result);
-    //console.log("result[0] ", result[0]);
+    console.log("result ", result);
 
     if (result.length > 0) {
         // Resources Found

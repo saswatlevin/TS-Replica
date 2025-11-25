@@ -119,6 +119,7 @@ module.exports = {
     shippingAddressResponseSchema,
     shippingAddressArrayZeroSchema,
     shippingAddressArrayNonzeroSchema,
+    updateShippingAddressRequestSchema,
     updateShippingAddressResponseSchema,
     getShippingAddressByIdRequestSchema,
     searchShippingAddressRequestSchema

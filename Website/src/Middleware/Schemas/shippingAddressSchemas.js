@@ -20,8 +20,13 @@ const createShippingAddressRequestSchema = z.object({
 
     postal_area: shippingAddressValidators.zodIsPostalCode,
     
-    phone_number: shippingAddressValidators.zodIsMobilePhone
+    phone_number: shippingAddressValidators.zodIsMobilePhone,
+
     
+}, 
+
+{
+    _id: false
 }).strict();
 
 const createShippingAddressResponseSchema = z.object({
@@ -117,6 +122,10 @@ const updateShippingAddressRequestSchema = z.object({
     postal_area: shippingAddressValidators.zodIsPostalCode.optional(),
     
     phone_number: shippingAddressValidators.zodIsMobilePhone.optional()
+},
+
+{
+    _id: false
 }).strict();
 
 const updateShippingAddressSuccessResponseSchema = z.object({

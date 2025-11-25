@@ -11,6 +11,9 @@ const cartItemRequestSchema = z.object({
     cart_item_image_uri: cartItemValidators.zodIsCartItemImageURI,
 
     cart_item_quantity: cartItemValidators.zodIsCartItemQuantity
+},
+{
+    _id: false
 });
 
 const cartItemResponseSchema = z.object({
@@ -37,6 +40,9 @@ const cartItemResponseArraySchema = z.array(cartItemResponseSchema).min(0);
 
 const updateCartItemPriceSchema = z.object({
     cart_item_price: cartItemValidators.zodIsCartItemPrice
+},
+{
+    _id: false
 });
 
 

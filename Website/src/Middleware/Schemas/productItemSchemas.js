@@ -81,9 +81,6 @@ const shirtRequestSchema = z.object({
     quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
 
     current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-},
-{
-    _id: false
 }).strict();
 
 // Used for jeans and chinos too.
@@ -97,9 +94,6 @@ const pantRequestSchemaWithNumbers = z.object({
     quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
 
     current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-},
-{
-    _id: false
 }).strict();
 
 const pantRequestSchemaWithLetters = z.object({
@@ -112,9 +106,6 @@ const pantRequestSchemaWithLetters = z.object({
     quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
 
     current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-},
-{
-    _id: false
 }).strict();
 
 const shortRequestSchemaWithLetters = z.object({
@@ -125,9 +116,6 @@ const shortRequestSchemaWithLetters = z.object({
     quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer.").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
 
     current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer.").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-},
-{
-    _id: false
 }).strict();
 
 const shortRequestSchemaWithNumbers = z.object({
@@ -139,9 +127,6 @@ const shortRequestSchemaWithNumbers = z.object({
     quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
 
     current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-},
-{
-    _id: false
 }).strict();
 /////////////////////////////////////////////////////////////////////////
 const shirtResponseSchema = z.object({

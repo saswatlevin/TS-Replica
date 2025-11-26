@@ -4,14 +4,18 @@ const argon2 = require('argon2');
 const _ = require('lodash');
 const getCurrentDateTime = require('../getCurrentDateTime');
 const asyncErrorHandler = require('../ErrorHandlers/asyncErrorHandler');
-const { checkIsEmptyObject, checkUserExists, checkUserValueExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
+const { checkIsEmptyObject, checkUserExists, checkUserValueExists, checkDuplicateUserEmailExists, checkDuplicateUserPhoneNumberExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
 const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
 const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError');
+const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
 
 // CREATES A NEW USER
 const registerUser = asyncErrorHandler( async (req, res, next) => {
 
     console.log("In registerUser");
+
+    const email = req.body.email;
+    const phone_number = req.body.phone_number;
 
     console.log("Checking if the request body is empty");
     if(checkIsEmptyObject(req) === true) {
@@ -19,7 +23,18 @@ const registerUser = asyncErrorHandler( async (req, res, next) => {
         throw empty_request_body_error;
     }
 
-    
+    console.log("Checking if a user with the same email already exists or not");
+    if (await checkDuplicateUserEmailExists(req) === true) {
+        const duplicate_document_error = new DuplicateDocumentError(`Cannot create this user as a user with this email: ${email} already exists.`);
+        throw duplicate_document_error;
+    }
+
+    console.log("Checking if a user with the same phone_number already exists or not");
+    if (await checkDuplicateUserPhoneNumberExists(req) === true) {
+        const duplicate_document_error = new DuplicateDocumentError(`Cannot create this user as a user with this phone number: ${phone_number} already exists.`);
+        throw duplicate_document_error;
+    }
+
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
     console.log("request_body_deep_clone ", request_body_deep_clone);
 

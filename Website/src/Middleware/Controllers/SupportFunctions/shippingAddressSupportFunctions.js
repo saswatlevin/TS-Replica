@@ -43,8 +43,12 @@ const checkDuplicateUserExists = async(req) => {
     
     try {
         const email = req.body.email;
+
+        const first_name = req.body.first_name;
+
+        const last_name = req.body.last_name
     
-        const user_query = {email: email};
+        const user_query = {first_name: first_name, last_name: last_name, email: email};
     
         const result = await User.findOne(user_query);
 

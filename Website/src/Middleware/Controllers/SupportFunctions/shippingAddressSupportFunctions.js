@@ -46,9 +46,11 @@ const checkDuplicateUserExists = async(req) => {
 
         const first_name = req.body.first_name;
 
-        const last_name = req.body.last_name
+        const last_name = req.body.last_name;
+
+        const phone_number = req.body.phone_number;
     
-        const user_query = {first_name: first_name, last_name: last_name, email: email};
+        const user_query = {first_name: first_name, last_name: last_name, email: email, phone_number: phone_number};
     
         const result = await User.findOne(user_query);
 
@@ -63,6 +65,52 @@ const checkDuplicateUserExists = async(req) => {
 
     catch(error) {
         console.log("Error in checkDuplicateUserExists ", error);
+        return error;
+    }
+}
+
+const checkDuplicateUserEmailExists = async(req) => {
+    try {
+        const email = req.body.email;
+    
+        const user_query = {email: email};
+    
+        const result = await User.findOne(user_query);
+
+        if (result === null) {
+            return false;
+        }
+
+        else {
+            return true;
+        }
+    }
+
+    catch(error) {
+        console.log("Error in checkDuplicateUserEmailExists ", error);
+        return error;
+    }
+}
+
+const checkDuplicateUserPhoneNumberExists = async(req) => {
+    try {
+        const phone_number = req.body.phone_number;
+    
+        const user_query = {phone_number: phone_number};
+    
+        const result = await User.findOne(user_query);
+
+        if (result === null) {
+            return false;
+        }
+
+        else {
+            return true;
+        }
+    }
+
+    catch(error) {
+        console.log("Error in checkDuplicateUserPhoneNumberExists ", error);
         return error;
     }
 }
@@ -168,7 +216,8 @@ const checkIsEmptyObject = (object) => {
 
 module.exports = {
     checkUserExists,
-    checkDuplicateUserExists,
+    checkDuplicateUserEmailExists,
+    checkDuplicateUserPhoneNumberExists,
     checkUserValueExists,
     checkShippingAddressExists,
     checkDuplicateShippingAddressExists,

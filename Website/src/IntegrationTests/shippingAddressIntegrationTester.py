@@ -1,7 +1,7 @@
 from requestFunctions import *
 
 ##====SHIPPING ADDRESS API INTEGRATION TESTING====##
-create_shipping_address_url_user_1 = "http://localhost:3500/shippingaddresses/createshippingaddress/f0c81fc59083"
+#create_shipping_address_url_user_1 = "http://localhost:3500/shippingaddresses/createshippingaddress/d2a986a0cab3"
 
 create_shipping_address_set_1 = {
 	"address_type_id": "1",
@@ -18,7 +18,7 @@ create_shipping_address_set_1 = {
 #create_shipping_address_response_1 = postRequests(create_shipping_address_url_user_1, create_shipping_address_set_1)
 #print("TEST 1 - Create a shipping address (createShippingAddress) ", create_shipping_address_response_1.text)
 
-create_shipping_address_url_user_2 = "http://localhost:3500/shippingaddresses/createshippingaddress/a6903c5d1ec0"
+#create_shipping_address_url_user_2 = "http://localhost:3500/shippingaddresses/createshippingaddress/f6c13bd3c15c"
 create_shipping_address_set_2a = {
 	"address_type_id": "1",
 	"company_name": "",
@@ -76,14 +76,14 @@ update_shipping_address_set_3c = {
 #print("TEST 3c - Update Shipping Address Set 3c ", update_shipping_address_response_3c.text)
 
 #//////////Search for a Shipping Address/////////#
-search_shipping_address_url = "http://localhost:3500/shippingaddresses/searchshippingaddress/f0c81fc59083"
+#search_shipping_address_url = "http://localhost:3500/shippingaddresses/searchshippingaddress/f0c81fc59083"
 search_shipping_address_set_1 = {
 	"city": "Tokyo",
 	"country": "Japan"
 }
 
-search_shipping_address_response_1 = getRequests(search_shipping_address_url, search_shipping_address_set_1)
-print("TEST 1 - Search Shipping Address Set 1 ", search_shipping_address_response_1.text)
+#search_shipping_address_response_1 = getRequests(search_shipping_address_url, search_shipping_address_set_1)
+#print("TEST 1 - Search Shipping Address Set 1 ", search_shipping_address_response_1.text)
 
 #///////Get shipping Address////#
 #get_shipping_address_url = "http://localhost:3500/shippingaddresses/getshippingaddressbyid/a6903c5d1ec0"
@@ -95,7 +95,7 @@ get_shipping_address_set_1 = {
 #print("TEST 1 - Get Shipping Address By Id Set 1 ", get_shipping_address_response_1.text)
 
 #///////Delete shipping Address//////#
-delete_shipping_address_url = "http://localhost:3500/shippingaddresses/deleteshippingaddressbyid/f0c81fc59083"
+#delete_shipping_address_url = "http://localhost:3500/shippingaddresses/deleteshippingaddressbyid/f0c81fc59083"
 delete_shipping_address_set_1 = {
 	"shipping_address_id": "d4dba979a2af"
 }

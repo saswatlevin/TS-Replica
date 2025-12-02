@@ -20,8 +20,8 @@ create_user_set_1 = {
     "CartItems": []
 }
 
-create_user_response_1 = postRequests(create_user_url, create_user_set_1)
-print("TEST 1 - Create a User (registerUser) ", create_user_response_1.text)
+#create_user_response_1 = postRequests(create_user_url, create_user_set_1)
+#print("TEST 1 - Create a User (registerUser) ", create_user_response_1.text)
 
 
 create_user_set_1a = {
@@ -41,8 +41,8 @@ create_user_set_1a = {
     "CartItems": []
 }
 
-create_user_response_1a = postRequests(create_user_url, create_user_set_1a)
-print("TEST 1a - Create a User (registerUser) ", create_user_response_1a.text)
+#create_user_response_1a = postRequests(create_user_url, create_user_set_1a)
+#print("TEST 1a - Create a User (registerUser) ", create_user_response_1a.text)
 
 
 create_user_set_1b = {
@@ -62,8 +62,28 @@ create_user_set_1b = {
     "CartItems": []
 }
 
-create_user_response_1b = postRequests(create_user_url, create_user_set_1b)
-print("TEST 1b - Create a User (registerUser) ", create_user_response_1b.text)
+#create_user_response_1b = postRequests(create_user_url, create_user_set_1b)
+#print("TEST 1b - Create a User (registerUser) ", create_user_response_1b.text)
+
+create_user_set_1c = {
+    "email": "abc001@server.com",
+	"password": "SakuraKai@1982",
+	"phone_number": "917349700297",
+	"first_name": "ABC",
+	"last_name": "CBA",
+	"user_role": "user",
+	"upper_size_number": 44,
+	"upper_size_letter": "XL",
+	"lower_size_number": 36,
+	"others_size_letter": "XL",
+	"email_comms_type": "One weekly recap",
+	"sms_comms": True,
+    "ShippingAddresses": [],
+    "CartItems": []
+}
+
+#create_user_response_1c = postRequests(create_user_url, create_user_set_1c)
+#print("TEST 1c - Create a User (registerUser) ", create_user_response_1c.text)
 
 create_user_set_2 = {
     "email": "def001@server.com",
@@ -86,7 +106,7 @@ create_user_set_2 = {
 #print("TEST 2 - Create a User (registerUser) ", create_user_response_2.text)
 
 #////////////////Update a User////////////////#
-update_user_url = "http://localhost:3500/users/updateuser/a6903c5d1ec0"
+update_user_url = "http://localhost:3500/users/updateuser/dfe0d0bfd2f8"
 update_user_set_1 = {
 	"email": "fed002@server.com"
 }

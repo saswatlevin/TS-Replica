@@ -2,11 +2,11 @@ from requestFunctions import *
 
 ##====CART ITEM API INTEGRATION TESTING====##
 #////////////////Create a Cart Item////////////////#
-#create_cart_item_url = "http://localhost:3500/cartitems/createcartitem/f0c81fc59083"
 
+#create_cart_item_url = "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3"
 create_cart_item_set_1 = {
-    "product_id": "ed0234cc8bbc",
-    "sku": "60dac512b5",
+    "product_id": "280bf679bf17",
+    "sku": "d3b0af0871",
     "cart_item_name": "The Craftsman Shirt in Bark Plaid Linen",
     "cart_item_price": 128,
     "cart_item_image_uri":"C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-SleevedShirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
@@ -16,7 +16,7 @@ create_cart_item_set_1 = {
 #create_cart_item_response_1 = postRequests(create_cart_item_url, create_cart_item_set_1)
 #print("TEST 1 - Create a Cart Item ", create_cart_item_response_1.text)
 
-create_cart_item_url_2 = "http://localhost:3500/cartitems/createcartitem/a6903c5d1ec0"
+#create_cart_item_url_2 = "http://localhost:3500/cartitems/createcartitem/f6c13bd3c15c"
 create_cart_item_set_2a = {
     "product_id": "prl5dyv7n0bx",
     "sku": "mqusuae9r0",

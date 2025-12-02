@@ -2,23 +2,13 @@ const z = require('zod');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const productValidators = require('../Validators/CustomValidators/productValidators');
 const objectIdSchema = require('./objectIdSchema');
-const {productImageArrayRequestSchema, productImageArraySchema, productImageArrayResponseSchema } = require('./productImageSchemas');
-const {productItemSchemasUnion, productItemRequestSchemasUnion, productItemResponseSchemasUnion} = require('./productItemSchemas');
-// const { shirtJackOxford, pantBreakwaterRinsed, pantPainterCanvas, shortApresNavy, shortCampAgedPenny } = require('./TestObjects/testProductObjects');
+const {productImageArrayRequestSchema, productImageArrayResponseSchema } = require('./productImageSchemas');
+const {productItemRequestSchemasUnion, productItemResponseSchemasUnion} = require('./productItemSchemas');
 
 const productGarmentWeightSchema = z.object({
     garment_weight_description: productValidators.zodIsGarmentWeightDescription,
 
     garment_weight: productValidators.zodIsGarmentWeight
-   
-}).strict();
-
-const productGarmentWeightResponseSchema = z.object({
-    garment_weight_description: productValidators.zodIsGarmentWeightDescription,
-
-    garment_weight: productValidators.zodIsGarmentWeight,
-
-    _id: objectIdSchema
    
 }).strict();
 
@@ -30,14 +20,6 @@ const productSupplyTypeSchema = z.object({
     
 }).strict();
 
-const productSupplyTypeResponseSchema = z.object({
-    supply_type_description: productValidators.zodIsSupplyTypeDescription,
-
-    supply_type: productValidators.zodIsSupplyType,
-
-    _id: objectIdSchema
-    
-}).strict();
 
 const productRequestSchema = z.object({
     product_name: productValidators.zodIsProductName,
@@ -103,7 +85,7 @@ const searchProductSchema = z.object({
 }).strict();
 
 
-const productResponseSchema = z.object({
+const createProductResponseSchema = z.object({
     product_id: productValidators.zodIsProductId,
     
     docType: productValidators.zodIsProductDocType,
@@ -125,11 +107,11 @@ const productResponseSchema = z.object({
     // Remove \" from regex in the future.
     product_fit: productValidators.zodIsProductFit,
 
-    product_garment_weight: productGarmentWeightResponseSchema,
+    product_garment_weight: productGarmentWeightSchema,
 
     product_material: productValidators.zodIsProductMaterial,
 
-    product_supply_type: productSupplyTypeResponseSchema,
+    product_supply_type: productSupplyTypeSchema,
 
     product_specifications: productValidators.zodIsProductSpecifications,
     
@@ -142,7 +124,7 @@ const productResponseSchema = z.object({
     __v: customValidators.zodIsDocumentVersion
 }).strict();
 
-const updateProductResponseSchema = z.object({
+const productResponseSchema = z.object({
         _id: objectIdSchema,
     
         product_id: productValidators.zodIsProductId,
@@ -166,11 +148,11 @@ const updateProductResponseSchema = z.object({
         // Remove \" from regex in the future.
         product_fit: productValidators.zodIsProductFit,
     
-        product_garment_weight: productGarmentWeightResponseSchema,
+        product_garment_weight: productGarmentWeightSchema,
     
         product_material: productValidators.zodIsProductMaterial,
     
-        product_supply_type: productSupplyTypeResponseSchema,
+        product_supply_type: productSupplyTypeSchema,
     
         product_specifications: productValidators.zodIsProductSpecifications,
         
@@ -190,7 +172,7 @@ const productIdSchema = z.object({
     product_id: productValidators.zodIsProductId
 }).strict();
 
-const searchProductsArrayResponseSchema = z.array(updateProductResponseSchema);
+const searchProductsArrayResponseSchema = z.array(productResponseSchema);
 
 module.exports = {
     productGarmentWeightSchema,
@@ -198,8 +180,8 @@ module.exports = {
     productRequestSchema,
     updateProductSchema,
     searchProductSchema,
+    createProductResponseSchema,
     productResponseSchema,
-    updateProductResponseSchema,
     updateProductPriceSchema,
     productIdSchema,
     searchProductsArrayResponseSchema

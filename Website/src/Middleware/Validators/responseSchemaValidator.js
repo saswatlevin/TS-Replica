@@ -1,7 +1,7 @@
 const schemaValidator = require('./schemaValidator');
 const { registerUserResponseSchema, userResponseSchema, userResponseSchemaArray} = require('../Schemas/userSchemas');
 const { updateShippingAddressResponseSchema, shippingAddressResponseSchema, shippingAddressArrayZeroSchema } = require('../Schemas/shippingAddressSchemas');
-const { productResponseSchema, updateProductResponseSchema, searchProductsArrayResponseSchema } = require('../Schemas/productSchemas');
+const { createProductResponseSchema, productResponseSchema, searchProductsArrayResponseSchema } = require('../Schemas/productSchemas');
 const { cartItemResponseSchema } = require('../Schemas/cartItemSchemas');
 
 
@@ -44,12 +44,12 @@ const responseSchemaValidator = (request, object) => {
     }
 
     else if ((request.originalUrl.includes("/products/createproduct") === true && request.method === "POST")) {
-        return schemaValidator(productResponseSchema, object);
+        return schemaValidator(createProductResponseSchema, object);
     }
 
     else if ((request.originalUrl.includes("/products/updateproductgarmentweight") === true && request.method === "PATCH") || (request.originalUrl.includes("/products/updateproduct") === true && request.method === "PATCH")) {
-        console.log("##DEBUG - In updateProductResponseSchemaValidator option");
-        return schemaValidator(updateProductResponseSchema, object);
+        //console.log("##DEBUG - In productResponseSchemaValidator option");
+        return schemaValidator(productResponseSchema, object);
     }
 
     else if ((request.originalUrl.includes("/products/searchproducts") === true && request.method === "GET")) {

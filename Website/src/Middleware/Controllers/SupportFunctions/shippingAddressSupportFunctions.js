@@ -33,7 +33,7 @@ const checkUserExists = async(req) => {
 
 catch(error) {
     console.log("Error in checkUserExists ", error);
-    return error;
+    throw error;
 }
 
 };
@@ -65,7 +65,7 @@ const checkDuplicateUserExists = async(req) => {
 
     catch(error) {
         console.log("Error in checkDuplicateUserExists ", error);
-        return error;
+        throw error;
     }
 }
 
@@ -88,7 +88,7 @@ const checkDuplicateUserEmailExists = async(req) => {
 
     catch(error) {
         console.log("Error in checkDuplicateUserEmailExists ", error);
-        return error;
+        throw error;
     }
 }
 
@@ -111,7 +111,7 @@ const checkDuplicateUserPhoneNumberExists = async(req) => {
 
     catch(error) {
         console.log("Error in checkDuplicateUserPhoneNumberExists ", error);
-        return error;
+        throw error;
     }
 }
 
@@ -120,11 +120,8 @@ const checkUserValueExists = async(req) => {
 
     try{
 
-        const query = req.body;
-
-        if(query['password'] !== undefined || query['password'] !== null) {
-            query['password'] = await argon2.hash(query['password']);
-        }
+        const user_id = req.params.user_id;
+        const query = {user_id: user_id, ...req.body};
 
         const result = await User.findOne(query);
 
@@ -139,8 +136,40 @@ const checkUserValueExists = async(req) => {
 
     catch(error){
         console.log("Error in checkUserValueExists ", error);
-        return error;
+        throw error;
     }
+}
+
+const checkUserPasswordValueExists = async(req) => {
+    console.log("In checkUserPasswordExists");
+    
+    try {
+        const user_id = req.params.user_id;
+
+        const query = {user_id: user_id};
+
+        const plaintext_password = req.body.password;
+
+        const user = await User.findOne(query);
+
+        const password_hash = user.password;
+
+        console.log("plaintext_password ", plaintext_password);
+        console.log("password_hash ", password_hash);
+
+        const result = await argon2.verify(password_hash, plaintext_password);
+
+        return result;
+    }
+
+    catch(error) {
+        console.log("Error in checkUserPasswordExists ", error);
+        throw error;
+    }
+    
+
+
+
 }
 
 const checkShippingAddressExists = async(req) => {
@@ -167,7 +196,7 @@ const checkShippingAddressExists = async(req) => {
 
     catch (error) {
         console.log("Error in checkShippingAddressExists ", error);
-        return error;
+        throw error;
     }
 };
 
@@ -192,7 +221,7 @@ const checkDuplicateShippingAddressExists = async(req) => {
 
     catch (error) {
         console.log("Error in checkDuplicateShippingAddressExists ", error);
-        return error;   
+        throw error;   
     }
     
 };
@@ -210,6 +239,7 @@ const checkIsEmptyObject = (object) => {
 
     catch(error) {
         console.log("Error in checkIsEmptyObject ", error);
+        throw error;
     }
    
 }
@@ -219,6 +249,7 @@ module.exports = {
     checkDuplicateUserEmailExists,
     checkDuplicateUserPhoneNumberExists,
     checkUserValueExists,
+    checkUserPasswordValueExists,
     checkShippingAddressExists,
     checkDuplicateShippingAddressExists,
     checkIsEmptyObject

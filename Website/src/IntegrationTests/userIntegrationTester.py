@@ -106,16 +106,16 @@ create_user_set_2 = {
 #print("TEST 2 - Create a User (registerUser) ", create_user_response_2.text)
 
 #////////////////Update a User////////////////#
-update_user_url = "http://localhost:3500/users/updateuser/dfe0d0bfd2f8"
+update_user_url = "http://localhost:3500/users/updateuser/f6c13bd3c15c"
 update_user_set_1 = {
-	"email": "fed002@server.com"
+	"email": "fed004@server.com"
 }
 
 #update_user_response_1 = patchRequests(update_user_url, update_user_set_1)
 #print("TEST 1 - Update a user (updateUser) ", update_user_response_1.text)
 
 update_user_set_2 = {
-	"phone_number": "9175487255107"
+	"phone_number": "917548725510"
 }
 
 #update_user_response_2 = patchRequests(update_user_url, update_user_set_2)
@@ -156,34 +156,47 @@ update_user_set_7 = {
 #update_user_response_7 = patchRequests(update_user_url, update_user_set_7)
 #print("TEST 7 - Update a user (updateUser) ", update_user_response_7.text)
 
-update_user_set_8 = {
-	"lower_size_number": 34
-}
-
-#update_user_response_8 = patchRequests(update_user_url, update_user_set_8)
-#print("TEST 8 - Update a user (updateUser) ", update_user_response_8.text)
-
-update_user_set_8 = {
-	"others_size_letter": "M"
-}
-
-#update_user_response_8 = patchRequests(update_user_url, update_user_set_8)
-#print("TEST 8 - Update a user (updateUser) ", update_user_response_8.text)
-
 update_user_set_9 = {
-	"user_role": "admin",
-	"email_comms_type": "Never / Unsubscribe",
-	"sms_comms": True
+	"others_size_letter": "M"
 }
 
 #update_user_response_9 = patchRequests(update_user_url, update_user_set_9)
 #print("TEST 9 - Update a user (updateUser) ", update_user_response_9.text)
 
+update_user_set_10 = {
+	"user_role": "admin",
+	"email_comms_type": "Never / Unsubscribe",
+	"sms_comms": True
+}
+
+#update_user_response_10 = patchRequests(update_user_url, update_user_set_10)
+#print("TEST 10 - Update a user (updateUser) ", update_user_response_10.text)
+
 #////////Update User Password////////#
-update_password_url = "http://localhost:3500/users/updateuserpassword/a6903c5d1ec0"
+#update_password_url = "http://localhost:3500/users/updateuserpassword/f6c13bd3c15c"
 update_user_password_set_1 = {
 	"password": "Arzamas16@1962"
 }
 
-#update_user_password_set_1 = patchRequests(update_user_url, update_password_set_1)
-#print("TEST 1 - Update a User Password (updateUserPassword) ", update_user_password_set_1.text)
+#update_user_password_response_1 = patchRequests(update_password_url, update_user_password_set_1)
+#print("TEST 1 - Update a User Password (updateUserPassword) ", update_user_password_response_1.text)
+
+#////////Get User By Id////////#
+#get_user_by_id_url = "http://localhost:3500/users/getuserbyid"
+get_user_by_id_set_1 = {
+    "user_id": "f6c13bd3c15c"
+}
+
+#get_user_by_id_response_1 = getRequests(get_user_by_id_url, get_user_by_id_set_1)
+#print("TEST 1 - Get a User By Id ", get_user_by_id_response_1.text)
+
+#/////////Search User By Name/////////#
+#search_user_by_name_url = "http://localhost:3500/users/getusersbyname"
+
+search_user_by_name_set_1 = {
+    "first_name": "DEEF",
+    "last_name": "FEED"
+}
+
+#search_user_by_name_response_1 = getRequests(search_user_by_name_url, search_user_by_name_set_1)
+#print("TEST 1 - Get a User by Name ", search_user_by_name_response_1.text)

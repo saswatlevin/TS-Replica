@@ -4,8 +4,9 @@ const argon2 = require('argon2');
 const _ = require('lodash');
 const getCurrentDateTime = require('../getCurrentDateTime');
 const asyncErrorHandler = require('../ErrorHandlers/asyncErrorHandler');
-const { checkIsEmptyObject, checkUserExists, checkUserValueExists, checkDuplicateUserEmailExists, checkDuplicateUserPhoneNumberExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
+const { checkIsEmptyObject, checkUserExists, checkUserValueExists, checkUserPasswordValueExists, checkDuplicateUserEmailExists, checkDuplicateUserPhoneNumberExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
 const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
+const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundError');
 const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError');
 const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
 
@@ -89,14 +90,14 @@ const updateUser = asyncErrorHandler( async(req, res, next) => {
     }
 
     console.log("Checking if the user exists");
-    if (await checkUserExists(req) === true) {
-        const user_not_found_error = new ResourceNotFoundError(`Could not update the user with ${user_id} since that user does not exist.`);
+    if (await checkUserExists(req) === false) {
+        const user_not_found_error = new ResourceNotFoundError(`Could not update the user with user_id ${user_id} since that user does not exist.`);
         throw user_not_found_error;
     }
 
     console.log("Checking if the user already contains updated values");
     if (await checkUserValueExists(req) === true) {
-        const redundant_update_error = new RedundantUpdateError(`Cannot update the user with ${user_id} since it already contains the updated values`);
+        const redundant_update_error = new RedundantUpdateError(`Cannot update the user with user_id ${user_id} since it already contains the updated values`);
         throw redundant_update_error;
     }
 
@@ -132,7 +133,7 @@ const updateUser = asyncErrorHandler( async(req, res, next) => {
 const updateUserPassword = asyncErrorHandler( async(req, res, next) => {
 
     console.log("In updateUserPassword ");
-
+    
     const user_id = req.params.user_id;
 
     console.log("Checking if the request_body is empty");
@@ -142,14 +143,14 @@ const updateUserPassword = asyncErrorHandler( async(req, res, next) => {
     }
 
     console.log("Checking if the user exists or not");
-    if(await checkUserExists(req) === true) {
+    if(await checkUserExists(req) === false) {
         const user_not_found_error = new ResourceNotFoundError(`Could not update the password of the user with ${user_id} since it does not exist`);
         throw user_not_found_error;
     }
 
 
     console.log("Checking if the user already contains the updated password");
-    if (await checkUserValueExists(req) === true) {
+    if (await checkUserPasswordValueExists(req) === true) {
         const redundant_update_error = new RedundantUpdateError(`Cannot update the password of the user with ${user_id} since it has already been updated.`);
         throw redundant_update_error;
     }
@@ -161,7 +162,7 @@ const updateUserPassword = asyncErrorHandler( async(req, res, next) => {
     var filter = {user_id: user_id};
     console.log("filter ", filter);
 
-    const updated_password = requestBody["password"];
+    const updated_password = request_body_deep_clone["password"];
     console.log("updated_password ", updated_password);
 
 
@@ -177,7 +178,7 @@ const updateUserPassword = asyncErrorHandler( async(req, res, next) => {
 
     console.log("result ", result);
 
-    res.status(200).json(updateResult);
+    res.status(200).json(result);
 
     console.log("===END OF updateUserPassword===");
 });
@@ -195,7 +196,7 @@ const getUserById = asyncErrorHandler( async(req, res, next) => {
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
     console.log("request_body_deep_clone ", request_body_deep_clone);
 
-    const result = await User.findOne(request_body_deep_clone);
+    const result = await User.findOne(request_body_deep_clone).lean();
     console.log("result ", result);
 
     res.status(201).json(result);
@@ -215,7 +216,7 @@ const searchUsersByName = asyncErrorHandler( async(req, res, next) => {
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
     console.log("request_body_deep_clone ", request_body_deep_clone);
 
-    const result = await User.find(request_body_deep_clone);
+    const result = await User.find(request_body_deep_clone).lean();
     console.log("result ", result);
 
     res.status(201).json(result);

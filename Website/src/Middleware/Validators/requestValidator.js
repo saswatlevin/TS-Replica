@@ -11,9 +11,9 @@ const requestValidator = (schema) => {
         const requestBody = req.body;
         const validationResult = schemaValidator(schema, requestBody);
 
-        if(!validationResult.success) {
+        /*if(!validationResult.success) {
             console.log("validationResult?.error?.errors ", validationResult?.error?.errors);
-        }
+        }*/
 
         req.body = validationResult;
 

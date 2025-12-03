@@ -9,7 +9,7 @@ const globalErrorHandler = (error, req, res, next) => {
 
     if ((error instanceof ZodError) === false) {
 
-        console.log("globalErrorHandler detects a non-Zod Error");
+        console.log("globalErrorHandler detects a non-Zod Error ", error);
         res.status(error?.statusCode).json({
             status: error?.status,
             statusCode: error?.statusCode,

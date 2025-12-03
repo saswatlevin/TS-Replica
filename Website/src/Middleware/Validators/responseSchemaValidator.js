@@ -15,7 +15,7 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(registerUserResponseSchema, object['result']);
     }
 
-    else if ((request.originalUrl === "/users/updateuser" || request.originalUrl === "/users/updateuserpassword") && request.method === "PATCH") {
+    else if ((request.originalUrl.includes("/users/updateuser") === true || request.originalUrl.includes("/users/updateuserpassword") === true) && request.method === "PATCH") {
         return schemaValidator(userResponseSchema, object);
     }
 

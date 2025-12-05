@@ -2,44 +2,63 @@ const mongoose = require('mongoose');
 const Product = require('../../Models/Product');
 
 const checkProduct = async(req) => {
+    
+    // USES REQ.PARAMS
     console.log("In checkProduct");
 
-    const product_id = req.params.product_id;
-    //console.log("##DEBUG - product_id in checkProduct ", product_id);
+    try{
+        const product_id = req.params.product_id;
+        //console.log("##DEBUG - product_id in checkProduct ", product_id);
 
-    const product_search_object = {product_id: product_id};
-    //console.log("##DEBUG - product_search_object in checkProduct ", product_search_object);
+        const product_search_object = {product_id: product_id};
+        //console.log("##DEBUG - product_search_object in checkProduct ", product_search_object);
     
-    const result = await Product.findOne(product_search_object);
-    //console.log("##DEBUG - result in checkProduct ", result);
+        const result = await Product.findOne(product_search_object);
+        //console.log("##DEBUG - result in checkProduct ", result);
     
-    if (result === null || result.length === 0) {
-       //console.log("##DEBUG - Returning false in checkProduct");
-       return false;
+        if (result === null || result.length === 0) {
+            //console.log("##DEBUG - Returning false in checkProduct");
+            return false;
+        }
+
+        //console.log("##DEBUG - Returning true in checkProduct");
+        return true;
     }
 
-    //console.log("##DEBUG - Returning true in checkProduct");
-    return true;
+    catch(error) {
+        console.log("Error in checkProduct ", error);
+        throw error;
+    }
 };
 
-const checkDuplicateProduct = async(request_body) => {
+const checkDuplicateProduct = async(req) => {
     console.log("In checkDuplicateProduct");
     
-    const product_name = request_body.product_name;
-    const product_description = request_body.product_description;
+    try {
+        const product_name = req.body.product_name;
+        const product_description = req.body.product_description;
     
-    const product_search_object = {
-        product_name: product_name, 
-        product_description: product_description
-    };
+        const product_search_object = {
+            product_name: product_name, 
+            product_description: product_description
+        };
+        
+        //console.log("product_search_object in checkDuplicateProduct() ", product_search_object);
+        const result = await Product.findOne(product_search_object);
+        //console.log("result in checkDuplicateProduct() ", result);
     
-    const result = await Product.findOne(product_search_object);
+        if (result === null) {
+            return false;
+        }
     
-    if (result === null) {
-       return false;
+        return true;
     }
-    
-    return true;
+
+    catch(error) {
+        console.log("Error in checkDuplicateProduct ", error);
+        throw error;
+    }
+
 };
 
 const insertAt = (obj, key, value, position) => {
@@ -53,11 +72,12 @@ const insertAt = (obj, key, value, position) => {
 
     catch(error) {
         console.log("Error in insertAt ", error);
-        return error;
+        throw error;
     }
 }
 
 const checkProductValueExists = async(req) => {
+    // USES REQ.PARAMS
     console.log("In checkProductValueExists");
     
     try {
@@ -84,7 +104,7 @@ const checkProductValueExists = async(req) => {
 
     catch(error) {
         console.log("Error in checkProductValueExists ", error);
-        return error;
+        throw error;
     }
 }
 
@@ -92,6 +112,7 @@ const checkProductGarmentWeightValueExists = async(req) => {
     console.log("In checkProductGarmentWeightValueExists");
     
     try {
+        // USES REQ.PARAMS
         const request_body = req.body;
         //console.log("##DEBUG request_body in checkProductGarmentWeightValueExists ", request_body);
         const product_id = req.params.product_id;
@@ -123,7 +144,7 @@ const checkProductGarmentWeightValueExists = async(req) => {
 
     catch(error) {
         console.log("Error in checkProductGarmentWeightValueExists ", error);
-        return error;
+        throw error;
     }
 }
 
@@ -131,6 +152,7 @@ const checkProductSupplyTypeValueExists = async(req) => {
     console.log("In checkProductSupplyTypeValueExists");
     
     try {
+        // USES REQ.PARAMS
         const request_body = req.body;
         //console.log("##DEBUG request_body in checkProductSupplyTypeValueExists ", request_body);
         const product_id = req.params.product_id;
@@ -163,7 +185,7 @@ const checkProductSupplyTypeValueExists = async(req) => {
 
     catch(error) {
         console.log("Error in checkProductSupplyTypeValueExists ", error);
-        return error;
+        throw error;
     }
 }
 
@@ -174,4 +196,4 @@ module.exports = {
     checkProductValueExists,
     checkProductGarmentWeightValueExists,
     checkProductSupplyTypeValueExists
-}
+};

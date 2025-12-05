@@ -62,7 +62,7 @@ create_product_data = {
 #/////////////Test 2: Update a product garment weight (updateProductGarmentWeight)/////////////#
 #print("TEST 2 - Update a product garment weight (updateProductGarmentWeight)")
 
-#update_product_garment_weight_url = "http://localhost:3500/products/updateproductgarmentweight/1400bfd3abc6"
+update_product_garment_weight_url = "http://localhost:3500/products/updateproductgarmentweight/a6bb1d23bd28"
 
 ####Update garment_weight_description and garment_weight - 1#### 
 update_product_garment_weight_data_set_1 = {
@@ -70,7 +70,7 @@ update_product_garment_weight_data_set_1 = {
     "garment_weight": "Medium"
 }
 
-#response = patchRequests(update_product_garment_weight_url, update_product_garment_weight_data_set_1)
+#response = patchRequests(update_product_garment_weight_url, #update_product_garment_weight_data_set_1)
 #print("update_product_garment_weight_data_set_1 response ", response.text)
 
 
@@ -82,7 +82,7 @@ update_product_garment_weight_data_set_2 = {
 }
 
 #response = patchRequests(update_product_garment_weight_url, update_product_garment_weight_data_set_2)
-#print("update_product_garment_weight_data_set_2 ", response)
+#print("update_product_garment_weight_data_set_2 ", response.text)
 
 
 ####Update garment_weight_description while keeping garment_weight the same####
@@ -92,7 +92,7 @@ update_product_garment_weight_data_set_3 = {
 }
 
 #response = patchRequests(update_product_garment_weight_url, update_product_garment_weight_data_set_3)
-#print("update_product_garment_weight_data_set_3 ", response)
+#print("update_product_garment_weight_data_set_3 ", response.text)
 
 ####Update garment_weight while keeping garment_weight_description the same####
 update_product_garment_weight_data_set_4 = {
@@ -101,11 +101,11 @@ update_product_garment_weight_data_set_4 = {
 }
 
 #response = patchRequests(update_product_garment_weight_url, update_product_garment_weight_data_set_4)
-#print("update_product_garment_weight_data_set_4 ", response)
+#print("update_product_garment_weight_data_set_4 ", response.text)
 
 #/////////////Test 3: Update Any Field in a Product (updateProduct)/////////////#
 ####Update the product name keeping all other KV pairs unchanged####
-update_product_url = "http://localhost:3500/products/updateproduct/a75ceb92e130"
+update_product_url = "http://localhost:3500/products/updateproduct/a6bb1d23bd28"
 #print("TEST 3 (updateProduct) - Update the product name keeping all other KV pairs unchanged")
 
 update_product_data_set_1 = {
@@ -142,7 +142,7 @@ update_product_data_set_5 = {
 #print("TEST 3 (updateProduct) - Update product subcategory response ", update_product_subcategory_response.text)
 
 update_product_data_set_6 = {
-  "product_subcategory_type": "Long-Sleeved Shirt"
+  "product_subcategory_type": "Oxford"
 }
 
 #update_product_subcategory_type_response = patchRequests(update_product_url, update_product_data_set_6)
@@ -171,7 +171,7 @@ update_product_data_set_9 = {
 
 #/////////////Test 4: Update product supply type in a Product (updateProductSupplyType)/////////////#
 ####Update the supply_type_description only keeping supply_type the same####
-update_product_supply_type_url = "http://localhost:3500/products/updateproductsupplytype/a75ceb92e130"
+update_product_supply_type_url = "http://localhost:3500/products/updateproductsupplytype/a6bb1d23bd28"
 
 update_product_supply_type_data_set_1 = {
   "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
@@ -221,8 +221,8 @@ search_products_data_set_3 = {
   "product_subcategory": "Shirt"
 }
 
-#response = getRequests(search_products_url, search_products_data_set_3)
-#print("TEST 5 (searchProducts) - Search for a product by product subcategory only response ", response.text)
+response = getRequests(search_products_url, search_products_data_set_3)
+print("TEST 5 (searchProducts) - Search for a product by product subcategory only response ", response.text)
 
 #/////////////Test 6: Update a Product price (updateProductPrice)/////////////#
 update_product_price_url = "http://localhost:3500/products/updateproductprice/ed0234cc8bbc"

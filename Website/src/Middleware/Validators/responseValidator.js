@@ -42,7 +42,7 @@ const responseValidator = (req, res, next) => {
         // i.e., the response body contains an error object (We will detect this by detecting its message).
         else if (body.message && body.length === undefined) {
             console.log("An error occurred due to the request data or in the API function.");
-            console.log("body.length ", body.length);   
+            //console.log("body.length ", body.length);   
             // Get the original response
             res.json = originalJson;
             // Return the response body
@@ -80,7 +80,7 @@ const responseValidator = (req, res, next) => {
     }
 
 
-    console.log("Before next() in responseValidator");
+    //console.log("Before next() in responseValidator");
     next();
 
 }

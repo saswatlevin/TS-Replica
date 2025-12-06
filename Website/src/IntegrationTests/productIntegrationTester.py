@@ -221,12 +221,11 @@ search_products_data_set_3 = {
   "product_subcategory": "Shirt"
 }
 
-response = getRequests(search_products_url, search_products_data_set_3)
-print("TEST 5 (searchProducts) - Search for a product by product subcategory only response ", response.text)
+#response = getRequests(search_products_url, search_products_data_set_3)
+#print("TEST 5 (searchProducts) - Search for a product by product subcategory only response ", response.text)
 
 #/////////////Test 6: Update a Product price (updateProductPrice)/////////////#
-update_product_price_url = "http://localhost:3500/products/updateproductprice/ed0234cc8bbc"
-
+update_product_price_url = "http://localhost:3500/products/updateproductprice/d2a986a0cab3/a6bb1d23bd28"
 update_product_price_data_set_1 = {
   "product_price": 100
 }

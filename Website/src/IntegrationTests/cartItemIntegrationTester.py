@@ -3,11 +3,11 @@ from requestFunctions import *
 ##====CART ITEM API INTEGRATION TESTING====##
 #////////////////Create a Cart Item////////////////#
 
-#create_cart_item_url = "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3"
+create_cart_item_url = "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3/a6bb1d23bd28"
 create_cart_item_set_1 = {
-    "product_id": "280bf679bf17",
-    "sku": "d3b0af0871",
-    "cart_item_name": "The Craftsman Shirt in Bark Plaid Linen",
+    "product_id": "a6bb1d23bd28",
+    "sku": "4565314a71",
+    "cart_item_name": "The Craftsman Shirt in Bark Plaid COTTON",
     "cart_item_price": 128,
     "cart_item_image_uri":"C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-SleevedShirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
     "cart_item_quantity": 1

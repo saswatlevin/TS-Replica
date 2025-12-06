@@ -5,6 +5,6 @@ const requestValidator = require('../Validators/requestValidator');
 const cartItemSchemas = require('../Schemas/cartItemSchemas');
 const { xss } = require('express-xss-sanitizer');
 
-router.route('/createcartitem/:user_id').post(requestValidator(cartItemSchemas.cartItemRequestSchema), xss(), cartItemControllers.createCartItem);
+router.route('/createcartitem/:user_id/:product_id').post(requestValidator(cartItemSchemas.cartItemRequestSchema), xss(), cartItemControllers.createCartItem);
 
 module.exports = router;

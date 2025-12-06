@@ -1,0 +1,27 @@
+=====HOW THE updateProductPrice FUNCTION WORKS=====
+The route to updateCartItem contains the following route address ("/updateproductprice/:user_id/:product_id")
+
+The updateProductPrice function does the following:
+  * It gets the product_id.
+  * It checks whether the request object is empty or not.
+  * It checks whether the product price value to be updated already exists or not.
+  * It creates a DEEP CLONE of the request body.
+  * It creates a filter that consists of only the product_id.
+  * It creates a SHALLOW COPY of the DEEP CLONE, called updated_object.
+  * It calls findoneAndUpdate() with the filter and the update object to update the product price.
+  * We get the result from findOneAndUpdate().
+  * We pass the updated_product_price from the update result to req.params.
+  * We call updateCartItemPrice().
+  * We get the result from updateCartItemPrice().
+  * We put the both the results into an array.
+  * We send back only the first result.
+
+The updateCartItem function does the following:
+  * It gets the user_id.
+  * It gets the cart_item_id.
+  * It checks if the user exists.
+  * It checks if the cart_item exists.
+  * It creates a filter with user_id and cart_item_id.
+  * It gets the updated_cart_item_price from req.params.
+  * 
+=====HOW THE updateProductPrice FUNCTION WORKS=====

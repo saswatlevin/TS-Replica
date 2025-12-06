@@ -7,6 +7,7 @@ updateCartItemPrice ->
 * Check if the cart item exists or not, if not, throw a ResourceNotFoundError.
 * Create the filter: {user_id: user_id, cart_item_id: cart_item_id}.
 * Create a Query object from the request_body which contains {'CartItems.$.cart_item_price': value}
+* Check if the updated cart item price value already exists, if so, throw a RedundantUpdateError.
 * Use findOneAndUpdate() to update the price of that cart item.
 * Return the result.
 
@@ -32,5 +33,5 @@ NOTE: updateCartItemPrice is an express HELPER FUNCTION and not a middleware.
   }
 ); */
 
-mongod --dbpath="C:\data\db"
+mongod --port 27017 --dbpath C:\data\db
 mongodb://localhost:27017/

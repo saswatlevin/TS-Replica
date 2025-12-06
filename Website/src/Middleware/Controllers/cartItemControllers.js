@@ -7,7 +7,7 @@ const _ = require('lodash');
 const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
 const User = require('../Models/User');
 const { checkIsEmptyObject, checkUserExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
-const checkCartItemExists = require('./SupportFunctions/cartItemSupportFunctions');
+const { checkCartItemExists } = require('./SupportFunctions/cartItemSupportFunctions');
 
 const createCartItem = asyncErrorHandler(async (req, res, next) => {
     console.log("In createCartItem");
@@ -62,8 +62,8 @@ const updateCartItemPrice = async (req) => {
         const user_id = req.params.user_id;
         console.log("user_id ", user_id);
 
-        const cart_item_id = req.params.cart_item_id;
-        console.log("cart_item_id ", cart_item_id);
+        const product_id = req.params.product_id;
+        console.log("product_id ", product_id);
 
         console.log("Checking if the user exists");
         if (await checkUserExists(req) === false) {
@@ -72,19 +72,16 @@ const updateCartItemPrice = async (req) => {
         }
 
         console.log("Checking if the cart item exists");
-        const cart_item_exists = await checkCartItemExists(req);
-
-
-        if (cart_item_exists === false) {
+        if (await checkCartItemExists(req) === false) {
             const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item price since the cart item with cart_item_id ${cart_item_id} does not exist.`);
             throw cart_item_not_found_error;
         }
-
-        const filter = { user_id: user_id, "CartItems.cart_item_id": cart_item_id };
+        
+        const filter = { user_id: user_id, "CartItems.product_id": product_id };
         console.log("filter ", filter);
 
         const updated_cart_item_price = req.params.updated_product_price;
-        console.log("updated_cart_item_price ", updated_cart_item_price);
+        //console.log("updated_cart_item_price ", updated_cart_item_price);
 
         const update_object = {
             $set: {
@@ -96,10 +93,11 @@ const updateCartItemPrice = async (req) => {
 
         const result = await User.findOneAndUpdate(filter, update_object, { new: true, select: "CartItems" }, { runValidators: true }).lean();
 
-        console.log("result ", result);
+        console.log("result in updateCartItemPrice ", result);
 
+        console.log("===END OF updateCartItemPrice===");
+        
         return result;
-
     }
 
     catch (error) {
@@ -107,7 +105,6 @@ const updateCartItemPrice = async (req) => {
         throw error;
     }
 };
-
 
 module.exports = {
     createCartItem,

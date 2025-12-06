@@ -3,7 +3,7 @@ const Product = require('../../Models/Product');
 
 const checkProduct = async(req) => {
     
-    // USES REQ.PARAMS
+    // USES REQ.PARAMS -> PRODUCT ID
     console.log("In checkProduct");
 
     try{
@@ -77,7 +77,7 @@ const insertAt = (obj, key, value, position) => {
 }
 
 const checkProductValueExists = async(req) => {
-    // USES REQ.PARAMS
+    // USES REQ.PARAMS -> PRODUCT ID
     console.log("In checkProductValueExists");
     
     try {
@@ -112,7 +112,7 @@ const checkProductGarmentWeightValueExists = async(req) => {
     console.log("In checkProductGarmentWeightValueExists");
     
     try {
-        // USES REQ.PARAMS
+        // USES REQ.PARAMS -> PRODUCT ID
         const request_body = req.body;
         //console.log("##DEBUG request_body in checkProductGarmentWeightValueExists ", request_body);
         const product_id = req.params.product_id;
@@ -152,7 +152,7 @@ const checkProductSupplyTypeValueExists = async(req) => {
     console.log("In checkProductSupplyTypeValueExists");
     
     try {
-        // USES REQ.PARAMS
+        // USES REQ.PARAMS -> PRODUCT ID
         const request_body = req.body;
         //console.log("##DEBUG request_body in checkProductSupplyTypeValueExists ", request_body);
         const product_id = req.params.product_id;
@@ -178,7 +178,7 @@ const checkProductSupplyTypeValueExists = async(req) => {
         }
 
         else {    
-            console.log("##DEBUG Returning true in checkProductSupplyTypeValueExists ");
+            //console.log("##DEBUG Returning true in checkProductSupplyTypeValueExists ");
             return true;
         }
     }

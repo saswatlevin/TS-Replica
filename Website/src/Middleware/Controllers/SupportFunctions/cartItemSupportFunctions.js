@@ -3,48 +3,62 @@ const User = require('../../Models/User');
 
 const checkCartItemExists = async(req) => {
     console.log("In checkCartItemExists");
-    const cart_item_name = req.body.cart_item_name;
+    
+    try {
+        const product_id = req.params.product_id;
 
-    const cart_item_query = {cart_item_name: cart_item_name};
+        //console.log("##DEBUG - product_id in checkCartItemExists ", product_id);
 
-    const result = await User.findOne(cart_item_query);
+        const cart_item_query = {
+            "CartItems.product_id": product_id
+        };
 
-    console.log("##DEBUG - Result in checkCartItemExists - ", result);
+        const result = await User.findOne(cart_item_query);
 
-    if (result === null) {
-        console.log("##DEBUG - In checkCartItemExists - returning false");
-        return false;
-    }
+        //console.log("##DEBUG - Result in checkCartItemExists - ", result);
 
-    console.log("##DEBUG - In checkCartItemExists - returning true");
+        if (result === null) {
+            //console.log("##DEBUG - In checkCartItemExists - returning false");
+            return false;
+        }
 
-    return true;
-};
+        //console.log("##DEBUG - In checkCartItemExists - returning true");
 
-const checkCartItemPrice = async(req) => {
-    console.log("In checkCartItemPrice");
-
-    const cart_item_id = req.params.cart_item_id;
-    const user_id = req.params.user_id;
-    const product_price = req.params.product_price;
-
-    const filter = {
-        
-        user_id: user_id,
-        "CartItems.cart_item_id": cart_item_id
-    };
-
-    const projection = {'CartItems.$': 1};
-    const result = await User.findOne(filter, projection );
-
-    const cart_item_price = result.CartItems[0].cart_item_price;
-
-    if (cart_item_price === product_price) {
         return true;
     }
-    else{
-        return false;
+
+    catch(error) {
+        console.log("Error in checkCartItemExists ", error);
+        throw error;
     }
+};
+
+const checkCartItemPriceValueExists = async(req) => {
+    console.log("In checkCartItemPriceValueExists");
+    
+    try
+    {
+        // USES REQ.PARAMS -> CART ITEM ID, USER ID, PRODUCT PRICE
+        const product_id = req.params.product_id;
+        const product_price = req.params.product_price;
+
+        const query = {
+            "CartItems.product_id": product_id,
+            "CartItems.cart_item_price": product_price
+        };
+    
+        const result = await User.findOne(query);
+        //console.log("##DEBUG - Result in checkCartItemPriceValueExists - ", result);
+    }
+
+    catch(error) {
+        console.log("Error in checkCartItemPriceValueExists ", error);
+        throw error;
+    }
+    
 }
 
-module.exports = checkCartItemExists;
+module.exports = {
+    checkCartItemExists,    
+    checkCartItemPriceValueExists
+};

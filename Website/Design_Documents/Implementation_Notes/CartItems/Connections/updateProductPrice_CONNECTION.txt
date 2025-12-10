@@ -23,5 +23,5 @@ The updateCartItem function does the following:
   * It checks if the cart_item exists.
   * It creates a filter with user_id and cart_item_id.
   * It gets the updated_cart_item_price from req.params.
-  * 
+  * It creates the update_object with the updated_cart_item_price
 =====HOW THE updateProductPrice FUNCTION WORKS=====

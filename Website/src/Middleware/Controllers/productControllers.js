@@ -13,7 +13,7 @@ const { checkProductValueExists } = require('./SupportFunctions/productSupportFu
 const { checkProductGarmentWeightValueExists } = require('./SupportFunctions/productSupportFunctions');
 const { checkProductSupplyTypeValueExists } = require('./SupportFunctions/productSupportFunctions');
 const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
-const { updateCartItemPrice } = require('./cartItemControllers');
+const { updateCartItemPrice, updateCartItemName } = require('./cartItemControllers');
 const Product = require('../Models/Product');
 
 const createProduct = asyncErrorHandler(async (req, res, next) => {
@@ -137,6 +137,57 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     res.status(200).json(result_array[0]);
 
     console.log("===END OF updateProductPrice===");
+});
+
+const updateProductName = asyncErrorHandler(async(req, res, next) => {
+    console.log("In updateProductName");
+
+    const product_id = req.params.product_id;
+    console.log("Getting the product_id from the request params ", product_id);
+
+    console.log("Checking if the request body is empty");
+    if (checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not update Product with product_id ${product_id} as the request body is empty.`);
+        throw empty_request_body_error;
+    }
+
+    console.log("Checking if the product exists");
+    if (await checkProduct(req) === false) {
+        const product_not_found_error = new ResourceNotFoundError(`Could not update Product document with product_id ${product_id} since it does not exist.`);
+        throw product_not_found_error;
+    }
+    
+    console.log("Check if the updated name value already exists");
+    if(await checkProductValueExists(req) === true) {
+        const redundant_update_error = new RedundantUpdateError(`Could not update Product document with product_id ${product_id} since the product_name value ${req.body.product_name} already exists.`);
+        throw redundant_update_error;
+    }
+
+    const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
+    console.log("request_body_deep_clone ", request_body_deep_clone);
+
+    const filter = { product_id: product_id };
+    console.log("filter ", filter);
+
+    const update_object = request_body_deep_clone;
+    console.log("update_object ", update_object);
+
+    const update_product_name_result = await Product.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
+    console.log("update_product_name_result ", update_product_name_result);
+
+    req.params.updated_product_name = update_product_name_result.product_name;
+    console.log("Storing the updated_product_name in the request params ", req.params.updated_product_name);
+
+    const update_cart_item_name_result = await updateCartItemName(req);
+    //console.log("update_cart_item_name_result ", update_cart_item_name_result);
+
+    const result_array = [update_product_name_result, update_cart_item_name_result];
+    //console.log("result_array ", result_array);
+
+    console.log("Sending the result to the client as JSON with status 200");
+    res.status(200).json(result_array[0]);
+
+    console.log("===END OF updateProductName===");
 });
 
 const updateProduct = asyncErrorHandler(async (req, res, next) => {
@@ -301,6 +352,7 @@ const searchProducts = asyncErrorHandler(async (req, res, next) => {
 module.exports = {
     createProduct,
     updateProductPrice,
+    updateProductName,
     updateProduct,
     updateProductGarmentWeight,
     updateProductSupplyType,

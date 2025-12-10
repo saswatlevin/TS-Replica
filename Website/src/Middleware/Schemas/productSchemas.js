@@ -56,7 +56,6 @@ const productRequestSchema = z.object({
 }).strict();
 
 const updateProductSchema = z.object({
-    product_name: productValidators.zodIsProductName.optional(),
     
     product_color: productValidators.zodIsProductColor.optional(),
 
@@ -73,6 +72,10 @@ const updateProductSchema = z.object({
     product_material: productValidators.zodIsProductMaterial.optional(),
 
     product_specifications: productValidators.zodIsProductSpecifications.optional()
+}).strict();
+
+const updateProductNameSchema = z.object({
+    product_name: productValidators.zodIsProductName
 }).strict();
 
 const searchProductSchema = z.object({
@@ -179,6 +182,7 @@ module.exports = {
     productSupplyTypeSchema,
     productRequestSchema,
     updateProductSchema,
+    updateProductNameSchema,
     searchProductSchema,
     createProductResponseSchema,
     productResponseSchema,

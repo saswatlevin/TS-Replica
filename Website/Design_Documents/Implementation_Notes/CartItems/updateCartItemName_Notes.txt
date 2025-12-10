@@ -1,0 +1,14 @@
+We need the following pieces of data:
+* user_id -> User params | From session
+* cart_item_id -> User params | From session
+
+updateCartItemName ->
+* Check if the user exists or not, if not, throw a ResourceNotFoundError.
+* Check if the cart item exists or not, if not, throw a ResourceNotFoundError.
+* Check if the updated cart item name value already exists, if so, throw a RedundantUpdateError.
+* Create the filter: {user_id: user_id, cart_item_id: cart_item_id}.
+* Create a Query object from the request_body which contains {'CartItems.$.cart_item_name': value}
+* Use findOneAndUpdate() to update the price of that cart item.
+* Return the result.
+
+NOTE: updateCartItemName is an express HELPER FUNCTION and not a middleware.

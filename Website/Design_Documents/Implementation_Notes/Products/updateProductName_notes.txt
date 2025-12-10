@@ -1,0 +1,22 @@
+We need the following pieces of data:
+* product_id -> Request Params | From Frontend
+
+updateProductName -> 
+* Check if the request body is empty or not, if so, throw an EmptyRequestBodyError.
+* Check if the product exists or not, if it doesn't, throw a ResourceNotFoundError.
+* Check if the product_name value already exists, if so, throw a RedundantUpdateError.
+
+* Get the product_id from the request_params.
+* Get a DEEP CLONE of the request_body. 
+
+* Create a filter of the form {user_id: user_id}.
+
+* Use findOneAndUpdate() along with the filter and the request_body DEEP CLONE to update the product_name.
+* Get RESULT1 from findOneAndUpdate()
+* Get the updated product_name.
+* Store the updated product_name in req.params.
+
+* Call updateCartItemName with req.
+* Get RESULT2 from updateCartItemName.
+
+* Send RESULT1 to the client with status code 200. 

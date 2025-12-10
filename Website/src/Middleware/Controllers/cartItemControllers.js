@@ -106,7 +106,60 @@ const updateCartItemPrice = async (req) => {
     }
 };
 
+const updateCartItemName = async (req) => {
+    console.log("In updateCartItemName (HELPER FUNCTION)");
+
+    try {
+
+        const user_id = req.params.user_id;
+        console.log("user_id ", user_id);
+
+        const product_id = req.params.product_id;
+        console.log("product_id ", product_id);
+
+        console.log("Checking if the user exists");
+        if (await checkUserExists(req) === false) {
+            const user_id_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item price since the user with user_id ${user_id} does not exist.`);
+            throw user_id_not_found_error;
+        }
+
+        console.log("Checking if the cart item exists");
+        if (await checkCartItemExists(req) === false) {
+            const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item price since the cart item with cart_item_id ${cart_item_id} does not exist.`);
+            throw cart_item_not_found_error;
+        }
+        
+        const filter = { user_id: user_id, "CartItems.product_id": product_id };
+        console.log("filter ", filter);
+
+        const updated_cart_item_name = req.params.updated_product_name;
+        console.log("updated_cart_item_name ", updated_cart_item_name);
+
+        const update_object = {
+            $set: {
+                "CartItems.$.cart_item_name": updated_cart_item_name
+            }
+        };
+
+        console.log("update_object ", update_object);
+
+        const result = await User.findOneAndUpdate(filter, update_object, { new: true, select: "CartItems" }, { runValidators: true }).lean();
+
+        console.log("result in updateCartItemName ", result);
+
+        console.log("===END OF updateCartItemName===");
+        
+        return result;
+    }
+
+    catch (error) {
+        console.log("Error in updateCartItemName ", error);
+        throw error;
+    }
+};
+
 module.exports = {
     createCartItem,
-    updateCartItemPrice
+    updateCartItemPrice,
+    updateCartItemName
 };

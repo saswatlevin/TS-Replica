@@ -225,12 +225,21 @@ search_products_data_set_3 = {
 #print("TEST 5 (searchProducts) - Search for a product by product subcategory only response ", response.text)
 
 #/////////////Test 6: Update a Product price (updateProductPrice)/////////////#
-update_product_price_url = "http://localhost:3500/products/updateproductprice/d2a986a0cab3/a6bb1d23bd28"
+#update_product_price_url = "http://localhost:3500/products/updateproductprice/d2a986a0cab3/a6bb1d23bd28"
 update_product_price_data_set_1 = {
   "product_price": 110
 }
 
 #response = patchRequests(update_product_price_url, update_product_price_data_set_1)
 #print("TEST 6 (updateProductPrice) - Update product price response ", response.text)
+
+#/////////////Test 7: Update a Product name (updateProductName)/////////////#
+#update_product_name_url = "http://localhost:3500/products/updateproductname/d2a986a0cab3/a6bb1d23bd28"
+update_product_name_data_set_1 = {
+  "product_name": "The Craftsman Shirt in Bark Plaid A"
+}
+
+#response = patchRequests(update_product_name_url, update_product_name_data_set_1)
+#print("TEST 7 (updateProductName) - Update product name response ", response.text)
 
 

@@ -9,6 +9,8 @@ router.route('/createproduct').post(requestValidator(productSchemas.productReque
 
 router.route('/updateproductprice/:user_id/:product_id').patch(requestValidator(productSchemas.updateProductPriceSchema), xss(), productControllers.updateProductPrice);
 
+router.route('/updateproductname/:user_id/:product_id').patch(requestValidator(productSchemas.updateProductNameSchema), xss(), productControllers.updateProductName);
+
 router.route('/updateproduct/:product_id').patch(requestValidator(productSchemas.updateProductSchema), xss(), productControllers.updateProduct);
 
 router.route('/updateproductgarmentweight/:product_id').patch(requestValidator(productSchemas.productGarmentWeightSchema), xss(), productControllers.updateProductGarmentWeight );

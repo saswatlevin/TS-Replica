@@ -35,8 +35,8 @@ const cartItemResponseSchema = z.object({
 
 const cartItemArrayZeroSchema = z.array(cartItemResponseSchema).min(0);
 
-const updateCartItemPriceSchema = z.object({
-    cart_item_price: cartItemValidators.zodIsCartItemPrice
+const updateCartItemQuantitySchema = z.object({
+    cart_item_quantity: cartItemValidators.zodIsCartItemQuantity
 }).strict();
 
 
@@ -44,5 +44,5 @@ module.exports = {
     cartItemRequestSchema,
     cartItemResponseSchema,
     cartItemArrayZeroSchema,
-    updateCartItemPriceSchema
+    updateCartItemQuantitySchema
 };

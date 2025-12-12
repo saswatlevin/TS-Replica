@@ -60,6 +60,10 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(userResponseSchema, object);
     }
 
+     else if (request.originalUrl.includes("/cartitems/updatecartitemquantity") === true && request.method === "PATCH") {
+        return schemaValidator(userResponseSchema, object);
+    }
+
     else {
         return undefined;
     }

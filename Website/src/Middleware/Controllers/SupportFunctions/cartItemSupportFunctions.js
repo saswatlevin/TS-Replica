@@ -33,32 +33,8 @@ const checkCartItemExists = async(req) => {
     }
 };
 
-const checkCartItemPriceValueExists = async(req) => {
-    console.log("In checkCartItemPriceValueExists");
-    
-    try
-    {
-        // USES REQ.PARAMS -> CART ITEM ID, USER ID, PRODUCT PRICE
-        const product_id = req.params.product_id;
-        const product_price = req.params.product_price;
 
-        const query = {
-            "CartItems.product_id": product_id,
-            "CartItems.cart_item_price": product_price
-        };
-    
-        const result = await User.findOne(query);
-        //console.log("##DEBUG - Result in checkCartItemPriceValueExists - ", result);
-    }
-
-    catch(error) {
-        console.log("Error in checkCartItemPriceValueExists ", error);
-        throw error;
-    }
-    
-}
 
 module.exports = {
-    checkCartItemExists,    
-    checkCartItemPriceValueExists
+    checkCartItemExists
 };

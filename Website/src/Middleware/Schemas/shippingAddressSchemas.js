@@ -50,6 +50,8 @@ const shippingAddressArrayZeroSchema = z.array(shippingAddressResponseSchema).mi
 const shippingAddressArrayNonzeroSchema = z.array(shippingAddressResponseSchema).min(1);
 
 const updateShippingAddressRequestSchema = z.object({
+    shipping_address_id: shippingAddressValidators.zodIsShippingAddressId.optional(),
+
     address_type_id: shippingAddressValidators.zodIsAddressTypeId.optional(),
     
     company_name: shippingAddressValidators.zodIsCompanyName.optional(),

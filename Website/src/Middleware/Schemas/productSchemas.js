@@ -6,6 +6,8 @@ const {productImageArrayRequestSchema, productImageArrayResponseSchema } = requi
 const {productItemRequestSchemasUnion, productItemResponseSchemasUnion} = require('./productItemSchemas');
 
 const productGarmentWeightSchema = z.object({
+    product_id: productValidators.zodIsProductId,
+
     garment_weight_description: productValidators.zodIsGarmentWeightDescription,
 
     garment_weight: productValidators.zodIsGarmentWeight
@@ -13,8 +15,9 @@ const productGarmentWeightSchema = z.object({
 }).strict();
 
 const productSupplyTypeSchema = z.object({
-    supply_type_description: productValidators.zodIsSupplyTypeDescription,
+    product_id: productValidators.zodIsProductId,
     
+    supply_type_description: productValidators.zodIsSupplyTypeDescription,
 
     supply_type: productValidators.zodIsSupplyType
     
@@ -56,7 +59,8 @@ const productRequestSchema = z.object({
 }).strict();
 
 const updateProductSchema = z.object({
-    
+    product_id: productValidators.zodIsProductId.optional(),
+
     product_color: productValidators.zodIsProductColor.optional(),
 
     product_description: productValidators.zodIsProductDescription.optional(),
@@ -75,6 +79,7 @@ const updateProductSchema = z.object({
 }).strict();
 
 const updateProductNameSchema = z.object({
+    product_id: productValidators.zodIsProductId,
     product_name: productValidators.zodIsProductName
 }).strict();
 
@@ -168,6 +173,7 @@ const productResponseSchema = z.object({
 
 
 const updateProductPriceSchema = z.object({
+    product_id: productValidators.zodIsProductId,
     product_price: productValidators.zodIsProductPrice
 }).strict();
 

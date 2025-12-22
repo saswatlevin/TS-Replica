@@ -63,7 +63,7 @@ const updateCartItemPrice = async (req) => {
         const user_id = req.params.user_id;
         console.log("user_id ", user_id);
 
-        const product_id = req.params.product_id;
+        const product_id = req.body.product_id;
         console.log("product_id ", product_id);
 
         console.log("Checking if the user exists");
@@ -77,6 +77,9 @@ const updateCartItemPrice = async (req) => {
             const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the cart item with cart_item_id ${cart_item_id} does not exist.`);
             throw cart_item_not_found_error;
         }
+
+
+
         
         const filter = { user_id: user_id, "CartItems.product_id": product_id };
         console.log("filter ", filter);
@@ -115,7 +118,7 @@ const updateCartItemName = async (req) => {
         const user_id = req.params.user_id;
         console.log("user_id ", user_id);
 
-        const product_id = req.params.product_id;
+        const product_id = req.body.product_id;
         console.log("product_id ", product_id);
 
         console.log("Checking if the user exists");
@@ -216,7 +219,7 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
     
     const user_id = req.params.user_id;
     console.log("user_id ", user_id);
-    const product_id = req.params.product_id;
+    const product_id = req.body.product_id;
     console.log("product_id ", product_id);
 
     console.log("Checking if the request body is empty");

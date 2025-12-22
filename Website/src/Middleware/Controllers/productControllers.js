@@ -91,7 +91,7 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
 const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     console.log("In updateProductPrice");
 
-    const product_id = req.params.product_id;
+    const product_id = req.body.product_id;
     console.log("Getting the product_id from the request params ", product_id);
 
     console.log("Checking if the request body is empty");
@@ -142,7 +142,7 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
 const updateProductName = asyncErrorHandler(async(req, res, next) => {
     console.log("In updateProductName");
 
-    const product_id = req.params.product_id;
+    const product_id = req.body.product_id;
     console.log("Getting the product_id from the request params ", product_id);
 
     console.log("Checking if the request body is empty");
@@ -193,7 +193,7 @@ const updateProductName = asyncErrorHandler(async(req, res, next) => {
 const updateProduct = asyncErrorHandler(async (req, res, next) => {
     console.log("In updateProduct");
 
-    const product_id = req.params.product_id;
+    const product_id = req.body.product_id;
     console.log("Got the product_id from the request params ", product_id);
 
     console.log("Checking if the request body is empty");
@@ -211,7 +211,7 @@ const updateProduct = asyncErrorHandler(async (req, res, next) => {
     console.log("Checking if the product value to be updated already exists");
 
     if (await checkProductValueExists(req) === true) {
-        const product_value_error = new CustomError(`Could not update Product document with product_id ${product_id} since the value(s) ${req.body} already exist(s).`, 400);
+        const product_value_error = new RedundantUpdateError(`Could not update Product document with product_id ${product_id} since the value(s) ${req.body} already exist(s).`);
         throw product_value_error;
     }
 
@@ -240,7 +240,8 @@ const updateProduct = asyncErrorHandler(async (req, res, next) => {
 
 const updateProductGarmentWeight = asyncErrorHandler(async (req, res, next) => {
     console.log("In updateProductGarmentWeight");
-    const product_id = req.params.product_id;
+    
+    const product_id = req.body.product_id;
     console.log("Got the product_id from the request params ", product_id);
 
     console.log("Checking if the request body is empty");
@@ -256,12 +257,11 @@ const updateProductGarmentWeight = asyncErrorHandler(async (req, res, next) => {
         throw product_not_found_error;
     }
 
-
     const garment_weight_value_exists = await checkProductGarmentWeightValueExists(req);
     console.log("garment_weight_value_exists ", garment_weight_value_exists);
 
     if (garment_weight_value_exists === true) {
-        const product_garment_weight_value_error = new CustomError(`Could not update Product document with product_id ${product_id} since the product_garment_weight value(s) already exist(s).`, 400);
+        const product_garment_weight_value_error = new RedundantUpdateError(`Could not update Product document with product_id ${product_id} since the product_garment_weight value(s) already exist(s).`);
         throw product_garment_weight_value_error;
     }
 
@@ -288,7 +288,7 @@ const updateProductGarmentWeight = asyncErrorHandler(async (req, res, next) => {
 const updateProductSupplyType = asyncErrorHandler(async (req, res, next) => {
     console.log("In updateProductSupplyType");
 
-    const product_id = req.params.product_id;
+    const product_id = req.body.product_id;
     console.log("Got the product_id from the request params ", product_id);
 
     console.log("Checking if the request body is empty");
@@ -305,7 +305,7 @@ const updateProductSupplyType = asyncErrorHandler(async (req, res, next) => {
 
     console.log("Checking if the product supply type value to be updated already exists");
     if (await checkProductSupplyTypeValueExists(req) === true) {
-        const product_supply_type_value_error = new CustomError(`Could not update Product document with product_id ${product_id} since the product_supply_type value(s) already exist(s).`, 400);
+        const product_supply_type_value_error = new RedundantUpdateError(`Could not update Product document with product_id ${product_id} since the product_supply_type value(s) already exist(s).`);
         throw product_supply_type_value_error;
     }
 

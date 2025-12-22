@@ -4,8 +4,9 @@ const User = require('../../Models/User');
 const checkCartItemExists = async(req) => {
     console.log("In checkCartItemExists");
     
+    // USES REQ.BODY -> PRODUCT_ID
     try {
-        const product_id = req.params.product_id;
+        const product_id = req.body.product_id;
 
         //console.log("##DEBUG - product_id in checkCartItemExists ", product_id);
 

@@ -3,11 +3,11 @@ const Product = require('../../Models/Product');
 
 const checkProduct = async(req) => {
     
-    // USES REQ.PARAMS -> PRODUCT ID
+    // USES REQ.BODY -> PRODUCT ID
     console.log("In checkProduct");
 
     try{
-        const product_id = req.params.product_id;
+        const product_id = req.body.product_id;
         //console.log("##DEBUG - product_id in checkProduct ", product_id);
 
         const product_search_object = {product_id: product_id};
@@ -77,12 +77,12 @@ const insertAt = (obj, key, value, position) => {
 }
 
 const checkProductValueExists = async(req) => {
-    // USES REQ.PARAMS -> PRODUCT ID
+    // USES REQ.BODY -> PRODUCT ID
     console.log("In checkProductValueExists");
     
     try {
 
-        const product_id = req.params.product_id;
+        const product_id = req.body.product_id;
         
         const product_search_object = {
             product_id: product_id, 
@@ -112,10 +112,10 @@ const checkProductGarmentWeightValueExists = async(req) => {
     console.log("In checkProductGarmentWeightValueExists");
     
     try {
-        // USES REQ.PARAMS -> PRODUCT ID
+        // USES REQ.BODY -> PRODUCT ID
         const request_body = req.body;
         //console.log("##DEBUG request_body in checkProductGarmentWeightValueExists ", request_body);
-        const product_id = req.params.product_id;
+        const product_id = req.body.product_id;
         //console.log("##DEBUG product_id in checkProductGarmentWeightValueExists ", product_id);
 
         const search_object = request_body;
@@ -155,7 +155,7 @@ const checkProductSupplyTypeValueExists = async(req) => {
         // USES REQ.PARAMS -> PRODUCT ID
         const request_body = req.body;
         //console.log("##DEBUG request_body in checkProductSupplyTypeValueExists ", request_body);
-        const product_id = req.params.product_id;
+        const product_id = req.body.product_id;
         //console.log("##DEBUG product_id in checkProductSupplyTypeValueExists ", product_id);
 
         const search_object = request_body;

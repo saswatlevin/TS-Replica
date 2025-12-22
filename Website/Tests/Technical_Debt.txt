@@ -9,4 +9,6 @@
 6) Add Errors and Error handling to the all the user controllers.
 7) Remove user_id from updateUser.
 8) Please define uniqueness constraint for each document and sub-document in collections.
+9) When defining the route, ensure that all data that comes from the frontend is made a part of the request body. Only the data from the session will be put in the request parameters.
+10) Ensure that all Create, Update and Delete operations are made atomic.
 ===========TECHNICAL DEBT===========

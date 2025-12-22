@@ -36,6 +36,7 @@ const cartItemResponseSchema = z.object({
 const cartItemArrayZeroSchema = z.array(cartItemResponseSchema).min(0);
 
 const updateCartItemQuantitySchema = z.object({
+    product_id: customValidators.zodIsProductId,
     cart_item_quantity: cartItemValidators.zodIsCartItemQuantity
 }).strict();
 

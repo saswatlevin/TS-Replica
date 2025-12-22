@@ -7,7 +7,7 @@ const { xss } = require('express-xss-sanitizer');
 
 router.route('/createshippingaddress/:user_id').post(requestValidator(shippingAddressSchemas.shippingAddressRequestSchema), xss(), shippingAddressControllers.createShippingAddress);
 
-router.route('/updateshippingaddress/:user_id/:shipping_address_id').patch(requestValidator(shippingAddressSchemas.updateShippingAddressRequestSchema), xss(), shippingAddressControllers.updateShippingAddress);
+router.route('/updateshippingaddress/:user_id').patch(requestValidator(shippingAddressSchemas.updateShippingAddressRequestSchema), xss(), shippingAddressControllers.updateShippingAddress);
 
 router.route('/getshippingaddressbyid/:user_id').get(requestValidator(shippingAddressSchemas.getShippingAddressByIdRequestSchema), xss(), shippingAddressControllers.getShippingAddressById);
 

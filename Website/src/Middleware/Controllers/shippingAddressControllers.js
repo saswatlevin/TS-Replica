@@ -61,7 +61,7 @@ const updateShippingAddress = asyncErrorHandler(async (req, res, next) => {
     const user_id = req.params.user_id;
     console.log("user_id ", user_id);
 
-    const shipping_address_id = req.params.shipping_address_id;
+    const shipping_address_id = req.body.shipping_address_id;
     console.log("shipping_address_id ", shipping_address_id);
 
 

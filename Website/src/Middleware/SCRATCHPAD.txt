@@ -1,0 +1,58 @@
+==========SCRATCHPAD==========
+
+******************************
+For updateProductPrice:
+  * Remove the product_id from the corresponding route. -> DONE
+  * Put product_id in updateProductPriceSchema. -> DONE
+  * Change req.params.product_id to req.body.product_id. -> DONE
+  * Change req.params.product_id to req.body.product_id in checkProduct() and checkProductValueExists(). -> DONE
+  * Change req.params.product_id to req.body.product_id in updateCartItemPrice(). -> DONE
+
+For updateProductName:
+  * Remove the product_id from the corresponding route. -> DONE
+  * Put product_id in updateProductNameSchema. -> DONE
+  * Change req.params.product_id to req.body.product_id. -> DONE
+  * Change req.params.product_id to req.body.product_id in checkProduct() and checkProductValueExists(). -> DONE
+  * Change req.params.product_id to req.body.product_id in updateCartItemName(). -> DONE
+
+For updateProduct:
+  * Remove the product_id from the corresponding route. -> DONE
+  * Put product_id in updateProductSchema. -> DONE
+  * Change req.params.product_id to req.body.product_id. -> DONE
+  * Change req.params.product_id to req.body.product_id in checkProduct() and checkProductValueExists(). -> DONE
+
+For updateProductGarmentWeight:
+  * Remove the product_id from the corresponding route. -> DONE
+  * Put product_id in productGarmentWeightSchema. -> DONE
+  * Change req.params.product_id to req.body.product_id. -> DONE
+  * Change req.params.product_id to req.body.product_id in checkProduct() and checkProductGarmentWeightValueExists(). -> DONE
+
+For updateProductSupplyType:
+  * Remove the product_id from the corresponding route. -> DONE
+  * Put product_id in productSupplyTypeSchema. -> DONE
+  * Change req.params.product_id to req.body.product_id. -> DONE
+  * Change req.params.product_id to req.body.product_id in checkProduct() and checkProductSupplyTypeExists(). -> DONE
+******************************
+
+******************************
+For createCartItem:
+  * Remove the product_id from the corresponding route. -> DONE
+  * Put product_id in cartItemRequestSchema. -> DONE
+  * Change req.params.product_id to req.body.product_id in checkCartItemExists(). -> DONE
+
+For updateCartItemQuantity:
+  * Remove the product_id from the corresponding route. -> DONE
+  * Put product_id in updateCartItemQuantitySchema. -> DONE
+  * Change req.params.product_id to req.body.product_id. -> DONE
+  * Change req.params.product_id to req.body.product_id in checkCartItemExists(). -> DONE
+******************************
+
+******************************
+For updateShippingAddress:
+  * Remove shipping_address_id from the corresponding route. -> DONE
+  * Put shipping_address_id in updateShippingAddressSchema. -> DONE 
+  * Change req.params.shipping_address_id to req.body.shipping_address_id. -> DONE
+  * Change req.params.shipping_address_id to req.body.shipping_address_id in checkShippingAddressExists(). -> NOT NEEDED
+******************************
+
+==========SCRATCHPAD==========

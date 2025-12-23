@@ -1,7 +1,8 @@
 from requestFunctions import *
 
 ##====SHIPPING ADDRESS API INTEGRATION TESTING====##
-#create_shipping_address_url_user_1 = "http://localhost:3500/shippingaddresses/createshippingaddress/d2a986a0cab3"
+#print(====createShippingAddress() TEST SUITE====)
+create_shipping_address_url_user_1 = "http://localhost:3500/shippingaddresses/createshippingaddress/d2a986a0cab3"
 
 create_shipping_address_set_1 = {
 	"address_type_id": "1",
@@ -15,11 +16,11 @@ create_shipping_address_set_1 = {
 	"phone_number": "81312345678"
 }
 
-#create_shipping_address_response_1 = postRequests(create_shipping_address_url_user_1, create_shipping_address_set_1)
-#print("TEST 1 - Create a shipping address (createShippingAddress) ", create_shipping_address_response_1.text)
+#response_1 = postRequests(create_shipping_address_url_user_1, create_shipping_address_set_1)
+#print("TEST 1 - Create a Shipping Address ", response_1.text)
 
-#create_shipping_address_url_user_2 = "http://localhost:3500/shippingaddresses/createshippingaddress/f6c13bd3c15c"
-create_shipping_address_set_2a = {
+create_shipping_address_url_user_2 = "http://localhost:3500/shippingaddresses/createshippingaddress/f6c13bd3c15c"
+create_shipping_address_set_2 = {
 	"address_type_id": "1",
 	"company_name": "",
 	"address": "617 4th Street",
@@ -32,10 +33,10 @@ create_shipping_address_set_2a = {
 }
 
 
-#create_shipping_address_response_2a = postRequests(create_shipping_address_url_user_2, create_shipping_address_set_2a)
-#print("TEST 2a - Create a shipping address (createShippingAddress) ", create_shipping_address_response_2a.text)
+#response_2 = postRequests(create_shipping_address_url_user_2, create_shipping_address_set_2)
+#print("TEST 2 - Create a Shipping Address ", response_2.text)
 
-create_shipping_address_set_2b = {
+create_shipping_address_set_3 = {
 	"address_type_id": "1",
 	"company_name": "",
 	"address": "300 6th Street",
@@ -47,57 +48,72 @@ create_shipping_address_set_2b = {
 	"phone_number": "14035761892"
 }
 
-#create_shipping_address_response_2b = postRequests(create_shipping_address_url_user_2, create_shipping_address_set_2b)
-#print("TEST 2b - Create a shipping address (createShippingAddress) ", create_shipping_address_response_2b.text)
+#response_3 = postRequests(create_shipping_address_url_user_2, create_shipping_address_set_3)
+#print("TEST 3 - Create a Shipping Address ", response_3.text)
 
 #//////////Update a Shipping Address/////////#
-#update_shipping_address_url = "http://localhost:3500/shippingaddresses/updateshippingaddress/a6903c5d1ec0/ba24f924fe34"
-update_shipping_address_set_3a = {
+update_shipping_address_url_1 = "http://localhost:3500/shippingaddresses/updateshippingaddress/a6903c5d1ec0"
+
+#print("====updateShippingAddress() TEST SUITE====")
+
+update_shipping_address_set_1 = {
+	"shipping_address_id": "ba24f924fe34",
 	"address_type_id": "2"
 } 
 
-#update_shipping_address_response_3a = patchRequests(update_shipping_address_url, update_shipping_address_set_3a)
-#print("TEST 3a - Update Shipping Address Set 3a ", update_shipping_address_response_3a.text)
+#response_1 = patchRequests(update_shipping_address_url_1, update_shipping_address_set_1)
+#print("TEST 1 - Update a Shipping Address (Address Type ID) ", response_1.text)
 
-update_shipping_address_set_3b = {
+update_shipping_address_set_2 = {
+	"shipping_address_id": "ba24f924fe34",
 	"company_name": "Hewlett Packard"
 } 
 
-#update_shipping_address_response_3b = patchRequests(update_shipping_address_url, update_shipping_address_set_3b)
-#print("TEST 3b - Update Shipping Address Set 3b ", update_shipping_address_response_3b.text)
+#response_2 = patchRequests(update_shipping_address_url_1, update_shipping_address_set_2)
+#print("TEST 2 - Update a Shipping Address (Company Name) ", response_2.text)
 
-update_shipping_address_set_3c = {
+update_shipping_address_set_3 = {
+	"shipping_address_id": "ba24f924fe34",
 	"address": "6-5-2 Nishi-Shinjuku, Shinjuku-ku",
 	"apartment": "Room 1000, Shinjuku I-Land Tower",
 	"city": "Tokyo"
 } 
 
-#update_shipping_address_response_3c = patchRequests(update_shipping_address_url, update_shipping_address_set_3c)
-#print("TEST 3c - Update Shipping Address Set 3c ", update_shipping_address_response_3c.text)
+#response_3 = patchRequests(update_shipping_address_url_1, update_shipping_address_set_3)
+#print("TEST 3 - Update a Shipping Address (Address, Apaprtment, City) ", response_3.text)
 
 #//////////Search for a Shipping Address/////////#
-#search_shipping_address_url = "http://localhost:3500/shippingaddresses/searchshippingaddress/f0c81fc59083"
+search_shipping_address_url = "http://localhost:3500/shippingaddresses/searchshippingaddress/f0c81fc59083"
+
+#print("====searchShippingAddress() TEST SUITE====")
+
 search_shipping_address_set_1 = {
 	"city": "Tokyo",
 	"country": "Japan"
 }
 
-#search_shipping_address_response_1 = getRequests(search_shipping_address_url, search_shipping_address_set_1)
-#print("TEST 1 - Search Shipping Address Set 1 ", search_shipping_address_response_1.text)
+#response_1 = getRequests(search_shipping_address_url_1, search_shipping_address_set_1)
+#print("TEST 1 - Search for a Shipping Address (City, Country) ", response_1.text)
 
 #///////Get shipping Address////#
-#get_shipping_address_url = "http://localhost:3500/shippingaddresses/getshippingaddressbyid/a6903c5d1ec0"
+#print("====getShippingAddress() TEST SUITE====")
+
+get_shipping_address_url_1 = "http://localhost:3500/shippingaddresses/getshippingaddressbyid/a6903c5d1ec0"
+
 get_shipping_address_set_1 = {
 	"shipping_address_id": "ba24f924fe34"
 }
 
-#get_shipping_address_response_1 = getRequests(get_shipping_address_url, get_shipping_address_set_1)
-#print("TEST 1 - Get Shipping Address By Id Set 1 ", get_shipping_address_response_1.text)
+#response_1 = getRequests(get_shipping_address_url_1, get_shipping_address_set_1)
+#print("TEST 1 - Search for a Shipping Address (Shipping_Address_ID) ", response_1.text)
 
 #///////Delete shipping Address//////#
-#delete_shipping_address_url = "http://localhost:3500/shippingaddresses/deleteshippingaddressbyid/f0c81fc59083"
+
+delete_shipping_address_url_1 = "http://localhost:3500/shippingaddresses/deleteshippingaddressbyid/f0c81fc59083"
+
 delete_shipping_address_set_1 = {
 	"shipping_address_id": "d4dba979a2af"
 }
-#delete_shipping_address_response_1 = deleteRequests(delete_shipping_address_url, delete_shipping_address_set_1)
-#print("TEST 1 - Delete Shipping Address By Id Set 1 ", delete_shipping_address_response_1.text)
+
+#response_1 = deleteRequests(delete_shipping_address_url_1, delete_shipping_address_set_1)
+#print("TEST 1 - Delete a Shipping Address By Id ", response_1.text)

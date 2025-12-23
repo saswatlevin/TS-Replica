@@ -52,31 +52,31 @@ create_shipping_address_set_3 = {
 #print("TEST 3 - Create a Shipping Address ", response_3.text)
 
 #//////////Update a Shipping Address/////////#
-update_shipping_address_url_1 = "http://localhost:3500/shippingaddresses/updateshippingaddress/a6903c5d1ec0"
+update_shipping_address_url_1 = "http://localhost:3500/shippingaddresses/updateshippingaddress/f6c13bd3c15c"
 
-#print("====updateShippingAddress() TEST SUITE====")
+print("====updateShippingAddress() TEST SUITE====")
 
 update_shipping_address_set_1 = {
-	"shipping_address_id": "ba24f924fe34",
-	"address_type_id": "2"
+	"shipping_address_id": "b953363faea4",
+	"address_type_id": "1"
 } 
 
 #response_1 = patchRequests(update_shipping_address_url_1, update_shipping_address_set_1)
 #print("TEST 1 - Update a Shipping Address (Address Type ID) ", response_1.text)
 
 update_shipping_address_set_2 = {
-	"shipping_address_id": "ba24f924fe34",
-	"company_name": "Hewlett Packard"
+	"shipping_address_id": "b953363faea4",
+	"company_name": "Packard Bay"
 } 
 
 #response_2 = patchRequests(update_shipping_address_url_1, update_shipping_address_set_2)
 #print("TEST 2 - Update a Shipping Address (Company Name) ", response_2.text)
 
 update_shipping_address_set_3 = {
-	"shipping_address_id": "ba24f924fe34",
-	"address": "6-5-2 Nishi-Shinjuku, Shinjuku-ku",
-	"apartment": "Room 1000, Shinjuku I-Land Tower",
-	"city": "Tokyo"
+	"shipping_address_id": "b953363faea4",
+	"address": "100 1st Street",
+	"apartment": "Unit 1",
+	"city": "Camberwell"
 } 
 
 #response_3 = patchRequests(update_shipping_address_url_1, update_shipping_address_set_3)

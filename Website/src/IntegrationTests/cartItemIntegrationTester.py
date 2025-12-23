@@ -42,15 +42,15 @@ create_cart_item_set_3 = {
 #create_cart_item_response_3 = postRequests(create_cart_item_url_3, create_cart_item_set_3)
 #print("TEST 3 - Create a Cart Item ", create_cart_item_response_3.text)
 
-#print("====updateCartItemQuantity() TEST SUITE====")
-#update_cart_item_quantity_url_1 = "http://localhost:3500/cartitems/updatecartitemquantity/d2a986a0cab3"
+print("====updateCartItemQuantity() TEST SUITE====")
+update_cart_item_quantity_url_1 = "http://localhost:3500/cartitems/updatecartitemquantity/d2a986a0cab3"
 update_cart_item_quantity_set_1 = {
     "product_id": "a6bb1d23bd28",
-    "cart_item_quantity": 3
+    "cart_item_quantity": 4
 }
 
 #update_cart_item_quantity_response_1 = patchRequests(update_cart_item_quantity_url_1, update_cart_item_quantity_set_1)
-#print("TEST 3a - Update the cart item quantity ", update_cart_item_quantity_response_1.text)
+#print("TEST 1 - Update the cart item quantity ", update_cart_item_quantity_response_1.text)
 
 #update_cart_item_quantity_url_2 = "http://localhost:3500/cartitems/updatecartitemquantity/f6c13bd3c15c"
 update_cart_item_quantity_set_2 = {
@@ -59,4 +59,4 @@ update_cart_item_quantity_set_2 = {
 }
 
 #update_cart_item_quantity_response_2 = patchRequests(update_cart_item_quantity_url_2, update_cart_item_quantity_set_2)
-#print("TEST 3b - Update the cart item quantity ", update_cart_item_quantity_response_2.text)
+#print("TEST 2 - Update the cart item quantity ", update_cart_item_quantity_response_2.text)

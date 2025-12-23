@@ -1,14 +1,29 @@
 ===========TECHNICAL DEBT===========
 1) In every CREATE API, add logic to check if the DOCUMENT / SUB-DCOUMENT already exists in the database or not.
+
 1a) In every UPDATE API, add logic to check if the DOCUMENT / SUB-DOCUMENT with the updated value exists or not. 
+
 1b) In every function to check whether a duplicate exists, use an attribute with value that is unique to that document (other than ID) to check for the duplicate.
+
 2) Add an appropriate index to each collection of the database.
+
 3) Create a list of factors to be considered / steps to be followed while creating an API.
+
 4) Add XSS sanitization to response handling logic.
+
 5) Find best practices to do fuzz testing on all schemas.
+
 6) Add Errors and Error handling to the all the user controllers.
+
 7) Remove user_id from updateUser.
+
 8) Please define uniqueness constraint for each document and sub-document in collections.
+
 9) When defining the route, ensure that all data that comes from the frontend is made a part of the request body. Only the data from the session will be put in the request parameters.
+
 10) Ensure that all Create, Update and Delete operations are made atomic.
+
+11) Ensure that the product_id and shipping_address_id are made immutable in the respective schemas cart_item, product, shipping_address). This is to prevent these IDs from being updated. 
+
+12) Immutability at the schema level is a better option. It enforces modularity better. It's the schema's job to ensure that the right type of data is passed on to the database. It's the API's job to actually perform the update operation.
 ===========TECHNICAL DEBT===========

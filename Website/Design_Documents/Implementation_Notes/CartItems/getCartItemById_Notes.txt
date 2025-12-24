@@ -1,0 +1,13 @@
+We need the following pieces of data:
+  * user_id -> From request_params | From Session
+  * cart_item_id -> From request body | From Frontend
+
+getCartItemById ->
+  * Check if the request object is empty, if so, throw an EmptyRequestBodyError.
+  * Check if the user exists, if not, throw a ResourceNotFoundError.
+  
+  * Get the cart_item_id from the request_body.
+  * Create the find query as query = { 'CartItems.cart_item_id': cart_item_id }.
+  * Call findOne() with the query.
+
+  * Return the result as res.json() with status 200.

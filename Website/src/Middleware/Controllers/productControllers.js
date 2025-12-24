@@ -194,7 +194,7 @@ const updateProduct = asyncErrorHandler(async (req, res, next) => {
     console.log("In updateProduct");
 
     const product_id = req.body.product_id;
-    console.log("Got the product_id from the request params ", product_id);
+    console.log("Got the product_id from the request body ", product_id);
 
     console.log("Checking if the request body is empty");
     if (checkIsEmptyObject(req) === true) {
@@ -242,7 +242,7 @@ const updateProductGarmentWeight = asyncErrorHandler(async (req, res, next) => {
     console.log("In updateProductGarmentWeight");
     
     const product_id = req.body.product_id;
-    console.log("Got the product_id from the request params ", product_id);
+    console.log("Got the product_id from the request body ", product_id);
 
     console.log("Checking if the request body is empty");
     if (checkIsEmptyObject(req) === true) {
@@ -289,7 +289,7 @@ const updateProductSupplyType = asyncErrorHandler(async (req, res, next) => {
     console.log("In updateProductSupplyType");
 
     const product_id = req.body.product_id;
-    console.log("Got the product_id from the request params ", product_id);
+    console.log("Got the product_id from the request body ", product_id);
 
     console.log("Checking if the request body is empty");
     if (checkIsEmptyObject(req) === true) {

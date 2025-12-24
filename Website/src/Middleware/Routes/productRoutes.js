@@ -13,9 +13,9 @@ router.route('/updateproductname/:user_id').patch(requestValidator(productSchema
 
 router.route('/updateproduct').patch(requestValidator(productSchemas.updateProductSchema), xss(), productControllers.updateProduct);
 
-router.route('/updateproductgarmentweight').patch(requestValidator(productSchemas.productGarmentWeightSchema), xss(), productControllers.updateProductGarmentWeight );
+router.route('/updateproductgarmentweight').patch(requestValidator(productSchemas.productGarmentWeightRequestSchema), xss(), productControllers.updateProductGarmentWeight );
 
-router.route('/updateproductsupplytype').patch(requestValidator(productSchemas.productSupplyTypeSchema), xss(), productControllers.updateProductSupplyType);
+router.route('/updateproductsupplytype').patch(requestValidator(productSchemas.productSupplyTypeRequestSchema), xss(), productControllers.updateProductSupplyType);
 
 router.route('/searchproducts').get(requestValidator(productSchemas.searchProductSchema), xss(), productControllers.searchProducts);
 

@@ -18,7 +18,3 @@ Remember to include .strict() in all schemas (Done for shipping addresses so far
 Remember to include empty request body error in all async controllers and support functions.
 Remember to get rid of length in regexes and replace them with .length().
 Add .lean() to all mongoose methods to remove unnecessary keys. 
-
-Remember to discuss 3 new amounts with babu.
-Remember to message Kim.
-

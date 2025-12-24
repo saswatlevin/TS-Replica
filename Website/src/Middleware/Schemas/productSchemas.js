@@ -1,6 +1,7 @@
 const z = require('zod');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const productValidators = require('../Validators/CustomValidators/productValidators');
+const cartItemValidators = require('../Validators/CustomValidators/cartItemValidators');
 const objectIdSchema = require('./objectIdSchema');
 const {productImageArrayRequestSchema, productImageArrayResponseSchema } = require('./productImageSchemas');
 const {productItemRequestSchemasUnion, productItemResponseSchemasUnion} = require('./productItemSchemas');
@@ -11,7 +12,6 @@ const productGarmentWeightSchema = z.object({
     garment_weight_description: productValidators.zodIsGarmentWeightDescription,
 
     garment_weight: productValidators.zodIsGarmentWeight
-   
 }).strict();
 
 const productSupplyTypeSchema = z.object({
@@ -20,7 +20,6 @@ const productSupplyTypeSchema = z.object({
     supply_type_description: productValidators.zodIsSupplyTypeDescription,
 
     supply_type: productValidators.zodIsSupplyType
-    
 }).strict();
 
 
@@ -79,7 +78,12 @@ const updateProductSchema = z.object({
 }).strict();
 
 const updateProductNameSchema = z.object({
+    cart_item_id: cartItemValidators.zodIscartItemId,
+    
     product_id: productValidators.zodIsProductId,
+
+    sku: productValidators.zodIsSKU,
+
     product_name: productValidators.zodIsProductName
 }).strict();
 
@@ -173,7 +177,12 @@ const productResponseSchema = z.object({
 
 
 const updateProductPriceSchema = z.object({
+    cart_item_id: cartItemValidators.zodIscartItemId,
+
     product_id: productValidators.zodIsProductId,
+    
+    sku: productValidators.zodIsSKU,
+    
     product_price: productValidators.zodIsProductPrice
 }).strict();
 

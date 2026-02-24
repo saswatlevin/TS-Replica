@@ -1,0 +1,27 @@
+The following prompt is being written in order to be able to extend the backend of the TaylorStitch website to be able to record customer transactions and be able to facilitate discounts and product returns.
+
+The situation is described as follows:
+
+* The database structure is described below. There are 4 collections:
+    1) Users
+    2) Products
+    3) Orders
+    4) Reviews
+
+* The document hierarchy of each of the collections is described below:
+    1) Each document in the Users collection has 2 arrays of sub-documents: CartItems and ShippingAddresses.
+    2) Each document in the Products collection has 2 arrays of sub-documents: product_images and product_items.
+    3) Each document in the Orders collection has a sub-document called shipping_address and an array of sub-documents of order_items.
+    4) Each document in the Reviews collection has no sub-document of any kind.
+
+* A sample of each DOCUMENT of each collection will be provided.
+
+* I wish to achieve the following:
+  1) Find a way to record transactions made by customers.
+  2) Find a way to connect my system to the test SDK / API of Visa so that "fake money" flows in / out of my system based on goods purchased or returned
+  3) Find a way to record the number of items returned due to defects / cancelled orders by retro-fitting this on to the current DB structure without making too many changes.
+  4) Find a way to record discounts for products by retro-fitting this on to the current DB structure without making too many changes.
+
+ 
+
+      

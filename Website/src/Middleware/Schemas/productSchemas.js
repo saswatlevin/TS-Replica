@@ -71,7 +71,7 @@ const productRequestSchema = z.object({
 }).strict();
 
 const updateProductSchema = z.object({
-    product_id: productValidators.zodIsProductId.optional(),
+    product_id: productValidators.zodIsProductId,
 
     product_color: productValidators.zodIsProductColor.optional(),
 
@@ -95,7 +95,7 @@ const updateProductNameSchema = z.object({
     
     product_id: productValidators.zodIsProductId,
 
-    sku: productValidators.zodIsSKU,
+    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
 
     product_name: productValidators.zodIsProductName
 }).strict();
@@ -194,7 +194,7 @@ const updateProductPriceSchema = z.object({
 
     product_id: productValidators.zodIsProductId,
     
-    sku: productValidators.zodIsSKU,
+    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
     
     product_price: productValidators.zodIsProductPrice
 }).strict();

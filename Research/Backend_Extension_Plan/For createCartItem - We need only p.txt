@@ -1,0 +1,8 @@
+For createCartItem -> We need only product_id and sku.
+
+For updateCartItemPrice -> We need only product_id and cart_item_id. Here, cart_item_id is used to check existence of a particular cart_item.
+For updateCartItemName -> We need only product_id and cart_item_id. Here, cart_item_id is used to check existence of a particular cart_item.
+For updateCartItemImageURI -> We need only product_id and cart_item_id. Here, cart_item_id is used to check existence of a particular cart_item.
+
+For updateCartItemQuantity -> We need product_id, sku and cart_item_id. (sku redundant)
+For deleteCartItem -> We need product_id, sku and cart_item_id. (sku redundant)

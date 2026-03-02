@@ -31,6 +31,65 @@ const checkProduct = async(req) => {
     }
 };
 
+const checkProductNameExists = async(req) => {
+    console.log("In checkProductNameExists");
+
+    try {
+
+        const product_id = req.body.product_id;
+        const product_name = req.body.product_name;
+        
+        const product_search_object = {
+            product_id: product_id,
+            product_name: product_name
+        };
+
+        const result = await Product.findOne(product_search_object);
+
+        if (result === null) {
+            return false;
+        }
+    
+        return true;
+    }
+
+    catch(error) {
+        console.log("Error in checkProductNameExists ", error);
+        throw error;
+    }
+};
+
+const checkProductPriceExists = async(req) => {
+    console.log("In checkProductPriceExists");
+
+    try {
+
+        const product_id = req.body.product_id;
+        const product_price = req.body.product_price;
+        
+        const product_search_object = {
+            product_id: product_id,
+            product_price: product_price
+        };
+
+        const result = await Product.findOne(product_search_object);
+        //console.log("##DEBUG in checkProductPriceExists - result - ", result);
+
+        if (result === null) {
+            console.log("##DEBUG in checkProductPriceExists - Returning false ");
+            return false;
+        }
+        
+        console.log("##DEBUG in checkProductPriceExists - Returning true ");
+        return true;
+    }
+
+    catch(error) {
+        console.log("Error in checkProductPriceExists ", error);
+        throw error;
+    }
+};
+
 const checkDuplicateProduct = async(req) => {
     console.log("In checkDuplicateProduct");
     
@@ -81,24 +140,20 @@ const checkProductValueExists = async(req) => {
     console.log("In checkProductValueExists");
     
     try {
-
-        const product_id = req.body.product_id;
         
-        const product_search_object = {
-            product_id: product_id, 
-            ...req.body
-        };
-        //console.log("##DEBUG product_search_object in checkProductValueExists ", product_search_object);
+        const product_search_object = req.body;
+
+        console.log("##DEBUG product_search_object in checkProductValueExists ", product_search_object);
 
         const result = await Product.findOne(product_search_object);
         //console.log("##DEBUG result in checkProductValueExists ", result);
 
         if (result === null) {
-            //console.log("##DEBUG Returning false in checkProductValueExists ");
+            console.log("##DEBUG Returning false in checkProductValueExists ");
             return false;
         }
 
-        //console.log("##DEBUG Returning true in checkProductValueExists ");
+        console.log("##DEBUG Returning true in checkProductValueExists ");
         return true;
     }
 
@@ -192,6 +247,8 @@ const checkProductSupplyTypeValueExists = async(req) => {
 module.exports = {
     checkProduct,
     checkDuplicateProduct,
+    checkProductNameExists,
+    checkProductPriceExists,
     insertAt,
     checkProductValueExists,
     checkProductGarmentWeightValueExists,

@@ -3,7 +3,7 @@ from requestFunctions import *
 ##====CART ITEM API INTEGRATION TESTING====##
 #////////////////Create a Cart Item////////////////#
 #print("====createCartItem() TEST SUITE====")
-#create_cart_item_url = "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3
+create_cart_item_url = "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3"
 create_cart_item_set_1 = {
     "product_id": "a6bb1d23bd28",
     "sku": "4565314a71",
@@ -15,6 +15,18 @@ create_cart_item_set_1 = {
 
 #create_cart_item_response_1 = postRequests(create_cart_item_url, create_cart_item_set_1)
 #print("TEST 1 - Create a Cart Item ", create_cart_item_response_1.text)
+
+create_cart_item_set_1a = {
+    "product_id": "a6bb1d23bd28",
+    "sku": "byhl4v6vfw",
+    "cart_item_name": "The Craftsman Shirt in Bark Plaid Cotton",
+    "cart_item_price": 115,
+    "cart_item_image_uri":"C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-SleevedShirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_001.jpg",
+    "cart_item_quantity": 1
+}
+
+#create_cart_item_response_1a = postRequests(create_cart_item_url, create_cart_item_set_1a)
+#print("TEST 1a - Create a Cart Item ", create_cart_item_response_1a.text)
 
 #create_cart_item_url_2 = "http://localhost:3500/cartitems/createcartitem/f6c13bd3c15c"
 create_cart_item_set_2 = {
@@ -42,10 +54,12 @@ create_cart_item_set_3 = {
 #create_cart_item_response_3 = postRequests(create_cart_item_url_3, create_cart_item_set_3)
 #print("TEST 3 - Create a Cart Item ", create_cart_item_response_3.text)
 
-print("====updateCartItemQuantity() TEST SUITE====")
-update_cart_item_quantity_url_1 = "http://localhost:3500/cartitems/updatecartitemquantity/d2a986a0cab3"
+#print("====updateCartItemQuantity() TEST SUITE====")
+#update_cart_item_quantity_url_1 = "http://localhost:3500/cartitems/updatecartitemquantity/d2a986a0cab3"
 update_cart_item_quantity_set_1 = {
+    "cart_item_id": "",
     "product_id": "a6bb1d23bd28",
+    "sku": "",
     "cart_item_quantity": 4
 }
 
@@ -54,9 +68,12 @@ update_cart_item_quantity_set_1 = {
 
 #update_cart_item_quantity_url_2 = "http://localhost:3500/cartitems/updatecartitemquantity/f6c13bd3c15c"
 update_cart_item_quantity_set_2 = {
+    "cart_item_id": "",
     "product_id": "b0e6v4zl9aih",
+    "sku": "",
     "cart_item_quantity": 3
 }
 
 #update_cart_item_quantity_response_2 = patchRequests(update_cart_item_quantity_url_2, update_cart_item_quantity_set_2)
 #print("TEST 2 - Update the cart item quantity ", update_cart_item_quantity_response_2.text)
+

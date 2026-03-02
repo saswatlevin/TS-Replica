@@ -4,7 +4,7 @@ from requestFunctions import *
 ##=====PRODUCT API INTEGRATION TESTING=====##
 #print("====createProduct() TEST SUITE====")
 
-create_product_url_1 = "http://localhost:3500/products/createproduct"
+#create_product_url_1 = "http://localhost:3500/products/createproduct"
 
 create_product_data_1 = {
    
@@ -63,23 +63,23 @@ create_product_data_1 = {
 #/////////////Test 2: Update a product garment weight (updateProductGarmentWeight)/////////////#
 #print("====updateProductGarmentWeight() TEST SUITE====")
 
-update_product_garment_weight_url_1 = "http://localhost:3500/products/updateproductgarmentweight"
+#update_product_garment_weight_url_1 = "http://localhost:3500/products/updateproductgarmentweight"
 
 ####Update garment_weight_description and garment_weight - 1#### 
 update_product_garment_weight_data_set_1 = {
     "product_id": "a6bb1d23bd28",
-    "garment_weight_description": "Perfect for all SEASONS",
+    "garment_weight_description": "Perfect for all seasons",
     "garment_weight": "Medium"
 }
 
-#response_1 = patchRequests(update_product_garment_weight_url_1, update_product_garment_weight_data_set_1)
+#response_1 = patchRequests(update_product_garment_weight_url_1,update_product_garment_weight_data_set_1)
 #print("TEST 1 - Update a Product Garment (Weight & Description) ", response_1.text)
 
 ####Update garment_weight_description and garment_weight - 2####
 update_product_garment_weight_data_set_2 = {
     "product_id": "a6bb1d23bd28",
     "garment_weight_description": "Perfect for every season, ALWAYS",
-    "garment_weight": "Medium"  
+    "garment_weight": "Light"  
 }
 
 #response_2 = patchRequests(update_product_garment_weight_url_1, update_product_garment_weight_data_set_2)
@@ -111,11 +111,11 @@ update_product_garment_weight_data_set_4 = {
 
 #print("====updateProduct() TEST SUITE====")
 
-update_product_url_1 = "http://localhost:3500/products/updateproduct"
+#update_product_url_1 = "http://localhost:3500/products/updateproduct"
 
 update_product_data_set_1 = {
     "product_id": "a6bb1d23bd28",
-    "product_color": "Bark Plaid Linen"    
+    "product_color": "Bark Plaid COTTON"    
 }
 
 #response_1 = patchRequests(update_product_url_1, update_product_data_set_1)
@@ -123,7 +123,7 @@ update_product_data_set_1 = {
 
 update_product_data_set_2 = {
   "product_id": "a6bb1d23bd28",
-  "product_description": "Rugged by design, built with comfort in mind. The Craftsman Shirt pairs classic workwear detailing with a breathable cotton-linen canvas that’s made to handle the season’s shifting demands. Durable, dependable, and crafted to keep up for years to COME."
+  "product_description": "Rugged by design, built with comfort in mind. The Craftsman Shirt pairs classic workwear detailing with a breathable cotton-linen canvas that’s made to handle the season’s shifting demands. Durable, dependable, and crafted to keep up for years to come."
 }
 
 #response_2 = patchRequests(update_product_url_1, update_product_data_set_2)
@@ -139,7 +139,7 @@ update_product_data_set_3 = {
 
 update_product_data_set_4 = {
   "product_id": "a6bb1d23bd28",
-  "product_subcategory": "Shirt"
+  "product_subcategory": "Bottom"
 }
 
 #response_4 = patchRequests(update_product_url_1, update_product_data_set_4)
@@ -155,7 +155,7 @@ update_product_data_set_5 = {
 
 update_product_data_set_6 = {
   "product_id": "a6bb1d23bd28",
-  "product_fit": "Fitted at the chest with a straighter fit through the body. Shorter tail length to be worn untucked. Model is 6'3\", wearing a Light."
+  "product_fit": "Fitted at the chest with a straighter fit through the body. Shorter tail length to be worn untucked. Model is 6'3\", wearing a light."
 }
 
 #response_6 = patchRequests(update_product_url_1, update_product_data_set_6)
@@ -171,7 +171,7 @@ update_product_data_set_7 = {
 
 update_product_data_set_8 = {
   "product_id": "a6bb1d23bd28",
-  "product_material": "CRAFTED from a mid-weight organic cotton and linen canvas and washed for a soft, lived-in feel. Features classic double chest pockets—complete with a handy pen sleeve—and reinforced with double-needle felled seams for lasting durability."
+  "product_material": "Crafted from a mid-weight organic cotton and linen canvas and washed for a soft, lived-in feel. Features classic double chest pockets—complete with a handy pen sleeve—and reinforced with double-needle felled seams for lasting durability."
 }
 
 #response_8 = patchRequests(update_product_url_1, update_product_data_set_8)
@@ -182,12 +182,12 @@ update_product_data_set_8 = {
 
 update_product_supply_type_url_1 = "http://localhost:3500/products/updateproductsupplytype"
 
-#print("====updateProductSupplyType() TEST SUITE====")
+print("====updateProductSupplyType() TEST SUITE====")
 
 update_product_supply_type_data_set_1 = {
   "product_id": "a6bb1d23bd28",
   "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
-  "supply_type": "Limited"
+  "supply_type": "Essential"
 }
 
 #response_1 = patchRequests(update_product_supply_type_url_1, update_product_supply_type_data_set_1)
@@ -221,21 +221,21 @@ search_products_url_1 = "http://localhost:3500/products/searchproducts"
 #print("====searchProducts() TEST SUITE====")
 
 search_products_data_set_1 = {
-  "product_name": "The Craftsman Shirt in Bark Plaid A"
+  "product_name": "The Craftsman Shirt in Bark Plaid COTTON"
 }
 
 #response_1 = getRequests(search_products_url_1, search_products_data_set_1)
 #print("TEST 1 - Search for a Product by Name ", response_1.text)
 
 search_products_data_set_2 = {
-  "product_color": "Bark Plaid Linen"
+  "product_color": "Bark Plaid Cotton"
 }
 
 #response_2 = getRequests(search_products_url_1, search_products_data_set_2)
 #print("TEST 2 - Search for a Product by Color ", response_2.text)
 
 search_products_data_set_3 = {
-  "product_subcategory": "Shirt"
+  "product_subcategory": "Bottom"
 }
 
 #response_3 = getRequests(search_products_url_1, search_products_data_set_3)
@@ -243,13 +243,15 @@ search_products_data_set_3 = {
 
 #/////////////Test 6: Update a Product price (updateProductPrice)/////////////#
 
-update_product_price_url_1 = "http://localhost:3500/products/updateproductprice/d2a986a0cab3"
+#update_product_price_url_1 = "http://localhost:3500/products/updateproductprice/d2a986a0cab3"
 
 #print("====updateProductPrice() TEST SUITE====")
 
 update_product_price_data_set_1 = {
+  "cart_item_id": "377a0b56f1be",
   "product_id": "a6bb1d23bd28",
-  "product_price": 115
+  "sku": "4565314a71",
+  "product_price": 148
 }
 
 #response_1 = patchRequests(update_product_price_url_1, update_product_price_data_set_1)
@@ -257,13 +259,15 @@ update_product_price_data_set_1 = {
 
 #/////////////Test 7: Update a Product name (updateProductName)/////////////#
 
-update_product_name_url_1 = "http://localhost:3500/products/updateproductname/d2a986a0cab3"
+#update_product_name_url_1 = "http://localhost:3500/products/updateproductname/d2a986a0cab3"
 
 #print("====updateProductName() TEST SUITE====")
 
 update_product_name_data_set_1 = {
+  "cart_item_id": "377a0b56f1be",
   "product_id": "a6bb1d23bd28",
-  "product_name": "The Craftsman Shirt in Bark Plaid Cotton"
+  "sku": "4565314a71",
+  "product_name": "The Craftsman Shirt in Bark Plaid COTTON"
 }
 
 #response_1 = patchRequests(update_product_name_url_1, update_product_name_data_set_1)

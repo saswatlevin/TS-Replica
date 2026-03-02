@@ -26,4 +26,8 @@
 11) Ensure that the product_id and shipping_address_id are made immutable in the respective schemas cart_item, product, shipping_address). This is to prevent these IDs from being updated. 
 
 12) Immutability at the schema level is a better option. It enforces modularity better. It's the schema's job to ensure that the right type of data is passed on to the database. It's the API's job to actually perform the update operation.
+
+13) In all the UPDATE controller functions, please find a way to ensure that the update object contains only the data to be updated. Currently, the update object also contains IDs.
+
+14) In all the controllers and helper functions, ensure that JS objects do not contain duplicate keys. Check the objects passed to findOne().
 ===========TECHNICAL DEBT===========

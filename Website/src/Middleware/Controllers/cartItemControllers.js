@@ -16,6 +16,12 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     const user_id = req.params.user_id;
     console.log("user_id ", user_id);
 
+    const product_id = req.body.product_id;
+    console.log("product_id ", product_id);
+
+    const sku = req.body.sku;
+    console.log("sku ", sku);
+
     console.log("Checking if the request body is empty");
     if (checkIsEmptyObject(req) === true) {
         const empty_request_body_error = new EmptyRequestBodyError(`Could not create Cart Item for user with user_id ${user_id} as the request body is empty.`);
@@ -63,6 +69,9 @@ const updateCartItemPrice = async (req) => {
         const user_id = req.params.user_id;
         console.log("user_id ", user_id);
 
+        const cart_item_id = req.body.cart_item_id;
+        console.log("cart_item_id ", cart_item_id);
+
         const product_id = req.body.product_id;
         console.log("product_id ", product_id);
 
@@ -73,15 +82,12 @@ const updateCartItemPrice = async (req) => {
         }
 
         console.log("Checking if the cart item exists");
-        if (await checkCartItemExists(req, cart_item_id) === false) {
+        if (await checkCartItemExists(req) === false) {
             const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the cart item with cart_item_id ${cart_item_id} does not exist.`);
             throw cart_item_not_found_error;
         }
 
-
-
-        
-        const filter = { user_id: user_id, "CartItems.product_id": product_id };
+        const filter = { user_id: user_id,  "CartItems.product_id": product_id};
         console.log("filter ", filter);
 
         const updated_cart_item_price = req.params.updated_product_price;
@@ -89,13 +95,14 @@ const updateCartItemPrice = async (req) => {
 
         const update_object = {
             $set: {
-                "CartItems.$.cart_item_price": updated_cart_item_price
+                "CartItems.$[item].cart_item_price": updated_cart_item_price
             }
         };
 
         console.log("update_object ", update_object);
 
-        const result = await User.findOneAndUpdate(filter, update_object, { new: true, select: "CartItems" }, { runValidators: true }).lean();
+        // Update the product_price of all product items (cart items) of the same product if present.
+        const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": "a6bb1d23bd28" }], runValidators: true });
 
         console.log("result in updateCartItemPrice ", result);
 
@@ -118,11 +125,11 @@ const updateCartItemName = async (req) => {
         const user_id = req.params.user_id;
         console.log("user_id ", user_id);
 
-        const product_id = req.body.product_id;
-        console.log("product_id ", product_id);
-
         const cart_item_id = req.body.cart_item_id;
         console.log("cart_item_id ", cart_item_id);
+
+        const product_id = req.body.product_id;
+        console.log("product_id ", product_id);
 
         console.log("Checking if the user exists");
         if (await checkUserExists(req) === false) {
@@ -131,12 +138,14 @@ const updateCartItemName = async (req) => {
         }
 
         console.log("Checking if the cart item exists");
-        if (await checkCartItemExists(req, cart_item_id) === false) {
+        if (await checkCartItemExists(req) === false) {
             const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the cart item with cart_item_id ${cart_item_id} does not exist.`);
             throw cart_item_not_found_error;
         }
         
+        // We use only user_id and product_id since multiple cart items of the same product (different cart_item_id AND different sku) must have their product_name updated.
         const filter = { user_id: user_id, "CartItems.product_id": product_id };
+
         console.log("filter ", filter);
 
         const updated_cart_item_name = req.params.updated_product_name;
@@ -144,13 +153,14 @@ const updateCartItemName = async (req) => {
 
         const update_object = {
             $set: {
-                "CartItems.$.cart_item_name": updated_cart_item_name
+                "CartItems.$[item].cart_item_name": updated_cart_item_name
             }
         };
 
         console.log("update_object ", update_object);
 
-        const result = await User.findOneAndUpdate(filter, update_object, { new: true, select: "CartItems" }, { runValidators: true }).lean();
+        // Update the product_name of all product items (cart items) of the same product if present.
+        const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": product_id }], runValidators: true });
 
         console.log("result in updateCartItemName ", result);
 
@@ -173,6 +183,9 @@ const updateCartItemImageURI = async (req) => {
         const user_id = req.params.user_id;
         console.log("user_id ", user_id);
 
+        const cart_item_id = req.body.cart_item_id;
+        console.log("cart_item_id ", cart_item_id);
+
         const product_id = req.params.product_id;
         console.log("product_id ", product_id);
 
@@ -183,7 +196,7 @@ const updateCartItemImageURI = async (req) => {
         }
 
         console.log("Checking if the cart item exists");
-        if (await checkCartItemExists(req, cart_item_id) === false) {
+        if (await checkCartItemExists(req) === false) {
             const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the cart item with cart_item_id ${cart_item_id} does not exist.`);
             throw cart_item_not_found_error;
         }
@@ -196,13 +209,13 @@ const updateCartItemImageURI = async (req) => {
 
         const update_object = {
             $set: {
-                "CartItems.$.cart_item_image_uri": updated_cart_item_image_uri
+                "CartItems.$[item].cart_item_image_uri": updated_cart_item_image_uri
             }
         };
 
         console.log("update_object ", update_object);
 
-        const result = await User.findOneAndUpdate(filter, update_object, { new: true, select: "CartItems" }, { runValidators: true }).lean();
+        const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": product_id }], runValidators: true });
 
         console.log("result in updateCartItemImageURI ", result);
 
@@ -222,8 +235,13 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
     
     const user_id = req.params.user_id;
     console.log("user_id ", user_id);
+
     const product_id = req.body.product_id;
     console.log("product_id ", product_id);
+    
+    const sku = req.body.sku;
+    console.log("sku ", sku);
+
     const cart_item_id = req.body.cart_item_id;
     console.log("cart_item_id ", cart_item_id);
 
@@ -240,7 +258,7 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
     }
 
     console.log("Checking if the cart_item exists");
-    if (await checkCartItemExists(req, cart_item_id) === false) {
+    if (await checkCartItemExists(req) === false) {
         const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the cart item with product_id ${product_id} does not exist.`);
         throw cart_item_not_found_error;
     }
@@ -329,12 +347,18 @@ const getCartItemById = asyncErrorHandler(async(req, res, next) => {
 
 const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
    console.log("In deleteCartItem");
-   
-   const cart_item_id = req.body.cart_item_id;
-   console.log("Getting the cart_item_id from the request body ", cart_item_id);
 
    const user_id = req.params.user_id;
-   console.log("Getting the user_id from the request params ", user_id)
+   console.log("Getting the user_id from the request params ", user_id);
+
+   const product_id = req.body.product_id;
+    console.log("product_id ", product_id);
+    
+    const sku = req.body.sku;
+    console.log("sku ", sku);
+
+    const cart_item_id = req.body.cart_item_id;
+    console.log("cart_item_id ", cart_item_id);
 
    console.log("Checking if the request body is empty");
    if (checkIsEmptyObject(req) === true) {
@@ -349,7 +373,7 @@ const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
    }
 
    console.log("Checking if the cart item to be deleted exists.");
-   if (await checkCartItemExists(req, cart_item_id) === false) {
+   if (await checkCartItemExists(req) === false) {
       const resource_not_found_error = new ResourceNotFoundError(`Could not delete the cart item with cart_item_id ${cart_item_id} since it does not exist.`);
       throw resource_not_found_error;
    }

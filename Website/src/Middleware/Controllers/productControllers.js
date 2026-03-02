@@ -10,6 +10,8 @@ const { checkIsEmptyObject } = require('./SupportFunctions/shippingAddressSuppor
 const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
 const { checkDuplicateProduct } = require('./SupportFunctions/productSupportFunctions');
 const { checkProductValueExists } = require('./SupportFunctions/productSupportFunctions');
+const { checkProductNameExists } = require('./SupportFunctions/productSupportFunctions');
+const { checkProductPriceExists } = require('./SupportFunctions/productSupportFunctions');
 const { checkProductGarmentWeightValueExists } = require('./SupportFunctions/productSupportFunctions');
 const { checkProductSupplyTypeValueExists } = require('./SupportFunctions/productSupportFunctions');
 const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
@@ -62,7 +64,7 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
     console.log("request_body_deep_clone after modification ", request_body_deep_clone);
 
 
-    // Create the porduct object
+    // Create the product object
     const product = {
         product_id: product_id,
         docType: doc_type,
@@ -107,13 +109,13 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     }
     
     console.log("Check if the updated price value already exists");
-    if(await checkProductValueExists(req) === true) {
+    if (await checkProductPriceExists(req) === true) {
         const redundant_update_error = new RedundantUpdateError(`Could not update Product document with product_id ${product_id} since the product_price value ${req.body.product_price} already exists.`);
         throw redundant_update_error;
     }
 
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
-    console.log("request_body_deep_clone ", request_body_deep_clone);
+    //console.log("request_body_deep_clone ", request_body_deep_clone);
 
     const filter = { product_id: product_id };
     console.log("filter ", filter);
@@ -122,7 +124,7 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     console.log("update_object ", update_object);
 
     const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
-    console.log("update_product_price_result ", update_product_price_result);
+    //console.log("update_product_price_result ", update_product_price_result);
 
     req.params.updated_product_price = update_product_price_result.product_price;
     console.log("Storing the updated_product_price in the request params ", req.params.updated_product_price);
@@ -158,7 +160,7 @@ const updateProductName = asyncErrorHandler(async(req, res, next) => {
     }
     
     console.log("Check if the updated name value already exists");
-    if(await checkProductValueExists(req) === true) {
+    if(await checkProductNameExists(req) === true) {
         const redundant_update_error = new RedundantUpdateError(`Could not update Product document with product_id ${product_id} since the product_name value ${req.body.product_name} already exists.`);
         throw redundant_update_error;
     }

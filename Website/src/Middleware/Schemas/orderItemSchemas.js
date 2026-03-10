@@ -20,8 +20,14 @@ const orderItemSchema = z.object({
 
     order_item_quantity: z.number("The order_item_quantity field must be a number(integer). It is a required field.").int("The order_item_quantity field must be an integer.").min(1, {message: "The order_item_quantity field has a minimum limit of 1."}).max(100, {message: "The order_item_quantity field has a maximum upper limit of 100."}),
 
-    order_item_image_uri: z.string("The order_item_image_uri must be a string. It is a required field.").max(256).regex(customValidators.windowsFilePathRegex, {message: "The order_item_image_uri must be a valid Windows file path. Maximum permitted length is 256 characters."})
-});
+    order_item_image_uri: z.string("The order_item_image_uri must be a string. It is a required field.").max(256).regex(customValidators.windowsFilePathRegex, {message: "The order_item_image_uri must be a valid Windows file path. Maximum permitted length is 256 characters."}),
+
+    returned_quantity: z.number("The returned_quantity field must be a number (integer). It is a required field.").min(0, {message: "The returned_quantity field has a minimum limit of 1."}),
+
+    return_reason: z.enum(["None", "Defect", "Cancelled"], {message: "The return_reason field is a required field. It must be one of the following values: None, Defect, Cancelled."}),
+
+    return_status: z.enum(["None", "Requested", "Approved", "Cancelled"], {message: "The return_status field is a required field. It must be one of the following values: None, Defect, Cancelled."})
+}).strict();
 
 const orderItemSchemaArray = z.array(orderItemSchema);
 

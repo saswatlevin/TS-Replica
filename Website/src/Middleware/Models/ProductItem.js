@@ -32,18 +32,23 @@ const productItemSchema = new mongoose.Schema({
     },
 
    total_stock: {
-    type: Number,
-    required: [true, "total_stock is a number (integer). It is a required field."]
+        type: Number,
+        required: [true, "total_stock is a number (integer). It is a required field."]
    },
 
    quantity_sold: {
-    type: Number,
-    required: [true, "quantity_sold is a number and is a required field."]
+        type: Number,
+        required: [true, "quantity_sold is a number and is a required field."]
+   },
+
+   quantity_returned: {
+        type: Number,
+        required: [true, "quantity_returned is a number and is a required field."]
    },
 
    current_stock: {
-    type: Number,
-    required: [true, "current_stock is a number and is a required field."]
+        type: Number,
+        required: [true, "current_stock is a number and is a required field."]
    }
 },
 {

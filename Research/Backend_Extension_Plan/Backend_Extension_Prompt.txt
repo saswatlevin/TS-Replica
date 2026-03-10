@@ -23,5 +23,51 @@ The situation is described as follows:
   4) Find a way to record discounts for products by retro-fitting this on to the current DB structure without making too many changes.
 
  
+Using the example of the document structure provided below, please do the following:
+ 
+{
+  "field_1": "value_1",
+  "field_2": "value_2",
+  "field_3a": "value_3a"
+  
+  subdocument_array: [
+    {
+      "field_1": "value_1",
+      "field_2": "value_2",
+      "field_3": "value_3",
+      "field_4a": "value_4a" 
+    },
 
-      
+    {
+      "field_1": "value_1",
+      "field_2": "value_2",
+      "field_3": "value_3",
+      "field_4a": "value_4a"
+    }
+  ]
+}
+
+Write an aggregation pipeline to add a field in the nth position in the main document. Assume n such documents in the collection.
+
+Please also write a separate aggregation pipeline to add a field to the nth position in each sub-document in the array of sub-documents. Assume that each sub-document in the array of sub-documents has the same structure. Assume that each document has n such sub-documents.
+
+ Name
+----                 -------------         ------ ----
+-a----         4/25/2025  11:18 PM           1558 InstallCompass.ps1
+-a----         5/23/2025   5:20 PM            542 mongod.cfg
+-a----         4/26/2025  12:54 AM       75918336 mongod.exe
+-a----         4/26/2025  12:54 AM     1238298624 mongod.pdb
+-a----         4/26/2025  12:54 AM       48439296 mongos.exe
+-a----         4/26/2025  12:54 AM      808300544 mongos.pdb
+
+I would like to note that in my installation of MongoDB on Windows 11 located in "C:\Program Files\MongoDB\Server\8.0\bin", only the following files exist:
+  InstallCompass.ps1,
+  mongod.cfg,
+  mongod.exe,
+  mongod.pdb,
+  mongos.exe,
+  mongos.pdb
+Thus, neither "mongodump" nor "mongorestore" are available. 
+
+
+Here's what 

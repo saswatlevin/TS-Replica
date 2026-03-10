@@ -22,7 +22,7 @@ const orderItemSchema = z.object({
 
     order_item_image_uri: z.string("The order_item_image_uri must be a string. It is a required field.").max(256).regex(customValidators.windowsFilePathRegex, {message: "The order_item_image_uri must be a valid Windows file path. Maximum permitted length is 256 characters."}),
 
-    returned_quantity: z.number("The returned_quantity field must be a number (integer). It is a required field.").min(0, {message: "The returned_quantity field has a minimum limit of 1."}),
+    returned_quantity: z.number("The returned_quantity field must be a number (integer). It is a required field.").int("The ").min(0, {message: "The returned_quantity field has a minimum limit of 0."}).max(600, {message: "The returned_quantity field has a maximum limit of 600."}),
 
     return_reason: z.enum(["None", "Defect", "Cancelled"], {message: "The return_reason field is a required field. It must be one of the following values: None, Defect, Cancelled."}),
 

@@ -83,6 +83,26 @@ const productSchema = new mongoose.Schema({
     product_items: {
         type: [ProductItem],
         required: [true, "product_items is an array of ProductItems and is a required field."]
+    },
+
+    discount_code: {
+        type: String,
+        required: [true, "discount_code is a string and is a required field."]
+    },
+
+    discount_percentage: {
+        type: Number,
+        required: [true, "discount_percentage is a number and is a required field."]
+    },
+
+    discount_amount: {
+        type: Number,
+        required: [true, "discount_amount is a number and is a required field."]
+    },
+
+    discounted_total: {
+        type: Number,
+        required: [true, "discounted_total is a number and is a required field."]
     }
 });
 

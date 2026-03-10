@@ -71,11 +71,11 @@ const productRequestSchema = z.object({
 
     discount_code: z.enum(["None", "10PERCENT", "20PERCENT", "30PERCENT", "40PERCENT", "50PERCENT"], {message: "The discount_code field accepts one of the following values: None, 10PERCENT, 20PERCENT, 30PERCENT, 40PERCENT, 50PERCENT. It is a required field."}),
 
-    discount_percentage: z.number("The discount_percentage field must be a number (integer).").int("The discount_percentage field must be an integer value.").min(1, {message: "The discount_percentage field only takes positive integer values. Its minimum limit is 1."}).max(100, {message: "The maximum limit of the discount_percentage field is 100."}),
+    discount_percentage: z.number("The discount_percentage field must be a number (integer).").int("The discount_percentage field must be an integer value.").min(0, {message: "The discount_percentage field only takes positive integer values. Its minimum limit is 1."}).max(100, {message: "The maximum limit of the discount_percentage field is 100."}),
 
-    discount_amount: z.number("The discount_amount field must be a number (integer).").int("The discount_amount field must be an integer value.").min(1, {message: "The discount_amount field only takes positive integer values. Its minimum limit is 1."}).max(10000, {message: "The maximum limit of the discount_amount field is 10000."}),
+    discount_amount: z.number("The discount_amount field must be a number (integer).").int("The discount_amount field must be an integer value.").min(0, {message: "The discount_amount field only takes positive integer values. Its minimum limit is 1."}).max(10000, {message: "The maximum limit of the discount_amount field is 10000."}),
     
-    discounted_total: z.number("The discounted_total field must be a number (integer).").int("The discounted_total field must be an integer value.").min(1, {message: "The discounted_total field only takes positive integer values. Its minimum limit is 1."}).max(10000, {message: "The maximum limit of the discounted_total field is 10000."})
+    discounted_total: z.number("The discounted_total field must be a number (integer).").int("The discounted_total field must be an integer value.").min(0, {message: "The discounted_total field only takes positive integer values. Its minimum limit is 1."}).max(10000, {message: "The maximum limit of the discounted_total field is 10000."})
 
 }).strict();
 
@@ -100,11 +100,11 @@ const updateProductSchema = z.object({
 
     discount_code: z.enum(["None", "10PERCENT", "20PERCENT", "30PERCENT", "40PERCENT", "50PERCENT"], {message: "The discount_code field accepts one of the following values: None, 10PERCENT, 20PERCENT, 30PERCENT, 40PERCENT, 50PERCENT. It is a required field."}).optional(),
 
-    discount_percentage: z.number("The discount_percentage field must be a number (integer).").int("The discount_percentage field must be an integer value.").min(1, {message: "The discount_percentage field only takes positive integer values. Its minimum limit is 1."}).max(100, {message: "The maximum limit of the discount_percentage field is 100."}).optional(),
+    discount_percentage: z.number("The discount_percentage field must be a number (integer).").int("The discount_percentage field must be an integer value.").min(0, {message: "The discount_percentage field only takes positive integer values. Its minimum limit is 0."}).max(100, {message: "The maximum limit of the discount_percentage field is 100."}).optional(),
 
-    discount_amount: z.number("The discount_amount field must be a number (integer).").int("The discount_amount field must be an integer value.").min(1, {message: "The discount_amount field only takes positive integer values. Its minimum limit is 1."}).max(10000, {message: "The maximum limit of the discount_amount field is 10000."}).optional(),
+    discount_amount: z.number("The discount_amount field must be a number (integer).").int("The discount_amount field must be an integer value.").min(0, {message: "The discount_amount field only takes positive integer values. Its minimum limit is 0."}).max(10000, {message: "The maximum limit of the discount_amount field is 10000."}).optional(),
     
-    discounted_total: z.number("The discounted_total field must be a number (integer).").int("The discounted_total field must be an integer value.").min(1, {message: "The discounted_total field only takes positive integer values. Its minimum limit is 1."}).max(10000, {message: "The maximum limit of the discounted_total field is 10000."}).optional()
+    discounted_total: z.number("The discounted_total field must be a number (integer).").int("The discounted_total field must be an integer value.").min(0, {message: "The discounted_total field only takes positive integer values. Its minimum limit is 0."}).max(10000, {message: "The maximum limit of the discounted_total field is 10000."}).optional()
 
 }).strict();
 
@@ -164,11 +164,11 @@ const createProductResponseSchema = z.object({
 
     discount_code: z.enum(["None", "10PERCENT", "20PERCENT", "30PERCENT", "40PERCENT", "50PERCENT"], {message: "The discount_code field accepts one of the following values: None, 10PERCENT, 20PERCENT, 30PERCENT, 40PERCENT, 50PERCENT. It is a required field."}),
 
-    discount_percentage: z.number("The discount_percentage field must be a number (integer).").int("The discount_percentage field must be an integer value.").min(1, {message: "The discount_percentage field only takes positive integer values. Its minimum limit is 1."}).max(100, {message: "The maximum limit of the discount_percentage field is 100."}),
+    discount_percentage: z.number("The discount_percentage field must be a number (integer).").int("The discount_percentage field must be an integer value.").min(0, {message: "The discount_percentage field only takes positive integer values. Its minimum limit is 0."}).max(100, {message: "The maximum limit of the discount_percentage field is 100."}),
 
-    discount_amount: z.number("The discount_amount field must be a number (integer).").int("The discount_amount field must be an integer value.").min(1, {message: "The discount_amount field only takes positive integer values. Its minimum limit is 1."}).max(10000, {message: "The maximum limit of the discount_amount field is 10000."}),
+    discount_amount: z.number("The discount_amount field must be a number (integer).").int("The discount_amount field must be an integer value.").min(0, {message: "The discount_amount field only takes positive integer values. Its minimum limit is 0."}).max(10000, {message: "The maximum limit of the discount_amount field is 10000."}),
     
-    discounted_total: z.number("The discounted_total field must be a number (integer).").int("The discounted_total field must be an integer value.").min(1, {message: "The discounted_total field only takes positive integer values. Its minimum limit is 1."}).max(10000, {message: "The maximum limit of the discounted_total field is 10000."}),
+    discounted_total: z.number("The discounted_total field must be a number (integer).").int("The discounted_total field must be an integer value.").min(0, {message: "The discounted_total field only takes positive integer values. Its minimum limit is 0."}).max(10000, {message: "The maximum limit of the discounted_total field is 10000."}),
     
     _id: objectIdSchema,
 
@@ -213,11 +213,11 @@ const productResponseSchema = z.object({
 
         discount_code: z.enum(["None", "10PERCENT", "20PERCENT", "30PERCENT", "40PERCENT", "50PERCENT"], {message: "The discount_code field accepts one of the following values: None, 10PERCENT, 20PERCENT, 30PERCENT, 40PERCENT, 50PERCENT. It is a required field."}),
 
-        discount_percentage: z.number("The discount_percentage field must be a number (integer).").int("The discount_percentage field must be an integer value.").min(1, {message: "The discount_percentage field only takes positive integer values. Its minimum limit is 1."}).max(100, {message: "The maximum limit of the discount_percentage field is 100."}),
+        discount_percentage: z.number("The discount_percentage field must be a number (integer).").int("The discount_percentage field must be an integer value.").min(0, {message: "The discount_percentage field only takes positive integer values. Its minimum limit is 0."}).max(100, {message: "The maximum limit of the discount_percentage field is 100."}),
 
-        discount_amount: z.number("The discount_amount field must be a number (integer).").int("The discount_amount field must be an integer value.").min(1, {message: "The discount_amount field only takes positive integer values. Its minimum limit is 1."}).max(10000, {message: "The maximum limit of the discount_amount field is 10000."}),
+        discount_amount: z.number("The discount_amount field must be a number (integer).").int("The discount_amount field must be an integer value.").min(0, {message: "The discount_amount field only takes positive integer values. Its minimum limit is 0."}).max(10000, {message: "The maximum limit of the discount_amount field is 10000."}),
     
-        discounted_total: z.number("The discounted_total field must be a number (integer).").int("The discounted_total field must be an integer value.").min(1, {message: "The discounted_total field only takes positive integer values. Its minimum limit is 1."}).max(10000, {message: "The maximum limit of the discounted_total field is 10000."}),
+        discounted_total: z.number("The discounted_total field must be a number (integer).").int("The discounted_total field must be an integer value.").min(0, {message: "The discounted_total field only takes positive integer values. Its minimum limit is 0."}).max(10000, {message: "The maximum limit of the discounted_total field is 10000."}),
 
         __v: customValidators.zodIsDocumentVersion
 }).strict();

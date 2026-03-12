@@ -8,7 +8,7 @@ from requestFunctions import *
 
 create_product_data_1 = {
    
-  "product_name": "The Craftsman Shirt in Bark Plaid Linen",
+  "product_name": "The Craftsman Shirt in Bark Plaid Linen DUPLICATE TEST",
   
   "product_color": "Bark Plaid Linen",
   
@@ -52,9 +52,15 @@ create_product_data_1 = {
       "upper_size_number": 46,
       "total_stock": 250,
       "quantity_sold": 80,
+      "quantity_returned": 0,
       "current_stock": 170
     }
-  ]
+  ],
+
+  "discount_code": "None",
+  "discount_percentage": 0,
+  "discount_amount": 0,
+  "discounted_total": 0
 }
 
 #response_1 = postRequests(create_product_url_1, create_product_data_1)
@@ -115,7 +121,7 @@ update_product_garment_weight_data_set_4 = {
 
 update_product_data_set_1 = {
     "product_id": "a6bb1d23bd28",
-    "product_color": "Bark Plaid COTTON"    
+    "product_color": "Bark Plaid Cotton"    
 }
 
 #response_1 = patchRequests(update_product_url_1, update_product_data_set_1)
@@ -123,7 +129,7 @@ update_product_data_set_1 = {
 
 update_product_data_set_2 = {
   "product_id": "a6bb1d23bd28",
-  "product_description": "Rugged by design, built with comfort in mind. The Craftsman Shirt pairs classic workwear detailing with a breathable cotton-linen canvas that’s made to handle the season’s shifting demands. Durable, dependable, and crafted to keep up for years to come."
+  "product_description": "Rugged by design, built with comfort in mind. The Craftsman Shirt pairs classic workwear detailing with a breathable cotton-linen canvas that’s made to handle the season’s shifting demands. Durable, dependable, and crafted to keep up for years to COME."
 }
 
 #response_2 = patchRequests(update_product_url_1, update_product_data_set_2)
@@ -131,7 +137,7 @@ update_product_data_set_2 = {
 
 update_product_data_set_3 = {
   "product_id": "a6bb1d23bd28",
-  "product_category": "Upper Garment"
+  "product_category": "Lower Garment"
 }
 
 #response_3 = patchRequests(update_product_url_1, update_product_data_set_3)
@@ -139,7 +145,7 @@ update_product_data_set_3 = {
 
 update_product_data_set_4 = {
   "product_id": "a6bb1d23bd28",
-  "product_subcategory": "Bottom"
+  "product_subcategory": "Shirt"
 }
 
 #response_4 = patchRequests(update_product_url_1, update_product_data_set_4)
@@ -147,7 +153,7 @@ update_product_data_set_4 = {
 
 update_product_data_set_5 = {
   "product_id": "a6bb1d23bd28",
-  "product_subcategory_type": "Long-Sleeved Shirt"
+  "product_subcategory_type": "Short-Sleeved Shirt"
 }
 
 #response_5 = patchRequests(update_product_url_1, update_product_data_set_5)
@@ -163,7 +169,7 @@ update_product_data_set_6 = {
 
 update_product_data_set_7 = {
   "product_id": "a6bb1d23bd28",
-  "product_specifications": "7-OZ. 55% linen, 45% organic cotton canvas. Washed for a soft, lived-in feel. Two U-shaped chest pockets with button through flaps. Left pocket features a pen sleeve. Adjustable button cuffs. Double-needle felled construction. Wash cold and lay flat to dry. Made in China."
+  "product_specifications": "7-OZ. 55% linen, 45% organic cotton canvas. Washed for a soft, lived-in feel. Two U-shaped chest pockets with button through flaps. Left pocket features a pen sleeve. Adjustable button cuffs. Double-needle felled construction. Wash cold and lay flat to dry. MADE IN CHINA."
 }
 
 #response_7 = patchRequests(update_product_url_1, update_product_data_set_7)
@@ -180,9 +186,9 @@ update_product_data_set_8 = {
 #/////////////Test 4: Update product supply type in a Product (updateProductSupplyType)/////////////#
 ####Update the supply_type_description only keeping supply_type the same####
 
-update_product_supply_type_url_1 = "http://localhost:3500/products/updateproductsupplytype"
+#update_product_supply_type_url_1 = "http://localhost:3500/products/updateproductsupplytype"
 
-print("====updateProductSupplyType() TEST SUITE====")
+#print("====updateProductSupplyType() TEST SUITE====")
 
 update_product_supply_type_data_set_1 = {
   "product_id": "a6bb1d23bd28",
@@ -216,7 +222,7 @@ update_product_supply_type_data_set_3 = {
 #/////////////Test 5: Search for a product (searchProducts)/////////////#
 ####Search for a product by product name####
 
-search_products_url_1 = "http://localhost:3500/products/searchproducts"
+#search_products_url_1 = "http://localhost:3500/products/searchproducts"
 
 #print("====searchProducts() TEST SUITE====")
 
@@ -228,7 +234,7 @@ search_products_data_set_1 = {
 #print("TEST 1 - Search for a Product by Name ", response_1.text)
 
 search_products_data_set_2 = {
-  "product_color": "Bark Plaid Cotton"
+  "product_color": "Bark Plaid COTTON"
 }
 
 #response_2 = getRequests(search_products_url_1, search_products_data_set_2)
@@ -243,7 +249,7 @@ search_products_data_set_3 = {
 
 #/////////////Test 6: Update a Product price (updateProductPrice)/////////////#
 
-#update_product_price_url_1 = "http://localhost:3500/products/updateproductprice/d2a986a0cab3"
+update_product_price_url_1 = "http://localhost:3500/products/updateproductprice/d2a986a0cab3"
 
 #print("====updateProductPrice() TEST SUITE====")
 
@@ -251,7 +257,7 @@ update_product_price_data_set_1 = {
   "cart_item_id": "377a0b56f1be",
   "product_id": "a6bb1d23bd28",
   "sku": "4565314a71",
-  "product_price": 148
+  "product_price": 300
 }
 
 #response_1 = patchRequests(update_product_price_url_1, update_product_price_data_set_1)
@@ -267,7 +273,7 @@ update_product_name_data_set_1 = {
   "cart_item_id": "377a0b56f1be",
   "product_id": "a6bb1d23bd28",
   "sku": "4565314a71",
-  "product_name": "The Craftsman Shirt in Bark Plaid COTTON"
+  "product_name": "The Craftsman Shirt in Bark Plaid Cotton"
 }
 
 #response_1 = patchRequests(update_product_name_url_1, update_product_name_data_set_1)

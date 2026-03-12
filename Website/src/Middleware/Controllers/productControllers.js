@@ -91,6 +91,9 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
 });
 
 const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
+    // Here, we supply the sku value in the request body to ensure that 
+    // the checkCartItem() function works. This is because the checkCartItem() function needs to check whether at least one cart_item (or product_item) of a particular Product exists.
+
     console.log("In updateProductPrice");
 
     const product_id = req.body.product_id;
@@ -142,6 +145,9 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
 });
 
 const updateProductName = asyncErrorHandler(async(req, res, next) => {
+    // Here, we supply the sku value in the request body to ensure that 
+    // the checkCartItem() function works. This is because the checkCartItem() function needs to check whether at least one cart_item (or product_item) of a particular Product exists.
+    
     console.log("In updateProductName");
 
     const product_id = req.body.product_id;

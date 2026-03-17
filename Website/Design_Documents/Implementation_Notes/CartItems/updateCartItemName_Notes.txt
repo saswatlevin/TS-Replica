@@ -12,3 +12,5 @@ updateCartItemName ->
 * Return the result.
 
 NOTE: updateCartItemName is an express HELPER FUNCTION and not a middleware.
+
+Special Note: The cart_item_id is needed for checkCartItemExists() function. 

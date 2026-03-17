@@ -12,3 +12,5 @@ updateCartItemURI ->
 * Return the result.
 
 NOTE: updateCartItemURI is an express HELPER FUNCTION and not a middleware.
+
+Special Note: The cart_item_id is needed for checkCartItemExists() function. updateCartItemImageURI() is currently commented out.

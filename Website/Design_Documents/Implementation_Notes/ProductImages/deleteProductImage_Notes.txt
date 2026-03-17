@@ -1,0 +1,26 @@
+We need the following pieces of data:
+  * product_id ->  From req.body | From frontend
+  * image_id   ->  From req.body | From frontend
+
+deleteProductImage ->
+  * Check if the request_body is empty. If it is, throw an EmptyRequestBodyError.
+  * Get the product_id from the request_body.
+  
+  * Check if the Product document exists. If not, throw a ResourceNotFoundError.
+
+  * Check if the product_image to be deleted exists or not, if not, throw a ResourceNotFoundError.
+
+  * Create the filter consisting of the product_id and image_id from the request_body.
+  * Create the delete_object consisting of the image_id from the request_body.-
+  
+  * const result = await Product.findOneAndUpdate(
+      filter,
+      { 
+        $pull: { product_images: query } 
+      },
+      { new: true },
+      {runValidators: true}
+   ).lean();
+    
+   
+  * Send the result of the findOneAndUpdate() operation as JSON with a status of 200.

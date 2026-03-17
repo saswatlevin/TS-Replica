@@ -1,0 +1,22 @@
+We need the following pieces of data:
+product_id ->  From req.body | From frontend
+
+createProductImage ->
+  * Check if the request_body is empty. If it is, throw an EmptyRequestBodyError.
+  * Get the product_id from the request_body.
+    
+  * Check if the Product document exists. If not, throw a ResourceNotFoundError.
+  * Check if the product_image already exists. If yes, throw a DuplicateSubDocumentError.
+  
+  * Create the image_id using createRandomString(). 
+  * Get the image_uri from the request body.
+  
+  * Define the main_image variable.
+  * Check whether the product_images subdocument array is empty or not, if it is, assign main_image as true and if it isn't empty assign main_image as false. 
+	
+  * Create the product_image object as {image_id, image_uri, main_image: main_image}.
+  
+  
+  * Call findOneAndUpdate() with filter as product_id and the update object as { $push: { product_images: product_image } }.
+  
+  * Send the result of the findOneAndUpdate() operation as JSON with a status of 201.

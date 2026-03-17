@@ -1,0 +1,13 @@
+We need the following pieces of data:
+  * product_id ->  From req.body | From frontend
+  * image_id ->  From req.body | From frontend
+
+searchProductImageById ->
+  * Check if the request_body is empty. If it is, throw an EmptyRequestBodyError.
+  * Get the product_id from the request_body.
+  
+  * Check if the Product exists, if not, throw a ResourceNotFoundError.
+  * Create the search_query from the request body. It should be {'product_id': product_id, 'image_id': image_id}.
+  
+  * Pass the search_query to find().
+  * Return the result as JSON with status_code of 200.

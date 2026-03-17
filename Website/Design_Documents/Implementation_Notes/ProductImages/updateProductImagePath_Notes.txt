@@ -1,0 +1,20 @@
+We need the following pieces of data:
+  * product_id ->  From req.body | From frontend
+  * image_id ->  From req.body | From frontend
+
+updateProductImageURI ->
+  * Check if the request_body is empty. If it is, throw an EmptyRequestBodyError.
+  * Get the product_id from the request_body.
+  
+  * Check if the Product document exists. If not, throw a ResourceNotFoundError.
+  * Create the filter consisting of the product_id and the image_id.
+
+  * Create the update_object consisting of the image_uri from the request_body.
+  * Check if the image_uri value to be updated already exists, if so, throw a RedundantUpdateError.
+
+  * Call findOneAndUpdate() with the filter and the update object as { $push: { product_images: update_object } }.
+  
+  * Get the main_image value from req.body. If it is true, then call updateCartItemImageURI with req, otherwise not.
+  * Send the result of the findOneAndUpdate() operation as JSON with a status of 200.
+
+Special Note: The user_id is a part of the URL path.

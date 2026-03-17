@@ -183,10 +183,11 @@ const updateCartItemImageURI = async (req) => {
         const user_id = req.params.user_id;
         console.log("user_id ", user_id);
 
-        const cart_item_id = req.body.cart_item_id;
-        console.log("cart_item_id ", cart_item_id);
+        // The cart_item_id is needed for checkCartItemExists().
+        //const cart_item_id = req.body.cart_item_id;
+        //console.log("cart_item_id ", cart_item_id);
 
-        const product_id = req.params.product_id;
+        const product_id = req.body.product_id;
         console.log("product_id ", product_id);
 
         console.log("Checking if the user exists");
@@ -195,16 +196,16 @@ const updateCartItemImageURI = async (req) => {
             throw user_id_not_found_error;
         }
 
-        console.log("Checking if the cart item exists");
+        /*console.log("Checking if the cart item exists");
         if (await checkCartItemExists(req) === false) {
             const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the cart item with cart_item_id ${cart_item_id} does not exist.`);
             throw cart_item_not_found_error;
-        }
+        }*/
         
         const filter = { user_id: user_id, "CartItems.product_id": product_id };
         console.log("filter ", filter);
 
-        const updated_cart_item_image_uri = req.params.updated_image_uri;
+        const updated_cart_item_image_uri = req.params.updated_cart_item_image_uri;
         console.log("updated_cart_item_image_uri ", updated_cart_item_image_uri);
 
         const update_object = {
@@ -377,6 +378,12 @@ const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
       const resource_not_found_error = new ResourceNotFoundError(`Could not delete the cart item with cart_item_id ${cart_item_id} since it does not exist.`);
       throw resource_not_found_error;
    }
+
+   //const filter = {user_id: user_id};
+   //console.log("filter ", filter);
+
+   //const query = {cart_item_id: cart_item_id};
+   //console.log("query ", query);
    
    const result = await User.findOneAndUpdate(filter, { $pull: { CartItems: query } }, { new: true }, {runValidators: true}).lean();
 

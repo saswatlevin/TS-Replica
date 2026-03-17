@@ -30,4 +30,8 @@
 13) In all the UPDATE controller functions, please find a way to ensure that the update object contains only the data to be updated. Currently, the update object also contains IDs.
 
 14) In all the controllers and helper functions, ensure that JS objects do not contain duplicate keys. Check the objects passed to findOne().
+
+15) In the updateProductPrice controller, ensure that the updated price is equal to the discounted price if a discount is applied.
+
+16) In the deleteProduct controller, please ensure that the corresponding cart_items with the same product_id are deleted.
 ===========TECHNICAL DEBT===========

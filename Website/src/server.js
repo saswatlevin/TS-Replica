@@ -22,6 +22,7 @@ app.use('/', require('./Middleware/Routes/defaultRoute'));
 app.use('/users', require('./Middleware/Routes/userRoutes'));
 app.use('/shippingaddresses', require('./Middleware/Routes/shippingAddressRoutes'));
 app.use('/products', require('./Middleware/Routes/productRoutes'));
+app.use('/productimages', require('./Middleware/Routes/productImageRoutes'));
 app.use('/cartitems', require('./Middleware/Routes/cartItemRoutes'));
 
 // Route to handle unknown URLs

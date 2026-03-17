@@ -95,7 +95,7 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     // the checkCartItem() function works. This is because the checkCartItem() function needs to check whether at least one cart_item (or product_item) of a particular Product exists.
 
     console.log("In updateProductPrice");
-
+ 
     const product_id = req.body.product_id;
     console.log("Getting the product_id from the request params ", product_id);
 
@@ -129,8 +129,16 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
     //console.log("update_product_price_result ", update_product_price_result);
 
-    req.params.updated_product_price = update_product_price_result.product_price;
-    console.log("Storing the updated_product_price in the request params ", req.params.updated_product_price);
+    // If a discount is applied, then the cart_item_price is updated with the discounted_total
+    if (req.body?.discounted_total === 0) {
+        req.params.updated_product_price = update_product_price_result.product_price;
+        console.log("Storing the updated_product_price in the request params ", req.params.updated_product_price);
+    }
+    
+    else {
+        req.params.updated_product_price = update_product_price_result.discounted_total;
+        console.log("Storing the updated_product_price in the request params (DISCOUNTED TOTAL) ", req.params.updated_product_price);
+    }
 
     const update_cart_item_price_result = await updateCartItemPrice(req);
     //console.log("update_cart_item_price_result ", update_cart_item_price_result);

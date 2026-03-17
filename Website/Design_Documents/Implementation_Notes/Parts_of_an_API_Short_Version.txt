@@ -56,8 +56,7 @@ CHECK IF THE DATA THAT YOU'RE ABOUT TO UPDATE ALREADY EXISTS IN THE DATABASE -> 
 
 * Check the result, 
 if successful, then send a 200 response with the result
-* If unsuccessful,
-Throw a ResourceNotFoundError
+* If unsuccessful, then send a 200 response with the result
 =========RULES FOR READ DATA APIs============
 
 

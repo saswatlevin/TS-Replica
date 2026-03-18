@@ -41,7 +41,7 @@ const updateCartItemQuantitySchema = z.object({
 
     product_id: customValidators.zodIsProductId,
     
-    sku: productValidators.zodIsSKU,
+    sku: customValidators.zodIsSKU,
     
     cart_item_quantity: cartItemValidators.zodIsCartItemQuantity
 }).strict();

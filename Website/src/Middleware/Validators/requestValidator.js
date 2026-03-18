@@ -13,12 +13,11 @@ const requestValidator = (schema) => {
 
         /*if(!validationResult.success) {
             console.log("validationResult?.error?.errors ", validationResult?.error?.errors);
-        }*/
+        } */
 
         req.body = validationResult;
 
         next();
-
     }
 };
 

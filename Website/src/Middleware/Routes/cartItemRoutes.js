@@ -9,4 +9,6 @@ router.route('/createcartitem/:user_id').post(requestValidator(cartItemSchemas.c
 
 router.route('/updatecartitemquantity/:user_id').patch(requestValidator(cartItemSchemas.updateCartItemQuantitySchema), xss(), cartItemControllers.updateCartItemQuantity);
 
+router.route("/deletecartitem/:user_id").delete(requestValidator(cartItemSchemas.deleteCartItemSchema), xss(), cartItemControllers.deleteCartItem);
+
 module.exports = router;

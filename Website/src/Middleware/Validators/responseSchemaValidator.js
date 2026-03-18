@@ -66,6 +66,10 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(userResponseSchema, object);
     }
 
+    else if (request.originalUrl.includes("/cartitems/deletecartitem") === true && request.method === "DELETE") {
+        return schemaValidator(userResponseSchema, object);
+    }
+
     else if ((request.originalUrl.includes("/productimages/createproductimage") === true && request.method === "POST") || (request.originalUrl.includes("/productimages/updateproductimageuri") === true && request.method === "PATCH") || (request.originalUrl.includes("/productimages/deleteproductimage") && request.method === "DELETE"))
 
         return schemaValidator(productResponseSchema, object);

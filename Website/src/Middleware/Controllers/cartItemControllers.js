@@ -379,11 +379,11 @@ const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
       throw resource_not_found_error;
    }
 
-   //const filter = {user_id: user_id};
-   //console.log("filter ", filter);
+   const filter = {user_id: user_id};
+   console.log("filter ", filter);
 
-   //const query = {cart_item_id: cart_item_id};
-   //console.log("query ", query);
+   const query = {cart_item_id: cart_item_id};
+   console.log("query ", query);
    
    const result = await User.findOneAndUpdate(filter, { $pull: { CartItems: query } }, { new: true }, {runValidators: true}).lean();
 

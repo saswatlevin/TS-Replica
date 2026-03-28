@@ -1,0 +1,9 @@
+We need the following pieces of data:
+  * product_id      -> Frontend
+
+searchProductItem ->
+  * Check if the request body is empty or not. If it is empty, then throw an EmptyRequestBodyError.
+  * Get the product_id from the request_body.
+  * Create the search_query as {product_id: product_id}.
+  * Call find() with the search query and also SELECT only the CartItems part of the query. 
+  * Return the result as json with status of 200.

@@ -1,0 +1,26 @@
+We need the following pieces of data:
+  * product_id      -> Frontend
+  * sku             -> Frontend
+
+deleteProductItem ->
+  * Check if the request_body is empty. If it is empty, throw an EmptyRequestBodyError.
+  
+  * Get the product_id from the request_body.
+  * Get the sku from the request_body.
+  
+  * Check if the Product document exists. If it does not exist, then throw a ResourceNotFoundError.
+  * Check if the Product Item to be deleted exists. If it does not exist, then throw a ResourceNotFoundError.
+
+  * Create a filter {product_id: product_id, sku: sku}.
+  * Create a delete_query {sku: sku}.
+  
+  * const result = await Product.findOneAndUpdate(
+      filter,
+      { 
+        $pull: { product_items: query } 
+      },
+      { new: true },
+      {runValidators: true}
+   ).lean();
+  
+  * Send the result back using res.json() with a status of 200.

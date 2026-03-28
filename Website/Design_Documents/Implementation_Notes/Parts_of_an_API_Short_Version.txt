@@ -48,11 +48,8 @@ CHECK IF THE DATA THAT YOU'RE ABOUT TO UPDATE ALREADY EXISTS IN THE DATABASE -> 
 * Get the data from the request params
 * Check if the REQUEST OBJECT is empty. If so -> Throw a EmptyRequestBodyError.
 
-* If the data to be searched in question is in a sub-document, check if the main document exists.
-* If the main document doesn't exist, then throw a ResourceNotFoundError.
-
 * If searching for data in a sub-document, build the search query
-* Look for the requested data in the database using aggregate()
+* Look for the requested data in the database using aggregate() / find()
 
 * Check the result, 
 if successful, then send a 200 response with the result

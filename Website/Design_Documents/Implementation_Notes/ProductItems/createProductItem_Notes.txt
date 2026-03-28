@@ -1,0 +1,17 @@
+We need the following pieces of data:
+product_id      -> Frontend
+
+createProductItem -> 
+  * Check if the request body is empty or not. If so, throw an EmptyRequestBodyError.
+  * Check if a duplicate product_item exists or not. If it does, throw a DuplicateSubDocumentError.
+    
+  * Create a deep clone of the request body as request_body_deep_clone.
+  * Get the product_id from the request_body_deep_clone.
+  
+  * Create a filter as {product_id: product_id}.
+
+  * Generate the sku as a 10 digit alphanumeric string.
+  * Create the query as {sku: sku, ...request_body_deep_clone}.
+
+  * Use the Product.findOneAndUpdate(filter, { $push: { product_items: query } }, {new: true}, {runValidators: true}).lean() function to create the new product_item. 
+  * Return the result to the user with HTTP Response code 201.

@@ -1,0 +1,23 @@
+We need the following pieces of data:
+  * product_id      -> Frontend
+  * sku             -> Frontend
+
+updateProductItem ->
+  * Check if the request_body is empty. If it is empty, throw an EmptyRequestBodyError.
+  
+  * Get the product_id from the request_body.
+  * Get the sku from the request_body.
+  
+  * Check if the Product document exists. If it does not exist, then throw a ResourceNotFoundError.
+  * Check if the Product Item exists. If it does not exist, then throw a ResourceNotFoundError.
+
+  * Check if the updated value already exists. If it does, then throw a RedundantUpdateError.
+  * Create a deep clone of the request body.
+  
+  * Create the filter as {product_id: product_id, sku: sku}. 
+  * Create the update_query by removing the product_id and sku from the request_body_deep_clone.
+  
+  * Perform the update using findOneAndUpdate(filter, { $push: { product_items: update_query } }, {new: true}, {runValidators: true}).lean()
+  
+  * Return the result using res.json() with a status of 200.
+   

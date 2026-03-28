@@ -1,7 +1,7 @@
 const schemaValidator = require('./schemaValidator');
 const { registerUserResponseSchema, userResponseSchema, userResponseSchemaArray} = require('../Schemas/userSchemas');
 const { updateShippingAddressResponseSchema, shippingAddressResponseSchema, shippingAddressArrayZeroSchema } = require('../Schemas/shippingAddressSchemas');
-const { createProductResponseSchema, productResponseSchema, searchProductsArrayResponseSchema } = require('../Schemas/productSchemas');
+const { createProductResponseSchema, productResponseSchema, searchProductsArrayResponseSchema, searchProductItemArrayResponseSchema } = require('../Schemas/productSchemas');
 const { cartItemResponseSchema } = require('../Schemas/cartItemSchemas');
 
 
@@ -74,8 +74,30 @@ const responseSchemaValidator = (request, object) => {
 
         return schemaValidator(productResponseSchema, object);
 
-    else if (request.originalUrl.includes("/productimages/searchproductimage") && request.method === "GET")
+    else if (request.originalUrl.includes("/productimages/searchproductimage") === true && request.method === "GET")
         return schemaValidator(searchProductsArrayResponseSchema, object);
+
+    else if (request.originalUrl.includes("/productitems/createproductitem") === true && request.method === "POST") {
+         return schemaValidator(productResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/productitems/updateproductitem") === true && request.method === "PATCH") {
+         return schemaValidator(productResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/productitems/deleteproductitem") === true && request.method === "DELETE") {
+         return schemaValidator(productResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/productitems/searchproductitem") === true && request.method === "GET") {
+          
+         return schemaValidator(searchProductItemArrayResponseSchema, object);
+    } 
+
+    else if (request.originalUrl.includes("/productitems/getproductitem") === true && request.method === "GET") {
+          
+         return schemaValidator(searchProductItemArrayResponseSchema, object);
+    }
 
     else {
         return undefined;

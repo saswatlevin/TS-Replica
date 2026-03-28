@@ -3,14 +3,22 @@ const _ = require('lodash');
 // Removes Key-Value pairs from a given object. 
 const pruneObject = (givenObject, keyList) => {
     console.log("In pruneObject");
-    var givenObjectCopy = JSON.parse(JSON.stringify(givenObject));
-    var prunedObject = _.omit(givenObjectCopy, keyList);
+    
+    try {
+        var givenObjectCopy = _.cloneDeep(givenObject);
+        var prunedObject = _.omit(givenObjectCopy, keyList);
 
     
-    console.log("givenObjectCopy ", givenObjectCopy);
-    console.log("prunedObject ", prunedObject);
+        //console.log("givenObjectCopy ", givenObjectCopy);
+        //console.log("prunedObject ", prunedObject);
 
-    return prunedObject; 
+        return prunedObject; 
+    }
+
+    catch (error) {
+        console.log("Error in pruneObject ", error);
+        throw error;
+    }
 }
 
 module.exports = pruneObject;

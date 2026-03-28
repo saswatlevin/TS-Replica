@@ -5,6 +5,7 @@ const schemaValidator = (schema, object) => {
     //console.log("##DEBUG - schema ", schema);
     //console.log("##DEBUG - object ", object);
     const result = schema.parse(object);
+    //console.log("schema validation errors - ", result);
     //console.log("schema validation errors - ", result?.error?.errors);
     
     

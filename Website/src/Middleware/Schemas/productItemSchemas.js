@@ -1,229 +1,224 @@
 // Shirt, Pant, Jean == Chino, Short
 const z = require('zod');
-const customValidators = require('../Validators/CustomValidators/customFormatValidators');
+const productValidators = require('../Validators/CustomValidators/productValidators');
+const productItemValidators = require('../Validators/CustomValidators/productItemValidators');
 const objectIdSchema = require('./objectIdSchema');
 
-// Define relationships between total_stock, quantity_sold and current_stock.
-/* const shirtSchema = z.object({
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
+/*console.log("SKU ---->>>> ", productItemValidators.zodIsSKU);
+console.log("###################################");
+console.log("PRODUCT ID ---->>>> ", productValidators.zodIsProductId);
+console.log("###################################");
+console.log("TOTAL STOCK ---->>>> ", productItemValidators.zodIsTotalStock);
+console.log("###################################");
+console.log("QUANTITY SOLD ---->>>> ", productItemValidators.zodIsQuantitySold);
+console.log("###################################");
+console.log("QUANTITY RETURNED ---->>>> ", productItemValidators.zodIsQuantityReturned);
+console.log("###################################");
+console.log("CURRENT STOCK ---->>>> ", productItemValidators.zodIsCurrentStock);
+console.log("###################################");
+console.log("INSEAM LENGTH ---->>>> ", productItemValidators.zodIsInseamLength);
+console.log("###################################");
+console.log("UPPER SIZE LETTER ---->>>> ", productItemValidators.zodIsUpperSizeLetter);
+console.log("###################################");
+console.log("LOWER SIZE LETTER ---->>>> ", productItemValidators.zodIsLowerSizeLetter);
+console.log("###################################");
+console.log("UPPER SIZE NUMBER ---->>>> ", productItemValidators.zodIsUpperSizeNumber);
+console.log("###################################");
+console.log("LOWER SIZE NUMBER ---->>>> ", productItemValidators.zodIsLowerSizeNumber);
+console.log("###################################");*/
 
-    upper_size_letter: z.enum(customValidators.sizeLetterArray, {message: "The upper_size_letter field is a required field. It must be one of the following values: XXL, XL, L, M, S, XS."}),
-    
-    upper_size_number: customValidators.zodIsUpperSizeNumber,
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600"}),
 
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
+const baseSchema = z.object({
+    total_stock: productItemValidators.zodIsTotalStock,
 
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict();
+    quantity_sold: productItemValidators.zodIsQuantitySold,
 
-// Used for jeans and chinos too.
-const pantSchemaWithNumbers = z.object({
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
-    
-    lower_size_number: customValidators.zodIsLowerSizeNumber,
+    quantity_returned: productItemValidators.zodIsQuantityReturned,
 
-    inseam_length: customValidators.zodIsInseamLength,
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600"}),
+    current_stock: productItemValidators.zodIsCurrentStock
+});
 
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
+const baseUpdateSchema = z.object({
+    total_stock: productItemValidators.zodIsTotalStock.optional(),
 
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict();
+    quantity_sold: productItemValidators.zodIsQuantitySold.optional(),
 
-const pantSchemaWithLetters = z.object({
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
-    
-    lower_size_letter: z.enum(customValidators.sizeLetterArray, {message: "The lower_size_letter field must be one of the following values: XXL, XL, L, M, S."}),
+    quantity_returned: productItemValidators.zodIsQuantityReturned.optional(),
 
-    inseam_length: customValidators.zodIsInseamLength,
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600"}),
+    current_stock: productItemValidators.zodIsCurrentStock.optional()
+});
 
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
-
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict();
-
-const shortSchemaWithLetters = z.object({
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
-    
-    lower_size_letter: z.enum(customValidators.sizeLetterArray, {message: "The lower_size_letter field is a required field. It must be one of the following values: XXL, XL, L, M, S."}),
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600."}),
-
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer.").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
-
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer.").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict();
-
-const shortSchemaWithNumbers = z.object({
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
-    
-    lower_size_number: customValidators.zodIsLowerSizeNumber,
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600"}),
-
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
-
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict(); */
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const shirtRequestSchema = z.object({
-    upper_size_letter: z.enum(customValidators.sizeLetterArray, {message: "The upper_size_letter field is a required field. It must be one of the following values: XXL, XL, L, M, S, XS."}),
+
+    upper_size_letter: productItemValidators.zodIsUpperSizeLetter,
     
-    upper_size_number: customValidators.zodIsUpperSizeNumber,
+    upper_size_number: productItemValidators.zodIsUpperSizeNumber,
     
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600"}),
-
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
-
-    quantity_returned: z.number("The quantity_returned field must be a number (integer). It is a required field.").int("The quantity_returned field must be an integer.").min(0, {message: "The minimum value of the quantity_returned field is 0."}).max(600, {message: "The maximum value of the quantity_returned field is 600."}),
-
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict();
+}).merge(baseSchema).strict();
 
 // Used for jeans and chinos too.
-const pantRequestSchemaWithNumbers = z.object({    
-    lower_size_number: customValidators.zodIsLowerSizeNumber,
+const pantRequestSchemaWithNumbers = z.object({
 
-    inseam_length: customValidators.zodIsInseamLength,
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600"}),
+    lower_size_number: productItemValidators.zodIsLowerSizeNumber,
 
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
-
-    quantity_returned: z.number("The quantity_returned field must be a number (integer). It is a required field.").int("The quantity_returned field must be an integer.").min(0, {message: "The minimum value of the quantity_returned field is 0."}).max(600, {message: "The maximum value of the quantity_returned field is 600."}),
-
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict();
+    inseam_length: productItemValidators.zodIsInseamLength
+}).merge(baseSchema).strict();
 
 const pantRequestSchemaWithLetters = z.object({
-    lower_size_letter: z.enum(customValidators.sizeLetterArray, {message: "The lower_size_letter field must be one of the following values: XXL, XL, L, M, S."}),
+    lower_size_letter: productItemValidators.zodIsLowerSizeLetter,
 
-    inseam_length: customValidators.zodIsInseamLength,
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600"}),
-
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
-
-    quantity_returned: z.number("The quantity_returned field must be a number (integer). It is a required field.").int("The quantity_returned field must be an integer.").min(0, {message: "The minimum value of the quantity_returned field is 0."}).max(600, {message: "The maximum value of the quantity_returned field is 600."}),
-
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict();
+    inseam_length: productItemValidators.zodIsInseamLength
+}).merge(baseSchema).strict();
 
 const shortRequestSchemaWithLetters = z.object({
-    lower_size_letter: z.enum(customValidators.sizeLetterArray, {message: "The lower_size_letter field is a required field. It must be one of the following values: XXL, XL, L, M, S."}),
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600."}),
-
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer.").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
-
-    quantity_returned: z.number("The quantity_returned field must be a number (integer). It is a required field.").int("The quantity_returned field must be an integer.").min(0, {message: "The minimum value of the quantity_returned field is 0."}).max(600, {message: "The maximum value of the quantity_returned field is 600."}),
-
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer.").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict();
+    lower_size_letter: productItemValidators.zodIsLowerSizeLetter
+}).merge(baseSchema).strict();
 
 const shortRequestSchemaWithNumbers = z.object({
-    lower_size_number: customValidators.zodIsLowerSizeNumber,
+    lower_size_number: productItemValidators.zodIsLowerSizeNumber
+}).merge(baseSchema).strict();
+
+///////////////////////////////////////////////////////////////////////////////
+
+const shirtCreateRequestSchema = z.object({
+    product_id: productValidators.zodIsProductId,
+
+    upper_size_letter: productItemValidators.zodIsUpperSizeLetter,
     
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600"}),
+    upper_size_number: productItemValidators.zodIsUpperSizeNumber,
+    
+}).merge(baseSchema).strict();
 
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
+// Used for jeans and chinos too.
+const pantCreateRequestSchemaWithNumbers = z.object({  
+    product_id: productValidators.zodIsProductId,
 
-    quantity_returned: z.number("The quantity_returned field must be a number (integer). It is a required field.").int("The quantity_returned field must be an integer.").min(0, {message: "The minimum value of the quantity_returned field is 0."}).max(600, {message: "The maximum value of the quantity_returned field is 600."}),
+    lower_size_number: productItemValidators.zodIsLowerSizeNumber,
 
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
+    inseam_length: productItemValidators.zodIsInseamLength
+}).merge(baseSchema).strict();
+
+const pantCreateRequestSchemaWithLetters = z.object({
+    product_id: productValidators.zodIsProductId,
+
+    lower_size_letter: productItemValidators.zodIsLowerSizeLetter,
+
+    inseam_length: productItemValidators.zodIsInseamLength
+}).merge(baseSchema).strict();
+
+const shortCreateRequestSchemaWithLetters = z.object({
+    product_id: productValidators.zodIsProductId,
+
+    lower_size_letter: productItemValidators.zodIsLowerSizeLetter
+}).merge(baseSchema).strict();
+
+const shortCreateRequestSchemaWithNumbers = z.object({
+    product_id: productValidators.zodIsProductId,
+
+    lower_size_number: productItemValidators.zodIsLowerSizeNumber
+}).merge(baseSchema).strict();
+/////////////////////////////////////////////////////////////////////////
+const shirtUpdateRequestSchema = z.object({
+    product_id: productValidators.zodIsProductId,
+
+    sku: productItemValidators.zodIsSKU,
+
+    upper_size_letter: productItemValidators.zodIsUpperSizeLetter.optional(),
+    
+    upper_size_number: productItemValidators.zodIsUpperSizeNumber.optional(),
+    
+}).merge(baseUpdateSchema).strict();
+
+// Used for jeans and chinos too.
+const pantUpdateRequestSchemaWithNumbers = z.object({  
+    product_id: productValidators.zodIsProductId,
+
+    sku: productItemValidators.zodIsSKU,
+
+    lower_size_number: productItemValidators.zodIsLowerSizeNumber.optional(),
+
+    inseam_length: productItemValidators.zodIsInseamLength.optional()
+}).merge(baseSchema).strict();
+
+const pantUpdateRequestSchemaWithLetters = z.object({
+    product_id: productValidators.zodIsProductId,
+
+    sku: productItemValidators.zodIsSKU,
+
+    lower_size_letter: productItemValidators.zodIsLowerSizeLetter.optional(),
+
+    inseam_length: productItemValidators.zodIsInseamLength.optional()
+}).merge(baseUpdateSchema).strict();
+
+const shortUpdateRequestSchemaWithLetters = z.object({
+    product_id: productValidators.zodIsProductId,
+
+    sku: productItemValidators.zodIsSKU,
+
+    lower_size_letter: productItemValidators.zodIsLowerSizeLetter.optional()
+}).merge(baseUpdateSchema).strict();
+
+const shortUpdateRequestSchemaWithNumbers = z.object({
+    product_id: productValidators.zodIsProductId,
+
+    sku: productItemValidators.zodIsSKU,
+
+    lower_size_number: productItemValidators.zodIsLowerSizeNumber.optional()
+}).merge(baseUpdateSchema).strict();
+/////////////////////////////////////////////////////////////////////////
+const productItemDeleteRequestSchema = z.object({
+    product_id: productValidators.zodIsProductId,
+
+    sku: productItemValidators.zodIsSKU
 }).strict();
 /////////////////////////////////////////////////////////////////////////
-const shirtResponseSchema = z.object({
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
-
-    upper_size_letter: z.enum(customValidators.sizeLetterArray, {message: "The upper_size_letter field is a required field. It must be one of the following values: XXL, XL, L, M, S, XS."}),
-    
-    upper_size_number: customValidators.zodIsUpperSizeNumber,
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600"}),
-
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
-
-    quantity_returned: z.number("The quantity_returned field must be a number (integer). It is a required field.").int("The quantity_returned field must be an integer.").min(0, {message: "The minimum value of the quantity_returned field is 0."}).max(600, {message: "The maximum value of the quantity_returned field is 600."}),
-
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
+const productItemSearchRequestSchema = z.object({
+    product_id: productValidators.zodIsProductId
 }).strict();
+////////////////////////////////////////////////////////////////////////
+const getProductItemRequestSchema = z.object({
+    product_id: productValidators.zodIsProductId,
+    sku: productItemValidators.zodIsSKU
+}).strict();
+////////////////////////////////////////////////////////////////////////
+const shirtResponseSchema = z.object({
+    sku: productItemValidators.zodIsSKU,
+
+    upper_size_letter: productItemValidators.zodIsUpperSizeLetter,
+    
+    upper_size_number: productItemValidators.zodIsUpperSizeNumber
+}).merge(baseSchema).strict();
 
 // Used for jeans and chinos too.
 const pantResponseSchemaWithNumbers = z.object({    
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
+    sku: productItemValidators.zodIsSKU,
 
-    lower_size_number: customValidators.zodIsLowerSizeNumber,
+    lower_size_number: productItemValidators.zodIsLowerSizeNumber,
 
-    inseam_length: customValidators.zodIsInseamLength,
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600"}),
-
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
-
-    quantity_returned: z.number("The quantity_returned field must be a number (integer). It is a required field.").int("The quantity_returned field must be an integer.").min(0, {message: "The minimum value of the quantity_returned field is 0."}).max(600, {message: "The maximum value of the quantity_returned field is 600."}),
-
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict();
+    inseam_length: productItemValidators.zodIsInseamLength
+}).merge(baseSchema).strict();
 
 const pantResponseSchemaWithLetters = z.object({
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
+    sku: productItemValidators.zodIsSKU,
 
-    lower_size_letter: z.enum(customValidators.sizeLetterArray, {message: "The lower_size_letter field must be one of the following values: XXL, XL, L, M, S."}),
+    lower_size_letter: productItemValidators.zodIsLowerSizeLetter,
 
-    inseam_length: customValidators.zodIsInseamLength,
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600"}),
-
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
-
-    quantity_returned: z.number("The quantity_returned field must be a number (integer). It is a required field.").int("The quantity_returned field must be an integer.").min(0, {message: "The minimum value of the quantity_returned field is 0."}).max(600, {message: "The maximum value of the quantity_returned field is 600."}),
-
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict();
+    inseam_length: productItemValidators.zodIsInseamLength
+}).merge(baseSchema).strict();
 
 const shortResponseSchemaWithLetters = z.object({
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
+    sku: productItemValidators.zodIsSKU,
 
-    lower_size_letter: z.enum(customValidators.sizeLetterArray, {message: "The lower_size_letter field is a required field. It must be one of the following values: XXL, XL, L, M, S."}),
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600."}),
-
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer.").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
-
-    quantity_returned: z.number("The quantity_returned field must be a number (integer). It is a required field.").int("The quantity_returned field must be an integer.").min(0, {message: "The minimum value of the quantity_returned field is 0."}).max(600, {message: "The maximum value of the quantity_returned field is 600."}),
-
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer.").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict();
+    lower_size_letter: productItemValidators.zodIsLowerSizeLetter
+}).merge(baseSchema).strict();
 
 const shortResponseSchemaWithNumbers = z.object({
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
+    sku: productItemValidators.zodIsSKU,
     
-    lower_size_number: customValidators.zodIsLowerSizeNumber,
-    
-    total_stock: z.number("The total_stock field must be a number (integer). It is a required field.").int("The total_stock field must be an integer.").min(0, {message: "The minimum value of the total_stock field is 0."}).max(600, {message: "The maximum value of the total_stock field is 600"}),
+    lower_size_number: productItemValidators.zodIsLowerSizeNumber
+}).merge(baseSchema).strict();
 
-    quantity_sold: z.number("The quantity_sold field must be a number (integer). It is a required field.").int("The quantity_sold field must be an integer. ").min(0, {message: "The minimum value of the quantity_sold field is 0."}).max(600, {message: "The maximum value of the quantity_sold field is 600."}),
 
-    quantity_returned: z.number("The quantity_returned field must be a number (integer). It is a required field.").int("The quantity_returned field must be an integer.").min(0, {message: "The minimum value of the quantity_returned field is 0."}).max(600, {message: "The maximum value of the quantity_returned field is 600."}),
-
-    current_stock: z.number("The current_stock field must be a number (integer). It is a required field.").int("The current_stock field must be an integer. ").min(0, {message: "The minimum value of the current_stock field is 0."}).max(600, {message: "The maximum value of the current_stock field is 600."})
-}).strict();
-
-//const shirtSchemaArray = z.array(shirtSchema);
-
-//const pantSchemaWithLettersArray = z.array(pantSchemaWithLetters);
-
-//const pantSchemaWithNumbersArray = z.array(pantSchemaWithNumbers);
-
-//const shortSchemaWithNumbersArray = z.array(shortSchemaWithLetters);
-
-//const shortSchemaWithLettersArray = z.array(shortSchemaWithNumbers);
 ///////////////////////////////////////////////////////////////////////////////
 const shirtRequestSchemaArray = z.array(shirtRequestSchema);
 
@@ -244,14 +239,21 @@ const pantResponseSchemaWithNumbersArray = z.array(pantResponseSchemaWithNumbers
 const shortResponseSchemaWithNumbersArray = z.array(shortResponseSchemaWithNumbers);
 
 const shortResponseSchemaWithLettersArray = z.array(shortResponseSchemaWithLetters);
-
-//const productItemSchemasUnion = z.union([shirtSchemaArray, pantSchemaWithLettersArray, pantSchemaWithNumbersArray, shortSchemaWithLettersArray, shortSchemaWithNumbersArray]);
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 const productItemRequestSchemasUnion = z.union([shirtRequestSchemaArray, pantRequestSchemaWithLettersArray, pantRequestSchemaWithNumbersArray, shortRequestSchemaWithNumbersArray, shortRequestSchemaWithLettersArray]);
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+const productItemCreateRequestSchemasUnion = z.union([shirtCreateRequestSchema, pantCreateRequestSchemaWithLetters, pantCreateRequestSchemaWithNumbers, shortCreateRequestSchemaWithNumbers, shortCreateRequestSchemaWithLetters]);
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+const productItemUpdateRequestSchemasUnion = z.union([shirtUpdateRequestSchema, pantUpdateRequestSchemaWithLetters, pantUpdateRequestSchemaWithNumbers, shortUpdateRequestSchemaWithNumbers, shortUpdateRequestSchemaWithLetters]);
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 const productItemResponseSchemasUnion = z.union([shirtResponseSchemaArray, pantResponseSchemaWithLettersArray, pantResponseSchemaWithNumbersArray, shortResponseSchemaWithNumbersArray, shortResponseSchemaWithLettersArray]);
 
 module.exports = {
     productItemRequestSchemasUnion,
+    productItemCreateRequestSchemasUnion,
+    productItemDeleteRequestSchema,
+    productItemSearchRequestSchema,
+    getProductItemRequestSchema,
+    productItemUpdateRequestSchemasUnion,
     productItemResponseSchemasUnion
 };

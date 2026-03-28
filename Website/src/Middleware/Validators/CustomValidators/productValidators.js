@@ -2,7 +2,7 @@ const z = require('zod');
 const customValidators = require('./customFormatValidators');
 
 // Reuse existing product_id validator from custom validators to ensure consistency
-const zodIsProductId = customValidators.zodIsProductId;
+const zodIsProductId = z.string("The product_id field must be a string. It is a required field.").length(12, {message: "The product_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The product_id can only contain lowercase letters and numbers."});
 
 const zodIsProductName = z
 	.string('The product_name field must be a string.')

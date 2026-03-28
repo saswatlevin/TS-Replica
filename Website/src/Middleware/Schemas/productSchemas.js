@@ -1,4 +1,5 @@
 const z = require('zod');
+const productItemValidators = require('../Validators/CustomValidators/productItemValidators');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const productValidators = require('../Validators/CustomValidators/productValidators');
 const cartItemValidators = require('../Validators/CustomValidators/cartItemValidators');
@@ -113,7 +114,7 @@ const updateProductNameSchema = z.object({
     
     product_id: productValidators.zodIsProductId,
 
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
+    sku: productItemValidators.zodIsSKU,
 
     product_name: productValidators.zodIsProductName
 }).strict();
@@ -228,7 +229,7 @@ const updateProductPriceSchema = z.object({
 
     product_id: productValidators.zodIsProductId,
     
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
+    sku: productItemValidators.zodIsSKU,
     
     product_price: productValidators.zodIsProductPrice
 }).strict();
@@ -236,6 +237,12 @@ const updateProductPriceSchema = z.object({
 const productIdSchema = z.object({
     product_id: productValidators.zodIsProductId
 }).strict();
+
+const searchProductItemResponseSchema = z.object({
+    product_items : productItemResponseSchemasUnion
+}).strict();
+
+const searchProductItemArrayResponseSchema = z.array(searchProductItemResponseSchema);
 
 const searchProductsArrayResponseSchema = z.array(productResponseSchema);
 
@@ -252,5 +259,7 @@ module.exports = {
     productResponseSchema,
     updateProductPriceSchema,
     productIdSchema,
+    searchProductItemResponseSchema,
+    searchProductItemArrayResponseSchema,
     searchProductsArrayResponseSchema
 };

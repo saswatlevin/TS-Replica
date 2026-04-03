@@ -25,6 +25,7 @@ app.use('/products', require('./Middleware/Routes/productRoutes'));
 app.use('/productimages', require('./Middleware/Routes/productImageRoutes'));
 app.use('/productitems', require('./Middleware/Routes/productItemRoutes'));
 app.use('/cartitems', require('./Middleware/Routes/cartItemRoutes'));
+app.use('/reviews', require('./Middleware/Routes/reviewRoutes'));
 
 // Route to handle unknown URLs
 app.use('/{*any}', require('./Middleware/Routes/urlNotFoundRoute'));

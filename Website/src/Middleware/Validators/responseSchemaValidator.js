@@ -3,6 +3,7 @@ const { registerUserResponseSchema, userResponseSchema, userResponseSchemaArray}
 const { updateShippingAddressResponseSchema, shippingAddressResponseSchema, shippingAddressArrayZeroSchema } = require('../Schemas/shippingAddressSchemas');
 const { createProductResponseSchema, productResponseSchema, searchProductsArrayResponseSchema, searchProductItemArrayResponseSchema } = require('../Schemas/productSchemas');
 const { cartItemResponseSchema } = require('../Schemas/cartItemSchemas');
+const { createReviewResponseSchema, reviewResponseSchema, searchReviewResponseSchema } = require('../Schemas/reviewSchemas');
 
 
 // Validates the responses of different APIs based on their respective schemas.
@@ -97,6 +98,31 @@ const responseSchemaValidator = (request, object) => {
     else if (request.originalUrl.includes("/productitems/getproductitem") === true && request.method === "GET") {
           
          return schemaValidator(searchProductItemArrayResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/reviews/createreview") === true && request.method === "POST") {
+
+        return schemaValidator(createReviewResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/reviews/updatereview") === true && request.method === "PATCH") {
+
+        return schemaValidator(reviewResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/reviews/deletereview") === true && request.method === "DELETE") {
+
+        return schemaValidator(reviewResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/reviews/searchreview") === true && request.method === "GET") {
+
+        return schemaValidator(searchReviewResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/reviews/getreviewbyid") === true && request.method === "GET") {
+
+        return schemaValidator(reviewResponseSchema, object);
     }
 
     else {

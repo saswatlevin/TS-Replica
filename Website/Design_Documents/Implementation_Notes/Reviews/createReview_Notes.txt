@@ -1,0 +1,25 @@
+We need the following pieces of data:
+  * user_id      -> Session
+  * product_id   -> Frontend
+
+createReview ->
+  * Check if the request_body is empty. If so, throw an EmptyRequestBodyError.
+  * Get the user_id from req.params.
+  
+  * Check if the user exists or not. If it doesn't, throw a ResourceNotFoundError.
+  * Get the product_id from req.body.
+  
+  * Check if the product exists. If it does not, then throw a ResourceNotFoundError.
+  * Check if a Duplicate Review already exists. If it does, throw a DuplicateDocumentError.
+  
+  * Generate the review_id using createRandomString(6).
+  * Create a deep clone of the request body called request_body_deep_clone.
+
+  * Create the review_object as {review_id: review_id, ...request_body_deep_clone}.
+  * Create the review by using Mongoose's create() function.
+
+  * Return the result as JSON with a status of 200.
+
+ 
+  
+  

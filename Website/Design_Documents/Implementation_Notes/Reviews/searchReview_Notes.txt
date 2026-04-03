@@ -1,0 +1,13 @@
+We need the following pieces of data:
+  * user_id     -> Session
+  * review_id   -> Frontend
+
+searchReview ->
+  * Check if the request body is empty. If so, throw an EmptyRequestBodyError.
+  * Check if the user exists. If it doesn't, throw a ResourceNotFoundError.
+  
+  * Get the request_body and create a deep clone of the request_body called request_body_deep_clone.
+  * Create a find query like {user_id: user_id, ...request_body_deep_clone}.
+  * Use find().
+  * Send the result back to the user with res.status(200).json().
+

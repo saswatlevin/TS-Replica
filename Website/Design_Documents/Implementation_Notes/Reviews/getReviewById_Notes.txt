@@ -1,0 +1,10 @@
+We need the following pieces of data:
+  * user_id     -> Session
+  * review_id   -> Frontend
+
+getReviewById ->
+  * Check if the request body is empty. If so, throw an EmptyRequestBodyError.
+  * Check if the user exists. If it doesn't, throw a ResourceNotFoundError.
+  * Create a find query like {review_id: review_id}.
+  * Use find().
+  * Send the result back to the user with res.status(200).json().

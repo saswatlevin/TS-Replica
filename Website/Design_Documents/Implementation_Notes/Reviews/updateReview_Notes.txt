@@ -1,0 +1,30 @@
+We need the following pieces of data:
+  * user_id      -> Session
+  * product_id   -> Frontend
+  * review_id    -> Frontend
+
+updateReview ->
+  * Check if the request_body is empty. If so, throw an EmptyRequestBodyError.
+  * Get the user_id from req.params.
+  
+  * Check if the user exists or not. If it doesn't, throw a ResourceNotFoundError.
+  * Get the product_id from the req.body.
+
+  * Check if the product exists. If it does not, then throw a ResourceNotFoundError.
+  * Get the review_id from the request_body.
+
+  * Check if the Review to be updated exists. If it does not, throw a ResourceNotFoundError.
+  * Check if the Review value to be updated already exists. If it does, throw a RedundantUpdateError.
+
+  * Create a filter {user_id: user_id, review_id: review_id, product_id: product_id}.
+  * Create a deep clone of the request body as request_body_deep_clone. 
+
+  * Remove the product_id, user-id and review_id from the request_body_deep_clone to create the update_query.
+  * Call findoneAndUpdate() with filter and update_query.
+  
+  * Send the result back with a status of 200 and as JSON.
+
+NOTE: This function checks ensures that a user can have only a ingle review per product.
+
+
+  

@@ -2,7 +2,8 @@ const z = require('zod');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const cartItemValidators = require('../Validators/CustomValidators/cartItemValidators');
 const productValidators = require('../Validators/CustomValidators/cartItemValidators');
-const objectIdSchema = require('./objectIdSchema');
+const objectIdSchema = require('./objectIdSchema');y
+const discountValidators = require('../Validators/CustomValidators/discountValidators');
 
 const cartItemRequestSchema = z.object({
     product_id: customValidators.zodIsProductId,
@@ -15,7 +16,15 @@ const cartItemRequestSchema = z.object({
 
     cart_item_image_uri: cartItemValidators.zodIsCartItemImageURI,
 
-    cart_item_quantity: cartItemValidators.zodIsCartItemQuantity
+    cart_item_quantity: cartItemValidators.zodIsCartItemQuantity,
+
+    discount_code: discountValidators.zodIsDiscountCode,
+
+    discount_percentage: discountValidators.zodIsDiscountPercentage,
+
+    discount_amount: discountValidators.zodIsDiscountAmount,
+    
+    discounted_total: discountValidators.zodIsDiscountedTotal
 }).strict();
 
 const cartItemResponseSchema = z.object({
@@ -31,7 +40,15 @@ const cartItemResponseSchema = z.object({
 
     cart_item_image_uri: cartItemValidators.zodIsCartItemImageURI,
 
-    cart_item_quantity: cartItemValidators.zodIsCartItemQuantity
+    cart_item_quantity: cartItemValidators.zodIsCartItemQuantity,
+
+    discount_code: discountValidators.zodIsDiscountCode,
+
+    discount_percentage: discountValidators.zodIsDiscountPercentage,
+
+    discount_amount: discountValidators.zodIsDiscountAmount,
+    
+    discounted_total: discountValidators.zodIsDiscountedTotal
 }).strict();
 
 const cartItemArrayZeroSchema = z.array(cartItemResponseSchema).min(0);

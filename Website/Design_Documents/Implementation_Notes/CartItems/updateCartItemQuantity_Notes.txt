@@ -7,7 +7,11 @@ updateCartItemQuantity ->
 * Check if the user exists or not, if not, throw a ResourceNotFoundError.
 * Check if the cart item exists or not, if not, throw a ResourceNotFoundError.
 * Create a DEEP CLONE of the request body.
-* Create the filter: {user_id: user_id, cart_item_id: cart_item_id}.
-* Create a Query object from the request_body which contains {'CartItems.$.cart_item_qantity': value}
+* Create the filter: {user_id: user_id, "CartItems.product_id": product_id};.
+* Create an update_object as update_object = {
+            $set: {
+                "CartItems.$.cart_item_quantity": request_body_deep_clone.cart_item_quantity
+            }
+        };
 * Use findOneAndUpdate(filter, query) to update the quantity of that cart item.
 * Return the result.

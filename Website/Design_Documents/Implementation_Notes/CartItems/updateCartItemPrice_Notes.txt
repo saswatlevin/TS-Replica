@@ -5,32 +5,35 @@ We need the following pieces of data:
 updateCartItemPrice ->
 * Check if the user exists or not, if not, throw a ResourceNotFoundError.
 * Check if the cart item exists or not, if not, throw a ResourceNotFoundError.
-* Create the filter: {user_id: user_id, cart_item_id: cart_item_id}.
-* Create a Query object from the request_body which contains {'CartItems.$.cart_item_price': value}
-* Check if the updated cart item price value already exists, if so, throw a RedundantUpdateError.
-* Use findOneAndUpdate() to update the price of that cart item.
+* Create the filter: {user_id: user_id, "CartItems.product_id": product_id}.
+* The update_object is as  follows: 
+update_object = {
+            { "CartItems.product_id": product_id },
+    { 
+        $set: { 
+            "CartItems.$[item].cart_item_price": new_price,
+            "CartItems.$[item].discount_code": new_discount_code,
+            "CartItems.$[item].discount_amount": new_discount_amount,
+            "CartItems.$[item].discount_percentage": new_discount_percentage,
+            "CartItems.$[item].discounted_total": new_discounted_total
+        } 
+    },
+    { 
+        arrayFilters: [{ "item.product_id": product_id }],
+        runValidators: true
+    }
+      };
+
+* Use updateMany() to update the price of that cart item.
 * Return the result.
 
 NOTE: updateCartItemPrice is an express HELPER FUNCTION and not a middleware.
 
+NOTE: We do not check if the updated cart_item_price value already exists since we aim for database operations to be atomic and updateProductPrice already checks if the product_price value exists.
 
+NOTE: updateMany() is used since there may be more than one cart_item belonging to the same product whose price needs to be updated. 
 
-/* await YourModel.findOneAndUpdate(
-  {
-    document_id: 'your_document_id',
-    'sub_documents.sub_document_id': 'your_sub_document_id'
-  },
+NOTE: The cart_item_id is needed for checkCartItemExists() function. 
 
-  {
-    $set: {
-      'sub_documents.$.key_name': 'new_value'
-    }
-  },
+NOTE: No need to check if product exists, since updateProductPrice already checks that and in the future DB operations will be made atomic.
 
-  {
-    new: true,
-    lean: true
-  }
-); */
-
-Special Note: The cart_item_id is needed for checkCartItemExists() function. 

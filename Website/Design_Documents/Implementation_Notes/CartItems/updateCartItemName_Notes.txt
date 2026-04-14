@@ -5,12 +5,24 @@ We need the following pieces of data:
 updateCartItemName ->
 * Check if the user exists or not, if not, throw a ResourceNotFoundError.
 * Check if the cart item exists or not, if not, throw a ResourceNotFoundError.
-* Check if the updated cart item name value already exists, if so, throw a RedundantUpdateError.
-* Create the filter: {user_id: user_id, cart_item_id: cart_item_id}.
-* Create a Query object from the request_body which contains {'CartItems.$.cart_item_name': value}
-* Use findOneAndUpdate() to update the price of that cart item.
+* Create the filter: {user_id: user_id, "CartItems.product_id": product_id}.
+* Create an update object as follows:
+ const update_object = {
+            $set: {
+                "CartItems.$[item].cart_item_name": updated_cart_item_name
+            }
+        };
+* Use updateMany() to update the name of that cart item.
 * Return the result.
 
 NOTE: updateCartItemName is an express HELPER FUNCTION and not a middleware.
 
-Special Note: The cart_item_id is needed for checkCartItemExists() function. 
+NOTE: The cart_item_id is needed for checkCartItemExists() function. 
+
+NOTE: We do not check if the updated cart_item_name value already exists since we aim for database operations to be atomic and updateProductName already checks if the product_name value exists.
+
+NOTE: updateMany() is used since there may be more than one cart_item belonging to the same product whose name needs to be updated. 
+
+NOTE: The cart_item_id is needed for checkCartItemExists() function. 
+
+NOTE: No need to check if product exists, since updateProductName already checks that and in the future DB operations will be made atomic.

@@ -8,7 +8,7 @@ createCartItem ->
 
 * Check if the cart item already exists, if so, throw a DuplicateSubdocumentError.
 
-NOTE: We DON'T have to check if the product exists, since here, the user is clicking on the "Add to Cart" button which adds it to the Cart.
+* To deal with edge cases, check whether the product exists. If it doesn't, throw a ResourceNotFoundError. 
 
 * Get the user_id from req.params.
 
@@ -18,9 +18,9 @@ NOTE: We DON'T have to check if the product exists, since here, the user is clic
 
 * Create a filter using {user_id: user_id}.
 
-* Create a cart_item using {cart_item_id, ...request_body_deep_clone} 
+* Create a cart_item using {cart_item_id: cart_item_id, ...request_body_deep_clone} 
 
-* Use the findOneAndUpdate(filter, {$push: {CartItems: cart_item}).lean() API to create the CartItem.
+* Use the findOneAndUpdate(filter, {$push: {CartItems: cart_item}, {new: True}, {runValidators: True}).lean() API to create the CartItem.
 
 * Get the result from findOneAndUpdate() and send it back to the user as JSON with status 200.
 

@@ -104,7 +104,7 @@ const updateProductImageURI = asyncErrorHandler(async(req, res, next) => {
     const image_id = req.body.image_id;
     console.log("image_id ", image_id);
 
-    console.log("\nChecking if the Product Image exists");
+    console.log("\nChecking if the Product Image to be updated exists");
     if (await checkProductImageExists(req) === false) {
         const product_image_not_found_error = new ResourceNotFoundError(`Could not update the Product Image URI since the Product Image sub-document with image_id ${image_id} wasn't found in the Product document with product_id ${product_id}`);
 

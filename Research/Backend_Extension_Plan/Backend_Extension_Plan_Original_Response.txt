@@ -1,0 +1,142 @@
+Architected solutions for transactions, Visa integration, returns, and discounts. Here is a proposed solution for each of your four requirements:
+
+1. Recording Transactions — New Transactions Collection
+Since transactions are a fundamentally new concern, the cleanest approach is to introduce a 5th collection called Transactions. This avoids bloating existing documents while keeping a clear audit trail of all money movement. Each document would look like this:
+json{
+  "transaction_id": "txn_a1b2c3d4e5",
+  "order_id": "77zlcwaiyjge",
+  "user_id": "7ycthivdrqvl",
+  "docType": "TRANSACTION",
+  "transaction_type": "Payment",
+  "transaction_status": "Completed",
+  "amount": 358.00,
+  "currency": "USD",
+  "payment_method": "Visa",
+  "visa_transaction_id": "visa_ref_xyz789",
+  "date_created_at": "2025-05-21T12:45:00Z"
+}
+Key fields to note: transaction_type can be either "Payment" or "Refund", allowing you to record both purchases and returns in the same collection. transaction_status can be "Pending", "Completed", or "Failed". The visa_transaction_id stores the reference ID returned by the Visa API, which links your internal record to Visa's system.
+
+2. Connecting to the Visa Test SDK / API
+Visa exposes a sandbox environment through the Visa Developer Platform (VDP) at developer.visa.com. Here is the recommended approach:
+Step 1 — Registration and Credentials
+Register at developer.visa.com and create a project. Visa will issue you a sandbox API Key, a Shared Secret (for HMAC-SHA256 message signing), and a pair of mutual TLS (mTLS) certificates — a client certificate and a private key — which are required for all API calls to Visa.
+Step 2 — Choosing the Right API
+For simulating payment flows (money flowing in when a purchase is made, money flowing out when a refund is issued), the most relevant Visa sandbox product is Visa Direct, specifically its fundstransfer endpoint for push payments and reversefundstransfer for refunds/returns. The base sandbox URL is:
+https://sandbox.api.visa.com
+Step 3 — Making a Payment Call (Node.js / Express example)
+javascriptconst axios = require('axios');
+const fs = require('fs');
+const https = require('https');
+const crypto = require('crypto');
+
+const apiKey = process.env.VISA_API_KEY;
+const sharedSecret = process.env.VISA_SHARED_SECRET;
+
+const agent = new https.Agent({
+  cert: fs.readFileSync('path/to/client_cert.pem'),
+  key: fs.readFileSync('path/to/private_key.pem')
+});
+
+async function initiateVisaPayment(orderDetails) {
+  const payload = {
+    acquirerCountryCode: "840",
+    acquiringBin: "408999",
+    amount: orderDetails.total_price.toString(),
+    businessApplicationId: "AA",
+    cardAcceptor: {
+      address: { country: "USA", state: "CA", zipCode: "94105" },
+      idCode: "TAYLORSTITCH01",
+      name: "Taylor Stitch",
+      terminalId: "TRM001"
+    },
+    localTransactionDateTime: new Date().toISOString().slice(0, 19),
+    merchantCategoryCode: "5691",
+    recipientPrimaryAccountNumber: orderDetails.visa_card_number,
+    retrievalReferenceNumber: orderDetails.order_id.slice(0, 12),
+    senderAccountNumber: "4957030420210496", // Visa-provided test account
+    senderCurrencyCode: "USD",
+    senderName: `${orderDetails.first_name} ${orderDetails.last_name}`,
+    systemsTraceAuditNumber: Math.floor(Math.random() * 999999).toString()
+  };
+
+  const response = await axios.post(
+    'https://sandbox.api.visa.com/visadirect/fundstransfer/v1/pushfundstransactions',
+    payload,
+    {
+      httpsAgent: agent,
+      auth: { username: apiKey, password: sharedSecret },
+      headers: { 'Content-Type': 'application/json' }
+    }
+  );
+
+  return response.data; // Contains Visa's transactionIdentifier
+}
+The transactionIdentifier returned in response.data is what you store as visa_transaction_id in your Transactions collection. For refunds, you call the reversefundstransactions endpoint with the same structure.
+Step 4 — Workflow Integration
+The recommended call sequence in your backend is: Place Order → Call Visa API → On success, write Transaction document to MongoDB with status "Completed" → Update Order status to "Pre-Dispatch". If the Visa call fails, write the Transaction with status "Failed" and do not confirm the order.
+
+3. Recording Returns — Retrofitting the Existing Structure
+To minimise changes, returns can be recorded by adding a small set of fields directly to the order_items sub-documents inside the Orders collection, and one field to the product_items sub-documents inside the Products collection.
+Changes to order_items in the Orders collection:
+json{
+  "order_item_id": "n5shxmxiyrgy",
+  "product_id": "hya3y1kdhv4p",
+  "sku": "9qjmn3ak0b",
+  "order_item_name": "The Craftsman Shirt in Bark Plaid Linen",
+  "order_item_price": 128,
+  "order_item_quantity": 1,
+  "order_item_image_uri": "...",
+  "returned_quantity": 1,
+  "return_reason": "Defect",
+  "return_status": "Completed"
+}
+returned_quantity defaults to 0 for all existing and new order items. return_reason can be "Defect" or "Cancelled" as you specified. return_status can be "None", "Requested", "Approved", or "Completed".
+Changes to product_items in the Products collection:
+Add a single quantity_returned field alongside the existing total_stock, quantity_sold, and current_stock fields:
+json{
+  "sku": "9qjmn3ak0b",
+  "upper_size_letter": "M",
+  "total_stock": 410,
+  "quantity_sold": 410,
+  "quantity_returned": 3,
+  "current_stock": 3
+}
+When a return is processed, quantity_returned increments and current_stock is restored accordingly (current_stock += returned_quantity). This keeps your inventory figures accurate without restructuring the collection.
+Finally, when a return is approved, your backend should also create a new Transaction document with transaction_type: "Refund" and call the Visa reversefundstransactions endpoint to push the money back.
+
+4. Recording Discounts — Retrofitting the Existing Structure
+Discounts can exist at two levels: a product-level sale price and an order-level discount code. Both can be retrofitted with minimal changes.
+Product-level discount — changes to the Products collection:
+Add two optional fields to each product document:
+json{
+  "product_id": "b0e6v4zl9aih",
+  "product_name": "The Democratic Foundation Pant in Organic Navy",
+  "product_price": 125,
+  "discount_percentage": 20,
+  "discounted_price": 100,
+  ...
+}
+discount_percentage and discounted_price default to null (no discount). When a sale is active, these are populated and your frontend reads discounted_price in place of product_price.
+Order-level discount — changes to the Orders collection:
+Add three fields to each Order document, and one field to each order_item sub-document:
+json{
+  "order_id": "77zlcwaiyjge",
+  "user_id": "7ycthivdrqvl",
+  "total_price": 358,
+  "discount_code": "SUMMER20",
+  "discount_amount": 71.60,
+  "discounted_total": 286.40,
+  "order_items": [
+    {
+      "order_item_id": "n5shxmxiyrgy",
+      "order_item_price": 128,
+      "order_item_discounted_price": 102.40,
+      ...
+    }
+  ]
+}
+discount_code, discount_amount, and discounted_total default to null on all existing and new orders where no code is applied. order_item_discounted_price on each order item defaults to null as well. This approach preserves the original total_price and order_item_price as a historical record of the pre-discount prices, which is useful for accounting and auditing purposes.
+
+Summary of All Changes
+AreaChange TypeWhat Is AddedTransactionsNew collectionFull transaction/refund audit trail linked to OrdersVisa APINew backend servicePayment and refund calls to Visa sandboxReturnsRetrofit Orders → order_itemsreturned_quantity, return_reason, return_statusReturnsRetrofit Products → product_itemsquantity_returnedDiscountsRetrofit Productsdiscount_percentage, discounted_priceDiscountsRetrofit Ordersdiscount_code, discount_amount, discounted_totalDiscountsRetrofit Orders → order_itemsorder_item_discounted_price

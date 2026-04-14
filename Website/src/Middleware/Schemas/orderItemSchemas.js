@@ -1,5 +1,9 @@
 const z = require('zod');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
+const discountValidators = require('../Validators/CustomValidators/discountValidators');
+const orderItemValidators = require('../Validators/CustomValidators/orderItemValidators');
+const productValidators = require('../Validators/CustomValidators/productValidators');
+const productItemValidators = require('../Validators/CustomValidators/productItemValidators');
 
 /**
  * order_item_name is related to product_name and cart_item_name
@@ -7,32 +11,72 @@ const customValidators = require('../Validators/CustomValidators/customFormatVal
  * order_item_image_uri is related to cart_item_image_uri
  **/
 
-const orderItemSchema = z.object({
-    order_item_id: z.string("The order_item_id field must be a string. It is a required field.").length(12, {message: "The order_item_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The order_item_id can contain only lowercase letters and digits."}),
+const orderItemResponseSchema = z.object({
+    order_item_id: orderItemValidators.zodIsOrderItemId,
 
-    product_id: z.string("The product_id field must be a string. It is a required field.").length(12, {message: "The product_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The product_id can only contain lowercase letters and numbers."}),
+    product_id: productValidators.zodIsProductId,
 
-    sku: z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."}),
+    sku: productItemValidators.zodIsSKU,
 
-    order_item_name: z.string("The order_item_name field must be a string.").min(3, {message: "The order_item_name field is a required field."}).max(100, {message: "The maximum permitted length is 100 characters."}).regex(customValidators.productNameRegex, {message: "The order_item_name field accepts only upper case letters, lower case letters, accented uppercase and lowercase letters and spaces."}),
+    order_item_name: orderItemValidators.zodIsOrderItemName,
 
-    order_item_price: z.number("The order_item_price field must be a number(integer). It is a required field.").int("The order_item_price field must be an integer.").min(1, {message: "The minimum limit of the order_item_price field is 1."}).max(300, {message: "The maximum limit of the order_item_price field is 300."}),
+    order_item_price: orderItemValidators.zodIsOrderItemPrice,
 
-    order_item_quantity: z.number("The order_item_quantity field must be a number(integer). It is a required field.").int("The order_item_quantity field must be an integer.").min(1, {message: "The order_item_quantity field has a minimum limit of 1."}).max(100, {message: "The order_item_quantity field has a maximum upper limit of 100."}),
+    order_item_quantity: orderItemValidators.zodIsOrderItemQuantity,
 
-    order_item_image_uri: z.string("The order_item_image_uri must be a string. It is a required field.").max(256).regex(customValidators.windowsFilePathRegex, {message: "The order_item_image_uri must be a valid Windows file path. Maximum permitted length is 256 characters."}),
+    order_item_image_uri: orderItemValidators.zodIsOrderItemImageURI,
 
-    returned_quantity: z.number("The returned_quantity field must be a number (integer). It is a required field.").int("The ").min(0, {message: "The returned_quantity field has a minimum limit of 0."}).max(600, {message: "The returned_quantity field has a maximum limit of 600."}),
+    return_reason: orderItemValidators.zodIsReturnReason,
 
-    return_reason: z.enum(["None", "Defect", "Cancelled"], {message: "The return_reason field is a required field. It must be one of the following values: None, Defect, Cancelled."}),
+    return_status: orderItemValidators.zodIsReturnStatus,
 
-    return_status: z.enum(["None", "Requested", "Approved", "Cancelled"], {message: "The return_status field is a required field. It must be one of the following values: None, Defect, Cancelled."})
+    discount_code: discountValidators.zodIsDiscountCode,
+
+    discount_percentage: discountValidators.zodIsDiscountPercentage,
+
+    discount_amount: discountValidators.zodIsDiscountAmount,
+    
+    discounted_total: discountValidators.zodIsDiscountedTotal
 }).strict();
 
-const orderItemSchemaArray = z.array(orderItemSchema);
+const createOrderItemRequestSchema = z.object({
+    product_id: productValidators.zodIsProductId,
+
+    sku: productItemValidators.zodIsSKU,
+
+    order_item_name: orderItemValidators.zodIsOrderItemName,
+
+    order_item_price: orderItemValidators.zodIsOrderItemPrice,
+
+    order_item_quantity: orderItemValidators.zodIsOrderItemQuantity,
+
+    order_item_image_uri: orderItemValidators.zodIsOrderItemImageURI,
+
+    return_reason: orderItemValidators.zodIsReturnReason,
+
+    return_status: orderItemValidators.zodIsReturnStatus,
+
+    discount_code: discountValidators.zodIsDiscountCode,
+
+    discount_percentage: discountValidators.zodIsDiscountPercentage,
+
+    discount_amount: discountValidators.zodIsDiscountAmount,
+    
+    discounted_total: discountValidators.zodIsDiscountedTotal
+}).strict();
+
+const updateOrderItemReturnSchema = z.object({
+    return_reason: orderItemValidators.zodIsReturnReason,
+
+    return_status: orderItemValidators.zodIsReturnStatus
+}).strict();
+
+const orderItemResponseSchemaArray = z.array(orderItemResponseSchema);
 
 module.exports = {
-    orderItemSchema,
-    orderItemSchemaArray
+    orderItemResponseSchema,
+    createOrderItemRequestSchema,
+    orderItemResponseSchemaArray,
+    updateOrderItemReturnSchema
 };
 

@@ -1,5 +1,5 @@
-We need the following pieces of data:
-* product_id -> User params | From frontend
+pdWe need the following pieces of data:
+* product_id -> Request Body | From frontend
 
 updateProductPrice ->
 * Check if the request_body is empty or not, if it is, throw an EmptyRequestBody Error.
@@ -7,13 +7,23 @@ updateProductPrice ->
 
 * Get a DEEP CLONE of the request_body
 * Create the filter using { product_id : product_id }.
-* CHECK IF THE DATA THAT YOU'RE ABOUT TO UPDATE ALREADY EXISTS IN THE DATABASE -> If yes, throw DuplicateSubDocumentError.
+* Check if the productPrice that you are about to update already exists in the database. -> If yes, throw DuplicateSubDocumentError.
+
+* Check if the discount_code is not set to "None". If it isn't, then do the following:
+  * Get the discount_percentage from the respective Product document.
+  * Calculate the discount_amount.
+  * Calculate the discounted_total.
+  * Add these parameters to the update_object.
 
 * Use the findOneAndUpdate() function with the filter, the DEEP CLONE of the request_body, {runValidators: true} and chain it with .lean() to update the product price.
 * Get the result from findOneAndUpdate(). -> RESULT 1
 
-* Get the updated product price from the result.
+* Get the updated product price, updated discount code, updated discount percentage and updated discounted total from the result.
+* Store the updated discount code in req.params.
 * Store the updated product price in req.params.
+* Store the updated discount percentage in req.params.
+* Store the updated discounted total in req.params.
+
 
 * Call updateCartItemPrice().
 * Get the result from updateCartItemPrice(). -> RESULT 2

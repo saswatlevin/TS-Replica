@@ -1,13 +1,13 @@
 We need the following pieces of data:
-* product_id -> Request params | From frontend
+* product_id -> Request body | From frontend
 
 updateProductGarmentWeight ->
-* Get the product_id from req.params.
+* Get the product_id from req.body.
 
 * Check if the request body is empty or not, if it is, throw an EmptyRequestBodyError.
 * Check if the Product document exists or not, if not, throw a ResourceNotFoundError.
 
-* CHECK IF THE DATA THAT YOU'RE ABOUT TO UPDATE ALREADY EXISTS IN THE DATABASE -> If yes, throw CustomError. 
+* CHECK IF THE DATA THAT YOU'RE ABOUT TO UPDATE ALREADY EXISTS IN THE DATABASE -> If yes, throw RedundantUpdateError. 
 * Get a DEEP CLONE of the request_body.
 
 * Create a filter, {product_id: product_id}.

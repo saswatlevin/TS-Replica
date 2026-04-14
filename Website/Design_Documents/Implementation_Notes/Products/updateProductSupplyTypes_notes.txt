@@ -1,19 +1,19 @@
 We need the following pieces of data:
-* product_id -> User params | From frontend
+* product_id -> Request body | From frontend
 
 updateSupplyType ->
-* Get the product_id from req.params.
+  * Get the product_id from req.body.
 
-* Check if the request body is empty or not, if it is, throw an EmptyRequestBodyError.
-* Check if the Product document exists or not, if not, throw a ResourceNotFoundError.
+  * Check if the request body is empty or not, if it is, throw an EmptyRequestBodyError.
+  * Check if the Product document exists or not, if not, throw a ResourceNotFoundError.
 
-* CHECK IF THE DATA THAT YOU'RE ABOUT TO UPDATE ALREADY EXISTS IN THE DATABASE -> If yes, throw CustomError.
-* Get a DEEP CLONE of the request_body.
+  * CHECK IF THE DATA THAT YOU'RE ABOUT TO UPDATE ALREADY EXISTS IN THE DATABASE -> If yes, throw CustomError.
+  * Get a DEEP CLONE of the request_body.
 
-* Create a filter, {product_id: product_id}.
-* Create the update_object as {"product_supply_type": request_body_DEEP_CLONE} 
+  * Create a filter, {product_id: product_id}.
+  * Create the update_object as {"product_supply_type": request_body_DEEP_CLONE} 
 
-* Use findOneAndUpdate(filter, update_object, {new: true}, {runUpdateValidators: true}).lean(); 
+  * Use findOneAndUpdate(filter, update_object, {new: true}, {runUpdateValidators: true}).lean(); 
 
-* Get the result from findOneAndUpdate().
-* Send the result back as JSON with a status code of 200.
+  * Get the result from findOneAndUpdate().
+  * Send the result back as JSON with a status code of 200.

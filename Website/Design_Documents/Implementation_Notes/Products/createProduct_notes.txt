@@ -5,24 +5,24 @@ We need the following pieces of data
 4) product_body -> From request body
 
 createProduct -> 
-Get a DEEP CLONE of the request body
+  * Get a DEEP CLONE of the request body
 
-Check if the request body is empty, if so, throw an EmptyRequestBodyError
+  * Check if the request body is empty, if so, throw an EmptyRequestBodyError
 
-Check if the product already exists, if yes, throw a DuplicateDocumentRequestErro
+  * Check if the product already exists, if yes, throw a DuplicateDocumentRequestErro
 
-Generate the product_id as a 12-character random string.
+  * Generate the product_id as a 12-character random string.
 
-Generate the image_id.
+  * Generate the image_id.
 
-Generate the sku.
+  * Generate the sku.
 
-Generate the doctype as PRODUCT.
+  * Generate the doctype as PRODUCT.
 
-Add the sku to the product_items key-value pair in the DEEP CLONE of the request body.
+  * Add the sku to the product_items key-value pair in the DEEP CLONE of the request body.
 
-Add the image_id to the product_images key-value pair in the DEEP CLONE of the request body.
+  * Add the image_id to the product_images key-value pair in the DEEP CLONE of the request body.
 
-Add the product_id and doctype to the DEEP CLONE of the request_body. This is the product.
+  * Add the product_id and doctype to the DEEP CLONE of the request_body. This is the product.
 
-Use the Model.create() function to create the product by inserting the request_body.
+  * Use the Model.create() function to create the product by inserting the request_body.

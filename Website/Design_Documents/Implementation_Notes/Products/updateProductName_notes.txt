@@ -1,12 +1,12 @@
 We need the following pieces of data:
-* product_id -> Request Params | From Frontend
+* product_id -> Request Body | From Frontend
 
 updateProductName -> 
 * Check if the request body is empty or not, if so, throw an EmptyRequestBodyError.
 * Check if the product exists or not, if it doesn't, throw a ResourceNotFoundError.
 * Check if the product_name value already exists, if so, throw a RedundantUpdateError.
 
-* Get the product_id from the request_params.
+* Get the product_id from the request_body.
 * Get a DEEP CLONE of the request_body. 
 
 * Create a filter of the form {user_id: user_id}.

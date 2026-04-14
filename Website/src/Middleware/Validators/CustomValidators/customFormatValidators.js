@@ -2,9 +2,6 @@
 const validator = require('validator');
 const z = require('zod');
 
-
-
-
 // Exempted from redefinition
 const zodIsISO8601 = z.string("This date field must be a string.").length(19, {message: "This date field value must be 19 characters long. It is a required field."}).refine((value) => validator.isISO8601(value, {strict: true, separator: true}), {
     message: "This date field must receive date in the format YYYY-MM-DDTHH:MM:SS"

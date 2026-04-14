@@ -31,7 +31,7 @@ productRoutes.js ->
 
 ===========================BACKEND EXTENSION PLAN===================================
 To record transactions made by customers, a new collection called "Transactions". Each document in this collection will have the following structure:
-  {
+{
   "transaction_id": "txn_a1b2c3d4e5",
   "order_id": "77zlcwaiyjge",
   "user_id": "7ycthivdrqvl",
@@ -51,7 +51,7 @@ To record transactions made by customers, a new collection called "Transactions"
 
 * We will use VISA's sandbox API to conduct mock transactions.
 
-To record returns, we will add the "returned_quantity", "return_reason" and "return_status" fields to the order_items sub-document in the Order document.
+To record returns, we will add the "return_reason" and "return_status" fields to the order_items sub-document in the Order document.
 {
   "order_item_id": "n5shxmxiyrgy",
   "product_id": "hya3y1kdhv4p",
@@ -60,12 +60,11 @@ To record returns, we will add the "returned_quantity", "return_reason" and "ret
   "order_item_price": 128,
   "order_item_quantity": 1,
   "order_item_image_uri": "...",
-  "returned_quantity": 1,
   "return_reason": "Defect",
   "return_status": "Completed"
 }
 
-* Note that "returned_quantity" defaults to 0 for all existing and new order items.
+
 * Note that "return_reason" can be "Defect", "Cancelled" or "None".
 * Note that "return_status" can be "None", "Requested", "Approved", or "Completed".
 
@@ -79,7 +78,9 @@ We need to add a single "quantity_returned" field in the "product_items" sub-doc
   "current_stock": 3
 }
 
-* Note that when a return is "Approved", the "current_stock" field will increment by "returned_quantity" and we will have to add a Transaction document to the Transaction collection with transaction_type: "Refund" and call the Visa reversefundstransactions endpoint to push the money back.
+* Note that when a return is "Approved", the "quantity_returned" the "current_stock" field will increment by "quantity_returned" and we will have to add a Transaction document to the Transaction collection with transaction_type: "Refund" and call the Visa reversefundstransactions endpoint to push the money back.
+
+* Please note that the "quantity_returned" field in the product_item of the respective Product will always be equal to the "order_item_quantity" in the respective order_item of the respective Product.
 
 We can record discounts at the Order level and at the Product level.
 

@@ -9,6 +9,7 @@ const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError'
 const User = require('../Models/User');
 const { checkIsEmptyObject, checkUserExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
 const { checkCartItemExists } = require('./SupportFunctions/cartItemSupportFunctions');
+const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
 
 const createCartItem = asyncErrorHandler(async (req, res, next) => {
     console.log("In createCartItem");
@@ -34,11 +35,19 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
         throw user_id_not_found_error;
     }
 
+    // To deal with edge cases, check whether the product exists
+    console.log("Check if the Product exists");
+    if (await checkProduct(req) === false) {
+        const product_id_not_found_error = new ResourceNotFoundError(`Could not create the Cart Item since the product with product_id ${product_id} does not exist.`);
+        throw product_id_not_found_error;
+    }
+
     console.log("Checking if the cart item already exists");
     if (await checkCartItemExists(req) === true) {
         const cart_item_already_exists_error = new DuplicateSubdocumentError(`Could not create Cart Item for user with user_id ${user_id} as the cart item already exists.`);
         throw cart_item_already_exists_error;
     }
+
 
     const cart_item_id = createRandomString(6);
     console.log("cart_item_id ", cart_item_id);
@@ -86,6 +95,8 @@ const updateCartItemPrice = async (req) => {
             const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the cart item with cart_item_id ${cart_item_id} does not exist.`);
             throw cart_item_not_found_error;
         }
+
+        // No need to check if product exists, since updateProductPrice already checks that and in the future DB operations will be made atomic.
 
         const filter = { user_id: user_id,  "CartItems.product_id": product_id};
         console.log("filter ", filter);
@@ -299,7 +310,7 @@ const searchCartItem = asyncErrorHandler(async(req, res, next) => {
    }
 
    console.log("Checking if the user exists");
-   if (await checkUserExists(req) === true) {
+   if (await checkUserExists(req) === false) {
       const resource_not_found_error = new ResourceNotFoundError(`Could not search for the cart item with cart_item_id ${cart_item_id} since the user with user_id ${user_id}`);
       throw resource_not_found_error;
    }
@@ -379,7 +390,7 @@ const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
       throw resource_not_found_error;
    }
 
-   const filter = {user_id: user_id};
+   const filter = {user_id: user_id, 'CartItems.cart_item_id': cart_item_id};
    console.log("filter ", filter);
 
    const query = {cart_item_id: cart_item_id};

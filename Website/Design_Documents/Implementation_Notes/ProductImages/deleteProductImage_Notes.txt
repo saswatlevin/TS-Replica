@@ -11,7 +11,9 @@ deleteProductImage ->
   * Check if the product_image to be deleted exists or not, if not, throw a ResourceNotFoundError.
 
   * Create the filter consisting of the product_id and image_id from the request_body.
-  * Create the delete_object consisting of the image_id from the request_body.-
+  * Create the delete_object consisting of the image_id from the request_body.
+
+  * Check whether the image being deleted is the main image. If it is, throw an IllegalUpdateError.
   
   * const result = await Product.findOneAndUpdate(
       filter,

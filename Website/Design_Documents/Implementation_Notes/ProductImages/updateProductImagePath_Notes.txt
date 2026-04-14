@@ -7,10 +7,15 @@ updateProductImageURI ->
   * Get the product_id from the request_body.
   
   * Check if the Product document exists. If not, throw a ResourceNotFoundError.
+  
+  * Check if the product_image to be updated exists. If not, throw a ResourceNotFoundError. 
+  
+  * Check if the image_uri value to be updated already exists, if so, throw a RedundantUpdateError.
+  
   * Create the filter consisting of the product_id and the image_id.
 
   * Create the update_object consisting of the image_uri from the request_body.
-  * Check if the image_uri value to be updated already exists, if so, throw a RedundantUpdateError.
+
 
   * Call findOneAndUpdate() with the filter and the update object as { $push: { product_images: update_object } }.
   

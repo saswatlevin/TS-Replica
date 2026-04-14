@@ -16,6 +16,7 @@ createProductImage ->
 	
   * Create the product_image object as {image_id, image_uri, main_image: main_image}.
   
+  * Check if the product_image array is full. If it is, then set main_image to false, otherwise to true.
   
   * Call findOneAndUpdate() with filter as product_id and the update object as { $push: { product_images: product_image } }.
   

@@ -14,7 +14,7 @@ updateProductItem ->
   * Check if the updated value already exists. If it does, then throw a RedundantUpdateError.
   * Create a deep clone of the request body.
   
-  * Create the filter as {product_id: product_id, sku: sku}. 
+  * Create the filter as {product_id: product_id, "product_items.sku": sku}. 
   * Create the update_query by removing the product_id and sku from the request_body_deep_clone.
   
   * Perform the update using findOneAndUpdate(filter, { $push: { product_items: update_query } }, {new: true}, {runValidators: true}).lean()

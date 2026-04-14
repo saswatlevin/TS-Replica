@@ -10,7 +10,7 @@ const zodIsCartItemPrice = z.number("The cart_item_price field must be a number(
 const zodIsCartItemImageURI = z.string("The cart_item_image_uri must be a string. It is a required field.").max(256).regex(customValidators.windowsFilePathRegex, {message: "The cart_item_image_uri must be a valid Windows file path. Maximum permitted length is 256 characters."});
  
 // Conversion to JSOn not necessary since this is a numeric field.
-const zodIsCartItemQuantity = z.number("The cart_item_quantity field must be a number(integer). This is a required field.").int("The cart_item_quantity field must be an integer.").min(1, {message: "The cart_item_quantity has a minimum limit of 1."}).max(100, {message: "The cart_item_quantity has a maximum limit of 100."});
+const zodIsCartItemQuantity = z.number("The cart_item_quantity field must be a number(integer). This is a required field.").int("The cart_item_quantity field must be an integer.").min(1, {message: "The cart_item_quantity has a minimum limit of 1."}).max(5, {message: "The cart_item_quantity has a maximum limit of 5."});
 
 module.exports = {
     zodIscartItemId,

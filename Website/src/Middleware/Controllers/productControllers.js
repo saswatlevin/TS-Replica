@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundError');
 const _ = require('lodash');
 const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
-const CustomError = require('../OperationalErrors/CustomError');
 const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError');
+const IllegalUpdateError = require('../OperationalErrors/IllegalUpdateError');
 const createRandomString = require('../createRandomString');
 const { checkIsEmptyObject } = require('./SupportFunctions/shippingAddressSupportFunctions');
 const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
@@ -16,6 +16,8 @@ const { checkProductGarmentWeightValueExists } = require('./SupportFunctions/pro
 const { checkProductSupplyTypeValueExists } = require('./SupportFunctions/productSupportFunctions');
 const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
 const { updateCartItemPrice, updateCartItemName } = require('./cartItemControllers');
+const { getDiscountPercentage } = require('./SupportFunctions/productSupportFunctions');
+const { getProductPrice } = require('./SupportFunctions/productSupportFunctions');
 const Product = require('../Models/Product');
 
 const createProduct = asyncErrorHandler(async (req, res, next) => {
@@ -123,24 +125,104 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     const filter = { product_id: product_id };
     console.log("filter ", filter);
 
-    const update_object = request_body_deep_clone;
+    const product_price = request_body_deep_clone.product_price;
+
+    var update_object = {};
+
+    // Setting these fields to their default values.
+    var discount_percentage = 0;
+    var discount_amount = 0;
+    var discounted_total = 0;
+    var product_price = 0;
+    var discount_code = "None";
+
+
+    if (request_body_deep_clone?.product_price !== undefined && (request_body_deep_clone?.discount_code === undefined && request_body_deep_clone?.discount_percentage === undefined)) {
+
+        console.log("Updating only product_price");
+
+        discount_percentage = await getDiscountPercentage(req);
+        //console.log("discount_percentage ", discount_percentage);
+
+        product_price = request_body_deep_clone.product_price;
+        //console.log("product_price ", product_price);
+
+        discount_amount = discount_percentage * product_price;
+        //console.log("discount_amount ", discount_amount);
+
+        discounted_total = product_price - discount_amount;
+        //console.log("discounted_total ", discounted_total);
+
+        update_object = {product_price: product_price, discount_amount: discount_amount, discounted_total: discounted_total};
+    } 
+
+    else if (request_body_deep_clone?.product_price === undefined && (request_body_deep_clone?.discount_code !== undefined && request_body_deep_clone?.discount_percentage !== undefined)) {
+        
+        console.log("Updating only discount-related fields");
+
+        discount_code = request_body_deep_clone.discount_code;
+        //console.log("discount_code ", discount_code);
+
+        discount_percentage = request_body_deep_clone.discount_percentage
+        //console.log("discount_percentage ", discount_percentage);
+
+        product_price = await getProductPrice(req);
+        //console.log("product_price ", product_price);
+
+        discount_amount = discount_percentage * product_price;
+        //console.log("discount_amount ", discount_amount);
+
+        discounted_total = product_price - discount_amount;
+        //console.log("discounted_total ", discounted_total);
+
+        update_object = {discount_code: discount_code, discount_percentage: discount_percentage, discount_amount: discount_amount, discounted_total: discounted_total};
+    }
+
+    else if (request_body_deep_clone?.product_price !== undefined && (request_body_deep_clone?.discount_code !== undefined && request_body_deep_clone?.discount_percentage !== undefined)) {
+        
+        console.log("Updating product_price and discount_related fields");
+
+        discount_code = request_body_deep_clone.discount_code;
+        //console.log("discount_code ", discount_code);
+
+        discount_percentage = request_body_deep_clone.discount_percentage
+        //console.log("discount_percentage ", discount_percentage);
+
+        product_price = request_body_deep_clone.product_price;
+        //console.log("product_price ", product_price);
+
+        discount_amount = discount_percentage * product_price;
+        //console.log("discount_amount ", discount_amount);
+
+        discounted_total = product_price - discount_amount;
+        //console.log("discounted_total ", discounted_total);
+
+        update_object = {product_price: product_price, discount_code: discount_code, discount_percentage: discount_percentage, discount_amount: discount_amount, discounted_total: discounted_total};
+    
+
+    }
+
+    else {
+        const incorrect_update_error = new IllegalUpdateError(`Cannot carry out the product price / discount update since the wrong set of values among product_price, discount_code and discount_percentage was provided`);
+        throw incorrect_update_error;
+    }
+
+    
     console.log("update_object ", update_object);
 
     const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
     //console.log("update_product_price_result ", update_product_price_result);
 
-    // If a discount is applied, then the cart_item_price is updated with the discounted_total
-    if (req.body?.discounted_total === 0) {
-        req.params.updated_product_price = update_product_price_result.product_price;
-        console.log("Storing the updated_product_price in the request params ", req.params.updated_product_price);
-    }
     
-    else {
-        req.params.updated_product_price = update_product_price_result.discounted_total;
-        console.log("Storing the updated_product_price in the request params (DISCOUNTED TOTAL) ", req.params.updated_product_price);
-    }
+    // Assign values to res.locals here, after all calculations are complete
+    // and before calling the helper function that needs them
+    res.locals.updated_product_price = product_price;
+    res.locals.updated_discount_code = discount_code;
+    res.locals.updated_discount_percentage = discount_percentage;
+    res.locals.updated_discount_amount = discount_amount;
+    res.locals.updated_discounted_total = discounted_total;
 
-    const update_cart_item_price_result = await updateCartItemPrice(req);
+    const update_cart_item_price_result = await updateCartItemPrice(req, res);
     //console.log("update_cart_item_price_result ", update_cart_item_price_result);
 
     const result_array = [update_product_price_result, update_cart_item_price_result];

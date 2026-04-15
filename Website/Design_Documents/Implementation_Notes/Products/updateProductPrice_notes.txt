@@ -19,10 +19,10 @@ updateProductPrice ->
 * Get the result from findOneAndUpdate(). -> RESULT 1
 
 * Get the updated product price, updated discount code, updated discount percentage and updated discounted total from the result.
-* Store the updated discount code in req.params.
-* Store the updated product price in req.params.
-* Store the updated discount percentage in req.params.
-* Store the updated discounted total in req.params.
+* Store the updated discount code in res.locals.
+* Store the updated product price in res.locals.
+* Store the updated discount percentage in res.locals.
+* Store the updated discounted total in res.locals.
 
 
 * Call updateCartItemPrice().
@@ -33,6 +33,22 @@ updateProductPrice ->
 * Send the array with RESULT 1 and RESULT 2 as res.json.
 * Set the res.status to 200.
 
+NOTE: 
+* res.locals is specifically designed for this purpose — it is an object that persists for the lifetime of a single request-response cycle and is not exposed to the client.
+* res.locals is the preferred choice over req.locals because:
+  * It is an officially documented Express property explicitly intended for this use case
+  * It is scoped to the current request-response cycle and is automatically garbage collected after the response is sent
+  * It is never serialized or sent to the client.
+
+/// Three Scenarios for updating Price:
+01) Only price needs to be updated. -> This scenario is already covered. Here, we check that discount_code and discount_percentage are NOT included in the request_body. We then get the discount_percentage from the getDiscountPercentage() HELPER FUNCTION and calculate the discount_amount and discounted_total from it.
+
+02) discount_code and discount_percentage need to be updated. -> Here, we check that discount_code AND discount_percentage ARE included in the update object. We get the product_price using the getProductPrice() HELPER FUNCTION We update the discount_code, discount_percentage, discount_amount and discounted_total respectively.
+
+03) price, discount_code and discount_percentage need to be updated. -> Here, we need to check that price IS INCLUDED, then check that discount_code AND discount_percentage ARE included. We update the price, discount_code, discount_percentage, discount_amount and discounted_total respectively.
+
+The checkPrice() HELPER FUNCTION needs to check whether the price and / or discount_code AND discount_percentage already exist.
 
 
+ 
 

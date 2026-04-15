@@ -65,12 +65,22 @@ const checkProductPriceExists = async(req) => {
     try {
 
         const product_id = req.body.product_id;
-        const product_price = req.body.product_price;
+
+        var product_search_object = {};
+
+        if (req?.product_price !== undefined && (req?.discount_code === undefined && req?.discount_percentage === undefined)) {
+            product_search_object = {product_price: req.product_price};
+        } 
+
+        if (req?.product_price === undefined && (req?.discount_code !== undefined && req?.discount_percentage !== undefined)) {
+            product_search_object = {discount_code: req.discount_code, discount_percentage: req.discount_percentage};
+        }
+
+        if (req?.product_price !== undefined && (req?.discount_code !== undefined && req?.discount_percentage !== undefined)) {
+            product_search_object = {product_price: req.product_price, discount_code: req.discount_code, discount_percentage: req.discount_percentage};
+        }
         
-        const product_search_object = {
-            product_id: product_id,
-            product_price: product_price
-        };
+        console.log("##DEBUG in checkProductPriceExists - product_search_object ", product_search_object);
 
         const result = await Product.findOne(product_search_object);
         //console.log("##DEBUG in checkProductPriceExists - result - ", result);
@@ -244,6 +254,52 @@ const checkProductSupplyTypeValueExists = async(req) => {
     }
 }
 
+const getProductDiscount = async(req) => {
+    console.log("In getProductDiscount (HELPER FUNCTION)");
+    
+    try {
+        const product_id = req.body.product_id;
+        // console.log("product_id ", product_id);
+
+        const query = {product_id: product_id};
+        // console.log("query ", query);
+
+        const result = await Product.find(query).lean();
+
+        const discount_percentage = result.discount_percentage;
+
+        return discount_percentage;
+    }   
+
+    catch (error) {
+        console.log("Error in getProductDiscount ", error);
+        throw error;
+    }
+}
+
+const getProductPrice = async(req) => {
+    console.log("In getProductPrice (HELPER FUNCTION)");
+    
+    try {
+        const product_id = req.body.product_id;
+        // console.log("product_id ", product_id);
+
+        const query = {product_id: product_id};
+        // console.log("query ", query);
+
+        const result = await Product.find(query).lean();
+
+        const product_price = result.product_price;
+
+        return product_price;
+    }   
+
+    catch (error) {
+        console.log("Error in getProductPrice ", error);
+        throw error;
+    }
+}
+
 module.exports = {
     checkProduct,
     checkDuplicateProduct,
@@ -252,5 +308,6 @@ module.exports = {
     insertAt,
     checkProductValueExists,
     checkProductGarmentWeightValueExists,
-    checkProductSupplyTypeValueExists
+    checkProductSupplyTypeValueExists,
+    getProductDiscount
 };

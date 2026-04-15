@@ -70,7 +70,7 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     res.status(200).json(result);
 });
 
-const updateCartItemPrice = async (req) => {
+const updateCartItemPrice = async (req, res) => {
     console.log("In updateCartItemPrice (HELPER FUNCTION)");
 
     try {
@@ -101,21 +101,38 @@ const updateCartItemPrice = async (req) => {
         const filter = { user_id: user_id,  "CartItems.product_id": product_id};
         console.log("filter ", filter);
 
-        const updated_cart_item_price = req.params.updated_product_price;
+        const updated_cart_item_price = res.locals.updated_product_price;
         //console.log("updated_cart_item_price ", updated_cart_item_price);
+
+        const updated_discount_code = res.locals.updated_discount_code;
+        //console.log("updated_discount_code ", updated_discount_code);
+
+        const updated_discount_amount = res.locals.updated_discount_amount;
+        //console.log("updated_discount_amount ", updated_discount_amount);
+
+        const updated_discount_percentage = res.locals.updated_discount_percentage;
+        //console.log("updated_discount_percentage ", updated_discount_percentage);
+
+        const updated_discounted_total = res.locals.updated_discounted_total;
+        //console.log("updated_discount_total ", updated_discount_total);
+        
 
         const update_object = {
             $set: {
-                "CartItems.$[item].cart_item_price": updated_cart_item_price
+                "CartItems.$[item].cart_item_price": updated_cart_item_price,
+                "CartItems.$[item].discount_code": updated_discount_code,
+                "CartItems.$[item].discount_amount": updated_discount_amount,
+                "CartItems.$[item].discount_percentage": updated_discount_percentage,
+                "CartItems.$[item].discounted_total": updated_discount_total   
             }
         };
 
-        console.log("update_object ", update_object);
+        console.log("##DEBUG - update_object in updateCartItemPrice - ", update_object);
 
         // Update the product_price of all product items (cart items) of the same product if present.
-        const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": "a6bb1d23bd28" }], runValidators: true });
+        const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": product_id }], runValidators: true });
 
-        console.log("result in updateCartItemPrice ", result);
+        console.log("##DEBUG - result in updateCartItemPrice - ", result);
 
         console.log("===END OF updateCartItemPrice===");
         

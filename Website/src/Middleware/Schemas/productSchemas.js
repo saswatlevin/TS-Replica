@@ -98,15 +98,7 @@ const updateProductSchema = z.object({
 
     product_material: productValidators.zodIsProductMaterial.optional(),
 
-    product_specifications: productValidators.zodIsProductSpecifications.optional(),
-
-    discount_code: discountValidators.zodIsDiscountCode.optional(),
-
-    discount_percentage: discountValidators.zodIsDiscountPercentage.optional(),
-
-    discount_amount: discountValidators.zodIsDiscountAmount.optional(),
-    
-    discounted_total: discountValidators.zodIsDiscountedTotal.optional()
+    product_specifications: productValidators.zodIsProductSpecifications.optional()
 
 }).strict();
 
@@ -232,7 +224,11 @@ const updateProductPriceSchema = z.object({
     
     sku: productItemValidators.zodIsSKU,
     
-    product_price: productValidators.zodIsProductPrice
+    product_price: productValidators.zodIsProductPrice.optional(),
+
+    discount_code: discountValidators.zodIsDiscountCode.optional(),
+
+    discount_percentage: discountValidators.zodIsDiscountPercentage.optional()
 }).strict();
 
 const productIdSchema = z.object({

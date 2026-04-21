@@ -426,7 +426,7 @@ NOTE:
   * We reuse the computed itemTotal value via a variable using $let.
 =============AGGREGATION PIPELINE TO CALCULATE TOTAL_PRICE, DISCOUNT_AMOUNT AND DISCOUNTED_TOTAL IN CARTITEMS===========
 
-=============AGGREGATION PIPELINE TO UPDATE DISCOUNT_PERCENTAGE, DISCOUNT_AMOUNT AND DISCOUNTED_TOTAL================
+=============AGGREGATION PIPELINE TO UPDATE DISCOUNT_CODE, DISCOUNT_PERCENTAGE, DISCOUNT_AMOUNT AND DISCOUNTED_TOTAL================
 db.Users.updateMany(
 {"CartItems.product_id": "a6bb1d23bd28"},
 
@@ -452,6 +452,7 @@ db.Users.updateMany(
                                   }
                               },
                       in: {
+                        discount_code: "15PERCENT",
                         discount_percentage: 0.15,
                         discount_amount: "$$discountAmount",
                         discounted_total: { $subtract: ["$$item.item_total", "$$discountAmount"] }                        

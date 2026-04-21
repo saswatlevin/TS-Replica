@@ -63,7 +63,7 @@ function buildUpdateCartItemPricePipeline(product_id, product_price) {
  ]
 }
 
-function buildUpdateCartItemDiscountPipeline(product_id, discount_percentage) {
+function buildUpdateCartItemDiscountPipeline(product_id, discount_code, discount_percentage) {
   return [
    {
       $set: {
@@ -86,6 +86,7 @@ function buildUpdateCartItemDiscountPipeline(product_id, discount_percentage) {
                                   }
                               },
                       in: {
+                        discount_code: discount_code,
                         discount_percentage: discount_percentage,
                         discount_amount: "$$discountAmount",
                         discounted_total: { $subtract: ["$$item.item_total", "$$discountAmount"] }                        

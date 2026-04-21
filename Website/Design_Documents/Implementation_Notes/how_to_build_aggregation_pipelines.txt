@@ -1,0 +1,471 @@
+================MENTAL MODEL=============
+1. Mental Model (This matters more than syntax)
+
+An aggregation pipeline in MongoDB looks like:
+
+db.collection.aggregate([
+  { stage1 },
+  { stage2 },
+  { stage3 }
+])
+
+Each stage:
+
+Takes input documents
+Outputs transformed documents
+Passes them to the next stage
+
+The stages: Collection → Filter → Transform → Group → Sort → Output
+================MENTAL MODEL=============
+
+================$MATCH===================
+{ $match: { status: "active" } }
+
+$match is a filter like WHERE in SQL
+================$MATCH===================
+
+================$PROJECT=================
+{ 
+  $project: { 
+    name: 1, 
+    total: { $multiply: ["$price", "$quantity"] } 
+  } 
+}
+
+$project decides which fields are included in the output
+================$PROJECT================= 
+
+================$GROUP===================
+{
+  $group: {
+    _id: "$category",
+    totalSales: { $sum: "$amount" },
+    avgPrice: { $avg: "$price" }
+  }
+}
+
+$group aggregates like GROUP BY in SQL
+
+In group, only the "_id" field can be passed raw. Everything other field that is passed must be an accumulator.
+
+================$GROUP===================
+
+================$SORT====================
+{ $sort: { totalSales: -1 } }
+
+Sorts the output in ascending or descending order.
+================$SORT====================
+
+================$LIMIT===================
+{ $limit: 5 }
+
+$limit Limits the number of fields in the output.
+================$LIMIT===================
+
+================$UNWIND==================
+{ $unwind: "$items" }
+
+$unwind helps to flatten Arrays.
+================$UNWIND==================
+
+================ARITHMETIC===============
+{ $add: ["$a", "$b"] }
+{ $multiply: ["$price", "$qty"] }
+================ARITHMETIC===============
+
+================CONDITIONAL==============
+{
+  $cond: {
+    if: { $gt: ["$amount", 100] },
+    then: "high",
+    else: "low"
+  }
+}
+================CONDITIONAL==============
+
+================$ADDFIELDS===============
+{ $addFields: { <newField>: <expression>, ... } }
+
+The $addFields operator allows us to add new fields to a MongoDB document.
+================$ADDFIELDS===============
+
+================ARR + NESTED DATA========
+{
+  "user": "A",
+  "orders": [
+    { "item": "x", "price": 10 },
+    { "item": "y", "price": 20 }
+  ]
+}
+
+db.users.aggregate([
+  { $unwind: "$orders" },
+  { $group: {
+      _id: "$user",
+      total: { $sum: "$orders.price" }
+  }}
+])
+================ARR + NESTED DATA========
+
+
+01) Difficulty: Beginner
+
+Collection: users
+{
+  "_id": 1,
+  "name": "Alice",
+  "age": 25,
+  "status": "active"
+}
+Task
+
+Get all active users and return only:
+
+name
+age
+
+👉 Output should NOT include _id.
+
+ANSWER:
+db.users.aggregate([
+{
+  $match: 
+  {
+   status: "inactive"   
+  }
+},
+
+{
+  $project: 
+  {
+    _id: 0,
+    status: 0,
+    orders: 0 
+  }
+}
+
+]
+);
+
+
+02) Collection: orders
+
+{
+  "userId": 1,
+  "category": "electronics",
+  "amount": 200
+}
+Task
+
+Find total spending per category.
+
+👉 Output:
+
+{
+  "category": "electronics",
+  "total": 800
+}
+
+ANSWER:
+
+db.orders.aggregate([
+
+{
+  $group: 
+  {
+    _id: "$category",
+    total: {$sum: "$amount"}
+    
+  }
+},
+
+{ 
+  $project: 
+  {
+	userId: 0    
+  }
+}
+
+]
+);
+
+03) Collection: orders
+{
+  "userId": 1,
+  "amount": 150
+}
+Task
+
+For each order:
+
+Add a field tier
+"high" if amount > 100
+"low" otherwise
+
+👉 Output example:
+
+{
+  "userId": 1,
+  "amount": 150,
+  "tier": "high"
+}
+
+ANSWER: 
+
+db.orders.aggregate([
+  {
+    $project: {
+      _id: 0,
+      category: 0
+    }
+  },
+  {
+    $addFields: {
+      tier: {
+        $cond: {
+          if: { $gte: ["$amount", 18] },
+          then: "high",
+          else: "low"
+        }
+      }
+    }
+  }
+])
+
+04) Collection: users
+{
+  "name": "Alice",
+  "orders": [
+    { "item": "laptop", "price": 1000 },
+    { "item": "mouse", "price": 50 }
+  ]
+} 
+Task
+
+Find total spending per user.
+
+👉 Expected output:
+
+{
+  "name": "Alice",
+  "totalSpent": 1050
+}
+
+⚠️ This forces you to:
+
+Flatten arrays
+Then aggregate
+
+db.users.aggregate([
+  
+ { $unwind: "$orders"},
+
+ { $group: { _id: "$name", totalSpent: { $sum: "$orders.price" }  } },
+ 
+ { $project: { totalSpent: 1, _id: 0, name: "$_id" } }
+
+]) 
+
+04a) I have added a "quantity" field to each order sub-document. I need to create a field called "total" that contains quantity * price.
+
+db.users.aggregate([
+  { $unwind: "$orders" },
+  {
+    $addFields: {
+      total: {
+        $multiply: ["$orders.price", "$orders.quantity"]
+      }
+    }
+  }
+
+])
+
+Note: Use $addFields for per-document calculations; use $group only when aggregating across documents.
+
+THIS VERSION OF THE PIPELINE MODIFIES THE ORDERS ARRAY IN PLACE.
+db.users.updateMany(
+  {},
+  [
+    {
+      $set: {
+        orders: {
+          $map: {
+            input: { $ifNull: ["$orders", []] },
+            as: "order",
+            in: {
+              $mergeObjects: [
+                "$$order",
+                {
+                  total: {
+                    $multiply: ["$$order.price", "$$order.quantity"]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+)
+
+NOTES:
+* {} → match all documents in users
+* The aggregation pipeline is passed as the second argument.
+
+* The $set: { orders: ... } replaces the orders field with a new computed value. We use it instead of the $addFields operator.
+
+* $map → Iterates over each element in orders
+* as: "order" → names the current element
+* $$order → reference to the current element, i.e., $$order is the current array element inside $map, defined by as: "order".
+
+* The input: { $ifNull: ["$orders", []] } prevents map from failing when orders is null
+
+* $mergeObjects → Takes the original order object
+* Adds (or overwrites) the total field
+* Keeps all existing fields intact
+
+* i.e., $mergeObjects keeps existing fields and adds total
+
+* The $multiply: ["$$order.price", "$$order.quantity"] computes price × quantity, which becomes the "total" field.
+
+
+
+=============AGGREGATION PIPELINE TO CALCULATE TOTAL PRICE IN CARTITEMS=============
+* Use $set to get CartItems first.
+* Then use $map to iterate over each CartItem. The input should be "$CartItems", as "CartItem" in:  
+
+$mergeObjects: [
+                "$$CartItem",
+                {
+                  cart_item_price: {
+                    $multiply: ["$$CartItems.cart_item_price", "$$CartItem.cart_item_quantity"]
+                  }
+                }
+              ]
+
+db.Users.updateMany(
+  { "CartItems.product_id": "a6bb1d23bd28" },
+  [
+    {
+      $set: {
+        CartItems: {
+          $map: {
+            input: "$CartItems",
+            as: "item",
+            in: {
+              $cond: [
+                { $eq: ["$$item.product_id", "a6bb1d23bd28"] },
+                {
+                  $mergeObjects: [
+                    "$$item",
+                    {
+                      item_total: {
+                        $multiply: [300, "$$item.cart_item_quantity"]
+                      }
+                    }
+                  ]
+                },
+                "$$item"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+)
+=============AGGREGATION PIPELINE TO CALCULATE TOTAL PRICE IN CARTITEMS=============
+
+
+=============AGGREGATION PIPELINE TO CALCULATE ITEM_TOTAL DISCOUNT_AMOUNT AND DISCOUNTED_TOTAL IN CARTITEMS===========
+db.Users.updateMany( 
+   {"CartItems.product_id": "a6bb1d23bd28"},
+   [
+      {
+      $set: {
+        CartItems: {
+          $map: {
+            input: { $ifNull: ["$CartItems", []] },
+            as: "item",
+            in: {
+              $cond: [
+                { $eq: ["$$item.product_id", "a6bb1d23bd28"] },
+                {
+                  $mergeObjects: [
+                    "$$item",
+                    {
+                      $let: {
+                              vars: {
+                                  itemTotal: {
+                                    $multiply: [300, "$$item.cart_item_quantity"]
+                                  },
+                                  
+                                  discountAmount: {
+                                    $multiply: [300, "$$item.cart_item_quantity", "$$item.discount_percentage"] 
+                                  }
+                              },
+                      in: {
+                        item_total: "$$itemTotal",
+                        discount_amount: "$$discountAmount",
+                        discounted_total: { $subtract: ["$$itemTotal", "$$discountAmount"] }                        
+                      }
+                    }
+                  }
+                ]
+                },
+                "$$item"
+              ]
+            }
+          }
+        }
+      }
+    }
+     ])
+NOTE:
+  * We reuse the computed itemTotal value via a variable using $let.
+=============AGGREGATION PIPELINE TO CALCULATE TOTAL_PRICE, DISCOUNT_AMOUNT AND DISCOUNTED_TOTAL IN CARTITEMS===========
+
+=============AGGREGATION PIPELINE TO UPDATE DISCOUNT_PERCENTAGE, DISCOUNT_AMOUNT AND DISCOUNTED_TOTAL================
+db.Users.updateMany(
+{"CartItems.product_id": "a6bb1d23bd28"},
+
+[
+   {
+      $set: {
+        CartItems: {
+          $map: {
+            input: { $ifNull: ["$CartItems", []] },
+            as: "item",
+            in: {
+              $cond: [
+                { $eq: ["$$item.product_id", "a6bb1d23bd28"] },
+                {
+                  $mergeObjects: [
+                    "$$item",
+                    {
+                      $let: {
+                              vars: {
+                                  
+                                  discountAmount: {
+                                    $multiply: ["$$item.item_total", 0.15] 
+                                  }
+                              },
+                      in: {
+                        discount_percentage: 0.15,
+                        discount_amount: "$$discountAmount",
+                        discounted_total: { $subtract: ["$$item.item_total", "$$discountAmount"] }                        
+                      }
+                    }
+                  }
+                ]
+                },
+                "$$item"
+              ]
+            }
+          }
+        }
+      }
+    }
+])
+=============AGGREGATION PIPELINE TO CALCULATE DISCOUNT_PERCENTAGE, DISCOUNT_AMOUNT AND DISCOUNTED_TOTAL================

@@ -2,6 +2,7 @@
  * The $set: { orders: ... } replaces the orders field with a new computed value. We use it instead of the $addFields operator.
 
  * $map → Iterates over each element in orders
+ 
  * as: "order" → names the current element
  * $$order → reference to the current element, i.e., $$order is the current array element inside $map, defined by as: "order".
 
@@ -16,7 +17,9 @@
  * The $multiply: ["$$order.price", "$$order.quantity"] computes price × quantity, which becomes the "total" field.
  
  * We reuse the computed itemTotal value via a variable using $let.
- * 
+ 
+ * "in" is the expression block where you use the variables defined (e.g., in $let or $map) to produce the final value/result.
+  
  **/
 
 function buildUpdateCartItemPricePipeline(product_id, product_price) {
@@ -40,9 +43,13 @@ function buildUpdateCartItemPricePipeline(product_id, product_price) {
                                     $multiply: [product_price, "$$item.cart_item_quantity"]
                                   },
                                   
-                                  discountAmount: {
-                                    $multiply: [product_price, "$$item.cart_item_quantity", "$$item.discount_percentage"] 
-                                  }
+                                 discountAmount: {
+                                  $multiply: [
+                                    product_price,
+                                      "$$item.cart_item_quantity",
+                                        { $divide: ["$$item.discount_percentage", 100] }
+                                      ]
+                                    } 
                               },
                       in: {
                         item_total: "$$itemTotal",
@@ -80,10 +87,12 @@ function buildUpdateCartItemDiscountPipeline(product_id, discount_code, discount
                     {
                       $let: {
                               vars: {
-                                  
-                                  discountAmount: {
-                                    $multiply: ["$$item.item_total", discount_percentage] 
-                                  }
+                                discountAmount: {
+                                  $multiply: [
+                                    "$$item.item_total",
+                                      { $divide: [discount_percentage, 100] }
+                                  ]
+                                }
                               },
                       in: {
                         discount_code: discount_code,

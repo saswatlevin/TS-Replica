@@ -401,9 +401,13 @@ db.Users.updateMany(
                                     $multiply: [300, "$$item.cart_item_quantity"]
                                   },
                                   
-                                  discountAmount: {
-                                    $multiply: [300, "$$item.cart_item_quantity", "$$item.discount_percentage"] 
-                                  }
+                                 discountAmount: {
+                                  $multiply: [
+                                    300,
+                                      "$$item.cart_item_quantity",
+                                        { $divide: ["$$item.discount_percentage", 100] }
+                                      ]
+                                    } 
                               },
                       in: {
                         item_total: "$$itemTotal",
@@ -420,8 +424,7 @@ db.Users.updateMany(
           }
         }
       }
-    }
-     ])
+    }])
 NOTE:
   * We reuse the computed itemTotal value via a variable using $let.
 =============AGGREGATION PIPELINE TO CALCULATE TOTAL_PRICE, DISCOUNT_AMOUNT AND DISCOUNTED_TOTAL IN CARTITEMS===========
@@ -431,7 +434,7 @@ db.Users.updateMany(
 {"CartItems.product_id": "a6bb1d23bd28"},
 
 [
-   {
+  {
       $set: {
         CartItems: {
           $map: {
@@ -446,14 +449,16 @@ db.Users.updateMany(
                     {
                       $let: {
                               vars: {
-                                  
-                                  discountAmount: {
-                                    $multiply: ["$$item.item_total", 0.15] 
-                                  }
+                                discountAmount: {
+                                  $multiply: [
+                                    "$$item.item_total",
+                                      { $divide: [15, 100] }
+                                  ]
+                                }
                               },
                       in: {
                         discount_code: "15PERCENT",
-                        discount_percentage: 0.15,
+                        discount_percentage: 15,
                         discount_amount: "$$discountAmount",
                         discounted_total: { $subtract: ["$$item.item_total", "$$discountAmount"] }                        
                       }
@@ -468,5 +473,5 @@ db.Users.updateMany(
         }
       }
     }
-])
+   ])
 =============AGGREGATION PIPELINE TO CALCULATE DISCOUNT_PERCENTAGE, DISCOUNT_AMOUNT AND DISCOUNTED_TOTAL================

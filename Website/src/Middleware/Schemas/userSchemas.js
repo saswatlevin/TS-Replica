@@ -30,7 +30,17 @@ const userRequestSchema = z.object({
 
     ShippingAddresses: shippingAddressArrayZeroSchema,
 
-    CartItems: cartItemArrayZeroSchema
+    CartItems: cartItemArrayZeroSchema,
+
+    total_item_total: customValidators.zodIsTotalItemTotal,
+
+    total_discount_amount: customValidators.zodIsTotalDiscountAmount,
+
+    total_discounted_total: customValidators.zodIsTotalDiscountedTotal,
+
+    total_discount_percentage: customValidators.zodIsTotalDiscountPercentage,
+
+    total_payable_amount: customValidators.zodIsTotalPayableAmount
 
 });
 
@@ -97,7 +107,17 @@ const userResponseSchema = z.object({
 
     CartItems: cartItemArrayZeroSchema,
 
-    __v: customValidators.zodIsDocumentVersion
+    __v: customValidators.zodIsDocumentVersion,    
+
+    total_item_total: customValidators.zodIsTotalItemTotal,
+
+    total_discount_amount: customValidators.zodIsTotalDiscountAmount,
+
+    total_discounted_total: customValidators.zodIsTotalDiscountedTotal,
+
+    total_discount_percentage: customValidators.zodIsTotalDiscountPercentage,
+
+    total_payable_amount: customValidators.zodIsTotalPayableAmount
 })
 
 const getUserByIdSchema = z.object({
@@ -142,6 +162,16 @@ const registerUserResponseSchema = z.object({
     ShippingAddresses: shippingAddressArrayZeroSchema,
 
     CartItems: cartItemArrayZeroSchema,
+
+    total_item_total: customValidators.zodIsTotalItemTotal,
+
+    total_discount_amount: customValidators.zodIsTotalDiscountAmount,
+
+    total_discounted_total: customValidators.zodIsTotalDiscountedTotal,
+
+    total_discount_percentage: customValidators.zodIsTotalDiscountPercentage,
+
+    total_payable_amount: customValidators.zodIsTotalPayableAmount,
 
     _id: objectIdSchema,
 

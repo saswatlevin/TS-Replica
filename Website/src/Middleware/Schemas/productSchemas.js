@@ -73,11 +73,7 @@ const productRequestSchema = z.object({
 
     discount_code: discountValidators.zodIsDiscountCode,
 
-    discount_percentage: discountValidators.zodIsDiscountPercentage,
-
-    discount_amount: discountValidators.zodIsDiscountAmount,
-    
-    discounted_total: discountValidators.zodIsDiscountedTotal
+    discount_percentage: discountValidators.zodIsDiscountPercentage
 
 }).strict();
 

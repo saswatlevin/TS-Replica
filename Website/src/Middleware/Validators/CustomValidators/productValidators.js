@@ -38,7 +38,6 @@ const zodIsProductPrice = z
 	.number(
 		'The product_price field must be a number (integer). It is a required field.'
 	)
-	.int('The product_price field must be an integer.')
 	.min(1, { message: 'The product_price field has a minimum limit of 1. ' })
 	.max(300, { message: 'The product_price field has a maximum limit of 300.' });
 
@@ -165,5 +164,5 @@ module.exports = {
 	zodIsSupplyType,
 	zodIsProductSpecifications,
 	zodIsProductMaterial,
-	zodIsProductDocType,
+	zodIsProductDocType
 };

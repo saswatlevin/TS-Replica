@@ -1,4 +1,3 @@
-
 const validator = require('validator');
 const z = require('zod');
 
@@ -20,6 +19,7 @@ const zodIsPasswordHash = z.string("The password field must be a string.").lengt
     message: "The password field takes an argon2 hash generated using v=19, m=65536, t=3 and p=4."
 });
 
+
 const zodIsPassword = z.string("The password field must be a string.").min(12, {message: "The password field has a minimum length of 12 characters."}).max(30, {message: "The password field has a maximum permitted length of 30 characters."}).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#!\$\. ])[A-Za-z\d@#!\$\. ]+$/, {message: "The password must be between 12 and 30 characters long. It should have at lease one uppercase letter, one lowercase letter, one digit and one of the following special characters \"@,#,!,$,.\". It can also contain spaces."});
 
 const zodIsDocumentVersion = z.number("The __v field must be a number(integer). It is an optional field.").int("The __v field must be an integer value.").optional();
@@ -38,6 +38,21 @@ const productNameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ ]*$/;
 
 const paragraphRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ0-9#!,;:%'’“”\\\"\(\)\-\—\. ]*$/;
 
+const zodIsTotalItemTotal = z.number({message: "The total_item_total field must be a number."
+}).min(0, { message: "The total_item_total field has a minimum limit of 0."}).max(10000, { message: "The total_item_total field has a maximum limit of 10000."});
+
+const zodIsTotalDiscountAmount = z.number({message: "The total_discount_amount field must be a number."
+}).min(0, { message: "The total_discount_amount field has a minimum limit of 0."}).max(10000, { message: "The total_discount_amount field has a maximum limit of 10000."});
+
+const zodIsTotalDiscountPercentage = z.number({message: "The total_discount_percentage field must be a number."
+}).min(0, { message: "The total_discount_percentage field has a minimum limit of 0."}).max(10000, { message: "The total_discount_percentage field has a maximum limit of 10000."});
+
+const zodIsTotalDiscountedTotal = z.number({message: "The total_discounted_total field must be a number."
+}).min(0, { message: "The total_discounted_total field has a minimum limit of 0."}).max(10000, { message: "The total_discounted_total field has a maximum limit of 10000."});
+
+const zodIsTotalPayableAmount = z.number({message: "The total_payable_amount field must be a number."
+}).min(0, { message: "The total_payable_amount field has a minimum limit of 0."}).max(10000, { message: "The total_payable_amount field has a maximum limit of 10000."});
+
 module.exports = {
     zodIsISO8601,
     zodIsEmail,
@@ -51,7 +66,11 @@ module.exports = {
     alphaNumericRegex,
     windowsFilePathRegex,
     productNameRegex,
-    paragraphRegex
+    paragraphRegex,
+    zodIsTotalItemTotal,
+    zodIsTotalDiscountAmount,
+    zodIsTotalDiscountPercentage,
+    zodIsTotalPayableAmount
 };
 
 /** REGEX LIST

@@ -35,11 +35,11 @@ const orderRequestSchema = z.object({
 
     OrderItems: orderItemSchemaArray,
 
-    total_discount_percentage: discountValidators.zodIsTotalDiscountPercentage,
+    total_discount_percentage: customValidators.zodIsTotalDiscountPercentage,
 
-    total_discount_amount: discountValidators.zodIsTotalDiscountAmount,
+    total_discount_amount: customValidators.zodIsTotalDiscountAmount,
 
-    total_discounted_total: discountValidators.zodIsTotalDiscountedTotal
+    total_discounted_total: customValidators.zodIsTotalDiscountedTotal
 
 }).strict();
 
@@ -63,11 +63,11 @@ const orderResponseSchema = z.object({
 
     OrderItems: orderItemSchemaArray,
 
-    total_discount_percentage: discountValidators.zodIsTotalDiscountPercentage,
+    total_discount_percentage: customValidators.zodIsTotalDiscountPercentage,
 
-    total_discount_amount: discountValidators.zodIsTotalDiscountAmount,
+    total_discount_amount: customValidators.zodIsTotalDiscountAmount,
 
-    total_discounted_total: discountValidators.zodIsTotalDiscountedTotal
+    total_discounted_total: customValidators.zodIsTotalDiscountedTotal
 
 }).strict();
 
@@ -88,11 +88,11 @@ const createOrderResponseSchema = z.object({
 
     OrderItems: orderItemSchemaArray,
 
-    total_discount_percentage: discountValidators.zodIsTotalDiscountPercentage,
+    total_discount_percentage: customValidators.zodIsTotalDiscountPercentage,
 
-    total_discount_amount: discountValidators.zodIsTotalDiscountAmount,
+    total_discount_amount: customValidators.zodIsTotalDiscountAmount,
 
-    total_discounted_total: discountValidators.zodIsTotalDiscountedTotal,
+    total_discounted_total: customValidators.zodIsTotalDiscountedTotal,
 
     _id: objectIdSchema,
 

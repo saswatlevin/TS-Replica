@@ -154,8 +154,6 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     // Assign values to res.locals here, after all calculations are complete
     // and before calling the helper function that needs them
     res.locals.updated_product_price = updated_product_price;
-    res.locals.updated_discount_amount = updated_discount_amount;
-    res.locals.updated_discounted_total = updated_discounted_total;
 
     const update_cart_item_price_result = await updateCartItemPrice(req, res);
     //console.log("update_cart_item_price_result ", update_cart_item_price_result);
@@ -224,8 +222,6 @@ const updateProductDiscount = asyncErrorHandler(async (req, res, next) => {
     // and before calling the helper function that needs them
     res.locals.updated_discount_code = updated_discount_code;
     res.locals.updated_discount_percentage = updated_discount_percentage;
-    res.locals.updated_discount_amount = updated_discount_amount;
-    res.locals.updated_discounted_total = updated_discounted_total;
 
     const update_cart_item_price_result = await updateCartItemDiscount(req, res);
     //console.log("update_cart_item_discount_result ", update_cart_item_discountv_result);

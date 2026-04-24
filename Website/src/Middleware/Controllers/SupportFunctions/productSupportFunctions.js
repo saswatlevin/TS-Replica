@@ -264,7 +264,7 @@ const getProductPrice = async(req) => {
         const query = {product_id: product_id};
         // console.log("query ", query);
 
-        const result = await Product.find(query).lean();
+        const result = await Product.findOne(query).lean();
 
         const product_price = result.product_price;
 
@@ -297,6 +297,37 @@ const getProductDiscountPercentage = async(req) => {
     }
 }
 
+
+const checkProductDiscountCodeAndPercentageExists = async(req) => {
+    console.log("In checkProductDiscountCodeAndPercentage (HELPER FUNCTION)");
+    
+    try {
+
+        const product_id = req.body.product_id;
+
+        const discount_code = req.body.discount_code;
+
+        const discount_percentage = req.body.discount_percentage;
+
+        const query = {product_id: product_id,  discount_percentage: discount_percentage, discount_code: discount_code};
+
+        const result = await Product.findOne(query).lean();
+
+        if (result === null) {
+            return false;
+        } 
+
+        else {
+            return true;
+        }       
+    }
+
+    catch (error) {
+        console.log("Error in checkProductDiscountCodeAndPercentage ", error);
+        throw error;
+    }
+}
+
 module.exports = {
     checkProduct,
     checkDuplicateProduct,
@@ -306,5 +337,6 @@ module.exports = {
     checkProductValueExists,
     checkProductGarmentWeightValueExists,
     checkProductSupplyTypeValueExists,
-    getProductDiscountPercentage
+    getProductDiscountPercentage,
+    checkProductDiscountPercentageExists
 };

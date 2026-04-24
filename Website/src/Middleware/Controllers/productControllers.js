@@ -56,9 +56,20 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
     // Generate the image_id
     const image_id = createRandomString(6);
     console.log("Generated image_id ", image_id);
-
     const doc_type = "PRODUCT";
-    console.log("Generated doc_type ", doc_type);
+    //console.log("Generated doc_type ", doc_type);
+
+    const discount_percentage = request_body_deep_clone.discount_percentage;
+    console.log("discount_percentage ", discount_percentage);
+
+    const product_price = request_body_deep_clone.product_price;
+    console.log("product_price ", product_price);
+
+    const discount_amount = product_price * (discount_percentage / 100);
+    console.log("discount_amount ", discount_amount);
+
+    const discounted_total = product_price - discount_amount;
+    console.log("discounted_total ", discounted_total);
 
     request_body_deep_clone.product_items[0] = { sku: sku, ...request_body_deep_clone.product_items[0] };
     request_body_deep_clone.product_images[0] = { image_id: image_id, ...request_body_deep_clone.product_images[0] };
@@ -70,6 +81,8 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
     const product = {
         product_id: product_id,
         docType: doc_type,
+        discount_amount: discount_amount,
+        discounted_total: discounted_total,
         ...request_body_deep_clone
     };
     console.log("The product object to be created ", product);
@@ -125,88 +138,13 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     const filter = { product_id: product_id };
     console.log("filter ", filter);
 
-    const product_price = request_body_deep_clone.product_price;
+    const discount_percentage = await getDiscountPercentage(req); 
 
-    var update_object = {};
+    const updated_product_price = request_body_deep_clone.product_price;
+    const updated_discount_amount = updated_product_price * discount_percentage;
+    const updated_discounted_total = updated_product_price - updated_discount_amount;
 
-    // Setting these fields to their default values.
-    var discount_percentage = 0;
-    var discount_amount = 0;
-    var discounted_total = 0;
-    var product_price = 0;
-    var discount_code = "None";
-
-
-    if (request_body_deep_clone?.product_price !== undefined && (request_body_deep_clone?.discount_code === undefined && request_body_deep_clone?.discount_percentage === undefined)) {
-
-        console.log("Updating only product_price");
-
-        discount_percentage = await getDiscountPercentage(req);
-        //console.log("discount_percentage ", discount_percentage);
-
-        product_price = request_body_deep_clone.product_price;
-        //console.log("product_price ", product_price);
-
-        discount_amount = discount_percentage * product_price;
-        //console.log("discount_amount ", discount_amount);
-
-        discounted_total = product_price - discount_amount;
-        //console.log("discounted_total ", discounted_total);
-
-        update_object = {product_price: product_price, discount_amount: discount_amount, discounted_total: discounted_total};
-    } 
-
-    else if (request_body_deep_clone?.product_price === undefined && (request_body_deep_clone?.discount_code !== undefined && request_body_deep_clone?.discount_percentage !== undefined)) {
-        
-        console.log("Updating only discount-related fields");
-
-        discount_code = request_body_deep_clone.discount_code;
-        //console.log("discount_code ", discount_code);
-
-        discount_percentage = request_body_deep_clone.discount_percentage
-        //console.log("discount_percentage ", discount_percentage);
-
-        product_price = await getProductPrice(req);
-        //console.log("product_price ", product_price);
-
-        discount_amount = discount_percentage * product_price;
-        //console.log("discount_amount ", discount_amount);
-
-        discounted_total = product_price - discount_amount;
-        //console.log("discounted_total ", discounted_total);
-
-        update_object = {discount_code: discount_code, discount_percentage: discount_percentage, discount_amount: discount_amount, discounted_total: discounted_total};
-    }
-
-    else if (request_body_deep_clone?.product_price !== undefined && (request_body_deep_clone?.discount_code !== undefined && request_body_deep_clone?.discount_percentage !== undefined)) {
-        
-        console.log("Updating product_price and discount_related fields");
-
-        discount_code = request_body_deep_clone.discount_code;
-        //console.log("discount_code ", discount_code);
-
-        discount_percentage = request_body_deep_clone.discount_percentage
-        //console.log("discount_percentage ", discount_percentage);
-
-        product_price = request_body_deep_clone.product_price;
-        //console.log("product_price ", product_price);
-
-        discount_amount = discount_percentage * product_price;
-        //console.log("discount_amount ", discount_amount);
-
-        discounted_total = product_price - discount_amount;
-        //console.log("discounted_total ", discounted_total);
-
-        update_object = {product_price: product_price, discount_code: discount_code, discount_percentage: discount_percentage, discount_amount: discount_amount, discounted_total: discounted_total};
-    
-
-    }
-
-    else {
-        const incorrect_update_error = new IllegalUpdateError(`Cannot carry out the product price / discount update since the wrong set of values among product_price, discount_code and discount_percentage was provided`);
-        throw incorrect_update_error;
-    }
-
+    const update_object = {product_price: updated_product_price, discount_amount: updated_discount_amount, discounted_total: updated_discounted_total};
     
     console.log("update_object ", update_object);
 
@@ -216,16 +154,17 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     
     // Assign values to res.locals here, after all calculations are complete
     // and before calling the helper function that needs them
-    res.locals.updated_product_price = product_price;
-    res.locals.updated_discount_code = discount_code;
-    res.locals.updated_discount_percentage = discount_percentage;
-    res.locals.updated_discount_amount = discount_amount;
-    res.locals.updated_discounted_total = discounted_total;
+    res.locals.updated_product_price = updated_product_price;
+    res.locals.updated_discount_amount = updated_discount_amount;
+    res.locals.updated_discounted_total = updated_discounted_total;
 
     const update_cart_item_price_result = await updateCartItemPrice(req, res);
     //console.log("update_cart_item_price_result ", update_cart_item_price_result);
 
-    const result_array = [update_product_price_result, update_cart_item_price_result];
+    const update_cart_item_totals_result = await updateCartItemTotals(req, res);
+    //console.log("update_cart_item_totals_result ", update_cart_item_totals_result);
+
+    const result_array = [update_product_price_result, update_cart_item_price_result, update_cart_item_totals_result];
     //console.log("result_array ", result_array);
 
     console.log("Sending the result to the client as JSON with status 200");
@@ -241,7 +180,7 @@ const updateProductName = asyncErrorHandler(async(req, res, next) => {
     console.log("In updateProductName");
 
     const product_id = req.body.product_id;
-    console.log("Getting the product_id from the request params ", product_id);
+    console.log("Getting the product_id from the request body ", product_id);
 
     console.log("Checking if the request body is empty");
     if (checkIsEmptyObject(req) === true) {
@@ -273,7 +212,7 @@ const updateProductName = asyncErrorHandler(async(req, res, next) => {
     const update_product_name_result = await Product.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
     console.log("update_product_name_result ", update_product_name_result);
 
-    req.params.updated_product_name = update_product_name_result.product_name;
+    res.locals.updated_product_name = update_product_name_result.product_name;
     console.log("Storing the updated_product_name in the request params ", req.params.updated_product_name);
 
     const update_cart_item_name_result = await updateCartItemName(req);

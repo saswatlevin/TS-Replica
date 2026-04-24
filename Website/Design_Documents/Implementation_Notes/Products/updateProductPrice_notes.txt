@@ -8,7 +8,7 @@ updateProductPrice ->
 
   * Get a DEEP CLONE of the request_body
   * Create the filter using { product_id : product_id }.
-  * Check if the product_price that you are about to update already exists in the database. -> If yes, throw DuplicateSubDocumentError.
+  * Check if the product_price that you are about to update already exists in the database. -> If yes, throw RedundantUpdateError.
   
   * Use the getProductDiscountCodeAndPercentage() HELPER function to get the existing discount_code and discount_percentage of the given product.  
 
@@ -23,6 +23,8 @@ updateProductPrice ->
   * Get the result from findOneAndUpdate(). -> RESULT 1
 
   * Assign the updated_product_price to res.locals.
+  * Assign the updated_discount_amount to res.locals.
+  * Assign the updated_discount_total to res.locals.
 
   * Call updateCartItemPrice().
   * Get the result from updateCartItemPrice(). -> RESULT 2

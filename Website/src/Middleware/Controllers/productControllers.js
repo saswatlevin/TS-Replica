@@ -15,8 +15,9 @@ const { checkProductPriceExists } = require('./SupportFunctions/productSupportFu
 const { checkProductGarmentWeightValueExists } = require('./SupportFunctions/productSupportFunctions');
 const { checkProductSupplyTypeValueExists } = require('./SupportFunctions/productSupportFunctions');
 const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
-const { updateCartItemPrice, updateCartItemName } = require('./cartItemControllers');
+const { updateCartItemPrice, updateCartItemDiscount, updateCartItemName, calculateCartItemTotals } = require('./cartItemControllers');
 const { getDiscountPercentage } = require('./SupportFunctions/productSupportFunctions');
+const { checkProductDiscountCodeAndPercentageExists } = require('./SupportFunctions/productSupportFunctions');
 const { getProductPrice } = require('./SupportFunctions/productSupportFunctions');
 const Product = require('../Models/Product');
 
@@ -106,13 +107,11 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
 });
 
 const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
-    // Here, we supply the sku value in the request body to ensure that 
-    // the checkCartItem() function works. This is because the checkCartItem() function needs to check whether at least one cart_item (or product_item) of a particular Product exists.
 
     console.log("In updateProductPrice");
  
     const product_id = req.body.product_id;
-    console.log("Getting the product_id from the request params ", product_id);
+    console.log("Getting the product_id from the request body ", product_id);
 
     console.log("Checking if the request body is empty");
     if (checkIsEmptyObject(req) === true) {
@@ -161,16 +160,86 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     const update_cart_item_price_result = await updateCartItemPrice(req, res);
     //console.log("update_cart_item_price_result ", update_cart_item_price_result);
 
-    const update_cart_item_totals_result = await updateCartItemTotals(req, res);
-    //console.log("update_cart_item_totals_result ", update_cart_item_totals_result);
+    const calculate_cart_item_totals_result = await calculateCartItemTotals(req, res);
+    //console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
 
-    const result_array = [update_product_price_result, update_cart_item_price_result, update_cart_item_totals_result];
+    const result_array = [update_product_price_result, update_cart_item_price_result, calculate_cart_item_totals_result];
     //console.log("result_array ", result_array);
 
     console.log("Sending the result to the client as JSON with status 200");
     res.status(200).json(result_array[0]);
 
     console.log("===END OF updateProductPrice===");
+});
+
+const updateProductDiscount = asyncErrorHandler(async (req, res, next) => {
+
+    console.log("In updateProductDiscount");
+ 
+    const product_id = req.body.product_id;
+    console.log("Getting the product_id from the request body ", product_id);
+
+    console.log("Checking if the request body is empty");
+    if (checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not update Product with product_id ${product_id} as the request body is empty.`);
+        throw empty_request_body_error;
+    }
+
+    console.log("Checking if the product to be updated exists");
+    if (await checkProduct(req) === false) {
+        const product_not_found_error = new ResourceNotFoundError(`Could not update Product document with product_id ${product_id} since it does not exist.`);
+        throw product_not_found_error;
+    }
+    
+    console.log("Check if the updated discount code and percentage values already exist");
+    if (await checkProductDiscountCodeAndPercentageExists(req) === true) {
+        const redundant_update_error = new RedundantUpdateError(`Could not update Product document with product_id ${product_id} since the discount_code and discount_percentage values ${req.body.product_price} already exist.`);
+        throw redundant_update_error;
+    }
+
+    const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
+    //console.log("request_body_deep_clone ", request_body_deep_clone);
+
+    const filter = { product_id: product_id };
+    console.log("filter ", filter);
+
+    const product_price = await getProductPrice(req);
+
+    const updated_discount_code = request_body_deep_clone.discount_code;
+    const updated_discount_percentage = request_body_deep_clone.discount_percentage;
+
+
+    const updated_discount_amount = product_price * updated_discount_percentage;
+    const updated_discounted_total = product_price - updated_discount_amount;
+
+    const update_object = {discount_code: updated_discount_code, discount_percentage: updated_discount_percentage,  discount_amount: updated_discount_amount, discounted_total: updated_discounted_total};
+    
+    console.log("update_object ", update_object);
+
+    const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
+    //console.log("update_product_price_result ", update_product_price_result);
+
+    
+    // Assign values to res.locals here, after all calculations are complete
+    // and before calling the helper function that needs them
+    res.locals.updated_discount_code = updated_discount_code;
+    res.locals.updated_discount_percentage = updated_discount_percentage;
+    res.locals.updated_discount_amount = updated_discount_amount;
+    res.locals.updated_discounted_total = updated_discounted_total;
+
+    const update_cart_item_price_result = await updateCartItemDiscount(req, res);
+    //console.log("update_cart_item_discount_result ", update_cart_item_discountv_result);
+
+    const calculate_cart_item_totals_result = await calculateCartItemTotals(req, res);
+    //console.log("update_cart_item_totals_result ", update_cart_item_totals_result);
+
+    const result_array = [update_product_price_result, update_cart_item_price_result, calculate_cart_item_totals_result];
+    //console.log("result_array ", result_array);
+
+    console.log("Sending the result to the client as JSON with status 200");
+    res.status(200).json(result_array[0]);
+
+    console.log("===END OF updateProductDiscount===");
 });
 
 const updateProductName = asyncErrorHandler(async(req, res, next) => {
@@ -387,6 +456,7 @@ const searchProducts = asyncErrorHandler(async (req, res, next) => {
 module.exports = {
     createProduct,
     updateProductPrice,
+    updateProductDiscount,
     updateProductName,
     updateProduct,
     updateProductGarmentWeight,

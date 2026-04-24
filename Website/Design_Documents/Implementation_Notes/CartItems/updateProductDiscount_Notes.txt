@@ -8,7 +8,7 @@ updateProductDiscount ->
 
   * Get a DEEP CLONE of the request_body
   * Create the filter using { product_id : product_id }.
-  * Check if the discount_code and discount_amount that you are about to update already exists in the database. -> If yes, throw DuplicateSubDocumentError.
+  * Check if the discount_code and discount_amount that you are about to update already exists in the database. -> If yes, throw RedundantUpdateError.
   
   * Get the updated_discount_code and updated_discount_percentage values from the request_body_deep_clone.
   

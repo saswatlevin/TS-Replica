@@ -17,6 +17,12 @@ createProduct ->
 
   * Generate the sku.
 
+  * Get the discount_percentage from the request body.
+  
+  * Calculate the discount_amount = product_price * discount_percentage.
+  
+  * Calculate the discounted_total = product_price - discount_amount.
+
   * Generate the doctype as PRODUCT.
 
   * Add the sku to the product_items key-value pair in the DEEP CLONE of the request body.

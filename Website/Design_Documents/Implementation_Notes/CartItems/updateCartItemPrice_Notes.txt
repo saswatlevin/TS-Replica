@@ -1,39 +1,11 @@
 We need the following pieces of data:
-* user_id -> User params | From session
-* cart_item_id -> User params | From session
+* product_id -> Request body | From frontend
 
 updateCartItemPrice ->
-* Check if the user exists or not, if not, throw a ResourceNotFoundError.
-* Check if the cart item exists or not, if not, throw a ResourceNotFoundError.
-* Create the filter: {user_id: user_id, "CartItems.product_id": product_id}.
-* The update_object is as  follows: 
-update_object = {
-            { "CartItems.product_id": product_id },
-    { 
-        $set: { 
-            "CartItems.$[item].cart_item_price": new_price,
-            "CartItems.$[item].discount_code": new_discount_code,
-            "CartItems.$[item].discount_amount": new_discount_amount,
-            "CartItems.$[item].discount_percentage": new_discount_percentage,
-            "CartItems.$[item].discounted_total": new_discounted_total
-        } 
-    },
-    { 
-        arrayFilters: [{ "item.product_id": product_id }],
-        runValidators: true
-    }
-      };
+  * Get the product_id from req.body.
+  * Get the updated_product_price from res.locals.
+  * Deploy the buildUpdateCartItemPricePipeline aggregation pipeline. This pipeline will update the item_total, discount_amount and discounted_total for all the CartItems that belong to the Product with the given product_id across all Users.
 
-* Use updateMany() to update the price of that cart item.
-* Return the result.
-
-NOTE: updateCartItemPrice is an express HELPER FUNCTION and not a middleware.
-
-NOTE: We do not check if the updated cart_item_price value already exists since we aim for database operations to be atomic and updateProductPrice already checks if the product_price value exists.
-
-NOTE: updateMany() is used since there may be more than one cart_item belonging to the same product whose price needs to be updated. 
-
-NOTE: The cart_item_id is needed for checkCartItemExists() function. 
-
+NOTE: We use updateMany() to call the buildUpdateCartItemPricePipeline aggregation pipeline.
 NOTE: No need to check if product exists, since updateProductPrice already checks that and in the future DB operations will be made atomic.
 

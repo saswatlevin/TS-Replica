@@ -1,0 +1,11 @@
+We need the following pieces of data:
+* product_id -> Request body | From frontend
+
+updateCartItemDiscount ->
+  * Get the product_id from req.body.
+  * Get the updated_discount_code and updated_discount_percentage from res.locals.
+  * Deploy the buildUpdateCartItemDiscountPipeline aggregation pipeline. This pipeline will update the item_total, discount_amount and discounted_total for all the CartItems that belong to the Product with the given product_id across all Users.
+  * Call the updateCartItemTotals() HELPER function.
+
+NOTE: We use updateMany() to call the buildUpdateCartItemDiscountPipeline aggregation pipeline.
+NOTE: No need to check if product exists, since updateProductDiscount() already checks that and in the future DB operations will be made atomic.

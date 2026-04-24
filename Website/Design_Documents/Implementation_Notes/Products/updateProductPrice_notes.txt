@@ -1,53 +1,46 @@
-pdWe need the following pieces of data:
-* product_id -> Request Body | From frontend
+We need the following pieces of data:
+  * product_id -> Request Body   | From frontend
+  * user_id    -> Request Params | From session
 
 updateProductPrice ->
-* Check if the request_body is empty or not, if it is, throw an EmptyRequestBody Error.
-* Check if the product exists or not, if not, throw a ResourceNotFoundError.
+  * Check if the request_body is empty or not, if it is, throw an EmptyRequestBody Error.
+  * Check if the product exists or not, if not, throw a ResourceNotFoundError.
 
-* Get a DEEP CLONE of the request_body
-* Create the filter using { product_id : product_id }.
-* Check if the productPrice that you are about to update already exists in the database. -> If yes, throw DuplicateSubDocumentError.
+  * Get a DEEP CLONE of the request_body
+  * Create the filter using { product_id : product_id }.
+  * Check if the product_price that you are about to update already exists in the database. -> If yes, throw DuplicateSubDocumentError.
+  
+  * Use the getProductDiscountCodeAndPercentage() HELPER function to get the existing discount_code and discount_percentage of the given product.  
 
-* Check if the discount_code is not set to "None". If it isn't, then do the following:
-  * Get the discount_percentage from the respective Product document.
-  * Calculate the discount_amount.
-  * Calculate the discounted_total.
-  * Add these parameters to the update_object.
+  * Calculate the discount_amount of the respective Product document as product_price * discount_percentage.
+  * Calculate the discounted_total of the respective Product document as product_price - discount_amount.
+  
+  * Get the updated_product_price from the request_body_deep_clone.
+  * Create an update_object = {product_price: updated_product_price, discount_amount: discount_amount, discounted_total: discounted_total}.
+  
 
-* Use the findOneAndUpdate() function with the filter, the DEEP CLONE of the request_body, {runValidators: true} and chain it with .lean() to update the product price.
-* Get the result from findOneAndUpdate(). -> RESULT 1
+  * Use the findOneAndUpdate() function with the filter, the update_object, {new: true} and {runValidators: true} and chain it with .lean() to update the product price.
+  * Get the result from findOneAndUpdate(). -> RESULT 1
 
-* Get the updated product price, updated discount code, updated discount percentage and updated discounted total from the result.
-* Store the updated discount code in res.locals.
-* Store the updated product price in res.locals.
-* Store the updated discount percentage in res.locals.
-* Store the updated discounted total in res.locals.
+  * Assign the updated_product_price to res.locals.
 
+  * Call updateCartItemPrice().
+  * Get the result from updateCartItemPrice(). -> RESULT 2
+  
+  * Call updateCartItemTotals().
+  * Get the result from updateCartItemTotals() -> RESULT 3
 
-* Call updateCartItemPrice().
-* Get the result from updateCartItemPrice(). -> RESULT 2
+  * Create an array of RESULT 1, RESULT 2 and RESULT 3.
 
-* Create an array of RESULT 1 and RESULT 2.
-
-* Send the array with RESULT 1 and RESULT 2 as res.json.
-* Set the res.status to 200.
+  * Send the array as res.json.
+  * Set the res.status to 200.
 
 NOTE: 
-* res.locals is specifically designed for this purpose — it is an object that persists for the lifetime of a single request-response cycle and is not exposed to the client.
-* res.locals is the preferred choice over req.locals because:
-  * It is an officially documented Express property explicitly intended for this use case
-  * It is scoped to the current request-response cycle and is automatically garbage collected after the response is sent
-  * It is never serialized or sent to the client.
-
-/// Three Scenarios for updating Price:
-01) Only price needs to be updated. -> This scenario is already covered. Here, we check that discount_code and discount_percentage are NOT included in the request_body. We then get the discount_percentage from the getDiscountPercentage() HELPER FUNCTION and calculate the discount_amount and discounted_total from it.
-
-02) discount_code and discount_percentage need to be updated. -> Here, we check that discount_code AND discount_percentage ARE included in the update object. We get the product_price using the getProductPrice() HELPER FUNCTION We update the discount_code, discount_percentage, discount_amount and discounted_total respectively.
-
-03) price, discount_code and discount_percentage need to be updated. -> Here, we need to check that price IS INCLUDED, then check that discount_code AND discount_percentage ARE included. We update the price, discount_code, discount_percentage, discount_amount and discounted_total respectively.
-
-The checkPrice() HELPER FUNCTION needs to check whether the price and / or discount_code AND discount_percentage already exist.
+  * res.locals is specifically designed for this purpose — it is an object that persists for the lifetime of a single request-response cycle and is not exposed to the client.
+  * res.locals is the preferred choice over req.locals because:
+    * It is an officially documented Express property explicitly intended for this use case
+    * It is scoped to the current request-response cycle and is automatically garbage collected after the response is sent
+    * It is never serialized or sent to the client.
 
 
  

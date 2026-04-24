@@ -1,0 +1,11 @@
+We will need the following pieces of data
+  * user_id -> Request Params | Frontend
+* Get the user_id from req.params.
+* Create a query as {user_id: user_id}.
+* Get the CartItems sub-document array using the User.find(query).lean().
+
+* Get the length of the array using the .length property.
+* Sum the item_total, discount_amount, discounted_total and discount_percentage.
+* Create a filter which is equal to the query.
+* Create an update_object with the totals of the above fields.
+* Use findOneAndUpdate(filter, update_object, {new: True}, {runValidators: True})

@@ -1,0 +1,36 @@
+We need the following pieces of data:
+  * product_id -> Request Body   | From frontend
+  * user_id    -> Request Params | From session
+
+updateProductDiscount ->
+  * Check if the request_body is empty or not, if it is, throw an EmptyRequestBody Error.
+  * Check if the product exists or not, if not, throw a ResourceNotFoundError.
+
+  * Get a DEEP CLONE of the request_body
+  * Create the filter using { product_id : product_id }.
+  * Check if the discount_code and discount_amount that you are about to update already exists in the database. -> If yes, throw DuplicateSubDocumentError.
+  
+  * Get the updated_discount_code and updated_discount_percentage values from the request_body_deep_clone.
+  
+  * Calculate the discount_amount of the respective Product document as product_price * updated_discount_percentage.
+  * Calculate the discounted_total of the respective Product document as product_price - discount_amount.
+
+  * Create an update_object = {discount_code: updated_discount_code, discount_percentage: updated_discount_percentage, discount_amount: discount_amount, discounted_total: discounted_total}.
+  
+  * Use the findOneAndUpdate(filter, update_object, {new: True}, {runValidators: True}).lean();
+  
+  * Get the result from findOneAndUpdate(). -> RESULT 1
+
+  * Assign the updated_discount_code and updated_discount_percentage to res.locals.
+  
+  * Call updateCartItemPrice().
+  * Get the result from updateCartItemPrice(). -> RESULT 2
+  
+  * Call updateCartItemTotals().
+  * Get the result from updateCartItemTotals() -> RESULT 3
+
+  * Create an array of RESULT 1, RESULT 2 and RESULT 3.
+
+  * Send the array as res.json.
+  * Set the res.status to 200.
+

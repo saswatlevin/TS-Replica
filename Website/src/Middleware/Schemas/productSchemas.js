@@ -214,17 +214,17 @@ const productResponseSchema = z.object({
 
 
 const updateProductPriceSchema = z.object({
-    cart_item_id: cartItemValidators.zodIscartItemId,
-
     product_id: productValidators.zodIsProductId,
     
-    sku: productItemValidators.zodIsSKU,
+    product_price: productValidators.zodIsProductPrice
+}).strict();
+
+const updateProductDiscountSchema = z.object({
+    product_id: productValidators.zodIsProductId,
     
-    product_price: productValidators.zodIsProductPrice.optional(),
+    discount_code: discountValidators.zodIsDiscountCode,
 
-    discount_code: discountValidators.zodIsDiscountCode.optional(),
-
-    discount_percentage: discountValidators.zodIsDiscountPercentage.optional()
+    discount_percentage: discountValidators.zodIsDiscountPercentage
 }).strict();
 
 const productIdSchema = z.object({
@@ -251,6 +251,7 @@ module.exports = {
     createProductResponseSchema,
     productResponseSchema,
     updateProductPriceSchema,
+    updateProductDiscountSchema,
     productIdSchema,
     searchProductItemResponseSchema,
     searchProductItemArrayResponseSchema,

@@ -1,17 +1,26 @@
 We need the following pieces of data:
-* user_id -> User params | From session
-* cart_item_id -> User params | From session
+  * user_id -> User params | From session
+  * cart_item_id -> User params | From session
 
 updateCartItemQuantity ->
-* Check if the request_body is empty or not, if yes, throw an EmptyRequestBodyError.
-* Check if the user exists or not, if not, throw a ResourceNotFoundError.
-* Check if the cart item exists or not, if not, throw a ResourceNotFoundError.
-* Create a DEEP CLONE of the request body.
-* Create the filter: {user_id: user_id, "CartItems.product_id": product_id};.
-* Create an update_object as update_object = {
-            $set: {
-                "CartItems.$.cart_item_quantity": request_body_deep_clone.cart_item_quantity
-            }
-        };
-* Use findOneAndUpdate(filter, query) to update the quantity of that cart item.
+  * Check if the request_body is empty or not, if yes, throw an EmptyRequestBodyError.
+  * Check if the user exists or not, if not, throw a ResourceNotFoundError.
+  * Check if the cart item exists or not, if not, throw a ResourceNotFoundError.
+  * Create a DEEP CLONE of the request body.
+  * Create the filter: {user_id: user_id, "CartItems.cart_item_id": cart_item_id};.
+
+  * Get the current item_total and discount_percentage from the given CartItem.
+  * Update the current item_total as item_total * request_body_deep_clone.cart_item_quantity.
+  * Calculate the discount_amount as item_total * discount_percentage.
+  * Calculate the discounted_total as item_total - discount_amount.
+
+  * Create an update_object as update_object = {
+              $set: {
+                  "CartItems.$.cart_item_quantity": request_body_deep_clone.cart_item_quantity,
+                  "CartItems.$.item_total": item_total,
+                  "CartItems.$.discount_amount": discount_amount,
+                  "CartItems.$.discounted_total": discounted_total
+              }
+          };
+* Use findOneAndUpdate(filter, update_object) to update the quantity of that cart item.
 * Return the result.

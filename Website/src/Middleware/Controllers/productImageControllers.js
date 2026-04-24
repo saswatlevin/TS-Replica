@@ -137,7 +137,7 @@ const updateProductImageURI = asyncErrorHandler(async(req, res, next) => {
     const main_image = req.body.main_image;
     console.log("main_image ", main_image);
 
-    req.params.updated_cart_item_image_uri = updated_image_uri;
+    res.locals.updated_cart_item_image_uri = updated_image_uri;
 
     if (main_image === true) {
         console.log("Updating the Image URI of the corresponding cart items containing the product image URI.")

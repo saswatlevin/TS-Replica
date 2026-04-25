@@ -12,19 +12,13 @@ const cartItemRequestSchema = z.object({
 
     cart_item_name: cartItemValidators.zodIsCartItemName,
 
-    cart_item_price: cartItemValidators.zodIsCartItemPrice,
+    item_total: cartItemValidators.zodIsItemTotal,
 
     cart_item_image_uri: cartItemValidators.zodIsCartItemImageURI,
 
-    cart_item_quantity: cartItemValidators.zodIsCartItemQuantity,
-
     discount_code: discountValidators.zodIsDiscountCode,
 
-    discount_percentage: discountValidators.zodIsDiscountPercentage,
-
-    discount_amount: discountValidators.zodIsDiscountAmount,
-    
-    discounted_total: discountValidators.zodIsDiscountedTotal
+    discount_percentage: discountValidators.zodIsDiscountPercentage
 }).strict();
 
 const cartItemResponseSchema = z.object({
@@ -36,7 +30,7 @@ const cartItemResponseSchema = z.object({
 
     cart_item_name: cartItemValidators.zodIsCartItemName,
 
-    cart_item_price: cartItemValidators.zodIsCartItemPrice,
+    item_total: cartItemValidators.zodIsItemTotal,
 
     cart_item_image_uri: cartItemValidators.zodIsCartItemImageURI,
 

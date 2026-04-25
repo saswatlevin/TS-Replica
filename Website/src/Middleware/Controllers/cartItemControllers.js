@@ -9,7 +9,11 @@ const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError'
 const User = require('../Models/User');
 const { checkIsEmptyObject, checkUserExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
 const { checkCartItemExists } = require('./SupportFunctions/cartItemSupportFunctions');
+const {}
 const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
+const { buildUpdateCartItemPricePipeline } = require('../AggregationPipelines/cartItemAggregationPipelines');
+const { buildUpdateCartItemDiscountPipeline } = require('../AggregationPipelines/cartItemAggregationPipelines');
+const { IllegalUpdateError } = require('../OperationalErrors/IllegalUpdateError');
 
 const createCartItem = asyncErrorHandler(async (req, res, next) => {
     console.log("In createCartItem");
@@ -48,9 +52,30 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
         throw cart_item_already_exists_error;
     }
 
+    console.log("Checking if the Cart is full");
+    if (await checkIsCartFull(req) === true) {
+        const cart_is_full_error = new IllegalUpdateError(`Could not create Cart Item for user with user_id ${user_id} as the cart is full.`);
+        throw cart_is_full_error; 
+    }
+
+    console.log("Checking if the said product_item is available");
+    if (await checkProductItemAvailable(req) === false) {
+        const product_item_unavailable_error = new IllegalUpdateError(`Could not create the CartItem for the user with user_id ${user_id} as the given product_item is not available`);
+        throw product_item_unavailable_error;
+    }
 
     const cart_item_id = createRandomString(6);
     console.log("cart_item_id ", cart_item_id);
+
+    const cart_item_quantity = 1;
+    console.log("cart_item_quantity ", cart_item_quantity);
+
+
+    const discount_amount = req.body.item_total * req.body.discount_percentage;
+    console.log("discount_amount ", discount_amount);
+
+    const discounted_total = req.body.item_total - discount_amount;
+    console.log("discounted_total ", discounted_total);
 
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
     console.log("request_body_deep_clone ", request_body_deep_clone);
@@ -58,7 +83,7 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     const filter = { user_id: user_id };
     console.log("filter ", filter);
 
-    const cart_item = { cart_item_id: cart_item_id, ...request_body_deep_clone };
+    const cart_item = { cart_item_id: cart_item_id, cart_item_quantity: cart_item_quantity, discount_amount: discount_amount, discounted_total: discounted_total, ...request_body_deep_clone };
     console.log("cart_item ", cart_item);
 
     console.log("Creating the cart item");
@@ -68,6 +93,7 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     console.log("Sending the result to the client as JSON with status code 200.");
 
     res.status(200).json(result);
+    console.log("===END OF createCartItem===")
 });
 
 const updateCartItemPrice = async (req, res) => {
@@ -75,72 +101,57 @@ const updateCartItemPrice = async (req, res) => {
 
     try {
 
-        const user_id = req.params.user_id;
-        console.log("user_id ", user_id);
+            const product_id = req.body.product_id;
+            // console.log("product_id ", product_id);
+            const updated_product_price = res.locals.updated_product_price;
+            // console.log("updated_product_price ", updated_product_price);
 
-        const cart_item_id = req.body.cart_item_id;
-        console.log("cart_item_id ", cart_item_id);
+            const build_update_cart_item_price_pipeline = buildUpdateCartItemPricePipeline(product_id,updated_product_price);
 
-        const product_id = req.body.product_id;
-        console.log("product_id ", product_id);
+            const result = await User.updateMany({ "CartItems.product_id": product_id }, build_update_cart_item_price_pipeline);
 
-        console.log("Checking if the user exists");
-        if (await checkUserExists(req) === false) {
-            const user_id_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the user with user_id ${user_id} does not exist.`);
-            throw user_id_not_found_error;
-        }
+            console.log("result in updateCartItemPrice ", result);
 
-        console.log("Checking if the cart item exists");
-        if (await checkCartItemExists(req) === false) {
-            const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the cart item with cart_item_id ${cart_item_id} does not exist.`);
-            throw cart_item_not_found_error;
-        }
+            console.log("===END OF updateCartItemPrice===");
 
-        // No need to check if product exists, since updateProductPrice already checks that and in the future DB operations will be made atomic.
-
-        const filter = { user_id: user_id,  "CartItems.product_id": product_id};
-        console.log("filter ", filter);
-
-        const updated_cart_item_price = res.locals.updated_product_price;
-        //console.log("updated_cart_item_price ", updated_cart_item_price);
-
-        const updated_discount_code = res.locals.updated_discount_code;
-        //console.log("updated_discount_code ", updated_discount_code);
-
-        const updated_discount_amount = res.locals.updated_discount_amount;
-        //console.log("updated_discount_amount ", updated_discount_amount);
-
-        const updated_discount_percentage = res.locals.updated_discount_percentage;
-        //console.log("updated_discount_percentage ", updated_discount_percentage);
-
-        const updated_discounted_total = res.locals.updated_discounted_total;
-        //console.log("updated_discount_total ", updated_discount_total);
+            return result;
         
-
-        const update_object = {
-            $set: {
-                "CartItems.$[item].cart_item_price": updated_cart_item_price,
-                "CartItems.$[item].discount_code": updated_discount_code,
-                "CartItems.$[item].discount_amount": updated_discount_amount,
-                "CartItems.$[item].discount_percentage": updated_discount_percentage,
-                "CartItems.$[item].discounted_total": updated_discount_total   
-            }
-        };
-
-        console.log("##DEBUG - update_object in updateCartItemPrice - ", update_object);
-
-        // Update the product_price of all product items (cart items) of the same product if present.
-        const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": product_id }], runValidators: true });
-
-        console.log("##DEBUG - result in updateCartItemPrice - ", result);
-
-        console.log("===END OF updateCartItemPrice===");
-        
-        return result;
     }
 
     catch (error) {
         console.log("Error in updateCartItemPrice ", error);
+        throw error;
+    }
+};
+
+const updateCartItemDiscount = async (req, res) => {
+    console.log("In updateCartItemDiscount (HELPER FUNCTION)");
+
+    try {
+
+        const product_id = req.body.product_id;
+        // console.log("product_id ", product_id);
+            
+        const updated_discount_code = res.locals.updated_discount_code;
+        // console.log("updated_discount_code ", updated_disocunt_code);
+
+        const updated_discount_percentage = res.locals.updated_discount_code;
+        // console.log("updated_discount_code ", updated_disocunt_code);
+
+        const build_update_cart_item_discount_pipeline = buildUpdateCartItemDiscountPipeline(product_id, updated_discount_code. updated_discount_percentage);
+
+        const result = await User.updateMany({ "CartItems.product_id": product_id }, build_update_cart_item_price_pipeline);
+
+        console.log("result in updateCartItemDiscount ", result);
+        
+        console.log("===END OF updateCartItemDiscount===");
+
+        return result;
+        
+    }
+
+    catch (error) {
+        console.log("Error in updateCartItemDiscount ", error);
         throw error;
     }
 };
@@ -150,16 +161,16 @@ const updateCartItemName = async (req) => {
 
     try {
 
-        const user_id = req.params.user_id;
-        console.log("user_id ", user_id);
+        //const user_id = req.params.user_id;
+        //console.log("user_id ", user_id);
 
-        const cart_item_id = req.body.cart_item_id;
-        console.log("cart_item_id ", cart_item_id);
+        //const cart_item_id = req.body.cart_item_id;
+        //console.log("cart_item_id ", cart_item_id);
 
         const product_id = req.body.product_id;
         console.log("product_id ", product_id);
 
-        console.log("Checking if the user exists");
+        /*console.log("Checking if the user exists");
         if (await checkUserExists(req) === false) {
             const user_id_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the user with user_id ${user_id} does not exist.`);
             throw user_id_not_found_error;
@@ -169,14 +180,14 @@ const updateCartItemName = async (req) => {
         if (await checkCartItemExists(req) === false) {
             const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the cart item with cart_item_id ${cart_item_id} does not exist.`);
             throw cart_item_not_found_error;
-        }
+        }*/
         
         // We use only user_id and product_id since multiple cart items of the same product (different cart_item_id AND different sku) must have their product_name updated.
-        const filter = { user_id: user_id, "CartItems.product_id": product_id };
+        const filter = { "CartItems.product_id": product_id };
 
         console.log("filter ", filter);
 
-        const updated_cart_item_name = req.params.updated_product_name;
+        const updated_cart_item_name = res.locals.updated_product_name;
         console.log("updated_cart_item_name ", updated_cart_item_name);
 
         const update_object = {
@@ -208,8 +219,8 @@ const updateCartItemImageURI = async (req) => {
 
     try {
 
-        const user_id = req.params.user_id;
-        console.log("user_id ", user_id);
+        //const user_id = req.params.user_id;
+        //console.log("user_id ", user_id);
 
         // The cart_item_id is needed for checkCartItemExists().
         //const cart_item_id = req.body.cart_item_id;
@@ -218,22 +229,22 @@ const updateCartItemImageURI = async (req) => {
         const product_id = req.body.product_id;
         console.log("product_id ", product_id);
 
-        console.log("Checking if the user exists");
+        /*console.log("Checking if the user exists");
         if (await checkUserExists(req) === false) {
             const user_id_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the user with user_id ${user_id} does not exist.`);
             throw user_id_not_found_error;
         }
 
-        /*console.log("Checking if the cart item exists");
+        console.log("Checking if the cart item exists");
         if (await checkCartItemExists(req) === false) {
             const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the cart item with cart_item_id ${cart_item_id} does not exist.`);
             throw cart_item_not_found_error;
         }*/
         
-        const filter = { user_id: user_id, "CartItems.product_id": product_id };
+        const filter = { "CartItems.product_id": product_id };
         console.log("filter ", filter);
 
-        const updated_cart_item_image_uri = req.params.updated_cart_item_image_uri;
+        const updated_cart_item_image_uri = res.locals.updated_cart_item_image_uri;
         console.log("updated_cart_item_image_uri ", updated_cart_item_image_uri);
 
         const update_object = {
@@ -293,7 +304,7 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
     }
 
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
-    const filter = {user_id: user_id, "CartItems.product_id": product_id};
+    const filter = {user_id: user_id, "CartItems.cart_item_id": cart_item_id};
     console.log("filter ", filter);
     const update_object = {
             $set: {
@@ -423,9 +434,17 @@ const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
 
 });
 
+const updateCartItemTotals = async(req, res) => {
+
+   // Get all the CartItem sub-documents from the CartItems array of the respective 
+   // user and add sum the respective fields and then update them in the respective user document.
+    
+};
+
 module.exports = {
     createCartItem,
     updateCartItemPrice,
+    updateCartItemDiscount,
     updateCartItemName,
     updateCartItemImageURI,
     updateCartItemQuantity,

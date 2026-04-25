@@ -129,8 +129,37 @@ const checkProductItemValueExists = async(req) => {
     }
 };
 
+const checkProductItemAvailable = async(req) => {
+    console.log("In checkProductItemCurrentStock (HELPER FUNCTION)");
+
+    try {
+
+        const product_id = req.body.product_id;
+
+        const sku = req.body.sku;
+
+        const query = {"CartItems.product_id": product_id, "CartItems.sku": sku};
+
+        const result = await Product.findOne(query).lean();
+
+        if (result.current_stock > 0) {
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
+
+    catch (error) {
+        console.log("Error in checkCartItemCurrentStock ", error);
+        throw error;
+    }
+}
+
 module.exports = { 
     checkProductItemExists, 
     checkDuplicateProductItemExists,
-    checkProductItemValueExists
+    checkProductItemValueExists,
+    checkProductItemAvailable
 };

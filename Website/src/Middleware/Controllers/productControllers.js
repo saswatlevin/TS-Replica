@@ -15,7 +15,7 @@ const { checkProductPriceExists } = require('./SupportFunctions/productSupportFu
 const { checkProductGarmentWeightValueExists } = require('./SupportFunctions/productSupportFunctions');
 const { checkProductSupplyTypeValueExists } = require('./SupportFunctions/productSupportFunctions');
 const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
-const { updateCartItemPrice, updateCartItemDiscount, updateCartItemName, calculateCartItemTotals } = require('./cartItemControllers');
+const { updateCartItemPrice, updateCartItemDiscount, updateCartItemName, calculateAndUpdateCartItemTotals } = require('./cartItemControllers');
 const { getDiscountPercentage } = require('./SupportFunctions/productSupportFunctions');
 const { checkProductDiscountCodeAndPercentageExists } = require('./SupportFunctions/productSupportFunctions');
 const { getProductPrice } = require('./SupportFunctions/productSupportFunctions');
@@ -158,7 +158,7 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     const update_cart_item_price_result = await updateCartItemPrice(req, res);
     //console.log("update_cart_item_price_result ", update_cart_item_price_result);
 
-    const calculate_cart_item_totals_result = await calculateCartItemTotals(req, res);
+    const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req);
     //console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
 
     const result_array = [update_product_price_result, update_cart_item_price_result, calculate_cart_item_totals_result];
@@ -226,7 +226,7 @@ const updateProductDiscount = asyncErrorHandler(async (req, res, next) => {
     const update_cart_item_price_result = await updateCartItemDiscount(req, res);
     //console.log("update_cart_item_discount_result ", update_cart_item_discountv_result);
 
-    const calculate_cart_item_totals_result = await calculateCartItemTotals(req, res);
+    const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req);
     //console.log("update_cart_item_totals_result ", update_cart_item_totals_result);
 
     const result_array = [update_product_price_result, update_cart_item_price_result, calculate_cart_item_totals_result];

@@ -87,12 +87,16 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     console.log("cart_item ", cart_item);
 
     console.log("Creating the cart item");
-    const result = await User.findOneAndUpdate(filter, { $push: { CartItems: cart_item } }, { new: true }, { runValidators: true }).lean();
+    const create_cart_item_result = await User.findOneAndUpdate(filter, { $push: { CartItems: cart_item } }, { new: true }, { runValidators: true }).lean();
 
     console.log("result ", result);
-    console.log("Sending the result to the client as JSON with status code 200.");
 
-    res.status(200).json(result);
+    console.log("Calculating the cart tiem totals");
+    const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req);
+
+    const result = [create_cart_item_result, calculate_cart_item_totals_result];
+
+    res.status(200).json(result[0]);
     console.log("===END OF createCartItem===")
 });
 
@@ -434,10 +438,72 @@ const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
 
 });
 
-const updateCartItemTotals = async(req, res) => {
+const calculateAndUpdateCartItemTotals = async(req) => {
 
    // Get all the CartItem sub-documents from the CartItems array of the respective 
    // user and add sum the respective fields and then update them in the respective user document.
+   console.log("In calculateCartItemTotals");
+
+   try {
+
+        const user_id = req.params.user_id;
+        console.log("user_id ", user_id);
+
+        const user_id_query = {user_id: user_id};
+        console.log("user_id_query ", user_id_query);
+
+        const user = await User.findOne(user_id_query).lean();
+
+        const cart_items = user.CartItems;
+
+        const cart_item_length = cart_items.length;
+
+        var total_item_total = 0;
+   
+        var total_discount_amount = 0;
+   
+        var total_discounted_total = 0;
+
+        var total_discount_percentage = 0;
+
+        var total_payable_amount = 0;
+
+        var i = 0;
+
+        for ( i = 0; i < cart_item_length; ++i) {
+
+            total_item_total = total_item_total + cart_items[i].item_total;
+            total_discount_amount = total_discount_amount + cart_items[i].discount_amount;
+            total_discounted_total = total_discounted_total + cart_items[i].discounted_total;
+
+        } 
+
+        total_discount_percentage = (total_discount_amount / total_item_total) * 100;
+        total_payable_amount = total_item_total - total_discount_amount;
+
+        const update_object = { 
+            
+            total_item_total: total_item_total, 
+            total_discount_amount: total_discount_amount, 
+            total_disocunted_total: total_discounted_total, 
+            total_discount_percentage: total_discount_percentage, 
+            total_payable_amount: total_payable_amount
+        };
+
+        console.log("update_object ", update_object);
+
+        const result = User.findOneAndUpdate(user_id_query, update_object, {new: true}, {runValidators: true}).lean();
+
+        console.log("result in calculateCartItemTotals ", result);
+        return result;
+   }
+
+   catch(error) {
+        console.log("Error in calculateCartItemTotals ", error);
+        throw error;
+   }
+   
+
     
 };
 
@@ -450,5 +516,6 @@ module.exports = {
     updateCartItemQuantity,
     searchCartItem,
     getCartItemById,
-    deleteCartItem
+    deleteCartItem,
+    calculateAndUpdateCartItemTotals
 };

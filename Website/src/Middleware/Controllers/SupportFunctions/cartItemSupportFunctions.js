@@ -63,7 +63,36 @@ const checkCartItemExists = async(req) => {
     }
 };
 
+const checkIsCartFull = async(req) => {
+    
+    try {
+        console.log("IN checkIsCartFull (HELPER FUNCTION)");
+
+        const user_id = req.params.product_id;
+
+        const query = {user_id: user_id};
+
+        const result = await User.findOne(query).lean();
+
+        const cart_items_subdocument_array = result.CartItems;
+
+        if (cart_items_subdocument_array.length < 5) {
+            return false;
+        }
+
+        else {
+            return true;
+        }
+    }
+
+    catch (error) {
+        console.log("Error in checkIsCartFull ", error);
+        throw error;
+    }
+}
+
 
 module.exports = {
-    checkCartItemExists
+    checkCartItemExists,
+    checkIsCartFull
 };

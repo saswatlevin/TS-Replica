@@ -157,9 +157,38 @@ const checkProductItemAvailable = async(req) => {
     }
 }
 
+const checkMinimumProductItemQuantity = async(req) => {
+    console.log("In checkMinimumProductItemQuantity (HELPER FUNCTION)");
+
+    try {
+
+            const product_id = req.body.product_id;
+
+            const query = {product_id: product_id};
+
+            const result = await findOne(query).lean();
+
+            const product_items = result.product_items;
+
+            if (product_items.length === 1) {
+                return true;
+            }
+
+            else {
+                return false;
+            }
+    }
+
+    catch (error) {
+        console.log("Error in checkMinimumProductItemQuantity ", error);
+        throw error;
+    }
+}
+
 module.exports = { 
     checkProductItemExists, 
     checkDuplicateProductItemExists,
     checkProductItemValueExists,
-    checkProductItemAvailable
+    checkProductItemAvailable,
+    checkMinimumProductItemQuantity
 };

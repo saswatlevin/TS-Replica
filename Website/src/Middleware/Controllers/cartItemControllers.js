@@ -314,9 +314,11 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
 
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
 
-    const updated_item_total = request_body_deep_clone.item_total * request_body_deep_clone.cart_item_quantity;
+    const data = getCartItemTotalAndDiscountPercentage(req);
 
-    const discount_percentage = request_body_deep_clone.discount_percentage;
+    const updated_item_total = data.item_total * request_body_deep_clone.cart_item_quantity;
+
+    const discount_percentage = data.discount_percentage;
 
     const updated_discount_amount = item_total * discount_percentage;
 

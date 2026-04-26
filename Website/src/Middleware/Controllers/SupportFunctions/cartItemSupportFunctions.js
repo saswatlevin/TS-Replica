@@ -91,8 +91,35 @@ const checkIsCartFull = async(req) => {
     }
 }
 
+const getCartItemTotalAndDiscountPercentage = async(req) => {
+    console.log("In getCartItemTotal (HELPER FUNCTION)");
+
+    try {
+        const cart_item_id = req.body.cart_item_id;
+        const user_id = req.params.user_id;
+
+        const query = {user_id: user_id, "CartItems.cart_item_id": cart_item_id};
+
+        const result = findOne(query).lean();
+
+        const item_total = result.CartItems[0].item_total;
+
+        const discount_percentage = result.CartItems[0].item_total;
+
+        const data = {item_total: item_total, discount_percentage: discount_percentage};
+
+        return data;
+    }
+
+    catch(error) {
+        console.log("Error in getCartItemTotal ", error);
+        throw error;
+    }
+}
+
 
 module.exports = {
     checkCartItemExists,
-    checkIsCartFull
+    checkIsCartFull,
+    getCartItemTotalAndDiscountPercentage
 };

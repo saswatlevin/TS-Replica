@@ -1,0 +1,59 @@
+01) The "discount_code", "discount_percentage", "discount_amount" and "discounted_total" fields must be added to the CartItem sub-documents. Of these, discount_code, "discount_percentage" and "discounted_total" will need to be supplied while "discount_amount" and "discounted_total" will be derived from the above 2 fields. -> DONE
+
+01a) The "discount_code", "discount_percentage", "discount_amount" and "discounted_total" fields must be added to each order_item sub-document. -> DONE
+
+01b) The "total_discount_amount", "total_discounted_total" and "total_discount_percentage" fields must be added to each Order Document. -> DONE
+
+01c) The "total_item_total", "total_discount_amount", "total_discounted_total", "total_discount_percentage" and "total_payable_amount" fields need to be added to the User schema. -> DONE
+
+02) The updateProductPrice() MIDDLEWARE function will be augmented to update the "discount_code", "discount_percentage", "discount_amount" and "discounted_total" fields in a given PRODUCT document. -> DONE
+
+02a) The updateProductName() MIDDLEWARE and its HELPER FUNCTION updateCartItemName() need to send and receive parameters using res.locals. -> DONE
+
+03) The updateProductImageURI() MIDDLEWARE and its HELPER FUNCTION updateCartItemImageURI() need to send and receive parameters using res.locals. -> DONE
+
+04) The createProduct() MIDDLEWARE function will be augmented to assign the "discount_amount" and the "discounted_total" based on the "discount_percentage" field. -> DONE
+
+04a) The discount_percentage, discount_amount, item_total and discounted_total fields should be converted to double. -> DONE
+
+05) The updateCartItemPrice(), updateCartItemName() and updateCartItemImageURI() HELPER FUNCTIONS also need to be modified to be able to update the "cart_item_price" and discount-related fields,  cart_item_name and cart_item_image_uri across respective cart_items of all users. -> DONE
+
+06) The calculateAndUpdateCartItemTotals() will calculate the total_item_total, total_discount_amount, total_discount_percentage, total_discounted_total and total_payable_amount for each of the Users' CartItems. -> DONE
+
+07) The deleteProductItem() MIDDLEWARE will have to be augmented to ensure that the product_items sub-document array has at least one product_item left in it.
+
+08) The updateCartItemQuantity() and the createCartItem() MIDDLEWARE functions must check the current_stock of the respective product_item before creating a CartItem and updating the quantity of the CartItem respectively. -> DONE
+
+09) The createCartItem() MIDDLEWARE function must check that each user can only add a maximum of 5 distinct CartItems (NOT INCLUDING cart_item_quantity) to his cart. -> DONE
+
+10) For now, we will not integrate payment APIs into the workflow.
+
+11) Some important formulae are given below w.r.t the "cart_item_price", "discount_amount", "discount_percentage" and "discounted_total" fields in the CartItems sub-documents. It also references the "total_price", "total_discount_amount", "total_discounted_total" and "total_discount_percentage"
+
+"discount_amount" = "discount_percentage" * "cart_item_price"
+
+"discounted_total" = "cart_item_price" - "discount_amount"
+
+"total_item_total" = sum of all CartItems "item_total"(s) of a User.
+            = 30 + 50 = 80
+
+"total_discount_amount" = sum of all CartItem "discount_amount"(s) of a User.
+                      = 3 + 7.5 = 10.5
+
+"total_discounted_total" = sum of all CartItem "discounted_total"(s) of a User. 
+                           = 27 + 42.5 = 69.5
+
+"total_discount_percentage" = ("total_discount_amount" / "total_item_total") × 100
+                          = (10.5 / 80) × 100
+                          = 13.125%
+"total_payable_amount" = ("total_item_total" - "total_discount_amount")
+
+12) In the createOrder() MIDDLEWARE function, we will have to have logic to append the directory for order_images as "OrderImages".
+
+13) In the updateOrderReturn() MIDDLEWARE function we will update the return_reason and the return_status of an Order.
+
+14) For now, there isn't any need to have a deleteOrderItems() MIDDLEWARE function.
+
+15) We need a deleteOrder() MIDDLEWARE function that will delete Orders using user_id.
+
+

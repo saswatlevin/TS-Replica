@@ -10,6 +10,8 @@ createCartItem ->
 
 * Check the length of the CartItems sub-document array. If it is greater than 5, then throw an IllegalUpdateError().
 
+* Check if the respective product_item's current_stock is greater than 0.
+
 * To deal with edge cases, check whether the product exists. If it doesn't, throw a ResourceNotFoundError. 
 
 * Get the user_id from req.params.

@@ -5,6 +5,7 @@ const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
 const { checkProductItemExists } = require('./SupportFunctions/productItemSupportFunctions');
 const { checkProductItemValueExists } = require('./SupportFunctions/productItemSupportFunctions');
 const { checkDuplicateProductItemExists } = require('./SupportFunctions/productItemSupportFunctions');
+const { checkMinimumProductItemQuantity } = require('./SupportFunctions/productItemSupportFunctions');
 
 const mongoose = require('mongoose');
 
@@ -14,6 +15,7 @@ const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyErro
 const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundError');
 const DuplicateSubDocumentError = require('../OperationalErrors/DuplicateSubDocumentError'); 
 const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError');
+const IllegalUpdateError = require('../OperationalErrors/IllegalUpdateError');
 
 const _ = require('lodash');
 
@@ -162,6 +164,13 @@ const deleteProductItem = asyncErrorHandler(async(req, res, next) => {
         throw resource_not_found_error;
     }
 
+    console.log("Checking if the Product Items Array has only 1 item left");
+    if (await checkMinimumProductItemQuantity(req) === true) {
+        const illegal_update_error = new IllegalUpdateError(`Cannot delete last product_item from Product with product_id ${product_id} since each Product must have at least one product_item.`);
+
+        throw illegal_update_error;
+    }
+
     const filter = {product_id: product_id};
     console.log("filter ", filter);
 
@@ -236,6 +245,8 @@ const getProductItem = asyncErrorHandler(async(req, res, next) => {
     console.log("===END OF getProductItem===");
 
 });
+
+
 
 module.exports = { 
     createProductItem, 

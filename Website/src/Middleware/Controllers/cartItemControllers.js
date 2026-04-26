@@ -9,7 +9,6 @@ const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError'
 const User = require('../Models/User');
 const { checkIsEmptyObject, checkUserExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
 const { checkCartItemExists } = require('./SupportFunctions/cartItemSupportFunctions');
-const {}
 const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
 const { buildUpdateCartItemPricePipeline } = require('../AggregationPipelines/cartItemAggregationPipelines');
 const { buildUpdateCartItemDiscountPipeline } = require('../AggregationPipelines/cartItemAggregationPipelines');
@@ -307,12 +306,31 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
         throw cart_item_not_found_error;
     }
 
+    console.log("Checking if the said product_item is available");
+    if (await checkProductItemAvailable(req) === false) {
+        const product_item_unavailable_error = new IllegalUpdateError(`Could not update the cart_item_quantity for the user with user_id ${user_id} as the given product_item is not available`);
+        throw product_item_unavailable_error;
+    }
+
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
+
+    const updated_item_total = request_body_deep_clone.item_total * request_body_deep_clone.cart_item_quantity;
+
+    const discount_percentage = request_body_deep_clone.discount_percentage;
+
+    const updated_discount_amount = item_total * discount_percentage;
+
+    const updated_discounted_total = item_total - discount_amount;
+    
     const filter = {user_id: user_id, "CartItems.cart_item_id": cart_item_id};
     console.log("filter ", filter);
+
     const update_object = {
             $set: {
-                "CartItems.$.cart_item_quantity": request_body_deep_clone.cart_item_quantity
+                "CartItems.$.cart_item_quantity": request_body_deep_clone.cart_item_quantity,
+                "CartItems.$.item_total": updated_item_total,
+                "CartItems.$.discount_amount": updated_discount_amount,
+                "CartItems.$.discounted_total": updated_discounted_total
             }
         };
     console.log("update_object ", update_object);

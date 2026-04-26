@@ -54,7 +54,11 @@ const updateCartItemQuantitySchema = z.object({
     
     sku: customValidators.zodIsSKU,
     
-    cart_item_quantity: cartItemValidators.zodIsCartItemQuantity
+    cart_item_quantity: cartItemValidators.zodIsCartItemQuantity,
+
+    item_total: cartItemValidators.zodIsItemTotal,
+
+    discount_percentage: cart.zodIsDiscountPercentage
 }).strict();
 
 const deleteCartItemSchema = z.object({

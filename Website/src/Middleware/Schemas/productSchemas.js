@@ -69,7 +69,7 @@ const productRequestSchema = z.object({
     
     product_images: productImageArrayRequestSchema,
 
-    product_items: productItemRequestSchemasUnion
+    product_items: productItemRequestSchemasUnion,
 
     discount_code: discountValidators.zodIsDiscountCode,
 
@@ -99,11 +99,7 @@ const updateProductSchema = z.object({
 }).strict();
 
 const updateProductNameSchema = z.object({
-    cart_item_id: cartItemValidators.zodIscartItemId,
-    
     product_id: productValidators.zodIsProductId,
-
-    sku: productItemValidators.zodIsSKU,
 
     product_name: productValidators.zodIsProductName
 }).strict();

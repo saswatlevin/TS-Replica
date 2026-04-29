@@ -28,6 +28,10 @@
 
 10) For now, we will not integrate payment APIs into the workflow.
 
+10a) In the registerUser function, ensure that user discount fields are assigned.
+
+10b) In deleteCartItem, call calculateAndUpdateCartItemTotals() -> DONE
+
 11) Some important formulae are given below w.r.t the "cart_item_price", "discount_amount", "discount_percentage" and "discounted_total" fields in the CartItems sub-documents. It also references the "total_price", "total_discount_amount", "total_discounted_total" and "total_discount_percentage"
 
 "discount_amount" = "discount_percentage" * "cart_item_price"

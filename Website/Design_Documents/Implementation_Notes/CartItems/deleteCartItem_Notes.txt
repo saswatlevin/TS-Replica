@@ -23,6 +23,8 @@ deleteCartItem ->
       { new: true },
       {runValidators: true}
    ).lean();
+
+ * Call calculateAndUpdateCartItemTotals().
   
  * Send the result back to the user as res.json() with status 200. 
 

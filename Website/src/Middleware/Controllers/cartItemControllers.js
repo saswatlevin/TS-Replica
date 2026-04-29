@@ -141,7 +141,7 @@ const updateCartItemDiscount = async (req, res) => {
         const updated_discount_percentage = res.locals.updated_discount_code;
         // console.log("updated_discount_code ", updated_disocunt_code);
 
-        const build_update_cart_item_discount_pipeline = buildUpdateCartItemDiscountPipeline(product_id, updated_discount_code. updated_discount_percentage);
+        const build_update_cart_item_discount_pipeline = buildUpdateCartItemDiscountPipeline(product_id, updated_discount_code, updated_discount_percentage);
 
         const result = await User.updateMany({ "CartItems.product_id": product_id }, build_update_cart_item_price_pipeline);
 
@@ -448,11 +448,15 @@ const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
    const query = {cart_item_id: cart_item_id};
    console.log("query ", query);
    
-   const result = await User.findOneAndUpdate(filter, { $pull: { CartItems: query } }, { new: true }, {runValidators: true}).lean();
+   const result_1 = await User.findOneAndUpdate(filter, { $pull: { CartItems: query } }, { new: true }, {runValidators: true}).lean();
 
-   console.log("Result in deleteCartItem ", result);
+   const result_2 = await calculateAndUpdateCartItemTotals(req);
 
-   res.status(200).json(result);
+   const result_array = [result_1, result_2];
+
+   console.log("Result in deleteCartItem ", result_1);
+
+   res.status(200).json(result_array[0]);
 
    console.log("=====END OF deleteCartItem()===");
 
@@ -505,7 +509,7 @@ const calculateAndUpdateCartItemTotals = async(req) => {
             
             total_item_total: total_item_total, 
             total_discount_amount: total_discount_amount, 
-            total_disocunted_total: total_discounted_total, 
+            total_discounted_total: total_discounted_total, 
             total_discount_percentage: total_discount_percentage, 
             total_payable_amount: total_payable_amount
         };

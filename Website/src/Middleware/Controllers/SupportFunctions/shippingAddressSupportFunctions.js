@@ -207,7 +207,7 @@ const checkDuplicateShippingAddressExists = async(req) => {
 
         const shipping_address_query = {'ShippingAddresses.phone_number': phone_number};
 
-        const result = await User.findOne(shipping_address_query);
+        const result = await User.findOne(shipping_address_query).lean();
 
         if (result === null) {
             return false;

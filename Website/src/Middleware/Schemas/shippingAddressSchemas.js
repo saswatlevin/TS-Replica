@@ -66,9 +66,7 @@ const updateShippingAddressRequestSchema = z.object({
     
     country: shippingAddressValidators.zodIsCountry.optional(),
 
-    postal_area: shippingAddressValidators.zodIsPostalCode.optional(),
-    
-    phone_number: shippingAddressValidators.zodIsMobilePhone.optional()
+    postal_area: shippingAddressValidators.zodIsPostalCode.optional()
 }).strict();
 
 const updateShippingAddressSuccessResponseSchema = z.object({

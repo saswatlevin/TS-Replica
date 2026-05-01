@@ -177,12 +177,11 @@ const checkShippingAddressExists = async(req) => {
 
     try {
         
-        // So that we don't have an undefined shipping_address_id
-        const shipping_address_id = req.params.shipping_address_id || req.body.shipping_address_id || undefined;
+        const shipping_address_id = req.body.shipping_address_id;
 
         const shipping_address_query = {"ShippingAddresses.shipping_address_id": shipping_address_id};
 
-        const result = User.findOne(shipping_address_query);
+        const result = User.findOne(shipping_address_query).lean();
 
         if (result === null) {
             return false;

@@ -138,7 +138,7 @@ const pantUpdateRequestSchemaWithNumbers = z.object({
     lower_size_number: productItemValidators.zodIsLowerSizeNumber.optional(),
 
     inseam_length: productItemValidators.zodIsInseamLength.optional()
-}).merge(baseSchema).strict();
+}).merge(baseUpdateSchema).strict();
 
 const pantUpdateRequestSchemaWithLetters = z.object({
     product_id: productValidators.zodIsProductId,

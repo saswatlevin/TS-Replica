@@ -59,7 +59,12 @@ const registerUser = asyncErrorHandler( async (req, res, next) => {
         user_id: user_id,
         docType: doc_type,
         date_created_at: date_created_at,
-        ...request_body_deep_clone
+        ...request_body_deep_clone,
+        total_item_total: 0,
+        total_discount_amount: 0,
+        total_discounted_total: 0,
+        total_discount_percentage: 0,
+        total_payable_amount: 0
     };
 
     console.log("user_object after adding all generated data ", user_object);

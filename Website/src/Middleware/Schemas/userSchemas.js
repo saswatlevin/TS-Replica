@@ -30,17 +30,7 @@ const userRequestSchema = z.object({
 
     ShippingAddresses: shippingAddressArrayZeroSchema,
 
-    CartItems: cartItemArrayZeroSchema,
-
-    total_item_total: customValidators.zodIsTotalItemTotal,
-
-    total_discount_amount: customValidators.zodIsTotalDiscountAmount,
-
-    total_discounted_total: customValidators.zodIsTotalDiscountedTotal,
-
-    total_discount_percentage: customValidators.zodIsTotalDiscountPercentage,
-
-    total_payable_amount: customValidators.zodIsTotalPayableAmount
+    CartItems: cartItemArrayZeroSchema
 
 });
 

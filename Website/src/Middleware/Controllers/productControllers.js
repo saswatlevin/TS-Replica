@@ -83,9 +83,9 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
     const product = {
         product_id: product_id,
         docType: doc_type,
+        ...request_body_deep_clone,
         discount_amount: discount_amount,
         discounted_total: discounted_total,
-        ...request_body_deep_clone
     };
     console.log("The product object to be created ", product);
 

@@ -66,10 +66,6 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     const cart_item_id = createRandomString(6);
     console.log("cart_item_id ", cart_item_id);
 
-    const cart_item_quantity = 1;
-    console.log("cart_item_quantity ", cart_item_quantity);
-
-
     const discount_amount = req.body.item_total * req.body.discount_percentage;
     console.log("discount_amount ", discount_amount);
 
@@ -82,7 +78,7 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     const filter = { user_id: user_id };
     console.log("filter ", filter);
 
-    const cart_item = { cart_item_id: cart_item_id, cart_item_quantity: cart_item_quantity, discount_amount: discount_amount, discounted_total: discounted_total, ...request_body_deep_clone };
+    const cart_item = { cart_item_id: cart_item_id, ...request_body_deep_clone, discount_amount: discount_amount, discounted_total: discounted_total };
     console.log("cart_item ", cart_item);
 
     console.log("Creating the cart item");

@@ -16,6 +16,8 @@ const cartItemRequestSchema = z.object({
 
     cart_item_image_uri: cartItemValidators.zodIsCartItemImageURI,
 
+    cart_item_quantity: cartItemValidators.zodIsCartItemQuantity.default(1),
+
     discount_code: discountValidators.zodIsDiscountCode,
 
     discount_percentage: discountValidators.zodIsDiscountPercentage

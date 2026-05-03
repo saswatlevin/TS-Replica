@@ -18,13 +18,11 @@ createCartItem ->
 
 * Get the cart_item_id from createRandomString(6).
 
-* Set the cart_item_quantity to 1.
-
 * Create a DEEP CLONE of the request body.
 
 * Create a filter using {user_id: user_id}.
 
-* Create a cart_item using {cart_item_id: cart_item_id, cart_item_quantity: cart_item_quantity, ...request_body_deep_clone} 
+* Create a cart_item using {cart_item_id: cart_item_id, ...request_body_deep_clone, discount_amount: discount_amount, discounted_total: discounted_total } 
 
 * Use the findOneAndUpdate(filter, {$push: {CartItems: cart_item}, {new: True}, {runValidators: True}).lean() API to create the CartItem.
 

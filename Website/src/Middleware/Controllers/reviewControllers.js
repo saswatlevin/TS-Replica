@@ -38,8 +38,6 @@ const createReview = asyncErrorHandler(async(req, res, next) => {
 	const product_id = req.body.product_id;
 	console.log("product_id ", product_id);
 
-	const review_doctype = "REVIEW";
-
 	console.log("Checking if the Product exists");
 	if (await checkProduct(req) === false) {
 		const product_not_found_error = new ResourceNotFoundError(`Could not create the Review for the product with product_id ${product_id} since that product does not exist`);
@@ -59,7 +57,7 @@ const createReview = asyncErrorHandler(async(req, res, next) => {
 
  	const request_body_deep_clone = _.cloneDeep(req.body);
 
- 	const review = {review_id: review_id, user_id: user_id, docType: review_doctype, ...request_body_deep_clone};
+ 	const review = {review_id: review_id, user_id: user_id, ...request_body_deep_clone};
 
  	console.log("review ", review);
 

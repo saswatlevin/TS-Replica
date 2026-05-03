@@ -5,8 +5,10 @@ const productValidators = require('../Validators/CustomValidators/productValidat
 const reviewValidators = require('../Validators/CustomValidators/reviewValidators');
 
 const createReviewRequestSchema = z.object({
-    
+
     product_id: productValidators.zodIsProductId,
+
+    docType: reviewValidators.zodIsReviewDocType,
 
     review_comment: reviewValidators.zodIsReviewComment,
 

@@ -114,7 +114,7 @@ const getUserByIdSchema = z.object({
     user_id: z.string("The user_id field must be a string. It is a required field.").length(12, { message: "The user_id must be 12 characters long." }).regex(customValidators.twelveCharacterRegex, { message: "The user_id can only contain lowercase letters and numbers." })
 });
 
-const getUsersByNameSchema = z.object({
+const searchUsersByNameSchema = z.object({
     first_name: z.string("The first_name field must be a string.").min(1, { message: "The first_name field is a required field." }).max(100, { message: "The first_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The first_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }),
 
     last_name: z.string("The last_name field must be a string.").max(100, { message: "The last_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The last_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }).optional()
@@ -176,7 +176,7 @@ module.exports = {
     userRequestSchema,
     updateUserSchema,
     getUserByIdSchema,
-    getUsersByNameSchema,
+    searchUsersByNameSchema,
     updateUserPasswordSchema,
     userResponseSchema,
     registerUserResponseSchema,

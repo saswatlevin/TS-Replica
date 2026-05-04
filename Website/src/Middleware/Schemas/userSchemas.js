@@ -97,8 +97,6 @@ const userResponseSchema = z.object({
 
     CartItems: cartItemArrayZeroSchema,
 
-    __v: customValidators.zodIsDocumentVersion,    
-
     total_item_total: customValidators.zodIsTotalItemTotal,
 
     total_discount_amount: customValidators.zodIsTotalDiscountAmount,
@@ -107,7 +105,9 @@ const userResponseSchema = z.object({
 
     total_discount_percentage: customValidators.zodIsTotalDiscountPercentage,
 
-    total_payable_amount: customValidators.zodIsTotalPayableAmount
+    total_payable_amount: customValidators.zodIsTotalPayableAmount,
+
+    __v: customValidators.zodIsDocumentVersion
 })
 
 const getUserByIdSchema = z.object({

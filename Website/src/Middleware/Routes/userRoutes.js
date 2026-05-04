@@ -9,7 +9,7 @@ router.route('/registeruser').post(requestValidator(userSchemas.userRequestSchem
 router.route('/updateuser/:user_id').patch(requestValidator(userSchemas.updateUserSchema),  xss(), userControllers.updateUser);
 router.route('/updateuserpassword/:user_id').patch(requestValidator(userSchemas.updateUserPasswordSchema),  xss(), userControllers.updateUserPassword);
 router.route('/getuserbyid').get(requestValidator(userSchemas.getUserByIdSchema),  xss(), userControllers.getUserById);
-router.route('/getusersbyname').get(requestValidator(userSchemas.getUsersByNameSchema),  xss(), userControllers.searchUsersByName);
+router.route('/searchusersbyname').get(requestValidator(userSchemas.searchUsersByNameSchema),  xss(), userControllers.searchUsersByName);
 //router.route('/objectidtest').get(userControllers.objectIdTest);
 
 module.exports = router;

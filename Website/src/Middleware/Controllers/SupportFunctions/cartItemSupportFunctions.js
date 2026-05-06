@@ -24,15 +24,7 @@ const checkCartItemExists = async(req) => {
             };
         }
 
-        if (product_id !== undefined && cart_item_id !== undefined && sku === undefined) {
-            
-            cart_item_query = {
-                "CartItems.product_id": product_id,
-                "CartItems.cart_item_id": cart_item_id
-            };
-        }
-
-        if (product_id !== undefined && cart_item_id !== undefined && sku !== undefined) {
+        if (product_id !== undefined && sku !== undefined && cart_item_id !== undefined) {
 
             cart_item_query = {
                 "CartItems.cart_item_id": cart_item_id,

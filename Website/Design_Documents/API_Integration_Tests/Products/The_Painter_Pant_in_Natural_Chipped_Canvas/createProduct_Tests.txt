@@ -1,0 +1,129 @@
+createProduct Tests for The Painter Pant in Natural Chipped Canvas
+
+* Test to check for response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/createproduct",
+    { }
+  ]
+
+* Test to check the response to a duplicate product. RESULT: DuplicateDocumentError.
+  [ "url": "http://localhost:3500/products/createproduct",
+    {
+      "product_name": "The Painter Pant in Seeded Natural Chipped Canvas",
+      
+      "product_color": "Seeded Natural Chipped Canvas",
+  
+      "product_description": "A thoughtful riff on a timeless workwear silhouette, The Painter Pant offers utility-driven details in a clean, tailored package. Built from sturdy organic cotton canvas and finished with a subtle stone wash, it brings classic durability and everyday versatility to the table—no paint required.",
+  
+       "product_price": 138,
+  
+       "product_category": "Lower Garment",
+  
+       "product_subcategory": "Bottom",
+  
+       "product_subcategory_type": "Pant",
+  
+       "product_fit": "Medium rise straight leg fit, with a 9\" taper from thigh to leg opening. 34\" inseam. Model is 6'2\", wearing a 32\".",
+  
+       "product_garment_weight": {
+    	  "garment_weight_description": "Built like a brick Sh#!thouse.",
+    	  "garment_weight": "Medium to Heavy"
+  	},
+  
+      "product_material": "Crafted from hefty chipped canvas and stone washed for a worn-in feel from day one. Reinforced with triple-needle stitching on outseam, with functional details like dual tool pockets, bar-tacked stress points, and our signature SF map print pocketing.",
+  
+      "product_supply_type": {
+    
+          "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+          "supply_type": "Limited"
+       },
+  
+      "product_specifications": "12.5 oz. 100% organic cotton canvas with 6 oz. organic cotton SF Map pocketing, stone-washed for a worn-in feel, features angled front slash pockets, two mitered back patch pockets with reinforced lining, dual tool pockets sewn into side seam, coin pocket, triple-needle felled outseam construction, bar-tacked stress points, YKK zip fly with tack button closure, machine wash cold and tumble dry low, made in China.",
+    
+      "discount_code": "None",
+  
+      "discount_percentage": 0
+    }      
+ ]
+
+* Test to check response to a missing product_price field. RESULT: ZodError
+[
+  "url": "http://localhost:3500/products/createproduct",
+  {
+      "product_name": "The Painter Pant in Seeded Natural Chipped Canvas 2",
+      
+      "product_color": "Seeded Natural Chipped Canvas",
+  
+      "product_description": "A thoughtful riff on a timeless workwear silhouette, The Painter Pant offers utility-driven details in a clean, tailored package. Built from sturdy organic cotton canvas and finished with a subtle stone wash, it brings classic durability and everyday versatility to the table—no paint required, EVER!!",
+  
+       "product_category": "Lower Garment",
+  
+       "product_subcategory": "Bottom",
+  
+       "product_subcategory_type": "Pant",
+  
+       "product_fit": "Medium rise straight leg fit, with a 9\" taper from thigh to leg opening. 34\" inseam. Model is 6'2\", wearing a 32\".",
+  
+       "product_garment_weight": {
+    	  "garment_weight_description": "Built like a brick Sh#!thouse.",
+    	  "garment_weight": "Medium to Heavy"
+  	},
+  
+      "product_material": "Crafted from hefty chipped canvas and stone washed for a worn-in feel from day one. Reinforced with triple-needle stitching on outseam, with functional details like dual tool pockets, bar-tacked stress points, and our signature SF map print pocketing.",
+  
+      "product_supply_type": {
+    
+          "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+          "supply_type": "Limited"
+       },
+  
+      "product_specifications": "12.5 oz. 100% organic cotton canvas with 6 oz. organic cotton SF Map pocketing, stone-washed for a worn-in feel, features angled front slash pockets, two mitered back patch pockets with reinforced lining, dual tool pockets sewn into side seam, coin pocket, triple-needle felled outseam construction, bar-tacked stress points, YKK zip fly with tack button closure, machine wash cold and tumble dry low, made in China.",
+    
+      "discount_code": "None",
+  
+      "discount_percentage": 0
+  }
+  
+]
+
+* Test to create a Product. RESULT: SUCCESS
+[
+  "url": "http://localhost:3500/products/createproduct",
+  {
+      "product_name": "The Painter Pant in Seeded Natural Chipped Canvas 2",
+      
+      "product_color": "Seeded Natural Chipped Canvas",
+  
+      "product_description": "A thoughtful riff on a timeless workwear silhouette, The Painter Pant offers utility-driven details in a clean, tailored package. Built from sturdy organic cotton canvas and finished with a subtle stone wash, it brings classic durability and everyday versatility to the table—no paint required, EVER!!",
+  
+       "product_price": 138,
+  
+       "product_category": "Lower Garment",
+  
+       "product_subcategory": "Bottom",
+  
+       "product_subcategory_type": "Pant",
+  
+       "product_fit": "Medium rise straight leg fit, with a 9\" taper from thigh to leg opening. 34\" inseam. Model is 6'2\", wearing a 32\".",
+  
+       "product_garment_weight": {
+    	  "garment_weight_description": "Built like a brick Sh#!thouse.",
+    	  "garment_weight": "Medium to Heavy"
+  	},
+  
+      "product_material": "Crafted from hefty chipped canvas and stone washed for a worn-in feel from day one. Reinforced with triple-needle stitching on outseam, with functional details like dual tool pockets, bar-tacked stress points, and our signature SF map print pocketing.",
+  
+      "product_supply_type": {
+    
+          "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+          "supply_type": "Limited"
+       },
+  
+      "product_specifications": "12.5 oz. 100% organic cotton canvas with 6 oz. organic cotton SF Map pocketing, stone-washed for a worn-in feel, features angled front slash pockets, two mitered back patch pockets with reinforced lining, dual tool pockets sewn into side seam, coin pocket, triple-needle felled outseam construction, bar-tacked stress points, YKK zip fly with tack button closure, machine wash cold and tumble dry low, made in China.",
+    
+      "discount_code": "None",
+  
+      "discount_percentage": 0
+  }
+  
+]

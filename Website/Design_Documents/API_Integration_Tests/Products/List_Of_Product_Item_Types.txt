@@ -1,0 +1,52 @@
+01) The Craftsman Shirt in Bark Plaid Cotton [Long-Sleeved Shirt]
+{
+      "sku": "9qjmn3ak0b",
+      "upper_size_letter": "XXL",
+      "upper_size_number": 46,
+      "total_stock": 250,
+      "quantity_sold": 80,
+      "quantity_returned": 0,
+      "current_stock": 170
+}
+
+02) The Painter Pant in Seeded Natural Chipped Canvas [Pant]
+{
+      "sku": "cdwrbvcp2r",
+      "lower_size_number": 38,
+      "inseam_length": 34,
+      "total_stock": 310,
+      "quantity_sold": 50,
+      "quantity_returned": 0,
+      "current_stock": 260
+}
+
+03) The Breakwater Pant in Rinsed Indigo Stripe
+{
+      "sku": "9bkgezadt6",
+      "lower_size_letter": "XXL",
+      "inseam_length": 32,
+      "total_stock": 100,
+      "quantity_sold": 50,
+      "quantity_returned": 0,
+      "current_stock": 50
+} 
+
+04) The Apres Short in Navy Linen Tweed [Short]
+{
+      "sku": "269ujn48i2",
+      "lower_size_letter": "XL",
+      "total_stock": 350,
+      "quantity_sold": 150,
+      "quantity_returned": 0,
+      "current_stock": 200
+}
+
+05) The Camp Short in Aged Penny Canvas [Short]
+{
+      "sku": "x6mgf6qdam",
+      "lower_size_number": 36,
+      "total_stock": 300,
+      "quantity_sold": 50,
+      "quantity_returned": 0,
+      "current_stock": 250
+}

@@ -1,0 +1,52 @@
+updateProductSupplyType Tests for The Apres Short in Navy Linen Tweed
+
+* Test to check the response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    { }
+  ]
+
+* Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+      "product_id": "u9yl6odhigeu",
+      "supply_type": "Essential"
+    }
+  ]
+
+* Test to check the response to updating a value that already exists. RESULT: RedundantUpdateError
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+      "product_id": "u9yl6odhiget",
+      "supply_type": "Limited" 
+    }
+  ]
+
+* Test to check the response to a missing product_id field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+      "supply_type": "Limited"
+    }
+  ]
+
+* Test to update the supply_type. RESULT: SUCCESS [Check product_id and supply_type only]
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+      "product_id": "u9yl6odhiget",
+      "supply_type": "Essential" 
+    }
+  ]
+
+* Test to update the supply_description and supply_type. RESULT: SUCCESS [Check product_id, supply_type and supply_type_description only]
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+       "product_id": "u9yl6odhiget",
+       "supply_type": "Essential",
+       "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping."
+    }
+  ]

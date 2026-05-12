@@ -1,0 +1,79 @@
+updateProduct Tests for The Craftsman Shirt in Bark Plaid Cotton 
+
+* Test to check the response to an empty request body. Result: ZodError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  { }
+]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "a6bb1d23bd29",
+    "product_description": "Rugged by design, built with comfort in mind. The Craftsman Shirt pairs classic workwear detailing with a breathable cotton-linen canvas that’s made to handle the season’s shifting demands. Durable, dependable, and crafted to keep up for years to come."
+  }
+]
+
+* Test to check the response to a value that already exists. RESULT: RedundantUpdateError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  { 
+    "product_id": "a6bb1d23bd28",
+    "product_category": "Lower Garment"
+  }
+]
+
+* Test to update the product_color. RESULT: SUCCESS [Check product_color only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "a6bb1d23bd28",
+    "product_color": "BARK PLAID LINEN"
+  }
+]
+
+* Test to update the product_description. RESULT: SUCCESS [Check product_description only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "a6bb1d23bd28",
+    "product_description": "Rugged by design, built with comfort in mind. The Craftsman Shirt pairs classic workwear detailing with a breathable cotton-linen canvas that’s made to handle the season’s shifting demands. Durable, dependable, and crafted to keep up for years to COME."
+  }
+]
+
+* Test to update the product_category. RESULT: SUCCESS [Check product_category only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "a6bb1d23bd28",
+    "product_category": "Upper Garment"
+  }
+]
+
+* Test to update the product_subcategory. RESULT: SUCCESS [Check product_subcategory only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "a6bb1d23bd28",
+    "product_subcategory": "Shirt"
+  }
+]
+
+* Test to update the product_subcategory_type. RESULT: SUCCESS [Check product_subcategory_type only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "a6bb1d23bd28",
+    "product_subcategory_type": "Long-Sleeved Shirt"
+  }
+]
+
+* Test to update the product_specifications. RESULT: SUCCESS [Check product_specifications only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "a6bb1d23bd28",
+    "product_specifications": "7-OZ. 55% linen, 45% organic cotton canvas. Washed for a soft, lived-in feel. Two U-shaped chest pockets with button through flaps. Left pocket features a pen sleeve. Adjustable button cuffs. Double-needle felled construction. Wash cold and lay flat to DRY."
+  }
+]

@@ -1,0 +1,40 @@
+searchProducts Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty object.
+  [
+    "url": "http://localhost:3500/products/searchproducts",
+    { }
+  ]
+
+* Test to search for a Product using product_name. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/products/searchproducts",
+    {
+      "product_name": "The Breakwater Pant in Rinsed Indigo Stripe"
+    }
+  ]
+
+* Test to search for a Product using product_color. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/products/searchproducts",
+    {
+      "product_color": "Rinsed Indigo Stripe"
+    }
+  ]
+
+* Test to search for a Product using product_subcategory. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/products/searchproducts",
+    {
+      "product_subcategory": "Bottom"
+    }
+  ]
+
+* Test to search for a Product using product_name and product_subcategory. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/products/searchproducts",
+    {
+       "product_name": "The Breakwater Pant in Rinsed Indigo Stripe",
+       "product_subcategory": "Bottom"
+    }
+  ]

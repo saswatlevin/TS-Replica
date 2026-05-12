@@ -1,0 +1,79 @@
+updateProduct Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty request body. Result: ZodError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  { }
+]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4c",
+    "product_description": "A versatile evolution of the classic naval deck pant, The Breakwater Pant offers a character-rich indigo finish in a clean, capable silhouette. Finished with a roomy top block and a drawcord waist for comfort wherever you’re HEADED."
+  }
+]
+
+* Test to check the response to a value that already exists. RESULT: RedundantUpdateError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  { 
+    "product_id": "dzh5txxega4b",
+    "product_category": "Lower Garment"
+  }
+]
+
+* Test to update the product_color. RESULT: SUCCESS [Check product_color only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4b",
+    "product_color": "Rinsed Indigo STRIPE"
+  }
+]
+
+* Test to update the product_description. RESULT: SUCCESS [Check product_description only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4b",
+    "product_description": "A versatile evolution of the classic naval deck pant, The Breakwater Pant offers a character-rich indigo finish in a clean, capable silhouette. Finished with a roomy top block and a drawcord waist for comfort wherever you’re HEADED."
+  }
+]
+
+* Test to update the product_category. RESULT: SUCCESS [Check product_category only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4b",
+    "product_category": "Upper Garment"
+  }
+]
+
+* Test to update the product_subcategory. RESULT: SUCCESS [Check product_subcategory only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4b",
+    "product_subcategory": "Shirt"
+  }
+]
+
+* Test to update the product_subcategory_type. RESULT: SUCCESS [Check product_subcategory_type only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4b",
+    "product_subcategory_type": "Chino"
+  }
+]
+
+* Test to update the product_specifications. RESULT: SUCCESS [Check product_specifications only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4b",
+    "product_specifications": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in CHINA."
+  }
+]

@@ -1,0 +1,43 @@
+updateProductName Tests for The Painter Pant in Seeded Natural Chipped Canvas
+
+* Test to check the response to an empty object. RESULT: ZodError.
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    { }
+  ]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+      "product_id": "ojvs7hjfihgd",
+      "product_name": "The Painter Pant in Seeded Natural Chipped CANVAS"
+    }
+  ]
+
+* Test to check the response to a product_name that already exists. RESULT: RedundantUpdateError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+      "product_id": "ojvs7hjfihgc",
+      "product_name": "The Painter Pant in Seeded Natural Chipped Canvas"
+    }
+  ]
+
+* Test to check the response to a missing product_id field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+       "product_name": "The Painter Pant in Seeded Natural Chipped CANVAS"
+    }
+  ]
+
+ * Test to update the product_name of a Product. RESULT: SUCCESS
+   [
+      "url": "http://localhost:3500/products/updateproductname",
+      {
+        "product_id": "ojvs7hjfihgc",
+        "product_name": "The Painter Pant in Seeded Natural Chipped CANVAS"
+      }
+   ]
+    

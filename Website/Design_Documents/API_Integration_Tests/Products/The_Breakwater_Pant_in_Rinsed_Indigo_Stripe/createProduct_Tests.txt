@@ -1,0 +1,129 @@
+createProduct Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check for response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/createproduct",
+    { }
+  ]
+
+* Test to check the response to a duplicate product. RESULT: DuplicateDocumentError.
+  [ "url": "http://localhost:3500/products/createproduct",
+    {
+ 
+      "product_name": "The Breakwater Pant in Rinsed Indigo Stripe",
+      
+      "product_color": "Rinsed Indigo Stripe",
+      
+      "product_description": "A versatile evolution of the classic naval deck pant, The Breakwater Pant offers a character-rich indigo finish in a clean, capable silhouette. Finished with a roomy top block and a drawcord waist for comfort wherever you’re headed.",
+      
+      "product_price": 128,
+      
+      "product_category": "Lower Garment",
+      
+      "product_subcategory": "Bottom",
+  
+      "product_subcategory_type": "Pant",
+      
+      "product_fit": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+   
+  "product_garment_weight": {
+    "garment_weight_description": "Sturdy daily drivers.",
+    
+    "garment_weight": "Medium"
+  },
+  
+  "product_material": "The Breakwater Pant is built from a sturdy, indigo-dyed organic cotton, resulting in a rich hand feel that will develop nuance with each wash and wear. We’ve finished them off with an elasticated drawcord waist, a mitered back pocket, and oversized patch front pockets.",
+  
+  "product_supply_type": {
+    
+     "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+      
+     "supply_type": "Limited"
+  },
+  "product_specifications": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+   
+  "discount_code": "None",
+    }      
+ ]
+
+* Test to check response to a missing product_price field. RESULT: ZodError
+[
+  "url": "http://localhost:3500/products/createproduct",
+  {
+ 
+      "product_name": "The Breakwater Pant in Rinsed Indigo Stripe",
+      
+      "product_color": "Rinsed Indigo Stripe",
+      
+      "product_description": "A versatile evolution of the classic naval deck pant, The Breakwater Pant offers a character-rich indigo finish in a clean, capable silhouette. Finished with a roomy top block and a drawcord waist for comfort wherever you’re headed.",
+      
+      "product_category": "Lower Garment",
+      
+      "product_subcategory": "Bottom",
+  
+      "product_subcategory_type": "Pant",
+      
+      "product_fit": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+   
+  "product_garment_weight": {
+    "garment_weight_description": "Sturdy daily drivers.",
+    
+    "garment_weight": "Medium"
+  },
+  
+  "product_material": "The Breakwater Pant is built from a sturdy, indigo-dyed organic cotton, resulting in a rich hand feel that will develop nuance with each wash and wear. We’ve finished them off with an elasticated drawcord waist, a mitered back pocket, and oversized patch front pockets.",
+  
+  "product_supply_type": {
+    
+     "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+      
+     "supply_type": "Limited"
+  },
+  "product_specifications": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+   
+  "discount_code": "None",
+    }      
+  
+]
+
+* Test to create a Product. RESULT: SUCCESS
+[
+  "url": "http://localhost:3500/products/createproduct",
+  {
+ 
+      "product_name": "The Breakwater Pant in Rinsed Indigo Stripe",
+      
+      "product_color": "Rinsed Indigo Stripe",
+      
+      "product_description": "A versatile evolution of the classic naval deck pant, The Breakwater Pant offers a character-rich indigo finish in a clean, capable silhouette. Finished with a roomy top block and a drawcord waist for comfort wherever you’re headed.",
+      
+      "product_price": 128,
+      
+      "product_category": "Lower Garment",
+      
+      "product_subcategory": "Bottom",
+  
+      "product_subcategory_type": "Pant",
+      
+      "product_fit": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+   
+  "product_garment_weight": {
+    "garment_weight_description": "Sturdy daily drivers.",
+    
+    "garment_weight": "Medium"
+  },
+  
+  "product_material": "The Breakwater Pant is built from a sturdy, indigo-dyed organic cotton, resulting in a rich hand feel that will develop nuance with each wash and wear. We’ve finished them off with an elasticated drawcord waist, a mitered back pocket, and oversized patch front pockets.",
+  
+  "product_supply_type": {
+    
+     "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+      
+     "supply_type": "Limited"
+  },
+  "product_specifications": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+   
+  "discount_code": "None",
+    }      
+  
+]

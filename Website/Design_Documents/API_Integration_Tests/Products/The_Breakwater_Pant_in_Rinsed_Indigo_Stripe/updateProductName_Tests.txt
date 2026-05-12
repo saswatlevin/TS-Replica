@@ -1,0 +1,43 @@
+updateProductName Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty object. RESULT: ZodError.
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    { }
+  ]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+      "product_id": "dzh5txxega4c",
+      "product_name": "The Breakwater Pant in Rinsed Indigo STRIPE"
+    }
+  ]
+
+* Test to check the response to a product_name that already exists. RESULT: RedundantUpdateError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+      "product_id": "dzh5txxega4b",
+      "product_name": "The Breakwater Pant in Rinsed Indigo STRIPE"
+    }
+  ]
+
+* Test to check the response to a missing product_id field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+       "product_name": "The Breakwater Pant in Rinsed Indigo STRIPE"
+    }
+  ]
+
+ * Test to update the product_name of a Product. RESULT: SUCCESS
+   [
+      "url": "http://localhost:3500/products/updateproductname",
+      {
+        "product_id": "dzh5txxega4b",
+        "product_name": "The Breakwater Pant in Rinsed Indigo STRIPE"
+      }
+   ]
+    

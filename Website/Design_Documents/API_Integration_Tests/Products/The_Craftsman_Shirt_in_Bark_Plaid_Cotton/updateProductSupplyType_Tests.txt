@@ -1,0 +1,52 @@
+updateProductSupplyType Tests for The Craftsman Shirt in Bark Plaid Cotton
+
+* Test to check the response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    { }
+  ]
+
+* Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+      "product_id": "a6bb1d23bd29",
+      "supply_type": "Limited"
+    }
+  ]
+
+* Test to check the response to updating a value that already exists. RESULT: RedundantUpdateError
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+      "product_id": "a6bb1d23bd28",
+      "supply_type": "Limited" 
+    }
+  ]
+
+* Test to check the response to a missing product_id field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+      "supply_type": "Limited"
+    }
+  ]
+
+* Test to update the supply_type. RESULT: SUCCESS [Check product_id and supply_type only]
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+      "product_id": "a6bb1d23bd28",
+      "supply_type": "Limited" 
+    }
+  ]
+
+* Test to update the supply_description and supply_type. RESULT: SUCCESS [Check product_id, supply_type and supply_type_description only]
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+       "product_id": "a6bb1d23bd28",
+       "supply_type": "Limited",
+       "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping."
+    }
+  ]

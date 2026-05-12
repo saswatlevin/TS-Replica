@@ -1,0 +1,54 @@
+updateProductGarmentWeight Tests for The Craftsman Shirt in Bark Plaid Cotton
+
+* Test to check the response to an empty object. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductgarmentweight",
+    { }
+  ]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError.
+  [
+    "url": "http://localhost:3500/products/updateproductgarmentweight",
+    {
+      "product_id": "a6bb1d23bd29",
+      "garment_weight" : "Medium"
+    }
+  ]
+ 
+* Test to check the response to a garment_weight value that already exists. RESULT: RedundantUpdateError.
+  [
+    "url": "http://localhost:3500/products/updateproductgarmentweight",
+    {
+      "product_id": "a6bb1d23bd28",
+      "garment_weight" : "Heavy"
+
+    }
+  ]
+
+* Test to update a garment_weight value. RESULT: SUCCESS [Check garment_weight value only].
+  [
+    "url": "http://localhost:3500/products/updateproductgarmentweight",
+    {
+      "product_id": "a6bb1d23bd28",
+      "garment_weight" : "Medium"
+    }
+  ]
+
+* Test to update a garment_weight_description value. RESULT: SUCCESS [Check garment_weight_description value only].
+  [
+    "url": "http://localhost:3500/products/updateproductgarmentweight",
+    {
+      "product_id": "a6bb1d23bd28",
+      "garment_weight_description" : "Perfect!"
+    }
+  ]
+
+* Test to update the garment_weight and garment_weight_description value. RESULT: SUCCESS [Check the garment_weight and garment_weight_description values only].
+  [
+    "url": "http://localhost:3500/products/updateproductgarmentweight",
+    {
+      "product_id": "a6bb1d23bd28",
+      "garment_weight" : "Medium"
+      "garment_weight_description" : "Good"
+    }
+  ]

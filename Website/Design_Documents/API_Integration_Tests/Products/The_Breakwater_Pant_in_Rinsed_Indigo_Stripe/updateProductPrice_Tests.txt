@@ -1,0 +1,42 @@
+updateProductPrice Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductprice",
+    { }
+  ]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/products/updateproductprice",
+    {
+      "product_id": "dzh5txxega4c",
+      "product_price": 200
+    }
+  ]
+
+* Test to check the response to a product_price value that already exists. RESULT: RedundantUpdateError
+  [
+    "url": "http://localhost:3500/products/updateproductprice",
+    {
+      "product_id": "dzh5txxega4c",
+      "product_price": 128
+    }
+  ]
+
+* Test to check the response to a missing product_price field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductprice",
+    {
+      "product_id": "dzh5txxega4b"
+    }
+  ]
+
+* Test to update the product_price. RESULT: SUCCESS [Check product_price only]
+  [
+    "url": "http://localhost:3500/products/updateproductprice",
+    {
+      "product_id": "dzh5txxega4c",
+      "product_price": 210
+    }
+  ]

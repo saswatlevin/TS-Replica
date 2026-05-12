@@ -1,0 +1,79 @@
+updateProduct Tests for The Painter Pant in Seeded Natural Chipped Canvas 
+
+* Test to check the response to an empty request body. Result: ZodError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  { }
+]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "ojvs7hjfihgd",
+    "product_description": "A thoughtful riff on a timeless workwear silhouette, The Painter Pant offers utility-driven details in a clean, tailored package. Built from sturdy organic cotton canvas and finished with a subtle stone wash, it brings classic durability and everyday versatility to the table—no paint REQUIRED."
+  }
+]
+
+* Test to check the response to a value that already exists. RESULT: RedundantUpdateError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  { 
+    "product_id": "ojvs7hjfihgc",
+    "product_category": "Lower Garment"
+  }
+]
+
+* Test to update the product_color. RESULT: SUCCESS [Check product_color only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "ojvs7hjfihgc",
+    "product_color": "Natural Chipped CANVAS"
+  }
+]
+
+* Test to update the product_description. RESULT: SUCCESS [Check product_description only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "ojvs7hjfihgc",
+    "product_description": "A thoughtful riff on a timeless workwear silhouette, The Painter Pant offers utility-driven details in a clean, tailored package. Built from sturdy organic cotton canvas and finished with a subtle stone wash, it brings classic durability and everyday versatility to the table—no paint REQUIRED."
+  }
+]
+
+* Test to update the product_category. RESULT: SUCCESS [Check product_category only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "ojvs7hjfihgc",
+    "product_category": "Upper Garment"
+  }
+]
+
+* Test to update the product_subcategory. RESULT: SUCCESS [Check product_subcategory only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "a6bb1d23bd28",
+    "product_subcategory": "Shirt"
+  }
+]
+
+* Test to update the product_subcategory_type. RESULT: SUCCESS [Check product_subcategory_type only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "a6bb1d23bd28",
+    "product_subcategory_type": "Chino"
+  }
+]
+
+* Test to update the product_specifications. RESULT: SUCCESS [Check product_specifications only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "a6bb1d23bd28",
+    "product_specifications": "12.5 oz. 100% organic cotton canvas with 6 oz. organic cotton SF Map pocketing, stone-washed for a worn-in feel, features angled front slash pockets, two mitered back patch pockets with reinforced lining, dual tool pockets sewn into side seam, coin pocket, triple-needle felled outseam construction, bar-tacked stress points, YKK zip fly with tack button closure, machine wash cold and tumble dry low, made in CHINA."
+  }
+]

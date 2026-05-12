@@ -1,0 +1,47 @@
+updateProductDiscount Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductdiscount",
+    { }
+  ]
+
+* Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/products/updateproductdiscount",
+    { 
+      "product_id": "dzh5txxega4c",
+      "discount_code": "10PERCENT",
+      "discount_percentage": 10
+    }
+  ]
+
+* Test to check the response to discount_code and discount_percentage values that already exist. RESULT: RedundantUpdateError
+  [
+    "url": "http://localhost:3500/products/updateproductdiscount",
+     { 
+        "product_id": "dzh5txxega4b",
+        "discount_code": "None",
+        "discount_percentage": 0
+     }
+
+  ]
+
+* Test to check the response to a missing disocunt_code field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductdiscount",
+     { 
+        "product_id": "dzh5txxega4b",
+        "discount_percentage": 0
+     }
+  ]
+
+* Test to update the discount_code and discount_percentage. RESULT: SUCCESS [Check only the discount_code and discount_percentage values]
+  [
+    "url": "http://localhost:3500/products/updateproductdiscount",
+    { 
+      "product_id": "dzh5txxega4b",
+      "discount_code": "10PERCENT",
+      "discount_percentage": 10
+    }
+  ]

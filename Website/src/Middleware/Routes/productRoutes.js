@@ -7,11 +7,11 @@ const { xss } = require('express-xss-sanitizer');
 
 router.route('/createproduct').post(requestValidator(productSchemas.productRequestSchema), xss(), productControllers.createProduct);
 
-router.route('/updateproductprice/:user_id').patch(requestValidator(productSchemas.updateProductPriceSchema), xss(), productControllers.updateProductPrice);
+router.route('/updateproductprice').patch(requestValidator(productSchemas.updateProductPriceSchema), xss(), productControllers.updateProductPrice);
 
-router.route('/updateproductdiscount/:user_id').patch(requestValidator(productSchemas.updateProductDiscountSchema), xss(), productControllers.updateProductDiscount);
+router.route('/updateproductdiscount').patch(requestValidator(productSchemas.updateProductDiscountSchema), xss(), productControllers.updateProductDiscount);
 
-router.route('/updateproductname/:user_id').patch(requestValidator(productSchemas.updateProductNameSchema), xss(), productControllers.updateProductName);
+router.route('/updateproductname').patch(requestValidator(productSchemas.updateProductNameSchema), xss(), productControllers.updateProductName);
 
 router.route('/updateproduct').patch(requestValidator(productSchemas.updateProductSchema), xss(), productControllers.updateProduct);
 

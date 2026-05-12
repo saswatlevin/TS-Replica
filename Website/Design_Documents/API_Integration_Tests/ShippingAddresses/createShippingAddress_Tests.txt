@@ -1,0 +1,75 @@
+createShippingAddress Tests
+
+* Test to check response to empty object. RESULT: ZodError.
+  ["url": "http://localhost:3500/shippingaddresses/createshippingaddress/d2a986a0cab3",
+   { }
+  ]
+
+* Test to check response to a user that does not exist. RESULT: ResourceNotFoundError
+
+ [ "url": "http://localhost:3500/shippingaddresses/createshippingaddress/d2a986a0cab4",
+   
+   {
+  	"address_type_id": "1",
+  	"company_name": "DEF Company",
+  	"address": "425 Market Street",
+  	"apartment": "Suite 1204",
+  	"city": "San Francisco",
+  	"administrative_division": "California",
+  	"country": "United States",
+  	"postal_area": "94105",
+  	"phone_number": "14155550123"
+   }     
+   
+ ]
+
+* Test to check response to creating an address that already exists. RESULT: DuplicateSubDocumentError.
+[ "url": "http://localhost:3500/shippingaddresses/createshippingaddress/d2a986a0cab3",      
+      {
+      	"address_type_id": "1",
+      	"company_name": "DEF Company",
+      	"address": "6-5-1 Nishi-Shinjuku, Shinjuku-ku",
+      	"apartment": "Room 2503, Shinjuku I-Land Tower",
+      	"city": "Tokyo",
+      	"administrative_division": "Tokyo",
+      	"country": "Japan",
+      	"postal_area": "163-1390",
+      	"phone_number": "81312345678"
+      }
+]
+
+* Test to check response to an address with a missing "city" field. RESULT: ZodError.
+[ "url": "http://localhost:3500/shippingaddresses/createshippingaddress/d2a986a0cab3",      
+  
+  {
+  	"address_type_id": "1",
+  	"company_name": "DEF Company",
+  	"address": "425 Market Street",
+  	"apartment": "Suite 1204",
+  	"administrative_division": "California",
+  	"country": "United States",
+  	"postal_area": "94105",
+  	"phone_number": "14155550123"
+   } 
+  
+]
+
+* Test to create a shipping address. RESULT: SUCCESS.
+[
+  "url": "http://localhost:3500/shippingaddresses/createshippingaddress/d2a986a0cab3",
+
+  {
+  	"address_type_id": "1",
+  	"company_name": "DEF Company",
+  	"address": "425 Market Street",
+  	"apartment": "Suite 1204",
+        "city": "San Francisco",
+  	"administrative_division": "California",
+  	"country": "United States",
+  	"postal_area": "94105",
+  	"phone_number": "14155550123"    
+    
+  }
+]
+
+

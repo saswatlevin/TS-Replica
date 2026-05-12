@@ -1,0 +1,99 @@
+updateShippingAddress Tests
+
+* Test to check response to empty object. RESULT: EmptyRequestBodyError.
+  [
+    "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
+    { }
+  ]
+
+* Test to check response to a user that doesn't exist. RESULT: ResourceNotFoundError.
+  [
+    "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab4",
+    
+    {
+	"apartment": "Suite 1208"
+    }
+  ]
+
+* Test to update the address_type_id of a ShippingAddress. RESULT: SUCCESS (Check address_type_id only).
+  [
+    "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
+   
+     {
+       "address_type_id": 2
+     }
+
+  ]
+
+* Test to update the company_name of a ShippingAddress. RESULT: SUCCESS (Check company_name only).
+  [
+    "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
+   
+     {
+       "company_name": "ABC Company"
+     }
+
+  ]
+
+* Test to update the address of a ShippingAddress. RESULT: SUCCESS (Check apartment only).
+  [
+    "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
+    
+    {
+      "address": "400 Walkers Street"
+    }
+  ]
+
+* Test to update the apartment of a ShippingAddress. RESULT: SUCCESS (Check apartment only).
+  [
+    "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
+  
+    {
+      "apartment": "Suite 1216"
+    }
+  ]
+
+* Test to update the city of a ShippingAddress. RESULT: SUCCESS (Check city only).
+  [
+    "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
+  
+    {
+      "city": "New York"
+    }
+  ]
+
+* Test to update the administrative_division of a ShippingAddress. RESULT: SUCCESS (Check administrative_division only).
+  [
+    "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
+  
+    {
+      "administrative_division": "New York"
+    }
+  ] 
+
+* Test to check the response when country is updated with an existing value RESULT: RedundantUpdateError. (Check country only).
+  [
+    "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
+  
+    {
+      "country": "United States"
+    }
+  ]
+
+* Test to update the postal_address of a ShippingAddress RESULT: SUCCESS. (Check postal_address only).
+  [
+    "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
+  
+    {
+      "postal_address": "94106"
+    }
+  ]
+
+* Test to update the phone_number of a ShippingAddress RESULT: SUCCESS. (Check phone_number only).
+  [
+    "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
+  
+    {
+      "phone_number": "14155550125"
+    }
+  ]

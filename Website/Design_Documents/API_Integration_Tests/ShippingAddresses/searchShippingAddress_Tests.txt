@@ -1,0 +1,106 @@
+searchShippingAddress Tests
+
+* Test to check response to empty object. RESULT: EmptyRequestBodyError.
+  [
+    "url": "http://localhost:3500/shippingaddresses/searchshippingaddress/d2a986a0cab3",
+    { }
+  ]
+
+* Test to check response to a user that does not exist. RESULT: ResourceNotFoundError.
+  [
+    "url": "http://localhost:3500/shippingaddresses/searchshippingaddress/d2a986a0cab4",
+    {
+	"shipping_address_id": "5c46b626c934"
+    }
+  ]
+
+
+* Test to search for a shipping_address using shipping_address_id. RESULT: SUCCESS [Check shipping_address_id only].
+  [
+    "url": "http://localhost:3500/shippingaddresses/searchshippingaddress/d2a986a0cab3",
+    {
+	"shipping_address_id": "5c46b626c934"
+    }
+  ]
+
+* Test to search for a shipping_address using address_type_id. RESULT: SUCCESS [Check address_type_id only].
+  [
+    "url": "http://localhost:3500/shippingaddresses/searchshippingaddress/d2a986a0cab3",
+    {
+	"address_type_id": "1"
+    }
+  ]
+
+* Test to search for a shipping_address using company_name. RESULT: SUCCESS [Check company_name only].
+  [
+    "url": "http://localhost:3500/shippingaddresses/searchshippingaddress/d2a986a0cab3",
+    {
+	"company_name": "ABC Company"
+    }
+  ]
+
+* Test to search for a shipping_address using address. RESULT: SUCCESS [Check address only].
+  [
+    "url": "http://localhost:3500/shippingaddresses/searchshippingaddress/d2a986a0cab3",
+    {
+	"address": "400 Walkers Street"
+    }
+  ]
+
+* Test to search for a shipping_address using apartment. RESULT: SUCCESS [Check apartment only].
+  [
+    "url": "http://localhost:3500/shippingaddresses/searchshippingaddress/d2a986a0cab3",
+    {
+	"apartment": "Suite 1216"
+    }
+  ]
+
+* Test to search a shipping_address using city. RESULT: SUCCESS [Check city only]
+  [
+    "url": "http://localhost:3500/shippingaddresses/searchshippingaddress/d2a986a0cab3",
+    {
+      "city": "New York"
+    }
+
+  ]
+
+* Test to search a shipping_address using administrative_division. RESULT: SUCCESS [Check administrative_division only]
+  [
+    "url": "http://localhost:3500/shippingaddresses/searchshippingaddress/d2a986a0cab3",
+    {
+      "administrative_division": "New York"
+    }
+
+  ]
+
+* Test to search a shipping_address using country. RESULT: SUCCESS [Check country only]
+  [
+    "url": "http://localhost:3500/shippingaddresses/searchshippingaddress/d2a986a0cab3",
+    {
+      "country": "United States"
+    }
+
+  ]
+
+* Test to search a shipping_address using postal_address. RESULT: SUCCESS [Check postal_address only]
+  [
+    "url": "http://localhost:3500/shippingaddresses/searchshippingaddress/d2a986a0cab3",
+    {
+      "postal_address": "94106"
+    }
+
+  ]
+
+* Test to search a shipping_address using multiple fields. RESULT: SUCCESS [Check only the fields that were used]
+  [
+    "url": "http://localhost:3500/shippingaddresses/searchshippingaddress/d2a986a0cab3",
+    {
+      "apartment": "Suite 1216",
+      "city": "New York",
+      "administrative_division": "New York"
+
+    }
+  ]
+
+
+

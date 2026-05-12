@@ -1,0 +1,45 @@
+updateProductItem Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+  * Test to check the response to an empty object. RESULT: ZodError
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      { }
+    ]
+
+  * Test to check the response to a product_item that doesn't exist. RESULT: ResourceNotFoundError
+    [
+        "url": "http://localhost:3500/productitems/updateproductitem",
+        {
+          "product_id": "il19g7cce84l",
+          "sku": "x6mgf6qdan",
+          "lower_size_number": 36
+        } 
+    ]
+   
+  * Test to check the response to an update that will result in a duplicate product_item. RESULT: ResourceNotFoundError
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      {
+          "product_id": "il19g7cce84l",
+          "sku": "x6mgf6qdam",
+          "lower_size_number": 36        
+      } 
+    ]
+       
+   * Test to check the response to a missing product_id value. RESULT: ZodError
+     [
+	{
+	  "sku": "x6mgf6qdam",
+          "lower_size_number": 36
+        }
+     ]
+  
+   * Test to update lower_size_number. RESULT: SUCCESS [Check lower_size_number only]
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      {
+          "product_id": "il19g7cce84l",
+          "sku": "x6mgf6qdam",
+          "lower_size_number": 36
+      }
+    ]

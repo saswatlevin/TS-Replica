@@ -1,0 +1,52 @@
+deleteProductItem Tests for The Craftsman Shirt in Bark Plaid Cotton
+
+  * Test to check the response to an empty request body. RESULT: ZodError
+    [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      { }
+    ]
+  
+  * Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "a6bb1d23bd29",
+        "sku": "12dcc9cd7b" 
+      }
+  ]
+
+  * Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "a6bb1d23bd29",
+        "sku": "12dcc9cd7b" 
+      }
+  ]
+
+  * Test to check the response to a product_item that does not exist. RESULT: ResourceNotFoundError
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "a6bb1d23bd28",
+        "sku": "12dcc9cd7c" 
+      }
+  ]
+
+  * Test to delete a product_item. RESULT: SUCCESS
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "a6bb1d23bd28",
+        "sku": "12dcc9cd7c" 
+      }
+  ]
+
+  * Test to check whether the minimum limit of 1 product_item per Product is obeyed RESULT: IllegalUpdateError
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "a6bb1d23bd28",
+        "sku": "12dcc9cd7c" 
+      }
+  ]

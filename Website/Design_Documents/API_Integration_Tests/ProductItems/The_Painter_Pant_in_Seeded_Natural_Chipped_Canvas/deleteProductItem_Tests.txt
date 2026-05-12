@@ -1,0 +1,43 @@
+deleteProductItem Tests for The Painter Pant in Seeded Natural Chipped Canvas
+
+  * Test to check the response to an empty request body. RESULT: ZodError
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      { }
+  ]
+
+  * Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "ojvs7hjfihgd",
+        "sku": "cdwrbvcp2r" 
+      }
+  ]
+
+  * Test to check the response to a product_item that does not exist. RESULT: ResourceNotFoundError
+  [
+     "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "ojvs7hjfihgc",
+        "sku": "cdwrbvcp2s" 
+      }     
+  ]
+
+  * Test to delete a product_item. RESULT: SUCCESS
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "ojvs7hjfihgc",
+        "sku": "cdwrbvcp2r" 
+      }
+  ]
+
+  * Test to check whether the minimum limit of 1 product_item per Product is obeyed. RESULT: IllegalUpdateError
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "ojvs7hjfihgc",
+        "sku": "bzpr1txn5j" 
+      }
+  ]

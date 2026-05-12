@@ -1,0 +1,64 @@
+createProductItem Test for The Craftsman Shirt in Bark Plaid Cotton
+
+  * Test to check the response to an empty Request Body. RESULT: ZodError
+    [
+      "url": "http://localhost:3500/productitems/createproductitem",
+      { }
+    ]
+  
+  * Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+    [
+        "url": "http://localhost:3500/productitems/createproductitem",
+        {
+          "product_id": "a6bb1d23bd29",
+          "upper_size_letter": "L",
+          "upper_size_number": 40,
+          "total_stock": 250,
+          "quantity_sold": 80,
+          "quantity_returned": 0,
+          "current_stock": 170
+
+        }
+    ]
+  
+   * Test to check the response to a duplicate product_item. RESULT: DuplicateDocumentError
+     [
+        "url": "http://localhost:3500/productitems/createproductitem",
+        {
+           "product_id": "a6bb1d23bd28",
+           "upper_size_letter": "XL",
+           "upper_size_number": 46,
+           "total_stock": 100,
+           "quantity_sold": 80,
+           "quantity_returned": 0,
+           "current_stock": 20
+        }
+     ]
+   
+   * Test to check the response to a missing total_stock field. RESULT: ZodError
+     [
+        "url": "http://localhost:3500/productitems/createproductitem",
+        {
+           "product_id": "a6bb1d23bd28",
+           "upper_size_letter": "XL",
+           "upper_size_number": 46,
+           "quantity_sold": 80,
+           "quantity_returned": 0,
+           "current_stock": 20
+        }
+     ]
+    
+   * Test to create a product_item. RESULT: SUCCESS
+     [
+         "url": "http://localhost:3500/productitems/createproductitem",
+         {
+            "product_id": "a6bb1d23bd28",
+            "upper_size_letter": "L",
+            "upper_size_number": 40,
+            "total_stock": 250,
+            "quantity_sold": 80,
+            "quantity_returned": 0,
+            "current_stock": 170
+
+        }
+     ]

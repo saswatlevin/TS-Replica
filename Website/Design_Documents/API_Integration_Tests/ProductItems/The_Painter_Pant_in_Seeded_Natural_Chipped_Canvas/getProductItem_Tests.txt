@@ -1,0 +1,24 @@
+getProductItem Tests for The Painter Pant in Seeded Natural Chipped Canvas
+  
+* Test to check the response to an empty object. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/getproductitem",
+    { }
+  ]
+  
+* Test to check the response to a missing product_id. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/getproductitem",
+    {
+      "product_id": "ojvs7hjfihgc"
+    }
+  ]
+
+* Test to search for a Product. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/products/getproductitem",
+    {
+       "product_id": "ojvs7hjfihgc",
+       "sku": "cdwrbvcp2r"
+    }
+  ]

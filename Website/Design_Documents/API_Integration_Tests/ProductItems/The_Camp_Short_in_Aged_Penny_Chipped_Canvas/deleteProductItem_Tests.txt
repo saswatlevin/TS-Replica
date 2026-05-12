@@ -1,0 +1,43 @@
+deleteProductItem Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+  * Test to check the response to an empty request body. RESULT: ZodError
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      { }
+  ]
+
+  * Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "il19g7cce84m",
+        "sku": "x6mgf6qdam"
+      }
+  ]
+
+  * Test to check the response to a product_item that does not exist. RESULT: ResourceNotFoundError
+  [
+     "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "il19g7cce84l",
+        "sku": "x6mgf6qdan"
+      }     
+  ]
+
+  * Test to delete a product_item. RESULT: SUCCESS
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "il19g7cce84l",
+        "sku": "x6mgf6qdam"
+      }
+  ]
+
+  * Test to check whether the minimum limit of 1 product_item per Product is obeyed. RESULT: IllegalUpdateError
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "il19g7cce84l",
+        "sku": "73kfxcbs8n"
+      }
+  ]

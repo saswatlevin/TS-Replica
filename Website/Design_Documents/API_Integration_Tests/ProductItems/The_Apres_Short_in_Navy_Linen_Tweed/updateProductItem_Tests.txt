@@ -1,0 +1,45 @@
+updateProductItem Tests for The Apres Short in Navy Linen Tweed
+
+  * Test to check the response to an empty object. RESULT: ZodError
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      { }
+    ]
+
+  * Test to check the response to a product_item that doesn't exist. RESULT: ResourceNotFoundError
+    [
+        "url": "http://localhost:3500/productitems/updateproductitem",
+        {
+          "product_id": "u9yl6odhiget",
+          "sku": "ygiy8ngzbm",
+          "lower_size_letter": "XXL"
+        } 
+    ]
+   
+  * Test to check the response to an update that will result in a duplicate product_item. RESULT: ResourceNotFoundError
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      {
+          "product_id": "dzh5txxega4b",
+          "sku": "9bkgezadt6",
+          "lower_size_letter": "XXL"      
+      } 
+    ]
+       
+   * Test to check the response to a missing product_id value. RESULT: ZodError
+     [
+	{
+	  "sku": "9bkgezadt6",
+          "lower_size_letter": "XXL"
+        }
+     ]
+  
+   * Test to update lower_size_letter. RESULT: SUCCESS [Check lower_size_number only]
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      {
+         "product_id": "dzh5txxega4b",
+         "sku": "9bkgezadt6",
+         "lower_size_letter": "XL"
+      }
+    ]

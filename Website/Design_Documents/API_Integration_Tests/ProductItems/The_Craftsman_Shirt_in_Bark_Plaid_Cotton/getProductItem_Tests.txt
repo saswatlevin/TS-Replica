@@ -1,0 +1,24 @@
+getProductItem Tests for The Craftsman Shirt in Bark Plaid Cotton
+  
+* Test to check the response to an empty object. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/getproductitem",
+    { }
+  ]
+  
+* Test to check the response to a missing product_id. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/getproductitem",
+    {
+      "product_id": "a6bb1d23bd28"
+    }
+  ]
+
+* Test to search for a Product. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/products/getproductitem",
+    {
+       "product_id": "a6bb1d23bd28",
+       "sku": "12dcc9cd7b"
+    }
+  ]

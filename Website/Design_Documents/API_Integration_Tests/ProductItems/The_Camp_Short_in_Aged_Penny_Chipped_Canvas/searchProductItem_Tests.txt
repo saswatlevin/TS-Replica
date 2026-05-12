@@ -1,0 +1,23 @@
+searchProductItem Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/productitems/searchproductitem",
+    { }
+  ]
+
+* Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/productitems/searchproductitem",
+    { 
+       "product_id": "il19g7cce84m"
+    }
+  ]
+
+* Test to search for a Product. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/productitems/searchproductitem",
+    { 
+       "product_id": "il19g7cce84l"
+    }
+  ]

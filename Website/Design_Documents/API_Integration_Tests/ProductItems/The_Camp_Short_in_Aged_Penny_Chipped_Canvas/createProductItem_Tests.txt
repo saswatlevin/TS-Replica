@@ -1,0 +1,54 @@
+createProductItem Test for The Camp Short in Aged Penny Chipped Canvas
+
+  * Test to check the response to an empty Request Body. RESULT: ZodError
+    [
+      "url": "http://localhost:3500/productitems/createproductitem",
+      { }
+    ]
+  
+  * Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+    [
+        "url": "http://localhost:3500/productitems/createproductitem",
+        {
+          "product_id": "il19g7cce84m",
+          "lower_size_number": 36,
+          "total_stock": 300,
+          "quantity_sold": 50,
+          "current_stock": 250       
+        }
+    ]
+  
+   * Test to check the response to a duplicate product_item. RESULT: DuplicateSubDocumentError
+     [
+        "url": "http://localhost:3500/productitems/createproductitem",
+        {
+          "product_id": "il19g7cce84l",
+          "lower_size_number": 36,
+          "total_stock": 300,
+          "quantity_sold": 50,
+          "current_stock": 250      
+        }
+     ]
+   
+   * Test to check the response to a missing total_stock field. RESULT: ZodError
+     [
+        "url": "http://localhost:3500/productitems/createproductitem",
+        {
+          "product_id": "il19g7cce84l",
+          "lower_size_number": 36,
+          "quantity_sold": 50,
+          "current_stock": 250        
+        }
+     ]
+    
+   * Test to create a product_item. RESULT: SUCCESS
+     [
+         "url": "http://localhost:3500/productitems/createproductitem",
+         {
+            "product_id": "il19g7cce84l",
+            "lower_size_number": 36,
+            "total_stock": 300,
+            "quantity_sold": 50,
+            "current_stock": 250         
+         }
+     ]

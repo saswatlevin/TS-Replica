@@ -1,0 +1,54 @@
+updateProductItem Tests for The Craftsman Shirt in Bark Plaid Cotton
+
+  * Test to check the response to an empty object. RESULT: ZodError
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      { }
+    ]
+
+  * Test to check the response to a missing product_item. RESULT: ResourceNotFoundError
+    [
+        "url": "http://localhost:3500/productitems/updateproductitem",
+        {
+          "product_id": "a6bb1d23bd28",
+          "sku": "12dcc9cd7c",
+          "upper_size_letter": "XL"
+          
+        } 
+    ]
+   
+  * Test to check the response to an update that will result in a duplicate product_item. RESULT: ResourceNotFoundError
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      {
+         "product_id": "a6bb1d23bd28",
+         "sku": "12dcc9cd7b",
+         "upper_size_letter": "XL"
+      }
+    ]
+      
+   * Test to check the response to a missing product_id value. RESULT: ZodError
+     [
+        "sku": "12dcc9cd7b",
+        "upper_size_letter": "L"
+     ]
+  
+   * Test to update upper_size_letter. RESULT: SUCCESS [Check upper_size_letter only]
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      {
+         "product_id": "a6bb1d23bd28",
+         "sku": "12dcc9cd7b",
+         "upper_size_letter": "XL"
+      }
+    ]
+
+   * Test to update upper_size_number. RESULT: SUCCESS [Check upper_size_number only]
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      {
+         "product_id": "a6bb1d23bd28",
+         "sku": "12dcc9cd7b",
+         "upper_size_number": 46
+      }
+    ]

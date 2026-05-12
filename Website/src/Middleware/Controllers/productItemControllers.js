@@ -94,17 +94,16 @@ const updateProductItem = asyncErrorHandler(async(req, res, next) => {
         throw resource_not_found_error;
     }
 
-    console.log("Checking if the product item which we need to update, exists");
+    console.log("Checking if the product item which we need to update exists");
     if (await checkProductItemExists(req) === false) {
         const resource_not_found_error = new ResourceNotFoundError(`Could not update the product item with sku ${sku} for the Product with product_id ${product_id} since the product item does not exist`);
         throw resource_not_found_error;
     }
 
-    console.log("Checking if the product item value which we need to update already exists");
-    if (await checkProductItemValueExists(req) === true) {
-        const redundant_update_error = new RedundantUpdateError(`Could not update the product_item value for the product_item with sku ${sku} for the Product with product_id ${product_id} since that value already exists`);
-
-        throw redundant_update_error;
+    console.log("Checking if the product_item values to be updated will result in the said product_item becoming a duplicate.");
+    if (await checkDuplicateProductItemExists(req) === true) {
+        const duplicate_sub_document_error = new DuplicateSubDocumentError(`Could not update the product_item of Product with product_id ${product_id} as that will result in a duplicate product_item`);
+        throw duplicate_sub_document_error;
     }
 
     const filter = {product_id: product_id, "product_items.sku": sku};

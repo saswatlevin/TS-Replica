@@ -462,7 +462,7 @@ const calculateAndUpdateCartItemTotals = async(req) => {
 
    // Get all the CartItem sub-documents from the CartItems array of the respective 
    // user and add sum the respective fields and then update them in the respective user document.
-   console.log("In calculateCartItemTotals");
+   console.log("In calculateAndUpdateCartItemTotals");
 
    try {
 

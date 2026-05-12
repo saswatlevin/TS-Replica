@@ -1,0 +1,49 @@
+createProductImage Tests
+
+* Test to check the response to an empty object. RESULT: ZodError
+[
+  "url": "http://www.localhost:3500/productimages/createproductimage",
+  { }
+]
+
+{
+  "product_id": "a6bb1d23bd28",
+  "image_uri": "C:\Users\saswa\OneDrive\Desktop\Taylor_Stitch\Website\ActualData\Long-Sleeved Shirts\The_Craftsman_Shirt\The_Craftsman_Shirt_in_Bark_Plaid_Linen\instock_m_q225_craftsman_bark_portrait_002.jpg"
+}
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+[
+  "url": "http://www.localhost:3500/productimages/createproductimage",
+  {
+    "product_id": "a6bb1d23bd29",
+    "image_uri": "C:\Users\saswa\OneDrive\Desktop\Taylor_Stitch\Website\ActualData\Long-Sleeved Shirts\The_Craftsman_Shirt\The_Craftsman_Shirt_in_Bark_Plaid_Linen\instock_m_q225_craftsman_bark_portrait_002.jpg"
+  }
+]
+
+* Test to check the response to a duplicate product_image. RESULT: DuplicateSubDocumentError
+[
+  "url": "http://www.localhost:3500/productimages/createproductimage",
+  {
+    "product_id": "a6bb1d23bd28",
+    "image_uri":  "C:\Users\saswa\OneDrive\Desktop\Taylor_Stitch\Website\ActualData\Long-Sleeved Shirts\The_Craftsman_Shirt\The_Craftsman_Shirt_in_Bark_Plaid_Linen\instock_m_q225_craftsman_bark_portrait_002.jpg"
+ 
+  }
+]
+
+* Test to check the response to a missing image_uri field. RESULT: ZodError
+[
+  "url": "http://www.localhost:3500/productimages/createproductimage",
+  {
+    "product_id": "a6bb1d23bd28" 
+  }
+]
+
+* Test to create a product_image. RESULT: SUCCESS
+[
+  "url": "http://www.localhost:3500/productimages/createproductimage",
+  {
+    "product_id": "a6bb1d23bd28",
+    "image_uri":  "C:\Users\saswa\OneDrive\Desktop\Taylor_Stitch\Website\ActualData\Long-Sleeved Shirts\The_Craftsman_Shirt\The_Craftsman_Shirt_in_Bark_Plaid_Linen\instock_m_q225_craftsman_bark_portrait_003.jpg"
+
+  } 
+]

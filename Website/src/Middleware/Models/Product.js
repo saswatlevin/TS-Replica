@@ -60,6 +60,11 @@ const productSchema = new mongoose.Schema({
         required: [true, "product_garment_weight is a required field."]
     },
 
+    product_material: {
+        type: String,
+        required: [true, "product_material is a string and is a required field."]
+    },
+
     product_supply_type: {
         type: ProductSupplyType,
         required: [true, "product_supply_type is a required field."]
@@ -68,11 +73,6 @@ const productSchema = new mongoose.Schema({
     product_specifications: {
         type: String,
         required: [true, "product_specifications is a string and is a required field."]
-    },
-    
-    product_material: {
-        type: String,
-        required: [true, "product_material is a string and is a required field."]
     },
 
     product_images: {

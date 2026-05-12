@@ -1,0 +1,23 @@
+getReviewById Tests
+
+* Test to check the response to an empty request. RESULT: ZodError.
+  [
+    "url": "http://localhost:3500/reviews/getreviewbyid/d2a986a0cab3",
+    { }
+  ]
+
+* Test to find a review that exists. RESULT: SUCCESS.
+  [
+    "url": "http://localhost:3500/reviews/getreviewbyid/d2a986a0cab3",
+    {
+      "review_id": "693d3df631b3" 
+    }
+  ]
+
+* Test to find a review that does not exist. RESULT: SUCCESS.
+  [
+    "url": "http://localhost:3500/reviews/getreviewbyid/d2a986a0cab3",
+    {
+      "review_id": "693d3df631b4" 
+    }
+  ]

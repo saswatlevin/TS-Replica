@@ -1,0 +1,58 @@
+deleteReview Tests
+
+* Test to check the response to an empty object. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
+    { }
+  ]
+
+* Test to check the response to a user that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15d",
+    { 
+      "review_id": "0181f7954b68",
+      "product_id": "hjiouyqw0lmt"
+    }
+  ]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
+    { 
+      "review_id": "0181f7954b68",
+      "product_id": "hjiouyqw0lms"
+    }
+  ]
+
+* Test to check the response to a review that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
+    { 
+      "review_id": "0181f7954b69",
+      "product_id": "hjiouyqw0lmt"
+    }
+  ]
+
+* Test to check the response to missing review_id field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
+    { 
+      "product_id": "hjiouyqw0lmt"
+    }
+  ]
+
+* Test to check the response to missing review_id field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
+    { 
+      "product_id": "hjiouyqw0lmt"
+    }
+  ]
+
+* Test to delete a review. RESULT: SUCCESS
+[
+    "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
+    { 
+      "product_id": "hjiouyqw0lmt"
+    }
+]

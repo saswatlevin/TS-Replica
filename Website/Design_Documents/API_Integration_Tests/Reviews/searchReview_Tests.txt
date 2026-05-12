@@ -1,0 +1,37 @@
+searchReview Tests
+
+* Test to check the response to an empty request. RESULT: ZodError.
+  [
+     "url": "http://localhost:3500/reviews/searchreview/d2a986a0cab3", 
+     { }
+  ]
+
+* Test to check the response to a user that does not exist. RESULT: ResourceNotFoundError
+  [
+     "url": "http://localhost:3500/reviews/searchreview/d2a986a0cab4",
+     {
+        "product_id": "a6bb1d23bd28",
+        "review_comment": "GOOD fabric and equally great fit. Loved the feels.",
+        "review_rating": 5
+     }
+  ]
+
+* Test to search foe a review. RESULT: SUCCESS [Check review_comment and review_rating]
+  [
+     "url": "http://localhost:3500/reviews/searchreview/d2a986a0cab3",
+     {
+        "product_id": "a6bb1d23bd28",
+        "review_comment": "GOOD fabric and equally great fit. Loved the feels.",
+        "review_rating": 5
+     }
+  ]
+
+* Test to search for a review that does not exist. RESULT: SUCCESS [Check review_comment and review_rating]
+  [
+     "url": "http://localhost:3500/reviews/searchreview/d2a986a0cab3",
+     {
+        "product_id": "a6bb1d23bd29",
+        "review_comment": "GOODCCC fabric and equally great fit. Loved the feels.",
+        "review_rating": 4
+     }
+  ]

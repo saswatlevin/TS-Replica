@@ -1,0 +1,61 @@
+updateReview Tests
+
+* Test to check the response to an empty request. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/reviews/updatereview/d2a986a0cab3",
+    { }
+  ]
+
+* Test to check the response to a user that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/reviews/updatereview/d2a986a0cab4",
+    {
+      "review_id": "693d3df631b3",
+      "product_id": "a6bb1d23bd28",
+      "review_comment": "GOOD fabric and equally great fit. Loved the feels."
+         
+    }
+  ]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/reviews/updatereview/d2a986a0cab3",
+    {
+      "review_id": "693d3df631b3",
+      "product_id": "a6bb1d23bd29",
+      "review_comment": "GOOD fabric and equally great fit. Loved the feels."
+         
+    }
+  ]
+
+* Test to check the response to missing product_id field. RESULT: ZodError.
+  [
+    "url": "http://localhost:3500/reviews/updatereview/d2a986a0cab3",
+    {
+      "review_id": "693d3df631b3",
+      "review_comment": "GOOD fabric and equally great fit. Loved the feels."
+         
+    }
+  ]
+
+* Test to update a review_comment. RESULT: SUCCESS. [Check review_comment only.]
+  [
+    "url": "http://localhost:3500/reviews/updatereview/d2a986a0cab3",
+    {
+      "review_id": "693d3df631b3",
+      "product_id": "a6bb1d23bd28",
+      "review_comment": "GOOD fabric and equally great fit. Loved the feels."
+         
+    }
+  ]
+
+* Test to update a review_rating. RESULT: SUCCESS. [Check review_rating only.]
+  [
+    "url": "http://localhost:3500/reviews/updatereview/d2a986a0cab3",
+    {
+      "review_id": "693d3df631b3",
+      "product_id": "a6bb1d23bd28",
+      "review_rating": 5
+    }
+  ]
+ 

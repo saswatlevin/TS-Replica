@@ -1,0 +1,69 @@
+createCartItem Tests
+
+* Test to check response to empty object. RESULT: ZodError.
+  ["url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3",
+   { }
+  ]
+
+* Test to check response to a user that does not exist. RESULT: ResourceNotFoundError.
+  ["url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab4",
+   {
+      "product_id": "a6bb1d23bd28",
+      "sku": "4565314a71",
+      "cart_item_name": "The Craftsman Shirt in Bark Plaid Cotton",
+      "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_004.jpg",
+      "cart_item_quantity": 1,
+      "item_total": 300,
+      "discount_code": "15PERCENT",
+      "discount_percentage": 15
+   }
+  ]
+
+* Test to check response to a Product that does not exist. RESULT: ResourceNotFoundError.
+  [
+    "url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3",
+    {
+       "product_id": "a6bb1d23bd29",
+       "sku": "4565314a71",
+       "cart_item_name": "Non-Existing Product",
+      "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_004.jpg",
+      "cart_item_quantity": 1,
+      "item_total": 100,
+      "discount_code": "10PERCENT",
+      "discount_percentage": 10
+    }
+  ]
+  
+* Test to check response to a CartItem that already exists. RESULT: DuplicateSubDocumentError.
+  [
+    "url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3",
+    {
+      "product_id": "a6bb1d23bd28",
+      "sku": "4565314a71",
+      "cart_item_name": "The Craftsman Shirt in Bark Plaid Cotton",
+      "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_004.jpg",
+      "cart_item_quantity": 1,
+      "item_total": 300,
+      "discount_code": "15PERCENT",
+      "discount_percentage": 15
+
+    }
+  ]
+
+* Test to create a CartItem. RESULT: SUCCESS 
+  [
+    "url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3",
+    {
+      "product_id": "b0e6v4zl9aih",
+      "sku": "vkr7eqvzsh",
+      "cart_item_name": "The Democratic Foundation Pant in Organic Navy",
+      "cart_item_image_uri": "C:\Users\saswa\OneDrive\Desktop\Taylor_Stitch\Website\ActualData\Chinos\The_Democratic_Foundation_Pant_in_Organic_Navy\7310894563405_democratic-foundation-pant-in-organic-navy-twill-2501_01_tsio.jpg",
+      "cart_item_quantity": 1,
+      "item_total": 125,
+      "discount_code": "None",
+      "discount_percentage": 0
+
+    }
+  ] 
+
+

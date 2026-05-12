@@ -1,0 +1,46 @@
+deleteCartItem Tests
+
+* Test to check the response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/cartitems/deletecartitem/d2a986a0cab3",
+    { }
+  ]
+
+* Test to check response to a User that does not exist. RESULT: RequestNotFoundError
+  [
+    "url": "http://localhost:3500/cartitems/deletecartitem/d2a986a0cab4",
+    {
+      "cart_item_id": "377a0b56f1be",
+      "product_id": "a6bb1d23bd28",
+      "sku": "4565314a71"
+    }
+  ] 
+
+* Test to check response to a CartItem that does not exist. RESULT: RequestNotFoundError
+  [
+    "url": "http://localhost:3500/cartitems/deletecartitem/d2a986a0cab3",
+    {
+      "cart_item_id": "377a0b56f1bf",
+      "product_id": "a6bb1d23bd29",
+      "sku": "4565314a72"
+    }
+  ]
+
+* Test to check response to missing sku field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/cartitems/deletecartitem/d2a986a0cab3",
+    {
+       "cart_item_id": "377a0b56f1be",
+       "product_id": "a6bb1d23bd28"
+    }
+  ]
+
+* Test to delete a CartItem. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/cartitems/deletecartitem/d2a986a0cab3",
+    {
+       "cart_item_id": "377a0b56f1be",
+       "product_id": "a6bb1d23bd28",
+       "sku": "4565314a71"
+    }
+  ]

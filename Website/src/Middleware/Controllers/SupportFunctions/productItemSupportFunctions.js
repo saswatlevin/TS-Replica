@@ -65,7 +65,7 @@ const checkDuplicateProductItemExists = async(req) => {
        }
 
        else {
-        throw new Error("Invalid request body in checkDuplicateProductItemExists.");
+        console.log("No duplicate product_item risk.");
        }
 
         //console.log("product_item_query in checkDuplicateProductItemExists ", product_item_query);
@@ -185,10 +185,97 @@ const checkMinimumProductItemQuantity = async(req) => {
     }
 }
 
+const getProductItem = async(req) => {
+    console.log("In getProductItem (HELPER FUNCTION)");
+
+    try {
+        const product_id = req.body.product_id;
+        const sku = req.product.sku;
+
+        const query = {product_id: product_id, sku: sku}; 
+
+        const result = await Product.findOne(query).lean();
+
+        return result;
+    }
+
+    catch(error) {
+        console.log("Error in getProductItem ", error);
+    }
+}
+
+const updateProductItemStock = async(req, res) => {
+    console.log("In updateProductItemStock (HELPER FUNCTION)");
+
+    try {
+        
+        const product_item = await getProductItem();
+    
+        const product_id = req.body.product_id;
+    
+        const sku = req.body.sku;
+
+        const filter = {product_id: product_id, sku: sku};
+        console.log("filter ", filter);
+    
+        var new_quantity_sold = 0;
+        var new_current_stock = 0;
+        var new_quantity_returned = 0;
+
+        var update_query = {};
+
+        if (req.body.cart_item_quantity !== undefined) {
+            console.log("Updating quantity_sold");
+      
+            new_quantity_sold = req.body.cart_item_quantity + product_item.new_quantity_sold;
+      
+            console.log("new_quantity_sold ", new_quantity_sold);
+      
+            new_current_stock = product_item.total_stock - new_quantity_sold + product_item.quantity_returned;
+      
+            console.log("new_current_stock ", new_current_stock);
+
+            update_query = {"product_items.current_stock": new_current_stock, "product_items.quantity_sold": new_quantity_sold};
+
+            console.log("update_query ", update_query);
+
+        }
+
+        if (req.body.quantity_returned !== undefined) {
+            console.log("Updating quantity_returned");
+
+            new_quantity_returned = product_item.quantity_returned + req.body.quantity_returned;
+
+            console.log("new_quantity_returned ", new_quantity_returned);
+
+            new_current_stock = product_item.total_stock - product_item.quantity_sold + product_item.quantity_returned;
+
+            console.log("new_current_stock ", new_current_stock);
+
+            update_query = {"product_items.current_stock": new_current_stock, "product_items.quantity_returned": new_quantity_returned};
+
+            console.log("update_query ", update_query);
+        }
+
+        const stock_update_result = await Product.findOneAndUpdate(filter, query, {new: true}, {runValidators: true});
+
+        console.log("result in updateProductItemStock ", stock_update_result);
+
+    }
+
+    catch (error) {
+        console.log("Error in updateProductItemStock ", error);
+    }
+
+    
+}
+
 module.exports = { 
     checkProductItemExists, 
     checkDuplicateProductItemExists,
     checkProductItemValueExists,
     checkProductItemAvailable,
-    checkMinimumProductItemQuantity
+    checkMinimumProductItemQuantity,
+    getProductItem,
+    updateProductItemStock
 };

@@ -17,7 +17,7 @@ const { checkDuplicateProductImageExists } = require('./SupportFunctions/product
 
 const { checkProductImageExists } = require('./SupportFunctions/productImageSupportFunctions');
 
-const { updateCartItemImageURI } = require('./cartItemControllers');
+const { updateCartItemImageURI } = require('./SupportFunctions/cartItemSupportFunctions');
 
 const { checkIsEmptyObject } = require('./SupportFunctions/shippingAddressSupportFunctions');
 

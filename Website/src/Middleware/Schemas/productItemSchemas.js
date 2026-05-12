@@ -38,16 +38,6 @@ const baseSchema = z.object({
     current_stock: productItemValidators.zodIsCurrentStock
 });
 
-const baseUpdateSchema = z.object({
-    total_stock: productItemValidators.zodIsTotalStock.optional(),
-
-    quantity_sold: productItemValidators.zodIsQuantitySold.optional(),
-
-    quantity_returned: productItemValidators.zodIsQuantityReturned.optional(),
-
-    current_stock: productItemValidators.zodIsCurrentStock.optional()
-});
-
 const shirtRequestSchema = z.object({
 
     upper_size_letter: productItemValidators.zodIsUpperSizeLetter,
@@ -125,9 +115,9 @@ const shirtUpdateRequestSchema = z.object({
 
     upper_size_letter: productItemValidators.zodIsUpperSizeLetter.optional(),
     
-    upper_size_number: productItemValidators.zodIsUpperSizeNumber.optional(),
+    upper_size_number: productItemValidators.zodIsUpperSizeNumber.optional()
     
-}).merge(baseUpdateSchema).strict();
+}).strict();
 
 // Used for jeans and chinos too.
 const pantUpdateRequestSchemaWithNumbers = z.object({  
@@ -138,7 +128,7 @@ const pantUpdateRequestSchemaWithNumbers = z.object({
     lower_size_number: productItemValidators.zodIsLowerSizeNumber.optional(),
 
     inseam_length: productItemValidators.zodIsInseamLength.optional()
-}).merge(baseUpdateSchema).strict();
+}).strict();
 
 const pantUpdateRequestSchemaWithLetters = z.object({
     product_id: productValidators.zodIsProductId,
@@ -148,7 +138,7 @@ const pantUpdateRequestSchemaWithLetters = z.object({
     lower_size_letter: productItemValidators.zodIsLowerSizeLetter.optional(),
 
     inseam_length: productItemValidators.zodIsInseamLength.optional()
-}).merge(baseUpdateSchema).strict();
+}).strict();
 
 const shortUpdateRequestSchemaWithLetters = z.object({
     product_id: productValidators.zodIsProductId,
@@ -156,7 +146,7 @@ const shortUpdateRequestSchemaWithLetters = z.object({
     sku: productItemValidators.zodIsSKU,
 
     lower_size_letter: productItemValidators.zodIsLowerSizeLetter.optional()
-}).merge(baseUpdateSchema).strict();
+}).strict();
 
 const shortUpdateRequestSchemaWithNumbers = z.object({
     product_id: productValidators.zodIsProductId,
@@ -164,11 +154,10 @@ const shortUpdateRequestSchemaWithNumbers = z.object({
     sku: productItemValidators.zodIsSKU,
 
     lower_size_number: productItemValidators.zodIsLowerSizeNumber.optional()
-}).merge(baseUpdateSchema).strict();
+}).strict();
 /////////////////////////////////////////////////////////////////////////
 const productItemDeleteRequestSchema = z.object({
     product_id: productValidators.zodIsProductId,
-
     sku: productItemValidators.zodIsSKU
 }).strict();
 /////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,91 @@
+registerUser Tests
+
+* Test to check response to empty object. RESULT: ZodError.
+  ["url": "http://localhost:3500/users/registeruser",
+   { }
+  ]
+
+
+* Test to check response to duplicate email. RESULT: DuplicateDocumentError.
+  [
+	"url": "http://localhost:3500/users/registeruser",
+  {
+  	"email": "abc001@server.com",
+  	"password": "fghiuglv#45bv",
+  	"phone_number": "917670848604",
+  	"first_name": "ABC2",
+  	"last_name": "CBA2",
+  	"user_role": "admin",
+  	"upper_size_number": 40,
+  	"upper_size_letter": "L",
+  	"others_size_letter": "L",
+  	"email_comms_type": "One weekly recap",
+  	"sms_comms": false,
+  	"ShippingAddresses": [],
+  	"CartItems": []
+  }
+  ]
+
+* Test to check response to duplicate phone number. RESULT: DuplicateDocumentError.
+[
+	"url": "http://localhost:3500/users/registeruser",
+{
+	"email": "abc004@server.com",
+  	"password": "gfkgkfj@6uio",
+  	"phone_number": "917560847544",
+  	"first_name": "ABC3",
+  	"last_name": "CBA3",
+  	"user_role": "user",
+  	"upper_size_number": 38,
+  	"upper_size_letter": "M",
+  	"others_size_letter": "M",
+  	"email_comms_type": "One weekly recap",
+  	"sms_comms": true,
+  	"ShippingAddresses": [],
+  	"CartItems": []
+
+}
+] 
+
+* Test to check response of request validator using missing first_name field. RESULT: ZodError.
+[
+	"url": "http://localhost:3500/users/registeruser",
+{
+	"email": "dbg001@server.com",
+  	"password": "kasleir@4ru8008",
+  	"phone_number": "918298123456",
+  	"last_name": "GDB1",
+  	"user_role": "admin",
+  	"upper_size_number": 40,
+  	"upper_size_letter": "L",
+  	"others_size_letter": "L",
+  	"email_comms_type": "One weekly recap",
+  	"sms_comms": false,
+  	"ShippingAddresses": [],
+  	"CartItems": []
+
+}
+  
+] 
+
+* Test to create a User. RESULT: SUCCESS
+[
+	"url": "http://localhost:3500/users/registeruser",
+{
+	"email": "els001@server.com",
+  	"password": "sakreil@5ur9119",
+  	"phone_number": "918297161384",
+        "first_name": "ELS1",
+  	"last_name": "SLE1",
+  	"user_role": "user",
+  	"upper_size_number": 40,
+  	"upper_size_letter": "L",
+  	"others_size_letter": "L",
+  	"email_comms_type": "One weekly recap",
+  	"sms_comms": true,
+  	"ShippingAddresses": [],
+  	"CartItems": []
+
+}
+  
+]   

@@ -1,0 +1,26 @@
+getUserById Tests
+
+* Test to check if an empty object is provided. RESULT: ZodError.
+
+[
+  "url": "http://localhost:3500/users/getuserbyid",
+  { }
+]
+
+* Test to search an existing user by id. RESULT: SUCCESS. [Check user object]
+
+[
+  "url": "http://localhost:3500/users/getuserbyid",
+  { 
+    "user_id": "d2a986a0cab3"
+  }
+]
+
+* Test to search a user that doesn't exist by id. RESULT: SUCCESS [Check null ]
+
+[
+  "url": "http://localhost:3500/users/getuserbyid",
+  { 
+    "user_id": "d2a986a0cab4"
+  }
+]

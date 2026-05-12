@@ -1,0 +1,113 @@
+updateUser Tests
+
+* Test to check response to empty object. RESULT: EmptyRequestBodyError.
+  ["url": "http://localhost:3500/users/updateuser/d2a986a0cab3",
+   { }
+  ]
+
+* Test to check response to user not existing. RESULT: ResourceNotFoundError.
+  [
+    "url": "http://localhost:3500/users/updateuser/d2a986a0cab4",
+     {
+       "user_role": "admin"
+     } 
+  ]
+
+* Test to check response to update existing value with the same value. RESULT: RedundantUpdateError.
+  [
+    "url": "http://localhost:3500/users/updateuser/d2a986a0cab3",
+     {
+       "user_role": "user"
+     } 
+  ]
+
+* Test to update the email value. RESULT: SUCCESS [Check email value only]
+[
+   "url": "http://localhost:3500/users/updateuser/d2a986a0cab3", 
+   { 
+      "email": "abc002@gmail.com" 
+   }
+]
+
+* Test to update the phone_number value. RESULT: SUCCESS [Check phone_number value only]
+[
+   "url": "http://localhost:3500/users/updateuser/d2a986a0cab3", 
+   { 
+      "phone_number": "917285642157" 
+   }
+]
+
+* Test to update the first_name value. RESULT: SUCCESS [Check first_name value only]
+[
+   "url": "http://localhost:3500/users/updateuser/d2a986a0cab3", 
+   { 
+      "first_name": "GHI1" 
+   }
+]
+
+* Test to update the last_name value. RESULT: SUCCESS [Check last_name value only]
+[
+   "url": "http://localhost:3500/users/updateuser/d2a986a0cab3", 
+   { 
+      "last_name": "IHG1" 
+   }
+]
+
+* Test to update the user_role value. RESULT: SUCCESS [Check user_role value only]
+[
+   "url": "http://localhost:3500/users/updateuser/d2a986a0cab3", 
+   { 
+      "user_role": "admin" 
+   }
+]
+
+* Test to update the upper_size_number value. RESULT: SUCCESS [Check upper_size_number value only]
+[
+   "url": "http://localhost:3500/users/updateuser/d2a986a0cab3", 
+   { 
+      "upper_size_number": 44
+   }
+]
+
+* Test to update the upper_size_letter value. RESULT: SUCCESS [Check upper_size_letter value only]
+[
+   "url": "http://localhost:3500/users/updateuser/d2a986a0cab3", 
+   { 
+      "upper_size_letter": "L"
+   }
+]
+
+* Test to update the lower_size_letter value. RESULT: SUCCESS [Check lower_size_letter value only]
+[
+   "url": "http://localhost:3500/users/updateuser/d2a986a0cab3", 
+   { 
+      "lower_size_letter": "L"
+   }
+]
+
+* Test to update the email_comms_type value. RESULT: SUCCESS [Check email_comms_type value only]
+[
+   "url": "http://localhost:3500/users/updateuser/d2a986a0cab3", 
+   { 
+      "email_comms_type": "Stock notifications only"
+   }
+]
+
+* Test to update the sms_comms value. RESULT: SUCCESS [Check sms_comms value only]
+[
+   "url": "http://localhost:3500/users/updateuser/d2a986a0cab3", 
+   { 
+      "sms_comms": false
+   }
+]
+
+* Test to update multiple values. RESULT: SUCCESS [Check all values to be updated]
+[
+   "url": "http://localhost:3500/users/updateuser/d2a986a0cab3", 
+   { 
+      	"user_role": "user",
+	"sms_comms": true,
+        "email_comms_type": "Never / Unsubscribe"
+
+   }
+]

@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const connectToDB = require('./Middleware/connectToDB');
-const responseValidator = require('./Middleware/Validators/responseValidator');
-const globalErrorHandler = require('./Middleware/ErrorHandlers/globalErrorHandler');
+const connectToDB = require('./connectToDB');
+const responseValidator = require('./Validators/responseValidator');
+const globalErrorHandler = require('./ErrorHandlers/globalErrorHandler');
 require('dotenv').config();
 
 
@@ -18,17 +18,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(responseValidator);
 
 // Routes
-app.use('/', require('./Middleware/Routes/defaultRoute'));
-app.use('/users', require('./Middleware/Routes/userRoutes'));
-app.use('/shippingaddresses', require('./Middleware/Routes/shippingAddressRoutes'));
-app.use('/products', require('./Middleware/Routes/productRoutes'));
-app.use('/productimages', require('./Middleware/Routes/productImageRoutes'));
-app.use('/productitems', require('./Middleware/Routes/productItemRoutes'));
-app.use('/cartitems', require('./Middleware/Routes/cartItemRoutes'));
-app.use('/reviews', require('./Middleware/Routes/reviewRoutes'));
+app.use('/', require('./Routes/defaultRoute'));
+app.use('/users', require('./Routes/userRoutes'));
+app.use('/shippingaddresses', require('./Routes/shippingAddressRoutes'));
+app.use('/products', require('./Routes/productRoutes'));
+app.use('/productimages', require('./Routes/productImageRoutes'));
+app.use('/productitems', require('./Routes/productItemRoutes'));
+app.use('/cartitems', require('./Routes/cartItemRoutes'));
+app.use('/reviews', require('./Routes/reviewRoutes'));
 
 // Route to handle unknown URLs
-app.use('/{*any}', require('./Middleware/Routes/urlNotFoundRoute'));
+app.use('/{*any}', require('./Routes/urlNotFoundRoute'));
 
 // Error handler to handle operational errors in middleware 
 app.use(globalErrorHandler);

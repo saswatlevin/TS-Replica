@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../../Models/User');
+const { singleUserCartItemTotalsUpdatePipeline } = require('../../AggregationPipelines/cartItemAggregationPipeline');
+const { multiUserCartItemTotalsUpdatePipeline } = require('../../AggregationPipelines/cartItemAggregationPipeline');
 
 const checkCartItemExists = async(req) => {
     console.log("In checkCartItemExists");
@@ -288,64 +290,42 @@ const calculateAndUpdateCartItemTotals = async(req) => {
 
    // Get all the CartItem sub-documents from the CartItems array of the respective 
    // user and add sum the respective fields and then update them in the respective user document.
-   console.log("In calculateAndUpdateCartItemTotals");
+   console.log("In calculateAndUpdateCartItemTotals (HELPER FUNCTION)");
 
    try {
 
-        const user_id = req.params.user_id;
+        const user_id = req.params?.user_id;
         console.log("user_id ", user_id);
 
-        const user_id_query = {user_id: user_id};
-        console.log("user_id_query ", user_id_query);
-
-        const user = await User.findOne(user_id_query).lean();
-
-        const cart_items = user.CartItems;
-
-        const cart_item_length = cart_items.length;
-
-        var total_item_total = 0;
-   
-        var total_discount_amount = 0;
-   
-        var total_discounted_total = 0;
-
-        var total_discount_percentage = 0;
-
-        var total_payable_amount = 0;
-
-        var i = 0;
-
-        for ( i = 0; i < cart_item_length; ++i) {
-
-            total_item_total = total_item_total + cart_items[i].item_total;
-            total_discount_amount = total_discount_amount + cart_items[i].discount_amount;
-            total_discounted_total = total_discounted_total + cart_items[i].discounted_total;
-
-        } 
-
-        total_discount_percentage = (total_discount_amount / total_item_total) * 100;
-        total_payable_amount = total_item_total - total_discount_amount;
-
-        const update_object = { 
+        if (user_id !== undefined) {
             
-            total_item_total: total_item_total, 
-            total_discount_amount: total_discount_amount, 
-            total_discounted_total: total_discounted_total, 
-            total_discount_percentage: total_discount_percentage, 
-            total_payable_amount: total_payable_amount
-        };
+            console.log("In Single User Mode");
 
-        console.log("update_object ", update_object);
+            const filter = {user_id: user_id};
+            console.log("filter ", filter);
 
-        const result = User.findOneAndUpdate(user_id_query, update_object, {new: true}, {runValidators: true}).lean();
+            const singleUserCartItemTotalsUpdatePipeline = singleUserCartItemTotalsUpdatePipeline();
 
-        console.log("result in calculateCartItemTotals ", result);
-        return result;
+            const result = await User.findOneAndUpdate(filter, singleUserCartItemTotalsUpdatePipeline, {new: true}, {runValidators: true}).lean();
+
+            console.log("result in calculateAndUpdateCartItemTotals ", result);
+
+        }
+
+        else {
+            console.log("In Multi User Mode");
+
+            const multiUserCartItemTotalsUpdatePipeline = multiUserCartItemTotalsUpdatePipeline();
+
+            const result = await User.updateMany({}, multiUserCartItemTotalsUpdatePipeline);
+
+            console.log("result in calculateAndUpdateCartItemTotals ", result);
+        }
+
    }
 
    catch(error) {
-        console.log("Error in calculateCartItemTotals ", error);
+        console.log("Error in calculateAndUpdateCartItemTotals ", error);
         throw error;
    }
 };

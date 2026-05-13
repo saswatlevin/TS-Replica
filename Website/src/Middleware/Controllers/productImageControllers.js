@@ -238,7 +238,7 @@ const deleteProductImage = asyncErrorHandler(async(req, res, next) => {
    
     const result = await Product.findOneAndUpdate(filter, delete_object, { new: true }, {runValidators: true}).lean();
 
-    console.log("result in deleteCartItem is ", result);
+    console.log("result in deleteProductImage is ", result);
     
     res.status(200).json(result);
     console.log("===END OF deleteProductImage===");

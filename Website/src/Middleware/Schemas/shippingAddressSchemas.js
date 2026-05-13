@@ -23,7 +23,7 @@ const shippingAddressRequestSchema = z.object({
     phone_number: shippingAddressValidators.zodIsMobilePhone
 }).strict();
 
-const shippingAddressResponseSchema = z.object({    
+/* const shippingAddressResponseSchema = z.object({    
     shipping_address_id: shippingAddressValidators.zodIsShippingAddressId,
     
     address_type_id: shippingAddressValidators.zodIsAddressTypeId,
@@ -43,7 +43,7 @@ const shippingAddressResponseSchema = z.object({
     postal_area: shippingAddressValidators.zodIsPostalCode,
     
     phone_number: shippingAddressValidators.zodIsMobilePhone   
-}).strict();
+}).strict(); */
 
 const shippingAddressArrayZeroSchema = z.array(shippingAddressResponseSchema).min(0);
 
@@ -69,7 +69,7 @@ const updateShippingAddressRequestSchema = z.object({
     postal_area: shippingAddressValidators.zodIsPostalCode.optional()
 }).strict();
 
-const updateShippingAddressSuccessResponseSchema = z.object({
+/* const updateShippingAddressSuccessResponseSchema = z.object({
     
     acknowledged: shippingAddressValidators.zodIsAcknowledged,
         
@@ -86,7 +86,29 @@ const updateShippingAddressFailureResponseSchema = z.object({
     acknowledged: z.literal(false)
 }).strict();
 
-const updateShippingAddressResponseSchema = z.union([updateShippingAddressSuccessResponseSchema, updateShippingAddressFailureResponseSchema]);
+const updateShippingAddressResponseSchema = z.union([updateShippingAddressSuccessResponseSchema, updateShippingAddressFailureResponseSchema]); */
+
+const updateShippingAddressResponseSchema = z.object({    
+    shipping_address_id: shippingAddressValidators.zodIsShippingAddressId,
+    
+    address_type_id: shippingAddressValidators.zodIsAddressTypeId,
+    
+    company_name: shippingAddressValidators.zodIsCompanyName,
+    
+    address: shippingAddressValidators.zodIsAddress,
+    
+    apartment: shippingAddressValidators.zodIsApartment,
+    
+    city: shippingAddressValidators.zodIsCity,
+    
+    administrative_division: shippingAddressValidators.zodIsAdministrativeDivision,
+    
+    country: shippingAddressValidators.zodIsCountry,
+
+    postal_area: shippingAddressValidators.zodIsPostalCode,
+    
+    phone_number: shippingAddressValidators.zodIsMobilePhone   
+}).strict();
 
 const getShippingAddressByIdRequestSchema = z.object({
     shipping_address_id: shippingAddressValidators.zodIsShippingAddressId
@@ -116,7 +138,6 @@ const searchShippingAddressRequestSchema = z.object({
 
 module.exports = {
     shippingAddressRequestSchema,
-    shippingAddressResponseSchema,
     shippingAddressArrayZeroSchema,
     shippingAddressArrayNonzeroSchema,
     updateShippingAddressRequestSchema,

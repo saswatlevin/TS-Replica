@@ -114,8 +114,111 @@ function buildUpdateCartItemDiscountPipeline(product_id, discount_code, discount
  ]
 }
 
+function singleUserCartItemTotalsUpdatePipeline() {
+
+  return  [
+                {
+                    $set: {
+
+                        total_item_total: {
+                            $sum: "$CartItems.item_total"
+                        },
+
+                        total_discount_amount: {
+                            $sum: "$CartItems.discount_amount"
+                        },
+
+                        total_discounted_total: {
+                            $sum: "$CartItems.discounted_total"
+                        }
+                    }
+                },
+
+                {
+                    $set: {
+
+                        total_discount_percentage: {
+                            $cond: [
+                                { $eq: ["$total_item_total", 0] },
+                                0,
+                                {
+                                    $multiply: [
+                                        {
+                                            $divide: [
+                                                "$total_discount_amount",
+                                                "$total_item_total"
+                                            ]
+                                        },
+                                        100
+                                    ]
+                                }
+                            ]
+                        },
+
+                        total_payable_amount: {
+                            $subtract: [
+                                "$total_item_total",
+                                "$total_discount_amount"
+                            ]
+                        }
+                    }
+                }
+            ]
+};
+
+function multiUserCartItemTotalsUpdatePipeline() {
+  return [
+                {
+                    $set: {
+
+                        total_item_total: {
+                            $sum: "$CartItems.item_total"
+                        },
+
+                        total_discount_amount: {
+                            $sum: "$CartItems.discount_amount"
+                        },
+
+                        total_discounted_total: {
+                            $sum: "$CartItems.discounted_total"
+                        }
+                    }
+                },
+
+                {
+                    $set: {
+
+                        total_discount_percentage: {
+                            $cond: [
+                                { $eq: ["$total_item_total", 0] }, 0,
+                                {
+                                    $multiply: [
+                                        {
+                                            $divide: [
+                                                "$total_discount_amount",
+                                                "$total_item_total"
+                                            ]
+                                        },
+                                        100
+                                    ]
+                                }
+                            ]
+                        },
+
+                        total_payable_amount: {
+                            $subtract: [
+                                "$total_item_total",
+                                "$total_discount_amount"
+                            ]
+                        }
+                    }
+                }
+            ]
+};
 
 module.exports = { 
   buildUpdateCartItemPricePipeline,
-  buildUpdateCartItemDiscountPipeline
+  buildUpdateCartItemDiscountPipeline,
+  singleUserCartItemTotalsUpdatePipeline,
+  multiUserCartItemTotalsUpdatePipeline
 };

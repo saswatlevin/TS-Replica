@@ -1,6 +1,6 @@
 const schemaValidator = require('./schemaValidator');
 const { registerUserResponseSchema, userResponseSchema, userResponseSchemaArray} = require('../Schemas/userSchemas');
-const { updateShippingAddressResponseSchema, shippingAddressResponseSchema, shippingAddressArrayZeroSchema } = require('../Schemas/shippingAddressSchemas');
+const { shippingAddressResponseSchema, shippingAddressArrayZeroSchema } = require('../Schemas/shippingAddressSchemas');
 const { createProductResponseSchema, productResponseSchema, searchProductsArrayResponseSchema, searchProductItemArrayResponseSchema } = require('../Schemas/productSchemas');
 const { cartItemResponseSchema } = require('../Schemas/cartItemSchemas');
 const { createReviewResponseSchema, reviewResponseSchema, searchReviewResponseSchema } = require('../Schemas/reviewSchemas');
@@ -37,7 +37,7 @@ const responseSchemaValidator = (request, object) => {
     }
 
     else if (request.originalUrl.includes("/shippingaddresses/updateshippingaddress") === true && request.method === "PATCH") {
-        return schemaValidator(updateShippingAddressResponseSchema, object);
+        return schemaValidator(shippingAddressResponseSchema, object);
     }
 
     else if (request.originalUrl.includes("/shippingaddresses/deleteshippingaddress") === true && request.method === "DELETE") {

@@ -2,7 +2,7 @@ const z = require('zod');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const cartItemValidators = require('../Validators/CustomValidators/cartItemValidators');
 const productValidators = require('../Validators/CustomValidators/cartItemValidators');
-const objectIdSchema = require('./objectIdSchema');y
+const objectIdSchema = require('./objectIdSchema');
 const discountValidators = require('../Validators/CustomValidators/discountValidators');
 
 const cartItemRequestSchema = z.object({

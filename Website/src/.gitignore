@@ -3,6 +3,7 @@ node_modules
 .vs
 network_troubleshooter.sh
 start_mongodb.sh
+mongodb_backup_restore.sh
 experiment.js
 dist
 IntegrationTests/__pycache__

@@ -16,7 +16,11 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(registerUserResponseSchema, object['result']);
     }
 
-    else if ((request.originalUrl.includes("/users/updateuser") === true || request.originalUrl.includes("/users/updateuserpassword") === true) && request.method === "PATCH") {
+    else if (request.originalUrl.includes("/users/updateuser") === true & request.method === "PATCH"){
+        return schemaValidator(userResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/users/updateuserpassword") === true && request.method === "PATCH") {
         return schemaValidator(userResponseSchema, object);
     }
 
@@ -28,11 +32,15 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(userResponseSchemaArray, object);
     }
 
-    else if ((request.originalUrl.includes("/shippingaddresses/createshippingaddress") === true) && request.method === "POST") {
+    else if (request.originalUrl.includes("/shippingaddresses/createshippingaddress") === true && request.method === "POST") {
         return schemaValidator(userResponseSchema, object);
     }
 
-    else if ((request.originalUrl.includes("/shippingaddresses/updateshippingaddress") === true && request.method === "PATCH") || (request.originalUrl.includes("/shippingaddresses/deleteshippingaddress") === true && request.method === "DELETE")) {
+    else if (request.originalUrl.includes("/shippingaddresses/updateshippingaddress") === true && request.method === "PATCH") {
+        return schemaValidator(updateShippingAddressResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/shippingaddresses/deleteshippingaddress") === true && request.method === "DELETE") {
         return schemaValidator(updateShippingAddressResponseSchema, object);
     }
 
@@ -50,10 +58,26 @@ const responseSchemaValidator = (request, object) => {
 
 
     // Also applies to updateProductPrice, updateProductName and updateProductSupplyType
-    else if ((request.originalUrl.includes("/products/updateproductgarmentweight") === true && request.method === "PATCH") || (request.originalUrl.includes("/products/updateproduct") === true && request.method === "PATCH")) {
-        //console.log("##DEBUG - In productResponseSchemaValidator option");
+    else if (request.originalUrl.includes("/products/updateproductgarmentweight") === true && request.method === "PATCH") {
         return schemaValidator(productResponseSchema, object);
     }
+
+    else if (request.originalUrl.includes("/products/updateproductsupplytype") === true && request.method === "PATCH") {
+        return schemaValidator(productResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/products/updateproductprice") === true && request.method === "PATCH") {
+        return schemaValidator(productResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/products/updateproductdiscount") === true && request.method === "PATCH") {
+        return schemaValidator(productResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/products/updateproduct") === true && request.method === "PATCH") {
+        return schemaValidator(productResponseSchema, object);
+    }
+
 
     else if ((request.originalUrl.includes("/products/searchproducts") === true && request.method === "GET")) {
         return schemaValidator(searchProductsArrayResponseSchema, object);
@@ -71,9 +95,18 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(userResponseSchema, object);
     }
 
-    else if ((request.originalUrl.includes("/productimages/createproductimage") === true && request.method === "POST") || (request.originalUrl.includes("/productimages/updateproductimageuri") === true && request.method === "PATCH") || (request.originalUrl.includes("/productimages/deleteproductimage") && request.method === "DELETE"))
+    else if (request.originalUrl.includes("/productimages/createproductimage") === true && request.method === "POST") {
 
         return schemaValidator(productResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/productimages/updateproductimageuri") === true && request.method === "PATCH") {
+       return schemaValidator(productResponseSchema, object);   
+    }
+
+    else if (request.originalUrl.includes("/productimages/deleteproductimage") && request.method === "DELETE") {
+       return schemaValidator(productResponseSchema, object);   
+    }
 
     else if (request.originalUrl.includes("/productimages/searchproductimage") === true && request.method === "GET")
         return schemaValidator(searchProductsArrayResponseSchema, object);
@@ -128,8 +161,6 @@ const responseSchemaValidator = (request, object) => {
     else {
         return undefined;
     }
-
-
 
 };
 

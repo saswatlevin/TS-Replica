@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../../Models/User');
-const { singleUserCartItemTotalsUpdatePipeline } = require('../../AggregationPipelines/cartItemAggregationPipeline');
-const { multiUserCartItemTotalsUpdatePipeline } = require('../../AggregationPipelines/cartItemAggregationPipeline');
+const { singleUserCartItemTotalsUpdatePipeline } = require('../../AggregationPipelines/cartItemAggregationPipelines');
+const { multiUserCartItemTotalsUpdatePipeline } = require('../../AggregationPipelines/cartItemAggregationPipelines');
 
 const checkCartItemExists = async(req) => {
     console.log("In checkCartItemExists");
@@ -334,7 +334,7 @@ module.exports = {
     checkCartItemExists,
     checkIsCartFull,
     getCartItemTotalAndDiscountPercentage,
-    updateCrtItemPrice,
+    updateCartItemPrice,
     updateCartItemDiscount,
     updateCartItemName,
     updateCartItemImageURI,

@@ -338,5 +338,5 @@ module.exports = {
     checkProductGarmentWeightValueExists,
     checkProductSupplyTypeValueExists,
     getProductDiscountPercentage,
-    checkProductDiscountPercentageExists
+    checkProductDiscountCodeAndPercentageExists
 };

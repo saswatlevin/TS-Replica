@@ -81,6 +81,31 @@ const userSchema = new mongoose.Schema({
     CartItems: {
         type: [cartItemSchema],
         default: []
+    },
+
+    total_item_total: {
+        type: Number,
+        required: [true, "total_item_total is a Number and is a required field."]
+    },
+
+    total_discount_amount: {
+        type: Number,
+        required: [true, "total_discount_amount is a Number and is a required field."]
+    },
+
+    total_discounted_total: {
+        type: Number,
+        required: [true, "total_discounted_total is a Number and is a required field."]
+    },
+
+    total_discount_percentage: {
+        type: Number,
+        required: [true, "total_discount_percentage is a Number and is a required field."]
+    },
+
+    total_payable_amount: {
+        type: Number,
+        required: [true, "total_payable_amount is a Number and is a required field."]
     }
 });
 

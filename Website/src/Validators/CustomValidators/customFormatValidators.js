@@ -22,7 +22,7 @@ const zodIsPasswordHash = z.string("The password field must be a string.").lengt
 
 const zodIsPassword = z.string("The password field must be a string.").min(12, {message: "The password field has a minimum length of 12 characters."}).max(30, {message: "The password field has a maximum permitted length of 30 characters."}).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#!\$\. ])[A-Za-z\d@#!\$\. ]+$/, {message: "The password must be between 12 and 30 characters long. It should have at lease one uppercase letter, one lowercase letter, one digit and one of the following special characters \"@,#,!,$,.\". It can also contain spaces."});
 
-const zodIsDocumentVersion = z.number("The __v field must be a number(integer). It is an optional field.").int("The __v field must be an integer value.").optional();
+const zodIsDocumentVersion = z.number("The __v field must be a number(integer). It is an optional field.").int("The __v field must be an integer value.");
 
 const nameRegex = /^[A-Za-z\-']*$/;
 
@@ -70,6 +70,7 @@ module.exports = {
     zodIsTotalItemTotal,
     zodIsTotalDiscountAmount,
     zodIsTotalDiscountPercentage,
+    zodIsTotalDiscountedTotal,
     zodIsTotalPayableAmount
 };
 

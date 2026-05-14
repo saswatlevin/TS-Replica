@@ -72,9 +72,17 @@ const registerUser = asyncErrorHandler( async (req, res, next) => {
     // Create the new User in the database
     const result = await User.create(user_object);
 
-    console.log("create operation result ", result);
+    const final_result = result.toObject({
+        getters: false,
+        virtuals: false,
+        minimize: false,
+        versionKey: true,
+        flattenMaps: true
+    });
 
-    res.status(201).json({result: result});
+    console.log("final_result in registerUser ", final_result);
+
+    res.status(201).json(final_result);
 
     console.log("===END OF registerUser===");
 

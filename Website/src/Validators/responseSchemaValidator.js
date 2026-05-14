@@ -13,7 +13,7 @@ const responseSchemaValidator = (request, object) => {
     console.log("request.originaUrl ", request.originalUrl);
 
     if (request.originalUrl === "/users/registeruser" && request.method === "POST") {
-        return schemaValidator(registerUserResponseSchema, object['result']);
+        return schemaValidator(registerUserResponseSchema, object);
     }
 
     else if (request.originalUrl.includes("/users/updateuser") === true & request.method === "PATCH"){

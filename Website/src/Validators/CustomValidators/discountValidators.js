@@ -1,6 +1,6 @@
 const z = require('zod');
 
-const zodIsDiscountCode = z.enum(["None", "10PERCENT", "20PERCENT", "30PERCENT", "40PERCENT", "50PERCENT"], {message: "The discount_code field accepts one of the following values: None, 10PERCENT, 20PERCENT, 30PERCENT, 40PERCENT, 50PERCENT. It is a required field."});
+const zodIsDiscountCode = z.enum(["None", "10PERCENT", "15PERCENT", "20PERCENT", "30PERCENT", "40PERCENT", "50PERCENT"], {message: "The discount_code field accepts one of the following values: None, 10PERCENT, 15PERCENT, 20PERCENT, 30PERCENT, 40PERCENT, 50PERCENT. It is a required field."});
 
 const zodIsDiscountPercentage = z.number({message: "The discount_percentage field must be a number."
 }).min(0, { message: "The discount_percentage field has a minimum limit of 0." }).max(100, { message: "The discount_percentage has a maximum limit of 100."});

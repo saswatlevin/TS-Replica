@@ -1,13 +1,13 @@
 getUserById Tests
 
-* Test to check if an empty object is provided. RESULT: ZodError.
+* Test to check if an empty object is provided in GETUSERBYID. RESULT: ZodError.
 
 [
   "url": "http://localhost:3500/users/getuserbyid",
   { }
 ]
 
-* Test to search an existing user by id. RESULT: SUCCESS. [Check user object]
+* Test to search an existing user by id in GETUSERBYID. RESULT: SUCCESS. [Check user object]
 
 [
   "url": "http://localhost:3500/users/getuserbyid",
@@ -16,7 +16,7 @@ getUserById Tests
   }
 ]
 
-* Test to search a user that doesn't exist by id. RESULT: SUCCESS [Check null ]
+* Test to search a user that doesn't exist by id in GETUSERBYID. RESULT: SUCCESS [Check null ]
 
 [
   "url": "http://localhost:3500/users/getuserbyid",

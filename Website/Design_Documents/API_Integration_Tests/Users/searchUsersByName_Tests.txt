@@ -1,10 +1,10 @@
-* Test to check response to empty object. RESULT: ZodError.
+* Test to check response to empty object in SEARCHUSERSBYNAME. RESULT: ZodError.
   [
    "url": "http://localhost:3500/users/searchusersbyname",
    { }
   ]
 
-* Test to search a user by first_name only. RESULT: SUCCESS (Check first_name only)
+* Test to search a user by first_name only in SEARCHUSERSBYNAME. RESULT: SUCCESS (Check first_name only)
 
 [
    "url": "http://localhost:3500/users/searchusersbyname",
@@ -13,7 +13,7 @@
    }
 ]
 
-* Test to search a user by first_name and last_name. RESULT: SUCCESS (Check first_name and last_name)
+* Test to search a user by first_name and last_name in SEARCHUSERSBYNAME. RESULT: SUCCESS (Check first_name and last_name)
 
 [
    "url": "http://localhost:3500/users/searchusersbyname",
@@ -23,7 +23,7 @@
    }
 ]
 
-* Test to search a user using only last_name. RESULT: ZodError (Check first_name and last_name)
+* Test to search a user using only last_name in SEARCHUSERSBYNAME. RESULT: ZodError (Check first_name and last_name)
 
 [
    "url": "http://localhost:3500/users/searchusersbyname",

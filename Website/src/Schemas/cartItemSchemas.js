@@ -1,14 +1,15 @@
 const z = require('zod');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const cartItemValidators = require('../Validators/CustomValidators/cartItemValidators');
-const productValidators = require('../Validators/CustomValidators/cartItemValidators');
+const productValidators = require('../Validators/CustomValidators/productValidators');
+const productItemValidators = require('../Validators/CustomValidators/productItemValidators');
 const objectIdSchema = require('./objectIdSchema');
 const discountValidators = require('../Validators/CustomValidators/discountValidators');
 
 const cartItemRequestSchema = z.object({
-    product_id: customValidators.zodIsProductId,
-
-    sku: customValidators.zodIsSKU,
+    product_id: productValidators.zodIsProductId,
+    
+    sku: productItemValidators.zodIsSKU,
 
     cart_item_name: cartItemValidators.zodIsCartItemName,
 
@@ -26,9 +27,9 @@ const cartItemRequestSchema = z.object({
 const cartItemResponseSchema = z.object({
     cart_item_id: cartItemValidators.zodIscartItemId,
 
-    product_id: customValidators.zodIsProductId,
-
-    sku: customValidators.zodIsSKU,
+    product_id: productValidators.zodIsProductId,
+    
+    sku: productItemValidators.zodIsSKU,
 
     cart_item_name: cartItemValidators.zodIsCartItemName,
 
@@ -47,14 +48,16 @@ const cartItemResponseSchema = z.object({
     discounted_total: discountValidators.zodIsDiscountedTotal
 }).strict();
 
+
+
 const cartItemArrayZeroSchema = z.array(cartItemResponseSchema).min(0);
 
 const updateCartItemQuantitySchema = z.object({
     cart_item_id: cartItemValidators.zodIscartItemId,
 
-    product_id: customValidators.zodIsProductId,
+    product_id: productValidators.zodIsProductId,
     
-    sku: customValidators.zodIsSKU,
+    sku: productItemValidators.zodIsSKU,
     
     cart_item_quantity: cartItemValidators.zodIsCartItemQuantity
 }).strict();
@@ -62,9 +65,9 @@ const updateCartItemQuantitySchema = z.object({
 const deleteCartItemSchema = z.object({
     cart_item_id: cartItemValidators.zodIscartItemId,
 
-    product_id: customValidators.zodIsProductId,
+    product_id: productValidators.zodIsProductId,
     
-    sku: customValidators.zodIsSKU
+    sku: productItemValidators.zodIsSKU
 }).strict();
 
 module.exports = {

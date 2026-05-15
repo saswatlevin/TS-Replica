@@ -1,10 +1,10 @@
-* Test to check response to empty object. RESULT: ZodError.
+* Test to check response to empty object in GETSHIPPINGADDRESSBYID. RESULT: ZodError.
   [
     "url": "http://localhost:3500/shippingaddresses/getshippingaddressbyid/d2a986a0cab3",
     { }
   ]
 
-* Test to check response to a user that does not exist. RESULT: ResourceNotFoundError.
+* Test to check response to a user that does not exist in GETSHIPPINGADDRESSBYID. RESULT: ResourceNotFoundError.
   [
     "url": "http://localhost:3500/shippingaddresses/getshippingaddressbyid/d2a986a0cab4",
      
@@ -13,7 +13,7 @@
     }
   ]
 
-* Test to find a ShippingAddress. RESULT: SUCCESS.
+* Test to find a ShippingAddress in GETSHIPPINGADDRESSBYID. RESULT: SUCCESS.
   [
     "url": "http://localhost:3500/shippingaddresses/getshippingaddressbyid/d2a986a0cab3",
      

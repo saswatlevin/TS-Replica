@@ -1,12 +1,12 @@
 deleteShippingAddress Tests
 
-* Test to check response to empty object. RESULT: ZodError.
+* Test to check response to empty object in DELETESHIPPINGADDRESS. RESULT: ZodError.
   [
     "url": "http://localhost:3500/shippingaddresses/deleteshippingaddress/d2a986a0cab3",
     { }
   ]
 
-* Test to check the response to a user that does not exist. RESULT: ResourceNotFoundError.
+* Test to check the response to a user that does not exist in DELETESHIPPINGADDRESS. RESULT: ResourceNotFoundError.
   [
     "url": "http://localhost:3500/shippingaddresses/deleteshippingaddress/d2a986a0cab4",
     {
@@ -15,7 +15,7 @@ deleteShippingAddress Tests
 
   ]
 
-* Test to check the response to a Shipping Address that does not exist. RESULT: ResourceNotFoundError.
+* Test to check the response to a Shipping Address that does not exist in DELETESHIPPINGADDRESS. RESULT: ResourceNotFoundError.
   [
     "url": "http://localhost:3500/shippingaddresses/deleteshippingaddress/d2a986a0cab3",
     {
@@ -24,7 +24,7 @@ deleteShippingAddress Tests
 
   ]
 
-* Test to delete a Shipping Address.  RESULT: SUCCESS.
+* Test to delete a Shipping Address in DELETESHIPPINGADDRESS.  RESULT: SUCCESS.
   [
     "url": "http://localhost:3500/shippingaddresses/deleteshippingaddress/d2a986a0cab3",
     {

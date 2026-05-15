@@ -1,12 +1,12 @@
 updateShippingAddress Tests
 
-* Test to check response to empty object. RESULT: EmptyRequestBodyError.
+* Test to check response to empty object in UPDATESHIPPINGADDRESS. RESULT: EmptyRequestBodyError.
   [
     "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
     { }
   ]
 
-* Test to check response to a user that doesn't exist. RESULT: ResourceNotFoundError.
+* Test to check response to a user that doesn't exist in UPDATESHIPPINGADDRESS. RESULT: ResourceNotFoundError.
   [
     "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab4",
     
@@ -15,7 +15,7 @@ updateShippingAddress Tests
     }
   ]
 
-* Test to update the address_type_id of a ShippingAddress. RESULT: SUCCESS (Check address_type_id only).
+* Test to update the address_type_id of a ShippingAddress in UPDATESHIPPINGADDRESS. RESULT: SUCCESS (Check address_type_id only).
   [
     "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
    
@@ -25,7 +25,7 @@ updateShippingAddress Tests
 
   ]
 
-* Test to update the company_name of a ShippingAddress. RESULT: SUCCESS (Check company_name only).
+* Test to update the company_name of a ShippingAddress in UPDATESHIPPINGADDRESS. RESULT: SUCCESS (Check company_name only).
   [
     "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
    
@@ -35,7 +35,7 @@ updateShippingAddress Tests
 
   ]
 
-* Test to update the address of a ShippingAddress. RESULT: SUCCESS (Check apartment only).
+* Test to update the address of a ShippingAddress in UPDATESHIPPINGADDRESS. RESULT: SUCCESS (Check apartment only).
   [
     "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
     
@@ -44,7 +44,7 @@ updateShippingAddress Tests
     }
   ]
 
-* Test to update the apartment of a ShippingAddress. RESULT: SUCCESS (Check apartment only).
+* Test to update the apartment of a ShippingAddress in UPDATESHIPPINGADDRESS. RESULT: SUCCESS (Check apartment only).
   [
     "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
   
@@ -53,7 +53,7 @@ updateShippingAddress Tests
     }
   ]
 
-* Test to update the city of a ShippingAddress. RESULT: SUCCESS (Check city only).
+* Test to update the city of a ShippingAddress in UPDATESHIPPINGADDRESS. RESULT: SUCCESS (Check city only).
   [
     "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
   
@@ -62,7 +62,7 @@ updateShippingAddress Tests
     }
   ]
 
-* Test to update the administrative_division of a ShippingAddress. RESULT: SUCCESS (Check administrative_division only).
+* Test to update the administrative_division of a ShippingAddress in UPDATESHIPPINGADDRESS. RESULT: SUCCESS (Check administrative_division only).
   [
     "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
   
@@ -71,7 +71,7 @@ updateShippingAddress Tests
     }
   ] 
 
-* Test to check the response when country is updated with an existing value RESULT: RedundantUpdateError. (Check country only).
+* Test to check the response when country is updated with an existing value in UPDATESHIPPINGADDRESS.  RESULT: RedundantUpdateError. (Check country only).
   [
     "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
   
@@ -80,7 +80,7 @@ updateShippingAddress Tests
     }
   ]
 
-* Test to update the postal_address of a ShippingAddress RESULT: SUCCESS. (Check postal_address only).
+* Test to update the postal_address of a ShippingAddress in UPDATESHIPPINGADDRESS. RESULT: SUCCESS. (Check postal_address only).
   [
     "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
   
@@ -89,7 +89,7 @@ updateShippingAddress Tests
     }
   ]
 
-* Test to update the phone_number of a ShippingAddress RESULT: SUCCESS. (Check phone_number only).
+* Test to update the phone_number of a ShippingAddress in in UPDATESHIPPINGADDRESS. RESULT: SUCCESS. (Check phone_number only).
   [
     "url": "http://localhost:3500/shippingaddresses/updateshippingaddress/d2a986a0cab3",
   

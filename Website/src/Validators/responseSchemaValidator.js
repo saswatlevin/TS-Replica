@@ -10,7 +10,7 @@ const { createReviewResponseSchema, reviewResponseSchema, searchReviewResponseSc
 const responseSchemaValidator = (request, object) => {
 
     console.log("In responseSchemaValidator");
-    console.log("request.originaUrl ", request.originalUrl);
+    console.log("URL ", request.originalUrl);
 
     if (request.originalUrl === "/users/registeruser" && request.method === "POST") {
         return schemaValidator(registerUserResponseSchema, object);
@@ -28,7 +28,7 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(userResponseSchema, object);
     }
 
-    else if (request.originalUrl === "/users/getusersbyname" && request.method === "GET") {
+    else if (request.originalUrl === "/users/searchusersbyname" && request.method === "GET") {
         return schemaValidator(userResponseSchemaArray, object);
     }
 

@@ -4,6 +4,7 @@ const { shippingAddressArrayZeroSchema } = require('./shippingAddressSchemas');
 const { cartItemArrayZeroSchema } = require('./cartItemSchemas');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const productItemValidators = require('../Validators/CustomValidators/productItemValidators');
+const mongoose = require('mongoose');
 
 const userRequestSchema = z.object({
     email: customValidators.zodIsEmail,
@@ -32,7 +33,7 @@ const userRequestSchema = z.object({
 
     CartItems: cartItemArrayZeroSchema
 
-});
+}).strict();
 
 const updateUserSchema = z.object({
 
@@ -56,11 +57,11 @@ const updateUserSchema = z.object({
 
     sms_comms: z.boolean("The sms_comms field is a required field. It only accepts boolean values.").optional()
 
-});
+}).strict();
 
 const updateUserPasswordSchema = z.object({
     password: customValidators.zodIsPassword
-});
+}).strict();
 
 const userResponseSchema = z.object({
     _id: objectIdSchema,
@@ -77,7 +78,7 @@ const userResponseSchema = z.object({
 
     phone_number: customValidators.zodIsMobilePhone,
 
-    first_name: z.string("The first_name field must be a string.").min(1, { message: "The first_name field is a required field." }).max(100, { message: "The first_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The first_name field can only contain uupercase letters, lowercase letters, hyphens and single-quotes." }),
+    first_name: z.string("The first_name field must be a string.").min(1, { message: "The first_name field is a required field." }).max(100, { message: "The first_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The first_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }),
 
     last_name: z.string("The last_name field must be a string.").min(1, { message: "The last_name field is a required field." }).max(100, { message: "The last_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The last_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }),
 
@@ -108,17 +109,17 @@ const userResponseSchema = z.object({
     total_payable_amount: customValidators.zodIsTotalPayableAmount,
 
     __v: customValidators.zodIsDocumentVersion
-})
+}).strict();
 
 const getUserByIdSchema = z.object({
     user_id: z.string("The user_id field must be a string. It is a required field.").length(12, { message: "The user_id must be 12 characters long." }).regex(customValidators.twelveCharacterRegex, { message: "The user_id can only contain lowercase letters and numbers." })
-});
+}).strict();
 
 const searchUsersByNameSchema = z.object({
     first_name: z.string("The first_name field must be a string.").min(1, { message: "The first_name field is a required field." }).max(100, { message: "The first_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The first_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }),
 
     last_name: z.string("The last_name field must be a string.").max(100, { message: "The last_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The last_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }).optional()
-});
+}).strict();
 
 const registerUserResponseSchema = z.object({
     user_id: z.string("The user_id field must be a string. It is a required field.").length(12, { message: "The user_id must be 12 characters long." }).regex(customValidators.twelveCharacterRegex, { message: "The user_id can only contain lowercase letters and numbers." }),
@@ -167,7 +168,7 @@ const registerUserResponseSchema = z.object({
 
     __v: customValidators.zodIsDocumentVersion
 
-});
+}).strict();
 
 
 const userResponseSchemaArray = z.array(userResponseSchema).min(1);
@@ -183,76 +184,8 @@ module.exports = {
     userResponseSchemaArray
 };
 
-/* TESTS
-testUserData = {
-  "user_id": '4bade49c4a60',
-  "docType": 'USER',
-  "date_created_at": '2026-05-14T18:39:49',
-  "email": 'els001@server.com',
-  "password": '$argon2id$v=19$m=65536,t=3,p=4$ghl7cmGOJIReLv8V3+o3WQ$dTzfVf4RdBSuqHiuCF6/PjujtntZJYhgINrlxVnrOac',
-  "phone_number": '918297161384',
-  "first_name": 'ELSOne',
-  "last_name": 'SLEOne',
-  "user_role": 'user',
-  "upper_size_number": 40,
-  "upper_size_letter": 'L',
-  "others_size_letter": 'L',
-  "email_comms_type": 'One weekly recap',
-  "sms_comms": true,
-  "ShippingAddresses": [],
-  "CartItems": [],
-  "total_item_total": 0,
-  "total_discount_amount": 0
-}
-
-testUserData2 = {
-  "user_id": '4bade49c4a60',
-  "docType": 'USER',
-  "date_created_at": '2026-05-14T18:39:49',
-  "email": 'els001@server.com',
-  "password": '$argon2id$v=19$m=65536,t=3,p=4$ghl7cmGOJIReLv8V3+o3WQ$dTzfVf4RdBSuqHiuCF6/PjujtntZJYhgINrlxVnrOac',
-  "phone_number": '918297161384',
-  "first_name": 'ELSOne',
-  "last_name": 'SLEOne',
-  "user_role": 'user',
-  "upper_size_number": 40,
-  "upper_size_letter": 'L',
-  "others_size_letter": 'L',
-  "email_comms_type": 'One weekly recap',
-  "sms_comms": true,
-  "ShippingAddresses": [],
-  "CartItems": [],
-  "total_item_total": 0,
-  "total_discount_amount": 0,
-  "total_discounted_total": 0,
-  "total_discount_percentage": 0,
-  "total_payable_amount": 0,
-  "_id": '6a0616f54b6344ba32b83953',
-  "__v": 0
-}
-
+//TESTS
 //console.log(testUserData);
-console.log({
-    zodIsISO8601: customValidators.zodIsISO8601,
-    zodIsEmail: customValidators.zodIsEmail,
-    zodIsPasswordHash: customValidators.zodIsPasswordHash,
-    zodIsMobilePhone: customValidators.zodIsMobilePhone,
-
-    zodIsUpperSizeNumber: productItemValidators.zodIsUpperSizeNumber,
-    zodIsUpperSizeLetter: productItemValidators.zodIsUpperSizeLetter,
-    zodIsOthersSizeLetter: productItemValidators.zodIsOthersSizeLetter,
-
-    shippingAddressArrayZeroSchema,
-    cartItemArrayZeroSchema,
-    objectIdSchema
-});
-
-
-const result = registerUserResponseSchema.parse(testUserData);
+//const result = userResponseSchema.parse(testUserData);
 //console.log(" User Request Schema Test Result ", result);
-//console.log(" User Request Schema Test Result Errors ", result?.error?.issues); */
-
-
-
-
-
+//console.log(" User Request Schema Test Result Errors ", result?.error?.issues);

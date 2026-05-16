@@ -1,13 +1,15 @@
 const asyncErrorHandler = require('../ErrorHandlers/asyncErrorHandler');
-const { checkUserExists, checkShippingAddressExists, checkIsEmptyObject } = require('../Controllers/SupportFunctions/shippingAddressSupportFunctions');
+const { checkUserExists, checkShippingAddressExists, checkDuplicateShippingAddressExists, checkIsEmptyObject } = require('../Controllers/SupportFunctions/shippingAddressSupportFunctions');
 const mongoose = require('mongoose');
 const User = require('../Models/User');
 const { ValidationError } = mongoose.Error;
 const { ZodError } = require('zod');
 const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundError');
-const _ = require('lodash');
 const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
+const DuplicateSubDocumentError = require('../OperationalErrors/DuplicateSubDocumentError');
+const _ = require('lodash');
 const createRandomString = require('../createRandomString');
+const pruneObject = require('../pruneObject');
 
 const createShippingAddress = asyncErrorHandler(async (req, res, next) => {
     console.log("In createShippingAddress");
@@ -185,11 +187,13 @@ const searchShippingAddress = asyncErrorHandler(async (req, res, next) => {
 
     const shipping_address_search_query = {user_id: user_id, ...preliminary_query};
 
-    const projection_object = { _id: 0, ShippingAddresses: 1 };
+    //const projection_object = { _id: 0, ShippingAddresses: 1 };
 
     console.log("shipping_address_search_query ", shipping_address_search_query);
 
-    const result = User.find(shipping_address_search_query, projection_object).lean();
+    const result = await User.find(shipping_address_search_query).lean();
+
+    console.log("result in searchShippingAddress ", result);
 
     res.status(200).json(result);
 

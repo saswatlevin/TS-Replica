@@ -16,7 +16,7 @@ searchReview Tests
      }
   ]
 
-* Test to search foe a review in SEARCHREVIEW. RESULT: SUCCESS [Check review_comment and review_rating]
+* Test to search for a review in SEARCHREVIEW. RESULT: SUCCESS [Check review_comment and review_rating]
   [
      "url": "http://localhost:3500/reviews/searchreview/d2a986a0cab3",
      {

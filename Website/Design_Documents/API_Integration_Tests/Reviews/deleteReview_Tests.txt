@@ -41,14 +41,6 @@ deleteReview Tests
     }
   ]
 
-* Test to check the response to missing review_id field in DELETEREVIEW. RESULT: ZodError
-  [
-    "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
-    { 
-      "product_id": "hjiouyqw0lmt"
-    }
-  ]
-
 * Test to delete a review in DELETEREVIEW. RESULT: SUCCESS
 [
     "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",

@@ -1,12 +1,12 @@
 updateCartItemQuantity Tests
 
-* Test to check the response to an empty request body. RESULT: ZodError
+* Test to check the response to an empty request body in UPDATECARTITEMQUANTITY. RESULT: ZodError
   [
     "url": "http://localhost:3500/cartitems/updatecartitemquantity/d2a986a0cab3",
     { }
   ]
   
-* Test to check response to a User that does not exist. RESULT: RequestNotFoundError
+* Test to check response to a User that does not exist in UPDATECARTITEMQUANTITY. RESULT: RequestNotFoundError
   [
     "url": "http://localhost:3500/cartitems/updatecartitemquantity/d2a986a0cab4",
     {
@@ -17,7 +17,7 @@ updateCartItemQuantity Tests
     }
   ] 
 
-* Test to check response to a CartItem that does not exist. RESULT: RequestNotFoundError
+* Test to check response to a CartItem that does not exist in UPDATECARTITEMQUANTITY. RESULT: RequestNotFoundError
   [
     "url": "http://localhost:3500/cartitems/updatecartitemquantity/d2a986a0cab3",
     {
@@ -28,7 +28,7 @@ updateCartItemQuantity Tests
     }
   ]
 
-* Test to check response to missing cart_item_quantity field. RESULT: ZodError
+* Test to check response to missing cart_item_quantity field in UPDATECARTITEMQUANTITY. RESULT: ZodError
   [
     "url": "http://localhost:3500/cartitems/updatecartitemquantity/d2a986a0cab3",
     {
@@ -38,7 +38,7 @@ updateCartItemQuantity Tests
     }
   ]
 
-* Test to update the quantity of a CartItem to 2. RESULT: SUCCESS
+* Test to update the quantity of a CartItem to 2 in UPDATECARTITEMQUANTITY. RESULT: SUCCESS
   [
     "url": "http://localhost:3500/cartitems/updatecartitemquantity/d2a986a0cab3",
     {

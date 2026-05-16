@@ -1,11 +1,11 @@
 createCartItem Tests
 
-* Test to check response to empty object. RESULT: ZodError.
+* Test to check response to empty object in CREATECARTITEM. RESULT: ZodError.
   ["url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3",
    { }
   ]
 
-* Test to check response to a user that does not exist. RESULT: ResourceNotFoundError.
+* Test to check response to a user that does not exist in CREATECARTITEM. RESULT: ResourceNotFoundError.
   ["url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab4",
    {
       "product_id": "a6bb1d23bd28",
@@ -19,7 +19,7 @@ createCartItem Tests
    }
   ]
 
-* Test to check response to a Product that does not exist. RESULT: ResourceNotFoundError.
+* Test to check response to a Product that does not exist in CREATECARTITEM. RESULT: ResourceNotFoundError.
   [
     "url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3",
     {
@@ -34,7 +34,7 @@ createCartItem Tests
     }
   ]
   
-* Test to check response to a CartItem that already exists. RESULT: DuplicateSubDocumentError.
+* Test to check response to a CartItem that already exists in CREATECARTITEM. RESULT: DuplicateSubDocumentError.
   [
     "url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3",
     {
@@ -50,7 +50,7 @@ createCartItem Tests
     }
   ]
 
-* Test to create a CartItem. RESULT: SUCCESS 
+* Test to create a CartItem in CREATECARTITEM. RESULT: SUCCESS 
   [
     "url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3",
     {

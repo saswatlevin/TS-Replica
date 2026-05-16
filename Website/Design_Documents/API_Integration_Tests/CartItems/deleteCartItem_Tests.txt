@@ -1,12 +1,12 @@
 deleteCartItem Tests
 
-* Test to check the response to an empty request body. RESULT: ZodError
+* Test to check the response to an empty request body in DELETECARTITEM. RESULT: ZodError
   [
     "url": "http://localhost:3500/cartitems/deletecartitem/d2a986a0cab3",
     { }
   ]
 
-* Test to check response to a User that does not exist. RESULT: RequestNotFoundError
+* Test to check response to a User that does not exist in DELETECARTITEM. RESULT: RequestNotFoundError
   [
     "url": "http://localhost:3500/cartitems/deletecartitem/d2a986a0cab4",
     {
@@ -16,7 +16,7 @@ deleteCartItem Tests
     }
   ] 
 
-* Test to check response to a CartItem that does not exist. RESULT: RequestNotFoundError
+* Test to check response to a CartItem that does not exist in DELETECARTITEM. RESULT: RequestNotFoundError
   [
     "url": "http://localhost:3500/cartitems/deletecartitem/d2a986a0cab3",
     {
@@ -26,7 +26,7 @@ deleteCartItem Tests
     }
   ]
 
-* Test to check response to missing sku field. RESULT: ZodError
+* Test to check response to missing sku field in DELETECARTITEM. RESULT: ZodError
   [
     "url": "http://localhost:3500/cartitems/deletecartitem/d2a986a0cab3",
     {
@@ -35,7 +35,7 @@ deleteCartItem Tests
     }
   ]
 
-* Test to delete a CartItem. RESULT: SUCCESS
+* Test to delete a CartItem in DELETECARTITEM. RESULT: SUCCESS
   [
     "url": "http://localhost:3500/cartitems/deletecartitem/d2a986a0cab3",
     {

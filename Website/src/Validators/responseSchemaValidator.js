@@ -37,19 +37,19 @@ const responseSchemaValidator = (request, object) => {
     }
 
     else if (request.originalUrl.includes("/shippingaddresses/updateshippingaddress") === true && request.method === "PATCH") {
-        return schemaValidator(shippingAddressResponseSchema, object);
+        return schemaValidator(userResponseSchema, object);
     }
 
     else if (request.originalUrl.includes("/shippingaddresses/deleteshippingaddress") === true && request.method === "DELETE") {
-        return schemaValidator(updateShippingAddressResponseSchema, object);
+        return schemaValidator(userResponseSchema, object);
     }
 
     else if ((request.originalUrl.includes("/shippingaddresses/getshippingaddressbyid") === true) && request.method === "GET") {
-        return schemaValidator(shippingAddressResponseSchema, object);
+        return schemaValidator(userResponseSchema, object);
     }
 
     else if ((request.originalUrl.includes("/shippingaddresses/searchshippingaddress") === true) && request.method === "GET") {
-        return schemaValidator(shippingAddressArrayZeroSchema, object);
+        return schemaValidator(userResponseSchemaArray, object);
     }
 
     else if ((request.originalUrl.includes("/products/createproduct") === true && request.method === "POST")) {

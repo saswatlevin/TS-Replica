@@ -83,7 +83,38 @@ const checkIsCartFull = async(req) => {
         console.log("Error in checkIsCartFull ", error);
         throw error;
     }
-}
+};
+
+const checkIsCartEmpty = async(req) => {
+    console.log("In checkIsCartEmpty (HELPER FUNCTION)");
+
+    try {
+        const user_id = req.params.user_id;
+
+        const query = {user_id: user_id};
+
+        const result = await User.findOne(query).lean();
+
+        const cart_item_array = result.CartItems;
+
+        const cart_item_array_length = cart_item_array.length;
+
+        if (cart_item_array_length === 0) {
+            return true;
+        }
+
+        else {
+            return false;
+        }
+
+    }
+
+    catch (error) {
+        console.log("Error in checkIsCartEmpty ", error);
+        throw error;
+    }
+
+};
 
 const getCartItemTotalAndDiscountPercentage = async(req) => {
     console.log("In getCartItemTotal (HELPER FUNCTION)");
@@ -298,17 +329,41 @@ const calculateAndUpdateCartItemTotals = async(req) => {
         console.log("user_id ", user_id);
 
         if (user_id !== undefined) {
-            
+
             console.log("In Single User Mode");
 
             const filter = {user_id: user_id};
             console.log("filter ", filter);
 
-            const singleUserCartItemTotalsUpdatePipeline = singleUserCartItemTotalsUpdatePipeline();
+            if (await checkIsCartEmpty(req) === true) {
 
-            const result = await User.findOneAndUpdate(filter, singleUserCartItemTotalsUpdatePipeline, {new: true}, {runValidators: true}).lean();
+                console.log(`The user with user_id ${user_id} has no CartItems`);
 
-            console.log("result in calculateAndUpdateCartItemTotals ", result);
+                const cart_items_total_update_object = {
+                    total_item_total: 0,
+                    total_discount_amount: 0,
+                    total_discounted_total: 0,
+                    total_discount_percentage: 0,
+                    total_payable_amount: 0
+                };
+                
+                const result = await User.findOneAndUpdate(filter, cart_items_total_update_object, {new: true}, {runValidators: true}).lean();
+                            
+                console.log("result in calculateAndUpdateCartItemTotals ", result);
+            }
+            
+            else {
+                
+                console.log(`The user with user_id ${user_id} has some CartItems`);
+
+                const singleUserCartItemTotalsUpdatePipeline = singleUserCartItemTotalsUpdatePipeline();
+
+                const result = await User.findOneAndUpdate(filter, singleUserCartItemTotalsUpdatePipeline, {new: true}, {runValidators: true}).lean();
+
+                console.log("result in calculateAndUpdateCartItemTotals ", result);
+            }
+
+            
 
         }
 
@@ -333,6 +388,7 @@ const calculateAndUpdateCartItemTotals = async(req) => {
 module.exports = {
     checkCartItemExists,
     checkIsCartFull,
+    checkIsCartEmpty,
     getCartItemTotalAndDiscountPercentage,
     updateCartItemPrice,
     updateCartItemDiscount,

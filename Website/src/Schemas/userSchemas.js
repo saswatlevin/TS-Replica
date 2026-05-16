@@ -171,7 +171,7 @@ const registerUserResponseSchema = z.object({
 }).strict();
 
 
-const userResponseSchemaArray = z.array(userResponseSchema).min(1);
+const userResponseSchemaArray = z.array(userResponseSchema).min(0);
 
 module.exports = {
     userRequestSchema,

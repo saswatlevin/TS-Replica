@@ -1,12 +1,12 @@
 updateReview Tests
 
-* Test to check the response to an empty request. RESULT: ZodError
+* Test to check the response to an empty request in UPDATEREVIEW. RESULT: ZodError
   [
     "url": "http://localhost:3500/reviews/updatereview/d2a986a0cab3",
     { }
   ]
 
-* Test to check the response to a user that does not exist. RESULT: ResourceNotFoundError
+* Test to check the response to a user that does not exist in UPDATEREVIEW. RESULT: ResourceNotFoundError
   [
     "url": "http://localhost:3500/reviews/updatereview/d2a986a0cab4",
     {
@@ -17,7 +17,7 @@ updateReview Tests
     }
   ]
 
-* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+* Test to check the response to a product that does not exist  in UPDATEREVIEW. RESULT: ResourceNotFoundError
   [
     "url": "http://localhost:3500/reviews/updatereview/d2a986a0cab3",
     {
@@ -28,7 +28,7 @@ updateReview Tests
     }
   ]
 
-* Test to check the response to missing product_id field. RESULT: ZodError.
+* Test to check the response to missing product_id field in UPDATEREVIEW. RESULT: ZodError.
   [
     "url": "http://localhost:3500/reviews/updatereview/d2a986a0cab3",
     {
@@ -38,7 +38,7 @@ updateReview Tests
     }
   ]
 
-* Test to update a review_comment. RESULT: SUCCESS. [Check review_comment only.]
+* Test to update a review_comment in UPDATEREVIEW. RESULT: SUCCESS. [Check review_comment only.]
   [
     "url": "http://localhost:3500/reviews/updatereview/d2a986a0cab3",
     {
@@ -49,7 +49,7 @@ updateReview Tests
     }
   ]
 
-* Test to update a review_rating. RESULT: SUCCESS. [Check review_rating only.]
+* Test to update a review_rating in UPDATEREVIEW. RESULT: SUCCESS. [Check review_rating only.]
   [
     "url": "http://localhost:3500/reviews/updatereview/d2a986a0cab3",
     {

@@ -1,12 +1,12 @@
 deleteReview Tests
 
-* Test to check the response to an empty object. RESULT: ZodError
+* Test to check the response to an empty object in DELETEREVIEW. RESULT: ZodError
   [
     "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
     { }
   ]
 
-* Test to check the response to a user that does not exist. RESULT: ResourceNotFoundError
+* Test to check the response to a user that does not exist in DELETEREVIEW. RESULT: ResourceNotFoundError
   [
     "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15d",
     { 
@@ -15,7 +15,7 @@ deleteReview Tests
     }
   ]
 
-* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+* Test to check the response to a product that does not exist in DELETEREVIEW. RESULT: ResourceNotFoundError
   [
     "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
     { 
@@ -24,7 +24,7 @@ deleteReview Tests
     }
   ]
 
-* Test to check the response to a review that does not exist. RESULT: ResourceNotFoundError
+* Test to check the response to a review that does not exist in DELETEREVIEW. RESULT: ResourceNotFoundError
   [
     "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
     { 
@@ -33,7 +33,7 @@ deleteReview Tests
     }
   ]
 
-* Test to check the response to missing review_id field. RESULT: ZodError
+* Test to check the response to missing review_id field in DELETEREVIEW. RESULT: ZodError
   [
     "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
     { 
@@ -41,7 +41,7 @@ deleteReview Tests
     }
   ]
 
-* Test to check the response to missing review_id field. RESULT: ZodError
+* Test to check the response to missing review_id field in DELETEREVIEW. RESULT: ZodError
   [
     "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
     { 
@@ -49,7 +49,7 @@ deleteReview Tests
     }
   ]
 
-* Test to delete a review. RESULT: SUCCESS
+* Test to delete a review in DELETEREVIEW. RESULT: SUCCESS
 [
     "url": "http://localhost:3500/reviews/deletereview/f6c13bd3c15c",
     { 

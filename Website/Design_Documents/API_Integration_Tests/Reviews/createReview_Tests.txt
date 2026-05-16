@@ -1,12 +1,12 @@
 createReview Tests
 
-* Test to check the response to an empty request. RESULT: ZodError
+* Test to check the response to an empty request in CREATEREVIEW. RESULT: ZodError
   [
     "url": "http://localhost:3500/reviews/createreview/d2a986a0cab3",
     { }
   ]
 
-* Test to check the response to a user that does not exist. RESULT: ResourceNotFoundError
+* Test to check the response to a user that does not exist in CREATEREVIEW. RESULT: ResourceNotFoundError
   [
     "url": "http://localhost:3500/reviews/createreview/d2a986a0cab4",
     {
@@ -17,7 +17,7 @@ createReview Tests
     }
   ]
 
-* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+* Test to check the response to a product that does not exist in CREATEREVIEW. RESULT: ResourceNotFoundError
   [
     "url": "http://localhost:3500/reviews/createreview/d2a986a0cab3",
     {
@@ -28,7 +28,7 @@ createReview Tests
     }
   ]
 
-* Test to check the response to missing docType field. RESULT: ZodError
+* Test to check the response to missing docType field in CREATEREVIEW. RESULT: ZodError
   [
     "url": "http://localhost:3500/reviews/createreview/d2a986a0cab3",
     {
@@ -38,7 +38,7 @@ createReview Tests
     }
   ]
 
-* Test to create a REVIEW. RESULT: SUCCESS
+* Test to create a REVIEW in CREATEREVIEW. RESULT: SUCCESS
   [
     "url": "http://localhost:3500/reviews/createreview/d2a986a0cab3",
     {

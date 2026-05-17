@@ -7,6 +7,7 @@ const { testOrder1, testOrder2} = require('./TestObjects/testOrderObjects');
 const discountValidators = require('../Validators/CustomValidators/discountValidators');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const orderValidators = require('../Validators/CustomValidators/orderValidators');
+const userValidators = require('../Validators/CustomValidators/userValidators');
 
 /**
  * product_id is derived from product schema
@@ -21,7 +22,7 @@ const orderValidators = require('../Validators/CustomValidators/orderValidators'
 const orderRequestSchema = z.object({
     order_id: orderValidators.zodIsOrderId,
 
-    user_id: z.string("The user_id field must be a string. It is a required field.").length(12, {message: "The user_id field must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The user_id field can only contain lowercase letters and digits."}),
+    user_id: userValidators.zodIsUserId,
 
     order_status: orderValidators.zodIsOrderStatus,
 
@@ -49,7 +50,7 @@ const orderResponseSchema = z.object({
 
     order_id: orderValidators.zodIsOrderId,
 
-    user_id: z.string("The user_id field must be a string. It is a required field.").length(12, {message: "The user_id field must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The user_id field can only contain lowercase letters and digits."}),
+    user_id: userValidators.zodIsUserId,
 
     order_status: orderValidators.zodIsOrderStatus,
 
@@ -74,7 +75,7 @@ const orderResponseSchema = z.object({
 const createOrderResponseSchema = z.object({
     order_id: orderValidators.zodIsOrderId,
 
-    user_id: z.string("The user_id field must be a string. It is a required field.").length(12, {message: "The user_id field must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The user_id field can only contain lowercase letters and digits."}),
+    user_id: userValidators.zodIsUserId,
 
     order_status: orderValidators.zodIsOrderStatus,
 
@@ -105,7 +106,7 @@ const updateOrderStatusSchema = z.object({
 }).strict();
 
 const deleteOrderSchema = z.object({
-    user_id: z.string("The user_id field must be a string. It is a required field.").length(12, {message: "The user_id field must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The user_id field can only contain lowercase letters and digits."})
+    user_id: userValidators.zodIsUserId
 }).strict();
 
 module.exports = {

@@ -3,6 +3,7 @@ const customValidators = require('../Validators/CustomValidators/customFormatVal
 const objectIdSchema = require('./objectIdSchema');
 const productValidators = require('../Validators/CustomValidators/productValidators');
 const reviewValidators = require('../Validators/CustomValidators/reviewValidators');
+const userValidators = require('../Validators/CustomValidators/userValidators');
 
 const createReviewRequestSchema = z.object({
 
@@ -37,7 +38,7 @@ const deleteReviewRequestSchema = z.object({
 const createReviewResponseSchema = z.object({
     review_id: reviewValidators.zodIsReviewId,
 
-    user_id: z.string("The user_id field must be a string. It is a required field.").length(12, {message: "The user_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The user_id can only contain lowercase letters and numbers."}),
+    user_id: userValidators.zodIsUserId,
 
     product_id: productValidators.zodIsProductId,
 
@@ -58,7 +59,7 @@ const reviewResponseSchema = z.object({
 
     review_id: reviewValidators.zodIsReviewId,
 
-    user_id: z.string("The user_id field must be a string. It is a required field.").length(12, {message: "The user_id must be 12 characters long."}).regex(customValidators.twelveCharacterRegex, {message: "The user_id can only contain lowercase letters and numbers."}),
+    user_id: userValidators.zodIsUserId,
 
     product_id: productValidators.zodIsProductId,
 

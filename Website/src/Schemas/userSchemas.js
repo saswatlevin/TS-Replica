@@ -4,6 +4,7 @@ const { shippingAddressArrayZeroSchema } = require('./shippingAddressSchemas');
 const { cartItemArrayZeroSchema } = require('./cartItemSchemas');
 const customValidators = require('../Validators/CustomValidators/customFormatValidators');
 const productItemValidators = require('../Validators/CustomValidators/productItemValidators');
+const userValidators = require('../Validators/CustomValidators/userValidators');
 const mongoose = require('mongoose');
 
 const userRequestSchema = z.object({
@@ -13,11 +14,11 @@ const userRequestSchema = z.object({
 
     phone_number: customValidators.zodIsMobilePhone,
 
-    first_name: z.string("The first_name field must be a string.").min(1, { message: "The first_name field is a required field." }).max(100, { message: "The first_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The first_name field can only contain uupercase letters, lowercase letters, hyphens and single-quotes." }),
+    first_name: userValidators.zodIsFirstName,
 
-    last_name: z.string("The last_name field must be a string.").min(1, { message: "The last_name field is a required field." }).max(100, { message: "The last_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The last_name field can only contain uupercase letters, lowercase letters, hyphens and single-quotes." }),
+    last_name: userValidators.zodIsLastName,
 
-    user_role: z.enum(["user", "admin"], { message: "The user_role field is a required field. It takes 1 of the following values: user, admin." }),
+    user_role: userValidators.zodIsUserRole,
 
     upper_size_number: productItemValidators.zodIsUpperSizeNumber,
 
@@ -25,9 +26,9 @@ const userRequestSchema = z.object({
     
     others_size_letter: productItemValidators.zodIsOthersSizeLetter,
 
-    email_comms_type: z.enum(["I want all emails", "One weekly recap", "Stock notifications only", "Never / Unsubscribe"], { message: "The email_comms_type field is a required field. It takes one of the following values: I want all emails, One weekly recap, Stock emails only or Never / Unsubscribe." }),
+    email_comms_type: userValidators.zodIsEmailCommsType,
 
-    sms_comms: z.boolean("The sms_comms field is a required field. It only accepts boolean values."),
+    sms_comms: userValidators.zodIsSmsComms,
 
     ShippingAddresses: shippingAddressArrayZeroSchema,
 
@@ -41,21 +42,21 @@ const updateUserSchema = z.object({
 
     phone_number: customValidators.zodIsMobilePhone.optional(),
 
-    first_name: z.string("The first_name field must be a string.").min(1, { message: "The first_name field is a required field." }).max(100, { message: "The first_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The first_name field can only contain uupercase letters, lowercase letters, hyphens and single-quotes." }).optional(),
+    first_name: userValidators.zodIsFirstName.optional(),
 
-    last_name: z.string("The last_name field must be a string.").min(1, { message: "The last_name field is a required field." }).max(100, { message: "The last_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The last_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }).optional(),
+    last_name: userValidators.zodIsLastName.optional(),
 
-    user_role: z.enum(["user", "admin"], { message: "The user_role field is a required field. It takes 1 of the following values: user, admin." }).optional(),
-
+    user_role: userValidators.zodIsUserRole.optional(),
+    
     upper_size_number: productItemValidators.zodIsUpperSizeNumber.optional(),
 
     upper_size_letter: productItemValidators.zodIsUpperSizeLetter.optional(),
 
     others_size_letter: productItemValidators.zodIsOthersSizeLetter.optional(),
 
-    email_comms_type: z.enum(["I want all emails", "One weekly recap", "Stock notifications only", "Never / Unsubscribe"], { message: "The email_comms_type field is a required field. It takes one of the following values: I want all emails, One weekly recap, Stock notifications only or Never / Unsubscribe." }).optional(),
+    email_comms_type: userValidators.zodIsEmailCommsType.optional(),
 
-    sms_comms: z.boolean("The sms_comms field is a required field. It only accepts boolean values.").optional()
+    sms_comms: userValidators.zodIsSmsComms.optional()
 
 }).strict();
 
@@ -66,9 +67,9 @@ const updateUserPasswordSchema = z.object({
 const userResponseSchema = z.object({
     _id: objectIdSchema,
 
-    user_id: z.string("The user_id field must be a string. It is a required field.").length(12, { message: "The user_id must be 12 characters long." }).regex(customValidators.twelveCharacterRegex, { message: "The user_id can only contain lowercase letters and numbers." }),
+    user_id: userValidators.zodIsUserId,
 
-    docType: z.literal("USER", { message: "The docType field is a required field. It takes the value: USER." }),
+    docType: userValidators.zodIsUserDocType,
 
     date_created_at: customValidators.zodIsISO8601,
 
@@ -78,11 +79,11 @@ const userResponseSchema = z.object({
 
     phone_number: customValidators.zodIsMobilePhone,
 
-    first_name: z.string("The first_name field must be a string.").min(1, { message: "The first_name field is a required field." }).max(100, { message: "The first_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The first_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }),
+    first_name: userValidators.zodIsFirstName,
 
-    last_name: z.string("The last_name field must be a string.").min(1, { message: "The last_name field is a required field." }).max(100, { message: "The last_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The last_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }),
+    last_name: userValidators.zodIsLastName,
 
-    user_role: z.enum(["user", "admin"], { message: "The user_role field is a required field. It takes 1 of the following values: user, admin." }),
+    user_role: userValidators.zodIsUserRole,
 
     upper_size_number: productItemValidators.zodIsUpperSizeNumber,
 
@@ -90,9 +91,9 @@ const userResponseSchema = z.object({
 
     others_size_letter:  productItemValidators.zodIsOthersSizeLetter,
 
-    email_comms_type: z.enum(["I want all emails", "One weekly recap", "Stock notifications only", "Never / Unsubscribe"], { message: "The email_comms_type field is a required field. It takes one of the following values: I want all emails, One weekly recap, Stock notifications only or Never / Unsubscribe." }),
+    email_comms_type: userValidators.zodIsEmailCommsType,
 
-    sms_comms: z.boolean("The sms_comms field is a required field. It only accepts boolean values."),
+    sms_comms: userValidators.zodIsSmsComms,
 
     ShippingAddresses: shippingAddressArrayZeroSchema,
 
@@ -112,19 +113,18 @@ const userResponseSchema = z.object({
 }).strict();
 
 const getUserByIdSchema = z.object({
-    user_id: z.string("The user_id field must be a string. It is a required field.").length(12, { message: "The user_id must be 12 characters long." }).regex(customValidators.twelveCharacterRegex, { message: "The user_id can only contain lowercase letters and numbers." })
+    user_id: userValidators.zodIsUserId
 }).strict();
 
 const searchUsersByNameSchema = z.object({
-    first_name: z.string("The first_name field must be a string.").min(1, { message: "The first_name field is a required field." }).max(100, { message: "The first_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The first_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }),
-
-    last_name: z.string("The last_name field must be a string.").max(100, { message: "The last_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The last_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }).optional()
+    first_name: userValidators.zodIsFirstName,
+    last_name: userValidators.zodIsLastName.optional()
 }).strict();
 
 const registerUserResponseSchema = z.object({
-    user_id: z.string("The user_id field must be a string. It is a required field.").length(12, { message: "The user_id must be 12 characters long." }).regex(customValidators.twelveCharacterRegex, { message: "The user_id can only contain lowercase letters and numbers." }),
+    user_id: userValidators.zodIsUserId,
 
-    docType: z.literal("USER", { message: "The docType field is a required field. It takes the value: USER." }),
+    docType: userValidators.zodIsUserDocType,
 
     date_created_at: customValidators.zodIsISO8601,
 
@@ -134,11 +134,11 @@ const registerUserResponseSchema = z.object({
 
     phone_number: customValidators.zodIsMobilePhone,
 
-    first_name: z.string("The first_name field must be a string.").min(1, { message: "The first_name field is a required field." }).max(100, { message: "The first_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The first_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }),
+    first_name: userValidators.zodIsFirstName,
 
-    last_name: z.string("The last_name field must be a string.").min(1, { message: "The last_name field is a required field." }).max(100, { message: "The last_name field has a maximum permitted length of 100 characters." }).regex(customValidators.nameRegex, { message: "The last_name field can only contain uppercase letters, lowercase letters, hyphens and single-quotes." }),
+    last_name: userValidators.zodIsLastName,
 
-    user_role: z.enum(["user", "admin"], { message: "The user_role field is a required field. It takes 1 of the following values: user, admin." }),
+    user_role: userValidators.zodIsUserRole,
 
     upper_size_number: productItemValidators.zodIsUpperSizeNumber,
 
@@ -146,9 +146,9 @@ const registerUserResponseSchema = z.object({
     
     others_size_letter: productItemValidators.zodIsOthersSizeLetter,
 
-    email_comms_type: z.enum(["I want all emails", "One weekly recap", "Stock notifications only", "Never / Unsubscribe"], { message: "The email_comms_type field is a required field. It takes one of the following values: I want all emails, One weekly recap, Stock notifications only or Never / Unsubscribe." }),
+    email_comms_type: userValidators.zodIsEmailCommsType,
 
-    sms_comms: z.boolean("The sms_comms field is a required field. It only accepts boolean values."),
+    sms_comms: userValidators.zodIsSmsComms,
 
     ShippingAddresses: shippingAddressArrayZeroSchema,
 
@@ -185,6 +185,30 @@ module.exports = {
 };
 
 //TESTS
+//console.log("USER_ID ", userValidators.zodIsUserId);
+//console.log("DOCTYPE ", userValidators.zodIsUserDocType);
+//console.log("DATE_CREATED_AT ", customValidators.zodIsISO8601);
+//console.log("EMAIL ", customValidators.zodIsEmail);
+//console.log("PASSWORD ", customValidators.zodIsPasswordHash);
+//console.log("PHONE_NUMBER ", customValidators.zodIsMobilePhone);
+//console.log("FIRST_NAME ", userValidators.zodIsFirstName);
+//console.log("LAST_NAME ", userValidators.zodIsLastName);
+//console.log("USER_ROLE ", userValidators.zodIsUserRole);
+//console.log("UPPER_SIZE_NUMBER ", productItemValidators.zodIsUpperSizeNumber);
+//console.log("UPPER_SIZE_LETTER ", productItemValidators.zodIsUpperSizeLetter);
+//console.log("OTHERS_SIZE_LETTER ", productItemValidators.zodIsOthersSizeLetter);
+//console.log("EMAIL_COMMS_TYPE ", userValidators.zodIsEmailCommsType);
+//console.log("SMS_COMMS ", userValidators.zodIsSmsComms);
+//console.log("SHIPPING_ADDRESSES ", shippingAddressArrayZeroSchema);
+//console.log("CART_ITEMS ", cartItemArrayZeroSchema);
+//console.log("TOTAL_ITEM_TOTAL ", customValidators.zodIsTotalItemTotal);
+//console.log("TOTAL_DISCOUNTED_TOTAL ", customValidators.zodIsTotalDiscountedTotal);
+//console.log("TOTAL_DISCOUNT_AMOUNT ", customValidators.zodIsTotalDiscountAmount);
+//console.log("TOTAL_DISCOUNT_PERCENTAGE ", customValidators.zodIsTotalDiscountPercentage);
+//console.log("TOTAL_PAYABLE_AMOUNT ", customValidators.zodIsTotalPayableAmount);
+//console.log("DOCUMENT_ID ", objectIdSchema);
+//console.log("DOCUMENT_VERSION ", customValidators.zodIsDocumentVersion);
+
 //console.log(testUserData);
 //const result = userResponseSchema.parse(testUserData);
 //console.log(" User Request Schema Test Result ", result);

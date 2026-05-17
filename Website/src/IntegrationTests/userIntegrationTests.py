@@ -269,7 +269,7 @@ user_test_data_list = [
         "test_data": {
             "user_role": "user",
             "sms_comms": True,
-            "email_comms_type": "One Weekly recap"
+            "email_comms_type": "One weekly recap"
         },
 
         "serial": 18

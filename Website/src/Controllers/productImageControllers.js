@@ -19,7 +19,7 @@ const { checkProductImageExists } = require('./SupportFunctions/productImageSupp
 
 const { updateCartItemImageURI } = require('./SupportFunctions/cartItemSupportFunctions');
 
-const { checkIsEmptyObject } = require('./SupportFunctions/shippingAddressSupportFunctions');
+const { checkIsEmptyObject } = require('./SupportFunctions/userSupportFunctions');
 
 
 const createProductImage = asyncErrorHandler(async(req, res, next) => {

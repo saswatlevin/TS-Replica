@@ -1,24 +1,45 @@
 const asyncErrorHandler = require('../ErrorHandlers/asyncErrorHandler');
 const mongoose = require('mongoose');
+
 const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundError');
 const _ = require('lodash');
+const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
 const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
 const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError');
 const IllegalUpdateError = require('../OperationalErrors/IllegalUpdateError');
+
 const createRandomString = require('../createRandomString');
-const { checkIsEmptyObject } = require('./SupportFunctions/shippingAddressSupportFunctions');
+
+const { checkIsEmptyObject } = require('./SupportFunctions/userSupportFunctions');
+
 const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
+
 const { checkDuplicateProduct } = require('./SupportFunctions/productSupportFunctions');
+
 const { checkProductValueExists } = require('./SupportFunctions/productSupportFunctions');
+
 const { checkProductNameExists } = require('./SupportFunctions/productSupportFunctions');
+
 const { checkProductPriceExists } = require('./SupportFunctions/productSupportFunctions');
+
 const { checkProductGarmentWeightValueExists } = require('./SupportFunctions/productSupportFunctions');
+
 const { checkProductSupplyTypeValueExists } = require('./SupportFunctions/productSupportFunctions');
-const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
-const { updateCartItemPrice, updateCartItemDiscount, updateCartItemName, calculateAndUpdateCartItemTotals } = require('./SupportFunctions/cartItemSupportFunctions');
+
+const { updateCartItemPrice } = require('./SupportFunctions/cartItemSupportFunctions');
+
+const { updateCartItemDiscount } = require('./SupportFunctions/cartItemSupportFunctions');
+
+const { updateCartItemName } = require('./SupportFunctions/cartItemSupportFunctions');
+
+const { calculateAndUpdateCartItemTotals } = require('./SupportFunctions/cartItemSupportFunctions');
+
 const { getDiscountPercentage } = require('./SupportFunctions/productSupportFunctions');
+
 const { checkProductDiscountCodeAndPercentageExists } = require('./SupportFunctions/productSupportFunctions');
+
 const { getProductPrice } = require('./SupportFunctions/productSupportFunctions');
+
 const Product = require('../Models/Product');
 const pruneObject = require('../pruneObject');
 

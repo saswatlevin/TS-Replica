@@ -1,5 +1,5 @@
 const asyncErrorHandler = require('../ErrorHandlers/asyncErrorHandler');
-const { checkIsEmptyObject } = require('../Controllers/SupportFunctions/shippingAddressSupportFunctions');
+const { checkIsEmptyObject } = require('./SupportFunctions/userSupportFunctions');
 
 const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
 const { checkProductItemExists } = require('./SupportFunctions/productItemSupportFunctions');

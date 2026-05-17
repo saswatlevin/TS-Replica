@@ -4,7 +4,19 @@ const argon2 = require('argon2');
 const _ = require('lodash');
 const getCurrentDateTime = require('../getCurrentDateTime');
 const asyncErrorHandler = require('../ErrorHandlers/asyncErrorHandler');
-const { checkIsEmptyObject, checkUserExists, checkUserValueExists, checkUserPasswordValueExists, checkDuplicateUserEmailExists, checkDuplicateUserPhoneNumberExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
+
+const { checkIsEmptyObject } = require('./SupportFunctions/userSupportFunctions');
+
+const { checkUserExists } = require('./SupportFunctions/userSupportFunctions');
+
+const { checkUserValueExists } = require('./SupportFunctions/userSupportFunctions');
+
+const { checkUserPasswordValueExists } = require('./SupportFunctions/userSupportFunctions');
+
+const { checkDuplicateUserEmailExists } = require('./SupportFunctions/userSupportFunctions');
+
+const { checkDuplicateUserPhoneNumberExists } = require('./SupportFunctions/userSupportFunctions');
+
 const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
 const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundError');
 const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError');

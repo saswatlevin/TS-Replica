@@ -1,5 +1,13 @@
 const asyncErrorHandler = require('../ErrorHandlers/asyncErrorHandler');
-const { checkUserExists, checkShippingAddressExists, checkDuplicateShippingAddressExists, checkIsEmptyObject } = require('../Controllers/SupportFunctions/shippingAddressSupportFunctions');
+
+const { checkUserExists } = require('./SupportFunctions/userSupportFunctions');
+
+const { checkIsEmptyObject } = require('./SupportFunctions/userSupportFunctions');
+
+const { checkShippingAddressExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
+
+const { checkDuplicateShippingAddressExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
+
 const mongoose = require('mongoose');
 const User = require('../Models/User');
 const { ValidationError } = mongoose.Error;

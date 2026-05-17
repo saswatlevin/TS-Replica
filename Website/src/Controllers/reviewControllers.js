@@ -10,9 +10,15 @@ const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyErro
 const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError');
 const Review = require('../Models/Review');
 
-const { checkIsEmptyObject, checkUserExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
+const { checkIsEmptyObject } = require('./SupportFunctions/userSupportFunctions');
+
+const { checkUserExists } = require('./SupportFunctions/userSupportFunctions');
+
 const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
-const {checkReviewExists, checkDuplicateReviewExists} = require('./SupportFunctions/reviewSupportFunctions');
+
+const { checkReviewExists } = require('./SupportFunctions/reviewSupportFunctions');
+
+const { checkDuplicateReviewExists } = require('./SupportFunctions/reviewSupportFunctions');
 
 const pruneObject = require('../pruneObject');
 

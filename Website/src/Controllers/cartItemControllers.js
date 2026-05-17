@@ -1,20 +1,28 @@
 const asyncErrorHandler = require('../ErrorHandlers/asyncErrorHandler');
 const mongoose = require('mongoose');
 const createRandomString = require('../createRandomString');
-const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundError');
-const DuplicateSubdocumentError = require('../OperationalErrors/DuplicateSubdocumentError');
 const _ = require('lodash');
+
 const EmptyRequestBodyError = require('../OperationalErrors/EmptyRequestBodyError');
 const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError');
+const IllegalUpdateError  = require('../OperationalErrors/IllegalUpdateError');
+const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundError');
+const DuplicateSubdocumentError = require('../OperationalErrors/DuplicateSubdocumentError');
+
 const User = require('../Models/User');
-const { checkIsEmptyObject, checkUserExists } = require('./SupportFunctions/shippingAddressSupportFunctions');
+
+const { checkIsEmptyObject } = require('./SupportFunctions/userSupportFunctions');
+
+const { checkUserExists } = require('./SupportFunctions/userSupportFunctions');
+
 const { checkCartItemExists } = require('./SupportFunctions/cartItemSupportFunctions');
-const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
-const { buildUpdateCartItemPricePipeline } = require('../AggregationPipelines/cartItemAggregationPipelines');
-const { buildUpdateCartItemDiscountPipeline } = require('../AggregationPipelines/cartItemAggregationPipelines');
-const { IllegalUpdateError } = require('../OperationalErrors/IllegalUpdateError');
 
 const { calculateAndUpdateCartItemTotals } = require('./SupportFunctions/cartItemSupportFunctions');
+
+const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
+
+const { buildUpdateCartItemPricePipeline } = require('../AggregationPipelines/cartItemAggregationPipelines');
+const { buildUpdateCartItemDiscountPipeline } = require('../AggregationPipelines/cartItemAggregationPipelines');
 
 const createCartItem = asyncErrorHandler(async (req, res, next) => {
     console.log("In createCartItem");

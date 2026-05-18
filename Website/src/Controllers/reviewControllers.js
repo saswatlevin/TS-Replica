@@ -192,7 +192,7 @@ const searchReview = asyncErrorHandler(async(req, res, next) => {
 
 	console.log("Check if the request body is empty");
 	if (checkIsEmptyObject(req) === true) {
-		const empty_request_body_error = new EmptyRequestBodyError(`Cannot search for the Review with review_id ${review_id} since the request body is empty`);
+		const empty_request_body_error = new EmptyRequestBodyError(`Cannot search for the Review since the request body is empty`);
 		throw empty_request_body_error;
 	}
 

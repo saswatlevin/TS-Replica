@@ -114,7 +114,7 @@ function buildUpdateCartItemDiscountPipeline(product_id, discount_code, discount
  ]
 }
 
-function singleUserCartItemTotalsUpdatePipeline() {
+function buildSingleUserCartItemTotalsUpdatePipeline() {
 
   return  [
                 {
@@ -166,7 +166,7 @@ function singleUserCartItemTotalsUpdatePipeline() {
             ]
 };
 
-function multiUserCartItemTotalsUpdatePipeline() {
+function buildMultiUserCartItemTotalsUpdatePipeline() {
   return [
                 {
                     $set: {
@@ -219,6 +219,6 @@ function multiUserCartItemTotalsUpdatePipeline() {
 module.exports = { 
   buildUpdateCartItemPricePipeline,
   buildUpdateCartItemDiscountPipeline,
-  singleUserCartItemTotalsUpdatePipeline,
-  multiUserCartItemTotalsUpdatePipeline
+  buildSingleUserCartItemTotalsUpdatePipeline,
+  buildMultiUserCartItemTotalsUpdatePipeline
 };

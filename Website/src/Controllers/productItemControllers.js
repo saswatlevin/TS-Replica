@@ -63,7 +63,7 @@ const createProductItem = asyncErrorHandler(async(req, res, next) => {
     const product_item_query = {sku: sku, ...pruned_request_body_deep_clone};
     console.log("product_item_query ", product_item_query);
 
-    const result = await Product.findOneAndUpdate(filter, { $push: { product_items: product_item_query } }, {new: true}, {runValidators: true}).lean();
+    const result = await Product.findOneAndUpdate(filter, { $push: { product_items: product_item_query } }, {new: true, runValidators: true}).lean();
 
     console.log("result ", result);
     
@@ -128,7 +128,7 @@ const updateProductItem = asyncErrorHandler(async(req, res, next) => {
 
     console.log("update_product_item_object ", update_product_item_object);
 
-    const result = await Product.findOneAndUpdate(filter, update_product_item_object, {new: true}, {runValidators: true}).lean();
+    const result = await Product.findOneAndUpdate(filter, update_product_item_object, {new: true, runValidators: true}).lean();
     console.log("result in updateProductItem ", result);
 
     res.status(200).json(result);
@@ -180,7 +180,7 @@ const deleteProductItem = asyncErrorHandler(async(req, res, next) => {
         }
     };
 
-    const result = await Product.findOneAndUpdate(filter, delete_product_item_query, {new: true}, {runValidators: true}).lean();
+    const result = await Product.findOneAndUpdate(filter, delete_product_item_query, {new: true, runValidators: true}).lean();
     console.log("result in deleteProductItem ", result);
 
     res.status(200).json(result);

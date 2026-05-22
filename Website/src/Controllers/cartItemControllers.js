@@ -21,6 +21,8 @@ const { checkIsCartEmpty } = require('./SupportFunctions/cartItemSupportFunction
 
 const { checkIsCartFull } = require('./SupportFunctions/cartItemSupportFunctions');
 
+const { getCartItemTotalAndDiscountPercentage } = require('./SupportFunctions/cartItemSupportFunctions');
+
 const { calculateAndUpdateCartItemTotals } = require('./SupportFunctions/cartItemSupportFunctions');
 
 const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
@@ -153,15 +155,15 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
 
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
 
-    const data = getCartItemTotalAndDiscountPercentage(req);
+    const data = await getCartItemTotalAndDiscountPercentage(req);
 
     const updated_item_total = data.item_total * request_body_deep_clone.cart_item_quantity;
 
     const discount_percentage = data.discount_percentage;
 
-    const updated_discount_amount = item_total * discount_percentage;
+    const updated_discount_amount = updated_item_total * ( discount_percentage / 100);
 
-    const updated_discounted_total = item_total - discount_amount;
+    const updated_discounted_total = updated_item_total - updated_discount_amount;
     
     const filter = {user_id: user_id, "CartItems.cart_item_id": cart_item_id};
     console.log("filter ", filter);

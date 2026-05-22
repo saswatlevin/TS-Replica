@@ -132,7 +132,7 @@ const updateReview = asyncErrorHandler(async(req, res, next) => {
 	const update_query = pruneObject(request_body_deep_clone, ['review_id', 'product_id']);
 	console.log("update_query ", update_query);
 
-	const result = await Review.findOneAndUpdate(filter, update_query, {new: true}, {runValidators: true}).lean();
+	const result = await Review.findOneAndUpdate(filter, update_query, {new: true, runValidators: true}).lean();
 
 	console.log("result in updateReview ", result);
 	res.status(200).json(result);
@@ -179,7 +179,7 @@ const deleteReview = asyncErrorHandler(async(req, res, next) => {
 	const delete_query = {review_id: review_id, user_id: user_id, product_id: product_id};
 	console.log("delete_query ", delete_query);
 
-	const result = await Review.findOneAndDelete(delete_query, {new: true}, {runValidators: true}).lean();
+	const result = await Review.findOneAndDelete(delete_query, {new: true, runValidators: true}).lean();
 	console.log("result in deleteReview ", result);
 
 	res.status(200).json(result);	

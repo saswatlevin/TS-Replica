@@ -141,8 +141,7 @@ const updateUser = asyncErrorHandler( async(req, res, next) => {
         (
             filter, 
             request_body_deep_clone, 
-            { new: true }, 
-            { runValidators: true }
+            { new: true, runValidators: true }
         ).lean();
     
     console.log("result ", result);
@@ -199,7 +198,7 @@ const updateUserPassword = asyncErrorHandler( async(req, res, next) => {
     console.log("update_object ", update_object);
 
 
-    const result = await User.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
+    const result = await User.findOneAndUpdate(filter, update_object, { new: true, runValidators: true }).lean();
 
     console.log("result ", result);
 

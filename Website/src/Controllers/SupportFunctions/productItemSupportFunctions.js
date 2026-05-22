@@ -193,7 +193,7 @@ const checkProductItemValueExists = async(req) => {
 };
 
 const checkProductItemAvailable = async(req) => {
-    console.log("In checkProductItemCurrentStock (HELPER FUNCTION)");
+    console.log("In checkProductItemAvailable (HELPER FUNCTION)");
 
     try {
 
@@ -208,7 +208,7 @@ const checkProductItemAvailable = async(req) => {
         //console.log("##DEBUG - projection in checkProductItemAvailable ", projection);
 
         const result = await Product.findOne(query, projection).lean();
-        //console.log("##DEBUG - result in checkProductItemAvailable is ", result);
+        console.log("##DEBUG - result in checkProductItemAvailable is ", result);
 
         const product_items_array = result.product_items;
         
@@ -216,13 +216,13 @@ const checkProductItemAvailable = async(req) => {
         console.log("##DEBUG - product_item in checkProductItemAvailable ", product_item);
 
         if (product_item.current_stock > 0) {
-            console.log("##DEBUG in checkProductItem - returning true");
+            console.log("##DEBUG in checkProductItemAvailable - returning true");
             console.log("===END OF checkIsProductItemAvailable===");
             return true;
         }
 
         else {
-            console.log("##DEBUG in checkProductItem - returning false");
+            console.log("##DEBUG in checkProductItemAvailable - returning false");
             console.log("===END OF checkIsProductItemAvailable===");
             return false;
         }

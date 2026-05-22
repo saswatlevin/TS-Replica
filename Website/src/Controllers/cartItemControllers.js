@@ -17,9 +17,15 @@ const { checkUserExists } = require('./SupportFunctions/userSupportFunctions');
 
 const { checkCartItemExists } = require('./SupportFunctions/cartItemSupportFunctions');
 
+const { checkIsCartEmpty } = require('./SupportFunctions/cartItemSupportFunctions');
+
+const { checkIsCartFull } = require('./SupportFunctions/cartItemSupportFunctions');
+
 const { calculateAndUpdateCartItemTotals } = require('./SupportFunctions/cartItemSupportFunctions');
 
 const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
+
+const { checkProductItemAvailable } = require('./SupportFunctions/productItemSupportFunctions');
 
 const { buildUpdateCartItemPricePipeline } = require('../AggregationPipelines/cartItemAggregationPipelines');
 const { buildUpdateCartItemDiscountPipeline } = require('../AggregationPipelines/cartItemAggregationPipelines');
@@ -94,14 +100,15 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     console.log("Creating the cart item");
     const create_cart_item_result = await User.findOneAndUpdate(filter, { $push: { CartItems: cart_item } }, { new: true }, { runValidators: true }).lean();
 
-    console.log("result ", result);
+    console.log("create_cart_item_result ", create_cart_item_result);
 
-    console.log("Calculating the cart tiem totals");
+    console.log("Calculating the cart item totals");
     const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req);
 
     const result = [create_cart_item_result, calculate_cart_item_totals_result];
 
     res.status(200).json(result[0]);
+    
     console.log("===END OF createCartItem===")
 });
 

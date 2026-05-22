@@ -166,9 +166,13 @@ const getCartItemTotalAndDiscountPercentage = async(req) => {
         const result = await User.findOne(query).lean();
         //console.log("##DEBUG - result in getCartItemTotalAndDiscountPercentage ", result);
 
-        const item_total = result.CartItems[0].item_total;
+        const cart_items_subdocument_array = result.CartItems;
 
-        const discount_percentage = result.CartItems[0].discount_percentage;
+        const cart_item = cart_items_subdocument_array.find(item => item.cart_item_id === cart_item_id);
+
+        const item_total = cart_item.item_total;
+
+        const discount_percentage = cart_item.discount_percentage;
 
         const data = {item_total: item_total, discount_percentage: discount_percentage};
 

@@ -198,7 +198,7 @@ const updateCartItemPrice = async (req, res) => {
 
             const build_update_cart_item_price_pipeline = buildUpdateCartItemPricePipeline(product_id,updated_product_price);
 
-            const result = await User.updateMany({ "CartItems.product_id": product_id }, build_update_cart_item_price_pipeline);
+            const result = await User.updateMany({ "CartItems.product_id": product_id }, build_update_cart_item_price_pipeline, {runValidators: true});
 
             //console.log("##DEBUG - result in updateCartItemPrice ", result);
 
@@ -230,7 +230,7 @@ const updateCartItemDiscount = async (req, res) => {
 
         const build_update_cart_item_discount_pipeline = buildUpdateCartItemDiscountPipeline(product_id, updated_discount_code, updated_discount_percentage);
 
-        const result = await User.updateMany({ "CartItems.product_id": product_id }, build_update_cart_item_price_pipeline);
+        const result = await User.updateMany({ "CartItems.product_id": product_id }, build_update_cart_item_discount_pipeline, {runValidators: true});
 
         //console.log("##DEBUG - result in updateCartItemDiscount ", result);
         
@@ -390,7 +390,7 @@ const calculateAndUpdateCartItemTotals = async(req) => {
                     total_payable_amount: 0
                 };
                 
-                const result = await User.findOneAndUpdate(filter, cart_items_total_update_object, {new: true}, {runValidators: true}).lean();
+                const result = await User.findOneAndUpdate(filter, cart_items_total_update_object, {new: true, runValidators: true}).lean();
                             
                 //console.log("result in calculateAndUpdateCartItemTotals ", result);
             }
@@ -401,7 +401,7 @@ const calculateAndUpdateCartItemTotals = async(req) => {
 
                 const single_user_cart_item_totals_update_pipeline = buildSingleUserCartItemTotalsUpdatePipeline();
 
-                const result = await User.updateOne(filter, single_user_cart_item_totals_update_pipeline);
+                const result = await User.updateOne(filter, single_user_cart_item_totals_update_pipeline, {runValidators: true});
 
                 //console.log("result in calculateAndUpdateCartItemTotals ", result);
             }
@@ -415,7 +415,7 @@ const calculateAndUpdateCartItemTotals = async(req) => {
 
             const multi_user_cart_item_totals_update_pipeline = buildMultiUserCartItemTotalsUpdatePipeline();
 
-            const result = await User.updateMany({}, multi_user_cart_item_totals_update_pipeline);
+            const result = await User.updateMany({}, multi_user_cart_item_totals_update_pipeline, {runValidators: true});
 
             //console.log("result in calculateAndUpdateCartItemTotals ", result);
         }

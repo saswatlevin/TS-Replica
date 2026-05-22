@@ -169,7 +169,7 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     
     console.log("update_object ", update_object);
 
-    const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
+    const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, {new: true, runValidators: true}).lean();
     //console.log("update_product_price_result ", update_product_price_result);
 
     
@@ -236,7 +236,7 @@ const updateProductDiscount = asyncErrorHandler(async (req, res, next) => {
     
     console.log("update_object ", update_object);
 
-    const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
+    const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, {new: true, runValidators: true}).lean();
     //console.log("update_product_price_result ", update_product_price_result);
 
     
@@ -299,7 +299,7 @@ const updateProductName = asyncErrorHandler(async(req, res, next) => {
     const update_object = {product_name: product_name};
     console.log("update_object ", update_object);
 
-    const update_product_name_result = await Product.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
+    const update_product_name_result = await Product.findOneAndUpdate(filter, update_object, { new: true, runValidators: true }).lean();
     console.log("update_product_name_result ", update_product_name_result);
 
     res.locals.updated_product_name = update_product_name_result.product_name;
@@ -352,7 +352,7 @@ const updateProduct = asyncErrorHandler(async (req, res, next) => {
     console.log("update_object ", update_object);
 
     console.log("Calling findOneAndUpdate to update the product document");
-    const result = await Product.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
+    const result = await Product.findOneAndUpdate(filter, update_object, { new: true, runValidators: true }).lean();
 
 
     console.log("The updated product document, result ", result);
@@ -401,7 +401,7 @@ const updateProductGarmentWeight = asyncErrorHandler(async (req, res, next) => {
     console.log("update_object ", update_object);
 
     console.log("Calling findOneAndUpdate to update the product document");
-    const result = await Product.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
+    const result = await Product.findOneAndUpdate(filter, update_object, { new: true, runValidators: true }).lean();
     console.log("The updated product document, result ", result);
 
     console.log("Sending the result to the client as JSON with status 200");
@@ -448,7 +448,7 @@ const updateProductSupplyType = asyncErrorHandler(async (req, res, next) => {
     console.log("update_object ", update_object);
 
     console.log("Calling findOneAndUpdate to update the product document");
-    const result = await Product.findOneAndUpdate(filter, update_object, { new: true }, { runValidators: true }).lean();
+    const result = await Product.findOneAndUpdate(filter, update_object, { new: true, runValidators: true }).lean();
     console.log("The updated product document, result ", result);
 
     console.log("Sending the result to the client as JSON with status 200");

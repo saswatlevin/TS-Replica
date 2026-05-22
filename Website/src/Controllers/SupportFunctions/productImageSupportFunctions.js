@@ -9,7 +9,7 @@ const checkDuplicateProductImageExists = async(req) => {
 
         const product_image_query = {product_id: product_id, "product_images.image_uri": image_uri};
 
-        const result = await Product.findOne(product_image_query);
+        const result = await Product.findOne(product_image_query).lean();
 
         //console.log("##DEBUG - result in checkDuplicateProductImageExists ", result);
 
@@ -41,7 +41,7 @@ const checkProductImageExists = async(req) => {
 
         const product_image_query = {product_id: product_id, "product_images.image_id": image_id};
 
-        const result = await Product.findOne(product_image_query);
+        const result = await Product.findOne(product_image_query).lean();
 
         if(result === null){
             console.log("##DEBUG - checkProductImageExists returns false");
@@ -68,11 +68,9 @@ const getProductImageArrayLength = async(req) => {
 
         const product_id = req.body.product_id;
 
-        const image_id = req.body.image_id;
-
         const product_image_query = {product_id: product_id};
 
-        const result = await Product.findOne(product_image_query);
+        const result = await Product.findOne(product_image_query).lean();
 
         const product_image_subdocument_array_length = result.product_images.length;
         

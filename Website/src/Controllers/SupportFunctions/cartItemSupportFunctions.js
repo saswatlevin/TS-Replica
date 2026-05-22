@@ -289,6 +289,7 @@ const updateCartItemName = async (req, res) => {
         console.log("##DEBUG - update_object in updateCartItemName ", update_object);
 
         // Update the product_name of all product items (cart items) of the same product if present.
+        // The arrayFilters option is necessary since we use the filtered positional operator: "CartItems.$[item].cart_item_name".
         const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": product_id }], runValidators: true });
 
         //console.log("##DEBUG - result in updateCartItemName ", result);
@@ -345,6 +346,8 @@ const updateCartItemImageURI = async (req, res) => {
 
         console.log("##DEBUG - update_object in updateCartItemImageURI ", update_object);
 
+        // Update the image_uri of all product items (cart items) of the same product if present.
+        // The arrayFilters option is necessary since we use the filtered positional operator: "CartItems.$[item].cart_item_image_uri".
         const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": product_id }], runValidators: true });
 
         //console.log("##DEBUG - result in updateCartItemImageURI ", result);

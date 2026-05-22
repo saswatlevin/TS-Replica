@@ -21,11 +21,6 @@ const cartItemSchema = new mongoose.Schema({
         required: [true, "cart_item_name is a string and is a required field."]
     },
 
-    cart_item_price: {
-        type: Number,
-        required: [true, "cart_item_price is a number and is a required field."]
-    },
-
     cart_item_image_uri: {
         type: String,
         required: [true, "cart_item_image_uri is a string and is a required field."]
@@ -34,6 +29,31 @@ const cartItemSchema = new mongoose.Schema({
     cart_item_quantity: {
         type: Number,
         required: [true, "cart_item_quantity is an integer and is a required field."]
+    },
+
+    item_total: {
+        type: Number,
+        required: [true, "item_total is a number and is a required field."]
+    },
+
+    discount_code: {
+        type: String,
+        required: [true, "discount_code is a string and is a required field."]
+    },
+
+    discount_percentage: {
+        type: Number,
+        required: [true, "discount_percentage is a number and is a required field."]
+    },
+
+    discount_amount: {
+        type: Number,
+        required: [true, "discount_amount is a number and is a required field."]
+    },
+
+    discounted_total: {
+        type: Number,
+        required: [true, "discounted_total is a number and is a required field."]
     }
 },
 {

@@ -18,7 +18,7 @@ const checkUserExists = async(req) => {
         //console.log("user_query ", user_query);
 
         // Check if findOne is called with the correct input and return value is as expected.
-        const result = await User.findOne(user_query);
+        const result = await User.findOne(user_query).lean();
 
         //console.log("result ", result);
 
@@ -52,7 +52,7 @@ const checkDuplicateUserExists = async(req) => {
     
         const user_query = {first_name: first_name, last_name: last_name, email: email, phone_number: phone_number};
     
-        const result = await User.findOne(user_query);
+        const result = await User.findOne(user_query).lean();
 
         if (result === null) {
             return false;
@@ -75,7 +75,7 @@ const checkDuplicateUserEmailExists = async(req) => {
     
         const user_query = {email: email};
     
-        const result = await User.findOne(user_query);
+        const result = await User.findOne(user_query).lean();
 
         if (result === null) {
             return false;
@@ -98,7 +98,7 @@ const checkDuplicateUserPhoneNumberExists = async(req) => {
     
         const user_query = {phone_number: phone_number};
     
-        const result = await User.findOne(user_query);
+        const result = await User.findOne(user_query).lean();
 
         if (result === null) {
             return false;
@@ -123,7 +123,7 @@ const checkUserValueExists = async(req) => {
         const user_id = req.params.user_id;
         const query = {user_id: user_id, ...req.body};
 
-        const result = await User.findOne(query);
+        const result = await User.findOne(query).lean();
 
         if (result === null) {
             return false;
@@ -150,7 +150,7 @@ const checkUserPasswordValueExists = async(req) => {
 
         const plaintext_password = req.body.password;
 
-        const user = await User.findOne(query);
+        const user = await User.findOne(query).lean();
 
         const password_hash = user.password;
 

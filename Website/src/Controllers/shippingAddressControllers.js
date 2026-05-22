@@ -68,7 +68,7 @@ const createShippingAddress = asyncErrorHandler(async (req, res, next) => {
 
     // A live mongoose document contains many hiiden keys and fields. 
     // The .lean() functions strips these keys and fields completely.
-    const result = await User.findOneAndUpdate(filter, shipping_address_object, { new: true }, {runValidators: true}).lean(); // return the updated document;
+    const result = await User.findOneAndUpdate(filter, shipping_address_object, { new: true, runValidators: true}).lean(); // return the updated document;
     console.log("result in createShippingAddress ", result);
     
     // Here, we use 201 since it means that the resource has been created.
@@ -122,7 +122,7 @@ const updateShippingAddress = asyncErrorHandler(async (req, res, next) => {
     const final_update_object = pruneObject(update_object, ['shipping_address_id']);
     console.log("final_update_object ", final_update_object);
 
-    const result = await User.findOneAndUpdate(filter, { $set: final_update_object }, {new: true}, {runValidators: true} ).lean();
+    const result = await User.findOneAndUpdate(filter, { $set: final_update_object }, {new: true, runValidators: true} ).lean();
     
     console.log("result in updateShippingAddress ", result);
 
@@ -243,7 +243,7 @@ const deleteShippingAddressById = asyncErrorHandler(async (req, res, next) => {
     const delete_query = {shipping_address_id: shipping_address_id};
     console.log("delete_query ", delete_query);
 
-    const result = await User.findOneAndUpdate(filter, { $pull: { ShippingAddresses: delete_query } }, {new: true}, {runValidators: true}).lean();
+    const result = await User.findOneAndUpdate(filter, { $pull: { ShippingAddresses: delete_query } }, {new: true, runValidators: true}).lean();
     
     console.log("result in deleteShippingAddressById ", result);
 

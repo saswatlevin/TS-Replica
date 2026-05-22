@@ -345,7 +345,7 @@ const updateProductItemStock = async(req, res) => {
             console.log("update_query ", update_query);
         }
 
-        const stock_update_result = await Product.findOneAndUpdate(filter, query, {new: true}, {runValidators: true});
+        const stock_update_result = await Product.findOneAndUpdate(filter, query, {new: true, runValidators: true});
 
         console.log("result in updateProductItemStock ", stock_update_result);
 

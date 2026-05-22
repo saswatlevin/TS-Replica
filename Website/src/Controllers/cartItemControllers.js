@@ -98,7 +98,7 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     console.log("cart_item ", cart_item);
 
     console.log("Creating the cart item");
-    const create_cart_item_result = await User.findOneAndUpdate(filter, { $push: { CartItems: cart_item } }, { new: true }, { runValidators: true }).lean();
+    const create_cart_item_result = await User.findOneAndUpdate(filter, { $push: { CartItems: cart_item } }, { new: true, runValidators: true }).lean();
 
     console.log("create_cart_item_result ", create_cart_item_result);
 
@@ -176,7 +176,7 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
         };
     console.log("update_object ", update_object);
 
-    const result_1 = await User.findOneAndUpdate(filter, update_object, {new: true}, {runValidators: true}).lean();
+    const result_1 = await User.findOneAndUpdate(filter, update_object, {new: true,runValidators: true}).lean();
 
     console.log("result_1 in updateCartItemQuantity ", result_1);
 
@@ -289,7 +289,7 @@ const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
    const query = {cart_item_id: cart_item_id};
    console.log("query ", query);
    
-   const result_1 = await User.findOneAndUpdate(filter, { $pull: { CartItems: query } }, { new: true }, {runValidators: true}).lean();
+   const result_1 = await User.findOneAndUpdate(filter, { $pull: { CartItems: query } }, {new: true, runValidators: true}).lean();
 
    const result_2 = await calculateAndUpdateCartItemTotals(req);
 

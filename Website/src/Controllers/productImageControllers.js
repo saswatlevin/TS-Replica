@@ -71,7 +71,7 @@ const createProductImage = asyncErrorHandler(async(req, res, next) => {
     
     // A live mongoose document contains many hidden keys and fields. 
     // The .lean() functions strips these keys and fields completely.
-    const result = await Product.findOneAndUpdate({ product_id: product_id }, { $push: { product_images: product_image } }, { new: true }, { runValidators: true }).lean(); // return the updated document;
+    const result = await Product.findOneAndUpdate({ product_id: product_id }, { $push: { product_images: product_image } }, {new: true, runValidators: true}).lean(); // return the updated document;
         
     console.log("Product image created successfully, result ", result);
     // Here, we use 201 since it means that the resource has been created.
@@ -130,7 +130,7 @@ const updateProductImageURI = asyncErrorHandler(async(req, res, next) => {
         }
     };
 
-    const result_1 = await Product.findOneAndUpdate(filter, update_object, {new: true}, {runValidators: true}).lean();
+    const result_1 = await Product.findOneAndUpdate(filter, update_object, {new: true, runValidators: true}).lean();
 
     console.log("result in updateProductImagePath ", result_1);
 
@@ -236,7 +236,7 @@ const deleteProductImage = asyncErrorHandler(async(req, res, next) => {
         throw illegal_update_error;
     }
    
-    const result = await Product.findOneAndUpdate(filter, delete_object, { new: true }, {runValidators: true}).lean();
+    const result = await Product.findOneAndUpdate(filter, delete_object, {new: true, runValidators: true}).lean();
 
     console.log("result in deleteProductImage is ", result);
     

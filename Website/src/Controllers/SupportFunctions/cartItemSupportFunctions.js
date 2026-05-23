@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('../../Models/User');
+const Product = require('../../Models/Product');
 const { buildSingleUserCartItemTotalsUpdatePipeline } = require('../../AggregationPipelines/cartItemAggregationPipelines');
 const { buildMultiUserCartItemTotalsUpdatePipeline } = require('../../AggregationPipelines/cartItemAggregationPipelines');
 
@@ -153,38 +154,33 @@ const checkIsCartEmpty = async(req) => {
 
 };
 
-const getCartItemTotalAndDiscountPercentage = async(req) => {
-    console.log("In getCartItemTotalAndDiscountPercentage (HELPER FUNCTION)");
+const getProductPriceAndDiscountPercentage = async(req) => {
+    console.log("In getProductPriceAndDiscountPercentage (HELPER FUNCTION)");
 
     try {
-        const cart_item_id = req.body.cart_item_id;
-        const user_id = req.params.user_id;
+        const product_id = req.body.product_id;
 
-        const query = {user_id: user_id, "CartItems.cart_item_id": cart_item_id};
-        console.log("##DEBUG - query in getCartItemTotalAndDiscountPercentage ", query);
+        const query = {product_id: product_id};
+        //console.log("##DEBUG - query in getProductPriceAndDiscountPercentage ", query);
 
-        const result = await User.findOne(query).lean();
+        const product_document = await Product.findOne(query).lean();
         //console.log("##DEBUG - result in getCartItemTotalAndDiscountPercentage ", result);
 
-        const cart_items_subdocument_array = result.CartItems;
+        const product_price = product_document.product_price; 
 
-        const cart_item = cart_items_subdocument_array.find(item => item.cart_item_id === cart_item_id);
+        const discount_percentage = product_document.discount_percentage;
 
-        const item_total = cart_item.item_total;
+        const data = {product_price: product_price, discount_percentage: discount_percentage};
 
-        const discount_percentage = cart_item.discount_percentage;
+        console.log("##DEBUG - data in getProductPriceAndDiscountPercentage ", data);
 
-        const data = {item_total: item_total, discount_percentage: discount_percentage};
-
-        console.log("##DEBUG - data in getCartItemTotalAndDiscountPercentage ", data);
-
-        console.log("===END OF getCartItemTotalAndDiscountPercentage===");
+        console.log("===END OF getProductPriceAndDiscountPercentage===");
 
         return data;
     }
 
     catch(error) {
-        console.log("Error in getCartItemTotalAndDiscountPercentage ", error);
+        console.log("Error in getProductPriceAndDiscountPercentage ", error);
         throw error;
     }
 };
@@ -397,8 +393,10 @@ const calculateAndUpdateCartItemTotals = async(req) => {
                     total_payable_amount: 0
                 };
                 
-                const result = await User.findOneAndUpdate(filter, cart_items_total_update_object, {new: true, runValidators: true}).lean();
-                            
+                const updated_user_document = await User.findOneAndUpdate(filter, cart_items_total_update_object, {new: true, runValidators: true}).lean();
+                
+                return updated_user_document;
+
                 //console.log("result in calculateAndUpdateCartItemTotals ", result);
             }
             
@@ -409,6 +407,10 @@ const calculateAndUpdateCartItemTotals = async(req) => {
                 const single_user_cart_item_totals_update_pipeline = buildSingleUserCartItemTotalsUpdatePipeline();
 
                 const result = await User.updateOne(filter, single_user_cart_item_totals_update_pipeline, {runValidators: true});
+
+                const updated_user_document = await User.findOne(filter).lean();
+
+                return updated_user_document;
 
                 //console.log("result in calculateAndUpdateCartItemTotals ", result);
             }
@@ -439,7 +441,7 @@ module.exports = {
     checkCartItemExists,
     checkIsCartFull,
     checkIsCartEmpty,
-    getCartItemTotalAndDiscountPercentage,
+    getProductPriceAndDiscountPercentage,
     updateCartItemPrice,
     updateCartItemDiscount,
     updateCartItemName,

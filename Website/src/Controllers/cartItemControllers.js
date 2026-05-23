@@ -21,7 +21,7 @@ const { checkIsCartEmpty } = require('./SupportFunctions/cartItemSupportFunction
 
 const { checkIsCartFull } = require('./SupportFunctions/cartItemSupportFunctions');
 
-const { getCartItemTotalAndDiscountPercentage } = require('./SupportFunctions/cartItemSupportFunctions');
+const { getProductPriceAndDiscountPercentage } = require('./SupportFunctions/cartItemSupportFunctions');
 
 const { calculateAndUpdateCartItemTotals } = require('./SupportFunctions/cartItemSupportFunctions');
 
@@ -102,14 +102,16 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     console.log("Creating the cart item");
     const create_cart_item_result = await User.findOneAndUpdate(filter, { $push: { CartItems: cart_item } }, { new: true, runValidators: true }).lean();
 
-    console.log("create_cart_item_result ", create_cart_item_result);
+    //console.log("create_cart_item_result ", create_cart_item_result);
 
     console.log("Calculating the cart item totals");
     const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req);
 
+    console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
+
     const result = [create_cart_item_result, calculate_cart_item_totals_result];
 
-    res.status(200).json(result[0]);
+    res.status(200).json(result[1]);
     
     console.log("===END OF createCartItem===")
 });
@@ -155,9 +157,9 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
 
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
 
-    const data = await getCartItemTotalAndDiscountPercentage(req);
+    const data = await getProductPriceAndDiscountPercentage(req);
 
-    const updated_item_total = data.item_total * request_body_deep_clone.cart_item_quantity;
+    const updated_item_total = data.product_price * request_body_deep_clone.cart_item_quantity;
 
     const discount_percentage = data.discount_percentage;
 
@@ -176,15 +178,19 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
                 "CartItems.$.discounted_total": updated_discounted_total
             }
         };
+    
     console.log("update_object ", update_object);
 
-    const result_1 = await User.findOneAndUpdate(filter, update_object, {new: true,runValidators: true}).lean();
+    const update_cart_item_quantity_result = await User.findOneAndUpdate(filter, update_object, {new: true,runValidators: true}).lean();
 
-    console.log("result_1 in updateCartItemQuantity ", result_1);
+    //console.log("update_cart_item_quantity_result in updateCartItemQuantity ", update_cart_item_quantity_result);
 
-    const result_2 = await calculateAndUpdateCartItemTotals(req);
+    const calculate_cart_item_total_result = await calculateAndUpdateCartItemTotals(req);
+    console.log("calculate_cart_item_total_result ", calculate_cart_item_total_result);
 
-    res.status(200).json(result_1);
+    const result = [update_cart_item_quantity_result, calculate_cart_item_total_result];
+
+    res.status(200).json(result[1]);
 
     console.log("===END OF updateCartItemQuantity===");
 });
@@ -291,15 +297,15 @@ const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
    const query = {cart_item_id: cart_item_id};
    console.log("query ", query);
    
-   const result_1 = await User.findOneAndUpdate(filter, { $pull: { CartItems: query } }, {new: true, runValidators: true}).lean();
+   const delete_cart_item_result = await User.findOneAndUpdate(filter, { $pull: { CartItems: query } }, {new: true, runValidators: true}).lean();
 
-   const result_2 = await calculateAndUpdateCartItemTotals(req);
+   const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req);
 
-   const result_array = [result_1, result_2];
+   const result = [delete_cart_item_result, calculate_cart_item_totals_result];
 
-   console.log("Result in deleteCartItem ", result_1);
+   console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
 
-   res.status(200).json(result_array[0]);
+   res.status(200).json(result[1]);
 
    console.log("=====END OF deleteCartItem()===");
 

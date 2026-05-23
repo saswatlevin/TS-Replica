@@ -84,7 +84,7 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     const cart_item_id = createRandomString(6);
     console.log("cart_item_id ", cart_item_id);
 
-    const discount_amount = req.body.item_total * req.body.discount_percentage;
+    const discount_amount = req.body.item_total * ( req.body.discount_percentage / 100);
     console.log("discount_amount ", discount_amount);
 
     const discounted_total = req.body.item_total - discount_amount;

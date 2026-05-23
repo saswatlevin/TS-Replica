@@ -91,7 +91,7 @@ cart_item_test_data_list = [
     {
         "url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3",
 
-        "test_name": "Test to create a CartItem in CREATECARTITEM",
+        "test_name": "Test to create a CartItem with 0 discount_percentage in CREATECARTITEM",
 
         "test_data": {
             "product_id": "b0e6v4zl9aih",
@@ -108,13 +108,32 @@ cart_item_test_data_list = [
     },
 
     {
+        "url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3",
+
+        "test_name": "Test to create a CartItem with 10 percent discount in CREATECARTITEM",
+
+        "test_data": {
+            "product_id": "mgy5g9gp3yox",
+            "sku": "9wn6a7mgzh",
+            "cart_item_name": "The Democratic Jean in Rigid Organic Selvedge",
+            "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Jeans\\The_Democratic_Jean_in_Rigid_Organic_Selvedge\\6990308278349_democratic-jean-in-rigid-organic-selvage-2408_01_tsio.jpg",
+            "cart_item_quantity": 1,
+            "item_total": 168,
+            "discount_code": "10PERCENT",
+            "discount_percentage": 10
+        },
+
+        "serial": 6
+    },
+
+    {
         "url": "http://localhost:3500/cartitems/deletecartitem/d2a986a0cab3",
 
         "test_name": "Test to check the response to an empty request body in DELETECARTITEM",
 
         "test_data": {},
 
-        "serial": 6
+        "serial": 7
     },
 
     {
@@ -128,7 +147,7 @@ cart_item_test_data_list = [
             "sku": "4565314a71"
         },
 
-        "serial": 7
+        "serial": 8
     },
 
     {
@@ -142,7 +161,7 @@ cart_item_test_data_list = [
             "sku": "4565314a72"
         },
 
-        "serial": 8
+        "serial": 9
     },
     
     {
@@ -155,7 +174,7 @@ cart_item_test_data_list = [
             "product_id": "a6bb1d23bd28"
         },
 
-        "serial": 9
+        "serial": 10
     },
 
     {
@@ -169,7 +188,7 @@ cart_item_test_data_list = [
             "sku": "4565314a71"
         },
 
-        "serial": 10
+        "serial": 11
     },
 
 
@@ -180,7 +199,7 @@ cart_item_test_data_list = [
 
         "test_data": {},
 
-        "serial": 11
+        "serial": 12
     },
 
     {
@@ -195,7 +214,7 @@ cart_item_test_data_list = [
             "cart_item_quantity": 2
         },
 
-        "serial": 12
+        "serial": 13
     },
 
     {
@@ -210,7 +229,7 @@ cart_item_test_data_list = [
             "cart_item_quantity": 2
         },
 
-        "serial": 13
+        "serial": 14
     },
 
     {
@@ -224,29 +243,29 @@ cart_item_test_data_list = [
             "sku": "4565314a71"
         },
 
-        "serial": 14
+        "serial": 15
     },
 
     {
         "url": "http://localhost:3500/cartitems/updatecartitemquantity/d2a986a0cab3",
 
-        "test_name": "Test to update the quantity of a CartItem to 2 in UPDATECARTITEMQUANTITY",
+        "test_name": "Test to update the quantity of a CartItem to 3 in UPDATECARTITEMQUANTITY",
 
         "test_data": {
             "cart_item_id": "15315b1a2056",
             "product_id": "a6bb1d23bd28",
             "sku": "12dcc9cd7b",
-            "cart_item_quantity": 2
+            "cart_item_quantity": 3
         },
 
-        "serial": 15
+        "serial": 16
     }
 
 ]
 
-# 0 - 5 createCartItem
-# 6 - 10 deleteCartItem
-# 11 - 15 updateCartItemQuantity
+# 0 - 6 createCartItem
+# 7 - 11 deleteCartItem
+# 12 - 16 updateCartItemQuantity
 
 list_length = len(cart_item_test_data_list)
 user_choice = None
@@ -270,7 +289,7 @@ while user_choice != 0:
     test_data = cart_item_test_data_list[user_choice - 1]['test_data']
     serial = cart_item_test_data_list[user_choice - 1]['serial']
 
-    if user_choice >= 1 and user_choice <= 6:
+    if user_choice >= 1 and user_choice <= 7:
         print("======CreateCartItem TEST======")
         print("Test Number " + str(user_choice))
         print("url " + url)
@@ -281,7 +300,7 @@ while user_choice != 0:
         response = postRequests(url, test_data)
         print("\nresponse " + response.text + "\n")
 
-    elif user_choice >= 7 and user_choice <= 11:
+    elif user_choice >= 8 and user_choice <= 12:
         print("======DeleteCartItem TEST======")
         print("Test Number " + str(user_choice))
         print("url " + url)
@@ -292,7 +311,7 @@ while user_choice != 0:
         response = deleteRequests(url, test_data)
         print("\nresponse " + response.text + "\n")
 
-    elif user_choice >= 12 and user_choice <= 16:
+    elif user_choice >= 13 and user_choice <= 17:
         print("======UpdateCartItemQuantity TEST======")
         print("Test Number " + str(user_choice))
         print("url " + url)

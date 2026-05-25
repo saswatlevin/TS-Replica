@@ -1,0 +1,88 @@
+updateProduct Tests for The Camp Short in Aged Penny Chipped Canvas
+
+
+* Test to check the response to an empty request body. Result: ZodError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  { }
+]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "il19g7cce84m",
+
+    "product_description": "Boasting rugged construction and considered tailoring, The Camp Short is a cut above the rest in both leisure and labor. Given its workwear roots, it should come as no surprise that The Camp Short is built like a tank, complete with a host of utility-focused features like easy-entry slash pockets and bar-tacked stress points. We’ve finished this Chipped Canvas iteration with a stone wash for lived-in character from the very first wear."
+  
+  }
+]
+
+* Test to check the response to a value that already exists. RESULT: RedundantUpdateError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  { 
+    "product_id": "il19g7cce84l",
+    "product_category": "Lower Garment"
+  }
+]
+
+* Test to update the product_color. RESULT: SUCCESS [Check product_color only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "il19g7cce84l",
+    "product_color": "Aged Penny Chipped CANVAS"
+  }
+]
+
+* Test to update the product_description. RESULT: SUCCESS [Check product_description only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "il19g7cce84l",
+
+    "product_description": "Boasting rugged construction and considered tailoring, The Camp Short is a cut above the rest in both leisure and labor. Given its workwear roots, it should come as no surprise that The Camp Short is built like a tank, complete with a host of utility-focused features like easy-entry slash pockets and bar-tacked stress points. We’ve finished this Chipped Canvas iteration with a stone wash for lived-in character from the very first wear."
+    
+  }
+]
+
+* Test to update the product_category. RESULT: SUCCESS [Check product_category only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "il19g7cce84l",
+
+    "product_category": "Upper Garment"
+  }
+]
+
+* Test to update the product_subcategory. RESULT: SUCCESS [Check product_subcategory only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "il19g7cce84l",
+
+    "product_subcategory": "Shirt"
+  }
+]
+
+* Test to update the product_subcategory_type. RESULT: SUCCESS [Check product_subcategory_type only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "il19g7cce84l",
+
+    "product_subcategory_type": "Pant"
+  }
+]
+
+* Test to update the product_specifications. RESULT: SUCCESS [Check product_specifications only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "il19g7cce84l",
+
+    "product_specifications": 12.5-oz. 100% organic cotton canvas, 6-oz. organic cotton SF map pocketing, stone washed for a worn-in look and feel, angled front slash pockets, two back mitered patch pockets with half lining for added durability, bar-tacked pockets at stress points, YKK top button and zip fly closure, double-needle stitching throughout, wash cold and tumble dry low, made in China."
+  }
+]

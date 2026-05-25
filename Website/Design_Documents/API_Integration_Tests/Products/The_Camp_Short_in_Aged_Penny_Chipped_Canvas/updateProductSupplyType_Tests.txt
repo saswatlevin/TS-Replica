@@ -1,4 +1,4 @@
-updateProductSupplyType Tests for The Apres Short in Navy Linen Tweed
+updateProductSupplyType Tests for The Camp Short in Aged Penny Chipped Canvas
 
 * Test to check the response to an empty request body. RESULT: ZodError
   [
@@ -10,7 +10,7 @@ updateProductSupplyType Tests for The Apres Short in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductsupplytype",
     {
-      "product_id": "u9yl6odhigeu",
+      "product_id": "il19g7cce84m",
       "supply_type": "Essential"
     }
   ]
@@ -19,7 +19,7 @@ updateProductSupplyType Tests for The Apres Short in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductsupplytype",
     {
-      "product_id": "u9yl6odhiget",
+      "product_id": "il19g7cce84l",
       "supply_type": "Limited" 
     }
   ]
@@ -28,7 +28,7 @@ updateProductSupplyType Tests for The Apres Short in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductsupplytype",
     {
-      "supply_type": "Limited"
+      "supply_type": "Essential"
     }
   ]
 
@@ -36,7 +36,7 @@ updateProductSupplyType Tests for The Apres Short in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductsupplytype",
     {
-      "product_id": "u9yl6odhiget",
+      "product_id": "il19g7cce84l",
       "supply_type": "Essential" 
     }
   ]
@@ -45,7 +45,7 @@ updateProductSupplyType Tests for The Apres Short in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductsupplytype",
     {
-       "product_id": "u9yl6odhiget",
+       "product_id": "il19g7cce84l",
        "supply_type": "Essential",
        "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping."
     }

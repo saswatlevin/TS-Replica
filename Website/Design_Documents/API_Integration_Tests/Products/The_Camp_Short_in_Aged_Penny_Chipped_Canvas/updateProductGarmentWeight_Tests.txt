@@ -1,4 +1,4 @@
-updateProductGarmentWeight Tests for The APres SHort in Navy Linen Tweed
+updateProductGarmentWeight Tests for The Camp Short in Aged Penny Chipped Canvas
 
 * Test to check the response to an empty object. RESULT: ZodError
   [
@@ -10,8 +10,8 @@ updateProductGarmentWeight Tests for The APres SHort in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductgarmentweight",
     {
-      "product_id": "u9yl6odhigeu",
-      "garment_weight" : "Heavy"
+      "product_id": "il19g7cce84m",
+      "garment_weight" : "Medium"
     }
   ]
  
@@ -19,7 +19,7 @@ updateProductGarmentWeight Tests for The APres SHort in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductgarmentweight",
     {
-      "product_id": "u9yl6odhiget",
+      "product_id": "il19g7cce84l",
       "garment_weight" : "Medium"
 
     }
@@ -29,7 +29,7 @@ updateProductGarmentWeight Tests for The APres SHort in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductgarmentweight",
     {
-      "product_id": "u9yl6odhiget",
+      "product_id": "il19g7cce84l",
       "garment_weight" : "Heavy"
     }
   ]
@@ -38,7 +38,7 @@ updateProductGarmentWeight Tests for The APres SHort in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductgarmentweight",
     {
-      "product_id": "u9yl6odhiget",
+      "product_id": "il19g7cce84l",
       "garment_weight_description" : "Sturdy Daily DRIVERS"
     }
   ]
@@ -47,7 +47,7 @@ updateProductGarmentWeight Tests for The APres SHort in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductgarmentweight",
     {
-      "product_id": "u9yl6odhiget",
+      "product_id": "il19g7cce84l",
       "garment_weight" : "Light"
       "garment_weight_description" : "Sturdy Daily DRIVERS"
     }

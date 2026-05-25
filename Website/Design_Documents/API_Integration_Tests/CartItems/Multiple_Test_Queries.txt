@@ -1,0 +1,21 @@
+======createCartItem======
+	    "product_id": "",
+            "sku": "",
+            "cart_item_name": "",
+            "cart_item_image_uri": "",
+            "cart_item_quantity": ,
+            "item_total": ,
+            "discount_code": "",
+            "discount_percentage":
+
+======updateCartItemQuantity======
+	    "cart_item_id": "",
+            "product_id": "",
+            "sku": "",
+            "cart_item_quantity": 
+
+
+======deleteCartItem======
+	    "cart_item_id": "",
+            "product_id": "",
+            "sku": ""

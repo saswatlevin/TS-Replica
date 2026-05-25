@@ -1,4 +1,4 @@
-updateProductPrice Tests for The Apres Short in Navy Linen Tweed
+updateProductPrice Tests for The Camp Short in Aged Penny Chipped Canvas
 
 * Test to check the response to an empty request body. RESULT: ZodError
   [
@@ -10,7 +10,7 @@ updateProductPrice Tests for The Apres Short in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductprice",
     {
-      "product_id": "u9yl6odhigeu",
+      "product_id": "il19g7cce84m",
       "product_price": 200
     }
   ]
@@ -19,8 +19,8 @@ updateProductPrice Tests for The Apres Short in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductprice",
     {
-      "product_id": "u9yl6odhiget",
-      "product_price": 94
+      "product_id": "il19g7cce84l",
+      "product_price": 98
     }
   ]
 
@@ -28,7 +28,7 @@ updateProductPrice Tests for The Apres Short in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductprice",
     {
-      "product_id": "u9yl6odhiget"
+      "product_id": "il19g7cce84l"
     }
   ]
 
@@ -36,7 +36,7 @@ updateProductPrice Tests for The Apres Short in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/updateproductprice",
     {
-      "product_id": "u9yl6odhiget",
+      "product_id": "il19g7cce84l",
       "product_price": 100
     }
   ]

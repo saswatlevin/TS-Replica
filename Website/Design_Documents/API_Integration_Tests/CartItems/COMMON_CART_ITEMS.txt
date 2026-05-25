@@ -1,0 +1,56 @@
+====4 Cart Items Each Belonging to the Same Product====
+{
+  "product_id": "u9yl6odhiget",
+  "sku": "269ujn48i2",
+  "cart_item_name": "The Apres Short in Navy Linen Tweed",
+  "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Apres_Short_in_Navy_Linen_Tweed\\instock_m_q225_The_Apres_Short-NavyLinenTweed_portrait_004.jpg",
+  "cart_item_quantity": 1,
+  "item_total": 94,
+  "discount_code": "20PERCENT",
+  "discount_percentage": 20
+}
+
+{
+  "product_id": "dzh5txxega4b",
+  "sku": "9bkgezadt6",
+  "cart_item_name": "The Breakwater Pant in Rinsed Indigo Stripe", 
+  "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Breakwater_Pant_in_Rinsed_Indigo_Stripe\\instock_m_q225_The_Breakwater_Pant-RinsedIndigoStripe_portrait_001.jpg", 
+  "cart_item_quantity": 1,
+  "item_total": 128,
+  "discount_code": "10PERCENT",
+  "discount_percentage": 10
+}
+
+{
+  "product_id": "il19g7cce84l",
+  "sku": "x6mgf6qdam",
+  "cart_item_name": "The Camp Short in Aged Penny Chipped Canvas",
+  "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Shorts\\The_Camp_Short_in_Aged_Penny_Chipped_Canvas\\instock_m_q225_The_Camp_Short-AgedPennyChippedCanvas_portrait_001.jpg",
+  "cart_item_quantity": 1,
+  "item_total": 98,
+  "discount_code": "30PERCENT",
+  "discount_percentage": 30
+}
+
+{
+  "product_id": "a6bb1d23bd28",
+  "sku": "4565314a71",
+  "cart_item_name": "The Craftsman Shirt in Bark Plaid Cotton",
+  "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_004.jpg", 
+  "cart_item_quantity": 1,
+  "item_total": 300,
+  "discount_code": "15PERCENT",
+  "discount_percentage": 15
+}
+
+{
+  "product_id": "ojvs7hjfihgc",
+  "sku": "bzpr1txn5j",
+  "cart_item_name": "The Painter Pant in Seeded Natural Chipped Canvas",
+  "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_001.jpg", 
+  "cart_item_quantity": 1,
+  "item_total": 138,
+  "discount_code": "10PERCENT",
+  "discount_percentage": 10
+}
+

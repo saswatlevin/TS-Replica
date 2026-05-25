@@ -39,11 +39,31 @@ createProduct Tests for The Painter Pant in Natural Chipped Canvas
        },
   
       "product_specifications": "12.5 oz. 100% organic cotton canvas with 6 oz. organic cotton SF Map pocketing, stone-washed for a worn-in feel, features angled front slash pockets, two mitered back patch pockets with reinforced lining, dual tool pockets sewn into side seam, coin pocket, triple-needle felled outseam construction, bar-tacked stress points, YKK zip fly with tack button closure, machine wash cold and tumble dry low, made in China.",
+      
+
+      "product_images": [
+      				{
+      					"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_001.jpg",
+      					"main_image": true
+    				}
+      			],
+      
+      "product_items":  [
+       				{
+      					"lower_size_number": 38,
+      					"inseam_length": 34,
+      					"total_stock": 310,
+      					"quantity_sold": 50,
+      					"quantity_returned": 0,
+      					"current_stock": 260
+    				}
+                        ],
     
-      "discount_code": "None",
+      "discount_code": "10PERCENT",
   
-      "discount_percentage": 0
-    }      
+      "discount_percentage": 10
+      
+      }      
  ]
 
 * Test to check response to a missing product_price field. RESULT: ZodError
@@ -79,9 +99,28 @@ createProduct Tests for The Painter Pant in Natural Chipped Canvas
   
       "product_specifications": "12.5 oz. 100% organic cotton canvas with 6 oz. organic cotton SF Map pocketing, stone-washed for a worn-in feel, features angled front slash pockets, two mitered back patch pockets with reinforced lining, dual tool pockets sewn into side seam, coin pocket, triple-needle felled outseam construction, bar-tacked stress points, YKK zip fly with tack button closure, machine wash cold and tumble dry low, made in China.",
     
-      "discount_code": "None",
+	"product_images": [
+      				{
+      					"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_001.jpg",
+      					"main_image": true
+    				}
+      			  ],
+      
+      "product_items":    [
+       				{
+      			      		"lower_size_number": 38,
+      					"inseam_length": 34,
+      					"total_stock": 310,
+      					"quantity_sold": 50,
+      					"quantity_returned": 0,
+      					"current_stock": 260
+    				}
+                          ],
+    
+      "discount_code": "10PERCENT",
   
-      "discount_percentage": 0
+      "discount_percentage": 10
+
   }
   
 ]
@@ -90,9 +129,9 @@ createProduct Tests for The Painter Pant in Natural Chipped Canvas
 [
   "url": "http://localhost:3500/products/createproduct",
   {
-      "product_name": "The Painter Pant in Seeded Natural Chipped Canvas 2",
+      "product_name": "The Painter Pant in Seeded Natural Chipped CANVAS 2",
       
-      "product_color": "Seeded Natural Chipped Canvas",
+      "product_color": "Seeded Natural Chipped CANVAS",
   
       "product_description": "A thoughtful riff on a timeless workwear silhouette, The Painter Pant offers utility-driven details in a clean, tailored package. Built from sturdy organic cotton canvas and finished with a subtle stone wash, it brings classic durability and everyday versatility to the table—no paint required, EVER!!",
   
@@ -120,10 +159,28 @@ createProduct Tests for The Painter Pant in Natural Chipped Canvas
        },
   
       "product_specifications": "12.5 oz. 100% organic cotton canvas with 6 oz. organic cotton SF Map pocketing, stone-washed for a worn-in feel, features angled front slash pockets, two mitered back patch pockets with reinforced lining, dual tool pockets sewn into side seam, coin pocket, triple-needle felled outseam construction, bar-tacked stress points, YKK zip fly with tack button closure, machine wash cold and tumble dry low, made in China.",
+
+      "product_images": [
+      				{
+      					"image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_001.jpg",
+      					"main_image": true
+    				}
+      			],
+      
+      "product_items":  [
+       				{
+      					"lower_size_number": 38,
+      					"inseam_length": 34,
+      					"total_stock": 310,
+      					"quantity_sold": 50,
+      					"quantity_returned": 0,
+      					"current_stock": 260
+    				}
+                        ],
     
-      "discount_code": "None",
+      "discount_code": "10PERCENT",
   
-      "discount_percentage": 0
+      "discount_percentage": 10
   }
   
 ]

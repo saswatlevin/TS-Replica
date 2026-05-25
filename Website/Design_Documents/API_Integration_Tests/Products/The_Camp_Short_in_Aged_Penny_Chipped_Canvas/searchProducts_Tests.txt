@@ -1,4 +1,4 @@
-searchProducts Tests for The Apres Short in Navy Linen Tweed
+searchProducts Tests for The Camp Short in Aged Penny Chipped Canvas
 
 * Test to check the response to an empty object.
   [
@@ -10,7 +10,7 @@ searchProducts Tests for The Apres Short in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/searchproducts",
     {
-      "product_name": "The Apres Short in Navy Linen Tweed"
+      "product_name": "The Camp Short in Aged Penny Chipped Canvas"
     }
   ]
 
@@ -18,7 +18,7 @@ searchProducts Tests for The Apres Short in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/searchproducts",
     {
-      "product_color": "Navy Linen Tweed"
+      "product_color": "Aged Penny Chipped Canvas"
     }
   ]
 
@@ -34,7 +34,7 @@ searchProducts Tests for The Apres Short in Navy Linen Tweed
   [
     "url": "http://localhost:3500/products/searchproducts",
     {
-       "product_name": "The Apres Short in Navy Linen Tweed",
+       "product_name": "The Camp Short in Aged Penny Chipped Canvas",
        "product_subcategory": "Bottom"
     }
   ]

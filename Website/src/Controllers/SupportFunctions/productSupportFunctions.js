@@ -17,12 +17,16 @@ const checkProduct = async(req) => {
         //console.log("##DEBUG - result in checkProduct ", result);
     
         if (result === null || result.length === 0) {
-            //console.log("##DEBUG - Returning false in checkProduct");
+            console.log("##DEBUG - Returning false in checkProduct");
             return false;
         }
 
-        //console.log("##DEBUG - Returning true in checkProduct");
-        return true;
+        else {
+            console.log("##DEBUG - Returning true in checkProduct");
+            return true;
+        }
+
+
     }
 
     catch(error) {
@@ -47,10 +51,17 @@ const checkProductNameExists = async(req) => {
         const result = await Product.findOne(product_search_object);
 
         if (result === null) {
+            console.log("##DEBUG - Returning false in checkProductNameExists");
             return false;
         }
+
+        else {
+            console.log("##DEBUG - Returning true in checkProductNameExists");
+            return true;
+
+        }
     
-        return true;
+        
     }
 
     catch(error) {
@@ -86,12 +97,16 @@ const checkProductPriceExists = async(req) => {
         //console.log("##DEBUG in checkProductPriceExists - result - ", result);
 
         if (result === null) {
-            console.log("##DEBUG in checkProductPriceExists - Returning false ");
+            console.log("##DEBUG in checkProductPriceExists - Returning false in checkProductPriceExists ");
             return false;
         }
         
-        console.log("##DEBUG in checkProductPriceExists - Returning true ");
-        return true;
+        else {
+            console.log("##DEBUG in checkProductPriceExists - Returning true in checkProductPriceExists ");
+            return true;
+        }
+        
+        
     }
 
     catch(error) {
@@ -117,10 +132,16 @@ const checkDuplicateProduct = async(req) => {
         //console.log("result in checkDuplicateProduct() ", result);
     
         if (result === null) {
+            console.log("##DEBUG - Returning false in checkDuplicateProduct");
             return false;
         }
+
+        else {
+            console.log("##DEBUG - Returning true in checkDuplicateProduct");
+            return true;
+        }
     
-        return true;
+        
     }
 
     catch(error) {
@@ -146,7 +167,6 @@ const insertAt = (obj, key, value, position) => {
 }
 
 const checkProductValueExists = async(req) => {
-    // USES REQ.BODY -> PRODUCT ID
     console.log("In checkProductValueExists");
     
     try {
@@ -159,12 +179,16 @@ const checkProductValueExists = async(req) => {
         //console.log("##DEBUG result in checkProductValueExists ", result);
 
         if (result === null) {
-            console.log("##DEBUG Returning false in checkProductValueExists ");
+            console.log("##DEBUG - Returning false in checkProductValueExists ");
             return false;
         }
 
-        console.log("##DEBUG Returning true in checkProductValueExists ");
-        return true;
+        else {
+            console.log("##DEBUG - Returning true in checkProductValueExists ");
+            return true;
+        }
+
+
     }
 
     catch(error) {
@@ -239,11 +263,12 @@ const checkProductSupplyTypeValueExists = async(req) => {
 
         
         if (result === null) {
+            console.log("##DEBUG - Returning false in checkProductSupplyTypeValueExists");
             return false;
         }
 
         else {    
-            //console.log("##DEBUG Returning true in checkProductSupplyTypeValueExists ");
+            console.log("##DEBUG Returning true in checkProductSupplyTypeValueExists ");
             return true;
         }
     }
@@ -314,10 +339,12 @@ const checkProductDiscountCodeAndPercentageExists = async(req) => {
         const result = await Product.findOne(query).lean();
 
         if (result === null) {
+            console.log("##DEBUG - Returning false in checkProductDiscountCodeAndPercentageExists");
             return false;
         } 
 
         else {
+            console.log("##DEBUG - Returning true in checkProductDiscountCodeAndPercentageExists");
             return true;
         }       
     }

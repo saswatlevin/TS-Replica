@@ -16,10 +16,10 @@ const checkProductItemExists = async(req) => {
         //const projection = {"product_items.$": 1};
         //console.log("projection in checkProductItemExists ", projection);
 
-        console.log("product_item_query in checkProductItemExists ", product_item_query);
+        //console.log("product_item_query in checkProductItemExists ", product_item_query);
 
         const result = await Product.findOne(product_item_query).lean();
-        console.log("##DEBUG - result in checkProductItemExists ", result);
+        //console.log("##DEBUG - result in checkProductItemExists ", result);
 
         if (result === null) {
             console.log("##DEBUG - checkProductItemExists returns false");
@@ -115,10 +115,10 @@ const checkDuplicateProductItemExists = async(req) => {
         console.log("No duplicate product_item risk.");
        }
 
-        console.log("##DEBUG - product_item_query in checkDuplicateProductItemExists ", product_item_query);
+        //console.log("##DEBUG - product_item_query in checkDuplicateProductItemExists ", product_item_query);
         
         const result = await Product.findOne(product_item_query).lean();
-        console.log("##DEBUG - result in checkDuplicateProductItemExists ", result);
+        //console.log("##DEBUG - result in checkDuplicateProductItemExists ", result);
 
         if (result === null){
             console.log("##DEBUG - checkDuplicateProductItemExists returns false");
@@ -167,11 +167,11 @@ const checkProductItemValueExists = async(req) => {
             }
         };
 
-        console.log("##DEBUG - product_item_search_query in checkProductItemValueExists - ", product_item_search_query);
+        //console.log("##DEBUG - product_item_search_query in checkProductItemValueExists - ", product_item_search_query);
 
         const result = await Product.findOne(product_item_search_query).lean();
 
-        console.log("##DEBUG - result in checkProductItemValueExists ", result);
+        //console.log("##DEBUG - result in checkProductItemValueExists ", result);
 
         if (result === null) {
             console.log("##DEBUG - checkProductItemValueExists returns false");
@@ -202,18 +202,18 @@ const checkProductItemAvailable = async(req) => {
         const sku = req.body.sku;
 
         const query = { "product_id": product_id, "product_items.sku": sku };
-        console.log("##DEBUG - query in checkProductItemAvailable ", query);
+        //console.log("##DEBUG - query in checkProductItemAvailable ", query);
 
         const projection = {"product_items.$": 1};
         //console.log("##DEBUG - projection in checkProductItemAvailable ", projection);
 
         const result = await Product.findOne(query, projection).lean();
-        console.log("##DEBUG - result in checkProductItemAvailable is ", result);
+        //console.log("##DEBUG - result in checkProductItemAvailable is ", result);
 
         const product_items_array = result.product_items;
         
         const product_item = product_items_array.find(item => item.sku === sku);
-        console.log("##DEBUG - product_item in checkProductItemAvailable ", product_item);
+        //console.log("##DEBUG - product_item in checkProductItemAvailable ", product_item);
 
         if (product_item.current_stock > 0) {
             console.log("##DEBUG in checkProductItemAvailable - returning true");
@@ -241,13 +241,13 @@ const checkMinimumProductItemQuantity = async(req) => {
             const product_id = req.body.product_id;
 
             const query = {product_id: product_id};
-            console.log("##DEBUG - query in checkMinimumProductItemQuantity ", query);
+            //console.log("##DEBUG - query in checkMinimumProductItemQuantity ", query);
 
             const result = await findOne(query).lean();
-            console.log("##DEBUG - result in checkMinimumProductItemQuantity ", result);
+            //console.log("##DEBUG - result in checkMinimumProductItemQuantity ", result);
 
             const product_items = result.product_items;
-            console.log("##DEBUG - product_items in checkMinimumProductItemQuantity ", product_items);
+            //console.log("##DEBUG - product_items in checkMinimumProductItemQuantity ", product_items);
 
             if (product_items.length === 1) {
                 console.log("===END OF checkMinimumProductItemQuantity===");
@@ -274,13 +274,13 @@ const getProductItem = async(req) => {
         const sku = req.product.sku;
 
         const query = {"product_id": product_id, "product_items.sku": sku}; 
-        console.log("##DEBUG - query in getProductItem ", query);
+        //console.log("##DEBUG - query in getProductItem ", query);
 
         const product_item = productItems.find(item => item.sku === sku);
-        console.log("##DEBUG - product_item in getProductItem ", product_item);
+        //console.log("##DEBUG - product_item in getProductItem ", product_item);
 
         const result = await Product.findOne(query).lean();
-        console.log("##DEBUG - result in getProductItem ", result);
+        //console.log("##DEBUG - result in getProductItem ", result);
 
         console.log("===END OF getProductItem===");
 
@@ -304,7 +304,7 @@ const updateProductItemStock = async(req, res) => {
         const sku = req.body.sku;
 
         const filter = {product_id: product_id, sku: sku};
-        console.log("filter ", filter);
+        //console.log("filter ", filter);
     
         var new_quantity_sold = 0;
         var new_current_stock = 0;
@@ -317,11 +317,11 @@ const updateProductItemStock = async(req, res) => {
       
             new_quantity_sold = req.body.cart_item_quantity + product_item.new_quantity_sold;
       
-            console.log("new_quantity_sold ", new_quantity_sold);
+            //console.log("new_quantity_sold ", new_quantity_sold);
       
             new_current_stock = product_item.total_stock - new_quantity_sold + product_item.quantity_returned;
       
-            console.log("new_current_stock ", new_current_stock);
+            //console.log("new_current_stock ", new_current_stock);
 
             update_query = {"product_items.current_stock": new_current_stock, "product_items.quantity_sold": new_quantity_sold};
 
@@ -334,11 +334,11 @@ const updateProductItemStock = async(req, res) => {
 
             new_quantity_returned = product_item.quantity_returned + req.body.quantity_returned;
 
-            console.log("new_quantity_returned ", new_quantity_returned);
+            //console.log("new_quantity_returned ", new_quantity_returned);
 
             new_current_stock = product_item.total_stock - product_item.quantity_sold + new_quantity_returned;
 
-            console.log("new_current_stock ", new_current_stock);
+            //console.log("new_current_stock ", new_current_stock);
 
             update_query = {"product_items.current_stock": new_current_stock, "product_items.quantity_returned": new_quantity_returned};
 
@@ -347,7 +347,7 @@ const updateProductItemStock = async(req, res) => {
 
         const stock_update_result = await Product.findOneAndUpdate(filter, query, {new: true, runValidators: true});
 
-        console.log("result in updateProductItemStock ", stock_update_result);
+        //console.log("result in updateProductItemStock ", stock_update_result);
 
     }
 

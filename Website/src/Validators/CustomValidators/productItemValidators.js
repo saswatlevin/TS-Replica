@@ -35,6 +35,16 @@ const zodIsCurrentStock = z.number("The current_stock field must be a number (in
 
 const zodIsSKU = z.string("The sku field must be a string. It is a required field.").length(10, {message: "The sku must be 10 characters long."}).regex(customValidators.tenCharacterRegex, {message: "The sku can only contain lowercase letters and numbers."});
 
+const zodIsShirtLiteral = z.literal("Shirt");
+
+const zodIsPantWithLetterLiteral = z.literal("Pant with Lower Size Letter and Inseam Length");
+
+const zodIsPantWithNumberLiteral = z.literal("Pant with Lower Size Number and Inseam Length");
+
+const zodIsShortWithOnlyLetterLiteral = z.literal("Short with Only Lower Size Letter");
+
+const zodIsShortWithOnlyNumberLiteral = z.literal("Short with Only Lower Size Number");
+
 module.exports = {
 	zodIsUpperSizeNumber,
 	zodIsLowerSizeNumber,
@@ -46,5 +56,10 @@ module.exports = {
 	zodIsQuantitySold,
 	zodIsQuantityReturned,
 	zodIsCurrentStock,
-	zodIsSKU
-}
+	zodIsSKU,
+	zodIsShirtLiteral,
+	zodIsPantWithLetterLiteral,
+	zodIsPantWithNumberLiteral,
+	zodIsShortWithOnlyLetterLiteral,
+	zodIsShortWithOnlyNumberLiteral
+};

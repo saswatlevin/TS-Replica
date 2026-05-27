@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const productItemSchema = new mongoose.Schema({
 
+    item_type: {
+        type: String,
+        required: [true, "item_type is a string and is a required field."]
+    },
+
     sku: {
         type: String,
         required: [true, "sku is the primary key, a 10-character string and is a required field."]

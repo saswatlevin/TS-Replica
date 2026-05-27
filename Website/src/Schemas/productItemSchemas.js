@@ -39,15 +39,17 @@ const baseSchema = z.object({
 });
 
 const shirtRequestSchema = z.object({
+    item_type: productItemValidators.zodIsShirtLiteral,
 
     upper_size_letter: productItemValidators.zodIsUpperSizeLetter,
     
-    upper_size_number: productItemValidators.zodIsUpperSizeNumber,
+    upper_size_number: productItemValidators.zodIsUpperSizeNumber
     
 }).merge(baseSchema).strict();
 
 // Used for jeans and chinos too.
 const pantRequestSchemaWithNumbers = z.object({
+    item_type: productItemValidators.zodIsPantWithNumberLiteral,
 
     lower_size_number: productItemValidators.zodIsLowerSizeNumber,
 
@@ -55,22 +57,30 @@ const pantRequestSchemaWithNumbers = z.object({
 }).merge(baseSchema).strict();
 
 const pantRequestSchemaWithLetters = z.object({
+    item_type: productItemValidators.zodIsPantWithLetterLiteral,
+
     lower_size_letter: productItemValidators.zodIsLowerSizeLetter,
 
     inseam_length: productItemValidators.zodIsInseamLength
 }).merge(baseSchema).strict();
 
 const shortRequestSchemaWithLetters = z.object({
+    item_type: productItemValidators.zodIsShortWithOnlyLetterLiteral,
+
     lower_size_letter: productItemValidators.zodIsLowerSizeLetter
 }).merge(baseSchema).strict();
 
 const shortRequestSchemaWithNumbers = z.object({
+    item_type: productItemValidators.zodIsShortWithOnlyNumberLiteral,
+
     lower_size_number: productItemValidators.zodIsLowerSizeNumber
 }).merge(baseSchema).strict();
 
 ///////////////////////////////////////////////////////////////////////////////
 
 const shirtCreateRequestSchema = z.object({
+    item_type: productItemValidators.zodIsShirtLiteral,
+
     product_id: productValidators.zodIsProductId,
 
     upper_size_letter: productItemValidators.zodIsUpperSizeLetter,
@@ -80,7 +90,9 @@ const shirtCreateRequestSchema = z.object({
 }).merge(baseSchema).strict();
 
 // Used for jeans and chinos too.
-const pantCreateRequestSchemaWithNumbers = z.object({  
+const pantCreateRequestSchemaWithNumbers = z.object({
+    item_type: productItemValidators.zodIsPantWithNumberLiteral,
+
     product_id: productValidators.zodIsProductId,
 
     lower_size_number: productItemValidators.zodIsLowerSizeNumber,
@@ -89,6 +101,8 @@ const pantCreateRequestSchemaWithNumbers = z.object({
 }).merge(baseSchema).strict();
 
 const pantCreateRequestSchemaWithLetters = z.object({
+    item_type: productItemValidators.zodIsPantWithLetterLiteral,
+
     product_id: productValidators.zodIsProductId,
 
     lower_size_letter: productItemValidators.zodIsLowerSizeLetter,
@@ -97,18 +111,24 @@ const pantCreateRequestSchemaWithLetters = z.object({
 }).merge(baseSchema).strict();
 
 const shortCreateRequestSchemaWithLetters = z.object({
+    item_type: productItemValidators.zodIsShortWithOnlyLetterLiteral,
+
     product_id: productValidators.zodIsProductId,
 
     lower_size_letter: productItemValidators.zodIsLowerSizeLetter
 }).merge(baseSchema).strict();
 
 const shortCreateRequestSchemaWithNumbers = z.object({
+    item_type: productItemValidators.zodIsShortWithOnlyNumberLiteral,
+
     product_id: productValidators.zodIsProductId,
 
     lower_size_number: productItemValidators.zodIsLowerSizeNumber
 }).merge(baseSchema).strict();
 /////////////////////////////////////////////////////////////////////////
 const shirtUpdateRequestSchema = z.object({
+    item_type: productItemValidators.zodIsShirtLiteral,
+
     product_id: productValidators.zodIsProductId,
 
     sku: productItemValidators.zodIsSKU,
@@ -121,6 +141,8 @@ const shirtUpdateRequestSchema = z.object({
 
 // Used for jeans and chinos too.
 const pantUpdateRequestSchemaWithNumbers = z.object({  
+    item_type: productItemValidators.zodIsPantWithNumberLiteral,
+
     product_id: productValidators.zodIsProductId,
 
     sku: productItemValidators.zodIsSKU,
@@ -131,6 +153,8 @@ const pantUpdateRequestSchemaWithNumbers = z.object({
 }).strict();
 
 const pantUpdateRequestSchemaWithLetters = z.object({
+    item_type: productItemValidators.zodIsPantWithLetterLiteral,
+
     product_id: productValidators.zodIsProductId,
 
     sku: productItemValidators.zodIsSKU,
@@ -141,6 +165,8 @@ const pantUpdateRequestSchemaWithLetters = z.object({
 }).strict();
 
 const shortUpdateRequestSchemaWithLetters = z.object({
+    item_type: productItemValidators.zodIsShortWithOnlyLetterLiteral,
+
     product_id: productValidators.zodIsProductId,
 
     sku: productItemValidators.zodIsSKU,
@@ -149,13 +175,124 @@ const shortUpdateRequestSchemaWithLetters = z.object({
 }).strict();
 
 const shortUpdateRequestSchemaWithNumbers = z.object({
+    item_type: productItemValidators.zodIsShortWithOnlyNumberLiteral,
+
     product_id: productValidators.zodIsProductId,
 
     sku: productItemValidators.zodIsSKU,
 
     lower_size_number: productItemValidators.zodIsLowerSizeNumber.optional()
 }).strict();
-/////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////
+const shirtResponseSchema = z.object({
+    item_type: productItemValidators.zodIsShirtLiteral,
+
+    sku: productItemValidators.zodIsSKU,
+
+    upper_size_letter: productItemValidators.zodIsUpperSizeLetter,
+    
+    upper_size_number: productItemValidators.zodIsUpperSizeNumber
+}).merge(baseSchema).strict();
+
+// Used for jeans and chinos too.
+const pantResponseSchemaWithNumbers = z.object({   
+    item_type: productItemValidators.zodIsPantWithNumberLiteral,
+
+    sku: productItemValidators.zodIsSKU,
+
+    lower_size_number: productItemValidators.zodIsLowerSizeNumber,
+
+    inseam_length: productItemValidators.zodIsInseamLength
+}).merge(baseSchema).strict();
+
+const pantResponseSchemaWithLetters = z.object({
+    item_type: productItemValidators.zodIsPantWithLetterLiteral,
+
+    sku: productItemValidators.zodIsSKU,
+
+    lower_size_letter: productItemValidators.zodIsLowerSizeLetter,
+
+    inseam_length: productItemValidators.zodIsInseamLength
+}).merge(baseSchema).strict();
+
+const shortResponseSchemaWithLetters = z.object({
+    item_type: productItemValidators.zodIsShortWithOnlyLetterLiteral,
+
+    sku: productItemValidators.zodIsSKU,
+
+    lower_size_letter: productItemValidators.zodIsLowerSizeLetter
+}).merge(baseSchema).strict();
+
+const shortResponseSchemaWithNumbers = z.object({
+    item_type: productItemValidators.zodIsShortWithOnlyNumberLiteral,
+
+    sku: productItemValidators.zodIsSKU,
+    
+    lower_size_number: productItemValidators.zodIsLowerSizeNumber
+}).merge(baseSchema).strict();
+
+///////////////////////////////////////////////////////////////////////////////
+//<<<DISCRIMINATED UNIONS>>>
+const productItemRequestSchemasDiscriminatedUnion = z.discriminatedUnion("item_type", [
+
+    shirtRequestSchema,
+
+    pantRequestSchemaWithLetters,
+
+    pantRequestSchemaWithNumbers,
+
+    shortRequestSchemaWithNumbers,
+
+    shortRequestSchemaWithLetters
+]);
+
+const productItemCreateRequestSchemasDiscriminatedUnion = z.discriminatedUnion("item_type", [
+
+    shirtCreateRequestSchema,
+
+    pantCreateRequestSchemaWithLetters,
+
+    pantCreateRequestSchemaWithNumbers,
+
+    shortCreateRequestSchemaWithNumbers,
+
+    shortCreateRequestSchemaWithLetters
+]);
+
+const productItemUpdateRequestSchemasDiscriminatedUnion = z.discriminatedUnion("item_type", [
+
+    shirtUpdateRequestSchema,
+
+    pantUpdateRequestSchemaWithLetters,
+
+    pantUpdateRequestSchemaWithNumbers,
+
+    shortUpdateRequestSchemaWithNumbers,
+
+    shortUpdateRequestSchemaWithLetters
+]);
+
+
+const productItemResponseSchemasDiscriminatedUnion = z.discriminatedUnion("item_type", [
+
+    shirtResponseSchema,
+
+    pantResponseSchemaWithLetters,
+
+    pantResponseSchemaWithNumbers,
+
+    shortResponseSchemaWithNumbers,
+
+    shortResponseSchemaWithLetters
+]);
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+//<<<ARRAYS OF DISCRIMINATED UNIONS>>>
+const productItemRequestSchemaArray = z.array(productItemRequestSchemasDiscriminatedUnion);
+
+const productItemResponseSchemaArray = z.array(productItemResponseSchemasDiscriminatedUnion);
+//////////////////////////////////////////////////////////////////////////////
 const productItemDeleteRequestSchema = z.object({
     product_id: productValidators.zodIsProductId,
     sku: productItemValidators.zodIsSKU
@@ -169,80 +306,13 @@ const getProductItemRequestSchema = z.object({
     product_id: productValidators.zodIsProductId,
     sku: productItemValidators.zodIsSKU
 }).strict();
-////////////////////////////////////////////////////////////////////////
-const shirtResponseSchema = z.object({
-    sku: productItemValidators.zodIsSKU,
-
-    upper_size_letter: productItemValidators.zodIsUpperSizeLetter,
-    
-    upper_size_number: productItemValidators.zodIsUpperSizeNumber
-}).merge(baseSchema).strict();
-
-// Used for jeans and chinos too.
-const pantResponseSchemaWithNumbers = z.object({    
-    sku: productItemValidators.zodIsSKU,
-
-    lower_size_number: productItemValidators.zodIsLowerSizeNumber,
-
-    inseam_length: productItemValidators.zodIsInseamLength
-}).merge(baseSchema).strict();
-
-const pantResponseSchemaWithLetters = z.object({
-    sku: productItemValidators.zodIsSKU,
-
-    lower_size_letter: productItemValidators.zodIsLowerSizeLetter,
-
-    inseam_length: productItemValidators.zodIsInseamLength
-}).merge(baseSchema).strict();
-
-const shortResponseSchemaWithLetters = z.object({
-    sku: productItemValidators.zodIsSKU,
-
-    lower_size_letter: productItemValidators.zodIsLowerSizeLetter
-}).merge(baseSchema).strict();
-
-const shortResponseSchemaWithNumbers = z.object({
-    sku: productItemValidators.zodIsSKU,
-    
-    lower_size_number: productItemValidators.zodIsLowerSizeNumber
-}).merge(baseSchema).strict();
-
-
-///////////////////////////////////////////////////////////////////////////////
-const shirtRequestSchemaArray = z.array(shirtRequestSchema);
-
-const pantRequestSchemaWithLettersArray = z.array(pantRequestSchemaWithLetters);
-
-const pantRequestSchemaWithNumbersArray = z.array(pantRequestSchemaWithNumbers);
-
-const shortRequestSchemaWithNumbersArray = z.array(shortRequestSchemaWithNumbers);
-
-const shortRequestSchemaWithLettersArray = z.array(shortRequestSchemaWithLetters);
-///////////////////////////////////////////////////////////////////////////////////
-const shirtResponseSchemaArray = z.array(shirtResponseSchema);
-
-const pantResponseSchemaWithLettersArray = z.array(pantResponseSchemaWithLetters);
-
-const pantResponseSchemaWithNumbersArray = z.array(pantResponseSchemaWithNumbers);
-
-const shortResponseSchemaWithNumbersArray = z.array(shortResponseSchemaWithNumbers);
-
-const shortResponseSchemaWithLettersArray = z.array(shortResponseSchemaWithLetters);
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-const productItemRequestSchemasUnion = z.union([shirtRequestSchemaArray, pantRequestSchemaWithLettersArray, pantRequestSchemaWithNumbersArray, shortRequestSchemaWithNumbersArray, shortRequestSchemaWithLettersArray]);
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-const productItemCreateRequestSchemasUnion = z.union([shirtCreateRequestSchema, pantCreateRequestSchemaWithLetters, pantCreateRequestSchemaWithNumbers, shortCreateRequestSchemaWithNumbers, shortCreateRequestSchemaWithLetters]);
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-const productItemUpdateRequestSchemasUnion = z.union([shirtUpdateRequestSchema, pantUpdateRequestSchemaWithLetters, pantUpdateRequestSchemaWithNumbers, shortUpdateRequestSchemaWithNumbers, shortUpdateRequestSchemaWithLetters]);
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-const productItemResponseSchemasUnion = z.union([shirtResponseSchemaArray, pantResponseSchemaWithLettersArray, pantResponseSchemaWithNumbersArray, shortResponseSchemaWithNumbersArray, shortResponseSchemaWithLettersArray]);
 
 module.exports = {
-    productItemRequestSchemasUnion,
-    productItemCreateRequestSchemasUnion,
+    productItemRequestSchemaArray,
+    productItemResponseSchemaArray,
+    productItemCreateRequestSchemasDiscriminatedUnion,
+    productItemUpdateRequestSchemasDiscriminatedUnion,
     productItemDeleteRequestSchema,
     productItemSearchRequestSchema,
-    getProductItemRequestSchema,
-    productItemUpdateRequestSchemasUnion,
-    productItemResponseSchemasUnion
+    getProductItemRequestSchema  
 };

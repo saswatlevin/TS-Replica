@@ -5,9 +5,9 @@ const requestValidator = require('../Validators/requestValidator');
 const productItemSchemas = require('../Schemas/productItemSchemas');
 const { xss } = require('express-xss-sanitizer');
 
-router.route('/createproductitem').post(requestValidator(productItemSchemas.productItemCreateRequestSchemasUnion), xss(), productItemControllers.createProductItem);
+router.route('/createproductitem').post(requestValidator(productItemSchemas.productItemCreateRequestSchemasDiscriminatedUnion), xss(), productItemControllers.createProductItem);
 
-router.route('/updateproductitem').patch(requestValidator(productItemSchemas.productItemUpdateRequestSchemasUnion), xss(), productItemControllers.updateProductItem);
+router.route('/updateproductitem').patch(requestValidator(productItemSchemas.productItemUpdateRequestSchemasDiscriminatedUnion), xss(), productItemControllers.updateProductItem);
 
 router.route('/deleteproductitem').delete(requestValidator(productItemSchemas.productItemDeleteRequestSchema), xss(), productItemControllers.deleteProductItem);
 

@@ -5,8 +5,12 @@ const productValidators = require('../Validators/CustomValidators/productValidat
 const cartItemValidators = require('../Validators/CustomValidators/cartItemValidators');
 const objectIdSchema = require('./objectIdSchema');
 const {productImageArrayRequestSchema, productImageArrayResponseSchema } = require('./productImageSchemas');
-const {productItemRequestSchemasUnion, productItemResponseSchemasUnion} = require('./productItemSchemas');
+const {productItemRequestSchemaArray, productItemResponseSchemaArray} = require('./productItemSchemas');
 const discountValidators = require('../Validators/CustomValidators/discountValidators');
+
+const testProductRequestSchemas = require('./TestObjects/testProductRequestSchemas');
+const testProductResponseSchemas = require('./TestObjects/testProductResponseSchemas');
+const testProductCreateResponseSchemas = require('./TestObjects/testProductCreateResponseSchemas');
 
 const productGarmentWeightSchema = z.object({
     garment_weight_description: productValidators.zodIsGarmentWeightDescription,
@@ -69,7 +73,7 @@ const productRequestSchema = z.object({
     
     product_images: productImageArrayRequestSchema,
 
-    product_items: productItemRequestSchemasUnion,
+    product_items: productItemRequestSchemaArray,
 
     discount_code: discountValidators.zodIsDiscountCode,
 
@@ -146,7 +150,7 @@ const createProductResponseSchema = z.object({
     
     product_images: productImageArrayResponseSchema,
 
-    product_items: productItemResponseSchemasUnion,
+    product_items: productItemResponseSchemaArray,
 
     discount_code: discountValidators.zodIsDiscountCode,
 
@@ -195,7 +199,7 @@ const productResponseSchema = z.object({
         
         product_images: productImageArrayResponseSchema,
     
-        product_items: productItemResponseSchemasUnion,
+        product_items: productItemResponseSchemaArray,
 
         discount_code: discountValidators.zodIsDiscountCode,
 
@@ -228,12 +232,95 @@ const productIdSchema = z.object({
 }).strict();
 
 const searchProductItemResponseSchema = z.object({
-    product_items : productItemResponseSchemasUnion
+    product_items : productItemResponseSchemaArray
 }).strict();
 
 const searchProductItemArrayResponseSchema = z.array(searchProductItemResponseSchema);
 
 const searchProductsArrayResponseSchema = z.array(productResponseSchema);
+
+//REQUEST SCHEMA TESTS
+//const the_apres_short_navy_linen_tweed_request_result = productRequestSchema.parse(testProductRequestSchemas.the_apres_short_navy_linen_tweed_request_schema);
+//console.log("REQUEST - the_apres_short_navy_linen_tweed - ", the_apres_short_navy_linen_tweed_request_result);
+
+//const the_breakwater_pant_in_rinsed_indigo_stripe_request_result =  productRequestSchema.parse(testProductRequestSchemas.the_breakwater_pant_in_rinsed_indigo_stripe_request_schema);
+//console.log("REQUEST - the_breakwater_pant_in_rinsed_indigo_stripe - ", the_breakwater_pant_in_rinsed_indigo_stripe_request_result);
+
+//const the_camp_short_in_aged_penny_chipped_canvas_request_result = productRequestSchema.parse(testProductRequestSchemas.the_camp_short_in_aged_penny_chipped_canvas_request_schema);
+//console.log("REQUEST - the_camp_short_in_aged_penny_chipped_canvas - ", the_camp_short_in_aged_penny_chipped_canvas_request_result);
+
+//const the_craftsman_shirt_in_bark_plaid_cotton_request_result = productRequestSchema.parse(testProductRequestSchemas.the_craftsman_shirt_in_bark_plaid_cotton_request_schema);
+//console.log("REQUEST - the_craftsman_shirt_in_bark_plaid_cotton - ", the_craftsman_shirt_in_bark_plaid_cotton_request_result);
+
+//const the_painter_pant_in_seeded_natural_chipped_canvas_request_result = productRequestSchema.parse(testProductRequestSchemas.the_painter_pant_in_seeded_natural_chipped_canvas_request_schema);
+//console.log("REQUEST - the_painter_pant_in_seeded_natural_chipped_canvas_request_result - ", the_painter_pant_in_seeded_natural_chipped_canvas_request_result);
+
+//RESPONSE SCHEMA TESTS
+//const the_apres_short_navy_linen_tweed_request_result = productRequestSchema.parse(testProductRequestSchemas.the_apres_short_navy_linen_tweed_request_schema);
+//console.log("REQUEST - the_apres_short_navy_linen_tweed - ", the_apres_short_navy_linen_tweed_request_result);
+
+//const the_breakwater_pant_in_rinsed_indigo_stripe_request_result =  productRequestSchema.parse(testProductRequestSchemas.the_breakwater_pant_in_rinsed_indigo_stripe_request_schema);
+//console.log("REQUEST - the_breakwater_pant_in_rinsed_indigo_stripe - ", the_breakwater_pant_in_rinsed_indigo_stripe_request_result);
+
+//const the_camp_short_in_aged_penny_chipped_canvas_request_result = productRequestSchema.parse(testProductRequestSchemas.the_camp_short_in_aged_penny_chipped_canvas_request_schema);
+//console.log("REQUEST - the_camp_short_in_aged_penny_chipped_canvas - ", the_camp_short_in_aged_penny_chipped_canvas_request_result);
+
+//const the_craftsman_shirt_in_bark_plaid_cotton_request_result = productRequestSchema.parse(testProductRequestSchemas.the_craftsman_shirt_in_bark_plaid_cotton_request_schema);
+//console.log("REQUEST - the_craftsman_shirt_in_bark_plaid_cotton - ", the_craftsman_shirt_in_bark_plaid_cotton_request_result);
+
+//const the_painter_pant_in_seeded_natural_chipped_canvas_request_result = productRequestSchema.parse(testProductRequestSchemas.the_painter_pant_in_seeded_natural_chipped_canvas_request_schema);
+//console.log("REQUEST - the_painter_pant_in_seeded_natural_chipped_canvas_request_result - ", the_painter_pant_in_seeded_natural_chipped_canvas_request_result);
+
+//RESPONSE SCHEMA TESTS
+//const the_apres_short_navy_linen_tweed_request_result = productRequestSchema.parse(testProductRequestSchemas.the_apres_short_navy_linen_tweed_request_schema);
+//console.log("REQUEST - the_apres_short_navy_linen_tweed - ", the_apres_short_navy_linen_tweed_request_result);
+
+//const the_breakwater_pant_in_rinsed_indigo_stripe_request_result =  productRequestSchema.parse(testProductRequestSchemas.the_breakwater_pant_in_rinsed_indigo_stripe_request_schema);
+//console.log("REQUEST - the_breakwater_pant_in_rinsed_indigo_stripe - ", the_breakwater_pant_in_rinsed_indigo_stripe_request_result);
+
+//const the_camp_short_in_aged_penny_chipped_canvas_request_result = productRequestSchema.parse(testProductRequestSchemas.the_camp_short_in_aged_penny_chipped_canvas_request_schema);
+//console.log("REQUEST - the_camp_short_in_aged_penny_chipped_canvas - ", the_camp_short_in_aged_penny_chipped_canvas_request_result);
+
+//const the_craftsman_shirt_in_bark_plaid_cotton_request_result = productRequestSchema.parse(testProductRequestSchemas.the_craftsman_shirt_in_bark_plaid_cotton_request_schema);
+//console.log("REQUEST - the_craftsman_shirt_in_bark_plaid_cotton - ", the_craftsman_shirt_in_bark_plaid_cotton_request_result);
+
+//const the_painter_pant_in_seeded_natural_chipped_canvas_request_result = productRequestSchema.parse(testProductRequestSchemas.the_painter_pant_in_seeded_natural_chipped_canvas_request_schema);
+//console.log("REQUEST - the_painter_pant_in_seeded_natural_chipped_canvas_request_result - ", the_painter_pant_in_seeded_natural_chipped_canvas_request_result);
+
+
+//RESPONSE SCHEMA TESTS
+//const the_apres_short_navy_linen_tweed_response_result = productResponseSchema.parse(testProductResponseSchemas.the_apres_short_navy_linen_tweed_response_schema);
+//console.log("RESPONSE - the_apres_short_navy_linen_tweed - ", the_apres_short_navy_linen_tweed_response_result);
+
+//const the_breakwater_pant_in_rinsed_indigo_stripe_response_result =  productResponseSchema.parse(testProductResponseSchemas.the_breakwater_pant_in_rinsed_indigo_stripe_response_schema);
+//console.log("RESPONSE - the_breakwater_pant_in_rinsed_indigo_stripe - ", the_breakwater_pant_in_rinsed_indigo_stripe_response_result);
+
+//const the_camp_short_in_aged_penny_chipped_canvas_response_result = productResponseSchema.parse(testProductResponseSchemas.the_camp_short_in_aged_penny_chipped_canvas_response_schema);
+//console.log("RESPONSE - the_camp_short_in_aged_penny_chipped_canvas - ", the_camp_short_in_aged_penny_chipped_canvas_response_result);
+
+//const the_craftsman_shirt_in_bark_plaid_cotton_response_result = productResponseSchema.parse(testProductResponseSchemas.the_craftsman_shirt_in_bark_plaid_cotton_response_schema);
+//console.log("RESPONSE - the_craftsman_shirt_in_bark_plaid_cotton - ", the_craftsman_shirt_in_bark_plaid_cotton_response_result);
+
+//const the_painter_pant_in_seeded_natural_chipped_canvas_response_result = productResponseSchema.parse(testProductResponseSchemas.the_painter_pant_in_seeded_natural_chipped_canvas_response_schema);
+//console.log("RESPONSE - the_painter_pant_in_seeded_natural_chipped_canvas - ", the_painter_pant_in_seeded_natural_chipped_canvas_response_result);
+
+
+// CREATE RESPONSE TESTS
+//const the_apres_short_navy_linen_tweed_create_response_result = createProductResponseSchema.parse(testProductCreateResponseSchemas.the_apres_short_navy_linen_tweed_create_response_schema);
+//console.log("CREATE RESPONSE - the_apres_short_navy_linen_tweed - ", the_apres_short_navy_linen_tweed_create_response_result);
+
+//const the_breakwater_pant_in_rinsed_indigo_stripe_create_response_result =  createProductResponseSchema.parse(testProductCreateResponseSchemas.the_breakwater_pant_in_rinsed_indigo_stripe_create_response_schema);
+//console.log("CREATE RESPONSE - the_breakwater_pant_in_rinsed_indigo_stripe - ", the_breakwater_pant_in_rinsed_indigo_stripe_create_response_result);
+
+//const the_camp_short_in_aged_penny_chipped_canvas_create_response_result = createProductResponseSchema.parse(testProductCreateResponseSchemas.the_camp_short_in_aged_penny_chipped_canvas_create_response_schema);
+//console.log("CREATE RESPONSE - the_camp_short_in_aged_penny_chipped_canvas - ", the_camp_short_in_aged_penny_chipped_canvas_create_response_result);
+
+//const the_craftsman_shirt_in_bark_plaid_cotton_create_response_result = createProductResponseSchema.parse(testProductCreateResponseSchemas.the_craftsman_shirt_in_bark_plaid_cotton_create_response_schema);
+//console.log("CREATE RESPONSE - the_craftsman_shirt_in_bark_plaid_cotton - ", the_craftsman_shirt_in_bark_plaid_cotton_create_response_result);
+
+//const the_painter_pant_in_seeded_natural_chipped_canvas_create_response_result = createProductResponseSchema.parse(testProductCreateResponseSchemas.the_painter_pant_in_seeded_natural_chipped_canvas_create_response_schema);
+//console.log("CREATE RESPONSE - the_painter_pant_in_seeded_natural_chipped_canvas - ", the_painter_pant_in_seeded_natural_chipped_canvas_create_response_result);
+
 
 module.exports = {
     productGarmentWeightSchema,

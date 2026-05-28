@@ -34,7 +34,7 @@ const { updateCartItemName } = require('./SupportFunctions/cartItemSupportFuncti
 
 const { calculateAndUpdateCartItemTotals } = require('./SupportFunctions/cartItemSupportFunctions');
 
-const { getDiscountPercentage } = require('./SupportFunctions/productSupportFunctions');
+const { getProductDiscountPercentage } = require('./SupportFunctions/productSupportFunctions');
 
 const { checkProductDiscountCodeAndPercentageExists } = require('./SupportFunctions/productSupportFunctions');
 
@@ -159,10 +159,10 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     const filter = { product_id: product_id };
     console.log("filter ", filter);
 
-    const discount_percentage = await getDiscountPercentage(req); 
+    const discount_percentage = await getProductDiscountPercentage(req); 
 
     const updated_product_price = request_body_deep_clone.product_price;
-    const updated_discount_amount = updated_product_price * discount_percentage;
+    const updated_discount_amount = updated_product_price * (discount_percentage / 100);
     const updated_discounted_total = updated_product_price - updated_discount_amount;
 
     const update_object = {product_price: updated_product_price, discount_amount: updated_discount_amount, discounted_total: updated_discounted_total};
@@ -229,7 +229,7 @@ const updateProductDiscount = asyncErrorHandler(async (req, res, next) => {
     const updated_discount_percentage = request_body_deep_clone.discount_percentage;
 
 
-    const updated_discount_amount = product_price * updated_discount_percentage;
+    const updated_discount_amount = product_price * (updated_discount_percentage / 100);
     const updated_discounted_total = product_price - updated_discount_amount;
 
     const update_object = {discount_code: updated_discount_code, discount_percentage: updated_discount_percentage,  discount_amount: updated_discount_amount, discounted_total: updated_discounted_total};
@@ -303,16 +303,17 @@ const updateProductName = asyncErrorHandler(async(req, res, next) => {
     console.log("update_product_name_result ", update_product_name_result);
 
     res.locals.updated_product_name = update_product_name_result.product_name;
-    console.log("Storing the updated_product_name in the request params ", req.params.updated_product_name);
+    //console.log("Storing the updated_product_name in the request local params ", res.params.updated_product_name);
 
-    const update_cart_item_name_result = await updateCartItemName(req);
-    //console.log("update_cart_item_name_result ", update_cart_item_name_result);
+    const update_cart_item_name_result = await updateCartItemName(req, res);
+    console.log("update_cart_item_name_result ", update_cart_item_name_result);
 
     const result_array = [update_product_name_result, update_cart_item_name_result];
     //console.log("result_array ", result_array);
 
     console.log("Sending the result to the client as JSON with status 200");
     res.status(200).json(result_array[0]);
+    //res.status(200).json("Response forn updateProductName");
 
     console.log("===END OF updateProductName===");
 });

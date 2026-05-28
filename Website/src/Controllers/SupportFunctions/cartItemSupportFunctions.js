@@ -3,6 +3,9 @@ const User = require('../../Models/User');
 const Product = require('../../Models/Product');
 const { buildSingleUserCartItemTotalsUpdatePipeline } = require('../../AggregationPipelines/cartItemAggregationPipelines');
 const { buildMultiUserCartItemTotalsUpdatePipeline } = require('../../AggregationPipelines/cartItemAggregationPipelines');
+const { buildUpdateCartItemPricePipeline } = require('../../AggregationPipelines/cartItemAggregationPipelines');
+const { buildUpdateCartItemDiscountPipeline } = require('../../AggregationPipelines/cartItemAggregationPipelines');
+
 
 const checkCartItemExists = async(req) => {
     console.log("In checkCartItemExists");
@@ -278,7 +281,7 @@ const updateCartItemName = async (req, res) => {
         //console.log("filter ", filter);
 
         const updated_cart_item_name = res.locals.updated_product_name;
-        //console.log("updated_cart_item_name ", updated_cart_item_name);
+        console.log("##DEBUG updated_cart_item_name ", updated_cart_item_name);
 
         const update_object = {
             $set: {
@@ -291,8 +294,6 @@ const updateCartItemName = async (req, res) => {
         // Update the product_name of all product items (cart items) of the same product if present.
         // The arrayFilters option is necessary since we use the filtered positional operator: "CartItems.$[item].cart_item_name".
         const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": product_id }], runValidators: true });
-
-        //console.log("##DEBUG - result in updateCartItemName ", result);
 
         console.log("===END OF updateCartItemName===");
         

@@ -79,16 +79,22 @@ const checkProductPriceExists = async(req) => {
 
         var product_search_object = {};
 
-        if (req?.product_price !== undefined && (req?.discount_code === undefined && req?.discount_percentage === undefined)) {
-            product_search_object = {product_price: req.product_price};
+        if (req.body.product_price !== undefined && (req.body.discount_code === undefined && req.body.discount_percentage === undefined)) {
+            product_search_object = {product_price: req.body.product_price};
         } 
 
-        if (req?.product_price === undefined && (req?.discount_code !== undefined && req?.discount_percentage !== undefined)) {
-            product_search_object = {discount_code: req.discount_code, discount_percentage: req.discount_percentage};
+        else if (req.body.product_price === undefined && (req.body.discount_code !== undefined && req.body.discount_percentage !== undefined)) {
+            product_search_object = {discount_code: req.body.discount_code, discount_percentage: req.body.discount_percentage};
+            
         }
 
-        if (req?.product_price !== undefined && (req?.discount_code !== undefined && req?.discount_percentage !== undefined)) {
-            product_search_object = {product_price: req.product_price, discount_code: req.discount_code, discount_percentage: req.discount_percentage};
+        else if (req.body.product_price !== undefined && (req.body.discount_code !== undefined && req.body.discount_percentage !== undefined)) {
+            product_search_object = {product_price: req.body.product_price, discount_code: req.body.discount_code, discount_percentage: req.body.discount_percentage};
+        }
+
+        else {
+            console.log("Unsuitable condition to form product_search_object");
+            throw error;
         }
         
         console.log("##DEBUG in checkProductPriceExists - product_search_object ", product_search_object);
@@ -364,6 +370,7 @@ module.exports = {
     checkProductValueExists,
     checkProductGarmentWeightValueExists,
     checkProductSupplyTypeValueExists,
+    getProductPrice,
     getProductDiscountPercentage,
     checkProductDiscountCodeAndPercentageExists
 };

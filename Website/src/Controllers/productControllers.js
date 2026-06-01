@@ -50,7 +50,7 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
 
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
 
-    console.log("request_body_deep_clone before modification ", request_body_deep_clone);
+    //console.log("request_body_deep_clone before modification ", request_body_deep_clone);
     //console.log("request_body_deep_clone.ProductItems before modification ", request_body_deep_clone.product_items[0]);
     //console.log("request_body_deep_clone.ProductImages before modification ", request_body_deep_clone.product_images[0]);
 
@@ -97,7 +97,7 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
     request_body_deep_clone.product_items[0] = { sku: sku, ...request_body_deep_clone.product_items[0] };
     request_body_deep_clone.product_images[0] = { image_id: image_id, ...request_body_deep_clone.product_images[0] };
 
-    console.log("request_body_deep_clone after modification ", request_body_deep_clone);
+    //console.log("request_body_deep_clone after modification ", request_body_deep_clone);
 
 
     // Create the product object
@@ -108,7 +108,7 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
         discount_amount: discount_amount,
         discounted_total: discounted_total,
     };
-    console.log("The product object to be created ", product);
+    //console.log("The product object to be created ", product);
 
     const result = await Product.create(product);
 
@@ -119,7 +119,7 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
         versionKey: true,
         flattenMaps: true
     });
-    console.log("final_result ", final_result);
+    console.log("final_result in createProduct ", final_result);
 
     console.log("Sending the result to the client as JSON with status 201");
     res.status(201).json(final_result);
@@ -213,7 +213,7 @@ const updateProductDiscount = asyncErrorHandler(async (req, res, next) => {
     
     console.log("Check if the updated discount code and percentage values already exist");
     if (await checkProductDiscountCodeAndPercentageExists(req) === true) {
-        const redundant_update_error = new RedundantUpdateError(`Could not update Product document with product_id ${product_id} since the discount_code and discount_percentage values ${req.body.product_price} already exist.`);
+        const redundant_update_error = new RedundantUpdateError(`Could not update Product document with product_id ${product_id} since the discount_code and discount_percentage values already exist.`);
         throw redundant_update_error;
     }
 
@@ -332,7 +332,7 @@ const updateProduct = asyncErrorHandler(async (req, res, next) => {
 
     console.log("Checking if the product exists");
     if (await checkProduct(req) === false) {
-        const product_not_found_error = new ResourceNotFoundError(`Could not update Product documentwith product_id ${product_id} since it does not exist.`);
+        const product_not_found_error = new ResourceNotFoundError(`Could not update Product document with product_id ${product_id} since it does not exist.`);
         throw product_not_found_error;
     }
 

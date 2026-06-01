@@ -1,0 +1,178 @@
+===========Product Schemas======================
+productRequestSchema,
+createProductResponseSchema,
+productResponseSchema
+===========Product Schemas=======================
+
+
+===========productRequestSchema==================
+
+******************************************************************************************************************************************************
+
+******************************************************************************************************************************************************
+
+******************************************************************************************************************************************************
+
+******************************************************************************************************************************************************
+
+===========productRequestSchema==================
+
+==========productResponseSchema==================
+
+*******************************************************************************************************************************************
+
+
+*******************************************************************************************************************************************
+
+**********************************************************************************************************************************************************
+
+
+********************************************************************************************************************************************************
+{
+  "_id": "6832524b815f56fea947db77",
+  "product_id": "ojvs7hjfihgc",
+  "product_name": "The Painter Pant in Seeded Natural Chipped Canvas",
+  "docType": "PRODUCT",
+  "product_color": "Seeded Natural Chipped Canvas",
+  "product_description": "A thoughtful riff on a timeless workwear silhouette, The Painter Pant offers utility-driven details in a clean, tailored package. Built from sturdy organic cotton canvas and finished with a subtle stone wash, it brings classic durability and everyday versatility to the table—no paint required.",
+  "product_price": 138,
+  "product_category": "Lower Garment",
+  "product_subcategory": "Bottom",
+  "product_subcategory_type": "Pant",
+  "product_fit": "Medium rise straight leg fit, with a 9\" taper from thigh to leg opening. 34\" inseam. Model is 6'2\", wearing a 32\".",
+  "product_garment_weight": {
+    "garment_weight_description": "Built like a brick Sh#!thouse.",
+    "garment_weight": "Medium to Heavy"
+  },
+  "product_material": "Crafted from hefty chipped canvas and stone washed for a worn-in feel from day one. Reinforced with triple-needle stitching on outseam, with functional details like dual tool pockets, bar-tacked stress points, and our signature SF map print pocketing.",
+  "product_supply_type": {
+    "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    "supply_type": "Limited"
+  },
+  "product_specifications": "12.5 oz. 100% organic cotton canvas with 6 oz. organic cotton SF Map pocketing, stone-washed for a worn-in feel, features angled front slash pockets, two mitered back patch pockets with reinforced lining, dual tool pockets sewn into side seam, coin pocket, triple-needle felled outseam construction, bar-tacked stress points, YKK zip fly with tack button closure, machine wash cold and tumble dry low, made in China.",
+  "product_images": [
+    {
+      "image_id": "d9fqb7kc1hwp",
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_001.jpg",
+      "main_image": true
+    },
+    {
+      "image_id": "urt8vkiojpje",
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_008.jpg",
+      "main_image": false
+    },
+    {
+      "image_id": "r1tfku4tzdtf",
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Painter_Pant_in_Seeded_Natural_Chipped_Canvas\\instock_m_q225_The_Painter_Pant-SeededNaturalChippedCanvas_portrait_010.jpg",
+      "main_image": false
+    }
+  ],
+
+  "product_items": [
+    {
+      "item_type": "Pant with Lower Size Number and Inseam Length",
+      "sku": "cdwrbvcp2r",
+      "lower_size_number": 38,
+      "inseam_length": 34,
+      "total_stock": 310,
+      "quantity_sold": 50,
+      "quantity_returned": 0,
+      "current_stock": 260
+    },
+    {
+      "item_type": "Pant with Lower Size Number and Inseam Length",
+      "sku": "bzpr1txn5j",
+      "lower_size_number": 36,
+      "inseam_length": 34,
+      "total_stock": 300,
+      "quantity_sold": 100,
+      "quantity_returned": 0,
+      "current_stock": 200
+    },
+    {
+      "item_type": "Pant with Lower Size Number and Inseam Length",
+      "sku": "jel0mvuh2n",
+      "lower_size_number": 35,
+      "inseam_length": 34,
+      "total_stock": 198,
+      "quantity_sold": 50,
+      "quantity_returned": 0,
+      "current_stock": 148
+    },
+    {
+      "item_type": "Pant with Lower Size Number and Inseam Length",
+      "sku": "352z5lztub",
+      "lower_size_number": 34,
+      "inseam_length": 34,
+      "total_stock": 206,
+      "quantity_sold": 80,
+      "quantity_returned": 0,
+      "current_stock": 126
+    },
+    {
+      "item_type": "Pant with Lower Size Number and Inseam Length",
+      "sku": "2v5ecttxdx",
+      "lower_size_number": 33,
+      "inseam_length": 34,
+      "total_stock": 200,
+      "quantity_sold": 100,
+      "quantity_returned": 0,
+      "current_stock": 100
+    },
+    {
+      "item_type": "Pant with Lower Size Number and Inseam Length",
+      "sku": "3yfyx9od4q",
+      "lower_size_number": 32,
+      "inseam_length": 34,
+      "total_stock": 187,
+      "quantity_sold": 20,
+      "quantity_returned": 0,
+      "current_stock": 167
+    },
+    {
+      "item_type": "Pant with Lower Size Number and Inseam Length",
+      "sku": "gobzyrykhp",
+      "lower_size_number": 31,
+      "inseam_length": 34,
+      "total_stock": 172,
+      "quantity_sold": 70,
+      "quantity_returned": 0,
+      "current_stock": 102
+    },
+    {
+      "item_type": "Pant with Lower Size Number and Inseam Length",
+      "sku": "52w0owssni",
+      "lower_size_number": 30,
+      "inseam_length": 34,
+      "total_stock": 168,
+      "quantity_sold": 120,
+      "quantity_returned": 0,
+      "current_stock": 48
+    },
+    {
+      "item_type": "Pant with Lower Size Number and Inseam Length",
+      "sku": "j7jo34y3ie",
+      "lower_size_number": 29,
+      "inseam_length": 34,
+      "total_stock": 138,
+      "quantity_sold": 40,
+      "quantity_returned": 0,
+      "current_stock": 98
+    },
+    {
+      "item_type": "Pant with Lower Size Number and Inseam Length",
+      "sku": "ohgqsdan8j",
+      "lower_size_number": 28,
+      "inseam_length": 34,
+      "total_stock": 156,
+      "quantity_sold": 60,
+      "quantity_returned": 0,
+      "current_stock": 96
+    }
+  ],
+  "discount_code": "10PERCENT",
+  "discount_percentage": 10,
+  "discount_amount": 13.8,
+  "discounted_total": 124.2,
+  "__v": 0
+}

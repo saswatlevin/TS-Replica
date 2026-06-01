@@ -1,12 +1,12 @@
 searchProducts Tests for The Craftsman Shirt in Bark Plaid Cotton
 
-* Test to check the response to an empty object.
+* Test to check the response to an empty object in SEARCHPRODUCTS.
   [
     "url": "http://localhost:3500/products/searchproducts",
     { }
   ]
 
-* Test to search for a Product using product_name. RESULT: SUCCESS
+* Test to search for a Product using product_name in SEARCHPRODUCTS. 
   [
     "url": "http://localhost:3500/products/searchproducts",
     {
@@ -14,7 +14,7 @@ searchProducts Tests for The Craftsman Shirt in Bark Plaid Cotton
     }
   ]
 
-* Test to search for a Product using product_color. RESULT: SUCCESS
+* Test to search for a Product using product_color in SEARCHPRODUCTS. 
   [
     "url": "http://localhost:3500/products/searchproducts",
     {
@@ -22,7 +22,7 @@ searchProducts Tests for The Craftsman Shirt in Bark Plaid Cotton
     }
   ]
 
-* Test to search for a Product using product_subcategory. RESULT: SUCCESS
+* Test to search for a Product using product_subcategory in SEARCHPRODUCTS. 
   [
     "url": "http://localhost:3500/products/searchproducts",
     {
@@ -30,7 +30,7 @@ searchProducts Tests for The Craftsman Shirt in Bark Plaid Cotton
     }
   ]
 
-* Test to search for a Product using product_subcategory. RESULT: SUCCESS
+* Test to search for a Product using product_subcategory in SEARCHPRODUCTS. 
   [
     "url": "http://localhost:3500/products/searchproducts",
     {
@@ -38,7 +38,7 @@ searchProducts Tests for The Craftsman Shirt in Bark Plaid Cotton
     }
   ]
 
-* Test to search for a Product using product_name and product_subcategory. RESULT: SUCCESS
+* Test to search for a Product using product_name and product_subcategory in SEARCHPRODUCTS. 
   [
     "url": "http://localhost:3500/products/searchproducts",
     {

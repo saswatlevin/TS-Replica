@@ -1,12 +1,12 @@
 updateProductDiscount Tests for The Painter Pant in Seeded Natural Chipped Canvas
 
-* Test to check the response to an empty request body. RESULT: ZodError
+* Test to check the response to an empty request body in UPDATEPRODUCTDISCOUNT. 
   [
     "url": "http://localhost:3500/products/updateproductdiscount",
     { }
   ]
 
-* Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+* Test to check the response to a Product that does not exist in UPDATEPRODUCTDISCOUNT. 
   [
     "url": "http://localhost:3500/products/updateproductdiscount",
     { 
@@ -16,7 +16,7 @@ updateProductDiscount Tests for The Painter Pant in Seeded Natural Chipped Canva
     }
   ]
 
-* Test to check the response to discount_code and discount_percentage values that already exist. RESULT: RedundantUpdateError
+* Test to check the response to discount_code and discount_percentage values that already exist in UPDATEPRODUCTDISCOUNT. 
   [
     "url": "http://localhost:3500/products/updateproductdiscount",
      { 
@@ -27,7 +27,7 @@ updateProductDiscount Tests for The Painter Pant in Seeded Natural Chipped Canva
 
   ]
 
-* Test to check the response to a missing disocunt_code field. RESULT: ZodError
+* Test to check the response to a missing disocunt_code field in UPDATEPRODUCTDISCOUNT. 
   [
     "url": "http://localhost:3500/products/updateproductdiscount",
      { 
@@ -36,7 +36,7 @@ updateProductDiscount Tests for The Painter Pant in Seeded Natural Chipped Canva
      }
   ]
 
-* Test to update the discount_code and discount_percentage. RESULT: SUCCESS [Check only the discount_code and discount_percentage values]
+* Test to update the discount_code and discount_percentage in UPDATEPRODUCTDISCOUNT. 
   [
     "url": "http://localhost:3500/products/updateproductdiscount",
     { 

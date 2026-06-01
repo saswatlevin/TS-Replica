@@ -1,52 +1,47 @@
 updateProductSupplyType Tests for The Craftsman Shirt in Bark Plaid Cotton
 
-* Test to check the response to an empty request body. RESULT: ZodError
+* Test to check the response to an empty request body in UPDATEPRODUCTSUPPLYTYPE.
   [
     "url": "http://localhost:3500/products/updateproductsupplytype",
     { }
   ]
 
-* Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+* Test to check the response to a Product that does not exist in UPDATEPRODUCTSUPPLYTYPE. 
   [
     "url": "http://localhost:3500/products/updateproductsupplytype",
     {
       "product_id": "a6bb1d23bd29",
+      "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
       "supply_type": "Limited"
     }
   ]
 
-* Test to check the response to updating a value that already exists. RESULT: RedundantUpdateError
+* Test to check the response to updating a product_supply_type that already exists in UPDATEPRODUCTSUPPLYTYPE. 
   [
     "url": "http://localhost:3500/products/updateproductsupplytype",
     {
       "product_id": "a6bb1d23bd28",
+      "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
       "supply_type": "Limited" 
     }
   ]
 
-* Test to check the response to a missing product_id field. RESULT: ZodError
+* Test to check the response to a missing product_id field in UPDATEPRODUCTSUPPLYTYPE.
   [
     "url": "http://localhost:3500/products/updateproductsupplytype",
     {
+      "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping.",
       "supply_type": "Limited"
     }
   ]
 
-* Test to update the supply_type. RESULT: SUCCESS [Check product_id and supply_type only]
-  [
-    "url": "http://localhost:3500/products/updateproductsupplytype",
-    {
-      "product_id": "a6bb1d23bd28",
-      "supply_type": "Limited" 
-    }
-  ]
 
-* Test to update the supply_description and supply_type. RESULT: SUCCESS [Check product_id, supply_type and supply_type_description only]
+* Test to update the supply_description and supply_type in UPDATEPRODUCTSUPPLYTYPE. 
   [
     "url": "http://localhost:3500/products/updateproductsupplytype",
     {
        "product_id": "a6bb1d23bd28",
-       "supply_type": "Limited",
-       "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping."
+       "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+       "supply_type": "Limited"
     }
   ]

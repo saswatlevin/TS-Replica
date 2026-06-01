@@ -11,33 +11,27 @@ updateProductSupplyType Tests for The Breakwater Pant in Rinsed Indigo Stripe
     "url": "http://localhost:3500/products/updateproductsupplytype",
     {
       "product_id": "dzh5txxega4c",
-      "supply_type": "Essential"
+      "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+      "supply_type": "Limited"
     }
   ]
 
-* Test to check the response to updating a value that already exists. RESULT: RedundantUpdateError
+* Test to check the response to updating a product_supply_type that already exists. RESULT: RedundantUpdateError
   [
     "url": "http://localhost:3500/products/updateproductsupplytype",
     {
-      "product_id": "dzh5txxega4b",
-      "supply_type": "Limited" 
-    }
+        "product_id": "dzh5txxega4c",
+    	"supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    	"supply_type": "Limited"
+  }
   ]
 
 * Test to check the response to a missing product_id field. RESULT: ZodError
   [
     "url": "http://localhost:3500/products/updateproductsupplytype",
     {
-      "supply_type": "Limited"
-    }
-  ]
-
-* Test to update the supply_type. RESULT: SUCCESS [Check product_id and supply_type only]
-  [
-    "url": "http://localhost:3500/products/updateproductsupplytype",
-    {
-      "product_id": "dzh5txxega4cb,
-      "supply_type": "Essential" 
+      "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    	"supply_type": "Limited"
     }
   ]
 

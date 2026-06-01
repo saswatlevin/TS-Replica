@@ -1,12 +1,12 @@
 updateProductName Tests for The Craftsman Shirt in Bark Plaid Cotton
 
-* Test to check the response to an empty object. RESULT: ZodError.
+* Test to check the response to an empty object in UPDATEPRODUCTNAME. 
   [
     "url": "http://localhost:3500/products/updateproductname",
     { }
   ]
 
-* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+* Test to check the response to a product that does not exist in UPDATEPRODUCTNAME. 
   [
     "url": "http://localhost:3500/products/updateproductname",
     {
@@ -15,7 +15,7 @@ updateProductName Tests for The Craftsman Shirt in Bark Plaid Cotton
     }
   ]
 
-* Test to check the response to a product_name that already exists. RESULT: RedundantUpdateError
+* Test to check the response to a product_name that already exists in UPDATEPRODUCTNAME.
   [
     "url": "http://localhost:3500/products/updateproductname",
     {
@@ -24,7 +24,7 @@ updateProductName Tests for The Craftsman Shirt in Bark Plaid Cotton
     }
   ]
 
-* Test to check the response to a missing product_id field. RESULT: ZodError
+* Test to check the response to a missing product_id field in UPDATEPRODUCTNAME. 
   [
     "url": "http://localhost:3500/products/updateproductname",
     {
@@ -32,7 +32,7 @@ updateProductName Tests for The Craftsman Shirt in Bark Plaid Cotton
     }
   ]
 
- * Test to update the product_name of a Product. RESULT: SUCCESS
+ * Test to update the product_name of a Product in UPDATEPRODUCTNAME.
    [
       "url": "http://localhost:3500/products/updateproductname",
       {

@@ -1,15 +1,15 @@
 updateProduct Tests for The Camp Short in Aged Penny Chipped Canvas
 
 
-* Test to check the response to an empty request body. Result: ZodError
+* Test to check the response to an empty request body in UPDATEPRODUCT.
 [
   "url": "http://localhost:3500/products/updateproduct",
   { }
 ]
 
-* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
-[
-  "url": "http://localhost:3500/products/updateproduct",
+* Test to check the response to a product that does not exist in UPDATEPRODUCT.
+[ 
+ "url": "http://localhost:3500/products/updateproduct",
   {
     "product_id": "il19g7cce84m",
 
@@ -18,7 +18,7 @@ updateProduct Tests for The Camp Short in Aged Penny Chipped Canvas
   }
 ]
 
-* Test to check the response to a value that already exists. RESULT: RedundantUpdateError
+* Test to check the response to a value that already exists in UPDATEPRODUCT.
 [
   "url": "http://localhost:3500/products/updateproduct",
   { 
@@ -27,7 +27,7 @@ updateProduct Tests for The Camp Short in Aged Penny Chipped Canvas
   }
 ]
 
-* Test to update the product_color. RESULT: SUCCESS [Check product_color only]
+* Test to update the product_color in UPDATEPRODUCT.
 [
   "url": "http://localhost:3500/products/updateproduct",
   {
@@ -36,7 +36,7 @@ updateProduct Tests for The Camp Short in Aged Penny Chipped Canvas
   }
 ]
 
-* Test to update the product_description. RESULT: SUCCESS [Check product_description only]
+* Test to update the product_description in UPDATEPRODUCT.
 [
   "url": "http://localhost:3500/products/updateproduct",
   {
@@ -47,7 +47,7 @@ updateProduct Tests for The Camp Short in Aged Penny Chipped Canvas
   }
 ]
 
-* Test to update the product_category. RESULT: SUCCESS [Check product_category only]
+* Test to update the product_category in UPDATEPRODUCT.
 [
   "url": "http://localhost:3500/products/updateproduct",
   {
@@ -57,7 +57,7 @@ updateProduct Tests for The Camp Short in Aged Penny Chipped Canvas
   }
 ]
 
-* Test to update the product_subcategory. RESULT: SUCCESS [Check product_subcategory only]
+* Test to update the product_subcategory in UPDATEPRODUCT.
 [
   "url": "http://localhost:3500/products/updateproduct",
   {
@@ -67,8 +67,8 @@ updateProduct Tests for The Camp Short in Aged Penny Chipped Canvas
   }
 ]
 
-* Test to update the product_subcategory_type. RESULT: SUCCESS [Check product_subcategory_type only]
-[
+* Test to update the product_subcategory_type in UPDATEPRODUCT. 
+[  
   "url": "http://localhost:3500/products/updateproduct",
   {
     "product_id": "il19g7cce84l",
@@ -77,7 +77,7 @@ updateProduct Tests for The Camp Short in Aged Penny Chipped Canvas
   }
 ]
 
-* Test to update the product_specifications. RESULT: SUCCESS [Check product_specifications only]
+* Test to update the product_specifications in UPDATEPRODUCT. 
 [
   "url": "http://localhost:3500/products/updateproduct",
   {

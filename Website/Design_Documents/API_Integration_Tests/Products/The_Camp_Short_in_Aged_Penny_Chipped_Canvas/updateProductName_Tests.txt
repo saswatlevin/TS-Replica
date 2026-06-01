@@ -1,0 +1,44 @@
+updateProductName Tests for The Camp Short in Aged Penny Chipped Canvas
+
+* Test to check the response to an empty object in UPDATEPRODUCTNAME. 
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    { }
+  ]
+
+* Test to check the response to a product that does not exist in UPDATEPRODUCTNAME.
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+      "product_id": "il19g7cce84m",
+      "product_name": "The Camp Shirt in Aged Penny Chipped CANVAS"
+    }
+  ]
+
+* Test to check the response to a product_name that already exists in UPDATEPRODUCTNAME. 
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+      "product_id": "il19g7cce84l",
+      "product_name": "The Camp Shirt in Aged Penny Chipped Canvas"
+    }
+  ]
+
+* Test to check the response to a missing product_id field in UPDATEPRODUCTNAME. 
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+       "product_name": "The Camp Shirt in Aged Penny Chipped CANVAS"
+    }
+  ]
+
+ * Test to update the product_name of a Product in UPDATEPRODUCTNAME. 
+   [
+      "url": "http://localhost:3500/products/updateproductname",
+      {
+	"product_id": "il19g7cce84l",
+	"product_name": "The Camp Shirt in Aged Penny Chipped CANVAS"
+
+      }
+   ]
+    

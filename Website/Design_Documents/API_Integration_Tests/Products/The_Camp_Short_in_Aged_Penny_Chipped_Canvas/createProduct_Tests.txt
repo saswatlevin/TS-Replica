@@ -1,12 +1,12 @@
 createProduct Tests for The Camp Short in Aged Penny Chipped Canvas
 
-* Test to check for response to an empty request body. RESULT: ZodError
+* Test to check for response to an empty request body in CREATEPRODUCT. 
   [
     "url": "http://localhost:3500/products/createproduct",
     { }
   ]
 
-* Test to check the response to a duplicate product. RESULT: DuplicateDocumentError.
+* Test to check the response to a duplicate product in CREATEPRODUCT. 
   [ "url": "http://localhost:3500/products/createproduct",
     {
      
@@ -54,7 +54,8 @@ createProduct Tests for The Camp Short in Aged Penny Chipped Canvas
 
      product_items: [
                     	{
-      				"lower_size_number": 36,
+      				"item_type": "Short with Only Lower Size Number",
+				"lower_size_number": 36,
       				"total_stock": 300,
       				"quantity_sold": 50,
       				"quantity_returned": 0,
@@ -68,7 +69,7 @@ createProduct Tests for The Camp Short in Aged Penny Chipped Canvas
     }      
  ]
 
-* Test to check response to a missing product_price field. RESULT: ZodError
+* Test to check response to a missing product_price field in CREATEPRODUCT.
   [ "url": "http://localhost:3500/products/createproduct",
     {
      
@@ -114,6 +115,7 @@ createProduct Tests for The Camp Short in Aged Penny Chipped Canvas
 
      product_items: [
                     	{
+				"item_type": "Short with Only Lower Size Number",
       				"lower_size_number": 36,
       				"total_stock": 300,
       				"quantity_sold": 50,
@@ -128,12 +130,12 @@ createProduct Tests for The Camp Short in Aged Penny Chipped Canvas
     }      
  ]
 
-* Test to create a Product. RESULT: SUCCESS
+* Test to create a Product in CREATEPRODUCT.
 
 [ "url": "http://localhost:3500/products/createproduct",
     {
      
-     "product_name": "The Camp Short in Aged Penny Chipped CANVAS 2",
+     "product_name": "The Camp Short in Aged Penny Chipped CANVAS TWO",
   
      "product_color": "Aged Penny Chipped CANVAS",
   
@@ -177,7 +179,7 @@ createProduct Tests for The Camp Short in Aged Penny Chipped Canvas
 
      product_items: [
                     	{
-      				
+      				"item_type": "Short with Only Lower Size Number",	
       				"lower_size_number": 36,
       				"total_stock": 300,
       				"quantity_sold": 50,

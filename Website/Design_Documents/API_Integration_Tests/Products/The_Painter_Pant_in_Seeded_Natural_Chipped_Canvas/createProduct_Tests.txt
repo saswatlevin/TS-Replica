@@ -1,12 +1,12 @@
-createProduct Tests for The Painter Pant in Natural Chipped Canvas
+createProduct Tests for The Painter Pant in Seeded Natural Chipped Canvas
 
-* Test to check for response to an empty request body. RESULT: ZodError
+* Test to check for response to an empty request body in CREATEPRODUCT. RESULT: ZodError
   [
     "url": "http://localhost:3500/products/createproduct",
     { }
   ]
 
-* Test to check the response to a duplicate product. RESULT: DuplicateDocumentError.
+* Test to check the response to a duplicate product in CREATEPRODUCT. 
   [ "url": "http://localhost:3500/products/createproduct",
     {
       "product_name": "The Painter Pant in Seeded Natural Chipped Canvas",
@@ -50,6 +50,7 @@ createProduct Tests for The Painter Pant in Natural Chipped Canvas
       
       "product_items":  [
        				{
+					"item_type": "Pant with Lower Size Number and Inseam Length",
       					"lower_size_number": 38,
       					"inseam_length": 34,
       					"total_stock": 310,
@@ -66,7 +67,7 @@ createProduct Tests for The Painter Pant in Natural Chipped Canvas
       }      
  ]
 
-* Test to check response to a missing product_price field. RESULT: ZodError
+* Test to check response to a missing product_price field in CREATEPRODUCT.
 [
   "url": "http://localhost:3500/products/createproduct",
   {
@@ -108,6 +109,7 @@ createProduct Tests for The Painter Pant in Natural Chipped Canvas
       
       "product_items":    [
        				{
+					"item_type": "Pant with Lower Size Number and Inseam Length",
       			      		"lower_size_number": 38,
       					"inseam_length": 34,
       					"total_stock": 310,
@@ -125,11 +127,11 @@ createProduct Tests for The Painter Pant in Natural Chipped Canvas
   
 ]
 
-* Test to create a Product. RESULT: SUCCESS
+* Test to create a Product in CREATEPRODUCT.
 [
   "url": "http://localhost:3500/products/createproduct",
   {
-      "product_name": "The Painter Pant in Seeded Natural Chipped CANVAS 2",
+      "product_name": "The Painter Pant in Seeded Natural Chipped CANVAS TWO",
       
       "product_color": "Seeded Natural Chipped CANVAS",
   
@@ -169,6 +171,7 @@ createProduct Tests for The Painter Pant in Natural Chipped Canvas
       
       "product_items":  [
        				{
+					"item_type": "Pant with Lower Size Number and Inseam Length",
       					"lower_size_number": 38,
       					"inseam_length": 34,
       					"total_stock": 310,

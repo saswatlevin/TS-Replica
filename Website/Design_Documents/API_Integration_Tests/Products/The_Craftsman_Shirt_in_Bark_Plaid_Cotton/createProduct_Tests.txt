@@ -1,12 +1,12 @@
 createProduct Tests The Craftsman Shirt in Bark Plaid Cotton
 
-* Test to check for response to an empty request body. RESULT: ZodError
+* Test to check for response to an empty request body in CREATEPRODUCT.
   [
     "url": "http://localhost:3500/products/createproduct",
     { }
   ]
 
-* Test to check the response to a duplicate product. RESULT: DuplicateDocumentError.
+* Test to check the response to a duplicate product in CREATEPRODUCT. 
   [ "url": "http://localhost:3500/products/createproduct",
 
     { 
@@ -52,6 +52,7 @@ createProduct Tests The Craftsman Shirt in Bark Plaid Cotton
 
       "product_items":  [
                             {
+				"item_type": "Shirt",
       				"upper_size_letter": "XL",
       				"upper_size_number": 46,
       				"total_stock": 100,
@@ -71,7 +72,7 @@ createProduct Tests The Craftsman Shirt in Bark Plaid Cotton
 
 
 
-* Test to check the response to a missing product_price field. RESULT: ZodError.
+* Test to check the response to a missing product_price field in CREATEPRODUCT.
   [
     "url": "http://localhost:3500/products/createproduct",
     {
@@ -114,6 +115,7 @@ createProduct Tests The Craftsman Shirt in Bark Plaid Cotton
 
       "product_items":  [
                             {
+				"item_type": "Shirt",
       				"upper_size_letter": "XL",
       				"upper_size_number": 46,
       				"total_stock": 100,
@@ -130,11 +132,11 @@ createProduct Tests The Craftsman Shirt in Bark Plaid Cotton
     }
   ]
 
-* Test to create a Product. RESULT: SUCCESS
+* Test to create a Product in CREATEPRODUCT. 
 [
   "url": "http://localhost:3500/products/createproduct",
   { 
-      "product_name": "The Craftsman Shirt in Bark Plaid COTTON 2",
+      "product_name": "The Craftsman Shirt in Bark Plaid COTTON TWO",
 
       "product_color": "Bark Plaid COTTON",
 
@@ -175,7 +177,8 @@ createProduct Tests The Craftsman Shirt in Bark Plaid Cotton
 
       "product_items":  [
                             {
-      				"upper_size_letter": "XL",
+      				"item_type": "Shirt",
+				"upper_size_letter": "XL",
       				"upper_size_number": 46,
       				"total_stock": 100,
       				"quantity_sold": 80,

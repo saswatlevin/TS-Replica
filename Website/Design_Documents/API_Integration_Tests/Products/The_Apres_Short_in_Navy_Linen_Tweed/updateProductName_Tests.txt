@@ -1,0 +1,43 @@
+updateProductName Tests for The Apres Short in Navy Linen Tweed
+
+* Test to check the response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    { }
+  ]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+      "product_id": "u9yl6odhigeu",
+      "product_name": "The Apres Short in Navy Linen TWEED"
+    }
+  ]
+
+* Test to check the response to a product name that already exists. RESULT: RedundantUpdateError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+      "product_id": "u9yl6odhiget",
+      "product_name": "The Apres Short in Navy Linen Tweed"
+    }
+  ]
+
+
+* Test to check the response to a missing product_name field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+      "product_id": "u9yl6odhiget"
+    }
+  ]
+
+* Test to update the product_name. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+      "product_id": "u9yl6odhiget",
+      "product_name": "The Apres Short in Navy Linen Tweed"
+    }
+  ]

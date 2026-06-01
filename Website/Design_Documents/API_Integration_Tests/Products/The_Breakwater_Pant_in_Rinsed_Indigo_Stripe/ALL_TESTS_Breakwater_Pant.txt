@@ -1,0 +1,548 @@
+createProduct Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check for response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/createproduct",
+    { }
+  ]
+
+* Test to check the response to a duplicate product. RESULT: DuplicateDocumentError.
+  [ "url": "http://localhost:3500/products/createproduct",
+    {
+ 
+      "product_name": "The Breakwater Pant in Rinsed Indigo Stripe",
+      
+      "product_color": "Rinsed Indigo Stripe",
+      
+      "product_description": "A versatile evolution of the classic naval deck pant, The Breakwater Pant offers a character-rich indigo finish in a clean, capable silhouette. Finished with a roomy top block and a drawcord waist for comfort wherever you’re headed.",
+      
+      "product_price": 128,
+      
+      "product_category": "Lower Garment",
+      
+      "product_subcategory": "Bottom",
+  
+      "product_subcategory_type": "Pant",
+      
+      "product_fit": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+   
+  "product_garment_weight": {
+    "garment_weight_description": "Sturdy daily drivers.",
+    
+    "garment_weight": "Medium"
+  },
+  
+  "product_material": "The Breakwater Pant is built from a sturdy, indigo-dyed organic cotton, resulting in a rich hand feel that will develop nuance with each wash and wear. We’ve finished them off with an elasticated drawcord waist, a mitered back pocket, and oversized patch front pockets.",
+  
+  "product_supply_type": {
+    
+     "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+      
+     "supply_type": "Limited"
+  },
+  "product_specifications": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+
+  "product_images": 
+  [
+     {
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Breakwater_Pant_in_Rinsed_Indigo_Stripe\\instock_m_q225_The_Breakwater_Pant-RinsedIndigoStripe_portrait_001.jpg",
+      "main_image": true
+    }
+  ],
+
+  "product_items": 
+  [
+    {
+      "item_type": "Pant with Lower Size Letter and Inseam Length",
+      "lower_size_letter": "XXL",
+      "inseam_length": 34,
+      "total_stock": 100,
+      "quantity_sold": 50,
+      "quantity_returned": 0,
+      "current_stock": 50
+    }   
+  ],
+ 
+   
+  "discount_code": "10PERCENT",
+  "discount_percentage": 10
+        
+ ]
+
+* Test to check response to a missing product_price field. RESULT: ZodError
+[ "url": "http://localhost:3500/products/createproduct",
+    {
+ 
+      "product_name": "The Breakwater Pant in Rinsed Indigo Stripe",
+      
+      "product_color": "Rinsed Indigo Stripe",
+      
+      "product_description": "A versatile evolution of the classic naval deck pant, The Breakwater Pant offers a character-rich indigo finish in a clean, capable silhouette. Finished with a roomy top block and a drawcord waist for comfort wherever you’re headed.",
+      
+      "product_category": "Lower Garment",
+      
+      "product_subcategory": "Bottom",
+  
+      "product_subcategory_type": "Pant",
+      
+      "product_fit": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+   
+  "product_garment_weight": {
+    "garment_weight_description": "Sturdy daily drivers.",
+    
+    "garment_weight": "Medium"
+  },
+  
+  "product_material": "The Breakwater Pant is built from a sturdy, indigo-dyed organic cotton, resulting in a rich hand feel that will develop nuance with each wash and wear. We’ve finished them off with an elasticated drawcord waist, a mitered back pocket, and oversized patch front pockets.",
+  
+  "product_supply_type": {
+    
+     "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+     "supply_type": "Limited"
+  },
+  "product_specifications": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+
+  "product_images": 
+  [
+     {
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Breakwater_Pant_in_Rinsed_Indigo_Stripe\\instock_m_q225_The_Breakwater_Pant-RinsedIndigoStripe_portrait_001.jpg",
+      "main_image": true
+    }
+  ],
+
+  "product_items": 
+  [
+    {
+      "item_type": "Pant with Lower Size Letter and Inseam Length",
+      "lower_size_letter": "XXL",
+      "total_stock": 100,
+      "quantity_sold": 50,
+      "quantity_returned": 0,
+      "current_stock": 50
+    }   
+  ],
+ 
+   
+  "discount_code": "10PERCENT",
+  "discount_percentage": 10
+        
+ ]
+
+* Test to create a Product. RESULT: SUCCESS
+[ "url": "http://localhost:3500/products/createproduct",
+    {
+ 
+      "product_name": "The Breakwater Pant in Rinsed Indigo STRIPE TWO",
+      
+      "product_color": "Rinsed Indigo STRIPE",
+      
+      "product_description": "A versatile evolution of the classic naval deck pant, The Breakwater Pant offers a character-rich indigo finish in a clean, capable silhouette. Finished with a roomy top block and a drawcord waist for comfort wherever you’re HEADED.",
+      
+      "product_price": 128,
+      
+      "product_category": "Lower Garment",
+      
+      "product_subcategory": "Bottom",
+  
+      "product_subcategory_type": "Pant",
+      
+      "product_fit": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+   
+  "product_garment_weight": {
+    "garment_weight_description": "Sturdy daily drivers.",
+    
+    "garment_weight": "Medium"
+  },
+  
+  "product_material": "The Breakwater Pant is built from a sturdy, indigo-dyed organic cotton, resulting in a rich hand feel that will develop nuance with each wash and wear. We’ve finished them off with an elasticated drawcord waist, a mitered back pocket, and oversized patch front pockets.",
+  
+  "product_supply_type": {
+    
+     "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+      
+     "supply_type": "Limited"
+  },
+  "product_specifications": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in China.",
+
+  "product_images": 
+  [
+     {
+      "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Pants\\The_Breakwater_Pant_in_Rinsed_Indigo_Stripe\\instock_m_q225_The_Breakwater_Pant-RinsedIndigoStripe_portrait_001.jpg",
+      "main_image": true
+    }
+  ],
+
+  "product_items": 
+  [
+    {
+      "item_type": "Pant with Lower Size Letter and Inseam Length",
+      "lower_size_letter": "XXL",
+      "inseam_length": 34,
+      "total_stock": 100,
+      "quantity_sold": 50,
+      "quantity_returned": 0,
+      "current_stock": 50
+    }   
+  ],
+ 
+   
+  "discount_code": "10PERCENT",
+  "discount_percentage": 10
+  }
+        
+ ]
+
+updateProduct Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty request body. Result: ZodError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  { }
+]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4c",
+    "product_description": "A versatile evolution of the classic naval deck pant, The Breakwater Pant offers a character-rich indigo finish in a clean, capable silhouette. Finished with a roomy top block and a drawcord waist for comfort wherever you’re HEADED."
+  }
+]
+
+* Test to check the response to a value that already exists. RESULT: RedundantUpdateError
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  { 
+    "product_id": "dzh5txxega4b",
+    "product_category": "Lower Garment"
+  }
+]
+
+* Test to update the product_color. RESULT: SUCCESS [Check product_color only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4b",
+    "product_color": "Rinsed Indigo STRIPE"
+  }
+]
+
+* Test to update the product_description. RESULT: SUCCESS [Check product_description only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4b",
+    "product_description": "A versatile evolution of the classic naval deck pant, The Breakwater Pant offers a character-rich indigo finish in a clean, capable silhouette. Finished with a roomy top block and a drawcord waist for comfort wherever you’re HEADED."
+  }
+]
+
+* Test to update the product_category. RESULT: SUCCESS [Check product_category only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4b",
+    "product_category": "Upper Garment"
+  }
+]
+
+* Test to update the product_subcategory. RESULT: SUCCESS [Check product_subcategory only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4b",
+    "product_subcategory": "Shirt"
+  }
+]
+
+* Test to update the product_subcategory_type. RESULT: SUCCESS [Check product_subcategory_type only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4b",
+    "product_subcategory_type": "Chino"
+  }
+]
+
+* Test to update the product_specifications. RESULT: SUCCESS [Check product_specifications only]
+[
+  "url": "http://localhost:3500/products/updateproduct",
+  {
+    "product_id": "dzh5txxega4b",
+    "product_specifications": "9-oz. 98% Organic Cotton, 2% Spandex. Indigo yarns will wash and fade beautifully over time. Elasticated waist with button fly and drawcord. Angled slash patch pockets for easy entry. Single mitered button through back pocket. Double-needle felled construction. Wash cold and tumble dry low. Made in CHINA."
+  }
+]
+
+updateProductDiscount Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductdiscount",
+    { }
+  ]
+
+* Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/products/updateproductdiscount",
+    { 
+      "product_id": "dzh5txxega4c",
+      "discount_code": "10PERCENT",
+      "discount_percentage": 10
+    }
+  ]
+
+* Test to check the response to discount_code and discount_percentage values that already exist. RESULT: RedundantUpdateError
+  [
+    "url": "http://localhost:3500/products/updateproductdiscount",
+     { 
+        "product_id": "dzh5txxega4b",
+        "discount_code": "None",
+        "discount_percentage": 0
+     }
+
+  ]
+
+* Test to check the response to a missing disocunt_code field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductdiscount",
+     { 
+        "product_id": "dzh5txxega4b",
+        "discount_percentage": 0
+     }
+  ]
+
+* Test to update the discount_code and discount_percentage. RESULT: SUCCESS [Check only the discount_code and discount_percentage values]
+  [
+    "url": "http://localhost:3500/products/updateproductdiscount",
+    { 
+      "product_id": "dzh5txxega4b",
+      "discount_code": "10PERCENT",
+      "discount_percentage": 10
+    }
+  ]
+
+updateProductGarmentWeight Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty object. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductgarmentweight",
+    { }
+  ]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError.
+  [
+    "url": "http://localhost:3500/products/updateproductgarmentweight",
+    {
+      "product_id": "dzh5txxega4c",
+      "garment_weight_description": "Straight stuff",
+      "garment_weight" : "Heavy"
+    }
+  ]
+ 
+* Test to check the response to a product_garment_weight that already exists. RESULT: RedundantUpdateError.
+  [
+    "url": "http://localhost:3500/products/updateproductgarmentweight",
+    {
+      "product_id": "dzh5txxega4b",
+      "garment_weight_description": "Sturdy daily drivers.",
+      "garment_weight" : "Medium"
+
+    }
+  ]
+
+
+* Test to update the garment_weight and garment_weight_description value. RESULT: SUCCESS [Check the garment_weight and garment_weight_description values only].
+  [
+    "url": "http://localhost:3500/products/updateproductgarmentweight",
+    {
+      "product_id": "dzh5txxega4b",
+      "garment_weight" : "Light"
+      "garment_weight_description" : "Sturdy Daily DRIVERS"
+    }
+  ]
+
+updateProductName Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty object. RESULT: ZodError.
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    { }
+  ]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+      "product_id": "dzh5txxega4c",
+      "product_name": "The Breakwater Pant in Rinsed Indigo STRIPE"
+    }
+  ]
+
+* Test to check the response to a product_name that already exists. RESULT: RedundantUpdateError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+      "product_id": "dzh5txxega4b",
+      "product_name": "The Breakwater Pant in Rinsed Indigo STRIPE"
+    }
+  ]
+
+* Test to check the response to a missing product_id field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductname",
+    {
+       "product_name": "The Breakwater Pant in Rinsed Indigo STRIPE"
+    }
+  ]
+
+ * Test to update the product_name of a Product. RESULT: SUCCESS
+   [
+      "url": "http://localhost:3500/products/updateproductname",
+      {
+        "product_id": "dzh5txxega4b",
+        "product_name": "The Breakwater Pant in Rinsed Indigo STRIPE"
+      }
+   ]
+    
+updateProductPrice Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductprice",
+    { }
+  ]
+
+* Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/products/updateproductprice",
+    {
+      "product_id": "dzh5txxega4c",
+      "product_price": 200
+    }
+  ]
+
+* Test to check the response to a product_price value that already exists. RESULT: RedundantUpdateError
+  [
+    "url": "http://localhost:3500/products/updateproductprice",
+    {
+      "product_id": "dzh5txxega4c",
+      "product_price": 128
+    }
+  ]
+
+* Test to check the response to a missing product_price field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductprice",
+    {
+      "product_id": "dzh5txxega4b"
+    }
+  ]
+
+* Test to update the product_price. RESULT: SUCCESS [Check product_price only]
+  [
+    "url": "http://localhost:3500/products/updateproductprice",
+    {
+      "product_id": "dzh5txxega4c",
+      "product_price": 210
+    }
+  ]
+
+updateProductSupplyType Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty request body. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    { }
+  ]
+
+* Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+      "product_id": "dzh5txxega4c",
+      "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+      "supply_type": "Limited"
+    }
+  ]
+
+* Test to check the response to updating a product_supply_type that already exists. RESULT: RedundantUpdateError
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+        "product_id": "dzh5txxega4c",
+    	"supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    	"supply_type": "Limited"
+  }
+  ]
+
+* Test to check the response to a missing product_id field. RESULT: ZodError
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+      "supply_type_description": "This product is part of a small batch manufacturing run that may use exclusive materials like dead stock fabrics. The product is limited in quantity and may never be in stock again. Limited products are available for immediate shipping.",
+    	"supply_type": "Limited"
+    }
+  ]
+
+* Test to update the supply_description and supply_type. RESULT: SUCCESS [Check product_id, supply_type and supply_type_description only]
+  [
+    "url": "http://localhost:3500/products/updateproductsupplytype",
+    {
+       "product_id": "dzh5txxega4b",
+       "supply_type": "Essential",
+       "supply_type_description": "This product is a Taylor Stitch Essential that we aim to always keep in stock. Essentials are our tried and true products that we wear damn near everyday. If your size is currently out-of-stock, please submit your email address to the “Notify Me” tab. We restock Essentials regularly. In stock sizes are available for immediate shipping."
+    }
+  ]
+
+
+searchProducts Tests for The Breakwater Pant in Rinsed Indigo Stripe
+
+* Test to check the response to an empty object.
+  [
+    "url": "http://localhost:3500/products/searchproducts",
+    { }
+  ]
+
+* Test to search for a Product using product_name. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/products/searchproducts",
+    {
+      "product_name": "The Breakwater Pant in Rinsed Indigo Stripe"
+    }
+  ]
+
+* Test to search for a Product using product_color. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/products/searchproducts",
+    {
+      "product_color": "Rinsed Indigo Stripe"
+    }
+  ]
+
+* Test to search for a Product using product_subcategory. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/products/searchproducts",
+    {
+      "product_subcategory": "Bottom"
+    }
+  ]
+
+* Test to search for a Product using product_name and product_subcategory. RESULT: SUCCESS
+  [
+    "url": "http://localhost:3500/products/searchproducts",
+    {
+       "product_name": "The Breakwater Pant in Rinsed Indigo Stripe",
+       "product_subcategory": "Bottom"
+    }
+  ]
+
+Please put all of these tests into a Python list in which each list item is a JSON object of the format
+{
+  "url": "url value",
+  "test_name": "name of test",
+  "test_data": { <test_data> },
+  "serial": <Numeric Value>
+}
+
+Here, "test_data" is the test data provided in each test
+"serial" is the array index of each list item
+Ensure that all tests are added to the list. Do not stop until 

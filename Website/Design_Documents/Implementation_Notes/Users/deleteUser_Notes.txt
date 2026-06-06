@@ -1,0 +1,11 @@
+We need the following pieces of data:
+* user_id -> Request params | From session
+
+* Check if the request body is empty. If so, throw an EmptyRequestBodyError.
+* Check if the User to be deleted exists. If not, throw a ResourceNotFoundError.
+
+* Get a DEEP CLONE of the request body.
+* Create a delete_query {user_id: user_id}.
+
+* Call the findOneAndUpdate() with delete_query and {new: True, runValidators: True}.
+* Return the result using 200 OK.

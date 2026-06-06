@@ -22,5 +22,9 @@ deleteProductItem ->
       { new: true },
       {runValidators: true}
    ).lean();
+
+  * Call the deleteAllCartItems() HELPER FUNCTION with sku.
+  
+  * Call the calculateAndUpdateCartItemTotals() HELPER FUNCTION.
   
   * Send the result back using res.json() with a status of 200.

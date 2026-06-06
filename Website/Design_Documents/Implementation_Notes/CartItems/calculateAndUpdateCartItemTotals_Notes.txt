@@ -1,12 +1,12 @@
 We will need the following pieces of data
   * user_id -> Request Params | Frontend
-* Get the user_id from req.params.
-* Create a query as {user_id: user_id}.
-* Get the CartItems sub-document array using the User.find(query).lean().
 
-* Get the length of the array using the .length property.
-* Sum the item_total, discount_amount and discounted_total.
-* Calculate the discoutn_percentage.
-* Create a filter which is equal to the query.
-* Create an update_object with the totals of the above fields.
-* Use findOneAndUpdate(filter, update_object, {new: True}, {runValidators: True})
+* Get the user_id from the request params.
+* Check if the user_id is available. If so, go into single user mode. If not, go into multi-user mode and use the multi_user_cart_item_totals_update_pipeline.
+* Check if the user has some CartItems. If it does, use the single_user_cart_items_total_update_pipeline. If not, set the total_item_total, total_discount_amount, total_discounted_total, total_discount_percentage and total_payable_amount to 0.
+
+
+
+
+
+

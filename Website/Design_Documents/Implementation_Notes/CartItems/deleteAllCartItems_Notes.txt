@@ -1,0 +1,9 @@
+We need the following pieces of data:
+  * product_id -> Request body | From frontend
+  * sku        -> Request body | From frontend
+
+* We will use default arguments in this function.
+* If only the product_id is available, then it deletes all the CartItems of all Users that have that product_id.
+* If only the sku is available, then it deletes all CartItems of all Users that have that sku.
+* If both are available, then it throws an error.
+

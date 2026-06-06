@@ -1,10 +1,19 @@
 We need the following pieces of data:
-NONE
+  * product_id -> From Request body | From frontend
 
 deleteProduct ->
 * Check if the request body is empty, if so, throw an EmptyRequestBodyError.
 * Check if the product to be deleted exists, if not, throw a ResourceNotFoundError.
 
 * Get a DEEP CLONE of the request body.
+* Create a delete_query {product_id: product_id}.
+
+* Call the findOneAndUpdate() with delete_query and {new: True, runValidators: True}.
+* Call the deleteAllCartItems() HELPER FUNCTION with product_id.
+  
+* Call the calculateAndUpdateCartItemTotals() HELPER FUNCTION.
+* Return the result with 200 OK.
+
+
 
 

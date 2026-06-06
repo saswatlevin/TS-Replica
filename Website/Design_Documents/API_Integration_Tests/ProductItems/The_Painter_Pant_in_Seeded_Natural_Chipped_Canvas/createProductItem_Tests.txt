@@ -1,45 +1,45 @@
 createProductItem Test for The Painter Pant in Seeded Natural Chipped Canvas
 
-  * Test to check the response to an empty Request Body. RESULT: ZodError
+  * Test to check the response to an empty Request Body in CREATEPRODUCTITEM.
     [
       "url": "http://localhost:3500/productitems/createproductitem",
       { }
     ]
   
-  * Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  * Test to check the response to a product that does not exist in CREATEPRODUCTITEM. 
     [
         "url": "http://localhost:3500/productitems/createproductitem",
         {
           "product_id": "ojvs7hjfihgd",
-          "lower_size_number": 38,
-          "inseam_length": 34,
-      	  "total_stock": 310,
-          "quantity_sold": 50,
+          "lower_size_number": 30,
+          "inseam_length": 32,
+      	  "total_stock": 320,
+          "quantity_sold": 60,
           "quantity_returned": 0,
           "current_stock": 260
         }
     ]
   
-   * Test to check the response to a duplicate product_item. RESULT: DuplicateSubDocumentError
+   * Test to check the response to a duplicate product_item in CREATEPRODUCTITEM.
      [
         "url": "http://localhost:3500/productitems/createproductitem",
         {
-           "product_id": "ojvs7hjfihgc",
-           "lower_size_number": 38,
-           "inseam_length": 34,
-      	   "total_stock": 310,
-           "quantity_sold": 50,
-           "quantity_returned": 0,
-           "current_stock": 260        
+          "product_id": "ojvs7hjfihgc",
+          "lower_size_number": 29,
+          "inseam_length": 32,
+      	  "total_stock": 156,
+          "quantity_sold": 60,
+          "quantity_returned": 0,
+          "current_stock": 96
         }
      ]
    
-   * Test to check the response to a missing total_stock field. RESULT: ZodError
+   * Test to check the response to a missing total_stock field in CREATEPRODUCTITEM.
      [
         "url": "http://localhost:3500/productitems/createproductitem",
         {
            "product_id": "ojvs7hjfihgc",
-           "lower_size_number": 38,
+           "lower_size_number": 30,
            "inseam_length": 34,
            "quantity_sold": 50,
            "quantity_returned": 0,
@@ -47,12 +47,12 @@ createProductItem Test for The Painter Pant in Seeded Natural Chipped Canvas
         }
      ]
     
-   * Test to create a product_item. RESULT: SUCCESS
+   * Test to create a product_item in CREATEPRODUCTITEM.
      [
          "url": "http://localhost:3500/productitems/createproductitem",
          {
-          "product_id": "blp0asdcbjui",
-          "lower_size_number": 38,
+          "product_id": "ojvs7hjfihgc",
+          "lower_size_number": 30,
           "inseam_length": 34,
       	  "total_stock": 310,
           "quantity_sold": 50,

@@ -1,33 +1,33 @@
-createProductItem Test for The Craftsman Shirt in Bark Plaid Cotton
+createProductItem Tests for The Craftsman Shirt in Bark Plaid Cotton
 
-  * Test to check the response to an empty Request Body. RESULT: ZodError
+  * Test to check the response to an empty Request Body in CREATEPRODUCTITEM. RESULT: ZodError
     [
       "url": "http://localhost:3500/productitems/createproductitem",
       { }
     ]
   
-  * Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  * Test to check the response to a product that does not exist in CREATEPRODUCTITEM.
     [
         "url": "http://localhost:3500/productitems/createproductitem",
         {
           "product_id": "a6bb1d23bd29",
           "upper_size_letter": "L",
           "upper_size_number": 40,
-          "total_stock": 250,
-          "quantity_sold": 80,
+          "total_stock": 100,
+          "quantity_sold": 70,
           "quantity_returned": 0,
-          "current_stock": 170
+          "current_stock": 30
 
         }
     ]
   
-   * Test to check the response to a duplicate product_item. RESULT: DuplicateDocumentError
+   * Test to check the response to a duplicate product_item in CREATEPRODUCTITEM.
      [
         "url": "http://localhost:3500/productitems/createproductitem",
         {
            "product_id": "a6bb1d23bd28",
-           "upper_size_letter": "XL",
-           "upper_size_number": 46,
+           "upper_size_letter": "XXL",
+           "upper_size_number": 48,
            "total_stock": 100,
            "quantity_sold": 80,
            "quantity_returned": 0,
@@ -35,30 +35,30 @@ createProductItem Test for The Craftsman Shirt in Bark Plaid Cotton
         }
      ]
    
-   * Test to check the response to a missing total_stock field. RESULT: ZodError
+   * Test to check the response to a missing total_stock field in CREATEPRODUCTITEM.
      [
         "url": "http://localhost:3500/productitems/createproductitem",
         {
-           "product_id": "a6bb1d23bd28",
-           "upper_size_letter": "XL",
-           "upper_size_number": 46,
-           "quantity_sold": 80,
-           "quantity_returned": 0,
-           "current_stock": 20
+          "product_id": "a6bb1d23bd28",
+          "upper_size_letter": "L",
+          "upper_size_number": 40,
+          "quantity_sold": 70,
+          "quantity_returned": 0,
+          "current_stock": 30
         }
      ]
     
-   * Test to create a product_item. RESULT: SUCCESS
+   * Test to create a product_item in CREATEPRODUCTITEM.
      [
          "url": "http://localhost:3500/productitems/createproductitem",
          {
             "product_id": "a6bb1d23bd28",
             "upper_size_letter": "L",
             "upper_size_number": 40,
-            "total_stock": 250,
-            "quantity_sold": 80,
+            "total_stock": 100,
+            "quantity_sold": 70,
             "quantity_returned": 0,
-            "current_stock": 170
+            "current_stock": 30
 
         }
      ]

@@ -1,12 +1,12 @@
 deleteProductItem Tests for The Breakwater Pant in Rinsed Indigo Stripe
 
-  * Test to check the response to an empty request body. RESULT: ZodError
+  * Test to check the response to an empty request body in DELETEPRODUCTITEM. 
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       { }
   ]
 
-  * Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+  * Test to check the response to a Product that does not exist in DELETEPRODUCTITEM. 
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       {
@@ -15,16 +15,17 @@ deleteProductItem Tests for The Breakwater Pant in Rinsed Indigo Stripe
       }
   ]
 
-  * Test to check the response to a product_item that does not exist. RESULT: ResourceNotFoundError
+``
+``* Test to delete a product_item with sku 269ujn48i2 in DELETEPRODUCTITEM.
   [
-     "url": "http://localhost:3500/productitems/deleteproductitem",
+      "url": "http://localhost:3500/productitems/deleteproductitem",
       {
         "product_id": "u9yl6odhiget",
-        "sku": "ygiy8ngzbm"
-      }     
+        "sku": "269ujn48i2"
+      }
   ]
 
-  * Test to delete a product_item. RESULT: SUCCESS
+  * Test to delete a product_item with sku ygiy8ngzbm in DELETEPRODUCTITEM.
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       {
@@ -33,11 +34,38 @@ deleteProductItem Tests for The Breakwater Pant in Rinsed Indigo Stripe
       }
   ]
 
-  * Test to check whether the minimum limit of 1 product_item per Product is obeyed. RESULT: IllegalUpdateError
+  * Test to delete a product_item with sku lscpppzd0i in DELETEPRODUCTITEM.
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       {
         "product_id": "u9yl6odhiget",
-        "sku": "269ujn48i2" 
+        "sku": "lscpppzd0i"
+      }
+  ]
+
+  * Test to delete a product_item with sku dapw4niiqj in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "u9yl6odhiget",
+        "sku": "dapw4niiqj"
+      }
+  ]
+
+  * Test to delete a product_item with sku y12d7ztnkl in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "u9yl6odhiget",
+        "sku": "y12d7ztnkl"
+      }
+  ]
+
+  * Test to check whether the minimum limit of 1 product_item per Product is obeyed in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "u9yl6odhiget",
+        "sku": "h77sjj22nv" 
       }
   ]

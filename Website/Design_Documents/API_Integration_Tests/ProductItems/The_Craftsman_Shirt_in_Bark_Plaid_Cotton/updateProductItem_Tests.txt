@@ -1,23 +1,34 @@
 updateProductItem Tests for The Craftsman Shirt in Bark Plaid Cotton
 
-  * Test to check the response to an empty object. RESULT: ZodError
+  * Test to check the response to an empty object in UPDATEPRODUCTITEM. 
     [
       "url": "http://localhost:3500/productitems/updateproductitem",
       { }
     ]
 
-  * Test to check the response to a missing product_item. RESULT: ResourceNotFoundError
+ * Test to check the response to a missing product in UPDATEPRODUCTITEM. 
+    [
+        "url": "http://localhost:3500/productitems/updateproductitem",
+        {
+          "product_id": "a6bb1d23bd29",
+          "sku": "12dcc9cd7b",
+          "upper_size_letter": "XXL"
+          
+        } 
+    ]
+
+  * Test to check the response to a missing product_item in UPDATEPRODUCTITEM. 
     [
         "url": "http://localhost:3500/productitems/updateproductitem",
         {
           "product_id": "a6bb1d23bd28",
           "sku": "12dcc9cd7c",
-          "upper_size_letter": "XL"
+          "upper_size_letter": "XXL"
           
         } 
     ]
    
-  * Test to check the response to an update that will result in a duplicate product_item. RESULT: ResourceNotFoundError
+  * Test to check the response to an update that will result in a duplicate product_item in UPDATEPRODUCTITEM. 
     [
       "url": "http://localhost:3500/productitems/updateproductitem",
       {
@@ -27,28 +38,28 @@ updateProductItem Tests for The Craftsman Shirt in Bark Plaid Cotton
       }
     ]
       
-   * Test to check the response to a missing product_id value. RESULT: ZodError
+   * Test to check the response to a missing product_id value in UPDATEPRODUCTITEM. 
      [
         "sku": "12dcc9cd7b",
-        "upper_size_letter": "L"
+        "upper_size_letter": "M"
      ]
   
-   * Test to update upper_size_letter. RESULT: SUCCESS [Check upper_size_letter only]
+   * Test to update upper_size_letter in UPDATEPRODUCTITEM. 
     [
       "url": "http://localhost:3500/productitems/updateproductitem",
       {
          "product_id": "a6bb1d23bd28",
          "sku": "12dcc9cd7b",
-         "upper_size_letter": "XL"
+         "upper_size_letter": "XXL"
       }
     ]
 
-   * Test to update upper_size_number. RESULT: SUCCESS [Check upper_size_number only]
+   * Test to update upper_size_number in UPDATEPRODUCTITEM. 
     [
       "url": "http://localhost:3500/productitems/updateproductitem",
       {
          "product_id": "a6bb1d23bd28",
          "sku": "12dcc9cd7b",
-         "upper_size_number": 46
+         "upper_size_number": 48
       }
     ]

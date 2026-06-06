@@ -1,12 +1,12 @@
 deleteProductItem Tests for The Painter Pant in Seeded Natural Chipped Canvas
 
-  * Test to check the response to an empty request body. RESULT: ZodError
+  * Test to check the response to an empty request body in DELETEPRODUCTITEM.
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       { }
   ]
 
-  * Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+  * Test to check the response to a Product that does not exist in DELETEPRODUCTITEM.
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       {
@@ -15,7 +15,7 @@ deleteProductItem Tests for The Painter Pant in Seeded Natural Chipped Canvas
       }
   ]
 
-  * Test to check the response to a product_item that does not exist. RESULT: ResourceNotFoundError
+  * Test to check the response to a product_item that does not exist in DELETEPRODUCTITEM.
   [
      "url": "http://localhost:3500/productitems/deleteproductitem",
       {
@@ -24,7 +24,7 @@ deleteProductItem Tests for The Painter Pant in Seeded Natural Chipped Canvas
       }     
   ]
 
-  * Test to delete a product_item. RESULT: SUCCESS
+  * Test to delete a product_item with sku cdwrbvcp2r in DELETEPRODUCTITEM.
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       {
@@ -33,11 +33,83 @@ deleteProductItem Tests for The Painter Pant in Seeded Natural Chipped Canvas
       }
   ]
 
-  * Test to check whether the minimum limit of 1 product_item per Product is obeyed. RESULT: IllegalUpdateError
+  * Test to delete a product_item with sku bzpr1txn5j in DELETEPRODUCTITEM.
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       {
         "product_id": "ojvs7hjfihgc",
         "sku": "bzpr1txn5j" 
+      }
+  ]
+
+  * Test to delete a product_item with sku jel0mvuh2n in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "ojvs7hjfihgc",
+        "sku": "jel0mvuh2n" 
+      }
+  ]
+
+  * Test to delete a product_item with sku 352z5lztub in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "ojvs7hjfihgc",
+        "sku": "352z5lztub" 
+      }
+  ]
+
+  * Test to delete a product_item with sku 2v5ecttxdx in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "ojvs7hjfihgc",
+        "sku": "2v5ecttxdx" 
+      }
+  ]
+
+  * Test to delete a product_item with sku 3yfyx9od4q in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "ojvs7hjfihgc",
+        "sku": "3yfyx9od4q" 
+      }
+  ]
+
+  * Test to delete a product_item with sku gobzyrykhp in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "ojvs7hjfihgc",
+        "sku": "gobzyrykhp" 
+      }
+  ]
+
+  * Test to delete a product_item with sku j7jo34y3ie in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "ojvs7hjfihgc",
+        "sku": "j7jo34y3ie" 
+      }
+  ]  
+
+  * Test to delete a product_item with sku j7jo34y3ie in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "ojvs7hjfihgc",
+        "sku": "j7jo34y3ie" 
+      }
+  ]
+
+  * Test to check whether the minimum limit of 1 product_item per Product is obeyed in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "ojvs7hjfihgc",
+        "sku": "ohgqsdan8j" 
       }
   ]

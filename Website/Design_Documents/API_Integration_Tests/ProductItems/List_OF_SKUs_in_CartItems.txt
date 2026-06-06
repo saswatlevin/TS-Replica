@@ -1,0 +1,33 @@
+product_name: "The Apres Short in Navy Linen TWEED"
+product_id: "u9yl6odhiget"
+sku: "269ujn48i2"
+
+product_name: "The Breakwater Pant in Rinsed Indigo STRIPE"
+product_id: "dzh5txxega4b"
+sku: "9bkgezadt6"
+
+product_name: "The Camp Short in Aged Penny Chipped CANVAS"
+product_id: "il19g7cce84l"
+sku: "x6mgf6qdam"
+
+product_name: "The Craftsman Shirt in Bark Plaid Cotton"
+product_id: "a6bb1d23bd28"
+sku: "4565314a71"
+
+product_name: "The Painter Pant in Seeded Natural Chipped CANVAS"
+product_id: "ojvs7hjfihgc"
+sku: "bzpr1txn5j"
+
+=====ORDER OF TESTS=====
+01) Test the Search and Get APIs first.
+02) Delete the respective product_item that exists in the Cart.
+03) Delete the remaining product_items (Except 1) to test the "at least 1 product_item per product rule".
+04) Test the Update API. (Update the smallest size to the next largest).
+05) After that, test the Create API. (Create a product_item with the next largest size than the product_item that is already present). 
+06) Restore the database to re-create the deleted data.
+=====ORDER OF TESTS=====
+SEARCH
+GET 
+DELETE
+UPDATE
+CREATE

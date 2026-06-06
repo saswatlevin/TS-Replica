@@ -1,12 +1,12 @@
 searchProductItem Tests for The Breakwater Pant in Rinsed Indigo Stripe
 
-* Test to check the response to an empty request body. RESULT: ZodError
+* Test to check the response to an empty request body in SEARCHPRODUCTITEM. 
   [
     "url": "http://localhost:3500/productitems/searchproductitem",
     { }
   ]
 
-* Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+* Test to check the response to a Product that does not exist in SEARCHPRODUCTITEM. 
   [
     "url": "http://localhost:3500/productitems/searchproductitem",
     { 
@@ -14,7 +14,7 @@ searchProductItem Tests for The Breakwater Pant in Rinsed Indigo Stripe
     }
   ]
 
-* Test to search for a Product. RESULT: SUCCESS
+* Test to search for a Product in SEARCHPRODUCTITEM.
   [
     "url": "http://localhost:3500/productitems/searchproductitem",
     { 

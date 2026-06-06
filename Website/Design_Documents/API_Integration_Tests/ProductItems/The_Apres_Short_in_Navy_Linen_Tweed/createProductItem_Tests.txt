@@ -1,58 +1,58 @@
 createProductItem Test for The Apres Short in Navy Linen Tweed 
 
-  * Test to check the response to an empty Request Body. RESULT: ZodError
+  * Test to check the response to an empty Request Body in CREATEPRODUCTITEM.
     [
       "url": "http://localhost:3500/productitems/createproductitem",
       { }
     ]
   
-  * Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  * Test to check the response to a product that does not exist in CREATEPRODUCTITEM.
     [
         "url": "http://localhost:3500/productitems/createproductitem",
         {
-          "product_id": "u9yl6odhiget",
-          "lower_size_letter": "XXL",
-      	  "total_stock": 180,
-      	  "quantity_sold": 60,
+          "product_id": "u9yl6odhigey",
+          "lower_size_letter": "S",
+      	  "total_stock": 250,
+      	  "quantity_sold": 150,
       	  "quantity_returned": 0,
-      	  "current_stock": 120          
+      	  "current_stock": 100          
         }
     ]
   
-   * Test to check the response to a duplicate product_item. RESULT: DuplicateSubDocumentError
+   * Test to check the response to a duplicate product_item in CREATEPRODUCTITEM.
      [
         "url": "http://localhost:3500/productitems/createproductitem",
         {
            "product_id": "u9yl6odhiget",
-           "lower_size_letter": "XXL",
-      	   "total_stock": 180,
-      	   "quantity_sold": 60,
+           "lower_size_letter": "XS",
+      	   "total_stock": 200,
+      	   "quantity_sold": 30,
       	   "quantity_returned": 0,
-      	   "current_stock": 120        
+      	   "current_stock": 170        
         }
      ]
    
-   * Test to check the response to a missing total_stock field. RESULT: ZodError
+   * Test to check the response to a missing total_stock field in CREATEPRODUCTITEM.
      [
         "url": "http://localhost:3500/productitems/createproductitem",
         {
-           "product_id": "u9yl6odhiget",
-           "lower_size_letter": "XXL",
-      	   "quantity_sold": 60,
-      	   "quantity_returned": 0,
-      	   "current_stock": 120         
+          "product_id": "u9yl6odhiget",
+          "lower_size_letter": "S",
+      	  "quantity_sold": 150,
+      	  "quantity_returned": 0,
+      	  "current_stock": 100        
         }
      ]
     
-   * Test to create a product_item. RESULT: SUCCESS
+   * Test to create a product_item in CREATEPRODUCTITEM.
      [
          "url": "http://localhost:3500/productitems/createproductitem",
          {
 	  "product_id": "u9yl6odhiget",
-          "lower_size_letter": "XXL",
-      	  "total_stock": 180,
-      	  "quantity_sold": 60,
+          "lower_size_letter": "M",
+      	  "total_stock": 200,
+      	  "quantity_sold": 150,
       	  "quantity_returned": 0,
-      	  "current_stock": 120   
+      	  "current_stock": 50   
         }
      ]

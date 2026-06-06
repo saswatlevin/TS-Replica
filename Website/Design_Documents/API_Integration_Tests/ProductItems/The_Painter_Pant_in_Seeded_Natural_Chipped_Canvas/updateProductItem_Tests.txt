@@ -1,12 +1,12 @@
 updateProductItem Tests for The Painter Pant in Seeded Natural Chipped Canvas
 
-  * Test to check the response to an empty object. RESULT: ZodError
+  * Test to check the response to an empty object in UPDATEPRODUCTITEM.
     [
       "url": "http://localhost:3500/productitems/updateproductitem",
       { }
     ]
 
-  * Test to check the response to a product_item that doesn't exist. RESULT: ResourceNotFoundError
+  * Test to check the response to a product_item that doesn't exist in UPDATEPRODUCTITEM. 
     [
         "url": "http://localhost:3500/productitems/updateproductitem",
         {
@@ -17,42 +17,42 @@ updateProductItem Tests for The Painter Pant in Seeded Natural Chipped Canvas
         } 
     ]
    
-  * Test to check the response to an update that will result in a duplicate product_item. RESULT: ResourceNotFoundError
+  * Test to check the response to an update that will result in a duplicate product_item in UPDATEPRODUCTITEM.
     [
       "url": "http://localhost:3500/productitems/updateproductitem",
       {
           "product_id": "ojvs7hjfihgc",
-          "sku": "cdwrbvcp2r",
-          "lower_size_number": 38,
-          "inseam_length": 32
+          "sku": "ohgqsdan8j",
+          "lower_size_number": 28,
+          "inseam_length": 34
           
       } 
     ]
        
-   * Test to check the response to a missing product_id value. RESULT: ZodError
+   * Test to check the response to a missing product_id value in UPDATEPRODUCTITEM.
      [
 	{
-            "sku": "cdwrbvcp2r",
+            "sku": "ohgqsdan8j",
             "lower_size_number": 38
         }
      ]
   
-   * Test to update lower_size_number. RESULT: SUCCESS [Check lower_size_number only]
+   * Test to update lower_size_number in UPDATEPRODUCTITEM.
     [
       "url": "http://localhost:3500/productitems/updateproductitem",
       {
-         "product_id": "",
-         "sku": "",
-         "lower_size_number": 38
+         "product_id": "ojvs7hjfihgc",
+         "sku": "ohgqsdan8j",
+         "lower_size_number": 29
       }
     ]
 
-   * Test to update inseam_length. RESULT: SUCCESS [Check inseam_length only]
+   * Test to update inseam_length in UPDATEPRODUCTITEM.
     [
       "url": "http://localhost:3500/productitems/updateproductitem",
       {
-         "product_id": "",
-         "sku": "",
+	 "product_id": "ojvs7hjfihgc",
+         "sku": "ohgqsdan8j",
          "inseam_length": 32
       }
     ]

@@ -1,58 +1,69 @@
 updateProductItem Tests for The Breakwater Pant in Rinsed Indigo Stripe
 
-  * Test to check the response to an empty object. RESULT: ZodError
+  * Test to check the response to an empty object in UPDATEPRODUCTITEM. 
     [
       "url": "http://localhost:3500/productitems/updateproductitem",
       { }
     ]
 
-  * Test to check the response to a product_item that doesn't exist. RESULT: ResourceNotFoundError
+  * Test to check the response to a product that doesn't exist in UPDATEPRODUCTITEM. 
     [
         "url": "http://localhost:3500/productitems/updateproductitem",
         {
           "product_id": "dzh5txxega4c",
-          "sku": "9bkgezadt6",
-          "lower_size_letter": "XXL",
-          "inseam_length": 32
+          "sku": "zuu66dm7p5",
+          "lower_size_letter": "S",
+          "inseam_length": 34
+        } 
+    ]
+
+  * Test to check the response to a product_item that doesn't exist in UPDATEPRODUCTITEM. 
+    [
+        "url": "http://localhost:3500/productitems/updateproductitem",
+        {
+          "product_id": "dzh5txxega4b",
+          "sku": "zuu66dm7p6",
+          "lower_size_letter": "S",
+          "inseam_length": 34
         } 
     ]
    
-  * Test to check the response to an update that will result in a duplicate product_item. RESULT: ResourceNotFoundError
+  * Test to check the response to an update that will result in a duplicate product_item in UPDATEPRODUCTITEM. 
     [
       "url": "http://localhost:3500/productitems/updateproductitem",
       {
           "product_id": "dzh5txxega4b",
-          "sku": "9bkgezadt6",
-          "lower_size_letter": "XXL",
-          "inseam_length": 32        
+          "sku": "zuu66dm7p5",
+          "lower_size_letter": "XS",
+          "inseam_length": 34        
       } 
     ]
        
-   * Test to check the response to a missing product_id value. RESULT: ZodError
+   * Test to check the response to a missing product_id value in UPDATEPRODUCTITEM. 
      [
 	{
-	  "sku": "9bkgezadt6",
-          "lower_size_letter": "XXL",
-          "inseam_length": 32
+	  "sku": "zuu66dm7p5",
+          "lower_size_letter": "S",
+          "inseam_length": 34
         }
      ]
   
-   * Test to update lower_size_letter. RESULT: SUCCESS [Check lower_size_number only]
+   * Test to update lower_size_letter in UPDATEPRODUCTITEM.
     [
       "url": "http://localhost:3500/productitems/updateproductitem",
       {
          "product_id": "dzh5txxega4b",
-         "sku": "9bkgezadt6",
-         "lower_size_letter": "XL"
+         "sku": "zuu66dm7p5",
+         "lower_size_letter": "S"
       }
     ]
     
-    * Test to update inseam_length. RESULT: SUCCESS [Check inseam_length only]
+    * Test to update inseam_length in UPDATEPRODUCTITEM. 
     [
       "url": "http://localhost:3500/productitems/updateproductitem",
       {
          "product_id": "dzh5txxega4b",
-         "sku": "9bkgezadt6",
+         "sku": "zuu66dm7p5",
          "inseam_length": "32"
       }
     ]

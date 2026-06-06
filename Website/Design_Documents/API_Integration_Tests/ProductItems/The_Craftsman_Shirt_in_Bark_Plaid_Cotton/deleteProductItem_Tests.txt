@@ -1,12 +1,12 @@
 deleteProductItem Tests for The Craftsman Shirt in Bark Plaid Cotton
 
-  * Test to check the response to an empty request body. RESULT: ZodError
+  * Test to check the response to an empty request body in DELETEPRODUCTITEM.
     [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       { }
     ]
   
-  * Test to check the response to a product that does not exist. RESULT: ResourceNotFoundError
+  * Test to check the response to a product that does not exist in DELETEPRODUCTITEM. 
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       {
@@ -15,7 +15,7 @@ deleteProductItem Tests for The Craftsman Shirt in Bark Plaid Cotton
       }
   ]
 
-  * Test to check the response to a Product that does not exist. RESULT: ResourceNotFoundError
+  * Test to check the response to a Product that does not exist in DELETEPRODUCTITEM. 
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       {
@@ -24,25 +24,25 @@ deleteProductItem Tests for The Craftsman Shirt in Bark Plaid Cotton
       }
   ]
 
-  * Test to check the response to a product_item that does not exist. RESULT: ResourceNotFoundError
+  * Test to check the response to a product_item that does not exist in DELETEPRODUCTITEM. 
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       {
         "product_id": "a6bb1d23bd28",
-        "sku": "12dcc9cd7c" 
+        "sku": "4565314a72" 
       }
   ]
 
-  * Test to delete a product_item. RESULT: SUCCESS
+  * Test to delete a product_item with 4565314a71 in DELETEPRODUCTITEM. 
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       {
         "product_id": "a6bb1d23bd28",
-        "sku": "12dcc9cd7c" 
+        "sku": "4565314a71" 
       }
   ]
 
-  * Test to check whether the minimum limit of 1 product_item per Product is obeyed RESULT: IllegalUpdateError
+  * Test to check whether the minimum limit of 1 product_item per Product is obeyed in DELETEPRODUCTITEM.
   [
       "url": "http://localhost:3500/productitems/deleteproductitem",
       {

@@ -1,0 +1,264 @@
+* Test to check the response to an empty request body in SEARCHPRODUCTITEM.
+  [
+    "url": "http://localhost:3500/productitems/searchproductitem",
+    { }
+  ]
+
+* Test to check the response to a Product that does not exist in SEARCHPRODUCTITEM. 
+  [
+    "url": "http://localhost:3500/productitems/searchproductitem",
+    { 
+       "product_id": "dzh5txxega4c"
+    }
+  ]
+
+* Test to search for a Product in SEARCHPRODUCTITEM. 
+  [
+    "url": "http://localhost:3500/productitems/searchproductitem",
+    { 
+       "product_id": "dzh5txxega4b"
+    }
+  ]
+
+* Test to check the response to an empty object in GETPRODUCTITEM. 
+  [
+    "url": "http://localhost:3500/products/getproductitem",
+    { }
+  ]
+  
+* Test to check the response to a missing product_id in GETPRODUCTITEM. 
+  [
+    "url": "http://localhost:3500/products/getproductitem",
+    {
+       "sku": "9bkgezadt6"
+    }
+  ]
+
+* Test to search for a Product in GETPRODUCTITEM. 
+  [
+    "url": "http://localhost:3500/products/getproductitem",
+    {
+       "product_id": "dzh5txxega4b",
+       "sku": "9bkgezadt6"
+    }
+  ]
+
+ * Test to check the response to an empty request body in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      { }
+  ]
+
+  * Test to check the response to a Product that does not exist in DELETEPRODUCTITEM. 
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "dzh5txxega4c",
+        "sku": "9bkgezadt6"
+      }
+  ]
+
+  * Test to check the response to a product_item that does not exist in DELETEPRODUCTITEM. 
+  [
+     "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "dzh5txxega4b",
+        "sku": "9bkgezadt7"
+      }     
+  ]
+
+  * Test to delete a product_item with sku 9bkgezadt6 in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "dzh5txxega4b",
+        "sku": "9bkgezadt6"
+      }
+  ]
+
+  * Test to delete a product_item with sku zcltof12fl in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "dzh5txxega4b",
+        "sku": "zcltof12fl"
+      }
+  ]
+
+  * Test to delete a product_item with sku sj3u9sd5ti in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "dzh5txxega4b",
+        "sku": "sj3u9sd5ti"
+      }
+  ]
+
+
+  * Test to delete a product_item with sku aghgp5ty5h in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "dzh5txxega4b",
+        "sku": "aghgp5ty5h"
+      }
+  ]
+
+  * Test to delete a product_item with sku rakcwtv4jo in DELETEPRODUCTITEM.
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "dzh5txxega4b",
+        "sku": "rakcwtv4jo"
+      }
+  ]
+
+  * Test to check whether the minimum limit of 1 product_item per Product is obeyed in DELETEPRODUCTITEM. 
+  [
+      "url": "http://localhost:3500/productitems/deleteproductitem",
+      {
+        "product_id": "dzh5txxega4b",
+        "sku": "zuu66dm7p5" 
+      }
+  ]
+
+  * Test to check the response to an empty object in UPDATEPRODUCTITEM. 
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      { }
+    ]
+
+  * Test to check the response to a product that doesn't exist in UPDATEPRODUCTITEM. 
+    [
+        "url": "http://localhost:3500/productitems/updateproductitem",
+        {
+          "product_id": "dzh5txxega4c",
+          "sku": "zuu66dm7p5",
+          "lower_size_letter": "S",
+          "inseam_length": 34
+        } 
+    ]
+
+  * Test to check the response to a product_item that doesn't exist in UPDATEPRODUCTITEM. 
+    [
+        "url": "http://localhost:3500/productitems/updateproductitem",
+        {
+          "product_id": "dzh5txxega4b",
+          "sku": "zuu66dm7p6",
+          "lower_size_letter": "S",
+          "inseam_length": 34
+        } 
+    ]
+   
+  * Test to check the response to an update that will result in a duplicate product_item in UPDATEPRODUCTITEM. 
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      {
+          "product_id": "dzh5txxega4b",
+          "sku": "zuu66dm7p5",
+          "lower_size_letter": "XS",
+          "inseam_length": 34        
+      } 
+    ]
+       
+   * Test to check the response to a missing product_id value in UPDATEPRODUCTITEM. 
+     [
+	{
+	  "sku": "zuu66dm7p5",
+          "lower_size_letter": "S",
+          "inseam_length": 34
+        }
+     ]
+  
+   * Test to update lower_size_letter in UPDATEPRODUCTITEM.
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      {
+         "product_id": "dzh5txxega4b",
+         "sku": "zuu66dm7p5",
+         "lower_size_letter": "S"
+      }
+    ]
+    
+    * Test to update inseam_length in UPDATEPRODUCTITEM. 
+    [
+      "url": "http://localhost:3500/productitems/updateproductitem",
+      {
+         "product_id": "dzh5txxega4b",
+         "sku": "zuu66dm7p5",
+         "inseam_length": "32"
+      }
+    ]
+
+  * Test to check the response to an empty Request Body in CREATEPRODUCTITEM.
+    [
+      "url": "http://localhost:3500/productitems/createproductitem",
+      { }
+    ]
+  
+  * Test to check the response to a product that does not exist in CREATEPRODUCTITEM.     
+    [
+        "url": "http://localhost:3500/productitems/createproductitem",
+        {
+          "product_id": "dzh5txxega4c",
+          "lower_size_letter": "M",
+          "inseam_length": 32,
+      	  "total_stock": 100,
+      	  "quantity_sold": 50,
+      	  "quantity_returned": 0,
+      	  "current_stock": 50          
+        }
+     ]
+  
+   * Test to check the response to a duplicate product_item in CREATEPRODUCTITEM. 
+     [
+        "url": "http://localhost:3500/productitems/createproductitem",
+        {
+           "product_id": "dzh5txxega4b",
+           "lower_size_letter": "S",
+           "inseam_length": 34,
+      	   "total_stock": 251,
+      	   "quantity_sold": 160,
+      	   "quantity_returned": 0,
+      	   "current_stock": 91        
+        }
+     ]
+   
+   * Test to check the response to a missing total_stock field in CREATEPRODUCTITEM.
+     [
+        "url": "http://localhost:3500/productitems/createproductitem",
+        {
+           "product_id": "dzh5txxega4c",
+           "lower_size_letter": "M",
+           "inseam_length": 32,
+      	   "quantity_sold": 160,
+      	   "quantity_returned": 0,
+      	   "current_stock": 91         
+        }
+     ]
+    
+   * Test to create a product_item in CREATEPRODUCTITEM.
+     [
+         "url": "http://localhost:3500/productitems/createproductitem",
+         {
+          "product_id": "dzh5txxega4b",
+           "lower_size_letter": "M",
+           "inseam_length": 32,
+      	   "total_stock": 110,
+      	   "quantity_sold": 50,
+      	   "quantity_returned": 0,
+      	   "current_stock": 60
+        }
+     ]
+
+Please put all of these tests into a Python list in which each list item is a JSON object of the format
+{
+  "url": "url value",
+  "test_name": "name of test",
+  "test_data": { <test_data> },
+  "serial": <Numeric Value>
+}
+
+Here, "test_data" is the test data provided in each test
+"serial" is the array index of each list item
+Ensure that all tests are added to the list. Do not stop until Test to create a product_item in CREATEPRODUCTITEM.

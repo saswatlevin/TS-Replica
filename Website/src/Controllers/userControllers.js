@@ -229,7 +229,7 @@ const getUserById = asyncErrorHandler( async(req, res, next) => {
 });
 
 const searchUsersByName = asyncErrorHandler( async(req, res, next) => {
-    console.log("In searchUser ");
+    console.log("In searchUser");
 
     console.log("Checking if the request body is empty ot not");
     if(checkIsEmptyObject(req) === true) {
@@ -249,10 +249,38 @@ const searchUsersByName = asyncErrorHandler( async(req, res, next) => {
 
 });
 
+const deleteUser = asyncErrorHandler( async(req, res, next) => {
+    console.log("In deleteUser");
+
+    const user_id = req.body.user_id;
+
+    console.log("Checking if the request body is empty or not");
+    if (checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not delete the user with user_id ${user_id} since the request body is empty`);
+        throw empty_request_body_error;
+    }
+
+    console.log("Checking if the user to be deleted exists.");
+    if (await checkUserExists(req) === false) {
+        const user_not_found_error = new ResourceNotFoundError(`Could not delete the user with ${user_id} since it does not exist`);
+        throw user_not_found_error;
+    }
+
+    const delete_query = {user_id: user_id};
+    console.log("delete_query in deleteUser ", delete_query);
+
+    const result = await User.findOneAndDelete(delete_query, {new: true, runValidators: true}).lean();
+    console.log("result in deleteUser ", result);
+
+    res.status(200).json(result);
+
+});
+
 module.exports = {
     registerUser,
     updateUser,
     updateUserPassword,
     getUserById,
-    searchUsersByName
+    searchUsersByName,
+    deleteUser
 };

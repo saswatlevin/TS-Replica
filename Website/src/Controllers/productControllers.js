@@ -34,6 +34,8 @@ const { updateCartItemName } = require('./SupportFunctions/cartItemSupportFuncti
 
 const { calculateAndUpdateCartItemTotals } = require('./SupportFunctions/cartItemSupportFunctions');
 
+const { deleteAllCartItems } = require('./SupportFunctions/cartItemSupportFunctions');
+
 const { getProductDiscountPercentage } = require('./SupportFunctions/productSupportFunctions');
 
 const { checkProductDiscountCodeAndPercentageExists } = require('./SupportFunctions/productSupportFunctions');
@@ -479,6 +481,42 @@ const searchProducts = asyncErrorHandler(async (req, res, next) => {
     console.log("===END OF searchProducts===");
 });
 
+const deleteProduct = asyncErrorHandler(async(req, res, next) => {
+    console.log("In deleteProduct");
+
+    const product_id = req.body.product_id;
+    console.log("product_id ", product_id);
+
+    console.log("Checking if the request body is empty");
+    if (checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not delete the Product document with product_id ${product_id} since the request body is empty`);
+        throw empty_request_body_error;
+    }
+
+    console.log("Checking if the product to be updated exists");
+    if (await checkProduct(req) === false) {
+        const product_not_found_error = new ResourceNotFoundError(`Could not delete the Product document with product_id ${product_id} since it does not exist.`);
+        throw product_not_found_error;
+    }
+
+    const delete_query = {product_id: product_id};
+    console.log("delete_query ", delete_query);
+
+    const result_1 = await Product.findOneAndDelete(delete_query, {new: true, runValidators: true}).lean();
+    console.log("result of findOneAndDelete in deleteProduct ", result_1);
+
+    const result_2 = await deleteAllCartItems(req, "DELETE_BY_PRODUCT_ID");
+    console.log("result of deleteAllCartItems in deleteProduct ", result_2);
+
+    const result_3 = await calculateAndUpdateCartItemTotals(req);
+    console.log("result of calculateAndUpdateCartItemTotals in deleteProduct ", result_3);
+
+    const result_array = [result_1, result_2, result_3];
+
+    res.status(200).json(result_array[0]);   
+    console.log("===END OF deleteReview()===");
+});
+
 module.exports = {
     createProduct,
     updateProductPrice,
@@ -487,5 +525,6 @@ module.exports = {
     updateProduct,
     updateProductGarmentWeight,
     updateProductSupplyType,
-    searchProducts
+    searchProducts,
+    deleteProduct
 };

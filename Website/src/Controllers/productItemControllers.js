@@ -7,6 +7,10 @@ const { checkProductItemValueExists } = require('./SupportFunctions/productItemS
 const { checkDuplicateProductItemExists } = require('./SupportFunctions/productItemSupportFunctions');
 const { checkMinimumProductItemQuantity } = require('./SupportFunctions/productItemSupportFunctions');
 
+const { deleteAllCartItems } = require('./SupportFunctions/cartItemSupportFunctions');
+
+const { calculateAndUpdateCartItemTotals } = require('./SupportFunctions/cartItemSupportFunctions');
+
 const mongoose = require('mongoose');
 
 const Product = require('../Models/Product');
@@ -112,9 +116,11 @@ const updateProductItem = asyncErrorHandler(async(req, res, next) => {
     const request_body_deep_clone = _.cloneDeep(req.body);
     console.log("request_body_deep_clone ", request_body_deep_clone);
 
-    const pruned_request_body_deep_clone = pruneObject(request_body_deep_clone, ['product_id', 'sku']);
+    const pruned_request_body_deep_clone = pruneObject(request_body_deep_clone, ['product_id', 'sku', 'item_type']);
     console.log("pruned_request_body_deep_clone ", pruned_request_body_deep_clone);
 
+    // When a product_item has more than 1 field to be updated
+    // Then, remember to ask the user to update both fields together.
     const update_product_item_query = Object.fromEntries(
         Object.entries(pruned_request_body_deep_clone).map(
         (
@@ -180,10 +186,19 @@ const deleteProductItem = asyncErrorHandler(async(req, res, next) => {
         }
     };
 
-    const result = await Product.findOneAndUpdate(filter, delete_product_item_query, {new: true, runValidators: true}).lean();
-    console.log("result in deleteProductItem ", result);
+    const result_1 = await Product.findOneAndUpdate(filter, delete_product_item_query, {new: true, runValidators: true}).lean();
+    console.log("result of findOneAndUpdate in deleteProductItem ", result_1);
 
-    res.status(200).json(result);
+    const result_2 = await deleteAllCartItems(req, "DELETE_BY_SKU");
+    console.log("result of deleteAllCartItems in deleteProductItem ", result_2);
+
+    const result_3 = await calculateAndUpdateCartItemTotals(req);
+    console.log("result of calculateAndUpdateCartItemTotals in deleteProductItem ", result_3);
+
+    const result_array = [result_1, result_2, result_3];
+
+    res.status(200).json(result_array[0]);   
+
     console.log("===END OF deleteProductItem===");
 
 });
@@ -204,7 +219,7 @@ const searchProductItem = asyncErrorHandler(async(req, res, next) => {
     console.log("find_query ", find_query);
 
     const result = await Product.find(find_query).select({ product_items: 1, _id: 0 }).lean();
-    console.log("result in searchProductItem ", result);
+    console.log("result in searchProductItem ", result[0]);
 
     /*for (var i = 0; i < result.length; ++i) {
         console.log("result [", i, "] ", result[i]);
@@ -234,7 +249,7 @@ const getProductItem = asyncErrorHandler(async(req, res, next) => {
     console.log("find_query ", find_query);
 
     const result = await Product.find(find_query).select({ product_items: 1, _id: 0 }).lean();
-    console.log("result in getProductItem ", result);
+    console.log("result in getProductItem ", result[0]);
 
     /*for (var i = 0; i < result.length; ++i) {
         console.log("result [", i, "] ", result[i]);

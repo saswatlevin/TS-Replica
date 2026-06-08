@@ -243,7 +243,7 @@ const checkMinimumProductItemQuantity = async(req) => {
             const query = {product_id: product_id};
             //console.log("##DEBUG - query in checkMinimumProductItemQuantity ", query);
 
-            const result = await findOne(query).lean();
+            const result = await Product.findOne(query).lean();
             //console.log("##DEBUG - result in checkMinimumProductItemQuantity ", result);
 
             const product_items = result.product_items;

@@ -427,6 +427,7 @@ const calculateAndUpdateCartItemTotals = async(req) => {
 
             const result = await User.updateMany({}, multi_user_cart_item_totals_update_pipeline, {runValidators: true});
 
+            return result;
             //console.log("result in calculateAndUpdateCartItemTotals ", result);
         }
 
@@ -438,6 +439,45 @@ const calculateAndUpdateCartItemTotals = async(req) => {
    }
 };
 
+const deleteAllCartItems = async(req, mode_of_operation) => {
+
+    console.log("In deleteAllCartItems (HELPER FUNCTION)");
+    try {
+
+        var delete_query = {};
+
+        const product_id = req.body.product_id;
+
+        const sku = req.body.sku;
+
+        if (mode_of_operation === "DELETE_BY_PRODUCT_ID") {
+
+            console.log("In DELETE_BY_PRODUCT_ID mode");
+            const proudct_id_filter = {"CartItems.product_id": product_id};
+
+            const result = await User.updateMany(product_id_filter, { $pull: { CartItems: { product_id: product_id } } }, { runValidators: true });
+
+            return result;
+        }
+
+        if (mode_of_operation === "DELETE_BY_SKU") {
+
+            console.log("In DELETE_BY_SKU mode");
+            const sku_filter = {"CartItems.sku": sku};
+
+            const result = await User.updateMany(sku_filter, { $pull: { CartItems: { sku: sku } } }, { runValidators: true });
+
+            return result;
+        }
+
+    }
+
+    catch(error) {
+        console.log("Error in deleteAllCartItems ", error);
+        throw error;
+    }
+};
+
 module.exports = {
     checkCartItemExists,
     checkIsCartFull,
@@ -447,5 +487,6 @@ module.exports = {
     updateCartItemDiscount,
     updateCartItemName,
     updateCartItemImageURI,
-    calculateAndUpdateCartItemTotals
+    calculateAndUpdateCartItemTotals,
+    deleteAllCartItems
 };

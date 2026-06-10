@@ -145,7 +145,7 @@ review_test_data_list = [
         "test_data": {
             "review_id": "693d3df631b3",
             "product_id": "a6bb1d23bd28",
-            "review_comment": "GOOD fabric and equally great fit. Loved the feels."
+            "review_comment": "GREAT fabric and equally great fit. Loved the feels."
         },
 
         "serial": 10
@@ -159,7 +159,7 @@ review_test_data_list = [
         "test_data": {
             "review_id": "693d3df631b3",
             "product_id": "a6bb1d23bd28",
-            "review_rating": 5
+            "review_rating": 4.6
         },
 
         "serial": 11
@@ -234,7 +234,7 @@ review_test_data_list = [
         "test_data": {
             
             "product_id": "b0e6v4zl9aih",
-            "review_id": "8df8e5041e18"
+            "review_id": "e5fdae2802ba"
         },
 
         "serial": 17
@@ -271,8 +271,8 @@ review_test_data_list = [
 
         "test_data": {
             "product_id": "a6bb1d23bd28",
-            "review_comment": "GOOD fabric and equally great fit. Loved the feels.",
-            "review_rating": 5
+            "review_comment": "GREAT fabric and equally great fit. Loved the feels.",
+            "review_rating": 4.6
         },
 
         "serial": 20

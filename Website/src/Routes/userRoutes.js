@@ -10,6 +10,7 @@ router.route('/updateuser/:user_id').patch(requestValidator(userSchemas.updateUs
 router.route('/updateuserpassword/:user_id').patch(requestValidator(userSchemas.updateUserPasswordSchema),  xss(), userControllers.updateUserPassword);
 router.route('/getuserbyid').get(requestValidator(userSchemas.getUserByIdSchema),  xss(), userControllers.getUserById);
 router.route('/searchusersbyname').get(requestValidator(userSchemas.searchUsersByNameSchema),  xss(), userControllers.searchUsersByName);
-//router.route('/objectidtest').get(userControllers.objectIdTest);
+router.route('/deleteuser').delete(requestValidator(userSchemas.getUserByIdSchema),  xss(), userControllers.deleteUser);
+
 
 module.exports = router;

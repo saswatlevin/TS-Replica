@@ -18,7 +18,7 @@ user_test_data_list = [
         "test_name": "Test to check response to duplicate email in REGISTERUSER",
 
         "test_data": {
-            "email": "abc001@server.com",
+            "email": "abc002@server.com",
             "password": "Arkavon@1994",
             "phone_number": "917670848604",
             "first_name": "ABCTwo",
@@ -44,7 +44,7 @@ user_test_data_list = [
         "test_data": {  
             "email": "abc004@server.com",
             "password": "Arkavon@1994",
-            "phone_number": "917560847544",
+            "phone_number": "917670848604",
             "first_name": "ABCThree",
             "last_name": "CBAThree",
             "user_role": "user",
@@ -89,11 +89,11 @@ user_test_data_list = [
         "test_name": "Test to create a User in REGISTERUSER",
 
         "test_data": {
-            "email": "els001@server.com",
-            "password": "Sakreil@5ur9119",
-            "phone_number": "918297161384",
-            "first_name": "ELSOne",
-            "last_name": "SLEOne",
+            "email": "els002@server.com",
+            "password": "Kurzweil@Ray9229",
+            "phone_number": "918297279835",
+            "first_name": "ELSTwo",
+            "last_name": "SLETwo",
             "user_role": "user",
             "upper_size_number": 40,
             "upper_size_letter": "L",
@@ -147,7 +147,7 @@ user_test_data_list = [
         "test_name": "Test to update the email value in UPDATEUSER",
 
         "test_data": {
-            "email": "abc002@gmail.com"
+            "email": "abc003@gmail.com"
         },
 
         "serial": 8
@@ -159,7 +159,7 @@ user_test_data_list = [
         "test_name": "Test to update the phone_number value in UPDATEUSER",
 
         "test_data": {
-            "phone_number": "917285642157"
+            "phone_number": "917285642159"
         },
 
         "serial": 9
@@ -171,7 +171,7 @@ user_test_data_list = [
         "test_name": "Test to update the first_name value in UPDATEUSER",
 
         "test_data": {
-            "first_name": "GHIOne"
+            "first_name": "JKLOne"
         },
 
         "serial": 10
@@ -183,7 +183,7 @@ user_test_data_list = [
         "test_name": "Test to update the last_name value in UPDATEUSER",
 
         "test_data": {
-            "last_name": "OneIHG"
+            "last_name": "OneLKJ"
         },
 
         "serial": 11
@@ -207,7 +207,7 @@ user_test_data_list = [
         "test_name": "Test to update the upper_size_number value in UPDATEUSER",
 
         "test_data": {
-            "upper_size_number": 42
+            "upper_size_number": 40
         },
 
         "serial": 13
@@ -219,7 +219,7 @@ user_test_data_list = [
         "test_name": "Test to update the upper_size_letter value in UPDATEUSER",
 
         "test_data": {
-            "upper_size_letter": "L"
+            "upper_size_letter": "M"
         },
 
         "serial": 14
@@ -231,7 +231,7 @@ user_test_data_list = [
         "test_name": "Test to update the others_size_letter value in UPDATEUSER",
 
         "test_data": {
-            "others_size_letter": "L"
+            "others_size_letter": "M"
         },
 
         "serial": 15
@@ -303,7 +303,7 @@ user_test_data_list = [
         "test_name": "Test to check response to update password with the existing value in UPDATEUSERPASSWORD",
 
         "test_data": {
-            "password": "SakuraKai@1982"
+            "password": "Bcde@f112145"
         },
 
         "serial": 21
@@ -315,7 +315,7 @@ user_test_data_list = [
         "test_name": "Test to update the password in UPDATEUSERPASSWORD",
 
         "test_data": {
-            "password": "Bcde@f112145"
+            "password": "SakuraKai@1982"
         },
 
         "serial": 22
@@ -400,15 +400,49 @@ user_test_data_list = [
         },
 
         "serial": 29
-    }
+    },
 
+    {
+        "url": "http://localhost:3500/users/deleteuser",
+
+        "test_name": "Test for response to an empty object in DELETEUSER",
+
+        "test_data": {},
+
+        "serial": 30
+    },
+
+    {
+        "url": "http://localhost:3500/users/deleteuser",
+
+        "test_name": "Test to check the response to a User that does not exist in DELETEUSER",
+
+        "test_data": {
+            "user_id": "d2a986a0cab4"
+        },
+
+        "serial": 31
+    },
+
+    {
+        "url": "http://localhost:3500/users/deleteuser",
+
+        "test_name": "Test to delete a user in DELETEUSER",
+
+        "test_data": {
+            "user_id": "bce18532d9ff"
+        },
+
+        "serial": 32
+    }
 ]
 
 # 1 - 5, registerUser Tests
 # 6 - 19, updateUser Tests
 # 20 - 24, updateUserPassword Tests
 # 25 - 28, searchUserByName Tests
-# 29 - 31, getUserById Tests
+# 27 - 29, getUserById Tests
+# 30 - 32, deleteUser Tests
 
 
 list_length = len(user_test_data_list)
@@ -488,6 +522,17 @@ while user_choice != 0:
         print("\ntest_data " + str(test_data))
 
         response = getRequests(url, test_data)
+        print("\nresponse " + response.text + "\n")
+
+    elif user_choice >= 31 and user_choice <= 33:
+        print("======DeleteUser TEST======")
+        print("Test Number " + str(user_choice))
+        print("url " + url)
+        print("test_name " + test_name)
+        print("serial " + str(serial))
+        print("\ntest_data " + str(test_data))
+
+        response = deleteRequests(url, test_data)
         print("\nresponse " + response.text + "\n")
 
     else:

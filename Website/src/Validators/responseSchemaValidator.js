@@ -32,6 +32,10 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(userResponseSchemaArray, object);
     }
 
+    else if (request.originalUrl === "/users/deleteuser" && request.method === "DELETE") {
+        return schemaValidator(userResponseSchema, object);
+    }
+
     else if (request.originalUrl.includes("/shippingaddresses/createshippingaddress") === true && request.method === "POST") {
         return schemaValidator(userResponseSchema, object);
     }

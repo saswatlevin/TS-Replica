@@ -9,18 +9,18 @@ const checkUserExists = async(req) => {
 
     
         // So that we don't have an undefined user_id
-        const user_id = req.params.user_id;
+        const user_id = req.params.user_id || req.body.user_id || undefined;
 
         //console.log("user_id ", user_id);
 
         const user_query = {user_id: user_id};
 
-        //console.log("user_query ", user_query);
+        console.log("user_query in checkUserExists ", user_query);
 
         // Check if findOne is called with the correct input and return value is as expected.
         const result = await User.findOne(user_query).lean();
 
-        //console.log("result ", result);
+        console.log("result in checkUserExists ", result);
 
         if (result === null) {
             return false;

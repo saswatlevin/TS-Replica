@@ -40,14 +40,14 @@ shipping_address_test_data_list = [
 
         "test_data": {
             "address_type_id": "1",
-            "company_name": "DEF Company",
-            "address": "6-5-1 Nishi-Shinjuku, Shinjuku-ku",
-            "apartment": "Room 2503, Shinjuku I-Land Tower",
-            "city": "Tokyo",
-            "administrative_division": "Tokyo",
-            "country": "Japan",
-            "postal_area": "163-1390",
-            "phone_number": "81312345678"
+            "company_name": "ABC Company",
+            "address": "400 Walkers Street",
+            "apartment": "Suite 1216",
+            "city": "New York",
+            "administrative_division": "New York",
+            "country": "United States",
+            "postal_area": "94106",
+            "phone_number": "14155550123"
         },
 
         "serial": 2
@@ -79,14 +79,14 @@ shipping_address_test_data_list = [
 
         "test_data": {
             "address_type_id": "1",
-            "company_name": "DEF Company",
-            "address": "425 Market Street",
+            "company_name": "GHI Company",
+            "address": "428 Market Street",
             "apartment": "Suite 1204",
             "city": "San Francisco",
             "administrative_division": "California",
             "country": "United States",
             "postal_area": "94105",
-            "phone_number": "14155550123"
+            "phone_number": "14155550124"
         },
 
         "serial": 4
@@ -124,7 +124,7 @@ shipping_address_test_data_list = [
         "test_data": {
 
             "shipping_address_id": "85bb09eb7654",
-            "address_type_id": "2"
+            "address_type_id": "1"
         },
 
         "serial": 7
@@ -137,7 +137,7 @@ shipping_address_test_data_list = [
 
         "test_data": {
             "shipping_address_id": "85bb09eb7654",
-            "company_name": "ABC Company"
+            "company_name": "ABCD Company"
         },
 
         "serial": 8
@@ -150,7 +150,7 @@ shipping_address_test_data_list = [
 
         "test_data": {
             "shipping_address_id": "85bb09eb7654",
-            "address": "400 Walkers Street"
+            "address": "410 Walkers STREET"
         },
 
         "serial": 9
@@ -163,7 +163,7 @@ shipping_address_test_data_list = [
 
         "test_data": {
             "shipping_address_id": "85bb09eb7654",
-            "apartment": "Suite 1216"
+            "apartment": "Suite 1220"
         },
 
         "serial": 10
@@ -176,7 +176,7 @@ shipping_address_test_data_list = [
 
         "test_data": {
             "shipping_address_id": "85bb09eb7654",
-            "city": "New York"
+            "city": "New York City"
         },
 
         "serial": 11
@@ -215,7 +215,7 @@ shipping_address_test_data_list = [
 
         "test_data": {
             "shipping_address_id": "85bb09eb7654",
-            "postal_area": "94106"
+            "postal_area": "94110"
         },
 
         "serial": 14
@@ -228,7 +228,7 @@ shipping_address_test_data_list = [
 
         "test_data": {
             "shipping_address_id": "85bb09eb7654",
-            "phone_number": "14155550125"
+            "phone_number": "14155550126"
         },
 
         "serial": 15
@@ -274,7 +274,7 @@ shipping_address_test_data_list = [
     	"test_name": "Test to delete a Shipping Address in DELETESHIPPINGADDRESS",
 
     	"test_data": {
-        	"shipping_address_id": "5c46b626c934"
+        	"shipping_address_id": "46ad51574d5e"
     	},
 
     	"serial": 19
@@ -344,7 +344,7 @@ shipping_address_test_data_list = [
     	"test_name": "Test to search for a shipping_address using address in SEARCHSHIPPINGADDRESS",
 
     	"test_data": {
-        	"address": "400 Walkers Street"
+        	"address": "410 Walkers STRAAT"
     	},
 
     	"serial": 25
@@ -356,7 +356,7 @@ shipping_address_test_data_list = [
     	"test_name": "Test to search for a shipping_address using apartment in SEARCHSHIPPINGADDRESS",
 
     	"test_data": {
-        	"apartment": "Suite 1216"
+        	"apartment": "Suite 1220"
     	},
 
     	"serial": 26
@@ -368,7 +368,7 @@ shipping_address_test_data_list = [
     	"test_name": "Test to search a shipping_address using city in SEARCHSHIPPINGADDRESS",
 
     	"test_data": {
-        	"city": "New York"
+        	"city": "New York City"
     	},
 
     	"serial": 27
@@ -404,7 +404,7 @@ shipping_address_test_data_list = [
     	"test_name": "Test to search a shipping_address using postal_area in SEARCHSHIPPINGADDRESS",
 
     	"test_data": {
-        	"postal_area": "94106"
+        	"postal_area": "94110"
     	},
 
     	"serial": 30
@@ -416,8 +416,8 @@ shipping_address_test_data_list = [
     	"test_name": "Test to search a shipping_address using multiple fields in SEARCHSHIPPINGADDRESS",
 
     	"test_data": {
-        	"apartment": "Suite 1216",
-        	"city": "New York",
+        	"apartment": "Suite 1220",
+        	"city": "New York City",
         	"administrative_division": "New York"
     	},
 
@@ -440,7 +440,7 @@ shipping_address_test_data_list = [
     	"test_name": "Test to check response to a user that does not exist in GETSHIPPINGADDRESSBYID",
 
     	"test_data": {
-        	"shipping_address_id": "5c46b626c934"
+        	"shipping_address_id": "85bb09eb7654"
     	},
 
     	"serial": 33
@@ -452,7 +452,7 @@ shipping_address_test_data_list = [
     	"test_name": "Test to find a ShippingAddress in GETSHIPPINGADDRESSBYID",
 
     	"test_data": {
-        	"shipping_address_id": "5c46b626c934"
+        	"shipping_address_id": "85bb09eb7654"
     	},
 
     	"serial": 34

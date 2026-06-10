@@ -14,13 +14,12 @@ const checkUserExists = async(req) => {
         //console.log("user_id ", user_id);
 
         const user_query = {user_id: user_id};
-
-        console.log("user_query in checkUserExists ", user_query);
+        //console.log("user_query in checkUserExists ", user_query);
 
         // Check if findOne is called with the correct input and return value is as expected.
         const result = await User.findOne(user_query).lean();
 
-        console.log("result in checkUserExists ", result);
+        //console.log("result in checkUserExists ", result);
 
         if (result === null) {
             return false;

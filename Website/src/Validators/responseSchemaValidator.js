@@ -87,6 +87,10 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(searchProductsArrayResponseSchema, object);
     }
 
+    else if ((request.originalUrl.includes("/products/deleteproduct") === true && request.method === "DELETE")) {
+        return schemaValidator(productResponseSchema, object);
+    }
+
     else if (request.originalUrl.includes("/cartitems/createcartitem") === true && request.method === "POST") {
         return schemaValidator(userResponseSchema, object);
     }

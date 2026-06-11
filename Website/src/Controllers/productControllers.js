@@ -514,7 +514,7 @@ const deleteProduct = asyncErrorHandler(async(req, res, next) => {
     const result_array = [result_1, result_2, result_3];
 
     res.status(200).json(result_array[0]);   
-    console.log("===END OF deleteReview()===");
+    console.log("===END OF deleteProduct===");
 });
 
 module.exports = {

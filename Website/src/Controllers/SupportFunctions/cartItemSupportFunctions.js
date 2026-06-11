@@ -453,7 +453,7 @@ const deleteAllCartItems = async(req, mode_of_operation) => {
         if (mode_of_operation === "DELETE_BY_PRODUCT_ID") {
 
             console.log("In DELETE_BY_PRODUCT_ID mode");
-            const proudct_id_filter = {"CartItems.product_id": product_id};
+            const product_id_filter = {"CartItems.product_id": product_id};
 
             const result = await User.updateMany(product_id_filter, { $pull: { CartItems: { product_id: product_id } } }, { runValidators: true });
 

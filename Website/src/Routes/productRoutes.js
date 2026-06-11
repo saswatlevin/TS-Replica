@@ -21,4 +21,7 @@ router.route('/updateproductsupplytype').patch(requestValidator(productSchemas.p
 
 router.route('/searchproducts').get(requestValidator(productSchemas.searchProductSchema), xss(), productControllers.searchProducts);
 
+router.route('/deleteproduct').delete(requestValidator(productSchemas.productIdSchema), xss(), productControllers.deleteProduct);
+
+
 module.exports = router;

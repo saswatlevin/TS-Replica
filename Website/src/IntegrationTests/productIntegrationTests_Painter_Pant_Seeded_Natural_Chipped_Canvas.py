@@ -503,6 +503,31 @@ product_test_data_list = [
             "product_subcategory": "Bottom"
         },
         "serial": 41
+    },
+
+    {
+        "url": "http://localhost:3500/products/deleteproduct",
+        "test_name": "Test to check response to empty request body in DELETEPRODUCT.",
+        "test_data": {},
+        "serial": 42
+    },
+
+    {
+        "url": "http://localhost:3500/products/deleteproduct",
+        "test_name": "Test to check response to a product that does not exist in DELETEPRODUCT.",
+        "test_data": {
+            "product_id": "ojvs7hjfihgd"
+        },
+        "serial": 43
+    },
+
+    {
+        "url": "http://localhost:3500/products/deleteproduct",
+        "test_name": "Test to delete a PRODUCT in DELETEPRODUCT.",
+        "test_data": {
+            "product_id": "ojvs7hjfihgc"
+        },
+        "serial": 44
     }
 ]
 
@@ -514,6 +539,7 @@ product_test_data_list = [
 # UpdateProductPrice -> # 27 - 31 
 # UpdateProductSupplyType -> # 32 - 36
 # SearchProducts -> # 37 - 41
+# DeleteProduct -> # 42 - 44
 
 list_length = len(product_test_data_list)
 user_choice = None
@@ -625,6 +651,17 @@ while user_choice != 0:
         print("\ntest_data " + str(test_data))
 
         response = getRequests(url, test_data)
+        print("\nresponse " + response.text + "\n")
+
+    elif user_choice >= 43 and user_choice <= 45:
+        print("======DeleteProduct TEST======")
+        print("Test Number " + str(user_choice))
+        print("url " + url)
+        print("test_name " + test_name)
+        print("serial " + str(serial))
+        print("\ntest_data " + str(test_data))
+
+        response = deleteRequests(url, test_data)
         print("\nresponse " + response.text + "\n")
 
     else:

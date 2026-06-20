@@ -20,10 +20,10 @@ cart_item_test_data_list = [
         "test_data": {
             "product_id": "a6bb1d23bd28",
             "sku": "4565314a71",
-            "cart_item_name": "The Craftsman Shirt in Bark Plaid Cotton",
-            "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_004.jpg",
+            "product_name": "The Craftsman Shirt in Bark Plaid Cotton",
+            "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_004.jpg",
             "cart_item_quantity": 1,
-            "item_total": 300,
+            "product_price": 300,
             "discount_code": "15PERCENT",
             "discount_percentage": 15
         },
@@ -39,10 +39,10 @@ cart_item_test_data_list = [
         "test_data": {
             "product_id": "a6bb1d23bd29",
             "sku": "4565314a71",
-            "cart_item_name": "Non Existing Product",
-            "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_004.jpg",
+            "product_name": "Non Existing Product",
+            "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_004.jpg",
             "cart_item_quantity": 1,
-            "item_total": 100,
+            "product_price": 100,
             "discount_code": "10PERCENT",
             "discount_percentage": 10
         },
@@ -58,10 +58,10 @@ cart_item_test_data_list = [
         "test_data": {
             "product_id": "gpnfrb48zcyo",
             "sku": "ctf33g20do",
-            "cart_item_name": "The Slim Foundation Pant in Organic Khaki",
-            "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Products\\Chinos\\The_Slim_Foundation_Pant_in_Organic_Khaki\6990307950669_slim-foundation-pant-in-organic-khaki-2407_01_tsio.jpg",
+            "product_name": "The Slim Foundation Pant in Organic Khaki",
+            "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Products\\Chinos\\The_Slim_Foundation_Pant_in_Organic_Khaki\6990307950669_slim-foundation-pant-in-organic-khaki-2407_01_tsio.jpg",
             "cart_item_quantity": 1,
-            "item_total": 125,
+            "product_price": 125,
             "discount_code": "10PERCENT",
             "discount_percentage": 10
         },
@@ -91,17 +91,17 @@ cart_item_test_data_list = [
     {
         "url": "http://localhost:3500/cartitems/createcartitem/d2a986a0cab3",
 
-        "test_name": "Test to create a CartItem with 0 discount_percentage in CREATECARTITEM",
+        "test_name": "Test to create a CartItem with 15 percent discount in CREATECARTITEM",
 
         "test_data": {
-            "product_id": "b0e6v4zl9aih",
-            "sku": "fmrok30o34",
-            "cart_item_name": "The Democratic Foundation Pant in Organic Navy",
-            "cart_item_image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Chinos\\The_Democratic_Foundation_Pant_in_Organic_Navy\\7310894563405_democratic-foundation-pant-in-organic-navy-twill-2501_01_tsio.jpg",
+            "product_id": "a6bb1d23bd28",
+            "sku": "4565314a71",
+            "product_name": "The Craftsman Shirt in Bark Plaid Cotton",
+            "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_004.jpg",
             "cart_item_quantity": 1,
-            "item_total": 125,
-            "discount_code": "None",
-            "discount_percentage": 0
+            "product_price": 300,
+            "discount_code": "15PERCENT",
+            "discount_percentage": 15
         },
 
         "serial": 5
@@ -183,7 +183,7 @@ cart_item_test_data_list = [
         "test_name": "Test to delete a CartItem in DELETECARTITEM",
 
         "test_data": {
-            "cart_item_id": "377a0b56f1be",
+            "cart_item_id": "5d13c93cd255",
             "product_id": "a6bb1d23bd28",
             "sku": "4565314a71"
         },
@@ -255,7 +255,7 @@ cart_item_test_data_list = [
             "cart_item_id": "15315b1a2056",
             "product_id": "a6bb1d23bd28",
             "sku": "12dcc9cd7b",
-            "cart_item_quantity": 3
+            "cart_item_quantity": 4
         },
 
         "serial": 16

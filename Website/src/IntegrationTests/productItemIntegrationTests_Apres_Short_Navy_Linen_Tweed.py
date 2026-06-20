@@ -244,6 +244,39 @@ product_item_test_data_list = [
             "current_stock": 50
         },
         "serial": 25
+    },
+    {
+        "url": "http://localhost:3500/productitems/deleteproductitem",
+        "test_name": "Test to check the response to an empty request in DELETEPRODUCTITEM",
+        "test_data": {},
+        "serial": 26
+    },
+    {
+        "url": "http://localhost:3500/productitems/deleteproductitem",
+        "test_name": "Test to check response to a Product that doesn't exist in DELETEPRODUCTITEM",
+        "test_data": {
+            "product_id": "u9yl6odhigeu",
+            "sku": "269ujn48i2"
+        },
+        "serial": 27
+    },
+    {
+        "url": "http://localhost:3500/productitems/deleteproductitem",
+        "test_name": "Test to check response to a Product Item that doesn't exist in DELETEPRODUCTITEM",
+        "test_data": {
+            "product_id": "u9yl6odhiget",
+            "sku": "269ujn48i3"
+        },
+        "serial": 28
+    },
+    {
+        "url": "http://localhost:3500/productitems/deleteproductitem",
+        "test_name": "Test to delete a Product Item in DELETEPRODUCTITEM",
+        "test_data": {
+            "product_id": "u9yl6odhiget",
+            "sku": "269ujn48i2"
+        },
+        "serial": 29
     }
 ]
 
@@ -252,6 +285,7 @@ product_item_test_data_list = [
 # DeleteProductItem 6 - 14
 # UpdateProductItem 15 - 20
 # CreateProductItem 21 - 25
+# DeleteProductItem 26 - 29
 
 list_length = len(product_item_test_data_list)
 user_choice = None
@@ -329,6 +363,17 @@ while user_choice != 0:
         print("\ntest_data " + str(test_data))
 
         response = postRequests(url, test_data)
+        print("\nresponse " + response.text + "\n")
+
+    elif user_choice >= 27 and user_choice <= 30:
+        print("======DeleteProductItem TEST======")
+        print("Test Number " + str(user_choice))
+        print("url " + url)
+        print("test_name " + test_name)
+        print("serial " + str(serial))
+        print("\ntest_data " + str(test_data))
+
+        response = deleteRequests(url, test_data)
         print("\nresponse " + response.text + "\n")
 
     else:

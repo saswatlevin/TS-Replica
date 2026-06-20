@@ -231,6 +231,7 @@ product_item_test_data_list = [
 # DeleteProductItem 6 - 10
 # UpdateProductItem 11 - 17
 # CreateProductItem 18 - 22
+# DeleteProductItem 23 - 26
 
 list_length = len(product_item_test_data_list)
 user_choice = None

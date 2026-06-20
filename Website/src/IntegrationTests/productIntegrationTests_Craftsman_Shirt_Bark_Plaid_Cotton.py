@@ -119,12 +119,7 @@ product_test_data_list = [
                 "supply_type": "Essential"
             },
             "product_specifications": "7-OZ. 55% linen, 45% organic cotton canvas. Washed for a soft, lived-in feel. Two U-shaped chest pockets with button through flaps. Left pocket features a pen sleeve. Adjustable button cuffs. Double-needle felled construction. Wash cold and lay flat to dry. MADE IN CHINA.",
-            "product_images": [
-                {
-                    "image_uri": "C:\\Users\\saswa\\OneDrive\\Desktop\\Taylor_Stitch\\Website\\ActualData\\Long-Sleeved Shirts\\The_Craftsman_Shirt\\The_Craftsman_Shirt_in_Bark_Plaid_Linen\\instock_m_q225_craftsman_bark_portrait_004.jpg",
-                    "main_image": True
-                }
-            ],
+            "product_images": [],
             "product_items": [
                 {
                     "item_type": "Shirt",
@@ -273,8 +268,8 @@ product_test_data_list = [
         "test_name": "Test to update the discount_code and discount_percentage in UPDATEPRODUCTDISCOUNT.",
         "test_data": {
             "product_id": "a6bb1d23bd28",
-            "discount_code": "10PERCENT",
-            "discount_percentage": 10
+            "discount_code": "20PERCENT",
+            "discount_percentage": 20
         },
         "serial": 17
     },
@@ -406,7 +401,7 @@ product_test_data_list = [
         "test_name": "Test to update the product_price in UPDATEPRODUCTPRICE.",
         "test_data": {
             "product_id": "a6bb1d23bd28",
-            "product_price": 305
+            "product_price": 280
         },
         "serial": 31
     },
@@ -512,7 +507,33 @@ product_test_data_list = [
             "product_subcategory": "Short-Sleeved Shirt"
         },
         "serial": 42
+    },
+
+    {
+        "url": "http://localhost:3500/products/deleteproduct",
+        "test_name": "Test to check response to an empty object in DELETEPRODUCT",
+        "test_data": {},
+        "serial": 43
+    },
+
+    {
+        "url": "http://localhost:3500/products/deleteproduct",
+        "test_name": "Test to check response to a Product that doesn't exist in DELETEPRODUCT",
+        "test_data": {
+            "product_id": "a6bb1d23bd29"
+        },
+        "serial": 44
+    },
+
+    {
+        "url": "http://localhost:3500/products/deleteproduct",
+        "test_name": "Test to delete a Product in DELETEPRODUCT",
+        "test_data": {
+            "product_id": "a6bb1d23bd28"
+        },
+        "serial": 45
     }
+
 ]
 
 # CreateProduct -> # 0 - 3
@@ -522,7 +543,8 @@ product_test_data_list = [
 # UpdateProductName -> # 22 - 26
 # UpdateProductPrice -> # 27 - 31 
 # UpdateProductSupplyType -> # 32 - 36
-# SearchProducts -> # 37 - 41
+# SearchProducts -> # 37 - 42
+# DeleteProduct -> # 43 - 45
 
 list_length = len(product_test_data_list)
 user_choice = None
@@ -625,7 +647,7 @@ while user_choice != 0:
         response = patchRequests(url, test_data)
         print("\nresponse " + response.text + "\n")
 
-    elif user_choice >= 38 and user_choice <= 42:
+    elif user_choice >= 38 and user_choice <= 43:
         print("======SearchProduct TEST======")
         print("Test Number " + str(user_choice))
         print("url " + url)
@@ -634,6 +656,17 @@ while user_choice != 0:
         print("\ntest_data " + str(test_data))
 
         response = getRequests(url, test_data)
+        print("\nresponse " + response.text + "\n")
+
+    elif user_choice >= 44 and user_choice <= 46:
+        print("======DeleteProduct TEST======")
+        print("Test Number " + str(user_choice))
+        print("url " + url)
+        print("test_name " + test_name)
+        print("serial " + str(serial))
+        print("\ntest_data " + str(test_data))
+
+        response = deleteRequests(url, test_data)
         print("\nresponse " + response.text + "\n")
 
     else:

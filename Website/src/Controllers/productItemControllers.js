@@ -186,18 +186,36 @@ const deleteProductItem = asyncErrorHandler(async(req, res, next) => {
         }
     };
 
-    const result_1 = await Product.findOneAndUpdate(filter, delete_product_item_query, {new: true, runValidators: true}).lean();
-    console.log("result of findOneAndUpdate in deleteProductItem ", result_1);
+    const mongodb_transaction_session = await mongoose.startSession();
 
-    const result_2 = await deleteAllCartItems(req, "DELETE_BY_SKU");
-    console.log("result of deleteAllCartItems in deleteProductItem ", result_2);
+    let result_1;
 
-    const result_3 = await calculateAndUpdateCartItemTotals(req);
-    console.log("result of calculateAndUpdateCartItemTotals in deleteProductItem ", result_3);
+    let result_2;
 
-    const result_array = [result_1, result_2, result_3];
+    let result_3;
 
-    res.status(200).json(result_array[0]);   
+    let result;
+
+    try {
+    await mongodb_transaction_session.withTransaction(async () => {
+            result_1 = await Product.findOneAndUpdate(filter, delete_product_item_query, {new: true, runValidators: true, session: mongodb_transaction_session}).lean();
+            console.log("result of findOneAndUpdate in deleteProductItem ", result_1);
+
+            result_2 = await deleteAllCartItems(req, "DELETE_BY_SKU", mongodb_transaction_session);
+            console.log("result of deleteAllCartItems in deleteProductItem ", result_2);
+
+            result_3 = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+            console.log("result of calculateAndUpdateCartItemTotals in deleteProductItem ", result_3);
+
+            result = [result_1, result_2, result_3];
+        })
+    }
+
+    finally {
+        mongodb_transaction_session.endSession();
+    }
+
+    res.status(200).json(result[0]);   
 
     console.log("===END OF deleteProductItem===");
 

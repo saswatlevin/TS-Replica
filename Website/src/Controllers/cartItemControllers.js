@@ -29,6 +29,8 @@ const { checkProduct } = require('./SupportFunctions/productSupportFunctions');
 
 const { checkProductItemAvailable } = require('./SupportFunctions/productItemSupportFunctions');
 
+const { remapKeys } = require('./SupportFunctions/cartItemSupportFunctions');
+
 const { buildUpdateCartItemPricePipeline } = require('../AggregationPipelines/cartItemAggregationPipelines');
 const { buildUpdateCartItemDiscountPipeline } = require('../AggregationPipelines/cartItemAggregationPipelines');
 
@@ -84,10 +86,10 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     const cart_item_id = createRandomString(6);
     console.log("cart_item_id ", cart_item_id);
 
-    const discount_amount = req.body.item_total * ( req.body.discount_percentage / 100);
+    const discount_amount = req.body.product_price * ( req.body.discount_percentage / 100);
     console.log("discount_amount ", discount_amount);
 
-    const discounted_total = req.body.item_total - discount_amount;
+    const discounted_total = req.body.product_price - discount_amount;
     console.log("discounted_total ", discounted_total);
 
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
@@ -96,20 +98,43 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
     const filter = { user_id: user_id };
     console.log("filter ", filter);
 
-    const cart_item = { cart_item_id: cart_item_id, ...request_body_deep_clone, discount_amount: discount_amount, discounted_total: discounted_total };
+    const key_map = { "product_name": "cart_item_name", "image_uri": "cart_item_image_uri", "product_price": "item_total" };
+
+    const remapped_request_body_deep_clone = remapKeys(request_body_deep_clone, key_map);
+
+    //console.log("remapped_request_body_deep_clone ", remapped_request_body_deep_clone);
+
+    const cart_item = { cart_item_id: cart_item_id, ...remapped_request_body_deep_clone, discount_amount: discount_amount, discounted_total: discounted_total };
     console.log("cart_item ", cart_item);
 
-    console.log("Creating the cart item");
-    const create_cart_item_result = await User.findOneAndUpdate(filter, { $push: { CartItems: cart_item } }, { new: true, runValidators: true }).lean();
+    const mongodb_transaction_session = await mongoose.startSession();
 
-    //console.log("create_cart_item_result ", create_cart_item_result);
+    let calculate_cart_item_totals_result;
 
-    console.log("Calculating the cart item totals");
-    const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req);
+    let create_cart_item_result;
 
-    console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
+    let result;
 
-    const result = [create_cart_item_result, calculate_cart_item_totals_result];
+    try {
+        await mongodb_transaction_session.withTransaction(async () => {
+                        console.log("Creating the cart item");
+                        create_cart_item_result = await User.findOneAndUpdate( filter, { $push: { CartItems: cart_item } }, { new: true, runValidators: true, session: mongodb_transaction_session } ).lean();
+                        console.log("create_cart_item_result ", create_cart_item_result);
+
+                        console.log("Calculating the cart item totals");
+                        calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+                        console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
+
+                        result = [create_cart_item_result, calculate_cart_item_totals_result];
+                }
+            )
+        
+    }
+
+    finally {
+        mongodb_transaction_session.endSession();
+    }
+
 
     res.status(200).json(result[1]);
     
@@ -181,14 +206,32 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
     
     console.log("update_object ", update_object);
 
-    const update_cart_item_quantity_result = await User.findOneAndUpdate(filter, update_object, {new: true,runValidators: true}).lean();
+    const mongodb_transaction_session = await mongoose.startSession();
 
-    //console.log("update_cart_item_quantity_result in updateCartItemQuantity ", update_cart_item_quantity_result);
+    let calculate_cart_item_totals_result;
 
-    const calculate_cart_item_total_result = await calculateAndUpdateCartItemTotals(req);
-    console.log("calculate_cart_item_total_result ", calculate_cart_item_total_result);
+    let update_cart_item_quantity_result;
 
-    const result = [update_cart_item_quantity_result, calculate_cart_item_total_result];
+    let result;
+
+    try{
+        
+        await mongodb_transaction_session.withTransaction(async () => {
+                console.log("Updating Cart Item Quantity");
+                update_cart_item_quantity_result = await User.findOneAndUpdate(filter, update_object, {new: true, runValidators: true, session: mongodb_transaction_session}).lean();
+                console.log("update_cart_item_quantity_result in updateCartItemQuantity ", update_cart_item_quantity_result);
+
+                calculate_cart_item_total_result = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+                console.log("calculate_cart_item_total_result ", calculate_cart_item_total_result);
+
+                result = [update_cart_item_quantity_result, calculate_cart_item_total_result];
+            }
+        )
+    }
+
+    finally{
+        mongodb_transaction_session.endSession();
+    }
 
     res.status(200).json(result[1]);
 
@@ -259,12 +302,12 @@ const getCartItemById = asyncErrorHandler(async(req, res, next) => {
 
 
 const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
-   console.log("In deleteCartItem");
+    console.log("In deleteCartItem");
 
-   const user_id = req.params.user_id;
-   console.log("Getting the user_id from the request params ", user_id);
+    const user_id = req.params.user_id;
+    console.log("Getting the user_id from the request params ", user_id);
 
-   const product_id = req.body.product_id;
+    const product_id = req.body.product_id;
     console.log("product_id ", product_id);
     
     const sku = req.body.sku;
@@ -296,14 +339,34 @@ const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
 
    const query = {cart_item_id: cart_item_id};
    console.log("query ", query);
+
+   const mongodb_transaction_session = await mongoose.startSession();
+
+   let delete_cart_item_result;
+
+   let calculate_cart_item_totals_result;
+
+   let result;
+
+   try{
+        await mongodb_transaction_session.withTransaction(async () => {
+                console.log("Deleting Cart Item");
+                delete_cart_item_result = await User.findOneAndUpdate(filter, { $pull: { CartItems: query } }, {new: true, runValidators: true, session: mongodb_transaction_session}).lean();
+                
+                calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+                
+                console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
+
+                result = [delete_cart_item_result, calculate_cart_item_totals_result];
+            }
+        )
+   }
+
+   finally {
+        mongodb_transaction_session.endSession();
+   }
    
-   const delete_cart_item_result = await User.findOneAndUpdate(filter, { $pull: { CartItems: query } }, {new: true, runValidators: true}).lean();
 
-   const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req);
-
-   const result = [delete_cart_item_result, calculate_cart_item_totals_result];
-
-   console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
 
    res.status(200).json(result[1]);
 

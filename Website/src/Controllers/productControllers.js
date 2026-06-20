@@ -52,10 +52,6 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
 
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
 
-    //console.log("request_body_deep_clone before modification ", request_body_deep_clone);
-    //console.log("request_body_deep_clone.ProductItems before modification ", request_body_deep_clone.product_items[0]);
-    //console.log("request_body_deep_clone.ProductImages before modification ", request_body_deep_clone.product_images[0]);
-
 
     // Check if the request body is empty
     console.log("Checking if the request body is empty");
@@ -78,9 +74,6 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
     // Generate the sku
     const sku = createRandomString(5);
     console.log("Generated sku ", sku);
-    // Generate the image_id
-    const image_id = createRandomString(6);
-    console.log("Generated image_id ", image_id);
     const doc_type = "PRODUCT";
     //console.log("Generated doc_type ", doc_type);
 
@@ -97,7 +90,6 @@ const createProduct = asyncErrorHandler(async (req, res, next) => {
     console.log("discounted_total ", discounted_total);
 
     request_body_deep_clone.product_items[0] = { sku: sku, ...request_body_deep_clone.product_items[0] };
-    request_body_deep_clone.product_images[0] = { image_id: image_id, ...request_body_deep_clone.product_images[0] };
 
     //console.log("request_body_deep_clone after modification ", request_body_deep_clone);
 
@@ -171,25 +163,46 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
     
     console.log("update_object ", update_object);
 
-    const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, {new: true, runValidators: true}).lean();
-    //console.log("update_product_price_result ", update_product_price_result);
+    const mongodb_transaction_session = await mongoose.startSession();
 
-    
-    // Assign values to res.locals here, after all calculations are complete
-    // and before calling the helper function that needs them
-    res.locals.updated_product_price = updated_product_price;
+    let update_product_price_result;
 
-    const update_cart_item_price_result = await updateCartItemPrice(req, res);
-    //console.log("update_cart_item_price_result ", update_cart_item_price_result);
+    let update_cart_item_price_result;
 
-    const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req);
-    //console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
+    let calculate_cart_item_totals_result;
 
-    const result_array = [update_product_price_result, update_cart_item_price_result, calculate_cart_item_totals_result];
-    //console.log("result_array ", result_array);
+    try{
+        
+        await mongodb_transaction_session.withTransaction(async () => {
+        console.log("Updating Product Price");
+
+            update_product_price_result = await Product.findOneAndUpdate(filter, update_object, {new: true, runValidators: true, session: mongodb_transaction_session}).lean();
+            //console.log("update_product_price_result ", update_product_price_result);
+
+            // Assign values to res.locals here, after all calculations are complete
+            // and before calling the helper function that needs them
+            res.locals.updated_product_price = updated_product_price;
+
+            // Pass the session value through res.locals
+            res.locals.mongodb_transaction_session = mongodb_transaction_session;
+
+            update_cart_item_price_result = await updateCartItemPrice(req, res);
+            //console.log("update_cart_item_price_result ", update_cart_item_price_result);
+
+            calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+            //console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
+
+            result = [update_product_price_result, update_cart_item_price_result, calculate_cart_item_totals_result];
+            //console.log("result_array ", result_array);
+        })
+    }
+
+    finally{
+        mongodb_transaction_session.endSession();
+    }
 
     console.log("Sending the result to the client as JSON with status 200");
-    res.status(200).json(result_array[0]);
+    res.status(200).json(result[0]);
 
     console.log("===END OF updateProductPrice===");
 });
@@ -238,26 +251,51 @@ const updateProductDiscount = asyncErrorHandler(async (req, res, next) => {
     
     console.log("update_object ", update_object);
 
-    const update_product_price_result = await Product.findOneAndUpdate(filter, update_object, {new: true, runValidators: true}).lean();
-    //console.log("update_product_price_result ", update_product_price_result);
+    const mongodb_transaction_session = await mongoose.startSession();
+
+    let update_product_price_result;
+
+    let update_cart_item_price_result;
+
+    let calculate_cart_item_totals_result;
+
+    let result;
+
+    try{
+        await mongodb_transaction_session.withTransaction(async () => {
+                console.log("Updating Product Discount");
+
+                update_product_price_result = await Product.findOneAndUpdate(filter, update_object, {new: true, runValidators: true, session: mongodb_transaction_session}).lean();
+                //console.log("update_product_price_result ", update_product_price_result);
 
     
-    // Assign values to res.locals here, after all calculations are complete
-    // and before calling the helper function that needs them
-    res.locals.updated_discount_code = updated_discount_code;
-    res.locals.updated_discount_percentage = updated_discount_percentage;
+                // Assign values to res.locals here, after all calculations are complete
+                // and before calling the helper function that needs them
+                res.locals.updated_discount_code = updated_discount_code;
+                res.locals.updated_discount_percentage = updated_discount_percentage;
 
-    const update_cart_item_price_result = await updateCartItemDiscount(req, res);
-    //console.log("update_cart_item_discount_result ", update_cart_item_discountv_result);
+                // Pass the session value through res.locals
+                res.locals.mongodb_transaction_session = mongodb_transaction_session;
 
-    const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req);
-    //console.log("update_cart_item_totals_result ", update_cart_item_totals_result);
+                update_cart_item_price_result = await updateCartItemDiscount(req, res);
+                //console.log("update_cart_item_discount_result ", update_cart_item_discountv_result);
 
-    const result_array = [update_product_price_result, update_cart_item_price_result, calculate_cart_item_totals_result];
-    //console.log("result_array ", result_array);
+                const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+                //console.log("update_cart_item_totals_result ", update_cart_item_totals_result);
+
+                result = [update_product_price_result, update_cart_item_price_result, calculate_cart_item_totals_result];
+                //console.log("result ", result);
+
+            })
+    }
+
+    finally{
+        mongodb_transaction_session.endSession();
+    }
+
 
     console.log("Sending the result to the client as JSON with status 200");
-    res.status(200).json(result_array[0]);
+    res.status(200).json(result[0]);
 
     console.log("===END OF updateProductDiscount===");
 });
@@ -301,21 +339,41 @@ const updateProductName = asyncErrorHandler(async(req, res, next) => {
     const update_object = {product_name: product_name};
     console.log("update_object ", update_object);
 
-    const update_product_name_result = await Product.findOneAndUpdate(filter, update_object, { new: true, runValidators: true }).lean();
-    console.log("update_product_name_result ", update_product_name_result);
+    const mongodb_transaction_session = await mongoose.startSession();
 
-    res.locals.updated_product_name = update_product_name_result.product_name;
-    //console.log("Storing the updated_product_name in the request local params ", res.params.updated_product_name);
+    let update_product_name_result;
 
-    const update_cart_item_name_result = await updateCartItemName(req, res);
-    console.log("update_cart_item_name_result ", update_cart_item_name_result);
+    let update_cart_item_name_result;
 
-    const result_array = [update_product_name_result, update_cart_item_name_result];
-    //console.log("result_array ", result_array);
+    let result;
+
+    try {
+        await mongodb_transaction_session.withTransaction(async () => {
+            update_product_name_result = await Product.findOneAndUpdate(filter, update_object, { new: true, runValidators: true, session: mongodb_transaction_session }).lean();
+            console.log("update_product_name_result ", update_product_name_result);
+
+            res.locals.updated_product_name = update_product_name_result.product_name;
+            //console.log("Storing the updated_product_name in the request local params ", res.locals.updated_product_name);
+
+            // Pass the session using res.locals
+            res.locals.mongodb_transaction_session = mongodb_transaction_session;
+
+            update_cart_item_name_result = await updateCartItemName(req, res);
+            console.log("update_cart_item_name_result ", update_cart_item_name_result);
+
+            result = [update_product_name_result, update_cart_item_name_result];
+            //console.log("result ", result_array);
+        })
+
+    }
+
+    finally {
+        mongodb_transaction_session.endSession();
+    }
 
     console.log("Sending the result to the client as JSON with status 200");
-    res.status(200).json(result_array[0]);
-    //res.status(200).json("Response forn updateProductName");
+    res.status(200).json(result[0]);
+    //res.status(200).json("Response from updateProductName");
 
     console.log("===END OF updateProductName===");
 });
@@ -499,21 +557,44 @@ const deleteProduct = asyncErrorHandler(async(req, res, next) => {
         throw product_not_found_error;
     }
 
-    const delete_query = {product_id: product_id};
-    console.log("delete_query ", delete_query);
+    const mongodb_transaction_session = await mongoose.startSession();
 
-    const result_1 = await Product.findOneAndDelete(delete_query, {new: true, runValidators: true}).lean();
-    console.log("result of findOneAndDelete in deleteProduct ", result_1);
+    let result_1;
 
-    const result_2 = await deleteAllCartItems(req, "DELETE_BY_PRODUCT_ID");
-    console.log("result of deleteAllCartItems in deleteProduct ", result_2);
+    let result_2;
 
-    const result_3 = await calculateAndUpdateCartItemTotals(req);
-    console.log("result of calculateAndUpdateCartItemTotals in deleteProduct ", result_3);
+    let result_3;
 
-    const result_array = [result_1, result_2, result_3];
+    let result;
 
-    res.status(200).json(result_array[0]);   
+    try{
+        console.log("Deleting the Product");
+
+        await mongodb_transaction_session.withTransaction(async () => {
+            const delete_query = {product_id: product_id};
+            console.log("delete_query ", delete_query);
+
+            result_1 = await Product.findOneAndDelete(delete_query, {new: true, runValidators: true, session: mongodb_transaction_session}).lean();
+            console.log("result of findOneAndDelete in deleteProduct ", result_1);
+
+            result_2 = await deleteAllCartItems(req, "DELETE_BY_PRODUCT_ID", mongodb_transaction_session);
+            console.log("result of deleteAllCartItems in deleteProduct ", result_2);
+
+            result_3 = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+            console.log("result of calculateAndUpdateCartItemTotals in deleteProduct ", result_3);
+
+            result = [result_1, result_2, result_3];
+        })
+
+    }
+
+    finally {
+        mongodb_transaction_session.endSession();
+    }
+
+
+
+    res.status(200).json(result[0]);   
     console.log("===END OF deleteProduct===");
 });
 

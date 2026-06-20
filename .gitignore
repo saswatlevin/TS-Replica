@@ -1,0 +1,7 @@
+Website/src/node_modules
+Website/src/.vs
+Website/src/.env
+Website/src/*.sh
+Website/src/experiment.js
+Website/src/IntegrationTests/__pycache__
+Website/data/images

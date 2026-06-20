@@ -199,9 +199,12 @@ const updateCartItemPrice = async (req, res) => {
             const updated_product_price = res.locals.updated_product_price;
             // console.log("updated_product_price ", updated_product_price);
 
+            const mongodb_transaction_session = res.locals.mongodb_transaction_session || null;
+            const session_opt = mongodb_transaction_session ? { session: mongodb_transaction_session} : {};
+
             const build_update_cart_item_price_pipeline = buildUpdateCartItemPricePipeline(product_id,updated_product_price);
 
-            const result = await User.updateMany({ "CartItems.product_id": product_id }, build_update_cart_item_price_pipeline, {runValidators: true});
+            const result = await User.updateMany({ "CartItems.product_id": product_id }, build_update_cart_item_price_pipeline, {runValidators: true, ...session_opt});
 
             //console.log("##DEBUG - result in updateCartItemPrice ", result);
 
@@ -231,9 +234,12 @@ const updateCartItemDiscount = async (req, res) => {
         const updated_discount_percentage = res.locals.updated_discount_percentage;
         // console.log("updated_discount_code ", updated_disocunt_code);
 
+        const mongodb_transaction_session = res.locals.mongodb_transaction_session || null;
+        const session_opt = mongodb_transaction_session ? { session: mongodb_transaction_session} : {};
+
         const build_update_cart_item_discount_pipeline = buildUpdateCartItemDiscountPipeline(product_id, updated_discount_code, updated_discount_percentage);
 
-        const result = await User.updateMany({ "CartItems.product_id": product_id }, build_update_cart_item_discount_pipeline, {runValidators: true});
+        const result = await User.updateMany({ "CartItems.product_id": product_id }, build_update_cart_item_discount_pipeline, {runValidators: true, ...session_opt});
 
         //console.log("##DEBUG - result in updateCartItemDiscount ", result);
         
@@ -254,26 +260,8 @@ const updateCartItemName = async (req, res) => {
 
     try {
 
-        //const user_id = req.params.user_id;
-        //console.log("user_id ", user_id);
-
-        //const cart_item_id = req.body.cart_item_id;
-        //console.log("cart_item_id ", cart_item_id);
-
         const product_id = req.body.product_id;
         //console.log("product_id ", product_id);
-
-        /*console.log("Checking if the user exists");
-        if (await checkUserExists(req) === false) {
-            const user_id_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the user with user_id ${user_id} does not exist.`);
-            throw user_id_not_found_error;
-        }
-
-        console.log("Checking if the cart item exists");
-        if (await checkCartItemExists(req) === false) {
-            const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the cart item with cart_item_id ${cart_item_id} does not exist.`);
-            throw cart_item_not_found_error;
-        }*/
         
         // We use only user_id and product_id since multiple cart items of the same product (different cart_item_id AND different sku) must have their product_name updated.
         const filter = { "CartItems.product_id": product_id };
@@ -281,7 +269,10 @@ const updateCartItemName = async (req, res) => {
         //console.log("filter ", filter);
 
         const updated_cart_item_name = res.locals.updated_product_name;
-        console.log("##DEBUG updated_cart_item_name ", updated_cart_item_name);
+        //console.log("##DEBUG updated_cart_item_name ", updated_cart_item_name);
+
+        const mongodb_transaction_session = res.locals.mongodb_transaction_session || null;
+        const session_opt = mongodb_transaction_session ? { session: mongodb_transaction_session } : {};
 
         const update_object = {
             $set: {
@@ -289,11 +280,11 @@ const updateCartItemName = async (req, res) => {
             }
         };
 
-        console.log("##DEBUG - update_object in updateCartItemName ", update_object);
+        //console.log("##DEBUG - update_object in updateCartItemName ", update_object);
 
         // Update the product_name of all product items (cart items) of the same product if present.
         // The arrayFilters option is necessary since we use the filtered positional operator: "CartItems.$[item].cart_item_name".
-        const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": product_id }], runValidators: true });
+        const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": product_id }], runValidators: true, ...session_opt });
 
         console.log("===END OF updateCartItemName===");
         
@@ -311,33 +302,17 @@ const updateCartItemImageURI = async (req, res) => {
 
     try {
 
-        //const user_id = req.params.user_id;
-        //console.log("user_id ", user_id);
-
-        // The cart_item_id is needed for checkCartItemExists().
-        //const cart_item_id = req.body.cart_item_id;
-        //console.log("cart_item_id ", cart_item_id);
-
         const product_id = req.body.product_id;
         //console.log("product_id ", product_id);
-
-        /*console.log("Checking if the user exists");
-        if (await checkUserExists(req) === false) {
-            const user_id_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the user with user_id ${user_id} does not exist.`);
-            throw user_id_not_found_error;
-        }
-
-        console.log("Checking if the cart item exists");
-        if (await checkCartItemExists(req) === false) {
-            const cart_item_not_found_error = new ResourceNotFoundError(`Could not update the Cart Item since the cart item with cart_item_id ${cart_item_id} does not exist.`);
-            throw cart_item_not_found_error;
-        }*/
         
         const filter = { "CartItems.product_id": product_id };
         //console.log("filter ", filter);
 
         const updated_cart_item_image_uri = res.locals.updated_cart_item_image_uri;
         //console.log("updated_cart_item_image_uri ", updated_cart_item_image_uri);
+
+        const mongodb_transaction_session = res.locals.mongodb_transaction_session || null;
+        const session_opt = mongodb_transaction_session ? { session: mongodb_transaction_session} : {};
 
         const update_object = {
             $set: {
@@ -349,7 +324,7 @@ const updateCartItemImageURI = async (req, res) => {
 
         // Update the image_uri of all product items (cart items) of the same product if present.
         // The arrayFilters option is necessary since we use the filtered positional operator: "CartItems.$[item].cart_item_image_uri".
-        const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": product_id }], runValidators: true });
+        const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": product_id }], runValidators: true, ...session_opt });
 
         //console.log("##DEBUG - result in updateCartItemImageURI ", result);
 
@@ -364,11 +339,13 @@ const updateCartItemImageURI = async (req, res) => {
     }
 };
 
-const calculateAndUpdateCartItemTotals = async(req) => {
+const calculateAndUpdateCartItemTotals = async(req, mongodb_transaction_session) => {
 
    // Get all the CartItem sub-documents from the CartItems array of the respective 
    // user and add sum the respective fields and then update them in the respective user document.
    console.log("In calculateAndUpdateCartItemTotals (HELPER FUNCTION)");
+
+   const session_opt = mongodb_transaction_session ? { session: mongodb_transaction_session } : {};
 
    try {
 
@@ -394,7 +371,7 @@ const calculateAndUpdateCartItemTotals = async(req) => {
                     total_payable_amount: 0
                 };
                 
-                const updated_user_document = await User.findOneAndUpdate(filter, cart_items_total_update_object, {new: true, runValidators: true}).lean();
+                const updated_user_document = await User.findOneAndUpdate(filter, cart_items_total_update_object, {new: true, runValidators: true, ...session_opt}).lean();
                 
                 return updated_user_document;
 
@@ -407,9 +384,9 @@ const calculateAndUpdateCartItemTotals = async(req) => {
 
                 const single_user_cart_item_totals_update_pipeline = buildSingleUserCartItemTotalsUpdatePipeline();
 
-                const result = await User.updateOne(filter, single_user_cart_item_totals_update_pipeline, {runValidators: true});
+                const result = await User.updateOne(filter, single_user_cart_item_totals_update_pipeline, {runValidators: true, ...session_opt });
 
-                const updated_user_document = await User.findOne(filter).lean();
+                const updated_user_document = await User.findOne(filter, null, { ...session_opt }).lean();
 
                 return updated_user_document;
 
@@ -425,7 +402,7 @@ const calculateAndUpdateCartItemTotals = async(req) => {
 
             const multi_user_cart_item_totals_update_pipeline = buildMultiUserCartItemTotalsUpdatePipeline();
 
-            const result = await User.updateMany({}, multi_user_cart_item_totals_update_pipeline, {runValidators: true});
+            const result = await User.updateMany({}, multi_user_cart_item_totals_update_pipeline, {runValidators: true, ...session_opt});
 
             return result;
             //console.log("result in calculateAndUpdateCartItemTotals ", result);
@@ -439,7 +416,7 @@ const calculateAndUpdateCartItemTotals = async(req) => {
    }
 };
 
-const deleteAllCartItems = async(req, mode_of_operation) => {
+const deleteAllCartItems = async(req, mode_of_operation, mongodb_transaction_session) => {
 
     console.log("In deleteAllCartItems (HELPER FUNCTION)");
     try {
@@ -450,12 +427,14 @@ const deleteAllCartItems = async(req, mode_of_operation) => {
 
         const sku = req.body.sku;
 
+        const session_opt = mongodb_transaction_session ? { session: mongodb_transaction_session} : {};
+
         if (mode_of_operation === "DELETE_BY_PRODUCT_ID") {
 
             console.log("In DELETE_BY_PRODUCT_ID mode");
             const product_id_filter = {"CartItems.product_id": product_id};
 
-            const result = await User.updateMany(product_id_filter, { $pull: { CartItems: { product_id: product_id } } }, { runValidators: true });
+            const result = await User.updateMany(product_id_filter, { $pull: { CartItems: { product_id: product_id } } }, { runValidators: true, ...session_opt });
 
             return result;
         }
@@ -465,7 +444,7 @@ const deleteAllCartItems = async(req, mode_of_operation) => {
             console.log("In DELETE_BY_SKU mode");
             const sku_filter = {"CartItems.sku": sku};
 
-            const result = await User.updateMany(sku_filter, { $pull: { CartItems: { sku: sku } } }, { runValidators: true });
+            const result = await User.updateMany(sku_filter, { $pull: { CartItems: { sku: sku } } }, { runValidators: true, ...session_opt });
 
             return result;
         }
@@ -478,6 +457,27 @@ const deleteAllCartItems = async(req, mode_of_operation) => {
     }
 };
 
+/* 1. Define the mapping once — old key -> new key
+const keyMap = {
+    a: 'some_arbitrary_key',
+    b: 'another_arbitrary_key',
+    c: 'yet_another_key',
+    // ... scales to hundreds of entries, just keep adding lines
+}; */
+
+// 2. A generic remap function that works for ANY object + ANY keyMap
+const remapKeys = (obj, keyMap) => {
+    const result = {};
+
+    for (const [oldKey, value] of Object.entries(obj)) {
+        // If oldKey exists in the map, use the new key; otherwise keep the original
+        const newKey = keyMap[oldKey] ?? oldKey;
+        result[newKey] = value;
+    }
+
+    return result;
+};
+
 module.exports = {
     checkCartItemExists,
     checkIsCartFull,
@@ -488,5 +488,6 @@ module.exports = {
     updateCartItemName,
     updateCartItemImageURI,
     calculateAndUpdateCartItemTotals,
-    deleteAllCartItems
+    deleteAllCartItems,
+    remapKeys
 };

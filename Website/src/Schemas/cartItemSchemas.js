@@ -11,13 +11,13 @@ const cartItemRequestSchema = z.object({
     
     sku: productItemValidators.zodIsSKU,
 
-    cart_item_name: cartItemValidators.zodIsCartItemName,
+    product_name: cartItemValidators.zodIsCartItemName,
 
-    cart_item_image_uri: cartItemValidators.zodIsCartItemImageURI,
+    image_uri: cartItemValidators.zodIsCartItemImageURI,
 
     cart_item_quantity: cartItemValidators.zodIsCartItemQuantity.default(1),
 
-    item_total: cartItemValidators.zodIsItemTotal,
+    product_price: cartItemValidators.zodIsItemTotal,
 
     discount_code: discountValidators.zodIsDiscountCode,
 

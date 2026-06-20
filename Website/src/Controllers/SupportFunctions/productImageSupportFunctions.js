@@ -1,35 +1,5 @@
 const Product = require('../../Models/Product');
 
-const checkDuplicateProductImageExists = async(req) => {
-     console.log("In checkDuplicateProductImageExists (HELPER FUNCTION)");
-
-     try{
-        const product_id = req.body.product_id;
-        const image_uri = req.body.image_uri;
-
-        const product_image_query = {product_id: product_id, "product_images.image_uri": image_uri};
-
-        const result = await Product.findOne(product_image_query).lean();
-
-        //console.log("##DEBUG - result in checkDuplicateProductImageExists ", result);
-
-        if(result === null){
-            console.log("##DEBUG - checkDuplicateProductImageExists returns false");
-            return false;
-        }
-
-        else{
-            console.log("##DEBUG - checkDuplicateProductImageExists returns true");
-            return true;
-        }
-     }
-
-     catch(error){
-        console.log("Error in checkDuplicateProductImageExists ", error);
-        throw error;
-     }
-};
-
 const checkProductImageExists = async(req) => {
     console.log("In checkProductImageExists (HELPER FUNCTION)");
 
@@ -85,8 +55,78 @@ const getProductImageArrayLength = async(req) => {
     }
 };
 
+const getProductImageURI = async(req, mongodb_transaction_session) => {
+    console.log("In getProductImageURI (HELPER FUNCTION)");
+
+    const session_opt = mongodb_transaction_session ? { session: mongodb_transaction_session } : {};
+
+    try{
+
+        const product_id = req.body.product_id;
+        //console.log("##DEBUG - product_id in getProductImageURI ", product_id);
+
+        const image_id = req.body.image_id;
+        //console.log("##DEBUG - image_id in getProductImageURI ", image_id);
+
+        const query = {product_id: product_id, "product_images.image_id": image_id};
+
+        const result = await Product.findOne(query, {product_images: 1, _id: 0},  { ...session_opt }).lean();
+
+        const product_images = result?.product_images;
+        //console.log("##DEBUG - result.product_images in getProductImageFlag - ", result?.product_images);
+
+        const selected_product_image = product_images.find(img => img.image_id === image_id);
+        //console.log("##DEBUG - selected_product_image in getProductImageFlag - ", selected_product_image);
+
+        const image_uri = selected_product_image.image_uri;
+        console.log("##DEBUG - image_uri in getProductImageURI - ", image_uri);
+
+        return image_uri;
+
+    }
+
+    catch(error) {
+        console.log("Error in getProductImageURI ", error);
+        throw error;
+    }
+};
+
+const getProductImageFlag = async(req) => {
+    console.log("In getProductImageFlag (HELPER FUNCTION)");
+
+    try {
+        const product_id = req.body.product_id;
+
+        const image_id = req.body.image_id;
+
+        const query = {product_id: product_id, "product_images.image_id": image_id};
+
+        const result = await Product.findOne(query, {product_images: 1, _id: 0}).lean();
+
+        //console.log("##DEBUG - result.product_images in getProductImageFlag - ", result?.product_images);
+
+        const product_images = result?.product_images;
+
+        const selected_product_image = product_images.find(img => img.image_id === image_id);
+
+        const main_image = selected_product_image.main_image;
+
+        //console.log("##DEBUG - selected_product_image in getProductImageFlag - ", selected_product_image);
+
+        //console.log("##DEBUG - selected_product_image.main_image in getProductImageFlag - ", selected_product_image.main_image);
+
+        return main_image;
+    }
+
+    catch (error) {
+        console.log("Error in getProductImageFlag ", error);
+        throw error;
+    }
+};
+
 module.exports = { 
-    checkDuplicateProductImageExists, 
     checkProductImageExists,
-    getProductImageArrayLength
+    getProductImageArrayLength,
+    getProductImageURI,
+    getProductImageFlag
 }; 

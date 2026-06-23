@@ -12,7 +12,7 @@ const zodIsOrderItemImageURI = z.string("The order_item_image_uri must be a stri
 
 const zodIsReturnReason = z.enum(["None", "Defect", "Cancelled"], {message: "The return_reason field is a required field. It must be one of the following values: None, Defect, Cancelled."});
 
-const zodIsReturnStatus = .enum(["None", "Requested", "Approved", "Cancelled"], {message: "The return_status field is a required field. It must be one of the following values: None, Defect, Cancelled."});
+const zodIsReturnStatus = z.enum(["None", "Requested", "Approved", "Cancelled"], {message: "The return_status field is a required field. It must be one of the following values: None, Defect, Cancelled."});
 
 module.exports = {
 	zodIsOrderItemId,

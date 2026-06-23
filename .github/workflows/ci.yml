@@ -23,12 +23,15 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+          cache-dependency-path: Website/src/package-lock.json
 
       - name: Install dependencies
+        working-directory: Website/src
         run: npm ci
 
       # --- Use this block if your project is plain JavaScript ---
       - name: Syntax check all JS files
+        working-directory: Website/src
         run: |
           find . -name "*.js" \
             -not -path "./node_modules/*" \
@@ -36,4 +39,5 @@ jobs:
 
       # --- Use this block instead if your project is TypeScript ---
       # - name: TypeScript compile check
+      #   working-directory: Website/src
       #   run: npx tsc --noEmit

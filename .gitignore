@@ -5,3 +5,5 @@ Website/src/*.sh
 Website/src/experiment.js
 Website/src/IntegrationTests/__pycache__
 Website/data/images
+Website/Design_Documents/ScratchPad.txt
+Website/Design_Documents/elemMatch.txt

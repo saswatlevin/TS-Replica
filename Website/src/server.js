@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 const connectToDB = require('./connectToDB');
 const responseValidator = require('./Validators/responseValidator');
 const globalErrorHandler = require('./ErrorHandlers/globalErrorHandler');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
+require('./Auth/passport')(passport);
 require('dotenv').config();
 
 
@@ -13,6 +17,13 @@ connectToDB();
 app.use(express.json());
 // Middleware to handle URL Form Data.
 app.use(express.urlencoded({ extended: true }));
+
+// For Cross Origin Request Safety
+app.use(cors());
+// To Parse data from HTTPOnly Cookies
+app.use(cookieParser());
+// Initialize Passport.js
+app.use(passport.initialize());
 
 // Server response validator
 app.use(responseValidator);

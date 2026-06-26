@@ -1,0 +1,5 @@
+1) Login & Token Issuance -> Submitted user credentials (username, pwd_hash) are verified by a server against the database. On success, a JWT is signed. The JWT contains the user_id and role.
+
+2) Passport JWT Strategy Setup -> You configure passport-jwt's Strategy with two key options: where to extract the token from (ExtractJwt.fromAuthHeaderAsBearerToken(), i.e., the Authorization: Bearer <token> header), and a secret key to verify the token's signature. 
+
+3) Protecting routes -> Any middleware routes that we want to protect will contain the passport.authenticate('jwt', { session: false }) middleware. This validates the token and attaches the user and their role to the req.user.

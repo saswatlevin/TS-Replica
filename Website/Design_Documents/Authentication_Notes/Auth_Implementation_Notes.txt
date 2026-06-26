@@ -1,0 +1,34 @@
+=============AUTH IMPLEMENTATION NOTES=============
+Broadly speaking, the authentication process is implemented as follows:
+  1) Login & Token Issuance -> Submitted user credentials (username, pwd_hash) are verified by a server against the database. On success, a JWT is signed. The JWT contains the user_id and role.
+
+  2) Passport JWT Strategy Setup -> You configure passport-jwt's Strategy with two key options: where to extract the token from (ExtractJwt.fromAuthHeaderAsBearerToken(), i.e., the Authorization: Bearer <token> header), and a secret key to verify the token's signature. 
+
+  3) Protecting routes -> Any middleware routes that we want to protect will contain the passport.authenticate('jwt', { session: false }) middleware. This validates the token and attaches the user and their role to the req.user.
+
+
+
+The loginUser Function
+* Submitted user credentials are verified by the server against the database in passport.authenticate.
+* It uses the LocalStrategy in passport.js.
+* req.login() formally establishes login and binds the user object to the current request object, i.e., req.user.
+* A token, from a JS object of {user_id, username, password} is generated if the credentials are correct.
+* The generated token is stored in an HTTPOnly Cookie.
+
+The passport Local Strategy.
+* Uses the Mongoose findOne function to find the User from the database.
+* Checks the user password hash. If it matches what is provided, then it returns the user, otherwise, it returns false.
+
+The logoutUser Function
+* This function deletes the user's HTTPOnly cookie from the browser cache, logging them out.
+
+The generateToken function
+* The generateToken function create a JWT token by signing a payload that is a JS object that consists of user_id, username and password k-v pairs. This object is signed with the secretKey.
+
+The verifyToken function
+* We get the token from req.cookies.token.
+* We verify the token with the secret key.
+* We get the user_id and the role from the decoded token.
+* We then assign the user_id to req.user_id.
+* We then verify the decoded role in the cookie with the required role.
+=============AUTH IMPLEMENTATION NOTES=============

@@ -1,0 +1,11 @@
+* For situations that require atomicity of operations on multiple documents, MongoDB supports transactions.
+* You can use transactions across multiple operations, collections, databases, documents, and shards.
+
+=============Transactions and Atomicity=============
+  * For situations that require atomicity of reads and writes to multiple documents, MongoDB supports distributed transactions, including transactions on replica sets and sharded clusters.
+  * Transactions either apply all data changes or roll back the changes.
+  * If a transaction commits, all data changes made in the transaction are saved and are visible outside of the transaction. 
+  * When a transaction aborts, all data changes made in the transaction are discarded without ever becoming visible.
+=============Transactions and Atomicity=============
+
+https://thecodebarbarian.com/whats-new-in-mongoose-5-10-optimistic-concurrency.html

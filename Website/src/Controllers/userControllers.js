@@ -22,8 +22,12 @@ const ResourceNotFoundError = require('../OperationalErrors/ResourceNotFoundErro
 const RedundantUpdateError = require('../OperationalErrors/RedundantUpdateError');
 const DuplicateDocumentError = require('../OperationalErrors/DuplicateDocumentError');
 
+const passport = require('passport');
+const { generateToken } = require('../Auth/auth');
+
+
 // CREATES A NEW USER
-const registerUser = asyncErrorHandler( async (req, res, next) => {
+const registerUser = asyncErrorHandler(async (req, res, next) => {
 
     console.log("In registerUser");
 
@@ -31,7 +35,7 @@ const registerUser = asyncErrorHandler( async (req, res, next) => {
     const phone_number = req.body.phone_number;
 
     console.log("Checking if the request body is empty");
-    if(checkIsEmptyObject(req) === true) {
+    if (checkIsEmptyObject(req) === true) {
         const empty_request_body_error = new EmptyRequestBodyError("Could not create a new user since the request body is empty");
         throw empty_request_body_error;
     }
@@ -59,7 +63,7 @@ const registerUser = asyncErrorHandler( async (req, res, next) => {
     // Get the current date-time
     const date_created_at = getCurrentDateTime();
     console.log("date_created_at ", date_created_at);
-    
+
     // Hash the user's password using argon2id. It is salted by default.
     const password_hash = await argon2.hash(request_body_deep_clone['password']);
     console.log("password_hash ", password_hash);
@@ -101,7 +105,7 @@ const registerUser = asyncErrorHandler( async (req, res, next) => {
 });
 
 // UPDATES ANY FIELD OF THE USER DOCUMENT EXCEPT ShippingAddresses, CartItems, docType, password AND user_id
-const updateUser = asyncErrorHandler( async(req, res, next) => {
+const updateUser = asyncErrorHandler(async (req, res, next) => {
 
     console.log("In updateUser");
 
@@ -109,7 +113,7 @@ const updateUser = asyncErrorHandler( async(req, res, next) => {
     console.log("user_id ", user_id);
 
     console.log("Checking if the request_body is empty");
-    if(checkIsEmptyObject(req) === true) {
+    if (checkIsEmptyObject(req) === true) {
         const empty_request_body_error = new EmptyRequestBodyError(`Could not update the user with ${user_id} since the request body is empty.`);
         throw empty_request_body_error;
     }
@@ -130,7 +134,7 @@ const updateUser = asyncErrorHandler( async(req, res, next) => {
     const request_body_deep_clone = JSON.parse(JSON.stringify(req.body));
     console.log("request_body_deep_clone ", request_body_deep_clone);
 
-    var filter = {user_id: user_id};
+    var filter = { user_id: user_id };
 
     console.log("filter ", filter);
 
@@ -139,11 +143,11 @@ const updateUser = asyncErrorHandler( async(req, res, next) => {
 
     const result = await User.findOneAndUpdate
         (
-            filter, 
-            request_body_deep_clone, 
+            filter,
+            request_body_deep_clone,
             { new: true, runValidators: true }
         ).lean();
-    
+
     console.log("result ", result);
 
     res.status(200).json(result);
@@ -154,20 +158,20 @@ const updateUser = asyncErrorHandler( async(req, res, next) => {
 });
 
 // UPDATES A USER'S PASSWORD
-const updateUserPassword = asyncErrorHandler( async(req, res, next) => {
+const updateUserPassword = asyncErrorHandler(async (req, res, next) => {
 
     console.log("In updateUserPassword ");
-    
+
     const user_id = req.params.user_id;
 
     console.log("Checking if the request_body is empty");
-    if (checkIsEmptyObject(req) === true){
+    if (checkIsEmptyObject(req) === true) {
         const empty_request_body_error = new EmptyRequestBodyError(`Could not update the password of the user with ${user_id} since the request body is empty.`);
         throw empty_request_body_error;
     }
 
     console.log("Checking if the user exists or not");
-    if(await checkUserExists(req) === false) {
+    if (await checkUserExists(req) === false) {
         const user_not_found_error = new ResourceNotFoundError(`Could not update the password of the user with ${user_id} since it does not exist`);
         throw user_not_found_error;
     }
@@ -183,7 +187,7 @@ const updateUserPassword = asyncErrorHandler( async(req, res, next) => {
     console.log("request_body_deep_clone ", request_body_deep_clone);
 
 
-    var filter = {user_id: user_id};
+    var filter = { user_id: user_id };
     console.log("filter ", filter);
 
     const updated_password = request_body_deep_clone["password"];
@@ -208,11 +212,11 @@ const updateUserPassword = asyncErrorHandler( async(req, res, next) => {
 });
 
 // GETS ONE USER
-const getUserById = asyncErrorHandler( async(req, res, next) => {
+const getUserById = asyncErrorHandler(async (req, res, next) => {
     console.log("In getUserById ");
 
     console.log("Checking if the request body is empty or not");
-    if(checkIsEmptyObject(req) === true) {
+    if (checkIsEmptyObject(req) === true) {
         const empty_request_body_error = new EmptyRequestBodyError("Could not find the user since the request body is empty");
         throw empty_request_body_error;
     }
@@ -228,11 +232,11 @@ const getUserById = asyncErrorHandler( async(req, res, next) => {
     console.log("===END OF getUserById===");
 });
 
-const searchUsersByName = asyncErrorHandler( async(req, res, next) => {
+const searchUsersByName = asyncErrorHandler(async (req, res, next) => {
     console.log("In searchUser");
 
     console.log("Checking if the request body is empty ot not");
-    if(checkIsEmptyObject(req) === true) {
+    if (checkIsEmptyObject(req) === true) {
         const empty_request_body_error = new EmptyRequestBodyError("Could not find the user since the request body is empty");
         throw empty_request_body_error;
     }
@@ -249,7 +253,7 @@ const searchUsersByName = asyncErrorHandler( async(req, res, next) => {
 
 });
 
-const deleteUser = asyncErrorHandler( async(req, res, next) => {
+const deleteUser = asyncErrorHandler(async (req, res, next) => {
     console.log("In deleteUser");
 
     const user_id = req.body.user_id;
@@ -266,15 +270,78 @@ const deleteUser = asyncErrorHandler( async(req, res, next) => {
         throw user_not_found_error;
     }
 
-    const delete_query = {user_id: user_id};
+    const delete_query = { user_id: user_id };
     console.log("delete_query in deleteUser ", delete_query);
 
-    const result = await User.findOneAndDelete(delete_query, {new: true, runValidators: true}).lean();
+    const result = await User.findOneAndDelete(delete_query, { new: true, runValidators: true }).lean();
     console.log("result in deleteUser ", result);
 
     res.status(200).json(result);
 
 });
+
+
+const loginUser = (req, res, next) => {
+    console.log("In loginUser");
+
+    console.log("Checking if the request body is empty.");
+    if (checkIsEmptyObject(req) === true) {
+        const empty_request_body_error = new EmptyRequestBodyError(`Could not log the user in since the request body is empty`);
+
+        throw empty_request_body_error;
+    }
+
+    // Submitted user credentials are verified by the server against the database in passport.authenticate.
+    // It uses the LocalStrategy in passport.js.
+    passport.authenticate('local', { session: false }, (err, user, info) => {
+        console.log("In the passport.authenticate function");
+        if (err) {
+            next(err);
+        }
+        if (!user) {
+            const resource_not_found_error = new ResourceNotFoundError(`Could not authenticate the user as the user does not exist.`);
+            next(resource_not_found_error);
+        }
+
+        // If the credentials are correct, a token is generated.
+        // req.login() is a utility function that Passport.js automatically attaches to the Express request (req) object.
+        // It formally establishes login.
+        // It also binds the user object to the current request object (req.user) for any downstream middleware.
+        req.login(user, { session: false }, (err) => {
+            console.log("In the function to generate a token for login");
+            if (err) {
+                next(err);
+
+            }
+
+            const user_id = user?.user_id;
+            const email = user?.email;
+            const user_role = user?.user_role;
+
+            const payload = { user_id: user_id, email: email, user_role: user_role };
+
+
+            // Token is generated
+            const token = generateToken(payload);
+
+            // Token is stored in an HTTPOnly Cookie.
+            res.cookie('token', token, { httpOnly: true });
+            res.status(200).json({ responseMessage: 'User logged in successfully.' });
+            console.log("===END OF loginUser===");
+        });
+    })(req, res, next);
+
+   
+};
+
+// Logs the user out by clearing the cookie from the respective user's browser cache. 
+const logoutUser = (req, res) => {
+    console.log("In logoutUser");
+    res.clearCookie('token');
+    res.status(200).json({ responseMessage: 'User logged out successfully.' });
+    console.log("===END OF logoutUser===");
+};
+
 
 module.exports = {
     registerUser,
@@ -282,5 +349,7 @@ module.exports = {
     updateUserPassword,
     getUserById,
     searchUsersByName,
-    deleteUser
+    deleteUser,
+    loginUser,
+    logoutUser
 };

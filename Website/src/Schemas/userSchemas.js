@@ -23,7 +23,7 @@ const userRequestSchema = z.object({
     upper_size_number: productItemValidators.zodIsUpperSizeNumber,
 
     upper_size_letter: productItemValidators.zodIsUpperSizeLetter,
-    
+
     others_size_letter: productItemValidators.zodIsOthersSizeLetter,
 
     email_comms_type: userValidators.zodIsEmailCommsType,
@@ -47,7 +47,7 @@ const updateUserSchema = z.object({
     last_name: userValidators.zodIsLastName.optional(),
 
     user_role: userValidators.zodIsUserRole.optional(),
-    
+
     upper_size_number: productItemValidators.zodIsUpperSizeNumber.optional(),
 
     upper_size_letter: productItemValidators.zodIsUpperSizeLetter.optional(),
@@ -89,7 +89,7 @@ const userResponseSchema = z.object({
 
     upper_size_letter: productItemValidators.zodIsUpperSizeLetter,
 
-    others_size_letter:  productItemValidators.zodIsOthersSizeLetter,
+    others_size_letter: productItemValidators.zodIsOthersSizeLetter,
 
     email_comms_type: userValidators.zodIsEmailCommsType,
 
@@ -143,7 +143,7 @@ const registerUserResponseSchema = z.object({
     upper_size_number: productItemValidators.zodIsUpperSizeNumber,
 
     upper_size_letter: productItemValidators.zodIsUpperSizeLetter,
-    
+
     others_size_letter: productItemValidators.zodIsOthersSizeLetter,
 
     email_comms_type: userValidators.zodIsEmailCommsType,
@@ -170,6 +170,14 @@ const registerUserResponseSchema = z.object({
 
 }).strict();
 
+const loginRequestSchema = z.object({
+    user_id: userValidators.zodIsUserId,
+    password: customValidators.zodIsPassword
+}).strict();
+
+const messageResponseSchema = z.object({
+    responseMessage: customValidators.zodIsMessage
+}).strict();
 
 const userResponseSchemaArray = z.array(userResponseSchema).min(0);
 
@@ -181,7 +189,9 @@ module.exports = {
     updateUserPasswordSchema,
     userResponseSchema,
     registerUserResponseSchema,
-    userResponseSchemaArray
+    userResponseSchemaArray,
+    loginRequestSchema,
+    messageResponseSchema
 };
 
 //TESTS

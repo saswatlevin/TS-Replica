@@ -1,5 +1,5 @@
 const schemaValidator = require('./schemaValidator');
-const { registerUserResponseSchema, userResponseSchema, userResponseSchemaArray} = require('../Schemas/userSchemas');
+const { registerUserResponseSchema, userResponseSchema, userResponseSchemaArray, messageResponseSchema } = require('../Schemas/userSchemas');
 const { shippingAddressResponseSchema, shippingAddressArrayZeroSchema } = require('../Schemas/shippingAddressSchemas');
 const { createProductResponseSchema, productResponseSchema, searchProductsArrayResponseSchema, searchProductItemArrayResponseSchema } = require('../Schemas/productSchemas');
 const { cartItemResponseSchema } = require('../Schemas/cartItemSchemas');
@@ -16,7 +16,7 @@ const responseSchemaValidator = (request, object) => {
         return schemaValidator(registerUserResponseSchema, object);
     }
 
-    else if (request.originalUrl.includes("/users/updateuser") === true & request.method === "PATCH"){
+    else if (request.originalUrl.includes("/users/updateuser") === true & request.method === "PATCH") {
         return schemaValidator(userResponseSchema, object);
     }
 
@@ -109,36 +109,36 @@ const responseSchemaValidator = (request, object) => {
     }
 
     else if (request.originalUrl.includes("/productimages/updateproductimageuri") === true && request.method === "PATCH") {
-       return schemaValidator(productResponseSchema, object);   
+        return schemaValidator(productResponseSchema, object);
     }
 
     else if (request.originalUrl.includes("/productimages/deleteproductimage") && request.method === "DELETE") {
-       return schemaValidator(productResponseSchema, object);   
+        return schemaValidator(productResponseSchema, object);
     }
 
     else if (request.originalUrl.includes("/productimages/searchproductimage") === true && request.method === "GET")
         return schemaValidator(searchProductsArrayResponseSchema, object);
 
     else if (request.originalUrl.includes("/productitems/createproductitem") === true && request.method === "POST") {
-         return schemaValidator(productResponseSchema, object);
+        return schemaValidator(productResponseSchema, object);
     }
 
     else if (request.originalUrl.includes("/productitems/updateproductitem") === true && request.method === "PATCH") {
-         return schemaValidator(productResponseSchema, object);
+        return schemaValidator(productResponseSchema, object);
     }
 
     else if (request.originalUrl.includes("/productitems/deleteproductitem") === true && request.method === "DELETE") {
-         return schemaValidator(productResponseSchema, object);
+        return schemaValidator(productResponseSchema, object);
     }
 
     else if (request.originalUrl.includes("/productitems/searchproductitem") === true && request.method === "GET") {
-          
-         return schemaValidator(searchProductItemArrayResponseSchema, object);
-    } 
+
+        return schemaValidator(searchProductItemArrayResponseSchema, object);
+    }
 
     else if (request.originalUrl.includes("/productitems/getproductitem") === true && request.method === "GET") {
-          
-         return schemaValidator(searchProductItemArrayResponseSchema, object);
+
+        return schemaValidator(searchProductItemArrayResponseSchema, object);
     }
 
     else if (request.originalUrl.includes("/reviews/createreview") === true && request.method === "POST") {
@@ -164,6 +164,16 @@ const responseSchemaValidator = (request, object) => {
     else if (request.originalUrl.includes("/reviews/getreviewbyid") === true && request.method === "GET") {
 
         return schemaValidator(reviewResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/users/loginuser") === true && request.method === "POST") {
+        console.log("In loginuser condition");
+        return schemaValidator(messageResponseSchema, object);
+    }
+
+    else if (request.originalUrl.includes("/users/logoutuser") === true && request.method === "POST") {
+        console.log("In logoutuser condition");
+        return schemaValidator(messageResponseSchema, object);
     }
 
     else {

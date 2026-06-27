@@ -310,12 +310,12 @@ user_test_data_list = [
     },
 
     {
-        "url": "http://localhost:3500/users/updateuserpassword/d2a986a0cab3",
+        "url": "http://localhost:3500/users/updateuserpassword/f6c13bd3c15c",
 
         "test_name": "Test to update the password in UPDATEUSERPASSWORD",
 
         "test_data": {
-            "password": "SakuraKai@1982"
+            "password": "Kenpeitai@1940"
         },
 
         "serial": 22
@@ -434,6 +434,24 @@ user_test_data_list = [
         },
 
         "serial": 32
+    },
+
+    {
+        "url": "http://localhost:3500/users/loginuser",
+        "test_name": "Login Request",
+        "test_data": {
+            "user_id": "f6c13bd3c15c",
+            "password": "Kenpeitai@1940"
+        },
+
+        "serial": 33
+    },
+
+    {
+        "url": "http://localhost:3500/users/logoutuser",
+        "test_name": "Logout Request",
+        "test_data": {},
+        "serial": 34
     }
 ]
 
@@ -535,6 +553,29 @@ while user_choice != 0:
         response = deleteRequests(url, test_data)
         print("\nresponse " + response.text + "\n")
 
+    elif user_choice == 34:
+        print("=====LoginUser REQUEST=====")
+        print("Test Number " + str(user_choice))
+        print("url " + url)
+        print("test_name " + test_name)
+        print("serial " + str(serial))
+        print("\ntest_data " + str(test_data))
+
+        response = postRequests(url, test_data)
+        print("\nresponse " + response.text + "\n")
+
+    elif user_choice == 35:
+        print("=====LogoutUser REQUEST=====")
+        print("Test Number " + str(user_choice))
+        print("url " + url)
+        print("test_name " + test_name)
+        print("serial " + str(serial))
+        print("\ntest_data " + str(test_data))
+
+        response = postRequests(url, test_data)
+        print("\nresponse " + response.text + "\n")
+    
+    
     else:
         if user_choice != 0:
             print("User choice out of range.")

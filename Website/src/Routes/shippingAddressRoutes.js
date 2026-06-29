@@ -4,15 +4,16 @@ const shippingAddressControllers = require('../Controllers/shippingAddressContro
 const requestValidator = require('../Validators/requestValidator');
 const shippingAddressSchemas = require('../Schemas/shippingAddressSchemas');
 const { xss } = require('express-xss-sanitizer');
+const { verifyToken } = require('../Auth/auth');
 
-router.route('/createshippingaddress/:user_id').post(requestValidator(shippingAddressSchemas.shippingAddressRequestSchema), xss(), shippingAddressControllers.createShippingAddress);
+router.route('/createshippingaddress').post(requestValidator(shippingAddressSchemas.shippingAddressRequestSchema), verifyToken(['admin', 'user']), xss(), shippingAddressControllers.createShippingAddress);
 
-router.route('/updateshippingaddress/:user_id').patch(requestValidator(shippingAddressSchemas.updateShippingAddressRequestSchema), xss(), shippingAddressControllers.updateShippingAddress);
+router.route('/updateshippingaddress').patch(requestValidator(shippingAddressSchemas.updateShippingAddressRequestSchema), verifyToken(['admin', 'user']), xss(), shippingAddressControllers.updateShippingAddress);
 
-router.route('/getshippingaddressbyid/:user_id').get(requestValidator(shippingAddressSchemas.getShippingAddressByIdRequestSchema), xss(), shippingAddressControllers.getShippingAddressById);
+router.route('/getshippingaddressbyid').get(requestValidator(shippingAddressSchemas.getShippingAddressByIdRequestSchema), verifyToken(['admin', 'user']), xss(), shippingAddressControllers.getShippingAddressById);
 
-router.route('/searchshippingaddress/:user_id').get(requestValidator(shippingAddressSchemas.searchShippingAddressRequestSchema), xss(), shippingAddressControllers.searchShippingAddress);
+router.route('/searchshippingaddress').get(requestValidator(shippingAddressSchemas.searchShippingAddressRequestSchema), verifyToken(['admin', 'user']), xss(), shippingAddressControllers.searchShippingAddress);
 
-router.route('/deleteshippingaddressbyid/:user_id').delete(requestValidator(shippingAddressSchemas.getShippingAddressByIdRequestSchema), xss(), shippingAddressControllers.deleteShippingAddressById);
+router.route('/deleteshippingaddressbyid').delete(requestValidator(shippingAddressSchemas.getShippingAddressByIdRequestSchema), verifyToken(['admin', 'user']), xss(), shippingAddressControllers.deleteShippingAddressById);
 
 module.exports = router;

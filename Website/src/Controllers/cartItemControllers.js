@@ -37,7 +37,7 @@ const { buildUpdateCartItemDiscountPipeline } = require('../AggregationPipelines
 const createCartItem = asyncErrorHandler(async (req, res, next) => {
     console.log("In createCartItem");
 
-    const user_id = req.params.user_id;
+    const user_id = req.user_id;
     console.log("user_id ", user_id);
 
     const product_id = req.body.product_id;
@@ -144,7 +144,7 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
 const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
     console.log("In updateCartItemQuantity");
     
-    const user_id = req.params.user_id;
+    const user_id = req.user_id;
     console.log("user_id ", user_id);
 
     const product_id = req.body.product_id;
@@ -238,73 +238,11 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
     console.log("===END OF updateCartItemQuantity===");
 });
 
-const searchCartItem = asyncErrorHandler(async(req, res, next) => {
-   console.log("In searchCartItem");
-   
-   const cart_item_id = req.body.cart_item_id;
-   console.log("Getting the cart_item_id from the request body ", cart_item_id);
-
-   const user_id = req.params.user_id;
-   console.log("Getting the user_id from the request params ", user_id)
-
-   console.log("Checking if the request body is empty");
-   if (checkIsEmptyObject(req) === true) {
-      const empty_request_body_error = new EmptyRequestBodyError(`Could not search for the Cart Item with cart_item_id ${cart_item_id} as the request body was empty.`);
-      throw empty_request_body_error;
-   }
-
-   console.log("Checking if the user exists");
-   if (await checkUserExists(req) === false) {
-      const resource_not_found_error = new ResourceNotFoundError(`Could not search for the cart item with cart_item_id ${cart_item_id} since the user with user_id ${user_id}`);
-      throw resource_not_found_error;
-   }
-
-   const find_query = {'CartItems.cart_item_id': cart_item_id};
-   console.log("find_query ", find_query);
-
-   const result = await User.find(find_query);
-   console.log("result in searchCartItem ", result);
-
-   res.status(200).json(result);
-   console.log("===END OF searchCartItem()===");
-});
-
-const getCartItemById = asyncErrorHandler(async(req, res, next) => {
-   console.log("In getCartItemById");
-   
-   const cart_item_id = req.body.cart_item_id;
-   console.log("Getting the cart_item_id from the request body ", cart_item_id);
-
-   const user_id = req.params.user_id;
-   console.log("Getting the user_id from the request params ", user_id)
-
-   console.log("Checking if the request body is empty");
-   if (checkIsEmptyObject(req) === true) {
-      const empty_request_body_error = new EmptyRequestBodyError(`Could not search for the Cart Item with cart_item_id ${cart_item_id} as the request body was empty.`);
-      throw empty_request_body_error;
-   }
-
-   console.log("Checking if the user exists");
-   if (await checkUserExists(req) === false) {
-      const resource_not_found_error = new ResourceNotFoundError(`Could not search for the cart item with cart_item_id ${cart_item_id} since the user with user_id ${user_id} does not exist.`);
-      throw resource_not_found_error;
-   }
-
-   const find_query = {'CartItems.cart_item_id': cart_item_id};
-   console.log("find_query ", find_query);
-
-   const result = await User.findOne(find_query);
-   console.log("result in getCartItemById ", result);
-
-   res.status(200).json(result);
-   console.log("===END OF getCartItemById()===");
-});
-
 
 const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
     console.log("In deleteCartItem");
 
-    const user_id = req.params.user_id;
+    const user_id = req.user_id;
     console.log("Getting the user_id from the request params ", user_id);
 
     const product_id = req.body.product_id;
@@ -377,7 +315,5 @@ const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
 module.exports = {
     createCartItem,
     updateCartItemQuantity,
-    searchCartItem,
-    getCartItemById,
     deleteCartItem
 };

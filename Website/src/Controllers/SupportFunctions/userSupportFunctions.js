@@ -9,7 +9,7 @@ const checkUserExists = async(req) => {
 
     
         // So that we don't have an undefined user_id
-        const user_id = req.params.user_id || req.body.user_id || undefined;
+        const user_id = req.body.user_id || req.user_id || null;
 
         //console.log("user_id ", user_id);
 
@@ -119,7 +119,7 @@ const checkUserValueExists = async(req) => {
 
     try{
 
-        const user_id = req.params.user_id;
+        const user_id = req.user_id || null;
         const query = {user_id: user_id, ...req.body};
 
         const result = await User.findOne(query).lean();
@@ -143,7 +143,7 @@ const checkUserPasswordValueExists = async(req) => {
     console.log("In checkUserPasswordValueExists");
     
     try {
-        const user_id = req.params.user_id;
+        const user_id = req.user_id || null;
 
         const query = {user_id: user_id};
 

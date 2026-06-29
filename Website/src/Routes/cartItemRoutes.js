@@ -4,11 +4,12 @@ const cartItemControllers = require('../Controllers/cartItemControllers');
 const requestValidator = require('../Validators/requestValidator');
 const cartItemSchemas = require('../Schemas/cartItemSchemas');
 const { xss } = require('express-xss-sanitizer');
+const { verifyToken } = require('../Auth/auth');
 
-router.route('/createcartitem/:user_id').post(requestValidator(cartItemSchemas.cartItemRequestSchema), xss(), cartItemControllers.createCartItem);
+router.route('/createcartitem').post(requestValidator(cartItemSchemas.cartItemRequestSchema), verifyToken(['admin', 'user']), xss(), cartItemControllers.createCartItem);
 
-router.route('/updatecartitemquantity/:user_id').patch(requestValidator(cartItemSchemas.updateCartItemQuantitySchema), xss(), cartItemControllers.updateCartItemQuantity);
+router.route('/updatecartitemquantity').patch(requestValidator(cartItemSchemas.updateCartItemQuantitySchema), verifyToken(['admin', 'user']), xss(), cartItemControllers.updateCartItemQuantity);
 
-router.route("/deletecartitem/:user_id").delete(requestValidator(cartItemSchemas.deleteCartItemSchema), xss(), cartItemControllers.deleteCartItem);
+router.route("/deletecartitem").delete(requestValidator(cartItemSchemas.deleteCartItemSchema), xss(), verifyToken(['admin', 'user']), cartItemControllers.deleteCartItem);
 
 module.exports = router;

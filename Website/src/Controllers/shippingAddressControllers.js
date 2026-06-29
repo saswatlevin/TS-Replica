@@ -22,7 +22,7 @@ const pruneObject = require('../pruneObject');
 const createShippingAddress = asyncErrorHandler(async (req, res, next) => {
     console.log("In createShippingAddress");
 
-    const user_id = req.params.user_id;
+    const user_id = req.user_id;
 
     console.log("Checking if the request body is empty or not");
     if (checkIsEmptyObject(req) === true) {
@@ -81,7 +81,7 @@ const createShippingAddress = asyncErrorHandler(async (req, res, next) => {
 const updateShippingAddress = asyncErrorHandler(async (req, res, next) => {
     console.log("In updateShippingAddress");
 
-    const user_id = req.params.user_id;
+    const user_id = req.user_id;
     console.log("user_id ", user_id);
 
     const shipping_address_id = req.body.shipping_address_id;
@@ -134,7 +134,7 @@ const updateShippingAddress = asyncErrorHandler(async (req, res, next) => {
 const getShippingAddressById = asyncErrorHandler(async (req, res, next) => {
     console.log("In getShippingAddressById");
 
-    const user_id = req.params.user_id;
+    const user_id = req.user_id;
     console.log("user_id ", user_id);
 
     console.log("Check if the request body is empty");
@@ -169,7 +169,7 @@ const getShippingAddressById = asyncErrorHandler(async (req, res, next) => {
 const searchShippingAddress = asyncErrorHandler(async (req, res, next) => {
     console.log("In searchShippingAddress");
 
-    const user_id = req.params.user_id;
+    const user_id = req.user_id;
 
     console.log("Checking if the request body is empty");
     if (checkIsEmptyObject(req) === true) {
@@ -212,7 +212,7 @@ const searchShippingAddress = asyncErrorHandler(async (req, res, next) => {
 const deleteShippingAddressById = asyncErrorHandler(async (req, res, next) => {
     console.log("In deleteShippingAddress");
 
-    const user_id = req.params.user_id;
+    const user_id = req.user_id;
 
     console.log("Checking if the request body is empty or not");
     if (checkIsEmptyObject(req) === true) {

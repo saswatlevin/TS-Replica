@@ -13,7 +13,7 @@ const checkCartItemExists = async(req) => {
     // USES REQ.BODY -> PRODUCT_ID
     try {
 
-        const user_id = req.params.user_id;
+        const user_id = req.user_id;
         const cart_item_id = req?.body?.cart_item_id;
         const product_id = req?.body?.product_id;
         const sku = req?.body?.sku;
@@ -83,7 +83,7 @@ const checkIsCartFull = async(req) => {
     try {
         console.log("In checkIsCartFull (HELPER FUNCTION)");
 
-        const user_id = req.params.user_id;
+        const user_id = req.user_id;
 
         const query = {user_id: user_id};
 
@@ -122,7 +122,7 @@ const checkIsCartEmpty = async(req) => {
     console.log("In checkIsCartEmpty (HELPER FUNCTION)");
 
     try {
-        const user_id = req.params.user_id;
+        const user_id = req.user_id;
 
         const query = {user_id: user_id};
         console.log("query in checkIsCartEmpty ", query);
@@ -297,48 +297,6 @@ const updateCartItemName = async (req, res) => {
     }
 };
 
-const updateCartItemImageURI = async (req, res) => {
-    console.log("In updateCartItemImageURI (HELPER FUNCTION)");
-
-    try {
-
-        const product_id = req.body.product_id;
-        //console.log("product_id ", product_id);
-        
-        const filter = { "CartItems.product_id": product_id };
-        //console.log("filter ", filter);
-
-        const updated_cart_item_image_uri = res.locals.updated_cart_item_image_uri;
-        //console.log("updated_cart_item_image_uri ", updated_cart_item_image_uri);
-
-        const mongodb_transaction_session = res.locals.mongodb_transaction_session || null;
-        const session_opt = mongodb_transaction_session ? { session: mongodb_transaction_session} : {};
-
-        const update_object = {
-            $set: {
-                "CartItems.$[item].cart_item_image_uri": updated_cart_item_image_uri
-            }
-        };
-
-        console.log("##DEBUG - update_object in updateCartItemImageURI ", update_object);
-
-        // Update the image_uri of all product items (cart items) of the same product if present.
-        // The arrayFilters option is necessary since we use the filtered positional operator: "CartItems.$[item].cart_item_image_uri".
-        const result = await User.updateMany(filter, update_object, { arrayFilters: [{ "item.product_id": product_id }], runValidators: true, ...session_opt });
-
-        //console.log("##DEBUG - result in updateCartItemImageURI ", result);
-
-        console.log("===END OF updateCartItemImageURI===");
-        
-        return result;
-    }
-
-    catch (error) {
-        console.log("Error in updateCartItemImageURI ", error);
-        throw error;
-    }
-};
-
 const calculateAndUpdateCartItemTotals = async(req, mongodb_transaction_session) => {
 
    // Get all the CartItem sub-documents from the CartItems array of the respective 
@@ -349,7 +307,7 @@ const calculateAndUpdateCartItemTotals = async(req, mongodb_transaction_session)
 
    try {
 
-        const user_id = req.params?.user_id;
+        const user_id = req?.user_id;
         console.log("user_id ", user_id);
 
         if (user_id !== undefined) {
@@ -486,7 +444,6 @@ module.exports = {
     updateCartItemPrice,
     updateCartItemDiscount,
     updateCartItemName,
-    updateCartItemImageURI,
     calculateAndUpdateCartItemTotals,
     deleteAllCartItems,
     remapKeys

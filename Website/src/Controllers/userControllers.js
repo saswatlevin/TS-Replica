@@ -109,7 +109,7 @@ const updateUser = asyncErrorHandler(async (req, res, next) => {
 
     console.log("In updateUser");
 
-    const user_id = req.params.user_id;
+    const user_id = req.user_id;
     console.log("user_id ", user_id);
 
     console.log("Checking if the request_body is empty");
@@ -162,7 +162,8 @@ const updateUserPassword = asyncErrorHandler(async (req, res, next) => {
 
     console.log("In updateUserPassword ");
 
-    const user_id = req.params.user_id;
+    const user_id = req.user_id;
+    console.log("user_id ", user_id);
 
     console.log("Checking if the request_body is empty");
     if (checkIsEmptyObject(req) === true) {

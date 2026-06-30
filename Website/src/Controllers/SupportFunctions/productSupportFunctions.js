@@ -80,16 +80,16 @@ const checkProductPriceExists = async(req) => {
         var product_search_object = {};
 
         if (req.body.product_price !== undefined && (req.body.discount_code === undefined && req.body.discount_percentage === undefined)) {
-            product_search_object = {product_price: req.body.product_price};
+            product_search_object = {product_id: product_id, product_price: req.body.product_price};
         } 
 
         else if (req.body.product_price === undefined && (req.body.discount_code !== undefined && req.body.discount_percentage !== undefined)) {
-            product_search_object = {discount_code: req.body.discount_code, discount_percentage: req.body.discount_percentage};
+            product_search_object = {product_id: product_id, discount_code: req.body.discount_code, discount_percentage: req.body.discount_percentage};
             
         }
 
         else if (req.body.product_price !== undefined && (req.body.discount_code !== undefined && req.body.discount_percentage !== undefined)) {
-            product_search_object = {product_price: req.body.product_price, discount_code: req.body.discount_code, discount_percentage: req.body.discount_percentage};
+            product_search_object = {product_id: product_id, product_price: req.body.product_price, discount_code: req.body.discount_code, discount_percentage: req.body.discount_percentage};
         }
 
         else {

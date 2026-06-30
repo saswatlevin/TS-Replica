@@ -17,9 +17,9 @@ const productImageRequestSchema = z.object({
     main_image: z.boolean("The main_image field must be a boolean value. The main_image field is a required field.")
 }).strict();
 
-const productImageArrayResponseSchema = z.array(productImageResponseSchema).min(0);
+const productImageArrayResponseSchema = z.array(productImageResponseSchema).min(0).max(5, {message: "A maximum of 5 product images can be provided."});
 
-const productImageArrayRequestSchema = z.array(productImageRequestSchema).min(0).max(5, {message: "A maximum of 5 product images can be provided."});
+const productImageArrayRequestSchema = z.array(productImageRequestSchema).max(0, {message: "Cannot create product_image while creating a product."});
 
 
 const createProductImageSchema = z.object({

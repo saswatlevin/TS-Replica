@@ -17,8 +17,6 @@ const { checkUserExists } = require('./SupportFunctions/userSupportFunctions');
 
 const { checkCartItemExists } = require('./SupportFunctions/cartItemSupportFunctions');
 
-const { checkIsCartEmpty } = require('./SupportFunctions/cartItemSupportFunctions');
-
 const { checkIsCartFull } = require('./SupportFunctions/cartItemSupportFunctions');
 
 const { getProductPriceAndDiscountPercentage } = require('./SupportFunctions/cartItemSupportFunctions');
@@ -122,7 +120,7 @@ const createCartItem = asyncErrorHandler(async (req, res, next) => {
                         console.log("create_cart_item_result ", create_cart_item_result);
 
                         console.log("Calculating the cart item totals");
-                        calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+                        calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req, "SINGLE_USER_MODE", mongodb_transaction_session);
                         console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
 
                         result = [create_cart_item_result, calculate_cart_item_totals_result];
@@ -221,7 +219,7 @@ const updateCartItemQuantity = asyncErrorHandler(async(req, res, next) => {
                 update_cart_item_quantity_result = await User.findOneAndUpdate(filter, update_object, {new: true, runValidators: true, session: mongodb_transaction_session}).lean();
                 console.log("update_cart_item_quantity_result in updateCartItemQuantity ", update_cart_item_quantity_result);
 
-                calculate_cart_item_total_result = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+                calculate_cart_item_total_result = await calculateAndUpdateCartItemTotals(req, "SINGLE_USER_MODE", mongodb_transaction_session);
                 console.log("calculate_cart_item_total_result ", calculate_cart_item_total_result);
 
                 result = [update_cart_item_quantity_result, calculate_cart_item_total_result];
@@ -291,7 +289,7 @@ const deleteCartItem = asyncErrorHandler(async(req, res, next) => {
                 console.log("Deleting Cart Item");
                 delete_cart_item_result = await User.findOneAndUpdate(filter, { $pull: { CartItems: query } }, {new: true, runValidators: true, session: mongodb_transaction_session}).lean();
                 
-                calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+                calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req, "SINGLE_USER_MODE", mongodb_transaction_session);
                 
                 console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
 

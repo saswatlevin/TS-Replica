@@ -297,7 +297,7 @@ const updateCartItemName = async (req, res) => {
     }
 };
 
-const calculateAndUpdateCartItemTotals = async(req, mongodb_transaction_session) => {
+const calculateAndUpdateCartItemTotals = async(req, mode_of_operation, mongodb_transaction_session) => {
 
    // Get all the CartItem sub-documents from the CartItems array of the respective 
    // user and add sum the respective fields and then update them in the respective user document.
@@ -307,10 +307,10 @@ const calculateAndUpdateCartItemTotals = async(req, mongodb_transaction_session)
 
    try {
 
-        const user_id = req?.user_id;
-        console.log("user_id ", user_id);
+        const user_id = req.user_id;
+        //console.log("user_id ", user_id);
 
-        if (user_id !== undefined) {
+        if (mode_of_operation === "SINGLE_USER_MODE") {
 
             console.log("In Single User Mode");
 
@@ -355,7 +355,7 @@ const calculateAndUpdateCartItemTotals = async(req, mongodb_transaction_session)
 
         }
 
-        else {
+        if (mode_of_operation === "MULTI_USER_MODE") {
             console.log("In Multi User Mode");
 
             const multi_user_cart_item_totals_update_pipeline = buildMultiUserCartItemTotalsUpdatePipeline();

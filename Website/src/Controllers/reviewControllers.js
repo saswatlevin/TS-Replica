@@ -32,7 +32,7 @@ const createReview = asyncErrorHandler(async(req, res, next) => {
 		throw empty_request_body_error;
 	}
 
-	const user_id = req.params.user_id;
+	const user_id = req.user_id;
 	console.log("user_id ", user_id);
 
 	console.log("Checking if the user exists");
@@ -90,7 +90,7 @@ const updateReview = asyncErrorHandler(async(req, res, next) => {
 	const review_id = req.body.review_id;
 	console.log("review_id ", review_id);
 
-	const user_id = req.params.user_id;
+	const user_id = req.user_id;
 	console.log("user_id ", user_id);
 
 	const product_id = req.body.product_id;
@@ -149,7 +149,7 @@ const deleteReview = asyncErrorHandler(async(req, res, next) => {
 		throw empty_request_body_error;
 	}
 
-	const user_id = req.params.user_id;
+	const user_id = req.user_id;
 	console.log("user_id ", user_id);
 
 	const review_id = req.body.review_id;
@@ -196,7 +196,7 @@ const searchReview = asyncErrorHandler(async(req, res, next) => {
 		throw empty_request_body_error;
 	}
 
-	const user_id = req.params.user_id;
+	const user_id = req.user_id;
 	console.log("user_id ", user_id);
 
 	//const review_id = req.body.review_id;
@@ -211,7 +211,7 @@ const searchReview = asyncErrorHandler(async(req, res, next) => {
 	const request_body_deep_clone = _.cloneDeep(req.body);
 	console.log("request_body_deep_clone ", request_body_deep_clone);
 
-	const search_query = {user_id: user_id, ...request_body_deep_clone};
+	const search_query = {request_body_deep_clone};
 	console.log("search_query ", search_query);
 
 	const result = await Review.find(search_query).lean();
@@ -230,7 +230,7 @@ const getReviewById = asyncErrorHandler(async(req, res, next) => {
 		throw empty_request_body_error;
 	}
 
-	const user_id = req.params.user_id;
+	const user_id = req.user_id;
 	console.log("user_id ", user_id);
 
 	const review_id = req.body.review_id;

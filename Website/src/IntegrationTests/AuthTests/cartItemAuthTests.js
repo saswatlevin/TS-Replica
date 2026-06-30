@@ -36,7 +36,7 @@ fetch('http://localhost:3500/cartitems/deletecartitem', {
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(
   { 
-      cart_item_id: "ca3977d651eb",
+      cart_item_id: "884f1e9f1636",
       product_id: "u64xz4yc2zcb",
       sku: "733tse774k" 
   }
@@ -51,7 +51,7 @@ fetch('http://localhost:3500/cartitems/updatecartitemquantity', {
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(
   { 
-      cart_item_id: "ca3977d651eb",
+      cart_item_id: "884f1e9f1636",
       product_id: "u64xz4yc2zcb",
       sku: "733tse774k",
       cart_item_quantity: 2 

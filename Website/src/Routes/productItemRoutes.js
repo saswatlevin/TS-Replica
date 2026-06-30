@@ -4,12 +4,14 @@ const productItemControllers = require('../Controllers/productItemControllers');
 const requestValidator = require('../Validators/requestValidator');
 const productItemSchemas = require('../Schemas/productItemSchemas');
 const { xss } = require('express-xss-sanitizer');
+const { verifyToken } = require('../Auth/auth');
 
-router.route('/createproductitem').post(requestValidator(productItemSchemas.productItemCreateRequestSchemasDiscriminatedUnion), xss(), productItemControllers.createProductItem);
 
-router.route('/updateproductitem').patch(requestValidator(productItemSchemas.productItemUpdateRequestSchemasDiscriminatedUnion), xss(), productItemControllers.updateProductItem);
+router.route('/createproductitem').post(requestValidator(productItemSchemas.productItemCreateRequestSchemasDiscriminatedUnion), verifyToken(['admin']), xss(), productItemControllers.createProductItem);
 
-router.route('/deleteproductitem').delete(requestValidator(productItemSchemas.productItemDeleteRequestSchema), xss(), productItemControllers.deleteProductItem);
+router.route('/updateproductitem').patch(requestValidator(productItemSchemas.productItemUpdateRequestSchemasDiscriminatedUnion), verifyToken(['admin']), xss(), productItemControllers.updateProductItem);
+
+router.route('/deleteproductitem').delete(requestValidator(productItemSchemas.productItemDeleteRequestSchema), verifyToken(['admin']), xss(), productItemControllers.deleteProductItem);
 
 router.route('/searchproductitem').get(requestValidator(productItemSchemas.productItemSearchRequestSchema), xss(), productItemControllers.searchProductItem);
 

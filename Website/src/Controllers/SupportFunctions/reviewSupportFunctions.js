@@ -11,7 +11,7 @@ const checkReviewExists = async(req) => {
 		const review_id = req.body.review_id;
 		//console.log("review_id ", review_id);
 
-		const user_id = req.params.user_id;
+		const user_id = req.user_id;
 		//console.log("user_id ", user_id);
 
 		const product_id = req.body.product_id;
@@ -43,7 +43,7 @@ const checkDuplicateReviewExists = async(req) => {
 	console.log("In checkDuplicateReviewExists (HELPER FUNCTION) ");
 
 	try {
-		const user_id = req.params.user_id;
+		const user_id = req.user_id;
 		//console.log("user_id ", user_id);
 
 		const product_id = req.body.product_id;

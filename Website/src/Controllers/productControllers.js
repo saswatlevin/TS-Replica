@@ -189,7 +189,7 @@ const updateProductPrice = asyncErrorHandler(async (req, res, next) => {
             update_cart_item_price_result = await updateCartItemPrice(req, res);
             //console.log("update_cart_item_price_result ", update_cart_item_price_result);
 
-            calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+            calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req, "MULTI_USER_MODE", mongodb_transaction_session);
             //console.log("calculate_cart_item_totals_result ", calculate_cart_item_totals_result);
 
             result = [update_product_price_result, update_cart_item_price_result, calculate_cart_item_totals_result];
@@ -280,7 +280,7 @@ const updateProductDiscount = asyncErrorHandler(async (req, res, next) => {
                 update_cart_item_price_result = await updateCartItemDiscount(req, res);
                 //console.log("update_cart_item_discount_result ", update_cart_item_discountv_result);
 
-                const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+                const calculate_cart_item_totals_result = await calculateAndUpdateCartItemTotals(req, "MULTI_USER_MODE", mongodb_transaction_session);
                 //console.log("update_cart_item_totals_result ", update_cart_item_totals_result);
 
                 result = [update_product_price_result, update_cart_item_price_result, calculate_cart_item_totals_result];
@@ -580,7 +580,7 @@ const deleteProduct = asyncErrorHandler(async(req, res, next) => {
             result_2 = await deleteAllCartItems(req, "DELETE_BY_PRODUCT_ID", mongodb_transaction_session);
             console.log("result of deleteAllCartItems in deleteProduct ", result_2);
 
-            result_3 = await calculateAndUpdateCartItemTotals(req, mongodb_transaction_session);
+            result_3 = await calculateAndUpdateCartItemTotals(req, "MULTI_USER_MODE", mongodb_transaction_session);
             console.log("result of calculateAndUpdateCartItemTotals in deleteProduct ", result_3);
 
             result = [result_1, result_2, result_3];
